@@ -49,16 +49,21 @@ export function AgentList({ agents, harness }: AgentListProps) {
   }, []);
 
   const handleViewAgentMd = useCallback((agent: Agent) => {
+    const rawContent = harness.rawFiles?.agents?.[agent.id];
     setMdViewer({
       title: `${agent.name} — 에이전트 마크다운`,
-      content: generateAgentMd(agent),
+      content: rawContent ?? generateAgentMd(agent),
     });
-  }, []);
+  }, [harness]);
 
   const handleViewSkillMd = useCallback(() => {
+    const mainSkillKey = Object.keys(harness.rawFiles?.skills ?? {}).find(
+      (k) => k.startsWith(harness.slug + "/"),
+    );
+    const rawContent = mainSkillKey ? harness.rawFiles?.skills?.[mainSkillKey] : undefined;
     setMdViewer({
       title: `${harness.skill.name} — 스킬 마크다운`,
-      content: generateSkillMd(harness),
+      content: rawContent ?? generateSkillMd(harness),
     });
   }, [harness]);
 
@@ -182,6 +187,37 @@ export function AgentList({ agents, harness }: AgentListProps) {
           </svg>
           스킬 마크다운 보기
         </button>
+
+        {/* 확장 스킬 버튼들 */}
+        {harness.skill.extensionSkills.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {harness.skill.extensionSkills.map((extSkill) => {
+              const rawKey = Object.keys(harness.rawFiles?.skills ?? {}).find(
+                (k) => k.startsWith(extSkill.name + "/"),
+              );
+              const rawContent = rawKey ? harness.rawFiles?.skills?.[rawKey] : undefined;
+              if (!rawContent) return null;
+              return (
+                <button
+                  key={extSkill.name}
+                  type="button"
+                  onClick={() =>
+                    setMdViewer({
+                      title: `${extSkill.name} — 확장 스킬`,
+                      content: rawContent,
+                    })
+                  }
+                  className="flex items-center gap-1.5 rounded-lg border border-dashed border-[var(--border)] bg-[var(--card)] px-3 py-2 text-xs font-medium text-[var(--muted-foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-base focus-ring"
+                >
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  {extSkill.name}
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
 
       {/* 마크다운 뷰어 모달 */}

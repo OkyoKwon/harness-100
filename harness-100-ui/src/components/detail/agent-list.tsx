@@ -49,9 +49,7 @@ interface MdViewerState {
 }
 
 export function AgentList({ agents, harness }: AgentListProps) {
-  const [expandedId, setExpandedId] = useState<string | null>(
-    agents.length > 0 ? agents[0].id : null,
-  );
+  const [expandedId, setExpandedId] = useState<string | null>(null);
   const [mdViewer, setMdViewer] = useState<MdViewerState | null>(null);
 
   const handleToggle = useCallback((agentId: string) => {

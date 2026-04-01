@@ -127,10 +127,6 @@ export function AgentList({ agents, harness }: AgentListProps) {
 
               {isExpanded && (
                 <div className="border-t border-[var(--border)] px-4 py-3">
-                  <p className="text-sm leading-relaxed text-[var(--card-foreground)]">
-                    {agent.description}
-                  </p>
-
                   {agent.tools.length > 0 && (
                     <div className="mt-3">
                       <p className="mb-1.5 text-xs font-medium text-[var(--muted-foreground)]">

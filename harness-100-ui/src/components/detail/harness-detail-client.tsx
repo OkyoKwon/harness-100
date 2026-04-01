@@ -15,6 +15,7 @@ import { OutputPreview } from "@/components/detail/output-preview";
 import { CompletionBanner } from "@/components/common/completion-banner";
 import { StickyActionBar } from "@/components/detail/sticky-action-bar";
 import { CATEGORIES } from "@/lib/constants";
+import { buildCliCommand } from "@/lib/cli";
 
 type LoadingState = "loading" | "loaded" | "error";
 
@@ -231,6 +232,27 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
           />
         </div>
       )}
+
+      {/* 세팅 가이드 */}
+      <div className="mb-6 rounded-lg border border-[var(--info-border)] bg-[var(--info-bg)] px-4 py-3">
+        <p className="text-sm font-semibold text-[var(--info-foreground)] mb-2">세팅 가이드</p>
+        <ol className="space-y-1 text-xs text-[var(--info-foreground)] list-decimal list-inside">
+          <li>
+            위의 <span className="font-medium">&quot;세팅 →&quot;</span> 버튼 클릭
+          </li>
+          <li>프로젝트 폴더 선택 — <code className="rounded bg-[var(--badge-tool-bg)] px-1 font-mono">.claude/</code> 폴더가 자동 생성됩니다</li>
+          <li>
+            터미널에서{" "}
+            <code className="rounded bg-[var(--badge-tool-bg)] px-1 font-mono">
+              {buildCliCommand(harness.slug)}
+            </code>{" "}
+            실행
+          </li>
+        </ol>
+        <p className="mt-2 text-[10px] text-[var(--info-foreground)] opacity-70">
+          💡 브라우저가 File System Access API를 지원하지 않으면 <span className="font-medium">&quot;ZIP ↓&quot;</span> 버튼으로 다운로드 후 프로젝트에 복사하세요.
+        </p>
+      </div>
 
       {/* Customization panel */}
       {customizing ? (

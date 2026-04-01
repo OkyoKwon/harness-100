@@ -7,6 +7,7 @@ import { loadHarnessDetail } from "@/lib/harness-loader";
 import { useFavorites } from "@/hooks/use-favorites";
 import { useZipDownload } from "@/hooks/use-zip-download";
 import { useLocalSetup } from "@/hooks/use-local-setup";
+import { CustomizePanel } from "@/components/customizer/customize-panel";
 import { AgentList } from "@/components/detail/agent-list";
 import { WorkflowDiagram } from "@/components/detail/workflow-diagram";
 import { OutputPreview } from "@/components/detail/output-preview";
@@ -47,6 +48,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
   const [harness, setHarness] = useState<Harness | null>(null);
   const [loadingState, setLoadingState] = useState<LoadingState>("loading");
   const [errorMessage, setErrorMessage] = useState("");
+  const [customizing, setCustomizing] = useState(false);
 
   const { toggle: toggleFavorite, isFavorite } = useFavorites();
   const { status: zipStatus, download: downloadZip } = useZipDownload();
@@ -217,45 +219,48 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
         </div>
       )}
 
-      {/* Main content: two-panel on desktop, stacked on mobile */}
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-        {/* Left panel: Agent list */}
-        <section>
-          <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
-            에이전트 ({harness.agents.length})
-          </h2>
-          <AgentList agents={harness.agents} />
-        </section>
+      {/* Customization panel (Phase 2) */}
+      {customizing ? (
+        <CustomizePanel harness={harness} onClose={() => setCustomizing(false)} />
+      ) : (
+        <>
+          {/* Main content: two-panel on desktop, stacked on mobile */}
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            {/* Left panel: Agent list */}
+            <section>
+              <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
+                에이전트 ({harness.agents.length})
+              </h2>
+              <AgentList agents={harness.agents} />
+            </section>
 
-        {/* Right panel: Workflow + Outputs */}
-        <section className="space-y-8">
-          <div>
-            <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
-              워크플로우
-            </h2>
-            <WorkflowDiagram agents={harness.agents} />
+            {/* Right panel: Workflow + Outputs */}
+            <section className="space-y-8">
+              <div>
+                <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
+                  워크플로우
+                </h2>
+                <WorkflowDiagram agents={harness.agents} />
+              </div>
+
+              <div>
+                <OutputPreview harness={harness} />
+              </div>
+            </section>
           </div>
 
-          <div>
-            <OutputPreview harness={harness} />
+          {/* Customize button */}
+          <div className="mt-8 border-t border-[var(--border)] pt-6">
+            <button
+              type="button"
+              onClick={() => setCustomizing(true)}
+              className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-5 py-2.5 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--muted)] active:bg-[var(--secondary)] transition-base focus-ring"
+            >
+              수정해서 받기
+            </button>
           </div>
-        </section>
-      </div>
-
-      {/* Phase 2 placeholder */}
-      <div className="mt-8 border-t border-[var(--border)] pt-6">
-        <div className="relative inline-block">
-          <button
-            type="button"
-            disabled
-            className="rounded-lg border border-[var(--border)] bg-[var(--muted)] px-5 py-2.5 text-sm font-medium text-[var(--muted-foreground)] cursor-not-allowed"
-            title="준비 중"
-          >
-            수정해서 받기
-          </button>
-          <span className="ml-2 text-xs text-[var(--muted-foreground)]">(준비 중)</span>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 }

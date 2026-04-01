@@ -1,21 +1,25 @@
-"use client";
+import { Suspense } from "react";
+import { ComposerClient } from "@/components/composer/composer-client";
+
+function ComposerSkeleton() {
+  return (
+    <main className="mx-auto max-w-7xl px-4 py-8">
+      <div className="animate-pulse space-y-4">
+        <div className="h-8 w-48 rounded bg-[var(--muted)]" />
+        <div className="h-4 w-96 rounded bg-[var(--muted)]" />
+        <div className="flex flex-col gap-4 lg:flex-row" style={{ minHeight: "70vh" }}>
+          <div className="w-full shrink-0 lg:w-[350px] rounded-lg border border-[var(--border)] bg-[var(--card)]" />
+          <div className="min-w-0 flex-1 rounded-lg border border-[var(--border)] bg-[var(--card)]" />
+        </div>
+      </div>
+    </main>
+  );
+}
 
 export default function ComposerPage() {
   return (
-    <main className="max-w-5xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4">하네스 조합기</h1>
-      <p className="text-[var(--muted-foreground)] mb-8">
-        서로 다른 하네스의 에이전트를 조합하여 나만의 워크플로우를 만드세요.
-      </p>
-
-      <div className="border border-[var(--border)] rounded-lg p-12 text-center">
-        <div className="text-5xl mb-4">🔧</div>
-        <h2 className="text-xl font-semibold mb-2">Phase 3에서 제공 예정</h2>
-        <p className="text-[var(--muted-foreground)] max-w-md mx-auto">
-          에이전트를 드래그 앤 드롭으로 조합하고, 의존관계를 자동으로 연결하며,
-          조합 결과를 바로 세팅하거나 ZIP으로 다운로드할 수 있습니다.
-        </p>
-      </div>
-    </main>
+    <Suspense fallback={<ComposerSkeleton />}>
+      <ComposerClient />
+    </Suspense>
   );
 }

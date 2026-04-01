@@ -3,715 +3,661 @@
     "id": 1,
     "slug": "youtube-production",
     "name": "YouTube Production",
-    "description": "영상 기획부터 썸네일, SEO까지 전 단계",
+    "description": "YouTube 영상 콘텐츠의 기획→대본→썸네일→SEO를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": [
-      "AIDA",
-      "SEO 키워드 매핑"
-    ]
+    "frameworks": []
   },
   {
     "id": 2,
     "slug": "podcast-studio",
     "name": "Podcast Studio",
-    "description": "팟캐스트 기획, 리서치, 대본, 쇼노트",
+    "description": "팟캐스트 콘텐츠의 기획→리서치→대본→쇼노트→배포 전략을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": [
-      "AIDA",
-      "SEO 키워드 매핑"
-    ]
+    "frameworks": []
   },
   {
     "id": 3,
     "slug": "newsletter-engine",
     "name": "Newsletter Engine",
-    "description": "뉴스레터 큐레이션, 작성, A/B 변형",
+    "description": "뉴스레터 콘텐츠의 큐레이션→작성→A/B테스트→발송 최적화를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "content",
     "agentCount": 5,
     "frameworks": [
-      "AIDA",
-      "SEO 키워드 매핑"
+      "GDPR"
     ]
   },
   {
     "id": 4,
     "slug": "content-repurposer",
     "name": "Content Repurposer",
-    "description": "원본 콘텐츠를 다중 포맷으로 변환",
+    "description": "1개 원본 콘텐츠를 블로그·SNS·뉴스레터·프레젠테이션·스크립트로 다중 변환하는 에이전트 팀 하네스.",
     "category": "content",
     "agentCount": 5,
     "frameworks": [
-      "AIDA",
-      "SEO 키워드 매핑"
+      "OKR"
     ]
   },
   {
     "id": 5,
     "slug": "game-narrative",
     "name": "Game Narrative",
-    "description": "게임 스토리, 퀘스트, 대사, 분기 시나리오",
+    "description": "게임 스토리·퀘스트·대사·분기 시나리오를 에이전트 팀이 협업하여 설계하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": [
-      "AIDA",
-      "SEO 키워드 매핑"
-    ]
+    "frameworks": []
   },
   {
     "id": 6,
     "slug": "brand-identity",
     "name": "Brand Identity",
-    "description": "네이밍, 슬로건, 톤앤매너, 가이드라인",
+    "description": "브랜드 아이덴티티의 네이밍→슬로건→톤앤매너→가이드라인을 에이전트 팀이 협업하여 설계하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": [
-      "AIDA",
-      "SEO 키워드 매핑"
-    ]
+    "frameworks": []
   },
   {
     "id": 7,
     "slug": "comic-creator",
     "name": "Comic Creator",
-    "description": "4컷/장편 만화: 콘티부터 편집까지",
+    "description": "4컷/장편 만화 제작의 콘티→대사→이미지생성→편집을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": [
-      "AIDA",
-      "SEO 키워드 매핑"
-    ]
+    "frameworks": []
   },
   {
     "id": 8,
     "slug": "course-builder",
     "name": "Course Builder",
-    "description": "온라인 강의: 커리큘럼, 교안, 퀴즈",
+    "description": "온라인 강의 설계의 커리큘럼→교안→퀴즈→실습과제를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "content",
     "agentCount": 5,
     "frameworks": [
-      "AIDA",
-      "SEO 키워드 매핑"
+      "ADDIE",
+      "Bloom's Taxonomy",
+      "REST",
+      "GraphQL"
     ]
   },
   {
     "id": 9,
     "slug": "documentary-research",
     "name": "Documentary Research",
-    "description": "다큐멘터리 리서치, 구성안, 내레이션",
+    "description": "다큐멘터리 리서치·구성안·인터뷰질문·내레이션 대본을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": [
-      "AIDA",
-      "SEO 키워드 매핑"
-    ]
+    "frameworks": []
   },
   {
     "id": 10,
     "slug": "social-media-manager",
     "name": "Social Media Manager",
-    "description": "SNS 콘텐츠 달력, 포스트, 분석",
+    "description": "SNS 콘텐츠 달력·포스트작성·해시태그·성과분석을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": [
-      "AIDA",
-      "SEO 키워드 매핑"
-    ]
+    "frameworks": []
   },
   {
     "id": 11,
     "slug": "book-publishing",
     "name": "Book Publishing",
-    "description": "전자책: 원고편집, 표지, 배포",
+    "description": "전자책 출판의 원고편집→표지→목차→메타데이터→배포를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "content",
     "agentCount": 5,
     "frameworks": [
       "AIDA",
-      "SEO 키워드 매핑"
+      "SOLID"
     ]
   },
   {
     "id": 12,
     "slug": "advertising-campaign",
     "name": "Advertising Campaign",
-    "description": "광고 캠페인: 타깃 설정~미디어 플랜",
+    "description": "광고 캠페인의 타깃분석→카피→크리에이티브→미디어플랜을 에이전트 팀이 협업하여 설계하는 하네스.",
     "category": "content",
     "agentCount": 5,
     "frameworks": [
       "AIDA",
-      "SEO 키워드 매핑"
+      "STAR"
     ]
   },
   {
     "id": 13,
     "slug": "presentation-designer",
     "name": "Presentation Designer",
-    "description": "스토리보드, 슬라이드, 발표 노트",
+    "description": "프레젠테이션의 기획→스토리보드→슬라이드→발표노트를 에이전트 팀이 협업하여 제작하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": [
-      "AIDA",
-      "SEO 키워드 매핑"
-    ]
+    "frameworks": []
   },
   {
     "id": 14,
     "slug": "translation-localization",
     "name": "Translation & Localization",
-    "description": "다국어 번역, 현지화, 용어 관리",
+    "description": "다국어 번역·현지화·문화적응·용어관리를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "content",
     "agentCount": 5,
     "frameworks": [
-      "AIDA",
-      "SEO 키워드 매핑"
+      "GDPR"
     ]
   },
   {
     "id": 15,
     "slug": "visual-storytelling",
     "name": "Visual Storytelling",
-    "description": "AI 이미지 + HTML 비주얼 스토리텔링",
+    "description": "비주얼 스토리텔링의 스토리설계→텍스트집필→AI이미지생성→HTML레이아웃→통합편집을 에이전트 팀이 협업하여 제작하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": [
-      "AIDA",
-      "SEO 키워드 매핑"
-    ]
+    "frameworks": []
   },
   {
     "id": 16,
     "slug": "fullstack-webapp",
     "name": "Fullstack Web App",
-    "description": "설계, 프론트엔드, 백엔드, 테스트, 배포",
+    "description": "풀스택 웹앱의 요구사항→설계→프론트엔드→백엔드→테스트→배포를 에이전트 팀이 협업하여 개발하는 하네스.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
-      "SOLID",
-      "DDD",
       "OWASP Top 10",
-      "DORA 메트릭"
+      "REST",
+      "CI/CD"
     ]
   },
   {
     "id": 17,
     "slug": "mobile-app-builder",
     "name": "Mobile App Builder",
-    "description": "UI/UX, 코드, API, 스토어 배포",
+    "description": "모바일 앱의 UI/UX 설계→네이티브 코드 생성→API 연동→스토어 배포 준비를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
-      "SOLID",
-      "DDD",
-      "OWASP Top 10",
-      "DORA 메트릭"
+      "REST",
+      "GraphQL",
+      "CI/CD"
     ]
   },
   {
     "id": 18,
     "slug": "api-designer",
     "name": "API Designer",
-    "description": "REST/GraphQL 설계, 문서화, 테스트",
+    "description": "REST/GraphQL API의 설계·문서화·목업·테스트를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
-      "SOLID",
-      "DDD",
-      "OWASP Top 10",
-      "DORA 메트릭"
+      "REST",
+      "GraphQL"
     ]
   },
   {
     "id": 19,
     "slug": "database-architect",
     "name": "Database Architect",
-    "description": "모델링, 마이그레이션, 인덱싱, 최적화",
+    "description": "DB 설계의 모델링→마이그레이션→인덱싱→쿼리 최적화를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
-      "SOLID",
-      "DDD",
-      "OWASP Top 10",
-      "DORA 메트릭"
+      "GDPR"
     ]
   },
   {
     "id": 20,
     "slug": "cicd-pipeline",
     "name": "CI/CD Pipeline",
-    "description": "파이프라인 설계, 구축, 최적화",
+    "description": "CI/CD 파이프라인의 설계·구축·모니터링·최적화를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
-      "SOLID",
-      "DDD",
-      "OWASP Top 10",
-      "DORA 메트릭"
+      "DORA",
+      "SemVer",
+      "CI/CD",
+      "IaC",
+      "Terraform",
+      "CVE"
     ]
   },
   {
     "id": 21,
     "slug": "code-reviewer",
     "name": "Code Reviewer",
-    "description": "스타일, 보안, 성능, 아키텍처 리뷰",
+    "description": "코드 리뷰 자동화의 스타일→보안→성능→아키텍처 리뷰를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
       "SOLID",
-      "DDD",
       "OWASP Top 10",
-      "DORA 메트릭"
+      "CI/CD",
+      "CWE",
+      "CVE"
     ]
   },
   {
     "id": 22,
     "slug": "legacy-modernizer",
     "name": "Legacy Modernizer",
-    "description": "분석, 리팩토링, 마이그레이션",
+    "description": "레거시 코드베이스를 현대적 아키텍처로 전환하는 에이전트 팀 하네스. 분석→리팩토링전략→마이그레이션→검증 파이프라인을 자동화한다.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
-      "SOLID",
-      "DDD",
-      "OWASP Top 10",
-      "DORA 메트릭"
+      "REST",
+      "GraphQL",
+      "CI/CD"
     ]
   },
   {
     "id": 23,
     "slug": "microservice-designer",
     "name": "Microservice Designer",
-    "description": "아키텍처 설계, 분해, 통신",
+    "description": "마이크로서비스 아키텍처를 설계·분해·통신·모니터링하는 에이전트 팀 하네스. 도메인 분석부터 관측성 설계까지 풀 파이프라인을 자동화한다.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
-      "SOLID",
       "DDD",
-      "OWASP Top 10",
-      "DORA 메트릭"
+      "REST",
+      "GraphQL",
+      "gRPC",
+      "CQRS",
+      "Event Sourcing",
+      "Circuit Breaker"
     ]
   },
   {
     "id": 24,
     "slug": "test-automation",
     "name": "Test Automation",
-    "description": "전략, 작성, CI, 커버리지",
+    "description": "테스트 자동화 전략 수립부터 테스트 작성, CI 통합, 커버리지 분석까지 에이전트 팀이 협업하는 하네스.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
-      "SOLID",
-      "DDD",
-      "OWASP Top 10",
-      "DORA 메트릭"
+      "REST",
+      "CI/CD"
     ]
   },
   {
     "id": 25,
     "slug": "incident-postmortem",
     "name": "Incident Postmortem",
-    "description": "타임라인, 근본원인, 재발방지",
+    "description": "장애 사후분석 보고서를 에이전트 팀이 협업하여 생성하는 하네스. 타임라인 재구성→근본원인 분석→영향범위 산정→재발방지 대책→보고서 생성 파이프라인을 자동화한다.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
-      "SOLID",
-      "DDD",
-      "OWASP Top 10",
-      "DORA 메트릭"
+      "SMART",
+      "CI/CD"
     ]
   },
   {
     "id": 26,
     "slug": "infra-as-code",
     "name": "Infrastructure as Code",
-    "description": "Terraform/Pulumi, 보안, 비용 최적화",
+    "description": "Infrastructure as Code(IaC) 설계 및 구현을 에이전트 팀이 협업하여 수행하는 하네스. Terraform/Pulumi 기반 환경 구성, 보안, 비용 최적화 파이프라인을 자동화한다.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
-      "SOLID",
-      "DDD",
-      "OWASP Top 10",
-      "DORA 메트릭"
+      "REST",
+      "CI/CD",
+      "IaC",
+      "Terraform",
+      "Pulumi",
+      "NIST"
     ]
   },
   {
     "id": 27,
     "slug": "data-pipeline",
     "name": "Data Pipeline",
-    "description": "ETL, 품질 검증, 모니터링",
+    "description": "데이터 파이프라인의 수집→변환→적재→품질검증→모니터링을 에이전트 팀이 협업하여 설계·구현하는 하네스.",
     "category": "development",
     "agentCount": 5,
-    "frameworks": [
-      "SOLID",
-      "DDD",
-      "OWASP Top 10",
-      "DORA 메트릭"
-    ]
+    "frameworks": []
   },
   {
     "id": 28,
     "slug": "security-audit",
     "name": "Security Audit",
-    "description": "취약점, 코드 분석, 침투 테스트",
+    "description": "보안 감사의 취약점스캔→코드분석→침투테스트보고→개선권고를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
-      "SOLID",
-      "DDD",
       "OWASP Top 10",
-      "DORA 메트릭"
+      "GDPR",
+      "REST",
+      "GraphQL",
+      "Terraform",
+      "STRIDE",
+      "MITRE ATT&CK",
+      "CWE",
+      "CVE",
+      "NIST"
     ]
   },
   {
     "id": 29,
     "slug": "performance-optimizer",
     "name": "Performance Optimizer",
-    "description": "프로파일링, 병목 분석, 벤치마크",
+    "description": "성능 최적화의 프로파일링→병목분석→최적화→벤치마크를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
-      "SOLID",
-      "DDD",
-      "OWASP Top 10",
-      "DORA 메트릭"
+      "REST",
+      "CI/CD"
     ]
   },
   {
     "id": 30,
     "slug": "open-source-launcher",
     "name": "Open Source Launcher",
-    "description": "코드 정리, 문서, 라이선스, 커뮤니티",
+    "description": "오픈소스 프로젝트 런칭의 코드정리→문서→라이선스→커뮤니티 구축을 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "development",
     "agentCount": 5,
     "frameworks": [
-      "SOLID",
-      "DDD",
-      "OWASP Top 10",
-      "DORA 메트릭"
+      "SemVer",
+      "CI/CD"
     ]
   },
   {
     "id": 31,
     "slug": "ml-experiment",
     "name": "ML Experiment",
-    "description": "데이터 준비, 모델 학습, 평가, 배포",
+    "description": "ML 실험 관리의 데이터준비→모델설계→학습→평가→배포를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
     "frameworks": [
-      "Star/Snowflake 스키마",
-      "SHAP/LIME"
+      "SHAP",
+      "LIME",
+      "MLOps"
     ]
   },
   {
     "id": 32,
     "slug": "data-analysis",
     "name": "Data Analysis",
-    "description": "탐색, 정제, 분석, 시각화, 보고서",
+    "description": "데이터 분석 프로젝트의 탐색→정제→분석→시각화→보고서를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
-    "frameworks": [
-      "Star/Snowflake 스키마",
-      "SHAP/LIME"
-    ]
+    "frameworks": []
   },
   {
     "id": 33,
     "slug": "text-processor",
     "name": "Text Processor",
-    "description": "요약, 분류, 정보 추출, 감성 분석",
+    "description": "텍스트 처리 파이프라인: 대량 텍스트→요약·분류·개체추출·감성분석→구조화 데이터→보고서를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
-    "frameworks": [
-      "Star/Snowflake 스키마",
-      "SHAP/LIME"
-    ]
+    "frameworks": []
   },
   {
     "id": 34,
     "slug": "data-migration",
     "name": "Data Migration",
-    "description": "스키마 매핑, 변환, 검증",
+    "description": "데이터 마이그레이션: 소스분석→스키마매핑→변환스크립트생성→검증쿼리→롤백계획을 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
-    "frameworks": [
-      "Star/Snowflake 스키마",
-      "SHAP/LIME"
-    ]
+    "frameworks": []
   },
   {
     "id": 35,
     "slug": "api-client-generator",
     "name": "API Client Generator",
-    "description": "API 클라이언트 SDK 자동 생성",
+    "description": "API 클라이언트 SDK 생성: 스펙파싱→타입생성→클라이언트코드→테스트→사용문서를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
     "frameworks": [
-      "Star/Snowflake 스키마",
-      "SHAP/LIME"
+      "REST",
+      "GraphQL",
+      "gRPC"
     ]
   },
   {
     "id": 36,
     "slug": "design-system",
     "name": "Design System",
-    "description": "UI 토큰, 컴포넌트, 스토리북",
+    "description": "UI 디자인 시스템 구축: 디자인토큰→컴포넌트라이브러리→스토리북→접근성검증→문서를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
     "frameworks": [
-      "Star/Snowflake 스키마",
-      "SHAP/LIME"
+      "SOLID"
     ]
   },
   {
     "id": 37,
     "slug": "web-scraper",
     "name": "Web Scraper",
-    "description": "크롤러, 파서, 저장, 모니터링",
+    "description": "웹 스크래핑 시스템의 대상분석→크롤러설계→파싱→저장→모니터링을 에이전트 팀이 협업하여 구축하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
     "frameworks": [
-      "Star/Snowflake 스키마",
-      "SHAP/LIME"
+      "ACID",
+      "REST",
+      "Circuit Breaker"
     ]
   },
   {
     "id": 38,
     "slug": "chatbot-builder",
     "name": "Chatbot Builder",
-    "description": "대화 설계, NLU, 통합, 테스트",
+    "description": "챗봇 구축의 의도분석→대화설계→NLU→통합→테스트를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
-    "frameworks": [
-      "Star/Snowflake 스키마",
-      "SHAP/LIME"
-    ]
+    "frameworks": []
   },
   {
     "id": 39,
     "slug": "changelog-generator",
     "name": "Changelog Generator",
-    "description": "git 분석, 릴리스 노트, 마이그레이션 가이드",
+    "description": "릴리스 관리의 git이력분석→변경분류→릴리스노트생성→마이그레이션가이드→공지문작성을 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
     "frameworks": [
-      "Star/Snowflake 스키마",
-      "SHAP/LIME"
+      "SemVer",
+      "REST",
+      "GraphQL",
+      "CI/CD",
+      "CVE"
     ]
   },
   {
     "id": 40,
     "slug": "cli-tool-builder",
     "name": "CLI Tool Builder",
-    "description": "명령 설계, 코드, 테스트, 문서, 배포",
+    "description": "CLI 도구 개발의 명령설계→파서→핸들러→테스트→문서→배포설정을 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
     "frameworks": [
-      "Star/Snowflake 스키마",
-      "SHAP/LIME"
+      "SemVer",
+      "CI/CD"
     ]
   },
   {
     "id": 41,
     "slug": "llm-app-builder",
     "name": "LLM App Builder",
-    "description": "프롬프트, RAG, 평가, 최적화, 배포",
+    "description": "LLM 앱 개발의 프롬프트엔지니어링→RAG파이프라인설계→평가프레임워크→최적화→배포설정을 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
     "frameworks": [
-      "Star/Snowflake 스키마",
-      "SHAP/LIME"
+      "CI/CD"
     ]
   },
   {
     "id": 42,
     "slug": "bi-dashboard",
     "name": "BI Dashboard",
-    "description": "KPI 설정, 시각화, 자동 보고",
+    "description": "BI 대시보드 구축의 데이터웨어하우스 설계→KPI 정의→시각화→자동 보고를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
     "frameworks": [
-      "Star/Snowflake 스키마",
-      "SHAP/LIME"
+      "SMART",
+      "STAR",
+      "Star Schema"
     ]
   },
   {
     "id": 43,
     "slug": "startup-launcher",
     "name": "Startup Launcher",
-    "description": "아이디어 검증, 비즈니스 모델, MVP, 피칭",
+    "description": "스타트업 런칭의 아이디어 검증→비즈니스 모델→MVP→피칭→투자 유치를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "business",
     "agentCount": 5,
     "frameworks": [
       "BMC",
-      "Porter's 5 Forces",
-      "OKR"
+      "TAM/SAM/SOM",
+      "MoSCoW"
     ]
   },
   {
     "id": 44,
     "slug": "market-research",
     "name": "Market Research",
-    "description": "산업, 경쟁사, 소비자, 트렌드 분석",
+    "description": "시장 조사의 산업분석→경쟁분석→소비자조사→트렌드→보고서를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "business",
     "agentCount": 5,
     "frameworks": [
-      "BMC",
-      "Porter's 5 Forces",
-      "OKR"
+      "SWOT",
+      "TAM/SAM/SOM",
+      "PESTLE"
     ]
   },
   {
     "id": 45,
     "slug": "gov-funding-plan",
     "name": "Gov Funding Plan",
-    "description": "정부 지원사업 사업 계획서 작성",
+    "description": "정부지원사업 사업계획서의 공고요건분석→기술성·사업성작성→예산편성→증빙준비→제출검증을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "business",
     "agentCount": 5,
     "frameworks": [
-      "BMC",
-      "Porter's 5 Forces",
-      "OKR"
+      "TAM/SAM/SOM"
     ]
   },
   {
     "id": 46,
     "slug": "product-manager",
     "name": "Product Manager",
-    "description": "로드맵, PRD, 유저 스토리, 스프린트",
+    "description": "PM 업무의 로드맵→PRD→유저스토리→스프린트→회고를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "business",
     "agentCount": 5,
     "frameworks": [
-      "BMC",
-      "Porter's 5 Forces",
-      "OKR"
+      "OKR",
+      "RICE",
+      "MoSCoW",
+      "STAR"
     ]
   },
   {
     "id": 47,
     "slug": "strategy-framework",
     "name": "Strategy Framework",
-    "description": "OKR, BSC, SWOT, 비전, 로드맵",
+    "description": "조직의 전략 프레임워크를 OKR설계→BSC매핑→SWOT분석→비전·미션선언문→전략실행로드맵 순으로 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "business",
     "agentCount": 5,
     "frameworks": [
-      "BMC",
-      "Porter's 5 Forces",
-      "OKR"
+      "OKR",
+      "BSC",
+      "SWOT",
+      "SMART",
+      "PESTLE"
     ]
   },
   {
     "id": 48,
     "slug": "sales-enablement",
     "name": "Sales Enablement",
-    "description": "고객 분석, 제안서, 프레젠테이션, 팔로업",
+    "description": "영업 지원 파이프라인: 고객분석→제안서→프레젠테이션→팔로업을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "business",
     "agentCount": 5,
-    "frameworks": [
-      "BMC",
-      "Porter's 5 Forces",
-      "OKR"
-    ]
+    "frameworks": []
   },
   {
     "id": 49,
     "slug": "customer-support",
     "name": "Customer Support",
-    "description": "FAQ, 응대 매뉴얼, 에스컬레이션",
+    "description": "고객지원 시스템 구축: FAQ→응대매뉴얼→에스컬레이션→분석을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "business",
     "agentCount": 5,
-    "frameworks": [
-      "BMC",
-      "Porter's 5 Forces",
-      "OKR"
-    ]
+    "frameworks": []
   },
   {
     "id": 50,
     "slug": "pricing-strategy",
     "name": "Pricing Strategy",
-    "description": "원가, 경쟁 분석, 가치 기반, 시뮬레이션",
+    "description": "가격 전략 수립: 원가분석→경쟁가격→가치기반→시뮬레이션을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "business",
     "agentCount": 5,
     "frameworks": [
-      "BMC",
-      "Porter's 5 Forces",
-      "OKR"
+      "TAM/SAM/SOM",
+      "Van Westendorp PSM",
+      "Gabor-Granger",
+      "PED/XED"
     ]
   },
   {
     "id": 51,
     "slug": "investor-report",
     "name": "Investor Report",
-    "description": "재무, KPI, 시장, 전략 보고서",
+    "description": "투자자 보고서 생성: 재무실적분석→KPI대시보드→시장동향→전략업데이트→리스크공시를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "business",
     "agentCount": 5,
     "frameworks": [
-      "BMC",
-      "Porter's 5 Forces",
-      "OKR"
+      "OKR",
+      "SMART",
+      "TAM/SAM/SOM",
+      "STAR"
     ]
   },
   {
     "id": 52,
     "slug": "scenario-planner",
     "name": "Scenario Planner",
-    "description": "변수 분석, 영향 평가, 대응 전략",
+    "description": "불확실한 환경에서 핵심 변수를 정의하고, 시나리오 매트릭스를 구성하여 영향 분석과 대응 전략을 수립하는 에이전트 팀 하네스.",
     "category": "business",
     "agentCount": 5,
     "frameworks": [
-      "BMC",
-      "Porter's 5 Forces",
-      "OKR"
+      "PESTLE"
     ]
   },
   {
     "id": 53,
     "slug": "financial-modeler",
     "name": "Financial Modeler",
-    "description": "수익, 비용, 시나리오, 밸류에이션",
+    "description": "수익 모델, 비용 구조, 시나리오 분석, 밸류에이션까지 재무 모델링 전 과정을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "business",
     "agentCount": 5,
     "frameworks": [
-      "BMC",
-      "Porter's 5 Forces",
-      "OKR"
+      "TAM/SAM/SOM",
+      "IRR",
+      "NPV",
+      "DCF"
     ]
   },
   {
     "id": 54,
     "slug": "grant-writer",
     "name": "Grant Writer",
-    "description": "공고 분석, 사업 계획, 예산",
+    "description": "보조금 및 지원사업 신청을 위한 공고 분석, 사업계획 작성, 예산 편성, 제출 검증까지 에이전트 팀이 협업하는 하네스.",
     "category": "business",
     "agentCount": 5,
     "frameworks": [
-      "BMC",
-      "Porter's 5 Forces",
-      "OKR"
+      "TAM/SAM/SOM"
     ]
   },
   {
     "id": 55,
     "slug": "rfp-responder",
     "name": "RFP Responder",
-    "description": "RFI/RFP 응답서 작성",
+    "description": "RFI/RFP 응답서 작성을 위한 요구사항 분석, 역량 매칭, 기술 제안, 가격 제안, 차별화 전략까지 에이전트 팀이 협업하는 하네스.",
     "category": "business",
     "agentCount": 5,
     "frameworks": [
-      "BMC",
-      "Porter's 5 Forces",
-      "OKR"
+      "RACI"
     ]
   },
   {
     "id": 56,
     "slug": "language-tutor",
     "name": "Language Tutor",
-    "description": "레벨 테스트, 커리큘럼, 레슨, 퀴즈",
+    "description": "외국어 학습을 위한 레벨 테스트, 커리큘럼, 레슨, 퀴즈, 복습 관리 에이전트 팀 하네스.",
     "category": "education",
     "agentCount": 5,
     "frameworks": [
-      "Bloom's Taxonomy",
-      "ADDIE",
       "CEFR"
     ]
   },
@@ -719,208 +665,184 @@
     "id": 57,
     "slug": "exam-prep",
     "name": "Exam Prep",
-    "description": "출제 경향 분석, 약점 진단, 모의고사",
+    "description": "시험 준비의 출제경향→약점진단→맞춤학습→모의고사→오답분석 에이전트 팀 하네스.",
     "category": "education",
     "agentCount": 5,
-    "frameworks": [
-      "Bloom's Taxonomy",
-      "ADDIE",
-      "CEFR"
-    ]
+    "frameworks": []
   },
   {
     "id": 58,
     "slug": "thesis-advisor",
     "name": "Thesis Advisor",
-    "description": "주제 선정, 문헌 검토, 방법론, 집필",
+    "description": "논문 작성의 주제선정→문헌조사→방법론→집필→교정 에이전트 팀 하네스.",
     "category": "education",
     "agentCount": 5,
     "frameworks": [
-      "Bloom's Taxonomy",
-      "ADDIE",
-      "CEFR"
+      "APA"
     ]
   },
   {
     "id": 59,
     "slug": "coding-bootcamp",
     "name": "Coding Bootcamp",
-    "description": "커리큘럼, 실습, 코드 리뷰, 포트폴리오",
+    "description": "코딩 교육의 커리큘럼설계→실습과제→코드리뷰→프로젝트→포트폴리오를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "education",
     "agentCount": 4,
     "frameworks": [
-      "Bloom's Taxonomy",
-      "ADDIE",
-      "CEFR"
+      "SOLID",
+      "STAR"
     ]
   },
   {
     "id": 60,
     "slug": "debate-simulator",
     "name": "Debate Simulator",
-    "description": "찬반 입장, 교차 심문, 심판 보고서",
+    "description": "토론 시뮬레이션 에이전트 팀 하네스.",
     "category": "education",
     "agentCount": 5,
-    "frameworks": [
-      "Bloom's Taxonomy",
-      "ADDIE",
-      "CEFR"
-    ]
+    "frameworks": []
   },
   {
     "id": 61,
     "slug": "competency-modeler",
     "name": "Competency Modeler",
-    "description": "직무 분석, 역량 사전, 루브릭",
+    "description": "역량 모델링의 직무분석→역량사전작성→평가루브릭설계→개발계획수립→역량매트릭스를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "education",
     "agentCount": 4,
     "frameworks": [
-      "Bloom's Taxonomy",
-      "ADDIE",
-      "CEFR"
+      "SMART",
+      "STAR"
     ]
   },
   {
     "id": 62,
     "slug": "adr-writer",
     "name": "ADR Writer",
-    "description": "기술 컨텍스트, 대안 비교, 트레이드오프",
+    "description": "아키텍처 결정 기록(ADR) 작성 에이전트 팀 하네스.",
     "category": "education",
     "agentCount": 5,
     "frameworks": [
-      "Bloom's Taxonomy",
-      "ADDIE",
-      "CEFR"
+      "OWASP Top 10",
+      "MADR",
+      "REST",
+      "GraphQL",
+      "gRPC",
+      "CI/CD"
     ]
   },
   {
     "id": 63,
     "slug": "research-assistant",
     "name": "Research Assistant",
-    "description": "문헌 검색, 메모, 비평, 참고문헌",
+    "description": "학술 연구 보조 에이전트 팀 하네스.",
     "category": "education",
     "agentCount": 5,
     "frameworks": [
-      "Bloom's Taxonomy",
-      "ADDIE",
-      "CEFR"
+      "APA",
+      "IEEE"
     ]
   },
   {
     "id": 64,
     "slug": "knowledge-base-builder",
     "name": "Knowledge Base Builder",
-    "description": "수집, 분류, 마크다운 위키, 검색",
+    "description": "조직 지식관리 체계 구축 에이전트 팀 하네스.",
     "category": "education",
     "agentCount": 5,
     "frameworks": [
-      "Bloom's Taxonomy",
-      "ADDIE",
-      "CEFR"
+      "RACI",
+      "CI/CD"
     ]
   },
   {
     "id": 65,
     "slug": "personal-branding",
     "name": "Personal Branding",
-    "description": "이력서, 포트폴리오, LinkedIn 최적화",
+    "description": "개인 브랜딩 에이전트 팀 하네스.",
     "category": "education",
     "agentCount": 5,
     "frameworks": [
-      "Bloom's Taxonomy",
-      "ADDIE",
-      "CEFR"
+      "STAR",
+      "CI/CD"
     ]
   },
   {
     "id": 66,
     "slug": "contract-analyzer",
     "name": "Contract Analyzer",
-    "description": "계약서 분석, 작성, 검토, 위험 평가",
+    "description": "계약서 분석·작성·검토·위험 평가를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "legal",
     "agentCount": 5,
-    "frameworks": [
-      "IRAC",
-      "GDPR/PIPA"
-    ]
+    "frameworks": []
   },
   {
     "id": 67,
     "slug": "compliance-checker",
     "name": "Compliance Checker",
-    "description": "법률 매핑, 갭 분석, 개선 계획",
+    "description": "규정 준수 검증 — 법률매핑→현황진단→갭분석→개선계획을 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "legal",
     "agentCount": 4,
     "frameworks": [
-      "IRAC",
-      "GDPR/PIPA"
+      "GDPR"
     ]
   },
   {
     "id": 68,
     "slug": "patent-drafter",
     "name": "Patent Drafter",
-    "description": "선행 기술 조사, 청구항, 명세서",
+    "description": "특허 명세서 작성 — 선행기술조사→청구항→명세서→도면설명을 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "legal",
     "agentCount": 5,
-    "frameworks": [
-      "IRAC",
-      "GDPR/PIPA"
-    ]
+    "frameworks": []
   },
   {
     "id": 69,
     "slug": "privacy-engineer",
     "name": "Privacy Engineer",
-    "description": "GDPR/PIPA, PIA, 동의서",
+    "description": "개인정보보호 엔지니어링 — GDPR/PIPA 분석→PIA→동의서→프로세스설계를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "legal",
     "agentCount": 4,
     "frameworks": [
-      "IRAC",
-      "GDPR/PIPA"
+      "GDPR",
+      "PIPA"
     ]
   },
   {
     "id": 70,
     "slug": "legal-research",
     "name": "Legal Research",
-    "description": "판례, 법리 분석, 의견서",
+    "description": "법률 리서치 — 판례검색→법리분석→의견서→전략수립을 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "legal",
     "agentCount": 4,
     "frameworks": [
-      "IRAC",
-      "GDPR/PIPA"
+      "IRAC"
     ]
   },
   {
     "id": 71,
     "slug": "service-legal-docs",
     "name": "Service Legal Docs",
-    "description": "약관, 처리방침, 쿠키, 환불 정책",
+    "description": "서비스 법무문서 세트 — 이용약관→개인정보처리방침→쿠키정책→환불정책→저작권고지 일체를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "legal",
     "agentCount": 4,
     "frameworks": [
-      "IRAC",
-      "GDPR/PIPA"
+      "GDPR"
     ]
   },
   {
     "id": 72,
     "slug": "regulatory-filing",
     "name": "Regulatory Filing",
-    "description": "요건 조사, 신청서, 첨부자료",
+    "description": "인허가·신고서류의 요건조사→구비서류목록→신청서작성→첨부자료준비→제출체크리스트를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "legal",
     "agentCount": 4,
-    "frameworks": [
-      "IRAC",
-      "GDPR/PIPA"
-    ]
+    "frameworks": []
   },
   {
     "id": 73,
     "slug": "meal-planner",
     "name": "Meal Planner",
-    "description": "영양 분석, 식단 설계, 레시피, 장보기",
+    "description": "식단 관리의 영양분석→식단설계→레시피→장보기목록→조리가이드를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 4,
     "frameworks": []
@@ -929,7 +851,7 @@
     "id": 74,
     "slug": "fitness-program",
     "name": "Fitness Program",
-    "description": "프로그램 설계, 가이드, 식단 연계",
+    "description": "운동 프로그램의 목표별설계→주간스케줄→운동가이드→식단연계→진행기록을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 4,
     "frameworks": []
@@ -938,7 +860,7 @@
     "id": 75,
     "slug": "tax-calculator",
     "name": "Tax Calculator",
-    "description": "소득 분석, 공제 최적화, 절세 시뮬레이션",
+    "description": "세금 계산·절세 전략의 소득분석→공제항목최적화→세액계산→절세시뮬레이션→신고자료준비를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 4,
     "frameworks": []
@@ -947,7 +869,7 @@
     "id": 76,
     "slug": "travel-planner",
     "name": "Travel Planner",
-    "description": "목적지 선정, 일정, 예산, 현지 정보",
+    "description": "여행 계획의 목적지분석→일정→숙소→예산→현지정보를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 4,
     "frameworks": []
@@ -956,7 +878,7 @@
     "id": 77,
     "slug": "space-concept-board",
     "name": "Space Concept Board",
-    "description": "무드보드, 컬러, 가구, 예산",
+    "description": "공간 인테리어 컨셉보드의 스타일분석→무드보드→컬러팔레트→가구·소품리스트→예산표→쇼핑가이드를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 5,
     "frameworks": []
@@ -965,7 +887,7 @@
     "id": 78,
     "slug": "personal-finance",
     "name": "Personal Finance",
-    "description": "수입/지출, 예산, 투자, 은퇴 설계",
+    "description": "개인 재무관리의 수입지출분석→예산설계→투자전략→절세방안→은퇴설계를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 5,
     "frameworks": []
@@ -974,16 +896,19 @@
     "id": 79,
     "slug": "side-project-launcher",
     "name": "Side Project Launcher",
-    "description": "아이디어, 기술 스택, MVP, 런칭",
+    "description": "사이드프로젝트 기획의 아이디어검증→기술스택선정→MVP스펙→개발로드맵→런칭체크리스트를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [
+      "TAM/SAM/SOM",
+      "MoSCoW"
+    ]
   },
   {
     "id": 80,
     "slug": "wedding-planner",
     "name": "Wedding Planner",
-    "description": "타임라인, 예산, 업체 비교, 체크리스트",
+    "description": "결혼 준비 종합의 타임라인설계→예산관리표→업체비교표→체크리스트→청첩장문구를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 5,
     "frameworks": []
@@ -992,116 +917,109 @@
     "id": 81,
     "slug": "technical-writer",
     "name": "Technical Writer",
-    "description": "구조 설계, 집필, 다이어그램, 리뷰",
+    "description": "기술 문서 작성의 구조설계→집필→다이어그램→리뷰→버전관리를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "communication",
     "agentCount": 5,
     "frameworks": [
-      "Diataxis",
-      "MADR",
-      "SemVer"
+      "REST",
+      "GraphQL",
+      "gRPC",
+      "CI/CD"
     ]
   },
   {
     "id": 82,
     "slug": "report-generator",
     "name": "Report Generator",
-    "description": "데이터, 분석, 시각화, 집필",
+    "description": "업무 보고서의 데이터수집→분석→시각화→집필→요약을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "communication",
     "agentCount": 5,
     "frameworks": [
-      "Diataxis",
-      "MADR",
-      "SemVer"
+      "SWOT",
+      "SMART"
     ]
   },
   {
     "id": 83,
     "slug": "sop-writer",
     "name": "SOP Writer",
-    "description": "프로세스 분석, 절차서, 체크리스트",
+    "description": "표준운영절차(SOP)의 프로세스분석→절차서→체크리스트→교육자료→버전관리를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "communication",
     "agentCount": 5,
     "frameworks": [
-      "Diataxis",
-      "MADR",
-      "SemVer"
+      "RACI",
+      "SIPOC"
     ]
   },
   {
     "id": 84,
     "slug": "meeting-strategist",
     "name": "Meeting Strategist",
-    "description": "안건, 배경, 의사결정 프레임워크",
+    "description": "회의 전략 문서의 안건구조설계→배경자료조사→의사결정프레임워크→회의록템플릿→팔로업플랜을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "communication",
     "agentCount": 5,
     "frameworks": [
-      "Diataxis",
-      "MADR",
-      "SemVer"
+      "SWOT",
+      "SMART",
+      "Eisenhower"
     ]
   },
   {
     "id": 85,
     "slug": "public-speaking",
     "name": "Public Speaking",
-    "description": "연설문, 발표, 토론, Q&A",
+    "description": "퍼블릭스피킹 종합의 연설문→발표대본→토론준비서→Q&A예상답변→리허설가이드를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "communication",
     "agentCount": 5,
     "frameworks": [
-      "Diataxis",
-      "MADR",
-      "SemVer"
+      "STAR"
     ]
   },
   {
     "id": 86,
     "slug": "proposal-writer",
     "name": "Proposal Writer",
-    "description": "고객 분석, 솔루션, 가격, 차별화",
+    "description": "제안서의 고객분석→솔루션설계→가격→차별화→디자인을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "communication",
     "agentCount": 5,
     "frameworks": [
-      "Diataxis",
-      "MADR",
-      "SemVer"
+      "IRR",
+      "NPV"
     ]
   },
   {
     "id": 87,
     "slug": "crisis-communication",
     "name": "Crisis Communication",
-    "description": "상황 분석, 메시지, 보도자료",
+    "description": "위기 상황 발생 시 상황파악→메시지전략→보도자료→Q&A→모니터링까지 에이전트 팀이 협업하여 통합 위기소통 패키지를 생성하는 하네스.",
     "category": "communication",
     "agentCount": 5,
     "frameworks": [
-      "Diataxis",
-      "MADR",
-      "SemVer"
+      "STAR"
     ]
   },
   {
     "id": 88,
     "slug": "risk-register",
     "name": "Risk Register",
-    "description": "식별, 평가, 대응, 모니터링",
+    "description": "프로젝트 리스크 관리대장: 리스크식별→확률·영향평가→대응전략수립→모니터링계획→상태보고서까지 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "communication",
     "agentCount": 5,
     "frameworks": [
-      "Diataxis",
-      "MADR",
-      "SemVer"
+      "SWOT",
+      "RACI",
+      "SMART"
     ]
   },
   {
     "id": 89,
     "slug": "event-organizer",
     "name": "Event Organizer",
-    "description": "컨셉, 프로그램, 홍보, 실행, 평가",
+    "description": "이벤트 기획·운영: 컨셉→장소→프로그램→홍보→실행→사후평가까지 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "operations",
     "agentCount": 5,
     "frameworks": [
-      "SIPOC",
-      "RACI",
+      "AIDA",
       "SMART"
     ]
   },
@@ -1109,51 +1027,47 @@
     "id": 90,
     "slug": "hiring-pipeline",
     "name": "Hiring Pipeline",
-    "description": "JD 작성, 소싱, 스크리닝, 면접, 오퍼",
+    "description": "채용 프로세스: JD작성→소싱→스크리닝→면접→평가→오퍼까지 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "operations",
     "agentCount": 5,
     "frameworks": [
-      "SIPOC",
-      "RACI",
-      "SMART"
+      "Lean",
+      "STAR"
     ]
   },
   {
     "id": 91,
     "slug": "onboarding-system",
     "name": "Onboarding System",
-    "description": "체크리스트, 교육, 멘토, 30-60-90",
+    "description": "신규입사자 온보딩: 체크리스트→교육→멘토배정→30-60-90일 계획까지 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "operations",
     "agentCount": 5,
     "frameworks": [
-      "SIPOC",
+      "ADDIE",
       "RACI",
-      "SMART"
+      "SMART",
+      "Bloom's Taxonomy"
     ]
   },
   {
     "id": 92,
     "slug": "operations-manual",
     "name": "Operations Manual",
-    "description": "분석, 플로차트, FAQ 자동 생성",
+    "description": "업무 매뉴얼 자동 생성 하네스. 기존 문서/코드를 분석하여 프로세스 플로차트, 단계별 매뉴얼, FAQ, 교육자료를 에이전트 팀이 협업하여 생성한다.",
     "category": "operations",
     "agentCount": 5,
     "frameworks": [
-      "SIPOC",
-      "RACI",
-      "SMART"
+      "RACI"
     ]
   },
   {
     "id": 93,
     "slug": "feedback-analyzer",
     "name": "Feedback Analyzer",
-    "description": "감성 분석, 주제 분류, 인사이트",
+    "description": "고객·직원 피드백 분석 하네스. 데이터 수집부터 감성분석, 주제분류, 트렌드 도출, 인사이트 보고서까지 에이전트 팀이 협업하여 생성한다.",
     "category": "operations",
     "agentCount": 5,
     "frameworks": [
-      "SIPOC",
-      "RACI",
       "SMART"
     ]
   },
@@ -1161,12 +1075,10 @@
     "id": 94,
     "slug": "audit-report",
     "name": "Audit Report",
-    "description": "범위, 체크리스트, 발견사항, 권고",
+    "description": "내부감사 보고서 생성 하네스. 감사 범위 설정부터 체크리스트 작성, 발견사항 정리, 개선 권고, 추적 대장까지 에이전트 팀이 협업하여 생성한다.",
     "category": "operations",
     "agentCount": 5,
     "frameworks": [
-      "SIPOC",
-      "RACI",
       "SMART"
     ]
   },
@@ -1174,56 +1086,81 @@
     "id": 95,
     "slug": "procurement-docs",
     "name": "Procurement Docs",
-    "description": "요구사항, 벤더 비교, 평가, 검수",
+    "description": "구매 문서세트 생성 하네스. 요구사항 정의부터 벤더 비교표, 평가 기준표, 계약 조건 검토, 검수 기준서까지 에이전트 팀이 협업하여 생성한다.",
     "category": "operations",
     "agentCount": 5,
     "frameworks": [
-      "SIPOC",
-      "RACI",
-      "SMART"
+      "OWASP Top 10",
+      "SWOT",
+      "MoSCoW"
     ]
   },
   {
     "id": 96,
     "slug": "real-estate-analyst",
     "name": "Real Estate Analyst",
-    "description": "시장, 입지, 수익성, 리스크, 투자 보고서",
+    "description": "부동산 분석 하네스. 시장조사, 입지분석, 수익성 분석, 리스크 평가, 투자 보고서까지 에이전트 팀이 협업하여 생성한다.",
     "category": "specialized",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [
+      "SWOT",
+      "Cap Rate",
+      "IRR",
+      "NPV",
+      "DCF"
+    ]
   },
   {
     "id": 97,
     "slug": "ecommerce-launcher",
     "name": "E-commerce Launcher",
-    "description": "상품 기획, 상세 페이지, 가격, 마케팅",
+    "description": "이커머스 상품 런칭의 기획→상세페이지→가격전략→마케팅→CS 셋업을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "specialized",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [
+      "AIDA"
+    ]
   },
   {
     "id": 98,
     "slug": "academic-paper",
     "name": "Academic Paper",
-    "description": "연구 설계, 실험, 분석, 집필, 투고",
+    "description": "학술 논문 작성의 연구설계→실험→분석→집필→투고준비를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "specialized",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [
+      "IMRaD",
+      "APA",
+      "IEEE"
+    ]
   },
   {
     "id": 99,
     "slug": "sustainability-audit",
     "name": "Sustainability Audit",
-    "description": "ESG: 환경, 사회, 거버넌스, 보고서",
+    "description": "ESG/지속가능성 감사의 환경→사회→거버넌스→보고서→개선계획을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "specialized",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [
+      "GRI Standards",
+      "GHG Protocol",
+      "TCFD",
+      "ISSB",
+      "CSRD",
+      "ESRS",
+      "K-ESG",
+      "SBTi",
+      "ISO 14064",
+      "UN SDGs",
+      "SA8000",
+      "UNGPs"
+    ]
   },
   {
     "id": 100,
     "slug": "ip-portfolio",
     "name": "IP Portfolio",
-    "description": "특허, 상표, 저작권, 라이선스 전략",
+    "description": "지식재산 포트폴리오 관리의 IP현황분석→특허·상표·저작권매핑→갱신일정→라이선스전략→보호전략보고서를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "specialized",
     "agentCount": 5,
     "frameworks": []

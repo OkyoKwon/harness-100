@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
-    "seed": "tsx scripts/generate-seed-data.ts",
-    "prebuild": "tsx scripts/generate-seed-data.ts",
+    "seed": "tsx scripts/fetch-from-github.ts",
+    "seed:legacy": "tsx scripts/generate-seed-data.ts",
     "build": "next build",
     "start": "next start"
   },

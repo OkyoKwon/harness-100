@@ -1,4 +1,4 @@
-import type { Agent, Harness, Skill, ExecutionStep } from "./types";
+import type { Agent, Harness, Skill, ExecutionStep, SkillMode } from "./types";
 
 /**
  * Merge multiple harnesses into a single combined harness.
@@ -17,6 +17,7 @@ export function mergeHarnesses(harnesses: ReadonlyArray<Harness>): Harness {
   const allSteps: ExecutionStep[] = [];
   const allFrameworks = new Set<string>();
   const allTriggers: string[] = [];
+  const allModes: SkillMode[] = [];
 
   for (let i = 0; i < harnesses.length; i++) {
     const harness = harnesses[i];
@@ -41,6 +42,14 @@ export function mergeHarnesses(harnesses: ReadonlyArray<Harness>): Harness {
     }
 
     allTriggers.push(...harness.skill.triggerConditions);
+
+    for (const mode of harness.skill.modes) {
+      allModes.push({
+        ...mode,
+        name: `[${harness.name}] ${mode.name}`,
+        agents: mode.agents.map((a) => `${prefix}_${a}`),
+      });
+    }
   }
 
   const mergedSkill: Skill = {
@@ -48,11 +57,15 @@ export function mergeHarnesses(harnesses: ReadonlyArray<Harness>): Harness {
     name: "병합 워크플로우",
     triggerConditions: allTriggers,
     executionOrder: allSteps,
-    modes: {
-      full: allSteps,
-      reduced: allSteps.filter((s) => !s.parallel),
-      single: allSteps.slice(0, 1),
-    },
+    modes: [
+      {
+        name: "풀 파이프라인",
+        triggerPattern: "전체 작업 요청",
+        agents: allAgents.map((a) => a.id),
+      },
+      ...allModes,
+    ],
+    extensionSkills: [],
   };
 
   return {

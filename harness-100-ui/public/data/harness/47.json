@@ -2,195 +2,226 @@
   "id": 47,
   "slug": "strategy-framework",
   "name": "Strategy Framework",
-  "description": "OKR, BSC, SWOT, 비전, 로드맵",
+  "description": "조직의 전략 프레임워크를 OKR설계→BSC매핑→SWOT분석→비전·미션선언문→전략실행로드맵 순으로 에이전트 팀이 협업하여 생성하는 하네스.",
   "category": "business",
   "agents": [
     {
-      "id": "strategy-framework-agent-1",
-      "name": "Strategy Framework 리서처",
-      "role": "시장/경쟁 분석 전문가",
-      "description": "Strategy Framework 하네스의 시장/경쟁 분석 전문가. OKR, BSC, SWOT, 비전, 로드맵 워크플로에서 리서처 역할을 수행합니다.",
+      "id": "bsc-analyst",
+      "name": "bsc-analyst",
+      "role": "BSC 균형성과표 분석가",
+      "description": "BSC(Balanced Scorecard) 분석가. OKR 체계를 재무·고객·내부프로세스·학습성장의 4대 관점으로 매핑하고, 관점 간 인과관계와 전략맵을 설계한다.",
+      "tools": [
+        "WebSearch",
+        "Write",
+        "Read"
+      ],
+      "outputTemplate": "# BSC 매핑표\n\n## 전략맵 (Strategy Map)\n\n### 인과관계 다이어그램\n[재무 관점]\n    ↑ (매출증가, 비용효율)\n[고객 관점]\n    ↑ (고객만족, 시장점유율)\n[내부프로세스 관점]\n    ↑ (운영효율, 혁신, 품질)\n[학습·성장 관점]\n    (역량, 기술, 문화)\n\n## 관점별 KPI 매핑\n\n### 1. 재무 관점 (Financial)\n| KPI | 유형 | OKR 연계 | 현재값 | 목표값 | 데이터소스 | 측정주기 |\n|-----|------|---------|--------|--------|-----------|---------|\n| | Lead/Lag | OX-KRY | | | | |\n\n### 2. 고객 관점 (Customer)\n| KPI | 유형 | OKR 연계 | 현재값 | 목표값 | 데이터소스 | 측정주기 |\n|-----|------|---------|--------|--------|-----------|---------|\n\n### 3. 내부프로세스 관점 (Internal Process)\n| KPI | 유형 | OKR 연계 | 현재값 | 목표값 | 데이터소스 | 측정주기 |\n|-----|------|---------|--------|--------|-----------|---------|\n\n### 4. 학습·성장 관점 (Learning & Growth)\n| KPI | 유형 | OKR 연계 | 현재값 | 목표값 | 데이터소스 | 측정주기 |\n|-----|------|---------|--------|--------|-----------|---------|\n\n## 균형 분석\n- **관점별 KPI 분포**: 재무 X개 / 고객 X개 / 프로세스 X개 / 학습 X개\n- **선행:후행 비율**: X:Y\n- **사각지대**: [커버되지 않는 영역 식별]\n\n## 인과관계 가설\n| 선행 KPI | → | 후행 KPI | 가설 근거 |\n|---------|---|---------|----------|\n\n## SWOT 전문가 전달 사항\n## 전략문서 작성자 전달 사항",
+      "dependencies": [
+        "okr-designer"
+      ]
+    },
+    {
+      "id": "okr-designer",
+      "name": "okr-designer",
+      "role": "OKR 설계 전문가",
+      "description": "OKR 설계 전문가. 조직의 전략적 방향을 Objective(목표)와 Key Result(핵심결과)로 구조화하고, 상위-하위 OKR 간 정렬(Alignment)을 설계한다.",
       "tools": [
         "WebSearch",
         "WebFetch",
+        "Write",
         "Read"
       ],
-      "outputTemplate": "## 시장 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "outputTemplate": "# OKR 설계서\n\n## 조직 개요\n- **조직명**:\n- **산업**:\n- **규모**:\n- **전략 기간**: YYYY Q1 ~ Q4\n\n## 회사 레벨 OKR\n\n### Objective 1: [영감을 주는 목표 문장]\n| # | Key Result | 현재값 | 목표값 | 측정방법 | 주기 |\n|---|-----------|--------|--------|----------|------|\n| KR1 | | | | | |\n| KR2 | | | | | |\n| KR3 | | | | | |\n\n**달성 자신감**: [1~10점] / **의존 관계**: [타 OKR/부서]\n\n### Objective 2: ...\n\n## 부서별 OKR 캐스케이딩\n\n### [부서명]\n- **상위 정렬**: 회사 Objective X → KR Y\n- **부서 Objective**: [문장]\n- **부서 KR**: ...\n\n## OKR 운영 가이드\n- **체크인 주기**: [주간/격주]\n- **스코어링 기준**: 0.0~1.0 (0.7 = 성공)\n- **리뷰 프로세스**: [설명]\n\n## BSC 분석가 전달 사항\n## SWOT 전문가 전달 사항\n## 전략문서 작성자 전달 사항",
       "dependencies": []
     },
     {
-      "id": "strategy-framework-agent-2",
-      "name": "Strategy Framework 전략가",
-      "role": "비즈니스 전략 전문가",
-      "description": "Strategy Framework 하네스의 비즈니스 전략 전문가. OKR, BSC, SWOT, 비전, 로드맵 워크플로에서 전략가 역할을 수행합니다.",
+      "id": "strategy-reviewer",
+      "name": "strategy-reviewer",
+      "role": "전략 프레임워크 리뷰어",
+      "description": "전략 프레임워크 리뷰어(QA). OKR-BSC-SWOT-비전미션-로드맵 간의 논리적 정합성을 교차 검증하고, 전략적 모순·누락·품질 문제를 발견하여 피드백한다.",
       "tools": [
-        "Read",
+        "SendMessage",
         "Write",
-        "Edit"
-      ],
-      "outputTemplate": "## 전략 보고서\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
-      "dependencies": [
-        "strategy-framework-agent-1"
-      ]
-    },
-    {
-      "id": "strategy-framework-agent-3",
-      "name": "Strategy Framework 기획자",
-      "role": "실행 계획 전문가",
-      "description": "Strategy Framework 하네스의 실행 계획 전문가. OKR, BSC, SWOT, 비전, 로드맵 워크플로에서 기획자 역할을 수행합니다.",
-      "tools": [
-        "Write",
-        "Edit",
         "Read"
       ],
-      "outputTemplate": "## 실행 계획\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "outputTemplate": "# 전략 프레임워크 리뷰 보고서\n\n## 종합 평가\n- **전략 체계 상태**: 🟢 완성 / 🟡 보완 후 확정 / 🔴 재설계 필요\n- **총평**: [2~3문장]\n\n## 발견 사항\n\n### 🔴 필수 수정\n1. **[문서/위치]**: [문제 설명]\n   - 현재: [현재 내용]\n   - 제안: [수정 제안]\n\n### 🟡 권장 수정\n1. ...\n\n### 🟢 참고 사항\n1. ...\n\n## 정합성 매트릭스\n| 검증 항목 | 상태 | 비고 |\n|----------|------|------|\n| OKR ↔ BSC | ✅/⚠️/❌ | |\n| OKR ↔ SWOT | ✅/⚠️/❌ | |\n| 비전 ↔ OKR | ✅/⚠️/❌ | |\n| 로드맵 ↔ BSC | ✅/⚠️/❌ | |\n| 로드맵 ↔ SWOT | ✅/⚠️/❌ | |\n\n## 최종 산출물 체크리스트\n- [ ] OKR 설계서 완성\n- [ ] BSC 매핑표 완성\n- [ ] SWOT 분석서 완성\n- [ ] 비전·미션 선언문 완성\n- [ ] 전략 실행 로드맵 완성",
       "dependencies": [
-        "strategy-framework-agent-2"
+        "okr-designer",
+        "bsc-analyst",
+        "swot-specialist"
       ]
     },
     {
-      "id": "strategy-framework-agent-4",
-      "name": "Strategy Framework 분석가",
-      "role": "재무/데이터 분석 전문가",
-      "description": "Strategy Framework 하네스의 재무/데이터 분석 전문가. OKR, BSC, SWOT, 비전, 로드맵 워크플로에서 분석가 역할을 수행합니다.",
+      "id": "strategy-writer",
+      "name": "strategy-writer",
+      "role": "전략 문서 작성자",
+      "description": "전략 문서 작성자. OKR·BSC·SWOT 결과를 종합하여 비전·미션 선언문과 전략 실행 로드맵을 작성한다. 경영진 보고용 전략 문서의 최종 형태를 완성한다.",
       "tools": [
-        "Read",
-        "Bash",
-        "Write"
+        "WebSearch",
+        "Write",
+        "Read"
       ],
-      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "outputTemplate": "# 비전·미션 선언문\n\n## 비전 (Vision)\n> [10~20단어의 영감을 주는 미래상]\n\n**비전 해석**: [비전의 의미를 2~3문장으로 풀어 설명]\n\n## 미션 (Mission)\n> [조직의 존재 이유 — 누구에게, 무엇을, 어떻게]\n\n**미션 구성요소**:\n- **핵심 고객**: [누구를 위한 조직인가]\n- **제공 가치**: [어떤 가치를 전달하는가]\n- **차별화 방식**: [어떻게 독특하게 전달하는가]\n\n## 핵심가치 (Core Values)\n| 핵심가치 | 정의 | 행동 지표 |\n|---------|------|----------|\n| [가치명] | [한 문장 정의] | [이 가치를 실천하는 구체적 행동] |\n\n## 비전·미션·핵심가치 정합성 검증\n- **OKR 연계**: [비전→Objective 연결 논리]\n- **SWOT 근거**: [왜 이 비전이 적합한가]\n- **BSC 반영**: [4대 관점에서의 비전 구현 경로]",
       "dependencies": [
-        "strategy-framework-agent-3"
+        "okr-designer",
+        "bsc-analyst",
+        "swot-specialist"
       ]
     },
     {
-      "id": "strategy-framework-agent-5",
-      "name": "Strategy Framework 어드바이저",
-      "role": "검토/자문 전문가",
-      "description": "Strategy Framework 하네스의 검토/자문 전문가. OKR, BSC, SWOT, 비전, 로드맵 워크플로에서 어드바이저 역할을 수행합니다.",
+      "id": "swot-specialist",
+      "name": "swot-specialist",
+      "role": "SWOT 분석 전문가",
+      "description": "SWOT 분석 전문가. 조직의 내부 강점·약점과 외부 기회·위협을 체계적으로 분석하고, TOWS 매트릭스를 통한 전략 도출까지 수행한다.",
       "tools": [
-        "Read",
-        "Edit",
-        "WebSearch"
+        "WebSearch",
+        "WebFetch",
+        "Write",
+        "Read"
       ],
-      "outputTemplate": "## 자문 의견\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "outputTemplate": "# SWOT 분석서\n\n## 분석 범위\n- **분석 대상**: [조직명/사업부]\n- **분석 시점**: YYYY.MM\n- **분석 범위**: [전사/특정 사업 영역]\n\n## SWOT 매트릭스\n\n### Strengths (강점)\n| # | 강점 | 근거/데이터 | 전략적 의미 |\n|---|------|-----------|-----------|\n| S1 | | | |\n\n### Weaknesses (약점)\n| # | 약점 | 근거/데이터 | 개선 가능성 |\n|---|------|-----------|-----------|\n| W1 | | | |\n\n### Opportunities (기회)\n| # | 기회 | 근거/데이터 | 활용 시급성 |\n|---|------|-----------|-----------|\n| O1 | | | |\n\n### Threats (위협)\n| # | 위협 | 근거/데이터 | 대응 시급성 |\n|---|------|-----------|-----------|\n| T1 | | | |\n\n## TOWS 전략 매트릭스\n\n|  | Opportunities | Threats |\n|---|---|---|\n| **Strengths** | **SO 전략 (공격)**: S1+O2→[전략] | **ST 전략 (다각화)**: S2+T1→[전략] |\n| **Weaknesses** | **WO 전략 (방향전환)**: W1+O1→[전략] | **WT 전략 (방어)**: W2+T2→[전략] |\n\n## 전략 우선순위\n| 순위 | TOWS 전략 | 영향도(1~5) | 실행가능성(1~5) | 종합점수 | OKR 연계 |\n|------|----------|-----------|--------------|---------|---------|\n\n## 전략문서 작성자 전달 사항\n## OKR 설계자 피드백\n## BSC 분석가 피드백",
       "dependencies": [
-        "strategy-framework-agent-4"
+        "okr-designer"
       ]
     }
   ],
   "skill": {
     "id": "strategy-framework-skill",
-    "name": "Strategy Framework 워크플로",
+    "name": "strategy-framework",
     "triggerConditions": [
-      "Strategy Framework 관련 작업 요청",
-      "strategy-framework 키워드 감지"
+      "전략 프레임워크 만들어줘",
+      "OKR 설계해줘",
+      "BSC 분석",
+      "SWOT 분석",
+      "비전 미션 작성",
+      "전략 로드맵",
+      "전략 수립",
+      "중장기 전략",
+      "경영전략 프레임워크",
+      "전략 체계 설계"
     ],
     "executionOrder": [
       {
-        "agentId": "strategy-framework-agent-1",
+        "agentId": "okr-designer",
         "parallel": false,
         "dependsOn": []
       },
       {
-        "agentId": "strategy-framework-agent-2",
-        "parallel": false,
+        "agentId": "bsc-analyst",
+        "parallel": true,
         "dependsOn": [
-          "strategy-framework-agent-1"
+          "okr-designer"
         ]
       },
       {
-        "agentId": "strategy-framework-agent-3",
-        "parallel": false,
+        "agentId": "swot-specialist",
+        "parallel": true,
         "dependsOn": [
-          "strategy-framework-agent-2"
+          "okr-designer"
         ]
       },
       {
-        "agentId": "strategy-framework-agent-4",
+        "agentId": "strategy-writer",
         "parallel": false,
         "dependsOn": [
-          "strategy-framework-agent-3"
+          "okr-designer",
+          "bsc-analyst",
+          "swot-specialist"
         ]
       },
       {
-        "agentId": "strategy-framework-agent-5",
+        "agentId": "strategy-reviewer",
         "parallel": false,
         "dependsOn": [
-          "strategy-framework-agent-4"
+          "okr-designer",
+          "bsc-analyst",
+          "swot-specialist"
         ]
       }
     ],
-    "modes": {
-      "full": [
-        {
-          "agentId": "strategy-framework-agent-1",
-          "parallel": false,
-          "dependsOn": []
-        },
-        {
-          "agentId": "strategy-framework-agent-2",
-          "parallel": false,
-          "dependsOn": [
-            "strategy-framework-agent-1"
-          ]
-        },
-        {
-          "agentId": "strategy-framework-agent-3",
-          "parallel": false,
-          "dependsOn": [
-            "strategy-framework-agent-2"
-          ]
-        },
-        {
-          "agentId": "strategy-framework-agent-4",
-          "parallel": false,
-          "dependsOn": [
-            "strategy-framework-agent-3"
-          ]
-        },
-        {
-          "agentId": "strategy-framework-agent-5",
-          "parallel": false,
-          "dependsOn": [
-            "strategy-framework-agent-4"
-          ]
-        }
-      ],
-      "reduced": [
-        {
-          "agentId": "strategy-framework-agent-1",
-          "parallel": false,
-          "dependsOn": []
-        },
-        {
-          "agentId": "strategy-framework-agent-3",
-          "parallel": false,
-          "dependsOn": [
-            "strategy-framework-agent-1"
-          ]
-        },
-        {
-          "agentId": "strategy-framework-agent-5",
-          "parallel": false,
-          "dependsOn": [
-            "strategy-framework-agent-3"
-          ]
-        }
-      ],
-      "single": [
-        {
-          "agentId": "strategy-framework-agent-1",
-          "parallel": false,
-          "dependsOn": []
-        }
-      ]
-    }
+    "modes": [
+      {
+        "name": "풀 파이프라인",
+        "triggerPattern": "전략 프레임워크 만들어줘, 풀 전략 체계",
+        "agents": [
+          "bsc-analyst",
+          "okr-designer",
+          "strategy-reviewer",
+          "strategy-writer",
+          "swot-specialist"
+        ]
+      },
+      {
+        "name": "OKR 모드",
+        "triggerPattern": "OKR만 설계해줘",
+        "agents": [
+          "okr-designer",
+          "strategy-reviewer"
+        ]
+      },
+      {
+        "name": "SWOT 모드",
+        "triggerPattern": "SWOT 분석해줘",
+        "agents": [
+          "swot-specialist",
+          "strategy-reviewer"
+        ]
+      },
+      {
+        "name": "문서 모드",
+        "triggerPattern": "비전 미션 써줘 (기존 분석 있음)",
+        "agents": [
+          "strategy-writer",
+          "strategy-reviewer"
+        ]
+      },
+      {
+        "name": "리뷰 모드",
+        "triggerPattern": "이 OKR 검토해줘",
+        "agents": [
+          "strategy-reviewer"
+        ]
+      },
+      {
+        "name": "분석 모드",
+        "triggerPattern": "OKR이랑 BSC 만들어줘",
+        "agents": [
+          "okr-designer",
+          "bsc-analyst",
+          "strategy-reviewer"
+        ]
+      }
+    ],
+    "extensionSkills": [
+      {
+        "name": "okr-quality-checker",
+        "path": ".claude/skills/okr-quality-checker/skill.md",
+        "targetAgent": "okr-designer, strategy-reviewer",
+        "description": "QSIM/SMART-V 기준, OKR 구조 검증, 채점 시스템, 안티패턴"
+      }
+    ]
   },
   "frameworks": [
-    "BMC",
-    "Porter's 5 Forces",
-    "OKR"
+    "OKR",
+    "BSC",
+    "SWOT",
+    "SMART",
+    "PESTLE"
   ],
-  "agentCount": 5
+  "agentCount": 5,
+  "rawFiles": {
+    "claudeMd": "# Strategy Framework Harness\n\n조직의 전략 프레임워크를 OKR설계→BSC매핑→SWOT분석→비전·미션선언문→전략실행로드맵 순으로 에이전트 팀이 협업하여 생성하는 하네스.\n\n## 구조\n\n```\n.claude/\n├── agents/\n│   ├── okr-designer.md          — OKR 설계 (목표·핵심결과 구조화, 정렬)\n│   ├── bsc-analyst.md           — BSC 매핑 (4대 관점 연계, KPI 설계)\n│   ├── swot-specialist.md       — SWOT 분석 (내외부 환경, 전략 매트릭스)\n│   ├── strategy-writer.md       — 전략 문서 (비전·미션, 로드맵 작성)\n│   └── strategy-reviewer.md     — 교차 검증 (OKR↔BSC↔SWOT↔문서 정합성)\n├── skills/\n│   ├── strategy-framework/\n│       └── skill.md             — 오케스트레이터 (팀 조율, 워크플로우, 에러핸들링)\n│   ├── okr-quality-checker/\n│   │   └── skill.md             — OKR 품질 검증 (QSIM/SMART-V, 정렬, 안티패턴)\n│   └── tows-matrix-builder/\n│       └── skill.md             — TOWS 매트릭스 (SO/WO/ST/WT 전략, 우선순위)\n└── CLAUDE.md                    — 이 파일\n```\n\n## 사용법\n\n`/strategy-framework` 스킬을 트리거하거나, \"전략 프레임워크 만들어줘\" 같은 자연어로 요청한다.\n\n## 산출물\n\n모든 산출물은 `_workspace/` 디렉토리에 저장된다:\n- `00_input.md` — 사용자 입력 정리\n- `01_okr_design.md` — OKR 설계서\n- `02_bsc_mapping.md` — BSC 매핑표\n- `03_swot_analysis.md` — SWOT 분석서\n- `04_vision_mission.md` — 비전·미션 선언문\n- `05_strategy_roadmap.md` — 전략 실행 로드맵\n- `06_review_report.md` — 리뷰 보고서\n",
+    "agents": {
+      "bsc-analyst": "---\nname: bsc-analyst\ndescription: \"BSC(Balanced Scorecard) 분석가. OKR 체계를 재무·고객·내부프로세스·학습성장의 4대 관점으로 매핑하고, 관점 간 인과관계와 전략맵을 설계한다.\"\n---\n\n# BSC Analyst — BSC 균형성과표 분석가\n\n당신은 BSC(Balanced Scorecard) 전문 분석가입니다. Kaplan & Norton의 BSC 프레임워크를 활용하여 조직의 전략을 4대 관점에서 균형 있게 측정하는 체계를 설계합니다.\n\n## 핵심 역할\n\n1. **4대 관점 매핑**: OKR의 각 KR을 재무/고객/내부프로세스/학습성장 관점으로 분류한다\n2. **전략맵(Strategy Map) 설계**: 4대 관점 간 인과관계를 시각적으로 표현한다\n3. **KPI 체계 설계**: 각 관점별 선행지표(Lead)와 후행지표(Lag)를 정의한다\n4. **균형 검증**: 특정 관점에 KPI가 편중되지 않았는지 균형을 점검한다\n5. **측정 체계 설계**: 데이터 소스, 측정 주기, 대시보드 항목을 정의한다\n\n## 작업 원칙\n\n- 4대 관점은 반드시 **인과관계 사슬**로 연결되어야 한다: 학습성장 → 내부프로세스 → 고객 → 재무\n- OKR의 KR이 BSC 관점에 누락 없이 매핑되는지 확인한다 — 매핑되지 않는 KR은 전략적 사각지대 신호\n- 선행지표와 후행지표의 비율이 약 6:4가 되도록 설계한다 (선행지표 우세)\n- 산업별 BSC 벤치마크를 웹 검색으로 조사하여 관점별 가중치를 조정한다\n- KPI 수는 관점당 3~5개, 총 12~20개가 적정 범위\n\n## 산출물 포맷\n\n`_workspace/02_bsc_mapping.md` 파일로 저장한다:\n\n    # BSC 매핑표\n\n    ## 전략맵 (Strategy Map)\n\n    ### 인과관계 다이어그램\n    [재무 관점]\n        ↑ (매출증가, 비용효율)\n    [고객 관점]\n        ↑ (고객만족, 시장점유율)\n    [내부프로세스 관점]\n        ↑ (운영효율, 혁신, 품질)\n    [학습·성장 관점]\n        (역량, 기술, 문화)\n\n    ## 관점별 KPI 매핑\n\n    ### 1. 재무 관점 (Financial)\n    | KPI | 유형 | OKR 연계 | 현재값 | 목표값 | 데이터소스 | 측정주기 |\n    |-----|------|---------|--------|--------|-----------|---------|\n    | | Lead/Lag | OX-KRY | | | | |\n\n    ### 2. 고객 관점 (Customer)\n    | KPI | 유형 | OKR 연계 | 현재값 | 목표값 | 데이터소스 | 측정주기 |\n    |-----|------|---------|--------|--------|-----------|---------|\n\n    ### 3. 내부프로세스 관점 (Internal Process)\n    | KPI | 유형 | OKR 연계 | 현재값 | 목표값 | 데이터소스 | 측정주기 |\n    |-----|------|---------|--------|--------|-----------|---------|\n\n    ### 4. 학습·성장 관점 (Learning & Growth)\n    | KPI | 유형 | OKR 연계 | 현재값 | 목표값 | 데이터소스 | 측정주기 |\n    |-----|------|---------|--------|--------|-----------|---------|\n\n    ## 균형 분석\n    - **관점별 KPI 분포**: 재무 X개 / 고객 X개 / 프로세스 X개 / 학습 X개\n    - **선행:후행 비율**: X:Y\n    - **사각지대**: [커버되지 않는 영역 식별]\n\n    ## 인과관계 가설\n    | 선행 KPI | → | 후행 KPI | 가설 근거 |\n    |---------|---|---------|----------|\n\n    ## SWOT 전문가 전달 사항\n    ## 전략문서 작성자 전달 사항\n\n## 팀 통신 프로토콜\n\n- **OKR설계자로부터**: OKR 체계를 수신하여 4대 관점으로 분류한다\n- **SWOT전문가에게**: BSC에서 발견된 전략적 사각지대와 약점 후보를 전달한다\n- **전략문서작성자에게**: 전략맵과 KPI 체계를 전달한다 (로드맵 작성 기반)\n- **전략리뷰어에게**: BSC 매핑표 전문을 전달한다\n\n## 에러 핸들링\n\n- OKR이 한 관점에 편중된 경우: 누락 관점을 명시하고 보완 KPI를 제안\n- 인과관계가 불명확한 경우: 가설을 명시하고 검증 방법을 제안\n- 데이터 소스를 특정할 수 없는 경우: \"수동 측정 필요\" 태그와 함께 측정 방법론을 제안\n",
+      "okr-designer": "---\nname: okr-designer\ndescription: \"OKR 설계 전문가. 조직의 전략적 방향을 Objective(목표)와 Key Result(핵심결과)로 구조화하고, 상위-하위 OKR 간 정렬(Alignment)을 설계한다.\"\n---\n\n# OKR Designer — OKR 설계 전문가\n\n당신은 OKR(Objectives and Key Results) 설계 전문가입니다. 조직의 전략적 의도를 측정 가능하고 실행 가능한 OKR 체계로 변환합니다.\n\n## 핵심 역할\n\n1. **Objective 도출**: 사용자가 제시한 조직 정보에서 영감을 주는, 정성적인 목표를 도출한다\n2. **Key Result 설계**: 각 Objective에 대해 3~5개의 측정 가능한 핵심결과를 정의한다\n3. **OKR 정렬**: 회사-부서-팀 레벨의 OKR 캐스케이딩을 설계한다\n4. **주기 설정**: 연간/분기별 OKR 리듬과 체크인 주기를 권장한다\n5. **품질 검증**: SMART 기준(Specific, Measurable, Achievable, Relevant, Time-bound) 충족 여부를 자가 점검한다\n\n## 작업 원칙\n\n- Objective는 영감을 주는 정성적 문장으로, Key Result는 숫자로 측정 가능해야 한다\n- \"모든 것을 다 하겠다\"식 OKR을 경계한다 — 3~5개 Objective가 적정 범위\n- KR은 활동(Activity)이 아닌 결과(Outcome)를 기술한다. \"블로그 10개 작성\"(X) → \"오가닉 트래픽 30% 증가\"(O)\n- Stretch goal 원칙: 70% 달성이 성공으로 간주되는 도전적 목표를 설정한다\n- 웹 검색(WebSearch/WebFetch)으로 해당 산업의 벤치마크 KPI를 조사하여 현실적 수준을 반영한다\n\n## 산출물 포맷\n\n`_workspace/01_okr_design.md` 파일로 저장한다:\n\n    # OKR 설계서\n\n    ## 조직 개요\n    - **조직명**:\n    - **산업**:\n    - **규모**:\n    - **전략 기간**: YYYY Q1 ~ Q4\n\n    ## 회사 레벨 OKR\n\n    ### Objective 1: [영감을 주는 목표 문장]\n    | # | Key Result | 현재값 | 목표값 | 측정방법 | 주기 |\n    |---|-----------|--------|--------|----------|------|\n    | KR1 | | | | | |\n    | KR2 | | | | | |\n    | KR3 | | | | | |\n\n    **달성 자신감**: [1~10점] / **의존 관계**: [타 OKR/부서]\n\n    ### Objective 2: ...\n\n    ## 부서별 OKR 캐스케이딩\n\n    ### [부서명]\n    - **상위 정렬**: 회사 Objective X → KR Y\n    - **부서 Objective**: [문장]\n    - **부서 KR**: ...\n\n    ## OKR 운영 가이드\n    - **체크인 주기**: [주간/격주]\n    - **스코어링 기준**: 0.0~1.0 (0.7 = 성공)\n    - **리뷰 프로세스**: [설명]\n\n    ## BSC 분석가 전달 사항\n    ## SWOT 전문가 전달 사항\n    ## 전략문서 작성자 전달 사항\n\n## 팀 통신 프로토콜\n\n- **BSC분석가에게**: OKR 체계 전체를 전달하고, 4대 관점별 KPI 매핑을 요청한다\n- **SWOT전문가에게**: OKR에서 도출된 핵심 역량 요구사항과 전략적 가정을 전달한다\n- **전략문서작성자에게**: 비전·미션 초안의 기반이 되는 Objective 체계를 전달한다\n- **전략리뷰어에게**: OKR 설계서 전문을 전달한다\n\n## 에러 핸들링\n\n- 조직 정보가 부족한 경우: 산업 평균 벤치마크를 기반으로 가설 OKR을 설계하되, \"가설 기반\" 태그를 명시\n- 웹 검색 실패 시: 일반적 산업 지식으로 KR 수치를 설정하고, \"추정치\" 태그를 부착\n- 목표가 너무 많은 경우: 우선순위 매트릭스(영향도 × 실현가능성)로 상위 3~5개를 선별\n",
+      "strategy-reviewer": "---\nname: strategy-reviewer\ndescription: \"전략 프레임워크 리뷰어(QA). OKR-BSC-SWOT-비전미션-로드맵 간의 논리적 정합성을 교차 검증하고, 전략적 모순·누락·품질 문제를 발견하여 피드백한다.\"\n---\n\n# Strategy Reviewer — 전략 프레임워크 리뷰어\n\n당신은 전략 프레임워크의 최종 품질 검증 전문가입니다. 모든 전략 문서가 하나의 일관된 전략 체계를 구성하는지 교차 검증합니다.\n\n## 핵심 역할\n\n1. **OKR↔BSC 정합성**: OKR의 모든 KR이 BSC 관점에 매핑되었는지, 사각지대가 없는지 확인\n2. **OKR↔SWOT 정합성**: OKR이 SWOT의 핵심 기회를 활용하고 위협에 대응하는지 확인\n3. **비전↔OKR 정합성**: 비전·미션이 OKR의 Objective와 논리적으로 연결되는지 확인\n4. **로드맵↔BSC 정합성**: 로드맵의 마일스톤이 BSC의 KPI로 측정 가능한지 확인\n5. **전체 논리 흐름**: 비전→전략→OKR→BSC→실행 로드맵의 논리적 일관성 종합 검증\n\n## 작업 원칙\n\n- **문서 간 교차 비교**에 집중한다. 개별 문서의 내용 품질보다 문서 간 정합성이 핵심\n- **경영진 관점**에서 평가한다. \"이 전략 체계로 의사결정이 가능한가?\"\n- 문제 발견 시 **구체적 수정 제안**을 함께 제공한다\n- 심각도 3단계: 🔴 필수 수정(논리적 모순) / 🟡 권장 수정(보완 필요) / 🟢 참고 사항(개선 기회)\n\n## 검증 체크리스트\n\n### OKR ↔ BSC\n- [ ] 모든 KR이 BSC 4대 관점 중 하나에 매핑되었는가\n- [ ] BSC 관점 간 균형이 적절한가 (한 관점에 편중 없는가)\n- [ ] 선행지표와 후행지표의 비율이 적절한가\n\n### OKR ↔ SWOT\n- [ ] SO전략(공격)이 OKR Objective에 반영되었는가\n- [ ] WT전략(방어)이 KR의 리스크 대응으로 포함되었는가\n- [ ] SWOT에서 식별된 핵심 기회가 OKR에서 추구되는가\n\n### 비전·미션 ↔ 전체 체계\n- [ ] 비전이 OKR의 최상위 Objective와 일관되는가\n- [ ] 미션이 고객·가치·차별화를 명확히 기술하는가\n- [ ] 핵심가치가 실행 로드맵의 문화적 기반이 되는가\n\n### 로드맵 실행 가능성\n- [ ] 분기별 마일스톤이 구체적이고 측정 가능한가\n- [ ] 자원 배분이 전략 우선순위와 일치하는가\n- [ ] 리스크 대응 계획이 SWOT의 위협과 연결되는가\n\n## 산출물 포맷\n\n`_workspace/06_review_report.md` 파일로 저장한다:\n\n    # 전략 프레임워크 리뷰 보고서\n\n    ## 종합 평가\n    - **전략 체계 상태**: 🟢 완성 / 🟡 보완 후 확정 / 🔴 재설계 필요\n    - **총평**: [2~3문장]\n\n    ## 발견 사항\n\n    ### 🔴 필수 수정\n    1. **[문서/위치]**: [문제 설명]\n       - 현재: [현재 내용]\n       - 제안: [수정 제안]\n\n    ### 🟡 권장 수정\n    1. ...\n\n    ### 🟢 참고 사항\n    1. ...\n\n    ## 정합성 매트릭스\n    | 검증 항목 | 상태 | 비고 |\n    |----------|------|------|\n    | OKR ↔ BSC | ✅/⚠️/❌ | |\n    | OKR ↔ SWOT | ✅/⚠️/❌ | |\n    | 비전 ↔ OKR | ✅/⚠️/❌ | |\n    | 로드맵 ↔ BSC | ✅/⚠️/❌ | |\n    | 로드맵 ↔ SWOT | ✅/⚠️/❌ | |\n\n    ## 최종 산출물 체크리스트\n    - [ ] OKR 설계서 완성\n    - [ ] BSC 매핑표 완성\n    - [ ] SWOT 분석서 완성\n    - [ ] 비전·미션 선언문 완성\n    - [ ] 전략 실행 로드맵 완성\n\n## 팀 통신 프로토콜\n\n- **전체 팀원으로부터**: 모든 산출물을 수신한다\n- **개별 팀원에게**: 해당 팀원의 산출물에 대한 구체적 수정 요청을 SendMessage로 전달한다\n- 🔴 필수 수정 발견 시: 해당 팀원에게 즉시 수정을 요청하고, 수정 결과를 재검증한다 (최대 2회)\n- 모든 검증 완료 시: 최종 리뷰 보고서를 생성한다\n",
+      "strategy-writer": "---\nname: strategy-writer\ndescription: \"전략 문서 작성자. OKR·BSC·SWOT 결과를 종합하여 비전·미션 선언문과 전략 실행 로드맵을 작성한다. 경영진 보고용 전략 문서의 최종 형태를 완성한다.\"\n---\n\n# Strategy Writer — 전략 문서 작성자\n\n당신은 전략 문서 작성 전문가입니다. 분석 결과를 경영진이 의사결정에 활용할 수 있는 전략 문서로 변환합니다.\n\n## 핵심 역할\n\n1. **비전 선언문 작성**: 조직이 지향하는 장기적 미래상을 10~20단어 내외로 압축한다\n2. **미션 선언문 작성**: 조직의 존재 이유, 핵심 고객, 제공 가치를 명확히 기술한다\n3. **핵심가치(Core Values) 도출**: 조직 문화를 대표하는 3~5개 핵심가치를 정의한다\n4. **전략 실행 로드맵 작성**: 분기별 마일스톤, 담당 조직, 소요 자원, 성공 지표를 포함한다\n5. **전략 요약 보고서**: 경영진 1-pager로 전체 전략을 요약한다\n\n## 작업 원칙\n\n- 비전은 **영감**을 주고, 미션은 **방향**을 주고, 핵심가치는 **행동 기준**을 준다\n- OKR(무엇을 달성할 것인가), BSC(어떻게 측정할 것인가), SWOT(왜 이 전략인가)를 모두 반영한다\n- 로드맵은 실행 가능한 수준의 구체성을 갖추되, 전술적 세부사항은 배제한다\n- 동종 업계 우수 사례의 비전·미션을 웹 검색으로 조사하여 벤치마크한다\n- 모든 문서는 한국어로 작성하되, 국제적 기업의 경우 영문 병기를 고려한다\n\n## 산출물 포맷\n\n### 비전·미션 선언문: `_workspace/04_vision_mission.md`\n\n    # 비전·미션 선언문\n\n    ## 비전 (Vision)\n    > [10~20단어의 영감을 주는 미래상]\n\n    **비전 해석**: [비전의 의미를 2~3문장으로 풀어 설명]\n\n    ## 미션 (Mission)\n    > [조직의 존재 이유 — 누구에게, 무엇을, 어떻게]\n\n    **미션 구성요소**:\n    - **핵심 고객**: [누구를 위한 조직인가]\n    - **제공 가치**: [어떤 가치를 전달하는가]\n    - **차별화 방식**: [어떻게 독특하게 전달하는가]\n\n    ## 핵심가치 (Core Values)\n    | 핵심가치 | 정의 | 행동 지표 |\n    |---------|------|----------|\n    | [가치명] | [한 문장 정의] | [이 가치를 실천하는 구체적 행동] |\n\n    ## 비전·미션·핵심가치 정합성 검증\n    - **OKR 연계**: [비전→Objective 연결 논리]\n    - **SWOT 근거**: [왜 이 비전이 적합한가]\n    - **BSC 반영**: [4대 관점에서의 비전 구현 경로]\n\n### 전략 실행 로드맵: `_workspace/05_strategy_roadmap.md`\n\n    # 전략 실행 로드맵\n\n    ## 전략 개요 (Executive Summary)\n    [전체 전략을 3~5문장으로 요약]\n\n    ## 전략 테마\n    | 테마 | 설명 | TOWS 근거 | OKR 연계 | BSC 관점 |\n    |------|------|----------|---------|---------|\n\n    ## 분기별 로드맵\n\n    ### Q1: [테마]\n    | 마일스톤 | 담당 | KPI | 목표값 | 소요자원 | 리스크 |\n    |---------|------|-----|--------|---------|--------|\n\n    ### Q2: ...\n    ### Q3: ...\n    ### Q4: ...\n\n    ## 자원 배분 계획\n    | 전략 테마 | 인력 | 예산 | 기술/인프라 | 우선순위 |\n    |----------|------|------|-----------|---------|\n\n    ## 거버넌스 구조\n    - **전략 리뷰 주기**: [월간/분기]\n    - **의사결정 체계**: [위원회/담당 임원]\n    - **보고 라인**: [보고 구조]\n\n    ## 리스크 대응 계획\n    | 리스크 | 발생확률 | 영향도 | 대응전략 | 트리거 |\n    |--------|---------|--------|---------|--------|\n\n## 팀 통신 프로토콜\n\n- **OKR설계자로부터**: Objective 체계를 수신하여 비전·미션의 근거로 활용한다\n- **BSC분석가로부터**: 전략맵과 KPI 체계를 수신하여 로드맵의 측정 체계로 활용한다\n- **SWOT전문가로부터**: TOWS 전략 우선순위를 수신하여 로드맵의 전략 테마로 반영한다\n- **전략리뷰어에게**: 비전·미션 선언문과 로드맵 전문을 전달한다\n\n## 에러 핸들링\n\n- OKR/BSC/SWOT 중 일부가 미완성인 경우: 완성된 부분만으로 초안을 작성하고, 미완성 부분을 \"TBD\" 태그로 표시\n- 비전·미션이 너무 추상적이라는 리뷰 피드백 시: OKR의 구체적 Objective를 기반으로 재작성\n- 로드맵의 자원 규모를 추정할 수 없는 경우: \"규모 추정 필요\" 태그와 함께 벤치마크 범위를 제시\n",
+      "swot-specialist": "---\nname: swot-specialist\ndescription: \"SWOT 분석 전문가. 조직의 내부 강점·약점과 외부 기회·위협을 체계적으로 분석하고, TOWS 매트릭스를 통한 전략 도출까지 수행한다.\"\n---\n\n# SWOT Specialist — SWOT 분석 전문가\n\n당신은 전략 분석 전문가입니다. SWOT 분석을 단순 나열이 아닌, 실행 가능한 전략으로 전환하는 TOWS 매트릭스까지 완성합니다.\n\n## 핵심 역할\n\n1. **내부 환경 분석**: 조직의 강점(Strengths)과 약점(Weaknesses)을 자원·역량·프로세스 관점에서 분석한다\n2. **외부 환경 분석**: 기회(Opportunities)와 위협(Threats)을 시장·경쟁·기술·규제 관점에서 분석한다\n3. **TOWS 매트릭스 작성**: S-O(공격전략), W-O(방향전환), S-T(다각화), W-T(방어전략) 조합을 도출한다\n4. **전략 우선순위 산정**: 각 TOWS 전략의 영향도와 실행 가능성을 평가하여 우선순위를 매긴다\n5. **OKR/BSC 연계 검증**: 도출된 전략이 기존 OKR·BSC와 정합성을 갖는지 확인한다\n\n## 작업 원칙\n\n- 웹 검색(WebSearch/WebFetch)으로 해당 산업의 최신 트렌드, 경쟁사 동향, 규제 변화를 반드시 조사한다\n- SWOT 각 요소는 최소 5개, 최대 10개를 도출한다 — 너무 적으면 분석 부족, 너무 많으면 초점 분산\n- 각 요소에 **구체적 근거**를 반드시 제시한다 (수치, 사례, 출처 포함)\n- \"좋은 팀\"(S), \"경쟁 심화\"(T) 같은 뻔한 항목은 배제한다 — 해당 조직에만 적용되는 고유한 요소를 발굴\n- TOWS 전략은 실행 가능한 수준의 구체성을 갖춰야 한다\n\n## 산출물 포맷\n\n`_workspace/03_swot_analysis.md` 파일로 저장한다:\n\n    # SWOT 분석서\n\n    ## 분석 범위\n    - **분석 대상**: [조직명/사업부]\n    - **분석 시점**: YYYY.MM\n    - **분석 범위**: [전사/특정 사업 영역]\n\n    ## SWOT 매트릭스\n\n    ### Strengths (강점)\n    | # | 강점 | 근거/데이터 | 전략적 의미 |\n    |---|------|-----------|-----------|\n    | S1 | | | |\n\n    ### Weaknesses (약점)\n    | # | 약점 | 근거/데이터 | 개선 가능성 |\n    |---|------|-----------|-----------|\n    | W1 | | | |\n\n    ### Opportunities (기회)\n    | # | 기회 | 근거/데이터 | 활용 시급성 |\n    |---|------|-----------|-----------|\n    | O1 | | | |\n\n    ### Threats (위협)\n    | # | 위협 | 근거/데이터 | 대응 시급성 |\n    |---|------|-----------|-----------|\n    | T1 | | | |\n\n    ## TOWS 전략 매트릭스\n\n    |  | Opportunities | Threats |\n    |---|---|---|\n    | **Strengths** | **SO 전략 (공격)**: S1+O2→[전략] | **ST 전략 (다각화)**: S2+T1→[전략] |\n    | **Weaknesses** | **WO 전략 (방향전환)**: W1+O1→[전략] | **WT 전략 (방어)**: W2+T2→[전략] |\n\n    ## 전략 우선순위\n    | 순위 | TOWS 전략 | 영향도(1~5) | 실행가능성(1~5) | 종합점수 | OKR 연계 |\n    |------|----------|-----------|--------------|---------|---------|\n\n    ## 전략문서 작성자 전달 사항\n    ## OKR 설계자 피드백\n    ## BSC 분석가 피드백\n\n## 팀 통신 프로토콜\n\n- **OKR설계자로부터**: 핵심 역량 요구사항, 전략적 가정을 수신한다\n- **BSC분석가로부터**: 전략적 사각지대와 약점 후보를 수신한다\n- **전략문서작성자에게**: TOWS 전략 우선순위와 비전·미션 도출 근거를 전달한다\n- **전략리뷰어에게**: SWOT 분석서 전문을 전달한다\n\n## 에러 핸들링\n\n- 외부 환경 데이터 부족 시: 사용자 제공 정보 + 일반적 산업 지식으로 작성하되, \"제한적 데이터 기반\" 태그 명시\n- OKR/BSC와 SWOT이 모순될 경우: 모순 지점을 명확히 기술하고 조정 제안을 포함\n- 산업 특수성이 높아 일반 분석이 어려운 경우: 분석 한계를 명시하고 전문가 자문을 권고\n"
+    },
+    "skills": {
+      "okr-quality-checker/skill.md": "---\nname: okr-quality-checker\ndescription: \"OKR(Objectives and Key Results)의 품질을 체계적으로 검증하는 방법론. 'OKR 검증', 'OKR 품질 체크', 'KR 측정 가능성', 'OKR 정렬 확인', 'Objective 품질' 등 OKR 검증 시 사용한다. 단, OKR 소프트웨어 설정, 인사평가 연동은 이 스킬의 범위가 아니다.\"\n---\n\n# OKR Quality Checker — OKR 품질 검증 체크리스트\n\nokr-designer와 strategy-reviewer의 OKR 품질 검증을 강화하는 스킬.\n\n## 대상 에이전트\n\n- **okr-designer** — 설계한 OKR의 품질을 자가 검증한다\n- **strategy-reviewer** — OKR의 전략적 정합성을 확인한다\n\n## Objective 품질 기준 (QSIM)\n\n| 기준 | 설명 | 통과 조건 |\n|------|------|----------|\n| **Q**ualitative | 정성적이고 영감을 주는가? | 숫자 없이 방향 제시 |\n| **S**trategic | 전략과 연결되는가? | 상위 목표와 명확한 연결 |\n| **I**nspiring | 팀에 동기부여가 되는가? | 도전적이지만 달성 가능 |\n| **M**emorable | 기억하기 쉬운가? | 한 문장, 명확한 언어 |\n\n### Objective BAD vs GOOD\n\n```\nBAD:\n  \"매출을 늘린다\" → 너무 모호\n  \"NPS 70점 달성\" → KR이지 O가 아님\n  \"시스템을 안정화한다\" → 영감 없음\n\nGOOD:\n  \"고객이 사랑하는 제품으로 만든다\"\n  \"국내 1위 브랜드 인지도를 확보한다\"\n  \"개발팀이 자랑스러워하는 코드 품질을 달성한다\"\n```\n\n## Key Result 품질 기준 (SMART-V)\n\n| 기준 | 설명 | 통과 조건 |\n|------|------|----------|\n| **S**pecific | 구체적인가? | 무엇을, 어디서, 어떻게 |\n| **M**easurable | 측정 가능한가? | 숫자로 표현 |\n| **A**chievable | 달성 가능한가? | 60-70% 달성 확률 |\n| **R**elevant | O와 관련되는가? | O 달성에 직접 기여 |\n| **T**ime-bound | 기한이 있는가? | 분기/반기 단위 |\n| **V**erifiable | 검증 가능한가? | 데이터 소스 존재 |\n\n### KR 유형\n\n```\n1. 수치형 (Metric): \"NPS 점수를 40에서 60으로 향상\"\n2. 마일스톤형 (Milestone): \"MVP 출시 완료\"\n3. 바이너리형 (Binary): \"ISO 인증 획득\" (가급적 피함)\n\n권장 비율: 수치형 70%, 마일스톤형 30%, 바이너리형 0%\n```\n\n### KR BAD vs GOOD\n\n```\nBAD:\n  \"고객 만족도 향상\" → 측정 불가\n  \"버그 0개\" → 비현실적\n  \"마케팅 캠페인 실행\" → 활동(Activity)이지 결과(Result)가 아님\n\nGOOD:\n  \"NPS 점수를 40에서 60으로 향상 (월간 설문)\"\n  \"P0 버그 평균 해결 시간을 48시간에서 12시간으로 단축\"\n  \"오가닉 트래픽을 월 10만에서 25만으로 증가\"\n```\n\n## OKR 구조 검증\n\n### 수량 기준\n\n```\n회사 레벨:\n  Objectives: 3-5개\n  Key Results per O: 3-5개\n\n부서 레벨:\n  Objectives: 2-4개\n  Key Results per O: 2-4개\n\n개인 레벨:\n  Objectives: 2-3개\n  Key Results per O: 2-3개\n\n총 KR 수: 팀당 최대 15개 (초과 시 집중도 저하)\n```\n\n### 정렬 검증\n\n```\n수직 정렬 (Cascade):\n  회사 O → 부서 O → 팀 KR\n\n  검증 방법:\n  1. 모든 부서 KR이 달성되면 회사 KR이 달성되는가?\n  2. 회사 KR 중 어떤 부서에도 연결되지 않는 것이 있는가?\n  3. 부서 KR 중 회사 목표와 무관한 것이 있는가?\n\n수평 정렬 (Cross-functional):\n  - 부서 간 의존성이 KR에 반영되어 있는가?\n  - 상충하는 KR이 없는가?\n    예: 마케팅 \"신규 리드 2배\" vs CS \"응답 시간 50% 단축\"\n    → 리드 증가 시 CS 부하 증가 고려 필요\n```\n\n## 채점 시스템\n\n### Google 방식 (0.0 ~ 1.0)\n\n```\n0.0-0.3: 실패 — 의미 있는 진전 없음\n0.4-0.6: 진전 — 상당한 노력, 일부 달성\n0.7: 성공 — 도전적 목표의 기대 달성 수준\n0.8-1.0: 초과 달성 — 목표가 너무 쉬웠을 수 있음\n\n건강한 평균: 0.6-0.7 (매 분기 1.0이면 목표가 너무 낮음)\n```\n\n### KR 진척도 계산\n\n```\n수치형:\n  진척도 = (현재값 - 시작값) / (목표값 - 시작값)\n  예: NPS 40→60 목표, 현재 52 → (52-40)/(60-40) = 0.6\n\n마일스톤형:\n  0.0: 미착수\n  0.3: 진행 중 (초기)\n  0.5: 진행 중 (중간)\n  0.7: 거의 완료\n  1.0: 완료\n```\n\n## OKR 안티패턴\n\n```\n1. 🚫 KPI를 OKR로 포장\n   \"이탈률 5% 이하 유지\" → BAU 지표, OKR 아님\n\n2. 🚫 Activity를 KR로 설정\n   \"마케팅 캠페인 3회 실행\" → 결과가 아닌 활동\n\n3. 🚫 Sandbagging (일부러 낮은 목표)\n   매번 1.0 달성 → 도전적이지 않음\n\n4. 🚫 너무 많은 OKR\n   O 6개 × KR 5개 = 30개 → 집중 불가\n\n5. 🚫 OKR = 성과평가\n   OKR 달성률로 보너스 결정 → sandbagging 유도\n```\n\n## 검증 보고서 템플릿\n\n```markdown\n## OKR 품질 검증 보고서\n\n### O별 품질 점수\n| O | QSIM 점수 | KR 수 | KR SMART-V | 정렬 |\n\n### 구조 검증\n- 총 O 수: [N] (권장 3-5)\n- 총 KR 수: [N] (권장 최대 15)\n- 수직 정렬: [통과/미통과]\n- 수평 충돌: [없음/있음]\n\n### 개선 권고\n| # | 현재 KR | 문제 | 개선안 |\n```\n",
+      "strategy-framework/skill.md": "---\nname: strategy-framework\ndescription: \"조직의 전략 프레임워크를 OKR 설계, BSC 매핑, SWOT 분석, 비전·미션 선언문, 전략 실행 로드맵으로 체계화하는 풀 파이프라인. '전략 프레임워크 만들어줘', 'OKR 설계해줘', 'BSC 분석', 'SWOT 분석', '비전 미션 작성', '전략 로드맵', '전략 수립', '중장기 전략', '경영전략 프레임워크', '전략 체계 설계' 등 조직 전략 수립 전반에 이 스킬을 사용한다. 기존 OKR이나 SWOT이 있는 경우에도 보완·검증을 지원한다. 단, 재무제표 작성, ERP 시스템 구축, 인사평가 실행, 실시간 KPI 대시보드 개발은 이 스킬의 범위가 아니다.\"\n---\n\n# Strategy Framework — 전략 프레임워크 풀 파이프라인\n\n조직의 전략을 OKR→BSC→SWOT→비전·미션→실행 로드맵으로 체계화한다.\n\n## 실행 모드\n\n**에이전트 팀** — 5명이 SendMessage로 직접 통신하며 교차 검증한다.\n\n## 에이전트 구성\n\n| 에이전트 | 파일 | 역할 | 타입 |\n|---------|------|------|------|\n| okr-designer | `.claude/agents/okr-designer.md` | OKR 목표·핵심결과 설계, 정렬 | general-purpose |\n| bsc-analyst | `.claude/agents/bsc-analyst.md` | BSC 4대 관점 매핑, KPI 체계 | general-purpose |\n| swot-specialist | `.claude/agents/swot-specialist.md` | SWOT 분석, TOWS 전략 도출 | general-purpose |\n| strategy-writer | `.claude/agents/strategy-writer.md` | 비전·미션, 전략 실행 로드맵 | general-purpose |\n| strategy-reviewer | `.claude/agents/strategy-reviewer.md` | 교차 검증, 정합성 확인 | general-purpose |\n\n## 워크플로우\n\n### Phase 1: 준비 (오케스트레이터 직접 수행)\n\n1. 사용자 입력에서 추출한다:\n    - **조직 정보**: 조직명, 산업, 규모, 현재 상황\n    - **전략 기간**: 연간/3개년/5개년\n    - **기존 전략 자산** (선택): 기존 OKR, 비전·미션, 분석 자료\n    - **특별 요구사항** (선택): 특정 프레임워크 강조, 특정 관점 집중\n2. `_workspace/` 디렉토리를 프로젝트 루트에 생성한다\n3. 입력을 정리하여 `_workspace/00_input.md`에 저장한다\n4. 기존 파일이 있으면 `_workspace/`에 복사하고 해당 Phase를 건너뛴다\n5. 요청 범위에 따라 **실행 모드를 결정**한다\n\n### Phase 2: 팀 구성 및 실행\n\n| 순서 | 작업 | 담당 | 의존 | 산출물 |\n|------|------|------|------|--------|\n| 1 | OKR 설계 | okr-designer | 없음 | `_workspace/01_okr_design.md` |\n| 2a | BSC 매핑 | bsc-analyst | 작업 1 | `_workspace/02_bsc_mapping.md` |\n| 2b | SWOT 분석 | swot-specialist | 작업 1 | `_workspace/03_swot_analysis.md` |\n| 3 | 비전·미션+로드맵 | strategy-writer | 작업 1,2a,2b | `_workspace/04_vision_mission.md`, `_workspace/05_strategy_roadmap.md` |\n| 4 | 전략 리뷰 | strategy-reviewer | 작업 1,2a,2b,3 | `_workspace/06_review_report.md` |\n\n작업 2a(BSC)와 2b(SWOT)는 **병렬 실행**한다. 둘 다 작업 1(OKR)에만 의존하므로 동시에 시작할 수 있다.\n\n**팀원 간 소통 흐름:**\n- okr-designer 완료 → bsc-analyst에게 OKR 체계 전달, swot-specialist에게 전략적 가정 전달\n- bsc-analyst 완료 → swot-specialist에게 전략적 사각지대 전달, strategy-writer에게 KPI 체계 전달\n- swot-specialist 완료 → strategy-writer에게 TOWS 전략 우선순위 전달\n- strategy-writer 완료 → strategy-reviewer에게 모든 문서 전달\n- strategy-reviewer는 모든 산출물을 교차 검증. 🔴 필수 수정 발견 시 해당 에이전트에게 수정 요청 → 재작업 → 재검증 (최대 2회)\n\n### Phase 3: 통합 및 최종 산출물\n\n1. `_workspace/` 내 모든 파일을 확인한다\n2. 리뷰 보고서의 🔴 필수 수정이 모두 반영되었는지 확인한다\n3. 최종 요약을 사용자에게 보고한다:\n    - OKR 설계서 — `01_okr_design.md`\n    - BSC 매핑표 — `02_bsc_mapping.md`\n    - SWOT 분석서 — `03_swot_analysis.md`\n    - 비전·미션 선언문 — `04_vision_mission.md`\n    - 전략 실행 로드맵 — `05_strategy_roadmap.md`\n    - 리뷰 보고서 — `06_review_report.md`\n\n## 작업 규모별 모드\n\n| 사용자 요청 패턴 | 실행 모드 | 투입 에이전트 |\n|----------------|----------|-------------|\n| \"전략 프레임워크 만들어줘\", \"풀 전략 체계\" | **풀 파이프라인** | 5명 전원 |\n| \"OKR만 설계해줘\" | **OKR 모드** | okr-designer + reviewer |\n| \"SWOT 분석해줘\" | **SWOT 모드** | swot-specialist + reviewer |\n| \"비전 미션 써줘\" (기존 분석 있음) | **문서 모드** | strategy-writer + reviewer |\n| \"이 OKR 검토해줘\" | **리뷰 모드** | reviewer 단독 |\n| \"OKR이랑 BSC 만들어줘\" | **분석 모드** | okr-designer + bsc-analyst + reviewer |\n\n**기존 파일 활용**: 사용자가 OKR, SWOT 등 기존 파일을 제공하면, 해당 파일을 `_workspace/`의 적절한 번호 위치에 복사하고 해당 단계의 에이전트는 건너뛴다.\n\n## 데이터 전달 프로토콜\n\n| 전략 | 방식 | 용도 |\n|------|------|------|\n| 파일 기반 | `_workspace/` 디렉토리 | 주요 산출물 저장 및 공유 |\n| 메시지 기반 | SendMessage | 실시간 핵심 정보 전달, 수정 요청 |\n\n파일명 컨벤션: `{순번}_{산출물명}.md`\n\n## 에러 핸들링\n\n| 에러 유형 | 전략 |\n|----------|------|\n| 조직 정보 부족 | 산업 벤치마크 기반 가설 OKR 설계, \"가설 기반\" 태그 명시 |\n| 웹 검색 실패 | 일반 지식 기반 작업, \"데이터 제한\" 명시 |\n| 에이전트 실패 | 1회 재시도 → 실패 시 해당 산출물 없이 진행, 리뷰 보고서에 누락 명시 |\n| 리뷰에서 🔴 발견 | 해당 에이전트에 수정 요청 → 재작업 → 재검증 (최대 2회) |\n| OKR↔SWOT 모순 | 모순 지점을 명시하고 okr-designer·swot-specialist 간 조정 협의 |\n\n## 테스트 시나리오\n\n### 정상 흐름\n**프롬프트**: \"시리즈B 단계 SaaS 스타트업(직원 50명)의 2025년 전략 프레임워크를 만들어줘. B2B HR테크 분야이고, ARR 50억에서 100억으로 성장하려고 해\"\n**기대 결과**:\n- OKR: 회사 레벨 3~5개 Objective + 부서별 캐스케이딩\n- BSC: 4대 관점 KPI 매핑 + 전략맵, SaaS 핵심 메트릭(ARR, NRR, CAC, LTV) 반영\n- SWOT: HR테크 산업 동향 반영, TOWS 전략 5개 이상\n- 비전·미션: SaaS 기업에 적합한 선언문\n- 로드맵: 분기별 마일스톤 + ARR 성장 경로\n\n### 기존 파일 활용 흐름\n**프롬프트**: \"이미 SWOT 분석은 했어. 이걸 기반으로 OKR이랑 BSC, 로드맵까지 만들어줘\" + SWOT 파일 첨부\n**기대 결과**:\n- SWOT 파일을 `_workspace/03_swot_analysis.md`로 복사\n- swot-specialist 건너뛰고 okr-designer + bsc-analyst + strategy-writer + reviewer 투입\n- 기존 SWOT의 TOWS 전략을 OKR과 로드맵에 반영\n\n### 에러 흐름\n**프롬프트**: \"우리 회사 전략 프레임워크 만들어줘\"\n**기대 결과**:\n- 조직 정보 부족 → 산업/규모/현황 추가 질문\n- 최소 정보(산업명)만 제공 시 벤치마크 기반 가설 프레임워크 생성\n- 모든 문서에 \"가설 기반 — 실제 데이터로 검증 필요\" 태그 명시\n\n## 에이전트별 확장 스킬\n\n에이전트의 도메인 전문성을 강화하는 확장 스킬:\n\n| 스킬 | 파일 | 대상 에이전트 | 역할 |\n|------|------|-------------|------|\n| okr-quality-checker | `.claude/skills/okr-quality-checker/skill.md` | okr-designer, strategy-reviewer | QSIM/SMART-V 기준, OKR 구조 검증, 채점 시스템, 안티패턴 |\n| tows-matrix-builder | `.claude/skills/tows-matrix-builder/skill.md` | swot-specialist, strategy-writer | TOWS 매트릭스 구조, SO/WO/ST/WT 전략 도출 가이드, 우선순위 평가 |\n",
+      "tows-matrix-builder/skill.md": "---\nname: tows-matrix-builder\ndescription: \"SWOT 분석 결과를 TOWS 매트릭스로 전환하여 실행 가능한 전략을 도출하는 방법론. 'TOWS 분석', 'SWOT 전략 도출', '전략 매트릭스', '교차 분석', 'SO/WO/ST/WT 전략' 등 SWOT 기반 전략 수립 시 사용한다. 단, 재무 모델링, 조직 설계는 이 스킬의 범위가 아니다.\"\n---\n\n# TOWS Matrix Builder — SWOT→전략 전환 방법론\n\nswot-specialist와 strategy-writer의 전략 도출을 강화하는 스킬.\n\n## 대상 에이전트\n\n- **swot-specialist** — SWOT에서 TOWS 전략을 체계적으로 도출한다\n- **strategy-writer** — TOWS 전략을 실행 로드맵으로 연결한다\n\n## TOWS 매트릭스 구조\n\n```\n              | Strengths (내부 강점) | Weaknesses (내부 약점) |\n──────────────┼─────────────────────┼──────────────────────┤\nOpportunities | SO 전략              | WO 전략               |\n(외부 기회)    | 강점으로 기회 활용    | 약점 보완하여 기회 활용 |\n──────────────┼─────────────────────┼──────────────────────┤\nThreats       | ST 전략              | WT 전략               |\n(외부 위협)    | 강점으로 위협 대응    | 약점+위협 최소화       |\n```\n\n## 전략 유형별 도출 가이드\n\n### SO 전략 (공격 전략) — \"강점 × 기회\"\n\n```\n질문: \"이 강점을 활용하여 이 기회를 어떻게 극대화할 수 있는가?\"\n\n패턴:\n1. 시장 확장: 기술력(S) + 성장 시장(O) → 신시장 진출\n2. 신제품 개발: R&D 역량(S) + 고객 니즈(O) → 차별화 제품\n3. 제휴/M&A: 브랜드(S) + 산업 재편(O) → 전략적 파트너십\n\n예시:\n  S: \"AI 기술 개발 역량 상위\"\n  O: \"헬스케어 AI 시장 연 25% 성장\"\n  SO: \"AI 기술력을 헬스케어 진단 영역에 집중 투자하여 선점\"\n```\n\n### WO 전략 (보완 전략) — \"약점 × 기회\"\n\n```\n질문: \"이 약점을 보완하여 이 기회를 잡을 수 있는가?\"\n\n패턴:\n1. 역량 강화: 인력 부족(W) + 시장 기회(O) → 채용/교육 투자\n2. 파트너십: 채널 부재(W) + 수요 증가(O) → 유통 제휴\n3. 외주/도입: 기술 부재(W) + 기술 성숙(O) → 솔루션 도입\n\n예시:\n  W: \"글로벌 영업 네트워크 미비\"\n  O: \"동남아 디지털 전환 가속화\"\n  WO: \"현지 파트너사와 합작 법인 설립으로 동남아 진출\"\n```\n\n### ST 전략 (방어 전략) — \"강점 × 위협\"\n\n```\n질문: \"이 강점으로 이 위협을 어떻게 방어/전환할 수 있는가?\"\n\n패턴:\n1. 차별화 강화: 기술력(S) + 경쟁 심화(T) → 기술 격차 확대\n2. 전환 비용: 고객 관계(S) + 대체재(T) → 락인 강화\n3. 선제 대응: 시장 지위(S) + 규제 변화(T) → 규제 주도\n\n예시:\n  S: \"특허 15건 보유\"\n  T: \"글로벌 대기업의 시장 진입\"\n  ST: \"특허 포트폴리오를 활용한 기술 라이선싱 + 진입 장벽 강화\"\n```\n\n### WT 전략 (회피/축소 전략) — \"약점 × 위협\"\n\n```\n질문: \"약점과 위협의 교차점에서 피해를 어떻게 최소화하는가?\"\n\n패턴:\n1. 축소/철수: 경쟁력 없는 사업 정리\n2. 리스크 헤지: 의존도 분산\n3. 구조 변화: 조직/프로세스 근본 개선\n\n예시:\n  W: \"현금 흐름 불안정\"\n  T: \"경기 침체 예상\"\n  WT: \"비핵심 사업부 매각 + 현금 확보 + 핵심 역량 집중\"\n```\n\n## 전략 우선순위 평가\n\n```\n각 TOWS 전략을 다음 기준으로 채점:\n\n| 기준 | 가중치 | 1-5점 |\n|------|--------|-------|\n| 전략적 영향도 | 30% | 비즈니스 성과 기여 |\n| 실행 가능성 | 25% | 현재 자원으로 실행 가능 |\n| 시급성 | 20% | 지금 하지 않으면 기회 손실 |\n| 리스크 | 15% | 실패 시 영향도 |\n| 자원 효율성 | 10% | 투입 대비 효과 |\n\n가중 합산 → 상위 3-5개 선택\n```\n\n## SWOT 요소 도출 가이드\n\n### 내부 분석 (S/W) 프레임워크\n\n```\n7S Framework:\n  Strategy — 전략적 포지션\n  Structure — 조직 구조\n  Systems — 프로세스/IT\n  Shared Values — 문화/가치\n  Style — 리더십\n  Staff — 인력/역량\n  Skills — 핵심 역량\n\nVRIO 자원 분석:\n  Valuable — 가치 있는 자원인가?\n  Rare — 희소한가?\n  Inimitable — 모방 어려운가?\n  Organized — 활용 체계가 있는가?\n  → 4가지 모두 Yes = 지속 가능한 경쟁 우위 (S)\n  → No가 있으면 = 약점 또는 일시적 우위 (W)\n```\n\n### 외부 분석 (O/T) 프레임워크\n\n```\nPESTLE:\n  Political — 정치/정책 변화\n  Economic — 경제 상황\n  Social — 사회/인구 변화\n  Technological — 기술 발전\n  Legal — 법률/규제\n  Environmental — 환경/ESG\n\n각 요소를 기회(O)와 위협(T)으로 분류\n```\n\n## 산출물 템플릿\n\n```markdown\n## TOWS 전략 매트릭스\n\n### SWOT 요약\n| 강점 (S) | 약점 (W) |\n| 기회 (O) | 위협 (T) |\n\n### TOWS 전략\n| | S1 | S2 | S3 | W1 | W2 |\n|---|---|---|---|---|---|\n| O1 | SO-1 | | | WO-1 | |\n| O2 | | SO-2 | | | WO-2 |\n| T1 | ST-1 | | | | WT-1 |\n| T2 | | ST-2 | | WT-2 | |\n\n### 전략 우선순위\n| 순위 | 전략 | 유형 | 점수 | 실행 시기 |\n```\n"
+    }
+  }
 }

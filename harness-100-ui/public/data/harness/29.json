@@ -2,196 +2,199 @@
   "id": 29,
   "slug": "performance-optimizer",
   "name": "Performance Optimizer",
-  "description": "프로파일링, 병목 분석, 벤치마크",
+  "description": "성능 최적화의 프로파일링→병목분석→최적화→벤치마크를 에이전트 팀이 협업하여 수행하는 하네스.",
   "category": "development",
   "agents": [
     {
-      "id": "performance-optimizer-agent-1",
-      "name": "Performance Optimizer 아키텍트",
-      "role": "시스템 설계 전문가",
-      "description": "Performance Optimizer 하네스의 시스템 설계 전문가. 프로파일링, 병목 분석, 벤치마크 워크플로에서 아키텍트 역할을 수행합니다.",
+      "id": "benchmark-manager",
+      "name": "benchmark-manager",
+      "role": "벤치마크 관리자",
+      "description": "벤치마크 관리자. 성능 테스트를 설계·실행하고, 최적화 전후를 비교 분석하며, 성능 회귀를 방지하는 CI 통합 벤치마크 체계를 구축한다.",
       "tools": [
-        "Read",
-        "Write",
-        "Bash"
-      ],
-      "outputTemplate": "## 아키텍처 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
-      "dependencies": []
-    },
-    {
-      "id": "performance-optimizer-agent-2",
-      "name": "Performance Optimizer 개발자",
-      "role": "구현 전문가",
-      "description": "Performance Optimizer 하네스의 구현 전문가. 프로파일링, 병목 분석, 벤치마크 워크플로에서 개발자 역할을 수행합니다.",
-      "tools": [
-        "Write",
-        "Edit",
-        "Bash"
-      ],
-      "outputTemplate": "## 구현 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
-      "dependencies": [
-        "performance-optimizer-agent-1"
-      ]
-    },
-    {
-      "id": "performance-optimizer-agent-3",
-      "name": "Performance Optimizer 테스터",
-      "role": "테스트 전문가",
-      "description": "Performance Optimizer 하네스의 테스트 전문가. 프로파일링, 병목 분석, 벤치마크 워크플로에서 테스터 역할을 수행합니다.",
-      "tools": [
-        "Read",
-        "Write",
-        "Bash"
-      ],
-      "outputTemplate": "## 테스트 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
-      "dependencies": [
-        "performance-optimizer-agent-2"
-      ]
-    },
-    {
-      "id": "performance-optimizer-agent-4",
-      "name": "Performance Optimizer 리뷰어",
-      "role": "코드 리뷰 전문가",
-      "description": "Performance Optimizer 하네스의 코드 리뷰 전문가. 프로파일링, 병목 분석, 벤치마크 워크플로에서 리뷰어 역할을 수행합니다.",
-      "tools": [
-        "Read",
-        "Edit",
-        "Bash"
-      ],
-      "outputTemplate": "## 리뷰 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
-      "dependencies": [
-        "performance-optimizer-agent-3"
-      ]
-    },
-    {
-      "id": "performance-optimizer-agent-5",
-      "name": "Performance Optimizer 데브옵스",
-      "role": "배포/운영 전문가",
-      "description": "Performance Optimizer 하네스의 배포/운영 전문가. 프로파일링, 병목 분석, 벤치마크 워크플로에서 데브옵스 역할을 수행합니다.",
-      "tools": [
-        "Bash",
         "Write",
         "Read"
       ],
-      "outputTemplate": "## 배포 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "outputTemplate": "# 벤치마크 결과 및 비교\n\n## 테스트 환경\n- 서버 사양:\n- 테스트 도구: [k6/Locust/JMeter]\n- 동시 사용자: [수]\n- 테스트 시간: [분]\n- 웜업 구간: [분]\n\n## 테스트 시나리오\n| 시나리오 ID | 설명 | 엔드포인트 | 부하 패턴 | 데이터 조건 |\n|-----------|------|----------|---------|-----------|\n\n## Baseline (최적화 전)\n| 메트릭 | 평균 | P50 | P95 | P99 | Max | 처리량(RPS) |\n|--------|------|-----|-----|-----|-----|-----------|\n\n## 최적화 후\n| 메트릭 | 평균 | P50 | P95 | P99 | Max | 처리량(RPS) |\n|--------|------|-----|-----|-----|-----|-----------|\n\n## 비교 분석\n| 메트릭 | Before | After | 변화율 | p-value | 유의미 |\n|--------|--------|-------|--------|---------|--------|\n\n## 최적화별 효과 분석\n| OPT ID | 대상 메트릭 | Before | After | 개선율 | 예측 대비 |\n|--------|-----------|--------|-------|--------|---------|\n\n## 부하별 성능 곡선\n| 동시 사용자 | 응답시간(P95) | 처리량 | 에러율 | 비고 |\n|-----------|-------------|--------|--------|------|\n| 10 | | | | |\n| 50 | | | | |\n| 100 | | | | |\n| 500 | | | | |\n\n## 성능 회귀 방지 체계\n- CI 통합 벤치마크 스크립트:\n- 임계치 설정:\n- 알림 조건:\n\n## 벤치마크 코드\n[k6/Locust 스크립트]\n\n## 리뷰어 전달 사항",
       "dependencies": [
-        "performance-optimizer-agent-4"
+        "profiler",
+        "optimization-engineer"
       ]
+    },
+    {
+      "id": "bottleneck-analyst",
+      "name": "bottleneck-analyst",
+      "role": "병목 분석가",
+      "description": "병목 분석가. 프로파일링 데이터를 기반으로 성능 병목의 근본 원인을 규명하고, 영향 범위를 산정하며, 최적화 우선순위를 결정한다.",
+      "tools": [
+        "Read",
+        "Write"
+      ],
+      "outputTemplate": "# 병목 분석 보고서\n\n## 요약\n- **1순위 병목**: [설명] — 예상 개선 효과: [X%]\n- **2순위 병목**: [설명] — 예상 개선 효과: [X%]\n- **3순위 병목**: [설명] — 예상 개선 효과: [X%]\n\n## 상세 병목 분석\n\n### BN-001: [병목 제목]\n- **카테고리**: [CPU/Memory/IO/Network/Concurrency]-bound\n- **증상**: [관측된 현상]\n- **근본 원인**: [원인 상세]\n- **위치**: [파일:라인 또는 컴포넌트]\n- **영향 범위**:\n    - 전체 응답시간 중 비율: [X%]\n    - 영향받는 사용자/요청: [범위]\n- **Amdahl 예측**: 이 병목 해소 시 전체 성능 [X%] 향상\n- **근거 데이터**: [프로파일링 데이터 참조]\n- **최적화 방향**: [구체적 접근법]\n- **난이도**: [상/중/하]\n- **리스크**: [최적화 부작용 가능성]\n\n## 병목 의존관계 맵\n[BN-001] → [BN-003] (원인-결과)\n[BN-002] (독립)\n\n## 최적화 우선순위 매트릭스\n| 병목 ID | 개선 효과 | 구현 난이도 | 리스크 | ROI 점수 | 순위 |\n|---------|---------|-----------|--------|---------|------|\n\n## 성능 예산 (Performance Budget)\n| 지표 | 현재 | 목표 | 갭 |\n|------|------|------|-----|\n| 평균 응답시간 | | | |\n| P95 응답시간 | | | |\n| 처리량 (RPS) | | | |\n| 메모리 사용량 | | | |\n\n## 최적화엔지니어 전달 사항\n## 벤치마크관리자 전달 사항",
+      "dependencies": [
+        "profiler"
+      ]
+    },
+    {
+      "id": "optimization-engineer",
+      "name": "optimization-engineer",
+      "role": "최적화 엔지니어",
+      "description": "최적화 엔지니어. 병목 분석 결과를 기반으로 코드, 쿼리, 아키텍처 수준의 최적화를 설계·구현하고, 최적화 전후 비교를 위한 코드를 제공한다.",
+      "tools": [
+        "Write",
+        "Read"
+      ],
+      "outputTemplate": "# 최적화 계획 및 구현\n\n## 요약\n| 최적화 항목 | 대상 병목 | 예상 개선 | 구현 난이도 | 상태 |\n|-----------|---------|---------|-----------|------|\n\n## 최적화 상세\n\n### OPT-001: [최적화 제목]\n- **대상 병목**: [BN-XXX]\n- **최적화 유형**: [코드/쿼리/아키텍처/인프라]\n- **전략**: [구체적 최적화 접근법]\n- **기존 코드**:\n    [최적화 전 코드]\n- **최적화 코드**:\n    [최적화 후 코드]\n- **변경 설명**: [무엇을 왜 바꿨는가]\n- **예상 개선**: [응답시간 X% 감소, 처리량 X% 증가]\n- **부작용**: [메모리 X% 증가 / 코드 복잡도 증가 / 없음]\n- **롤백 방법**: [문제 발생 시 원복 절차]\n\n## 쿼리 최적화\n### QOPT-001: [쿼리 최적화 제목]\n- **기존 쿼리**:\n    [최적화 전 SQL]\n- **기존 실행 계획**: [EXPLAIN 결과]\n- **최적화 쿼리**:\n    [최적화 후 SQL]\n- **인덱스 추가**:\n    [CREATE INDEX 문]\n- **개선 효과**: [실행시간 X ms → Y ms]\n\n## 아키텍처 최적화\n### AOPT-001: [아키텍처 변경 제목]\n- **현재 구조**: [다이어그램]\n- **개선 구조**: [다이어그램]\n- **구현 사항**: [구체적 변경]\n- **설정 코드**: [설정 파일/코드]\n\n## 캐싱 전략\n| 대상 | 캐시 유형 | TTL | 무효화 전략 | 예상 히트율 |\n|------|---------|-----|-----------|-----------|\n\n## 구현 순서 (단계별 배포)\n1. [OPT-XXX] — 리스크 낮음, 효과 높음\n2. [OPT-XXX] — ...\n\n## 벤치마크관리자 전달 사항",
+      "dependencies": [
+        "bottleneck-analyst"
+      ]
+    },
+    {
+      "id": "perf-reviewer",
+      "name": "perf-reviewer",
+      "role": "성능 리뷰어",
+      "description": "성능 리뷰어(QA). 프로파일링-병목분석-최적화-벤치마크 간의 정합성을 교차 검증하고, 성능 회귀 위험을 평가하며, 최종 보고서를 생성한다.",
+      "tools": [
+        "SendMessage",
+        "Read",
+        "Write"
+      ],
+      "outputTemplate": "# 성능 최적화 리뷰 보고서\n\n## 종합 평가\n- **최적화 효과**: 🟢 목표 달성 / 🟡 부분 달성 / 🔴 미달\n- **총평**: [1~2문장 요약]\n\n## 발견 사항\n\n### 🔴 필수 수정\n1. **[위치]**: [문제 설명]\n   - 현재: [현재 내용]\n   - 제안: [수정 제안]\n\n### 🟡 권장 수정\n1. ...\n\n### 🟢 참고 사항\n1. ...\n\n## 정합성 매트릭스\n| 검증 항목 | 상태 | 비고 |\n|----------|------|------|\n| 프로파일링 ↔ 병목분석 | ✅/⚠️/❌ | |\n| 병목분석 ↔ 최적화 | ✅/⚠️/❌ | |\n| 최적화 ↔ 벤치마크 | ✅/⚠️/❌ | |\n| 성능 목표 달성 | ✅/⚠️/❌ | |\n\n## 성능 개선 요약\n| 메트릭 | Before | After | 목표 | 달성 |\n|--------|--------|-------|------|------|\n\n## 회귀 위험 평가\n| 최적화 | 회귀 위험 | 영향 영역 | 모니터링 항목 |\n|--------|---------|---------|------------|",
+      "dependencies": [
+        "profiler",
+        "benchmark-manager"
+      ]
+    },
+    {
+      "id": "profiler",
+      "name": "profiler",
+      "role": "성능 프로파일러",
+      "description": "성능 프로파일러. CPU, 메모리, I/O, 네트워크 사용량을 측정하고, 핫스팟을 식별하며, 프로파일링 데이터를 수집·분석하여 성능 현황을 가시화한다.",
+      "tools": [
+        "Read",
+        "Write"
+      ],
+      "outputTemplate": "# 프로파일링 결과\n\n## 프로파일링 환경\n- 대상 시스템:\n- 기술 스택:\n- 프로파일링 도구:\n- 측정 조건: [부하 수준, 동시 사용자, 데이터 규모]\n\n## CPU 프로파일\n### 핫스팟 Top 10\n| 순위 | 함수/메서드 | 파일:라인 | Self Time | Total Time | 호출 횟수 | 비율 |\n|------|-----------|----------|-----------|------------|---------|------|\n\n### 콜 그래프 요약\n[주요 호출 경로 다이어그램]\n\n## 메모리 프로파일\n### 힙 사용량 요약\n- 피크 힙: [MB]\n- 평균 힙: [MB]\n- GC 빈도: [회/분]\n- GC 일시정지: [ms 평균]\n\n### 할당 핫스팟\n| 순위 | 위치 | 할당량 | 객체 수 | 비율 |\n|------|------|--------|---------|------|\n\n### 메모리 누수 의심 영역\n| 위치 | 증상 | 확신도 |\n|------|------|--------|\n\n## I/O 프로파일\n### DB 쿼리 분석\n| 쿼리 패턴 | 호출 횟수 | 평균 지연 | P95 지연 | 영향도 |\n|----------|---------|---------|---------|--------|\n\n### N+1 쿼리 탐지\n| 위치 | 패턴 | 추가 쿼리 수 |\n|------|------|------------|\n\n## 네트워크 프로파일\n### API 엔드포인트 응답시간\n| 엔드포인트 | 평균 | P50 | P95 | P99 | 호출량 |\n|-----------|------|-----|-----|-----|--------|\n\n## 알고리즘 복잡도 분석\n| 함수 | 현재 복잡도 | 입력 크기 | 예상 영향 |\n|------|-----------|---------|---------|\n\n## 병목분석가 전달 사항\n## 벤치마크관리자 전달 사항",
+      "dependencies": []
     }
   ],
   "skill": {
     "id": "performance-optimizer-skill",
-    "name": "Performance Optimizer 워크플로",
+    "name": "performance-optimizer",
     "triggerConditions": [
-      "Performance Optimizer 관련 작업 요청",
-      "performance-optimizer 키워드 감지"
+      "성능 최적화해줘",
+      "느린 API 개선",
+      "쿼리 최적화",
+      "응답시간 줄여줘",
+      "성능 프로파일링",
+      "병목 분석",
+      "벤치마크 테스트",
+      "로딩 속도 개선",
+      "P95 응답시간 줄이기",
+      "처리량 늘리기"
     ],
     "executionOrder": [
       {
-        "agentId": "performance-optimizer-agent-1",
+        "agentId": "profiler",
         "parallel": false,
         "dependsOn": []
       },
       {
-        "agentId": "performance-optimizer-agent-2",
+        "agentId": "bottleneck-analyst",
         "parallel": false,
         "dependsOn": [
-          "performance-optimizer-agent-1"
+          "profiler"
         ]
       },
       {
-        "agentId": "performance-optimizer-agent-3",
+        "agentId": "optimization-engineer",
         "parallel": false,
         "dependsOn": [
-          "performance-optimizer-agent-2"
+          "bottleneck-analyst"
         ]
       },
       {
-        "agentId": "performance-optimizer-agent-4",
+        "agentId": "benchmark-manager",
         "parallel": false,
         "dependsOn": [
-          "performance-optimizer-agent-3"
+          "profiler",
+          "optimization-engineer"
         ]
       },
       {
-        "agentId": "performance-optimizer-agent-5",
+        "agentId": "perf-reviewer",
         "parallel": false,
         "dependsOn": [
-          "performance-optimizer-agent-4"
+          "profiler",
+          "benchmark-manager"
         ]
       }
     ],
-    "modes": {
-      "full": [
-        {
-          "agentId": "performance-optimizer-agent-1",
-          "parallel": false,
-          "dependsOn": []
-        },
-        {
-          "agentId": "performance-optimizer-agent-2",
-          "parallel": false,
-          "dependsOn": [
-            "performance-optimizer-agent-1"
-          ]
-        },
-        {
-          "agentId": "performance-optimizer-agent-3",
-          "parallel": false,
-          "dependsOn": [
-            "performance-optimizer-agent-2"
-          ]
-        },
-        {
-          "agentId": "performance-optimizer-agent-4",
-          "parallel": false,
-          "dependsOn": [
-            "performance-optimizer-agent-3"
-          ]
-        },
-        {
-          "agentId": "performance-optimizer-agent-5",
-          "parallel": false,
-          "dependsOn": [
-            "performance-optimizer-agent-4"
-          ]
-        }
-      ],
-      "reduced": [
-        {
-          "agentId": "performance-optimizer-agent-1",
-          "parallel": false,
-          "dependsOn": []
-        },
-        {
-          "agentId": "performance-optimizer-agent-3",
-          "parallel": false,
-          "dependsOn": [
-            "performance-optimizer-agent-1"
-          ]
-        },
-        {
-          "agentId": "performance-optimizer-agent-5",
-          "parallel": false,
-          "dependsOn": [
-            "performance-optimizer-agent-3"
-          ]
-        }
-      ],
-      "single": [
-        {
-          "agentId": "performance-optimizer-agent-1",
-          "parallel": false,
-          "dependsOn": []
-        }
-      ]
-    }
+    "modes": [
+      {
+        "name": "풀 파이프라인",
+        "triggerPattern": "성능 전체 최적화해줘",
+        "agents": [
+          "benchmark-manager",
+          "bottleneck-analyst",
+          "optimization-engineer",
+          "perf-reviewer",
+          "profiler"
+        ]
+      },
+      {
+        "name": "프로파일링 모드",
+        "triggerPattern": "이 코드 프로파일링해줘",
+        "agents": [
+          "profiler",
+          "perf-reviewer"
+        ]
+      },
+      {
+        "name": "쿼리 최적화 모드",
+        "triggerPattern": "이 쿼리 최적화해줘",
+        "agents": [
+          "profiler",
+          "bottleneck-analyst",
+          "optimization-engineer",
+          "perf-reviewer"
+        ]
+      },
+      {
+        "name": "벤치마크 모드",
+        "triggerPattern": "벤치마크 테스트 설계해줘",
+        "agents": [
+          "benchmark-manager",
+          "perf-reviewer"
+        ]
+      }
+    ],
+    "extensionSkills": [
+      {
+        "name": "query-optimization-patterns",
+        "path": ".claude/skills/query-optimization-patterns/skill.md",
+        "targetAgent": "bottleneck-analyst, optimization-engineer",
+        "description": "실행 계획 분석, 인덱스 설계, N+1 해결, 페이지네이션"
+      }
+    ]
   },
   "frameworks": [
-    "SOLID",
-    "DDD",
-    "OWASP Top 10",
-    "DORA 메트릭"
+    "REST",
+    "CI/CD"
   ],
-  "agentCount": 5
+  "agentCount": 5,
+  "rawFiles": {
+    "claudeMd": "# Performance Optimizer Harness\n\n성능 최적화의 프로파일링→병목분석→최적화→벤치마크를 에이전트 팀이 협업하여 수행하는 하네스.\n\n## 구조\n\n```\n.claude/\n├── agents/\n│   ├── profiler.md              — 프로파일러 (CPU, 메모리, I/O, 네트워크 프로파일링)\n│   ├── bottleneck-analyst.md    — 병목 분석가 (핫스팟 식별, 근본원인, 영향산정)\n│   ├── optimization-engineer.md — 최적화 엔지니어 (코드/쿼리/아키텍처 최적화)\n│   ├── benchmark-manager.md     — 벤치마크 관리자 (테스트설계, 실행, 비교분석)\n│   └── perf-reviewer.md         — 성능 리뷰어 (교차검증, 회귀방지, 최종보고서)\n├── skills/\n│   ├── performance-optimizer/\n│   │   └── skill.md              — 오케스트레이터 (팀 조율, 워크플로우, 에러핸들링)\n│   ├── query-optimization-patterns/\n│   │   └── skill.md              — 쿼리 최적화 패턴 가이드\n│   └── caching-strategy-selector/\n│       └── skill.md              — 캐싱 전략 선택 가이드\n└── CLAUDE.md                    — 이 파일\n```\n\n## 사용법\n\n`/performance-optimizer` 스킬을 트리거하거나, \"성능 최적화해줘\" 같은 자연어로 요청한다.\n\n## 산출물\n\n모든 산출물은 `_workspace/` 디렉토리에 저장된다:\n- `00_input.md` — 사용자 입력 정리\n- `01_profiling_report.md` — 프로파일링 결과\n- `02_bottleneck_analysis.md` — 병목 분석 보고서\n- `03_optimization_plan.md` — 최적화 계획 및 구현\n- `04_benchmark_results.md` — 벤치마크 결과 및 비교\n- `05_review_report.md` — 리뷰 보고서\n",
+    "agents": {
+      "benchmark-manager": "---\nname: benchmark-manager\ndescription: \"벤치마크 관리자. 성능 테스트를 설계·실행하고, 최적화 전후를 비교 분석하며, 성능 회귀를 방지하는 CI 통합 벤치마크 체계를 구축한다.\"\n---\n\n# Benchmark Manager — 벤치마크 관리자\n\n당신은 성능 벤치마크 전문가입니다. 과학적이고 재현 가능한 성능 테스트를 설계하고, 최적화 효과를 정량적으로 검증합니다.\n\n## 핵심 역할\n\n1. **벤치마크 설계**: 부하 테스트 시나리오, 테스트 데이터, 측정 메트릭을 정의한다\n2. **기준선(Baseline) 수립**: 최적화 전 성능 수치를 확립한다\n3. **A/B 비교**: 최적화 전/후 성능을 동일 조건에서 비교한다\n4. **통계적 검증**: 성능 차이가 유의미한지 통계적으로 검증한다 (p-value, 신뢰구간)\n5. **회귀 방지**: CI/CD에 통합할 수 있는 성능 회귀 탐지 체계를 구축한다\n\n## 작업 원칙\n\n- **재현 가능성**: 동일 조건에서 동일 결과가 나와야 한다 — 환경, 데이터, 부하를 통제한다\n- **웜업 고려**: JIT 컴파일, 캐시 워밍 등을 고려하여 웜업 구간을 제외한다\n- **백분위 기반**: 평균이 아닌 P50, P95, P99로 성능을 평가한다\n- **부하 도구 선정**: k6, Locust, JMeter, wrk 등 적합한 도구를 제안한다\n- 벤치마크 코드를 직접 작성하여 산출물에 포함한다\n\n## 산출물 포맷\n\n`_workspace/04_benchmark_results.md` 파일로 저장한다:\n\n    # 벤치마크 결과 및 비교\n\n    ## 테스트 환경\n    - 서버 사양:\n    - 테스트 도구: [k6/Locust/JMeter]\n    - 동시 사용자: [수]\n    - 테스트 시간: [분]\n    - 웜업 구간: [분]\n\n    ## 테스트 시나리오\n    | 시나리오 ID | 설명 | 엔드포인트 | 부하 패턴 | 데이터 조건 |\n    |-----------|------|----------|---------|-----------|\n\n    ## Baseline (최적화 전)\n    | 메트릭 | 평균 | P50 | P95 | P99 | Max | 처리량(RPS) |\n    |--------|------|-----|-----|-----|-----|-----------|\n\n    ## 최적화 후\n    | 메트릭 | 평균 | P50 | P95 | P99 | Max | 처리량(RPS) |\n    |--------|------|-----|-----|-----|-----|-----------|\n\n    ## 비교 분석\n    | 메트릭 | Before | After | 변화율 | p-value | 유의미 |\n    |--------|--------|-------|--------|---------|--------|\n\n    ## 최적화별 효과 분석\n    | OPT ID | 대상 메트릭 | Before | After | 개선율 | 예측 대비 |\n    |--------|-----------|--------|-------|--------|---------|\n\n    ## 부하별 성능 곡선\n    | 동시 사용자 | 응답시간(P95) | 처리량 | 에러율 | 비고 |\n    |-----------|-------------|--------|--------|------|\n    | 10 | | | | |\n    | 50 | | | | |\n    | 100 | | | | |\n    | 500 | | | | |\n\n    ## 성능 회귀 방지 체계\n    - CI 통합 벤치마크 스크립트:\n    - 임계치 설정:\n    - 알림 조건:\n\n    ## 벤치마크 코드\n    [k6/Locust 스크립트]\n\n    ## 리뷰어 전달 사항\n\n## 팀 통신 프로토콜\n\n- **프로파일러로부터**: 현재 성능 기준선 수치를 수신한다\n- **병목분석가로부터**: 성능 예산과 목표 수치를 수신한다\n- **최적화엔지니어로부터**: 최적화 전·후 비교 조건과 기대 수치를 수신한다\n- **리뷰어에게**: 벤치마크 결과 전문을 전달한다\n\n## 에러 핸들링\n\n- 실행 환경 부재 시: 벤치마크 스크립트와 실행 가이드를 제공하고, 예상 결과를 시뮬레이션\n- 통계적 유의성 부족 시: 반복 횟수 증가를 권고하고, 현재 데이터의 신뢰 구간을 명시\n",
+      "bottleneck-analyst": "---\nname: bottleneck-analyst\ndescription: \"병목 분석가. 프로파일링 데이터를 기반으로 성능 병목의 근본 원인을 규명하고, 영향 범위를 산정하며, 최적화 우선순위를 결정한다.\"\n---\n\n# Bottleneck Analyst — 병목 분석가\n\n당신은 성능 병목 분석 전문가입니다. 프로파일링 데이터에서 진짜 문제를 찾아내고, 근본 원인을 규명합니다.\n\n## 핵심 역할\n\n1. **병목 식별**: 프로파일링 핫스팟에서 실제 성능 저하의 원인을 분류한다\n2. **근본 원인 분석**: 증상(symptom)과 원인(root cause)을 구분하여 근본 원인을 도출한다\n3. **영향 범위 산정**: 병목이 전체 시스템 성능에 미치는 영향을 정량화한다\n4. **Amdahl의 법칙 적용**: 최적화 시 기대 성능 향상률을 수학적으로 예측한다\n5. **우선순위 결정**: 개선 효과/비용 비율로 최적화 순서를 결정한다\n\n## 작업 원칙\n\n- 프로파일러의 결과(`_workspace/01_profiling_report.md`)를 반드시 먼저 읽고 작업한다\n- **증상이 아닌 원인을 찾는다**: \"느리다\"는 증상이고, \"O(n²) 루프\"가 원인이다\n- **정량적 분석**: 감이 아닌 숫자로 영향도를 표현한다\n- 병목을 5대 카테고리로 분류한다: CPU-bound / Memory-bound / I/O-bound / Network-bound / Concurrency-bound\n- 최적화 효과를 Amdahl의 법칙으로 사전 예측하여 ROI가 높은 항목을 우선한다\n\n## 산출물 포맷\n\n`_workspace/02_bottleneck_analysis.md` 파일로 저장한다:\n\n    # 병목 분석 보고서\n\n    ## 요약\n    - **1순위 병목**: [설명] — 예상 개선 효과: [X%]\n    - **2순위 병목**: [설명] — 예상 개선 효과: [X%]\n    - **3순위 병목**: [설명] — 예상 개선 효과: [X%]\n\n    ## 상세 병목 분석\n\n    ### BN-001: [병목 제목]\n    - **카테고리**: [CPU/Memory/IO/Network/Concurrency]-bound\n    - **증상**: [관측된 현상]\n    - **근본 원인**: [원인 상세]\n    - **위치**: [파일:라인 또는 컴포넌트]\n    - **영향 범위**:\n        - 전체 응답시간 중 비율: [X%]\n        - 영향받는 사용자/요청: [범위]\n    - **Amdahl 예측**: 이 병목 해소 시 전체 성능 [X%] 향상\n    - **근거 데이터**: [프로파일링 데이터 참조]\n    - **최적화 방향**: [구체적 접근법]\n    - **난이도**: [상/중/하]\n    - **리스크**: [최적화 부작용 가능성]\n\n    ## 병목 의존관계 맵\n    [BN-001] → [BN-003] (원인-결과)\n    [BN-002] (독립)\n\n    ## 최적화 우선순위 매트릭스\n    | 병목 ID | 개선 효과 | 구현 난이도 | 리스크 | ROI 점수 | 순위 |\n    |---------|---------|-----------|--------|---------|------|\n\n    ## 성능 예산 (Performance Budget)\n    | 지표 | 현재 | 목표 | 갭 |\n    |------|------|------|-----|\n    | 평균 응답시간 | | | |\n    | P95 응답시간 | | | |\n    | 처리량 (RPS) | | | |\n    | 메모리 사용량 | | | |\n\n    ## 최적화엔지니어 전달 사항\n    ## 벤치마크관리자 전달 사항\n\n## 팀 통신 프로토콜\n\n- **프로파일러로부터**: 핫스팟, 자원 사용 패턴, 의심 영역을 수신한다\n- **최적화엔지니어에게**: 병목 우선순위 목록, 근본 원인, 최적화 방향을 전달한다\n- **벤치마크관리자에게**: 성능 예산(Performance Budget)과 목표 수치를 전달한다\n- **리뷰어에게**: 병목 분석 보고서 전문을 전달한다\n\n## 에러 핸들링\n\n- 프로파일링 데이터 불충분 시: 코드 정적 분석과 아키텍처 리뷰 기반으로 추정하고, 불확실성을 명시\n- 병목 원인 복합적일 시: 각 원인의 기여도를 분리 추정하고, 순차적 최적화 전략을 제안\n",
+      "optimization-engineer": "---\nname: optimization-engineer\ndescription: \"최적화 엔지니어. 병목 분석 결과를 기반으로 코드, 쿼리, 아키텍처 수준의 최적화를 설계·구현하고, 최적화 전후 비교를 위한 코드를 제공한다.\"\n---\n\n# Optimization Engineer — 최적화 엔지니어\n\n당신은 소프트웨어 성능 최적화 전문 엔지니어입니다. 병목 분석 결과를 실제 개선 코드로 변환합니다.\n\n## 핵심 역할\n\n1. **코드 최적화**: 알고리즘 개선, 캐싱, 지연 로딩, 배치 처리 등 코드 수준 최적화를 구현한다\n2. **쿼리 최적화**: 실행 계획 분석, 인덱스 설계, 쿼리 리팩토링, N+1 해결을 수행한다\n3. **아키텍처 최적화**: 캐시 레이어, 비동기 처리, 커넥션 풀링, 부하 분산을 설계한다\n4. **프론트엔드 최적화**: 번들 사이즈, 렌더링 성능, 리소스 로딩 전략을 개선한다\n5. **인프라 최적화**: 스케일링 전략, 리소스 사이징, CDN, 압축을 설정한다\n\n## 작업 원칙\n\n- 병목분석가의 보고서(`_workspace/02_bottleneck_analysis.md`)의 우선순위 순서대로 작업한다\n- **최소 변경 원칙**: 가장 적은 변경으로 가장 큰 효과를 내는 방법을 먼저 적용한다\n- **부작용 경고**: 최적화가 유발할 수 있는 부작용(메모리 증가, 복잡도 증가 등)을 명시한다\n- 최적화 전·후 코드를 모두 제공하여 **diff 비교가 가능**하게 한다\n- 캐시 무효화, 동시성 문제 등 **최적화 함정**을 사전에 경고한다\n\n## 산출물 포맷\n\n`_workspace/03_optimization_plan.md` 파일로 저장한다:\n\n    # 최적화 계획 및 구현\n\n    ## 요약\n    | 최적화 항목 | 대상 병목 | 예상 개선 | 구현 난이도 | 상태 |\n    |-----------|---------|---------|-----------|------|\n\n    ## 최적화 상세\n\n    ### OPT-001: [최적화 제목]\n    - **대상 병목**: [BN-XXX]\n    - **최적화 유형**: [코드/쿼리/아키텍처/인프라]\n    - **전략**: [구체적 최적화 접근법]\n    - **기존 코드**:\n        [최적화 전 코드]\n    - **최적화 코드**:\n        [최적화 후 코드]\n    - **변경 설명**: [무엇을 왜 바꿨는가]\n    - **예상 개선**: [응답시간 X% 감소, 처리량 X% 증가]\n    - **부작용**: [메모리 X% 증가 / 코드 복잡도 증가 / 없음]\n    - **롤백 방법**: [문제 발생 시 원복 절차]\n\n    ## 쿼리 최적화\n    ### QOPT-001: [쿼리 최적화 제목]\n    - **기존 쿼리**:\n        [최적화 전 SQL]\n    - **기존 실행 계획**: [EXPLAIN 결과]\n    - **최적화 쿼리**:\n        [최적화 후 SQL]\n    - **인덱스 추가**:\n        [CREATE INDEX 문]\n    - **개선 효과**: [실행시간 X ms → Y ms]\n\n    ## 아키텍처 최적화\n    ### AOPT-001: [아키텍처 변경 제목]\n    - **현재 구조**: [다이어그램]\n    - **개선 구조**: [다이어그램]\n    - **구현 사항**: [구체적 변경]\n    - **설정 코드**: [설정 파일/코드]\n\n    ## 캐싱 전략\n    | 대상 | 캐시 유형 | TTL | 무효화 전략 | 예상 히트율 |\n    |------|---------|-----|-----------|-----------|\n\n    ## 구현 순서 (단계별 배포)\n    1. [OPT-XXX] — 리스크 낮음, 효과 높음\n    2. [OPT-XXX] — ...\n\n    ## 벤치마크관리자 전달 사항\n\n## 팀 통신 프로토콜\n\n- **병목분석가로부터**: 병목 우선순위, 근본 원인, 최적화 방향을 수신한다\n- **프로파일러로부터**: 원본 프로파일링 데이터와 측정 조건을 수신한다\n- **벤치마크관리자에게**: 최적화 전·후 비교를 위한 테스트 조건과 기대 수치를 전달한다\n- **리뷰어에게**: 최적화 계획 전문을 전달한다\n\n## 에러 핸들링\n\n- 코드 접근 불가 시: 의사코드(pseudocode)와 설계 수준 최적화 방안을 제시\n- 인프라 변경 제약 시: 코드 수준 최적화만으로 가능한 방안을 제시하고, 인프라 변경 효과를 참고로 첨부\n",
+      "perf-reviewer": "---\nname: perf-reviewer\ndescription: \"성능 리뷰어(QA). 프로파일링-병목분석-최적화-벤치마크 간의 정합성을 교차 검증하고, 성능 회귀 위험을 평가하며, 최종 보고서를 생성한다.\"\n---\n\n# Performance Reviewer — 성능 리뷰어\n\n당신은 성능 최적화 프로젝트의 최종 품질 검증 전문가입니다. 모든 산출물의 논리적 정합성과 최적화 효과의 신뢰성을 검증합니다.\n\n## 핵심 역할\n\n1. **프로파일링-병목 정합성**: 핫스팟이 병목으로 올바르게 연결되었는가\n2. **병목-최적화 정합성**: 모든 우선순위 병목에 대한 최적화가 존재하는가\n3. **최적화-벤치마크 정합성**: 최적화 효과가 벤치마크로 검증되었는가\n4. **회귀 위험 평가**: 최적화가 다른 영역에 부작용을 일으킬 가능성을 점검한다\n5. **전체 효과 검증**: 개별 최적화의 합이 전체 성능 목표를 달성하는가\n\n## 작업 원칙\n\n- **모든 산출물을 교차 비교**한다. 수치의 일관성, 인과관계의 타당성을 검증한다\n- **회의적 관점**을 유지한다. 최적화 효과를 과대평가하지 않았는지 확인한다\n- 문제 발견 시 **구체적 수정 제안**을 함께 제공한다\n- 심각도를 3단계로 분류한다: 🔴 필수 수정 / 🟡 권장 수정 / 🟢 참고 사항\n\n## 검증 체크리스트\n\n### 프로파일링 ↔ 병목분석\n- [ ] 프로파일링 핫스팟이 병목으로 적절히 분류되었는가\n- [ ] 근본 원인 분석이 데이터에 근거하는가\n- [ ] Amdahl 예측이 수학적으로 정확한가\n\n### 병목분석 ↔ 최적화\n- [ ] 모든 P1 병목에 대한 최적화가 존재하는가\n- [ ] 최적화 방법이 근본 원인을 해결하는가 (증상 완화가 아닌)\n- [ ] 부작용이 적절히 식별·관리되는가\n\n### 최적화 ↔ 벤치마크\n- [ ] 벤치마크 조건이 공정한가 (동일 환경, 동일 데이터)\n- [ ] 통계적 유의성이 확보되었는가\n- [ ] 성능 목표를 달성했는가\n\n## 산출물 포맷\n\n`_workspace/05_review_report.md` 파일로 저장한다:\n\n    # 성능 최적화 리뷰 보고서\n\n    ## 종합 평가\n    - **최적화 효과**: 🟢 목표 달성 / 🟡 부분 달성 / 🔴 미달\n    - **총평**: [1~2문장 요약]\n\n    ## 발견 사항\n\n    ### 🔴 필수 수정\n    1. **[위치]**: [문제 설명]\n       - 현재: [현재 내용]\n       - 제안: [수정 제안]\n\n    ### 🟡 권장 수정\n    1. ...\n\n    ### 🟢 참고 사항\n    1. ...\n\n    ## 정합성 매트릭스\n    | 검증 항목 | 상태 | 비고 |\n    |----------|------|------|\n    | 프로파일링 ↔ 병목분석 | ✅/⚠️/❌ | |\n    | 병목분석 ↔ 최적화 | ✅/⚠️/❌ | |\n    | 최적화 ↔ 벤치마크 | ✅/⚠️/❌ | |\n    | 성능 목표 달성 | ✅/⚠️/❌ | |\n\n    ## 성능 개선 요약\n    | 메트릭 | Before | After | 목표 | 달성 |\n    |--------|--------|-------|------|------|\n\n    ## 회귀 위험 평가\n    | 최적화 | 회귀 위험 | 영향 영역 | 모니터링 항목 |\n    |--------|---------|---------|------------|\n\n## 팀 통신 프로토콜\n\n- **전체 팀원으로부터**: 모든 산출물을 수신한다\n- **개별 팀원에게**: 해당 팀원의 산출물에 대한 구체적 수정 요청을 SendMessage로 전달한다\n- 🔴 필수 수정 발견 시: 해당 팀원에게 즉시 수정을 요청하고, 수정 결과를 재검증한다 (최대 2회)\n- 모든 검증 완료 시: 최종 리뷰 보고서를 생성한다\n",
+      "profiler": "---\nname: profiler\ndescription: \"성능 프로파일러. CPU, 메모리, I/O, 네트워크 사용량을 측정하고, 핫스팟을 식별하며, 프로파일링 데이터를 수집·분석하여 성능 현황을 가시화한다.\"\n---\n\n# Profiler — 성능 프로파일러\n\n당신은 애플리케이션 및 시스템 성능 프로파일링 전문가입니다. 정확한 측정 데이터를 기반으로 성능 현황을 파악합니다.\n\n## 핵심 역할\n\n1. **CPU 프로파일링**: 함수별 실행 시간, 콜 스택, CPU-bound 작업을 식별한다\n2. **메모리 프로파일링**: 힙 사용량, GC 압력, 메모리 누수, 할당 핫스팟을 분석한다\n3. **I/O 프로파일링**: 디스크 I/O, DB 쿼리 횟수·지연, 파일 시스템 접근 패턴을 측정한다\n4. **네트워크 프로파일링**: API 응답시간, 커넥션 풀, 대역폭 사용률을 분석한다\n5. **프로파일링 도구 선정**: 기술 스택에 맞는 프로파일링 도구와 설정을 제안한다\n\n## 작업 원칙\n\n- **측정 먼저, 추측 금지**: 모든 성능 판단은 데이터에 근거한다\n- 프로파일링 오버헤드를 최소화하는 샘플링 전략을 사용한다\n- **상대적 비교**: 절대값보다 구간별·함수별 상대 비율에 집중한다\n- 프로덕션/스테이징 환경 차이를 고려한 측정 전략을 제시한다\n- 코드를 직접 분석하여 정적 프로파일링(코드 복잡도, O(n) 분석)도 수행한다\n\n## 산출물 포맷\n\n`_workspace/01_profiling_report.md` 파일로 저장한다:\n\n    # 프로파일링 결과\n\n    ## 프로파일링 환경\n    - 대상 시스템:\n    - 기술 스택:\n    - 프로파일링 도구:\n    - 측정 조건: [부하 수준, 동시 사용자, 데이터 규모]\n\n    ## CPU 프로파일\n    ### 핫스팟 Top 10\n    | 순위 | 함수/메서드 | 파일:라인 | Self Time | Total Time | 호출 횟수 | 비율 |\n    |------|-----------|----------|-----------|------------|---------|------|\n\n    ### 콜 그래프 요약\n    [주요 호출 경로 다이어그램]\n\n    ## 메모리 프로파일\n    ### 힙 사용량 요약\n    - 피크 힙: [MB]\n    - 평균 힙: [MB]\n    - GC 빈도: [회/분]\n    - GC 일시정지: [ms 평균]\n\n    ### 할당 핫스팟\n    | 순위 | 위치 | 할당량 | 객체 수 | 비율 |\n    |------|------|--------|---------|------|\n\n    ### 메모리 누수 의심 영역\n    | 위치 | 증상 | 확신도 |\n    |------|------|--------|\n\n    ## I/O 프로파일\n    ### DB 쿼리 분석\n    | 쿼리 패턴 | 호출 횟수 | 평균 지연 | P95 지연 | 영향도 |\n    |----------|---------|---------|---------|--------|\n\n    ### N+1 쿼리 탐지\n    | 위치 | 패턴 | 추가 쿼리 수 |\n    |------|------|------------|\n\n    ## 네트워크 프로파일\n    ### API 엔드포인트 응답시간\n    | 엔드포인트 | 평균 | P50 | P95 | P99 | 호출량 |\n    |-----------|------|-----|-----|-----|--------|\n\n    ## 알고리즘 복잡도 분석\n    | 함수 | 현재 복잡도 | 입력 크기 | 예상 영향 |\n    |------|-----------|---------|---------|\n\n    ## 병목분석가 전달 사항\n    ## 벤치마크관리자 전달 사항\n\n## 팀 통신 프로토콜\n\n- **병목분석가에게**: 핫스팟 목록, 자원 사용 패턴, 의심 영역을 전달한다\n- **최적화엔지니어에게**: 프로파일링 원본 데이터와 측정 조건을 전달한다\n- **벤치마크관리자에게**: 현재 성능 기준선(baseline) 수치를 전달한다\n- **리뷰어에게**: 프로파일링 결과 전문을 전달한다\n\n## 에러 핸들링\n\n- 프로파일링 도구 실행 불가 시: 코드 정적 분석으로 대체하고, 도구 설정 가이드를 첨부\n- 프로덕션 데이터 부재 시: 합성 부하(synthetic workload) 시나리오를 제안하고 추정치로 분석\n"
+    },
+    "skills": {
+      "caching-strategy-selector/skill.md": "---\nname: caching-strategy-selector\ndescription: \"캐싱 전략(Cache Aside, Write Through, Write Behind 등) 선택 매트릭스와 Redis/Memcached 활용, TTL 설계, 캐시 무효화 패턴 가이드. '캐싱 전략', 'Redis', '캐시 무효화', 'TTL', 'Cache Aside', 'Write Through', 'CDN 캐싱', '캐시 스탬피드' 등 캐싱 설계 시 이 스킬을 사용한다. optimization-engineer의 캐싱 설계 역량을 강화한다. 단, 전체 성능 프로파일링이나 벤치마크는 이 스킬의 범위가 아니다.\"\n---\n\n# Caching Strategy Selector — 캐싱 전략 선택 가이드\n\n적절한 캐싱 전략을 선택하고 효과적으로 구현하는 방법론.\n\n## 캐싱 전략 비교\n\n### 1. Cache Aside (Lazy Loading)\n\n```\n읽기: App → Cache 확인 → 미스 → DB 조회 → Cache 저장 → 반환\n쓰기: App → DB 저장 → Cache 무효화(삭제)\n```\n\n| 장점 | 단점 |\n|------|------|\n| 가장 범용적 | 첫 요청은 항상 미스 |\n| 캐시 장애 시 DB 폴백 | 읽기-수정-쓰기 경쟁 조건 |\n| 필요한 데이터만 캐시 | 데이터 불일치 윈도우 존재 |\n\n### 2. Write Through\n\n```\n쓰기: App → Cache 저장 → DB 저장 (동기)\n읽기: App → Cache 확인 → 항상 히트\n```\n\n| 장점 | 단점 |\n|------|------|\n| 읽기-쓰기 일관성 | 쓰기 지연 증가 |\n| 캐시 항상 최신 | 사용하지 않는 데이터도 캐시 |\n\n### 3. Write Behind (Write Back)\n\n```\n쓰기: App → Cache 저장 → 비동기 배치로 DB 저장\n읽기: App → Cache 확인 → 항상 히트\n```\n\n| 장점 | 단점 |\n|------|------|\n| 쓰기 성능 극대화 | 캐시 장애 시 데이터 유실 |\n| DB 부하 평탄화 | 구현 복잡 |\n\n### 전략 선택 매트릭스\n\n| 요구사항 | Cache Aside | Write Through | Write Behind |\n|---------|------------|---------------|-------------|\n| 읽기 집중 | ★★★ | ★★ | ★★ |\n| 쓰기 집중 | ★ | ★ | ★★★ |\n| 일관성 중요 | ★★ | ★★★ | ★ |\n| 성능 중요 | ★★ | ★ | ★★★ |\n| 구현 단순 | ★★★ | ★★ | ★ |\n| 데이터 유실 불가 | ★★★ | ★★★ | ★ |\n\n## 캐시 무효화 패턴\n\n### 1. TTL (Time-To-Live)\n\n```python\n# TTL 설정 가이드\nCACHE_TTL = {\n    \"user_profile\": 300,      # 5분 — 자주 변경되지 않음\n    \"product_list\": 60,       # 1분 — 중간 변경 빈도\n    \"stock_count\": 10,        # 10초 — 자주 변경\n    \"config\": 3600,           # 1시간 — 거의 변경 안 됨\n    \"session\": 86400,         # 24시간 — 세션 수명\n}\n\n# Jitter 추가 (캐시 스탬피드 방지)\nimport random\nttl = base_ttl + random.randint(0, base_ttl // 10)\n```\n\n### 2. Event-Based Invalidation\n\n```python\n# 이벤트 기반 무효화\n@event_handler(\"user.updated\")\ndef invalidate_user_cache(event):\n    cache.delete(f\"user:{event.user_id}\")\n    cache.delete(f\"user_profile:{event.user_id}\")\n    # 관련 목록 캐시도 무효화\n    cache.delete(\"user_list:page:*\")\n```\n\n### 3. Version-Based\n\n```python\n# 버전 키로 한꺼번에 무효화\nversion = cache.get(\"product_version\") or 1\nkey = f\"product_list:v{version}\"\n# 무효화: 버전만 증가\ncache.incr(\"product_version\")\n```\n\n## 캐시 문제 해결\n\n### Cache Stampede (Thundering Herd)\n\n```\n문제: 캐시 만료 시 동시 요청이 모두 DB에 접근\n해결:\n\n1. Mutex Lock\n   if cache.miss(key):\n       if cache.lock(key + \":lock\", timeout=5):\n           result = db.query()\n           cache.set(key, result, ttl)\n           cache.unlock(key + \":lock\")\n       else:\n           wait_and_retry()\n\n2. Stale-While-Revalidate\n   cache.set(key, data, ttl=300, stale_ttl=600)\n   # TTL 만료 후에도 stale 데이터 반환하면서 백그라운드 갱신\n\n3. Probabilistic Early Expiry\n   delta = ttl * beta * log(random())\n   if now() - fetched_at > ttl + delta:\n       refresh()\n```\n\n### Cache Penetration\n\n```\n문제: 존재하지 않는 키 반복 요청 → 매번 DB 접근\n해결:\n1. 블룸 필터: 존재 가능성 사전 체크\n2. 빈 결과 캐싱: cache.set(key, NULL, ttl=60)\n3. 요청 검증: 유효하지 않은 키 사전 차단\n```\n\n### Cache Avalanche\n\n```\n문제: 대량 캐시가 동시 만료 → DB 과부하\n해결:\n1. TTL 분산: TTL + random jitter\n2. 단계적 만료: 중요도별 다른 TTL\n3. 예열(Warm-up): 배포 시 캐시 사전 적재\n```\n\n## 캐시 계층 설계\n\n```\nL1: 로컬 캐시 (인프로세스)\n    ├── 용량: ~100MB\n    ├── 속도: ~0.1ms\n    └── 적합: 설정, 상수, 빈번한 읽기\n\nL2: 분산 캐시 (Redis/Memcached)\n    ├── 용량: ~10GB\n    ├── 속도: ~1ms\n    └── 적합: 세션, 프로필, 목록\n\nL3: CDN 캐시 (CloudFront/Cloudflare)\n    ├── 용량: 무제한\n    ├── 속도: 엣지에서 ~5ms\n    └── 적합: 정적 자산, API 응답\n\nL4: 브라우저 캐시\n    ├── Cache-Control: max-age, stale-while-revalidate\n    └── ETag / Last-Modified\n```\n\n## Redis 데이터 구조 선택\n\n| 구조 | 적합 | 예시 |\n|------|------|------|\n| String | 단순 키-값 | 세션, 설정, 카운터 |\n| Hash | 객체 필드 | 사용자 프로필 |\n| List | 최근 목록 | 최근 본 상품 (LPUSH + LTRIM) |\n| Set | 고유 집합 | 온라인 사용자 |\n| Sorted Set | 랭킹 | 리더보드, 트렌딩 |\n| HyperLogLog | 근사 카운팅 | UV 카운트 |\n",
+      "performance-optimizer/skill.md": "---\nname: performance-optimizer\ndescription: \"애플리케이션 성능 최적화를 프로파일링, 병목 분석, 최적화 구현, 벤치마크 검증까지 에이전트 팀이 협업하여 수행하는 풀 파이프라인. '성능 최적화해줘', '느린 API 개선', '쿼리 최적화', '응답시간 줄여줘', '성능 프로파일링', '병목 분석', '벤치마크 테스트', '로딩 속도 개선', 'P95 응답시간 줄이기', '처리량 늘리기' 등 성능 개선 전반에 이 스킬을 사용한다. 특정 쿼리 최적화나 프로파일링만 필요한 경우에도 지원한다. 단, 인프라 프로비저닝 직접 실행, 로드밸런서 설정, CDN 구성 직접 배포는 이 스킬의 범위가 아니다.\"\n---\n\n# Performance Optimizer — 성능 최적화 풀 파이프라인\n\n애플리케이션의 프로파일링→병목분석→최적화→벤치마크를 에이전트 팀이 협업하여 한 번에 수행한다.\n\n## 실행 모드\n\n**에이전트 팀** — 5명이 SendMessage로 직접 통신하며 교차 검증한다.\n\n## 에이전트 구성\n\n| 에이전트 | 파일 | 역할 | 타입 |\n|---------|------|------|------|\n| profiler | `.claude/agents/profiler.md` | CPU, 메모리, I/O, 네트워크 프로파일링 | general-purpose |\n| bottleneck-analyst | `.claude/agents/bottleneck-analyst.md` | 핫스팟 식별, 근본원인, 영향산정 | general-purpose |\n| optimization-engineer | `.claude/agents/optimization-engineer.md` | 코드/쿼리/아키텍처 최적화 | general-purpose |\n| benchmark-manager | `.claude/agents/benchmark-manager.md` | 테스트설계, 실행, 비교분석 | general-purpose |\n| perf-reviewer | `.claude/agents/perf-reviewer.md` | 교차검증, 회귀방지, 최종보고서 | general-purpose |\n\n## 워크플로우\n\n### Phase 1: 준비 (오케스트레이터 직접 수행)\n\n1. 사용자 입력에서 추출한다:\n    - **최적화 대상**: 코드, API, 쿼리, 시스템 전체\n    - **성능 목표**: 응답시간, 처리량, 메모리 사용량 등 구체적 수치\n    - **기술 스택**: 언어, 프레임워크, DB, 인프라\n    - **현재 문제** (선택): 구체적 증상, 에러 로그, 사용자 불만\n    - **기존 파일** (선택): 프로파일링 결과, 실행 계획, 코드\n2. `_workspace/` 디렉토리를 프로젝트 루트에 생성한다\n3. 입력을 정리하여 `_workspace/00_input.md`에 저장한다\n4. 기존 파일이 있으면 `_workspace/`에 복사하고 해당 Phase를 건너뛴다\n5. 요청 범위에 따라 **실행 모드를 결정**한다\n\n### Phase 2: 팀 구성 및 실행\n\n| 순서 | 작업 | 담당 | 의존 | 산출물 |\n|------|------|------|------|--------|\n| 1 | 프로파일링 | profiler | 없음 | `_workspace/01_profiling_report.md` |\n| 2 | 병목 분석 | bottleneck-analyst | 작업 1 | `_workspace/02_bottleneck_analysis.md` |\n| 3 | 최적화 구현 | optimization-engineer | 작업 2 | `_workspace/03_optimization_plan.md` |\n| 4 | 벤치마크 검증 | benchmark-manager | 작업 1, 3 | `_workspace/04_benchmark_results.md` |\n| 5 | 성능 리뷰 | perf-reviewer | 작업 1~4 | `_workspace/05_review_report.md` |\n\n**팀원 간 소통 흐름:**\n- profiler 완료 → analyst에게 핫스팟·자원 패턴 전달, benchmark에게 baseline 수치 전달\n- analyst 완료 → engineer에게 병목 우선순위·근본원인 전달, benchmark에게 성능 예산 전달\n- engineer 완료 → benchmark에게 최적화 코드·기대 수치 전달\n- benchmark 완료 → reviewer에게 비교 분석 결과 전달\n- reviewer는 모든 산출물을 교차 검증. 🔴 필수 수정 발견 시 해당 에이전트에게 수정 요청 → 재작업 → 재검증 (최대 2회)\n\n### Phase 3: 통합 및 최종 산출물\n\n1. `_workspace/` 내 모든 파일을 확인한다\n2. 리뷰 보고서의 🔴 필수 수정이 모두 반영되었는지 확인한다\n3. 최종 요약을 사용자에게 보고한다:\n    - 프로파일링 — `01_profiling_report.md`\n    - 병목 분석 — `02_bottleneck_analysis.md`\n    - 최적화 계획 — `03_optimization_plan.md`\n    - 벤치마크 — `04_benchmark_results.md`\n    - 리뷰 보고서 — `05_review_report.md`\n\n## 작업 규모별 모드\n\n| 사용자 요청 패턴 | 실행 모드 | 투입 에이전트 |\n|----------------|----------|-------------|\n| \"성능 전체 최적화해줘\" | **풀 파이프라인** | 5명 전원 |\n| \"이 코드 프로파일링해줘\" | **프로파일링 모드** | profiler + reviewer |\n| \"이 쿼리 최적화해줘\" | **쿼리 최적화 모드** | profiler + analyst + engineer + reviewer |\n| \"벤치마크 테스트 설계해줘\" | **벤치마크 모드** | benchmark + reviewer |\n| \"이 최적화 결과 검증해줘\" | **리뷰 모드** | reviewer 단독 |\n\n## 데이터 전달 프로토콜\n\n| 전략 | 방식 | 용도 |\n|------|------|------|\n| 파일 기반 | `_workspace/` 디렉토리 | 주요 산출물 저장 및 공유 |\n| 메시지 기반 | SendMessage | 실시간 핵심 정보 전달, 수정 요청 |\n| 태스크 기반 | TaskCreate/TaskUpdate | 진행 상황 추적, 의존 관계 관리 |\n\n## 에러 핸들링\n\n| 에러 유형 | 전략 |\n|----------|------|\n| 프로파일링 도구 실행 불가 | 코드 정적 분석으로 대체, 도구 설정 가이드 제공 |\n| 실행 환경 부재 | 벤치마크 스크립트 + 실행 가이드 제공, 예상 결과 시뮬레이션 |\n| 성능 목표 미정 | 업계 표준(P95 < 200ms, 에러율 < 1%) 기반 목표 제안 |\n| 에이전트 실패 | 1회 재시도 → 실패 시 해당 산출물 없이 진행, 리뷰 보고서에 누락 명시 |\n| 리뷰에서 🔴 발견 | 해당 에이전트에 수정 요청 → 재작업 → 재검증 (최대 2회) |\n\n## 테스트 시나리오\n\n### 정상 흐름\n**프롬프트**: \"Django REST API의 응답시간이 P95 기준 2초인데, 500ms 이하로 줄이고 싶어. 코드 분석하고 최적화해줘.\"\n**기대 결과**:\n- 프로파일링: Django 미들웨어, ORM 쿼리, 직렬화 과정 분석, N+1 쿼리 탐지\n- 병목분석: DB 쿼리가 전체 응답시간의 70% 차지 → ORM N+1 + 인덱스 미비 진단\n- 최적화: select_related/prefetch_related 적용, 인덱스 추가, 쿼리셋 캐싱\n- 벤치마크: k6 스크립트로 전후 비교, P95 2s → 400ms 검증\n- 리뷰: 정합성 확인, 회귀 위험 평가\n\n### 기존 파일 활용 흐름\n**프롬프트**: \"이 프로파일링 결과를 분석하고 최적화 방안 제시해줘\" + flame graph 첨부\n**기대 결과**:\n- 기존 프로파일링 데이터를 `_workspace/01_profiling_report.md`로 활용\n- profiler 건너뛰고 analyst + engineer + benchmark + reviewer 투입\n\n### 에러 흐름\n**프롬프트**: \"사이트가 느린데 뭐가 문제인지 모르겠어\"\n**기대 결과**:\n- 코드 정적 분석 기반 프로파일링 수행\n- 일반적 성능 안티패턴 체크리스트 적용\n- \"상세 프로파일링 도구 적용 권장\" 명시\n\n\n## 에이전트별 확장 스킬\n\n| 스킬 | 경로 | 강화 대상 에이전트 | 역할 |\n|------|------|-----------------|------|\n| query-optimization-patterns | `.claude/skills/query-optimization-patterns/skill.md` | bottleneck-analyst, optimization-engineer | 실행 계획 분석, 인덱스 설계, N+1 해결, 페이지네이션 |\n| caching-strategy-selector | `.claude/skills/caching-strategy-selector/skill.md` | optimization-engineer | Cache Aside/Write Through/Behind, 무효화, 스탬피드 방지 |\n",
+      "query-optimization-patterns/skill.md": "---\nname: query-optimization-patterns\ndescription: \"SQL/NoSQL 쿼리 최적화 패턴, 실행 계획 분석, 인덱스 전략, N+1 문제 해결 등 데이터베이스 성능 최적화 가이드. '쿼리 최적화', '실행 계획', 'EXPLAIN', '인덱스 설계', 'N+1 문제', '느린 쿼리', 'slow query', 'DB 성능' 등 데이터베이스 쿼리 성능 개선 시 이 스킬을 사용한다. bottleneck-analyst와 optimization-engineer의 DB 성능 분석 역량을 강화한다. 단, 전체 시스템 프로파일링이나 벤치마크 실행은 이 스킬의 범위가 아니다.\"\n---\n\n# Query Optimization Patterns — 쿼리 최적화 패턴 가이드\n\n데이터베이스 쿼리 성능을 체계적으로 분석하고 최적화하는 방법론.\n\n## 실행 계획 분석\n\n### PostgreSQL EXPLAIN 읽기\n\n```sql\nEXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT)\nSELECT o.*, c.name\nFROM orders o\nJOIN customers c ON o.customer_id = c.id\nWHERE o.created_at > '2024-01-01'\nORDER BY o.total_amount DESC\nLIMIT 10;\n```\n\n### 핵심 지표 해석\n\n| 지표 | 의미 | 위험 신호 |\n|------|------|----------|\n| **Seq Scan** | 전체 테이블 스캔 | 큰 테이블에서 발생 시 |\n| **Nested Loop** | 행 단위 조인 | 외부 테이블이 클 때 |\n| **Hash Join** | 해시 기반 조인 | work_mem 초과 시 디스크 사용 |\n| **Sort** | 정렬 | 메모리 초과 시 외부 정렬 |\n| **Bitmap Heap Scan** | 인덱스 → 테이블 접근 | lossy 비트맵 시 성능 저하 |\n| **actual time** | 실제 소요 시간 | 첫 행 vs 전체 행 차이 |\n| **rows** | estimated vs actual 차이 | 10배 이상 차이 → 통계 갱신 |\n\n### 위험 패턴 탐지\n\n```\n❌ Seq Scan on large_table (rows=10000000)\n   → 인덱스 추가 필요\n\n❌ Sort Method: external merge (Disk: 256MB)\n   → work_mem 증가 또는 인덱스 정렬\n\n❌ Nested Loop (actual rows=1000000)\n   → Hash Join 또는 Merge Join으로 전환\n\n❌ estimated=100 actual=100000\n   → ANALYZE 실행하여 통계 갱신\n```\n\n## 인덱스 전략\n\n### 인덱스 유형별 사용\n\n| 인덱스 유형 | 적합한 경우 | 부적합한 경우 |\n|------------|-----------|-------------|\n| B-Tree (기본) | 등호, 범위, 정렬 | 배열, JSON, 전문 검색 |\n| Hash | 등호 비교만 | 범위 쿼리 |\n| GIN | 배열, JSONB, 전문 검색 | 단순 등호/범위 |\n| GiST | 지리공간, 범위 타입 | 단순 스칼라 |\n| BRIN | 물리적으로 정렬된 데이터 | 랜덤 분포 |\n\n### 복합 인덱스 설계 원칙\n\n```sql\n-- 왼쪽 접두사 규칙 (Leftmost Prefix)\nCREATE INDEX idx_orders ON orders(status, created_at, customer_id);\n\n-- 이 인덱스가 커버하는 쿼리:\n✅ WHERE status = 'PAID'\n✅ WHERE status = 'PAID' AND created_at > '2024-01-01'\n✅ WHERE status = 'PAID' AND created_at > '2024-01-01' AND customer_id = 123\n❌ WHERE created_at > '2024-01-01'  (status 누락)\n❌ WHERE customer_id = 123          (status, created_at 누락)\n\n-- 컬럼 순서 결정 기준:\n-- 1. 등호 조건 컬럼 먼저 (선택도 높은 것)\n-- 2. 범위 조건 컬럼 다음\n-- 3. ORDER BY 컬럼 마지막\n```\n\n### 커버링 인덱스\n\n```sql\n-- 테이블 접근 없이 인덱스만으로 쿼리 완료\nCREATE INDEX idx_covering ON orders(status, created_at) INCLUDE (total_amount);\n\nSELECT total_amount FROM orders\nWHERE status = 'PAID' AND created_at > '2024-01-01';\n-- Index Only Scan 발생 → 힙 접근 불필요\n```\n\n## N+1 문제 해결\n\n### 문제 진단\n\n```python\n# N+1 패턴 (느림!)\norders = Order.objects.filter(status=\"PAID\")  # 쿼리 1\nfor order in orders:\n    print(order.customer.name)  # 쿼리 N (주문 수만큼)\n# 총 쿼리: 1 + N\n\n# Eager Loading으로 해결\norders = Order.objects.filter(status=\"PAID\").select_related(\"customer\")  # 쿼리 1 (JOIN)\n# 또는\norders = Order.objects.filter(status=\"PAID\").prefetch_related(\"items\")  # 쿼리 2 (IN)\n```\n\n### ORM별 해결\n\n| ORM | N+1 해결 | 방법 |\n|-----|---------|------|\n| Django | `select_related` / `prefetch_related` | FK JOIN / Reverse IN |\n| SQLAlchemy | `joinedload` / `subqueryload` | JOIN / 서브쿼리 |\n| TypeORM | `relations` / `@JoinColumn` | eager/lazy 설정 |\n| Prisma | `include` | 자동 배치 |\n| JPA | `@EntityGraph` / `JOIN FETCH` | JPQL/Criteria |\n\n## 페이지네이션 최적화\n\n| 방식 | SQL | 성능 | 적합 |\n|------|-----|------|------|\n| OFFSET | `LIMIT 20 OFFSET 10000` | O(N) — 느림 | 소규모, 초반 페이지 |\n| Keyset | `WHERE id > 1000 LIMIT 20` | O(1) — 빠름 | 대규모, 무한 스크롤 |\n| Cursor | 암호화된 keyset | O(1) | API, 클라이언트용 |\n\n```sql\n-- OFFSET (10000번째부터 → 10000행 스캔 후 버림)\nSELECT * FROM orders ORDER BY id LIMIT 20 OFFSET 10000;\n\n-- Keyset (즉시 해당 위치로)\nSELECT * FROM orders WHERE id > 10000 ORDER BY id LIMIT 20;\n```\n\n## 쿼리 안티패턴\n\n| 안티패턴 | 문제 | 해결 |\n|---------|------|------|\n| `SELECT *` | 불필요한 컬럼 전송 | 필요한 컬럼만 명시 |\n| `WHERE func(column)` | 인덱스 사용 불가 | 변환을 상수 쪽으로 이동 |\n| `LIKE '%keyword%'` | 풀스캔 | 전문 검색 인덱스(GIN) |\n| 서브쿼리 IN (대량) | 느린 실행 | JOIN으로 전환 |\n| 암시적 타입 변환 | 인덱스 무효화 | 타입 일치 |\n\n## 쿼리 최적화 체크리스트\n\n- [ ] EXPLAIN ANALYZE 실행하여 실행 계획 확인\n- [ ] Seq Scan이 의도적인지 확인 (소량 데이터는 OK)\n- [ ] estimated vs actual rows 차이 확인\n- [ ] 필요한 인덱스 존재 여부\n- [ ] N+1 쿼리 패턴 없는지 확인\n- [ ] 페이지네이션이 keyset 기반인지 확인\n- [ ] 불필요한 ORDER BY / DISTINCT 제거\n- [ ] 트랜잭션 범위가 최소한인지 확인\n"
+    }
+  }
 }

@@ -28,16 +28,32 @@ export interface ExecutionStep {
 
 export type ExecutionPlan = ReadonlyArray<ExecutionStep>;
 
+export interface SkillMode {
+  readonly name: string;
+  readonly triggerPattern: string;
+  readonly agents: ReadonlyArray<string>;
+}
+
+export interface ExtensionSkill {
+  readonly name: string;
+  readonly path: string;
+  readonly targetAgent: string;
+  readonly description: string;
+}
+
 export interface Skill {
   readonly id: string;
   readonly name: string;
   readonly triggerConditions: ReadonlyArray<string>;
   readonly executionOrder: ReadonlyArray<ExecutionStep>;
-  readonly modes: {
-    readonly full: ExecutionPlan;
-    readonly reduced: ExecutionPlan;
-    readonly single: ExecutionPlan;
-  };
+  readonly modes: ReadonlyArray<SkillMode>;
+  readonly extensionSkills: ReadonlyArray<ExtensionSkill>;
+}
+
+export interface RawFiles {
+  readonly claudeMd: string;
+  readonly agents: Readonly<Record<string, string>>;
+  readonly skills: Readonly<Record<string, string>>;
 }
 
 export interface Harness {
@@ -50,6 +66,7 @@ export interface Harness {
   readonly skill: Skill;
   readonly frameworks: ReadonlyArray<string>;
   readonly agentCount: number;
+  readonly rawFiles?: RawFiles;
 }
 
 export interface HarnessMeta {

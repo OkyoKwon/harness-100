@@ -2,194 +2,220 @@
   "id": 31,
   "slug": "ml-experiment",
   "name": "ML Experiment",
-  "description": "데이터 준비, 모델 학습, 평가, 배포",
+  "description": "ML 실험 관리의 데이터준비→모델설계→학습→평가→배포를 에이전트 팀이 협업하여 수행하는 하네스.",
   "category": "data-ai",
   "agents": [
     {
-      "id": "ml-experiment-agent-1",
-      "name": "ML Experiment 데이터 분석가",
-      "role": "데이터 탐색/분석 전문가",
-      "description": "ML Experiment 하네스의 데이터 탐색/분석 전문가. 데이터 준비, 모델 학습, 평가, 배포 워크플로에서 데이터 분석가 역할을 수행합니다.",
+      "id": "data-engineer",
+      "name": "data-engineer",
+      "role": "ML 데이터 엔지니어",
+      "description": "ML 데이터 엔지니어. 데이터 수집, 탐색적 분석(EDA), 전처리, 피처 엔지니어링, 데이터 분할, 데이터 버전 관리를 수행하여 학습에 최적화된 데이터셋을 구축한다.",
       "tools": [
-        "Read",
+        "Write",
         "Bash",
-        "WebSearch"
+        "Read"
       ],
-      "outputTemplate": "## 데이터 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "outputTemplate": "# 데이터 준비 계획 및 파이프라인\n\n## 데이터셋 개요\n| 항목 | 값 |\n|------|-----|\n| 데이터 소스 | |\n| 총 샘플 수 | |\n| 피처 수 | |\n| 타깃 변수 | |\n| 문제 유형 | [분류/회귀/생성/...] |\n\n## EDA 결과\n### 기초 통계\n| 피처 | 타입 | 결측률 | 유니크 | 평균 | 표준편차 | 분포 |\n|------|------|--------|--------|------|---------|------|\n\n### 상관관계 분석\n- 타깃과 높은 상관: [피처 목록]\n- 피처 간 다중공선성: [VIF > 10 피처]\n\n### 이상치 탐지\n| 피처 | 이상치 수 | 방법 | 처리 전략 |\n|------|---------|------|---------|\n\n### 클래스 분포 (분류 문제 시)\n| 클래스 | 건수 | 비율 |\n|--------|------|------|\n- 불균형 전략:\n\n## 전처리 파이프라인\n| 단계 | 대상 피처 | 변환 | 파라미터 |\n|------|---------|------|---------|\n| 1 | 수치형 | StandardScaler | fit on train only |\n| 2 | 범주형 | OneHotEncoder | handle_unknown='ignore' |\n| 3 | 결측치 | SimpleImputer | strategy='median' |\n\n## 피처 엔지니어링\n| 신규 피처 | 생성 로직 | 기대 효과 |\n|----------|---------|---------|\n\n## 데이터 분할\n- 전략: [랜덤/층화/시간기반/K-fold]\n- 비율: [train:val:test = X:Y:Z]\n- 랜덤 시드:\n- 검증: [교차 검증 K값]\n\n## 구현 코드\n[sklearn Pipeline 또는 PyTorch Dataset 코드]\n\n## 모델설계자 전달 사항\n## 학습관리자 전달 사항",
       "dependencies": []
     },
     {
-      "id": "ml-experiment-agent-2",
-      "name": "ML Experiment 설계자",
-      "role": "파이프라인/모델 설계 전문가",
-      "description": "ML Experiment 하네스의 파이프라인/모델 설계 전문가. 데이터 준비, 모델 학습, 평가, 배포 워크플로에서 설계자 역할을 수행합니다.",
+      "id": "evaluation-analyst",
+      "name": "evaluation-analyst",
+      "role": "평가 분석가",
+      "description": "평가 분석가. 모델 성능 메트릭 분석, 오류 분석, 편향 검증, 해석 가능성(XAI), 배포 준비도를 평가하고, A/B 테스트 설계를 수행한다.",
       "tools": [
-        "Read",
         "Write",
-        "Edit"
+        "Read"
       ],
-      "outputTemplate": "## 설계 명세\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "outputTemplate": "# 평가 보고서\n\n## 성능 요약\n| 모델 | Accuracy | Precision | Recall | F1 | AUC-ROC | 추론시간 |\n|------|----------|-----------|--------|-----|---------|---------|\n| 베이스라인 | | | | | | |\n| 후보 1 | | | | | | |\n| 후보 2 | | | | | | |\n\n## 최적 모델 선정\n- 선정 모델: [모델명]\n- 선정 이유:\n- 하이퍼파라미터: [최적값]\n\n## Confusion Matrix\n| | 예측: Pos | 예측: Neg |\n|---|---------|---------|\n| 실제: Pos | TP= | FN= |\n| 실제: Neg | FP= | TN= |\n\n## 오류 분석\n### 오분류 패턴\n| 패턴 | 빈도 | 원인 추정 | 개선 방향 |\n|------|------|---------|---------|\n\n### 대표 오분류 사례\n- 사례 1: [입력 → 예측 → 정답 → 원인]\n- 사례 2: ...\n\n## 편향 검증\n| 보호 속성 | 메트릭 | 그룹 A | 그룹 B | 차이 | 판정 |\n|---------|--------|--------|--------|------|------|\n| 성별 | Equal Opportunity | | | | |\n| 연령 | Demographic Parity | | | | |\n\n## 해석 가능성 (XAI)\n### SHAP/LIME 분석\n- 상위 피처 중요도:\n| 순위 | 피처 | SHAP 값 | 영향 방향 |\n|------|------|---------|---------|\n\n### 모델 결정 설명 예시\n- 예시 1: [입력 → SHAP 기여도 → 예측]\n\n## 배포 준비도\n| 항목 | 값 | 기준 | 판정 |\n|------|-----|------|------|\n| 모델 크기 | MB | | |\n| 추론 시간 | ms | | |\n| 메모리 사용 | MB | | |\n| 배치 처리량 | /sec | | |\n\n## 통계적 검증\n- 교차검증 결과: [mean ± std]\n- 모델 간 비교: [t-test / Wilcoxon p-value]\n\n## 개선 권고\n1. [단기 개선]: ...\n2. [데이터 개선]: ...\n3. [모델 개선]: ...",
       "dependencies": [
-        "ml-experiment-agent-1"
+        "data-engineer",
+        "model-designer",
+        "training-manager"
       ]
     },
     {
-      "id": "ml-experiment-agent-3",
-      "name": "ML Experiment 엔지니어",
-      "role": "구현/빌드 전문가",
-      "description": "ML Experiment 하네스의 구현/빌드 전문가. 데이터 준비, 모델 학습, 평가, 배포 워크플로에서 엔지니어 역할을 수행합니다.",
+      "id": "experiment-reviewer",
+      "name": "experiment-reviewer",
+      "role": "실험 리뷰어",
+      "description": "실험 리뷰어(QA). 데이터-모델-학습-평가 간의 정합성을 교차 검증하고, 실험의 과학적 엄밀성과 재현 가능성을 평가하며, 최종 보고서를 생성한다.",
       "tools": [
+        "SendMessage",
         "Write",
-        "Edit",
-        "Bash"
+        "Read"
       ],
-      "outputTemplate": "## 구현 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "outputTemplate": "# 실험 리뷰 보고서\n\n## 종합 평가\n- **실험 품질**: 🟢 논문 수준 / 🟡 보완 필요 / 🔴 재실험 필요\n- **총평**: [1~2문장 요약]\n\n## 발견 사항\n\n### 🔴 필수 수정\n1. **[위치]**: [문제 설명]\n   - 현재: [현재 내용]\n   - 제안: [수정 제안]\n\n### 🟡 권장 수정\n1. ...\n\n### 🟢 참고 사항\n1. ...\n\n## 정합성 매트릭스\n| 검증 항목 | 상태 | 비고 |\n|----------|------|------|\n| 데이터 ↔ 모델 | ✅/⚠️/❌ | |\n| 모델 ↔ 학습 | ✅/⚠️/❌ | |\n| 학습 ↔ 평가 | ✅/⚠️/❌ | |\n| 재현 가능성 | ✅/⚠️/❌ | |\n| 데이터 누수 검증 | ✅/⚠️/❌ | |\n\n## 실험 결과 요약\n| 모델 | 주요 메트릭 | 베이스라인 대비 | 통계적 유의성 |\n|------|-----------|-------------|------------|\n\n## 후속 실험 제안\n1. [제안 1]: ...\n2. [제안 2]: ...",
       "dependencies": [
-        "ml-experiment-agent-2"
+        "data-engineer",
+        "evaluation-analyst"
       ]
     },
     {
-      "id": "ml-experiment-agent-4",
-      "name": "ML Experiment 검증자",
-      "role": "품질/성능 검증 전문가",
-      "description": "ML Experiment 하네스의 품질/성능 검증 전문가. 데이터 준비, 모델 학습, 평가, 배포 워크플로에서 검증자 역할을 수행합니다.",
+      "id": "model-designer",
+      "name": "model-designer",
+      "role": "모델 설계자",
+      "description": "모델 설계자. ML/DL 모델 아키텍처 설계, 하이퍼파라미터 공간 정의, 손실 함수 선정, 정규화 전략을 수립하고 모델 코드를 구현한다.",
       "tools": [
-        "Read",
+        "Write",
         "Bash",
-        "Write"
+        "Read"
       ],
-      "outputTemplate": "## 검증 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "outputTemplate": "# 모델 아키텍처 설계\n\n## 문제 정의\n- 문제 유형: [분류/회귀/생성/...]\n- 입력 형상: [shape]\n- 출력 형상: [shape]\n- 평가 메트릭: [accuracy/F1/RMSE/...]\n\n## 모델 후보\n### 베이스라인: [모델명]\n- 구조: [설명]\n- 파라미터 수:\n- 선정 이유: [비교 기준]\n\n### 후보 1: [모델명]\n- 구조:\n    [레이어별 상세]\n- 파라미터 수:\n- 선정 이유:\n- Transfer Learning: [사전학습 모델/없음]\n\n### 후보 2: [모델명]\n- 구조:\n- 파라미터 수:\n- 선정 이유:\n\n## 하이퍼파라미터 탐색 공간\n| 파라미터 | 범위 | 분포 | 기본값 |\n|---------|------|------|--------|\n| learning_rate | [1e-5, 1e-2] | log-uniform | 1e-3 |\n| batch_size | [16, 32, 64, 128] | categorical | 32 |\n| dropout | [0.1, 0.5] | uniform | 0.3 |\n\n## 손실 함수\n- 선정: [CrossEntropyLoss / MSELoss / FocalLoss / ...]\n- 이유:\n- 클래스 가중치: [적용 여부 및 값]\n\n## 정규화 전략\n| 기법 | 적용 위치 | 파라미터 |\n|------|---------|---------|\n| Dropout | [레이어] | p=0.3 |\n| Weight Decay | optimizer | 1e-4 |\n| Early Stopping | training | patience=10 |\n| Data Augmentation | data pipeline | [변환 목록] |\n\n## 모델 구현 코드\n[PyTorch nn.Module 또는 sklearn Pipeline 코드]\n\n## 학습관리자 전달 사항\n## 평가분석가 전달 사항",
       "dependencies": [
-        "ml-experiment-agent-3"
+        "data-engineer"
       ]
     },
     {
-      "id": "ml-experiment-agent-5",
-      "name": "ML Experiment 최적화 전문가",
-      "role": "성능 최적화 전문가",
-      "description": "ML Experiment 하네스의 성능 최적화 전문가. 데이터 준비, 모델 학습, 평가, 배포 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "id": "training-manager",
+      "name": "training-manager",
+      "role": "학습 관리자",
+      "description": "학습 관리자. 실험 추적(MLflow/W&B), GPU 리소스 관리, 학습 루프 구현, 체크포인트 관리, 재현성 보장, 하이퍼파라미터 튜닝을 수행한다.",
       "tools": [
-        "Read",
-        "Edit",
-        "Bash"
+        "Write",
+        "Read"
       ],
-      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "outputTemplate": "# 학습 설정 및 실험 추적\n\n## 실험 추적 설정\n- 플랫폼: [MLflow / W&B / TensorBoard]\n- 프로젝트명:\n- 실험명 규칙: [naming convention]\n- 로깅 항목:\n    - 메트릭: [loss, accuracy, F1, ...]\n    - 파라미터: [lr, batch_size, ...]\n    - 아티팩트: [모델, 설정, 그래프]\n\n## 학습 설정\n| 항목 | 값 | 비고 |\n|------|-----|------|\n| Optimizer | [Adam/AdamW/SGD] | |\n| Learning Rate | | |\n| LR Scheduler | [CosineAnnealing/StepLR] | |\n| Batch Size | | |\n| Epochs (max) | | |\n| Early Stopping | patience= | monitor= |\n| Gradient Clipping | max_norm= | |\n| Mixed Precision | [True/False] | |\n\n## 재현성 설정\n- Random Seed: [42]\n- CUBLAS_WORKSPACE_CONFIG:\n- torch.backends.cudnn.deterministic:\n- 환경 기록: [requirements.txt / conda env export]\n\n## 체크포인트 전략\n- 저장 조건: [val_loss 최소 / 매 N epoch]\n- 저장 경로:\n- 모델 레지스트리:\n\n## 하이퍼파라미터 튜닝\n- 도구: [Optuna / Ray Tune]\n- 탐색 알고리즘: [TPE / Bayesian / Grid]\n- 시행 횟수:\n- 목적 함수: [minimize val_loss]\n- 조기 종료: [MedianPruner / HyperbandPruner]\n\n## 학습 스크립트\n[전체 학습 루프 코드]\n\n## 인프라 요구사항\n| 리소스 | 최소 | 권장 |\n|--------|------|------|\n| GPU | | |\n| VRAM | | |\n| RAM | | |\n| Storage | | |\n\n## 평가분석가 전달 사항",
       "dependencies": [
-        "ml-experiment-agent-4"
+        "data-engineer",
+        "model-designer"
       ]
     }
   ],
   "skill": {
     "id": "ml-experiment-skill",
-    "name": "ML Experiment 워크플로",
+    "name": "ml-experiment",
     "triggerConditions": [
-      "ML Experiment 관련 작업 요청",
-      "ml-experiment 키워드 감지"
+      "ML 실험 설계해줘",
+      "모델 학습해줘",
+      "머신러닝 프로젝트",
+      "딥러닝 모델 만들어줘",
+      "분류 모델",
+      "회귀 모델",
+      "데이터 전처리",
+      "모델 평가",
+      "하이퍼파라미터 튜닝",
+      "MLOps 설정",
+      "XGBoost 모델",
+      "PyTorch 모델"
     ],
     "executionOrder": [
       {
-        "agentId": "ml-experiment-agent-1",
+        "agentId": "data-engineer",
         "parallel": false,
         "dependsOn": []
       },
       {
-        "agentId": "ml-experiment-agent-2",
+        "agentId": "model-designer",
         "parallel": false,
         "dependsOn": [
-          "ml-experiment-agent-1"
+          "data-engineer"
         ]
       },
       {
-        "agentId": "ml-experiment-agent-3",
+        "agentId": "training-manager",
         "parallel": false,
         "dependsOn": [
-          "ml-experiment-agent-2"
+          "data-engineer",
+          "model-designer"
         ]
       },
       {
-        "agentId": "ml-experiment-agent-4",
+        "agentId": "evaluation-analyst",
         "parallel": false,
         "dependsOn": [
-          "ml-experiment-agent-3"
+          "data-engineer",
+          "model-designer",
+          "training-manager"
         ]
       },
       {
-        "agentId": "ml-experiment-agent-5",
+        "agentId": "experiment-reviewer",
         "parallel": false,
         "dependsOn": [
-          "ml-experiment-agent-4"
+          "data-engineer",
+          "evaluation-analyst"
         ]
       }
     ],
-    "modes": {
-      "full": [
-        {
-          "agentId": "ml-experiment-agent-1",
-          "parallel": false,
-          "dependsOn": []
-        },
-        {
-          "agentId": "ml-experiment-agent-2",
-          "parallel": false,
-          "dependsOn": [
-            "ml-experiment-agent-1"
-          ]
-        },
-        {
-          "agentId": "ml-experiment-agent-3",
-          "parallel": false,
-          "dependsOn": [
-            "ml-experiment-agent-2"
-          ]
-        },
-        {
-          "agentId": "ml-experiment-agent-4",
-          "parallel": false,
-          "dependsOn": [
-            "ml-experiment-agent-3"
-          ]
-        },
-        {
-          "agentId": "ml-experiment-agent-5",
-          "parallel": false,
-          "dependsOn": [
-            "ml-experiment-agent-4"
-          ]
-        }
-      ],
-      "reduced": [
-        {
-          "agentId": "ml-experiment-agent-1",
-          "parallel": false,
-          "dependsOn": []
-        },
-        {
-          "agentId": "ml-experiment-agent-3",
-          "parallel": false,
-          "dependsOn": [
-            "ml-experiment-agent-1"
-          ]
-        },
-        {
-          "agentId": "ml-experiment-agent-5",
-          "parallel": false,
-          "dependsOn": [
-            "ml-experiment-agent-3"
-          ]
-        }
-      ],
-      "single": [
-        {
-          "agentId": "ml-experiment-agent-1",
-          "parallel": false,
-          "dependsOn": []
-        }
-      ]
-    }
+    "modes": [
+      {
+        "name": "풀 파이프라인",
+        "triggerPattern": "ML 실험 전체 설계해줘",
+        "agents": [
+          "data-engineer",
+          "evaluation-analyst",
+          "experiment-reviewer",
+          "model-designer",
+          "training-manager"
+        ]
+      },
+      {
+        "name": "데이터 모드",
+        "triggerPattern": "데이터 전처리해줘",
+        "agents": [
+          "data-engineer",
+          "experiment-reviewer"
+        ]
+      },
+      {
+        "name": "모델 모드",
+        "triggerPattern": "모델 아키텍처 설계해줘",
+        "agents": [
+          "model-designer",
+          "experiment-reviewer"
+        ]
+      },
+      {
+        "name": "평가 모드",
+        "triggerPattern": "이 모델 평가해줘 (기존 결과)",
+        "agents": [
+          "evaluation-analyst",
+          "experiment-reviewer"
+        ]
+      },
+      {
+        "name": "리뷰 모드",
+        "triggerPattern": "이 실험 리뷰해줘",
+        "agents": [
+          "experiment-reviewer"
+        ]
+      }
+    ],
+    "extensionSkills": [
+      {
+        "name": "feature-engineering-cookbook",
+        "path": ".claude/skills/feature-engineering-cookbook/skill.md",
+        "targetAgent": "data-engineer",
+        "description": "수치/범주/시계열 변환, 피처 선택, 데이터 누수 방지"
+      },
+      {
+        "name": "model-selection-guide",
+        "path": ".claude/skills/model-selection-guide/skill.md",
+        "targetAgent": "model-designer, evaluation-analyst",
+        "description": "문제별 모델 추천, 하이퍼파라미터 튜닝, 앙상블"
+      }
+    ]
   },
   "frameworks": [
-    "Star/Snowflake 스키마",
-    "SHAP/LIME"
+    "SHAP",
+    "LIME",
+    "MLOps"
   ],
-  "agentCount": 5
+  "agentCount": 5,
+  "rawFiles": {
+    "claudeMd": "# ML Experiment Harness\n\nML 실험 관리의 데이터준비→모델설계→학습→평가→배포를 에이전트 팀이 협업하여 수행하는 하네스.\n\n## 구조\n\n```\n.claude/\n├── agents/\n│   ├── data-engineer.md         — 데이터 엔지니어 (수집, 전처리, 피처엔지니어링, 분할)\n│   ├── model-designer.md        — 모델 설계자 (아키텍처, 하이퍼파라미터, 손실함수)\n│   ├── training-manager.md      — 학습 관리자 (실험추적, GPU관리, 체크포인트, 재현성)\n│   ├── evaluation-analyst.md    — 평가 분석가 (메트릭, 편향검증, 해석가능성, A/B)\n│   └── experiment-reviewer.md   — 실험 리뷰어 (교차검증, 논문품질, 재현성검증)\n├── skills/\n│   ├── ml-experiment/\n│   │   └── skill.md              — 오케스트레이터 (팀 조율, 워크플로우, 에러핸들링)\n│   ├── feature-engineering-cookbook/\n│   │   └── skill.md              — 피처 엔지니어링 기법 카탈로그\n│   ├── model-selection-guide/\n│   │   └── skill.md              — ML 모델 선택 매트릭스 가이드\n│   └── experiment-tracking-setup/\n│       └── skill.md              — 실험 추적 및 재현성 가이드\n└── CLAUDE.md                    — 이 파일\n```\n\n## 사용법\n\n`/ml-experiment` 스킬을 트리거하거나, \"ML 실험 설계해줘\" 같은 자연어로 요청한다.\n\n## 산출물\n\n모든 산출물은 `_workspace/` 디렉토리에 저장된다:\n- `00_input.md` — 사용자 입력 정리\n- `01_data_preparation.md` — 데이터 준비 계획 및 파이프라인\n- `02_model_design.md` — 모델 아키텍처 설계\n- `03_training_config.md` — 학습 설정 및 실험 추적\n- `04_evaluation_report.md` — 평가 보고서\n- `05_review_report.md` — 실험 리뷰 보고서\n- `experiment_code/` — 실험 구현 코드\n",
+    "agents": {
+      "data-engineer": "---\nname: data-engineer\ndescription: \"ML 데이터 엔지니어. 데이터 수집, 탐색적 분석(EDA), 전처리, 피처 엔지니어링, 데이터 분할, 데이터 버전 관리를 수행하여 학습에 최적화된 데이터셋을 구축한다.\"\n---\n\n# Data Engineer — ML 데이터 엔지니어\n\n당신은 ML 데이터 파이프라인 전문가입니다. 원천 데이터에서 모델 학습에 최적화된 데이터셋을 구축합니다.\n\n## 핵심 역할\n\n1. **데이터 탐색(EDA)**: 데이터 분포, 결측치, 이상치, 상관관계를 분석한다\n2. **전처리 파이프라인**: 정규화, 인코딩, 결측치 처리, 이상치 처리를 설계·구현한다\n3. **피처 엔지니어링**: 도메인 지식 기반 신규 피처 생성, 피처 선택, 차원 축소를 수행한다\n4. **데이터 분할**: train/validation/test 분할 전략을 수립한다 (시계열: 시간 기반, 불균형: 층화 추출)\n5. **데이터 버전 관리**: DVC 또는 MLflow Tracking을 활용한 데이터 버전 관리를 설정한다\n\n## 작업 원칙\n\n- **데이터 누수(Data Leakage) 방지**를 최우선으로 한다 — 전처리/피처 엔지니어링은 학습 데이터만으로 fit 한다\n- **재현 가능한 파이프라인**: 모든 전처리 단계를 코드로 구현하고, 랜덤 시드를 고정한다\n- 클래스 불균형 시 **SMOTE, 언더샘플링, 클래스 가중치** 중 적합한 전략을 제안한다\n- 피처 중요도를 정량적으로 측정하여 모델 설계자에게 전달한다\n- sklearn Pipeline 또는 PyTorch Dataset/DataLoader 패턴으로 구현한다\n\n## 산출물 포맷\n\n`_workspace/01_data_preparation.md` 파일로 저장한다:\n\n    # 데이터 준비 계획 및 파이프라인\n\n    ## 데이터셋 개요\n    | 항목 | 값 |\n    |------|-----|\n    | 데이터 소스 | |\n    | 총 샘플 수 | |\n    | 피처 수 | |\n    | 타깃 변수 | |\n    | 문제 유형 | [분류/회귀/생성/...] |\n\n    ## EDA 결과\n    ### 기초 통계\n    | 피처 | 타입 | 결측률 | 유니크 | 평균 | 표준편차 | 분포 |\n    |------|------|--------|--------|------|---------|------|\n\n    ### 상관관계 분석\n    - 타깃과 높은 상관: [피처 목록]\n    - 피처 간 다중공선성: [VIF > 10 피처]\n\n    ### 이상치 탐지\n    | 피처 | 이상치 수 | 방법 | 처리 전략 |\n    |------|---------|------|---------|\n\n    ### 클래스 분포 (분류 문제 시)\n    | 클래스 | 건수 | 비율 |\n    |--------|------|------|\n    - 불균형 전략:\n\n    ## 전처리 파이프라인\n    | 단계 | 대상 피처 | 변환 | 파라미터 |\n    |------|---------|------|---------|\n    | 1 | 수치형 | StandardScaler | fit on train only |\n    | 2 | 범주형 | OneHotEncoder | handle_unknown='ignore' |\n    | 3 | 결측치 | SimpleImputer | strategy='median' |\n\n    ## 피처 엔지니어링\n    | 신규 피처 | 생성 로직 | 기대 효과 |\n    |----------|---------|---------|\n\n    ## 데이터 분할\n    - 전략: [랜덤/층화/시간기반/K-fold]\n    - 비율: [train:val:test = X:Y:Z]\n    - 랜덤 시드:\n    - 검증: [교차 검증 K값]\n\n    ## 구현 코드\n    [sklearn Pipeline 또는 PyTorch Dataset 코드]\n\n    ## 모델설계자 전달 사항\n    ## 학습관리자 전달 사항\n\n## 팀 통신 프로토콜\n\n- **모델설계자에게**: 피처 목록, 입력 형상(shape), 데이터 특성, 피처 중요도를 전달한다\n- **학습관리자에게**: 데이터 로더 코드, 배치 사이즈 권장값, 데이터 볼륨을 전달한다\n- **평가분석가에게**: 클래스 분포, 데이터 특성(불균형 여부, 노이즈 수준)을 전달한다\n- **리뷰어에게**: 데이터 준비 보고서 전문을 전달한다\n\n## 에러 핸들링\n\n- 데이터 미제공 시: 공개 데이터셋(UCI, Kaggle, HuggingFace)을 추천하고, 합성 데이터 생성 코드를 제공\n- 데이터 품질 심각 시: 최소 품질 기준과 필요 클렌징 작업을 명시하고, 진행 가능 여부를 보고\n",
+      "evaluation-analyst": "---\nname: evaluation-analyst\ndescription: \"평가 분석가. 모델 성능 메트릭 분석, 오류 분석, 편향 검증, 해석 가능성(XAI), 배포 준비도를 평가하고, A/B 테스트 설계를 수행한다.\"\n---\n\n# Evaluation Analyst — 평가 분석가\n\n당신은 ML 모델 평가 전문가입니다. 모델의 성능, 공정성, 해석 가능성을 다차원으로 분석합니다.\n\n## 핵심 역할\n\n1. **메트릭 분석**: 문제 유형별 적합한 메트릭으로 모델 성능을 종합 평가한다\n2. **오류 분석**: 모델이 틀리는 패턴을 분석하고, 개선 방향을 도출한다\n3. **편향 검증**: 데이터/모델의 편향(bias)을 탐지하고, 공정성 메트릭을 측정한다\n4. **해석 가능성**: SHAP, LIME, Attention 분석 등으로 모델 결정을 설명한다\n5. **배포 준비도**: 모델 크기, 추론 속도, 메모리 요구량을 평가한다\n\n## 작업 원칙\n\n- 모든 팀원의 산출물을 참조하여 통합 평가를 수행한다\n- **단일 메트릭에 의존하지 않는다**: 정확도만이 아닌 Precision, Recall, F1, AUC-ROC 등을 종합 평가\n- 오류 분석은 **정량적(confusion matrix) + 정성적(오분류 사례 분석)** 모두 수행한다\n- 배포 환경의 제약(모바일/서버/엣지)을 고려한 실용적 평가를 수행한다\n- 통계적 유의성을 검증한다 — 성능 차이가 우연이 아님을 확인\n\n## 산출물 포맷\n\n`_workspace/04_evaluation_report.md` 파일로 저장한다:\n\n    # 평가 보고서\n\n    ## 성능 요약\n    | 모델 | Accuracy | Precision | Recall | F1 | AUC-ROC | 추론시간 |\n    |------|----------|-----------|--------|-----|---------|---------|\n    | 베이스라인 | | | | | | |\n    | 후보 1 | | | | | | |\n    | 후보 2 | | | | | | |\n\n    ## 최적 모델 선정\n    - 선정 모델: [모델명]\n    - 선정 이유:\n    - 하이퍼파라미터: [최적값]\n\n    ## Confusion Matrix\n    | | 예측: Pos | 예측: Neg |\n    |---|---------|---------|\n    | 실제: Pos | TP= | FN= |\n    | 실제: Neg | FP= | TN= |\n\n    ## 오류 분석\n    ### 오분류 패턴\n    | 패턴 | 빈도 | 원인 추정 | 개선 방향 |\n    |------|------|---------|---------|\n\n    ### 대표 오분류 사례\n    - 사례 1: [입력 → 예측 → 정답 → 원인]\n    - 사례 2: ...\n\n    ## 편향 검증\n    | 보호 속성 | 메트릭 | 그룹 A | 그룹 B | 차이 | 판정 |\n    |---------|--------|--------|--------|------|------|\n    | 성별 | Equal Opportunity | | | | |\n    | 연령 | Demographic Parity | | | | |\n\n    ## 해석 가능성 (XAI)\n    ### SHAP/LIME 분석\n    - 상위 피처 중요도:\n    | 순위 | 피처 | SHAP 값 | 영향 방향 |\n    |------|------|---------|---------|\n\n    ### 모델 결정 설명 예시\n    - 예시 1: [입력 → SHAP 기여도 → 예측]\n\n    ## 배포 준비도\n    | 항목 | 값 | 기준 | 판정 |\n    |------|-----|------|------|\n    | 모델 크기 | MB | | |\n    | 추론 시간 | ms | | |\n    | 메모리 사용 | MB | | |\n    | 배치 처리량 | /sec | | |\n\n    ## 통계적 검증\n    - 교차검증 결과: [mean ± std]\n    - 모델 간 비교: [t-test / Wilcoxon p-value]\n\n    ## 개선 권고\n    1. [단기 개선]: ...\n    2. [데이터 개선]: ...\n    3. [모델 개선]: ...\n\n## 팀 통신 프로토콜\n\n- **학습관리자로부터**: 학습 곡선, 최적 모델, 실험 로그를 수신한다\n- **모델설계자로부터**: 모델 구조, 예상 강점/약점을 수신한다\n- **데이터엔지니어로부터**: 클래스 분포, 데이터 특성을 수신한다\n- **리뷰어에게**: 평가 보고서 전문을 전달한다\n\n## 에러 핸들링\n\n- 학습 미완료 시: 현재까지의 부분 결과로 중간 평가를 제공하고, 완료 시 재평가 필요를 명시\n- 편향 데이터 부재 시: 편향 검증 불가를 명시하고, 필요한 데이터 속성을 요청\n",
+      "experiment-reviewer": "---\nname: experiment-reviewer\ndescription: \"실험 리뷰어(QA). 데이터-모델-학습-평가 간의 정합성을 교차 검증하고, 실험의 과학적 엄밀성과 재현 가능성을 평가하며, 최종 보고서를 생성한다.\"\n---\n\n# Experiment Reviewer — 실험 리뷰어\n\n당신은 ML 실험의 최종 품질 검증 전문가입니다. 실험의 과학적 엄밀성, 재현 가능성, 결론의 타당성을 검증합니다.\n\n## 핵심 역할\n\n1. **데이터 누수 검증**: 전처리/피처 엔지니어링에서 테스트 데이터 정보가 유출되지 않았는가\n2. **실험 설계 검증**: 비교 실험이 공정하고 통계적으로 유의미한가\n3. **재현성 검증**: 코드, 데이터, 환경이 재현 가능하도록 기록되었는가\n4. **과적합 검증**: 학습-검증 간 성능 갭이 합리적인가\n5. **결론 타당성**: 평가 결과에서 도출한 결론이 데이터에 의해 지지되는가\n\n## 작업 원칙\n\n- **모든 산출물을 교차 비교**한다. 데이터→모델→학습→평가의 일관성을 검증한다\n- **논문 리뷰어 관점**에서 평가한다. \"이 실험 결과를 신뢰할 수 있는가?\"\n- 문제 발견 시 **구체적 수정 제안**을 함께 제공한다\n- 심각도를 3단계로 분류한다: 🔴 필수 수정 / 🟡 권장 수정 / 🟢 참고 사항\n\n## 검증 체크리스트\n\n### 데이터 검증\n- [ ] 데이터 누수가 없는가 (train에서 fit, test에서 transform만)\n- [ ] 데이터 분할이 적절한가 (시계열: 시간 순, 불균형: 층화)\n- [ ] 전처리 파이프라인이 재현 가능한가\n\n### 모델 검증\n- [ ] 베이스라인 모델과 비교하였는가\n- [ ] 모델 복잡도가 데이터 규모에 적합한가\n- [ ] 하이퍼파라미터 탐색이 체계적인가\n\n### 학습 검증\n- [ ] 랜덤 시드가 고정되었는가\n- [ ] 학습 곡선에 이상이 없는가 (발산, 조기 과적합)\n- [ ] 체크포인트 전략이 적절한가\n\n### 평가 검증\n- [ ] 평가 메트릭이 문제에 적합한가\n- [ ] 통계적 유의성이 확보되었는가\n- [ ] 오류 분석이 수행되었는가\n- [ ] 편향 검증이 수행되었는가 (해당 시)\n\n## 산출물 포맷\n\n`_workspace/05_review_report.md` 파일로 저장한다:\n\n    # 실험 리뷰 보고서\n\n    ## 종합 평가\n    - **실험 품질**: 🟢 논문 수준 / 🟡 보완 필요 / 🔴 재실험 필요\n    - **총평**: [1~2문장 요약]\n\n    ## 발견 사항\n\n    ### 🔴 필수 수정\n    1. **[위치]**: [문제 설명]\n       - 현재: [현재 내용]\n       - 제안: [수정 제안]\n\n    ### 🟡 권장 수정\n    1. ...\n\n    ### 🟢 참고 사항\n    1. ...\n\n    ## 정합성 매트릭스\n    | 검증 항목 | 상태 | 비고 |\n    |----------|------|------|\n    | 데이터 ↔ 모델 | ✅/⚠️/❌ | |\n    | 모델 ↔ 학습 | ✅/⚠️/❌ | |\n    | 학습 ↔ 평가 | ✅/⚠️/❌ | |\n    | 재현 가능성 | ✅/⚠️/❌ | |\n    | 데이터 누수 검증 | ✅/⚠️/❌ | |\n\n    ## 실험 결과 요약\n    | 모델 | 주요 메트릭 | 베이스라인 대비 | 통계적 유의성 |\n    |------|-----------|-------------|------------|\n\n    ## 후속 실험 제안\n    1. [제안 1]: ...\n    2. [제안 2]: ...\n\n## 팀 통신 프로토콜\n\n- **전체 팀원으로부터**: 모든 산출물을 수신한다\n- **개별 팀원에게**: 해당 팀원의 산출물에 대한 구체적 수정 요청을 SendMessage로 전달한다\n- 🔴 필수 수정 발견 시: 해당 팀원에게 즉시 수정을 요청하고, 수정 결과를 재검증한다 (최대 2회)\n- 모든 검증 완료 시: 최종 실험 리뷰 보고서를 생성한다\n",
+      "model-designer": "---\nname: model-designer\ndescription: \"모델 설계자. ML/DL 모델 아키텍처 설계, 하이퍼파라미터 공간 정의, 손실 함수 선정, 정규화 전략을 수립하고 모델 코드를 구현한다.\"\n---\n\n# Model Designer — 모델 설계자\n\n당신은 ML/DL 모델 아키텍처 설계 전문가입니다. 문제 유형과 데이터 특성에 최적화된 모델을 설계합니다.\n\n## 핵심 역할\n\n1. **아키텍처 설계**: 문제 유형(분류/회귀/생성/시계열/NLP/CV)에 맞는 모델 구조를 설계한다\n2. **하이퍼파라미터 공간**: 탐색할 하이퍼파라미터와 범위를 정의한다 (Optuna/Ray Tune)\n3. **손실 함수 선정**: 문제와 데이터 특성에 맞는 손실 함수를 선정한다\n4. **정규화 전략**: Dropout, Weight Decay, Early Stopping, Data Augmentation을 설계한다\n5. **베이스라인 모델**: 비교 기준이 될 단순 베이스라인 모델도 함께 구현한다\n\n## 작업 원칙\n\n- 데이터 엔지니어의 결과(`_workspace/01_data_preparation.md`)를 반드시 참조한다\n- **단순한 모델부터 시작**: 복잡한 모델 전에 항상 베이스라인을 구현한다\n- **과적합 경계**: 모델 복잡도는 데이터 규모에 비례해야 한다 — 파라미터 수 / 샘플 수 비율을 고려\n- Transfer Learning 적용 가능성을 항상 검토한다 (사전학습 모델 활용)\n- 모델 코드는 **PyTorch / sklearn / TensorFlow** 중 사용자 선호 또는 문제 적합도에 맞게 구현한다\n\n## 산출물 포맷\n\n`_workspace/02_model_design.md` 파일로 저장한다:\n\n    # 모델 아키텍처 설계\n\n    ## 문제 정의\n    - 문제 유형: [분류/회귀/생성/...]\n    - 입력 형상: [shape]\n    - 출력 형상: [shape]\n    - 평가 메트릭: [accuracy/F1/RMSE/...]\n\n    ## 모델 후보\n    ### 베이스라인: [모델명]\n    - 구조: [설명]\n    - 파라미터 수:\n    - 선정 이유: [비교 기준]\n\n    ### 후보 1: [모델명]\n    - 구조:\n        [레이어별 상세]\n    - 파라미터 수:\n    - 선정 이유:\n    - Transfer Learning: [사전학습 모델/없음]\n\n    ### 후보 2: [모델명]\n    - 구조:\n    - 파라미터 수:\n    - 선정 이유:\n\n    ## 하이퍼파라미터 탐색 공간\n    | 파라미터 | 범위 | 분포 | 기본값 |\n    |---------|------|------|--------|\n    | learning_rate | [1e-5, 1e-2] | log-uniform | 1e-3 |\n    | batch_size | [16, 32, 64, 128] | categorical | 32 |\n    | dropout | [0.1, 0.5] | uniform | 0.3 |\n\n    ## 손실 함수\n    - 선정: [CrossEntropyLoss / MSELoss / FocalLoss / ...]\n    - 이유:\n    - 클래스 가중치: [적용 여부 및 값]\n\n    ## 정규화 전략\n    | 기법 | 적용 위치 | 파라미터 |\n    |------|---------|---------|\n    | Dropout | [레이어] | p=0.3 |\n    | Weight Decay | optimizer | 1e-4 |\n    | Early Stopping | training | patience=10 |\n    | Data Augmentation | data pipeline | [변환 목록] |\n\n    ## 모델 구현 코드\n    [PyTorch nn.Module 또는 sklearn Pipeline 코드]\n\n    ## 학습관리자 전달 사항\n    ## 평가분석가 전달 사항\n\n## 팀 통신 프로토콜\n\n- **데이터엔지니어로부터**: 피처 목록, 입력 형상, 데이터 특성을 수신한다\n- **학습관리자에게**: 모델 코드, 하이퍼파라미터 공간, 옵티마이저 설정을 전달한다\n- **평가분석가에게**: 모델 구조, 예상 강점/약점, 평가 메트릭 권장을 전달한다\n- **리뷰어에게**: 모델 설계서 전문을 전달한다\n\n## 에러 핸들링\n\n- 문제 유형 불명확 시: 데이터 특성에서 추론하고, 사용자에게 확인을 요청\n- GPU 제약 시: 모델 크기를 제한하고 경량 아키텍처(MobileNet, DistilBERT 등)를 우선 제안\n",
+      "training-manager": "---\nname: training-manager\ndescription: \"학습 관리자. 실험 추적(MLflow/W&B), GPU 리소스 관리, 학습 루프 구현, 체크포인트 관리, 재현성 보장, 하이퍼파라미터 튜닝을 수행한다.\"\n---\n\n# Training Manager — 학습 관리자\n\n당신은 ML 학습 프로세스 관리 전문가입니다. 실험의 재현성과 효율성을 보장하며, 체계적인 학습을 수행합니다.\n\n## 핵심 역할\n\n1. **실험 추적**: MLflow / Weights & Biases를 활용한 실험 로깅 체계를 구축한다\n2. **학습 루프**: 학습/검증 루프, 조기 종료, 학습률 스케줄러를 구현한다\n3. **체크포인트 관리**: 최적 모델 저장, 학습 재개, 모델 레지스트리를 설정한다\n4. **하이퍼파라미터 튜닝**: Optuna / Ray Tune을 활용한 자동 튜닝을 설정한다\n5. **재현성 보장**: 랜덤 시드 고정, 환경 기록, deterministic 설정을 적용한다\n\n## 작업 원칙\n\n- 모델 설계자의 코드와 데이터 엔지니어의 파이프라인을 통합하여 학습한다\n- **재현성 최우선**: `torch.manual_seed()`, `np.random.seed()`, `PYTHONHASHSEED` 등 모든 시드를 고정한다\n- **실험 비교 가능**: 모든 실험에 동일한 메트릭을 기록하고, 비교 대시보드를 구성한다\n- Mixed Precision Training(AMP)을 기본 적용하여 학습 효율을 높인다\n- 학습 로그에 GPU 사용량, 배치 처리 시간, 메모리 사용량을 포함한다\n\n## 산출물 포맷\n\n`_workspace/03_training_config.md` 파일로 저장한다:\n\n    # 학습 설정 및 실험 추적\n\n    ## 실험 추적 설정\n    - 플랫폼: [MLflow / W&B / TensorBoard]\n    - 프로젝트명:\n    - 실험명 규칙: [naming convention]\n    - 로깅 항목:\n        - 메트릭: [loss, accuracy, F1, ...]\n        - 파라미터: [lr, batch_size, ...]\n        - 아티팩트: [모델, 설정, 그래프]\n\n    ## 학습 설정\n    | 항목 | 값 | 비고 |\n    |------|-----|------|\n    | Optimizer | [Adam/AdamW/SGD] | |\n    | Learning Rate | | |\n    | LR Scheduler | [CosineAnnealing/StepLR] | |\n    | Batch Size | | |\n    | Epochs (max) | | |\n    | Early Stopping | patience= | monitor= |\n    | Gradient Clipping | max_norm= | |\n    | Mixed Precision | [True/False] | |\n\n    ## 재현성 설정\n    - Random Seed: [42]\n    - CUBLAS_WORKSPACE_CONFIG:\n    - torch.backends.cudnn.deterministic:\n    - 환경 기록: [requirements.txt / conda env export]\n\n    ## 체크포인트 전략\n    - 저장 조건: [val_loss 최소 / 매 N epoch]\n    - 저장 경로:\n    - 모델 레지스트리:\n\n    ## 하이퍼파라미터 튜닝\n    - 도구: [Optuna / Ray Tune]\n    - 탐색 알고리즘: [TPE / Bayesian / Grid]\n    - 시행 횟수:\n    - 목적 함수: [minimize val_loss]\n    - 조기 종료: [MedianPruner / HyperbandPruner]\n\n    ## 학습 스크립트\n    [전체 학습 루프 코드]\n\n    ## 인프라 요구사항\n    | 리소스 | 최소 | 권장 |\n    |--------|------|------|\n    | GPU | | |\n    | VRAM | | |\n    | RAM | | |\n    | Storage | | |\n\n    ## 평가분석가 전달 사항\n\n## 팀 통신 프로토콜\n\n- **모델설계자로부터**: 모델 코드, 하이퍼파라미터 공간, 옵티마이저 설정을 수신한다\n- **데이터엔지니어로부터**: 데이터 로더, 배치 사이즈 권장, 데이터 볼륨을 수신한다\n- **평가분석가에게**: 학습 곡선, 최적 모델 체크포인트, 실험 결과 로그를 전달한다\n- **리뷰어에게**: 학습 설정 전문을 전달한다\n\n## 에러 핸들링\n\n- GPU 미사용 환경 시: CPU 학습 설정으로 전환하고, 데이터 서브샘플링 전략을 제안\n- 학습 발산 시: 학습률 감소, Gradient Clipping 강화, 배치 사이즈 조정 등 안정화 방안을 제시\n"
+    },
+    "skills": {
+      "experiment-tracking-setup/skill.md": "---\nname: experiment-tracking-setup\ndescription: \"MLflow, Weights & Biases 등 실험 추적 도구 설정, 재현성 보장, 모델 레지스트리, 실험 비교 방법론 가이드. '실험 추적', 'MLflow', 'W&B', 'Weights and Biases', '재현성', '모델 레지스트리', '실험 비교', '하이퍼파라미터 로깅' 등 ML 실험 관리 시 이 스킬을 사용한다. training-manager의 실험 관리 역량을 강화한다. 단, 모델 아키텍처 설계나 피처 엔지니어링은 이 스킬의 범위가 아니다.\"\n---\n\n# Experiment Tracking Setup — 실험 추적 및 재현성 가이드\n\nML 실험의 추적, 재현성 보장, 모델 버전 관리를 위한 실전 가이드.\n\n## MLflow 설정\n\n### 기본 구조\n\n```python\nimport mlflow\n\nmlflow.set_tracking_uri(\"http://localhost:5000\")\nmlflow.set_experiment(\"order-prediction\")\n\nwith mlflow.start_run(run_name=\"xgboost-v2\"):\n    # 파라미터 로깅\n    mlflow.log_params({\n        \"model\": \"XGBClassifier\",\n        \"n_estimators\": 500,\n        \"max_depth\": 6,\n        \"learning_rate\": 0.1,\n    })\n\n    # 학습\n    model.fit(X_train, y_train)\n    predictions = model.predict(X_test)\n\n    # 메트릭 로깅\n    mlflow.log_metrics({\n        \"accuracy\": accuracy_score(y_test, predictions),\n        \"f1\": f1_score(y_test, predictions),\n        \"precision\": precision_score(y_test, predictions),\n        \"recall\": recall_score(y_test, predictions),\n    })\n\n    # 모델 저장\n    mlflow.sklearn.log_model(model, \"model\")\n\n    # 아티팩트 저장\n    mlflow.log_artifact(\"confusion_matrix.png\")\n    mlflow.log_artifact(\"feature_importance.csv\")\n```\n\n### 자동 로깅\n\n```python\n# 프레임워크별 자동 로깅\nmlflow.sklearn.autolog()     # scikit-learn\nmlflow.xgboost.autolog()     # XGBoost\nmlflow.lightgbm.autolog()    # LightGBM\nmlflow.pytorch.autolog()     # PyTorch\nmlflow.tensorflow.autolog()  # TensorFlow\n```\n\n## 재현성 보장 체크리스트\n\n### 필수 기록 항목\n\n```python\nimport platform, sys\n\nreproducibility_info = {\n    # 환경\n    \"python_version\": sys.version,\n    \"os\": platform.platform(),\n    \"gpu\": torch.cuda.get_device_name(0) if torch.cuda.is_available() else \"N/A\",\n\n    # 시드\n    \"random_seed\": 42,\n    \"numpy_seed\": 42,\n    \"torch_seed\": 42,\n\n    # 데이터\n    \"data_version\": \"v2.1\",\n    \"data_hash\": hashlib.md5(open('data.csv','rb').read()).hexdigest(),\n    \"train_size\": len(X_train),\n    \"test_size\": len(X_test),\n    \"split_method\": \"StratifiedKFold(5)\",\n\n    # 코드\n    \"git_commit\": subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode().strip(),\n    \"git_branch\": subprocess.check_output(['git', 'branch', '--show-current']).decode().strip(),\n}\nmlflow.log_params(reproducibility_info)\n```\n\n### 시드 고정\n\n```python\nimport random, numpy as np, torch\n\ndef set_seed(seed=42):\n    random.seed(seed)\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n    torch.backends.cudnn.deterministic = True\n    torch.backends.cudnn.benchmark = False\n    os.environ['PYTHONHASHSEED'] = str(seed)\n```\n\n### 의존성 고정\n\n```bash\n# requirements.txt 정확한 버전\npip freeze > requirements.txt\n\n# pip-compile (권장)\npip-compile requirements.in --generate-hashes\n\n# conda\nconda env export --no-builds > environment.yml\n```\n\n## 모델 레지스트리\n\n### MLflow Model Registry 워크플로우\n\n```\n실험(Experiment)\n└── 실행(Run)\n    └── 모델 아티팩트\n        └── 모델 등록 (Model Registry)\n            ├── Stage: Staging → 검증\n            ├── Stage: Production → 배포\n            └── Stage: Archived → 보관\n```\n\n```python\n# 모델 등록\nmlflow.register_model(\n    model_uri=f\"runs:/{run_id}/model\",\n    name=\"order-prediction-model\"\n)\n\n# 스테이지 전환\nclient = mlflow.tracking.MlflowClient()\nclient.transition_model_version_stage(\n    name=\"order-prediction-model\",\n    version=3,\n    stage=\"Production\"\n)\n\n# Production 모델 로드\nmodel = mlflow.pyfunc.load_model(\"models:/order-prediction-model/Production\")\n```\n\n## 실험 비교 프레임워크\n\n### 통계적 검증\n\n```python\nfrom scipy import stats\n\n# 5-fold CV 결과 비교\nmodel_a_scores = [0.85, 0.87, 0.84, 0.86, 0.88]\nmodel_b_scores = [0.82, 0.84, 0.83, 0.81, 0.85]\n\n# 대응 t-검정 (Paired t-test)\nt_stat, p_value = stats.ttest_rel(model_a_scores, model_b_scores)\nprint(f\"p-value: {p_value:.4f}\")\nif p_value < 0.05:\n    print(\"통계적으로 유의미한 차이 있음\")\n```\n\n### 실험 비교 테이블\n\n```markdown\n| 실험 | 모델 | F1 | Precision | Recall | 학습 시간 | 추론 시간 |\n|------|------|-----|-----------|--------|----------|----------|\n| exp-001 | LogReg (baseline) | 0.78 | 0.80 | 0.76 | 2s | 0.1ms |\n| exp-002 | XGBoost | 0.85 | 0.87 | 0.83 | 45s | 0.5ms |\n| exp-003 | LightGBM | 0.86 | 0.88 | 0.84 | 20s | 0.3ms |\n| exp-004 | LightGBM + Optuna | 0.88 | 0.89 | 0.87 | 2h | 0.3ms |\n| exp-005 | Stacking (top3) | 0.89 | 0.90 | 0.88 | 3h | 1.2ms |\n```\n\n## 프로젝트 구조 템플릿\n\n```\nml-project/\n├── data/\n│   ├── raw/              # 원본 데이터 (수정 금지)\n│   ├── processed/        # 전처리 완료\n│   └── external/         # 외부 데이터\n├── notebooks/            # 탐색적 분석\n├── src/\n│   ├── data/             # 데이터 로딩/전처리\n│   ├── features/         # 피처 엔지니어링\n│   ├── models/           # 모델 정의\n│   └── evaluation/       # 평가 로직\n├── configs/              # 하이퍼파라미터 YAML\n├── models/               # 학습된 모델\n├── reports/              # 분석 보고서\n├── requirements.txt\n└── Makefile              # 재현 가능한 실행\n```\n",
+      "feature-engineering-cookbook/skill.md": "---\nname: feature-engineering-cookbook\ndescription: \"피처 엔지니어링 기법 카탈로그: 수치형/범주형/시계열/텍스트 변환, 피처 선택, 피처 스토어 설계. '피처 엔지니어링', '특성 공학', '변수 변환', '인코딩', '스케일링', '피처 선택', '피처 스토어', '피처 중요도' 등 데이터 전처리 및 피처 설계 시 이 스킬을 사용한다. data-engineer의 피처 엔지니어링 역량을 강화한다. 단, 모델 설계나 학습 관리는 이 스킬의 범위가 아니다.\"\n---\n\n# Feature Engineering Cookbook — 피처 엔지니어링 기법 카탈로그\n\n데이터 타입별 변환 기법, 피처 선택 방법, 피처 스토어 설계 가이드.\n\n## 수치형 변환\n\n### 스케일링\n\n| 방법 | 공식 | 적합 | 부적합 |\n|------|------|------|--------|\n| StandardScaler | (x - μ) / σ | 정규분포, SVM, 로지스틱 회귀 | 이상치 민감 |\n| MinMaxScaler | (x - min) / (max - min) | [0,1] 필요, 신경망 | 이상치 민감 |\n| RobustScaler | (x - Q2) / (Q3 - Q1) | 이상치 존재 | — |\n| PowerTransformer | Box-Cox / Yeo-Johnson | 왜도 큰 분포 | 음수값(Box-Cox) |\n| QuantileTransformer | 분위수 기반 | 균일/정규 분포 변환 | 순서 관계 파괴 |\n\n### 이산화 (Binning)\n\n```python\n# 등간격 (Equal Width)\npd.cut(df['age'], bins=5)\n\n# 등빈도 (Equal Frequency)\npd.qcut(df['income'], q=5)\n\n# 도메인 기반\nbins = [0, 18, 30, 50, 65, 100]\nlabels = ['미성년', '청년', '중년', '장년', '노년']\npd.cut(df['age'], bins=bins, labels=labels)\n```\n\n### 수학적 변환\n\n```python\n# 로그 변환 (오른쪽 꼬리 분포)\ndf['log_income'] = np.log1p(df['income'])\n\n# 제곱근 (카운트 데이터)\ndf['sqrt_count'] = np.sqrt(df['count'])\n\n# 역수 (반비례 관계)\ndf['inv_distance'] = 1 / (df['distance'] + 1)\n```\n\n## 범주형 인코딩\n\n| 방법 | 카디널리티 | 순서 | 트리 모델 | 선형 모델 |\n|------|-----------|------|----------|----------|\n| Label Encoding | 무관 | 있음 | ✅ | ❌ |\n| One-Hot Encoding | 낮음(<20) | 없음 | ✅ | ✅ |\n| Target Encoding | 높음 | N/A | ✅ | ✅ |\n| Frequency Encoding | 높음 | N/A | ✅ | ✅ |\n| Binary Encoding | 중간 | N/A | ✅ | ✅ |\n| Ordinal Encoding | 무관 | 있음 | ✅ | ✅ |\n\n### Target Encoding (과적합 방지)\n\n```python\nfrom sklearn.model_selection import KFold\n\ndef target_encode_cv(train, col, target, n_folds=5):\n    \"\"\"K-Fold 기반 타깃 인코딩 — 데이터 누수 방지\"\"\"\n    global_mean = train[target].mean()\n    encoded = pd.Series(index=train.index, dtype=float)\n\n    kf = KFold(n_splits=n_folds, shuffle=True, random_state=42)\n    for train_idx, val_idx in kf.split(train):\n        means = train.iloc[train_idx].groupby(col)[target].mean()\n        encoded.iloc[val_idx] = train.iloc[val_idx][col].map(means)\n\n    encoded.fillna(global_mean, inplace=True)\n    return encoded\n```\n\n## 시계열 피처\n\n```python\n# 날짜 분해\ndf['year'] = df['date'].dt.year\ndf['month'] = df['date'].dt.month\ndf['dayofweek'] = df['date'].dt.dayofweek\ndf['is_weekend'] = df['dayofweek'].isin([5, 6]).astype(int)\ndf['hour'] = df['date'].dt.hour\ndf['is_business_hour'] = df['hour'].between(9, 18).astype(int)\n\n# 순환 인코딩 (월, 시간 등 주기적 변수)\ndf['month_sin'] = np.sin(2 * np.pi * df['month'] / 12)\ndf['month_cos'] = np.cos(2 * np.pi * df['month'] / 12)\n\n# Lag 피처\ndf['sales_lag_1'] = df['sales'].shift(1)\ndf['sales_lag_7'] = df['sales'].shift(7)\n\n# Rolling 통계\ndf['sales_ma_7'] = df['sales'].rolling(7).mean()\ndf['sales_std_7'] = df['sales'].rolling(7).std()\n```\n\n## 피처 선택 방법\n\n### 필터 방법\n\n| 방법 | 수치→수치 | 범주→수치 | 수치→범주 |\n|------|----------|----------|----------|\n| 상관계수 (Pearson) | ✅ | — | — |\n| 상호정보량 (MI) | ✅ | ✅ | ✅ |\n| 카이제곱 | — | — | ✅ |\n| ANOVA F-test | — | — | ✅ |\n| 분산 기반 | ✅ (분산=0 제거) | — | — |\n\n### 래퍼/임베디드 방법\n\n```python\n# 트리 기반 피처 중요도\nfrom sklearn.ensemble import RandomForestClassifier\nmodel = RandomForestClassifier().fit(X, y)\nimportances = pd.Series(model.feature_importances_, index=X.columns)\ntop_features = importances.nlargest(20).index\n\n# Permutation Importance (모델 무관)\nfrom sklearn.inspection import permutation_importance\nresult = permutation_importance(model, X_test, y_test, n_repeats=10)\n\n# SHAP (해석 가능한 피처 중요도)\nimport shap\nexplainer = shap.TreeExplainer(model)\nshap_values = explainer.shap_values(X_test)\nshap.summary_plot(shap_values, X_test)\n```\n\n## 결측치 처리 의사결정\n\n```\n결측 비율 확인\n├── < 5%: 제거 또는 단순 대체(평균/중앙값/최빈값)\n├── 5~30%: 모델 기반 대체 (KNN, MICE, 트리 기반)\n├── 30~50%: 결측 자체를 피처로 + 대체\n│           df['col_missing'] = df['col'].isna().astype(int)\n└── > 50%: 컬럼 제거 고려 (비즈니스 중요도 확인)\n```\n\n## 데이터 누수 방지 체크리스트\n\n- [ ] 타깃 변수에서 파생된 피처가 없는가?\n- [ ] 미래 정보를 사용하는 피처가 없는가?\n- [ ] train/test 분할 전에 인코딩/스케일링을 하지 않았는가?\n- [ ] Target Encoding에 CV를 적용했는가?\n- [ ] 시계열 데이터에서 미래 데이터를 참조하지 않는가?\n",
+      "ml-experiment/skill.md": "---\nname: ml-experiment\ndescription: \"ML 실험의 데이터 준비, 모델 설계, 학습, 평가, 배포 준비를 에이전트 팀이 협업하여 수행하는 풀 ML 파이프라인. 'ML 실험 설계해줘', '모델 학습해줘', '머신러닝 프로젝트', '딥러닝 모델 만들어줘', '분류 모델', '회귀 모델', '데이터 전처리', '모델 평가', '하이퍼파라미터 튜닝', 'MLOps 설정', 'XGBoost 모델', 'PyTorch 모델' 등 ML 실험 전반에 이 스킬을 사용한다. 데이터 전처리만 필요하거나 모델 평가만 필요한 경우에도 지원한다. 단, 모델 서빙 인프라(SageMaker/Vertex AI) 직접 배포, 대규모 분산 학습 클러스터 관리, 실시간 추론 서비스 운영은 이 스킬의 범위가 아니다.\"\n---\n\n# ML Experiment — ML 실험 관리 풀 파이프라인\n\nML 실험의 데이터준비→모델설계→학습→평가→배포준비를 에이전트 팀이 협업하여 한 번에 수행한다.\n\n## 실행 모드\n\n**에이전트 팀** — 5명이 SendMessage로 직접 통신하며 교차 검증한다.\n\n## 에이전트 구성\n\n| 에이전트 | 파일 | 역할 | 타입 |\n|---------|------|------|------|\n| data-engineer | `.claude/agents/data-engineer.md` | 수집, 전처리, 피처엔지니어링 | general-purpose |\n| model-designer | `.claude/agents/model-designer.md` | 아키텍처, 하이퍼파라미터, 손실함수 | general-purpose |\n| training-manager | `.claude/agents/training-manager.md` | 실험추적, 체크포인트, 재현성 | general-purpose |\n| evaluation-analyst | `.claude/agents/evaluation-analyst.md` | 메트릭, 편향검증, 해석가능성 | general-purpose |\n| experiment-reviewer | `.claude/agents/experiment-reviewer.md` | 교차검증, 재현성, 최종보고서 | general-purpose |\n\n## 워크플로우\n\n### Phase 1: 준비 (오케스트레이터 직접 수행)\n\n1. 사용자 입력에서 추출한다:\n    - **문제 정의**: 분류/회귀/생성/추천/시계열 등\n    - **데이터**: 데이터 소스, 파일, 형식, 규모\n    - **목표 메트릭**: 정확도, F1, RMSE 등 구체적 목표\n    - **제약 조건** (선택): 프레임워크, GPU, 추론 속도, 모델 크기\n    - **기존 코드** (선택): 기존 모델, 전처리 코드, 실험 결과\n2. `_workspace/` 디렉토리를 프로젝트 루트에 생성한다\n3. 입력을 정리하여 `_workspace/00_input.md`에 저장한다\n4. 기존 파일이 있으면 `_workspace/`에 복사하고 해당 Phase를 건너뛴다\n5. 요청 범위에 따라 **실행 모드를 결정**한다\n\n### Phase 2: 팀 구성 및 실행\n\n| 순서 | 작업 | 담당 | 의존 | 산출물 |\n|------|------|------|------|--------|\n| 1 | 데이터 준비 | data-engineer | 없음 | `_workspace/01_data_preparation.md` |\n| 2 | 모델 설계 | model-designer | 작업 1 | `_workspace/02_model_design.md` |\n| 3 | 학습 설정 | training-manager | 작업 1, 2 | `_workspace/03_training_config.md` |\n| 4 | 평가 분석 | evaluation-analyst | 작업 1, 2, 3 | `_workspace/04_evaluation_report.md` |\n| 5 | 실험 리뷰 | experiment-reviewer | 작업 1~4 | `_workspace/05_review_report.md` |\n\n**팀원 간 소통 흐름:**\n- data-engineer 완료 → model-designer에게 피처·형상·데이터 특성 전달, training에게 데이터 로더 전달, evaluation에게 클래스 분포 전달\n- model-designer 완료 → training에게 모델 코드·하이퍼파라미터 공간 전달, evaluation에게 모델 구조·평가 메트릭 전달\n- training 완료 → evaluation에게 학습 곡선·최적 모델·실험 로그 전달\n- evaluation 완료 → reviewer에게 평가 보고서 전달\n- reviewer는 모든 산출물을 교차 검증. 🔴 필수 수정 발견 시 해당 에이전트에게 수정 요청 → 재작업 → 재검증 (최대 2회)\n\n### Phase 3: 통합 및 최종 산출물\n\n1. `_workspace/` 내 모든 파일을 확인한다\n2. 리뷰 보고서의 🔴 필수 수정이 모두 반영되었는지 확인한다\n3. 최종 요약을 사용자에게 보고한다:\n    - 데이터 준비 — `01_data_preparation.md`\n    - 모델 설계 — `02_model_design.md`\n    - 학습 설정 — `03_training_config.md`\n    - 평가 보고서 — `04_evaluation_report.md`\n    - 리뷰 보고서 — `05_review_report.md`\n    - 실험 코드 — `experiment_code/`\n\n## 작업 규모별 모드\n\n| 사용자 요청 패턴 | 실행 모드 | 투입 에이전트 |\n|----------------|----------|-------------|\n| \"ML 실험 전체 설계해줘\" | **풀 파이프라인** | 5명 전원 |\n| \"데이터 전처리해줘\" | **데이터 모드** | data-engineer + reviewer |\n| \"모델 아키텍처 설계해줘\" | **모델 모드** | model-designer + reviewer |\n| \"이 모델 평가해줘\" (기존 결과) | **평가 모드** | evaluation-analyst + reviewer |\n| \"이 실험 리뷰해줘\" | **리뷰 모드** | reviewer 단독 |\n\n**기존 파일 활용**: 사용자가 전처리 코드, 학습된 모델 등을 제공하면, 해당 단계를 건너뛴다.\n\n## 데이터 전달 프로토콜\n\n| 전략 | 방식 | 용도 |\n|------|------|------|\n| 파일 기반 | `_workspace/` 디렉토리 | 주요 산출물 저장 및 공유 |\n| 코드 기반 | `_workspace/experiment_code/` | 실행 가능한 코드 |\n| 메시지 기반 | SendMessage | 실시간 핵심 정보 전달, 수정 요청 |\n\n파일명 컨벤션: `{순번}_{에이전트}_{산출물}.{확장자}`\n\n## 에러 핸들링\n\n| 에러 유형 | 전략 |\n|----------|------|\n| 데이터 미제공 | 공개 데이터셋 추천 + 합성 데이터 생성 코드 제공 |\n| GPU 부재 | CPU 최적화 설정 + 경량 모델 우선 제안 |\n| 문제 유형 불명확 | 데이터 특성에서 추론 + 사용자 확인 요청 |\n| 학습 발산 | LR 감소, Gradient Clipping, 배치 사이즈 조정 방안 제시 |\n| 에이전트 실패 | 1회 재시도 → 실패 시 해당 산출물 없이 진행, 리뷰 보고서에 누락 명시 |\n| 리뷰에서 🔴 발견 | 해당 에이전트에 수정 요청 → 재작업 → 재검증 (최대 2회) |\n\n## 테스트 시나리오\n\n### 정상 흐름\n**프롬프트**: \"Kaggle 타이타닉 데이터로 생존 예측 분류 모델을 만들어줘. F1 스코어 0.85 이상 목표.\"\n**기대 결과**:\n- 데이터: EDA(결측치, 분포, 상관관계), 전처리 파이프라인(Imputer+Scaler+Encoder), 층화 분할\n- 모델: 베이스라인(LogisticRegression) + XGBoost + RandomForest 설계\n- 학습: Optuna 하이퍼파라미터 튜닝, MLflow 실험 추적\n- 평가: Confusion Matrix, SHAP 분석, 모델 비교, 통계적 검증\n- 리뷰: 데이터 누수 없음 확인, 재현성 확인, 결론 타당성 검증\n\n### 기존 파일 활용 흐름\n**프롬프트**: \"이 학습된 모델을 평가하고 개선 방향 제안해줘\" + 모델 파일 첨부\n**기대 결과**:\n- 기존 모델을 `_workspace/`에 복사\n- 평가 모드: evaluation-analyst + reviewer 투입\n- 성능 분석, 오류 분석, 개선 권고 제공\n\n### 에러 흐름\n**프롬프트**: \"머신러닝 모델 만들어줘, 데이터는 아직 없어\"\n**기대 결과**:\n- 문제 유형 확인 요청\n- 공개 데이터셋(UCI/Kaggle/HuggingFace) 3~5개 추천\n- 합성 데이터 생성 코드 제공\n- \"데이터 확보 후 전체 파이프라인 실행 가능\" 명시\n\n\n## 에이전트별 확장 스킬\n\n| 스킬 | 경로 | 강화 대상 에이전트 | 역할 |\n|------|------|-----------------|------|\n| feature-engineering-cookbook | `.claude/skills/feature-engineering-cookbook/skill.md` | data-engineer | 수치/범주/시계열 변환, 피처 선택, 데이터 누수 방지 |\n| model-selection-guide | `.claude/skills/model-selection-guide/skill.md` | model-designer, evaluation-analyst | 문제별 모델 추천, 하이퍼파라미터 튜닝, 앙상블 |\n| experiment-tracking-setup | `.claude/skills/experiment-tracking-setup/skill.md` | training-manager | MLflow 설정, 재현성 보장, 모델 레지스트리, 실험 비교 |\n",
+      "model-selection-guide/skill.md": "---\nname: model-selection-guide\ndescription: \"ML 문제 유형별 모델 선택 매트릭스, 하이퍼파라미터 튜닝 전략, 앙상블 방법론 가이드. '모델 선택', '알고리즘 비교', '하이퍼파라미터 튜닝', 'Optuna', '앙상블', 'XGBoost vs LightGBM', '모델 비교', '교차 검증' 등 ML 모델 선택 및 설계 시 이 스킬을 사용한다. model-designer와 evaluation-analyst의 모델 설계 역량을 강화한다. 단, 데이터 전처리나 학습 인프라 관리는 이 스킬의 범위가 아니다.\"\n---\n\n# Model Selection Guide — ML 모델 선택 매트릭스 가이드\n\n문제 유형, 데이터 특성, 제약 조건에 따른 최적 모델 선택과 튜닝 전략.\n\n## 문제 유형별 모델 추천\n\n### 정형 데이터 (Tabular)\n\n| 문제 유형 | 베이스라인 | 최적 후보 | 비고 |\n|----------|----------|----------|------|\n| 이진 분류 | LogisticRegression | XGBoost, LightGBM | 트리 기반 대부분 최적 |\n| 다중 분류 | LogisticRegression(OVR) | LightGBM, CatBoost | CatBoost: 범주형 다수 |\n| 회귀 | LinearRegression | XGBoost, LightGBM | 랜덤포레스트: 과적합 방지 |\n| 순위 | — | LambdaMART (LightGBM) | 검색/추천 |\n| 이상 탐지 | IsolationForest | AutoEncoder, LOF | 비지도/준지도 |\n| 시계열 | ARIMA | Prophet, LightGBM | 피처 기반 시계열은 트리 |\n\n### 비정형 데이터\n\n| 데이터 | 모델 | 프레임워크 |\n|--------|------|-----------|\n| 이미지 | ResNet, EfficientNet, ViT | PyTorch, timm |\n| 텍스트 | BERT, RoBERTa | HuggingFace Transformers |\n| 음성 | Whisper, Wav2Vec | HuggingFace |\n| 그래프 | GCN, GAT | PyG, DGL |\n\n## XGBoost vs LightGBM vs CatBoost\n\n| 기준 | XGBoost | LightGBM | CatBoost |\n|------|---------|----------|----------|\n| 속도 | 중간 | 빠름 | 느림 |\n| 메모리 | 많음 | 적음 | 중간 |\n| 범주형 처리 | 인코딩 필요 | 내장 지원 | 최고 성능 |\n| 결측치 처리 | 내장 | 내장 | 내장 |\n| 과적합 방지 | regularization | GOSS, EFB | Ordered Boosting |\n| GPU 지원 | ✅ | ✅ | ✅ |\n| 기본 추천 | 범용 | 대용량, 속도 중시 | 범주형 다수 |\n\n## 하이퍼파라미터 튜닝\n\n### Optuna 기본 구조\n\n```python\nimport optuna\n\ndef objective(trial):\n    params = {\n        'n_estimators': trial.suggest_int('n_estimators', 100, 1000),\n        'max_depth': trial.suggest_int('max_depth', 3, 10),\n        'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.3, log=True),\n        'subsample': trial.suggest_float('subsample', 0.6, 1.0),\n        'colsample_bytree': trial.suggest_float('colsample_bytree', 0.6, 1.0),\n        'reg_alpha': trial.suggest_float('reg_alpha', 1e-8, 10.0, log=True),\n        'reg_lambda': trial.suggest_float('reg_lambda', 1e-8, 10.0, log=True),\n    }\n    model = XGBClassifier(**params)\n    score = cross_val_score(model, X, y, cv=5, scoring='f1').mean()\n    return score\n\nstudy = optuna.create_study(direction='maximize')\nstudy.optimize(objective, n_trials=100)\n```\n\n### 튜닝 우선순위\n\n```\nLightGBM 튜닝 순서:\n1단계 (영향 大): learning_rate, n_estimators, num_leaves\n2단계 (영향 中): max_depth, min_child_samples, subsample\n3단계 (영향 小): reg_alpha, reg_lambda, colsample_bytree\n4단계 (미세 조정): min_split_gain, path_smooth\n```\n\n## 교차 검증 전략\n\n| 전략 | 적합 | 코드 |\n|------|------|------|\n| K-Fold | 범용 (충분한 데이터) | `KFold(n_splits=5)` |\n| Stratified K-Fold | 불균형 분류 | `StratifiedKFold(n_splits=5)` |\n| Time Series Split | 시계열 | `TimeSeriesSplit(n_splits=5)` |\n| Group K-Fold | 그룹 데이터 누수 방지 | `GroupKFold(n_splits=5)` |\n| Repeated K-Fold | 더 안정적 추정 | `RepeatedKFold(n_splits=5, n_repeats=3)` |\n\n## 앙상블 방법\n\n### Stacking\n\n```python\nfrom sklearn.ensemble import StackingClassifier\n\nestimators = [\n    ('xgb', XGBClassifier()),\n    ('lgbm', LGBMClassifier()),\n    ('cat', CatBoostClassifier(verbose=0)),\n]\nstack = StackingClassifier(\n    estimators=estimators,\n    final_estimator=LogisticRegression(),\n    cv=5\n)\n```\n\n### Blending 가중치\n\n```python\n# 최적 가중치 탐색\nfrom scipy.optimize import minimize\n\ndef objective(weights):\n    pred = sum(w * p for w, p in zip(weights, predictions))\n    return -f1_score(y_true, pred > 0.5)\n\nresult = minimize(objective, x0=[1/3]*3, constraints={'type': 'eq', 'fun': lambda w: sum(w)-1})\n```\n\n## 모델 선택 의사결정 트리\n\n```\n데이터 유형?\n├── 정형 (테이블)\n│   ├── 행 수 < 1000 → 로지스틱 회귀 / SVM\n│   ├── 1000 < 행 수 < 100만 → XGBoost / LightGBM\n│   └── 행 수 > 100만 → LightGBM (속도 우선)\n├── 이미지 → CNN (EfficientNet, ViT)\n├── 텍스트 → Transformer (BERT)\n└── 시계열\n    ├── 단변량 → Prophet / ARIMA\n    └── 다변량 → LightGBM (피처 기반) / LSTM\n```\n"
+    }
+  }
 }

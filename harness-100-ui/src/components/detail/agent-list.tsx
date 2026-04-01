@@ -1,10 +1,13 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import type { Agent } from "@/lib/types";
+import type { Agent, Harness } from "@/lib/types";
+import { generateAgentMd, generateSkillMd } from "@/lib/zip-builder";
+import { MarkdownViewer } from "@/components/common/markdown-viewer";
 
 interface AgentListProps {
   readonly agents: ReadonlyArray<Agent>;
+  readonly harness: Harness;
 }
 
 const ROLE_EMOJI_MAP: ReadonlyArray<readonly [ReadonlyArray<string>, string]> = [
@@ -30,107 +33,164 @@ function getAgentEmoji(role: string, name: string): string {
   return "🤖";
 }
 
-export function AgentList({ agents }: AgentListProps) {
+interface MdViewerState {
+  readonly title: string;
+  readonly content: string;
+}
+
+export function AgentList({ agents, harness }: AgentListProps) {
   const [expandedId, setExpandedId] = useState<string | null>(
     agents.length > 0 ? agents[0].id : null,
   );
+  const [mdViewer, setMdViewer] = useState<MdViewerState | null>(null);
 
   const handleToggle = useCallback((agentId: string) => {
     setExpandedId((prev) => (prev === agentId ? null : agentId));
   }, []);
 
+  const handleViewAgentMd = useCallback((agent: Agent) => {
+    setMdViewer({
+      title: `${agent.name} — 에이전트 마크다운`,
+      content: generateAgentMd(agent),
+    });
+  }, []);
+
+  const handleViewSkillMd = useCallback(() => {
+    setMdViewer({
+      title: `${harness.skill.name} — 스킬 마크다운`,
+      content: generateSkillMd(harness),
+    });
+  }, [harness]);
+
+  const handleCloseMd = useCallback(() => {
+    setMdViewer(null);
+  }, []);
+
   return (
-    <div className="space-y-2">
-      {agents.map((agent) => {
-        const isExpanded = expandedId === agent.id;
-        const emoji = getAgentEmoji(agent.role, agent.name);
+    <>
+      <div className="space-y-2">
+        {agents.map((agent) => {
+          const isExpanded = expandedId === agent.id;
+          const emoji = getAgentEmoji(agent.role, agent.name);
 
-        return (
-          <div
-            key={agent.id}
-            className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--card)]"
-          >
-            <button
-              type="button"
-              onClick={() => handleToggle(agent.id)}
-              className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-[var(--muted)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
+          return (
+            <div
+              key={agent.id}
+              className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--card)]"
             >
-              <span className="text-xl" role="img" aria-label={agent.role}>
-                {emoji}
-              </span>
-              <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-[var(--foreground)]">
-                  {agent.name}
-                </p>
-                <p className="truncate text-xs text-[var(--muted-foreground)]">{agent.role}</p>
-              </div>
-              <svg
-                className={`h-4 w-4 shrink-0 text-[var(--muted-foreground)] transition-transform ${
-                  isExpanded ? "rotate-180" : ""
-                }`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+              <button
+                type="button"
+                onClick={() => handleToggle(agent.id)}
+                className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-[var(--muted)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
+                <span className="text-xl" role="img" aria-label={agent.role}>
+                  {emoji}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-semibold text-[var(--foreground)]">
+                    {agent.name}
+                  </p>
+                  <p className="truncate text-xs text-[var(--muted-foreground)]">{agent.role}</p>
+                </div>
+                <svg
+                  className={`h-4 w-4 shrink-0 text-[var(--muted-foreground)] transition-transform ${
+                    isExpanded ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
 
-            {isExpanded && (
-              <div className="border-t border-[var(--border)] px-4 py-3">
-                <p className="text-sm leading-relaxed text-[var(--card-foreground)]">
-                  {agent.description}
-                </p>
+              {isExpanded && (
+                <div className="border-t border-[var(--border)] px-4 py-3">
+                  <p className="text-sm leading-relaxed text-[var(--card-foreground)]">
+                    {agent.description}
+                  </p>
 
-                {agent.tools.length > 0 && (
-                  <div className="mt-3">
-                    <p className="mb-1.5 text-xs font-medium text-[var(--muted-foreground)]">
-                      도구
-                    </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {agent.tools.map((tool) => (
-                        <span
-                          key={tool}
-                          className="rounded-full bg-[var(--badge-tool-bg)] px-2.5 py-0.5 text-xs font-medium text-[var(--badge-tool-fg)]"
-                        >
-                          {tool}
-                        </span>
-                      ))}
+                  {agent.tools.length > 0 && (
+                    <div className="mt-3">
+                      <p className="mb-1.5 text-xs font-medium text-[var(--muted-foreground)]">
+                        도구
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {agent.tools.map((tool) => (
+                          <span
+                            key={tool}
+                            className="rounded-full bg-[var(--badge-tool-bg)] px-2.5 py-0.5 text-xs font-medium text-[var(--badge-tool-fg)]"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {agent.dependencies.length > 0 && (
-                  <div className="mt-3">
-                    <p className="mb-1 text-xs font-medium text-[var(--muted-foreground)]">
-                      의존성
-                    </p>
-                    <p className="text-xs text-[var(--muted-foreground)]">
-                      {agent.dependencies.join(", ")}
-                    </p>
-                  </div>
-                )}
+                  {agent.dependencies.length > 0 && (
+                    <div className="mt-3">
+                      <p className="mb-1 text-xs font-medium text-[var(--muted-foreground)]">
+                        의존성
+                      </p>
+                      <p className="text-xs text-[var(--muted-foreground)]">
+                        {agent.dependencies.join(", ")}
+                      </p>
+                    </div>
+                  )}
 
-                {agent.outputTemplate && (
-                  <div className="mt-3">
-                    <p className="mb-1.5 text-xs font-medium text-[var(--muted-foreground)]">
-                      산출물 템플릿
-                    </p>
-                    <pre className="overflow-x-auto rounded-md bg-[var(--code-bg)] p-3 text-xs leading-relaxed text-[var(--code-fg)]">
-                      {agent.outputTemplate}
-                    </pre>
+                  {agent.outputTemplate && (
+                    <div className="mt-3">
+                      <p className="mb-1.5 text-xs font-medium text-[var(--muted-foreground)]">
+                        산출물 템플릿
+                      </p>
+                      <pre className="overflow-x-auto rounded-md bg-[var(--code-bg)] p-3 text-xs leading-relaxed text-[var(--code-fg)]">
+                        {agent.outputTemplate}
+                      </pre>
+                    </div>
+                  )}
+
+                  {/* MD 보기 버튼 */}
+                  <div className="mt-3 flex justify-end">
+                    <button
+                      type="button"
+                      onClick={() => handleViewAgentMd(agent)}
+                      className="rounded-md border border-[var(--border)] bg-[var(--secondary)] px-3 py-1.5 text-xs font-medium text-[var(--secondary-foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
+                    >
+                      MD 보기
+                    </button>
                   </div>
-                )}
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+
+        {/* 스킬 마크다운 보기 버튼 */}
+        <button
+          type="button"
+          onClick={handleViewSkillMd}
+          className="flex w-full items-center justify-center gap-2 rounded-lg border border-dashed border-[var(--border)] bg-[var(--card)] px-4 py-3 text-sm font-medium text-[var(--muted-foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-base focus-ring"
+        >
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          스킬 마크다운 보기
+        </button>
+      </div>
+
+      {/* 마크다운 뷰어 모달 */}
+      <MarkdownViewer
+        title={mdViewer?.title ?? ""}
+        content={mdViewer?.content ?? ""}
+        open={mdViewer !== null}
+        onClose={handleCloseMd}
+      />
+    </>
   );
 }

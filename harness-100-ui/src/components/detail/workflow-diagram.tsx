@@ -5,9 +5,9 @@ import {
   ReactFlow,
   Background,
   Controls,
-  MiniMap,
   type Node,
   type Edge,
+  MarkerType,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import type { Agent } from "@/lib/types";
@@ -16,42 +16,33 @@ interface WorkflowDiagramProps {
   readonly agents: ReadonlyArray<Agent>;
 }
 
-const NODE_WIDTH = 180;
-const NODE_HEIGHT = 60;
-const COLUMN_GAP = 220;
-const ROW_GAP = 100;
+const NODE_W = 160;
+const NODE_H = 52;
+const GAP_X = 60;
+const GAP_Y = 28;
 
-interface ColumnAssignment {
-  readonly agentId: string;
-  readonly column: number;
-}
-
-function computeColumnAssignments(
+function computeDepth(
   agents: ReadonlyArray<Agent>,
-): ReadonlyArray<ColumnAssignment> {
-  const agentIds = new Set(agents.map((a) => a.id));
-  const columnMap = new Map<string, number>();
+): Map<string, number> {
+  const ids = new Set(agents.map((a) => a.id));
+  const depth = new Map<string, number>();
 
-  // Iteratively resolve columns using BFS-like approach
   let changed = true;
   while (changed) {
     changed = false;
     for (const agent of agents) {
-      const validDeps = agent.dependencies.filter((d) => agentIds.has(d));
-      if (validDeps.length === 0) {
-        if (!columnMap.has(agent.id)) {
-          columnMap.set(agent.id, 0);
+      const deps = agent.dependencies.filter((d) => ids.has(d));
+      if (deps.length === 0) {
+        if (!depth.has(agent.id)) {
+          depth.set(agent.id, 0);
           changed = true;
         }
       } else {
-        const depColumns = validDeps.map((d) => columnMap.get(d));
-        if (depColumns.every((c) => c !== undefined)) {
-          const maxDepCol = Math.max(
-            ...(depColumns as ReadonlyArray<number>),
-          );
-          const newCol = maxDepCol + 1;
-          if (columnMap.get(agent.id) !== newCol) {
-            columnMap.set(agent.id, newCol);
+        const depDepths = deps.map((d) => depth.get(d));
+        if (depDepths.every((d) => d !== undefined)) {
+          const col = Math.max(...(depDepths as number[])) + 1;
+          if (depth.get(agent.id) !== col) {
+            depth.set(agent.id, col);
             changed = true;
           }
         }
@@ -59,64 +50,84 @@ function computeColumnAssignments(
     }
   }
 
-  // Assign column 0 to any unresolved agents (circular deps fallback)
-  for (const agent of agents) {
-    if (!columnMap.has(agent.id)) {
-      columnMap.set(agent.id, 0);
-    }
+  for (const a of agents) {
+    if (!depth.has(a.id)) depth.set(a.id, 0);
   }
-
-  return agents.map((a) => ({
-    agentId: a.id,
-    column: columnMap.get(a.id) ?? 0,
-  }));
+  return depth;
 }
 
-function buildNodesAndEdges(agents: ReadonlyArray<Agent>): {
+function buildGraph(agents: ReadonlyArray<Agent>): {
   readonly nodes: Node[];
   readonly edges: Edge[];
 } {
-  const assignments = computeColumnAssignments(agents);
-  const agentIds = new Set(agents.map((a) => a.id));
+  const depthMap = computeDepth(agents);
+  const ids = new Set(agents.map((a) => a.id));
 
-  // Group agents by column to compute row positions
-  const columnGroups = new Map<number, string[]>();
-  for (const { agentId, column } of assignments) {
-    const group = columnGroups.get(column) ?? [];
-    columnGroups.set(column, [...group, agentId]);
+  // Group by column
+  const columns = new Map<number, string[]>();
+  for (const a of agents) {
+    const col = depthMap.get(a.id) ?? 0;
+    columns.set(col, [...(columns.get(col) ?? []), a.id]);
   }
 
-  const positionMap = new Map<string, { x: number; y: number }>();
-  for (const [column, agentIdsInCol] of columnGroups) {
-    agentIdsInCol.forEach((id, rowIndex) => {
-      positionMap.set(id, {
-        x: column * COLUMN_GAP,
-        y: rowIndex * ROW_GAP,
+  const maxCol = Math.max(...Array.from(columns.keys()), 0);
+  const maxRows = Math.max(
+    ...Array.from(columns.values()).map((arr) => arr.length),
+    1,
+  );
+
+  // Center each column vertically
+  const totalH = maxRows * (NODE_H + GAP_Y) - GAP_Y;
+  const pos = new Map<string, { x: number; y: number }>();
+  for (const [col, agentIds] of columns) {
+    const colH = agentIds.length * (NODE_H + GAP_Y) - GAP_Y;
+    const offsetY = (totalH - colH) / 2;
+    agentIds.forEach((id, row) => {
+      pos.set(id, {
+        x: col * (NODE_W + GAP_X),
+        y: offsetY + row * (NODE_H + GAP_Y),
       });
     });
   }
 
   const nodes: Node[] = agents.map((agent) => {
-    const pos = positionMap.get(agent.id) ?? { x: 0, y: 0 };
+    const p = pos.get(agent.id) ?? { x: 0, y: 0 };
+    const col = depthMap.get(agent.id) ?? 0;
+    const isFirst = col === 0;
+    const isLast = col === maxCol;
+
+    // Use short label: if name is long (merged agents), use role instead
+    const shortLabel = agent.name.length > 16 ? agent.role.split(" ").slice(0, 3).join(" ") : agent.name;
+
     return {
       id: agent.id,
-      position: pos,
-      data: { label: `${agent.name}\n${agent.role}` },
+      position: p,
+      data: { label: shortLabel },
       style: {
-        width: NODE_WIDTH,
-        height: NODE_HEIGHT,
+        width: NODE_W,
+        height: NODE_H,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         fontSize: "12px",
+        fontWeight: 500,
         textAlign: "center" as const,
-        borderRadius: "8px",
-        border: "1px solid var(--node-border)",
-        background: "var(--node-bg)",
-        color: "var(--node-fg)",
-        whiteSpace: "pre-line" as const,
-        padding: "8px",
-        lineHeight: "1.3",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        borderRadius: "10px",
+        border: isFirst
+          ? "2px solid var(--primary)"
+          : isLast
+            ? "2px solid var(--success)"
+            : "1.5px solid var(--node-border)",
+        background: isFirst
+          ? "var(--info-bg)"
+          : isLast
+            ? "var(--success-bg)"
+            : "var(--node-bg)",
+        color: "var(--foreground)",
+        padding: "6px 10px",
+        boxShadow: "var(--shadow-sm)",
       },
       draggable: false,
       connectable: false,
@@ -126,13 +137,20 @@ function buildNodesAndEdges(agents: ReadonlyArray<Agent>): {
   const edges: Edge[] = [];
   for (const agent of agents) {
     for (const dep of agent.dependencies) {
-      if (agentIds.has(dep)) {
+      if (ids.has(dep)) {
         edges.push({
           id: `${dep}->${agent.id}`,
           source: dep,
           target: agent.id,
+          type: "smoothstep",
           animated: true,
-          style: { stroke: "var(--edge-stroke)", strokeWidth: 2 },
+          style: { stroke: "var(--primary)", strokeWidth: 2 },
+          markerEnd: {
+            type: MarkerType.ArrowClosed,
+            color: "var(--primary)",
+            width: 16,
+            height: 16,
+          },
         });
       }
     }
@@ -142,35 +160,36 @@ function buildNodesAndEdges(agents: ReadonlyArray<Agent>): {
 }
 
 export function WorkflowDiagram({ agents }: WorkflowDiagramProps) {
-  const { nodes, edges } = useMemo(() => buildNodesAndEdges(agents), [agents]);
+  const { nodes, edges } = useMemo(() => buildGraph(agents), [agents]);
 
   if (agents.length === 0) {
     return (
-      <div className="flex h-[300px] items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--muted)] text-sm text-[var(--muted-foreground)]">
+      <div className="flex h-[200px] items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--muted)] text-sm text-[var(--muted-foreground)]">
         에이전트가 없습니다.
       </div>
     );
   }
 
   return (
-    <div className="h-[280px] sm:h-[350px] lg:h-[400px] min-h-[300px] overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--card)]">
+    <div className="workflow-diagram h-[180px] sm:h-[200px] lg:h-[220px] overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--card)]">
       <ReactFlow
         nodes={nodes}
         edges={edges}
         fitView
+        fitViewOptions={{ padding: 0.15, maxZoom: 1 }}
         nodesDraggable={false}
         nodesConnectable={false}
         elementsSelectable={false}
         panOnDrag
         zoomOnScroll
+        minZoom={0.5}
+        maxZoom={1.5}
         proOptions={{ hideAttribution: true }}
       >
-        <Background color="var(--border)" gap={16} />
-        <Controls showInteractive={false} />
-        <MiniMap
-          nodeColor="var(--node-border)"
-          maskColor="rgba(128,128,128,0.3)"
-          style={{ height: 80 }}
+        <Background color="var(--border)" gap={20} size={1} />
+        <Controls
+          showInteractive={false}
+          position="bottom-right"
         />
       </ReactFlow>
     </div>

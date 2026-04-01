@@ -231,7 +231,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
               <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
                 에이전트 ({harness.agents.length})
               </h2>
-              <AgentList agents={harness.agents} />
+              <AgentList agents={harness.agents} harness={harness} />
             </section>
 
             {/* Right panel: Workflow + Outputs */}

@@ -2,8 +2,7 @@ import type { Agent, Harness, Skill, ExecutionStep } from "./types";
 
 /**
  * Merge multiple harnesses into a single combined harness.
- * Agents are prefixed with harness slug to avoid filename conflicts.
- * Skills are combined into a single orchestrator.
+ * Uses short numeric prefix (h0_, h1_) to avoid ID collisions.
  */
 export function mergeHarnesses(harnesses: ReadonlyArray<Harness>): Harness {
   if (harnesses.length === 0) {
@@ -19,18 +18,21 @@ export function mergeHarnesses(harnesses: ReadonlyArray<Harness>): Harness {
   const allFrameworks = new Set<string>();
   const allTriggers: string[] = [];
 
-  for (const harness of harnesses) {
+  for (let i = 0; i < harnesses.length; i++) {
+    const harness = harnesses[i];
+    const prefix = `h${i}`;
+
     const prefixedAgents = harness.agents.map((agent) => ({
       ...agent,
-      id: `${harness.slug}_${agent.id}`,
-      dependencies: agent.dependencies.map((d) => `${harness.slug}_${d}`),
+      id: `${prefix}_${agent.id}`,
+      dependencies: agent.dependencies.map((d) => `${prefix}_${d}`),
     }));
     allAgents.push(...prefixedAgents);
 
     const prefixedSteps = harness.skill.executionOrder.map((step) => ({
       ...step,
-      agentId: `${harness.slug}_${step.agentId}`,
-      dependsOn: step.dependsOn.map((d) => `${harness.slug}_${d}`),
+      agentId: `${prefix}_${step.agentId}`,
+      dependsOn: step.dependsOn.map((d) => `${prefix}_${d}`),
     }));
     allSteps.push(...prefixedSteps);
 
@@ -55,9 +57,9 @@ export function mergeHarnesses(harnesses: ReadonlyArray<Harness>): Harness {
 
   return {
     id: 0,
-    slug: harnesses.map((h) => h.slug).join("_"),
-    name: harnesses.map((h) => h.name).join(" + "),
-    description: harnesses.map((h) => h.description).join(". "),
+    slug: "merged-harness",
+    name: `${harnesses.length}개 하네스 조합`,
+    description: harnesses.map((h) => h.name).join(", "),
     category: harnesses[0].category,
     agents: allAgents,
     skill: mergedSkill,

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useCallback } from "react";
 import Fuse, { type IFuseOptions } from "fuse.js";
 import type { HarnessMeta } from "@/lib/types";
+import { CATEGORIES } from "@/lib/constants";
 
 interface HarnessSelectorProps {
   readonly catalog: ReadonlyArray<HarnessMeta>;
@@ -12,13 +13,8 @@ interface HarnessSelectorProps {
 }
 
 const FUSE_OPTIONS: IFuseOptions<HarnessMeta> = {
-  keys: [
-    { name: "name", weight: 2 },
-    { name: "slug", weight: 1.5 },
-    { name: "description", weight: 1 },
-  ],
+  keys: ["name", "slug", "description"],
   threshold: 0.4,
-  includeScore: true,
 };
 
 function padId(id: number): string {
@@ -32,92 +28,117 @@ export function HarnessSelector({
   onRemove,
 }: HarnessSelectorProps) {
   const [query, setQuery] = useState("");
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [debouncedQuery, setDebouncedQuery] = useState("");
 
-  const fuse = useMemo(
-    () => new Fuse([...catalog], FUSE_OPTIONS),
-    [catalog],
-  );
+  const handleSearch = useCallback((value: string) => {
+    setQuery(value);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setDebouncedQuery(value), 200);
+  }, []);
+
+  const fuse = useMemo(() => new Fuse([...catalog], FUSE_OPTIONS), [catalog]);
 
   const filteredItems = useMemo(() => {
-    if (!query.trim()) return catalog;
-    return fuse.search(query).map((r) => r.item);
-  }, [fuse, query, catalog]);
+    if (!debouncedQuery.trim()) return catalog;
+    return fuse.search(debouncedQuery).map((r) => r.item);
+  }, [fuse, debouncedQuery, catalog]);
 
-  const selectedSet = useMemo(
-    () => new Set(selectedIds),
-    [selectedIds],
+  const selectedItems = useMemo(
+    () => catalog.filter((h) => selectedIds.includes(h.id)),
+    [catalog, selectedIds],
   );
 
-  const handleToggle = (id: number) => {
-    if (selectedSet.has(id)) {
-      onRemove(id);
-    } else {
-      onAdd(id);
+  const groupedItems = useMemo(() => {
+    const items = filteredItems.filter((h) => !selectedIds.includes(h.id));
+    const groups: { label: string; items: ReadonlyArray<HarnessMeta> }[] = [];
+    for (const cat of CATEGORIES) {
+      const catItems = items.filter((h) => h.category === cat.slug);
+      if (catItems.length > 0) {
+        groups.push({ label: cat.label, items: catItems });
+      }
     }
-  };
+    return groups;
+  }, [filteredItems, selectedIds]);
 
   return (
     <div className="flex h-full flex-col rounded-lg border border-[var(--border)] bg-[var(--card)]">
-      {/* Search input */}
+      {/* Search */}
       <div className="border-b border-[var(--border)] p-3">
-        <div className="relative">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)]">
-            🔍
-          </span>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="에이전트 팀 검색..."
-            className="w-full rounded-md border border-[var(--border)] bg-[var(--background)] py-2 pl-9 pr-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] transition-colors focus:border-[var(--ring)] focus:outline-none focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2"
-          />
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => handleSearch(e.target.value)}
+          placeholder="에이전트 팀 검색..."
+          className="w-full rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-1.5 text-sm focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2 transition-base"
+        />
+      </div>
+
+      {/* List */}
+      <div className="flex-1 overflow-y-auto">
+        {/* Selected section */}
+        {selectedItems.length > 0 && (
+          <div className="border-b border-[var(--border)] p-2">
+            <div className="px-2 py-1 text-xs font-semibold text-[var(--primary)]">
+              선택됨 ({selectedItems.length})
+            </div>
+            {selectedItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => onRemove(item.id)}
+                className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm bg-[var(--info-bg)] text-[var(--foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
+              >
+                <span className="text-[var(--primary)]">✓</span>
+                <span className="text-xs opacity-60 font-mono">{padId(item.id)}</span>
+                <span className="truncate font-medium flex-1 text-left">{item.name}</span>
+                <span className="text-xs text-[var(--muted-foreground)]">✕</span>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Categorized list */}
+        <div className="p-2">
+          {groupedItems.map((group) => (
+            <div key={group.label} className="mb-2">
+              <div className="px-2 py-1 text-xs font-semibold text-[var(--muted-foreground)]">
+                {group.label}
+              </div>
+              {group.items.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => onAdd(item.id)}
+                  className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm text-[var(--foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
+                >
+                  <span className="text-[var(--muted-foreground)]">○</span>
+                  <span className="text-xs opacity-60 font-mono">{padId(item.id)}</span>
+                  <span className="truncate font-medium flex-1 text-left">{item.name}</span>
+                  <span className="text-xs text-[var(--muted-foreground)]">{item.agentCount}명</span>
+                </button>
+              ))}
+            </div>
+          ))}
+          {groupedItems.length === 0 && debouncedQuery && (
+            <div className="py-8 text-center text-sm text-[var(--muted-foreground)]">
+              검색 결과 없음
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Scrollable list */}
-      <div className="flex-1 overflow-y-auto p-2">
-        {filteredItems.length === 0 ? (
-          <p className="px-2 py-4 text-center text-sm text-[var(--muted-foreground)]">
-            검색 결과가 없습니다.
-          </p>
-        ) : (
-          <ul className="space-y-1">
-            {filteredItems.map((item) => {
-              const selected = selectedSet.has(item.id);
-              return (
-                <li key={item.id}>
-                  <button
-                    type="button"
-                    onClick={() => handleToggle(item.id)}
-                    className={`flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-sm transition-colors focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2 ${
-                      selected
-                        ? "bg-[var(--primary)] text-[var(--primary-foreground)]"
-                        : "hover:bg-[var(--muted)] text-[var(--foreground)]"
-                    }`}
-                  >
-                    <span className="shrink-0 text-xs">
-                      {selected ? "✅" : "☐"}
-                    </span>
-                    <span className="shrink-0 font-mono text-xs opacity-60">
-                      {padId(item.id)}
-                    </span>
-                    <span className="min-w-0 flex-1 truncate font-medium">
-                      {item.name}
-                    </span>
-                    <span className="shrink-0 text-xs opacity-60">
-                      {item.agentCount}명
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </div>
-
       {/* Footer */}
-      <div className="border-t border-[var(--border)] px-3 py-2 text-sm text-[var(--muted-foreground)]">
-        선택됨: {selectedIds.length}개
+      <div className="flex items-center justify-between border-t border-[var(--border)] px-3 py-2">
+        <span className="text-xs text-[var(--muted-foreground)]">
+          {selectedIds.length}개 선택
+        </span>
+        {selectedIds.length > 0 && (
+          <button
+            onClick={() => selectedIds.forEach((id) => onRemove(id))}
+            className="text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded"
+          >
+            전체 해제
+          </button>
+        )}
       </div>
     </div>
   );

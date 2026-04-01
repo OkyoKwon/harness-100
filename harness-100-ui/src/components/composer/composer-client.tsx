@@ -29,10 +29,12 @@ export function ComposerClient() {
 
   const {
     selectedIds,
+    loadedHarnesses,
     merged,
     loading,
     addHarness,
     removeHarness,
+    clear,
     setSelectedIds,
   } = useComposer();
 
@@ -112,13 +114,24 @@ export function ComposerClient() {
   return (
     <main className="mx-auto max-w-7xl px-4 py-8">
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-[var(--foreground)]">
-          하네스 조합기
-        </h1>
-        <p className="mt-2 text-[var(--muted-foreground)]">
-          서로 다른 하네스의 에이전트를 조합하여 나만의 워크플로우를 만드세요.
-        </p>
+      <div className="mb-6 flex items-start justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-[var(--foreground)]">
+            하네스 조합기
+          </h1>
+          <p className="mt-2 text-[var(--muted-foreground)]">
+            서로 다른 하네스의 에이전트를 조합하여 나만의 워크플로우를 만드세요.
+          </p>
+        </div>
+        {selectedIds.length > 0 && (
+          <button
+            type="button"
+            onClick={clear}
+            className="shrink-0 rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-sm text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)] active:bg-[var(--secondary)] transition-base focus-ring"
+          >
+            초기화
+          </button>
+        )}
       </div>
 
       {/* Two-panel layout */}
@@ -139,6 +152,7 @@ export function ComposerClient() {
             merged={merged}
             loading={loading}
             selectedCount={selectedIds.length}
+            loadedHarnesses={loadedHarnesses}
           />
         </div>
       </div>

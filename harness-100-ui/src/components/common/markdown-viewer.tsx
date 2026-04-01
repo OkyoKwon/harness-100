@@ -40,6 +40,8 @@ function FrontmatterTable({
   );
 }
 
+const FOCUSABLE_SELECTOR = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
 export function MarkdownViewer({
   title,
   content,
@@ -47,10 +49,32 @@ export function MarkdownViewer({
   onClose,
 }: MarkdownViewerProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const titleId = "md-viewer-title";
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+
+      // Focus trap
+      if (e.key === "Tab" && dialogRef.current) {
+        const focusable = dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     },
     [onClose],
   );
@@ -59,7 +83,15 @@ export function MarkdownViewer({
     if (!open) return;
     document.addEventListener("keydown", handleKeyDown);
     document.body.style.overflow = "hidden";
+
+    // Focus the close button on open
+    const timer = setTimeout(() => {
+      const closeBtn = dialogRef.current?.querySelector<HTMLElement>("button");
+      closeBtn?.focus();
+    }, 0);
+
     return () => {
+      clearTimeout(timer);
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     };
@@ -79,10 +111,16 @@ export function MarkdownViewer({
       onClick={handleOverlayClick}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
     >
-      <div className="flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] shadow-lg">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        className="flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] shadow-lg"
+      >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-3">
-          <h3 className="text-base font-semibold text-[var(--foreground)]">
+          <h3 id={titleId} className="text-base font-semibold text-[var(--foreground)]">
             {title}
           </h3>
           <button

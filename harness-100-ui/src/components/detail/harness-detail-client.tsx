@@ -1,17 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import type { Harness } from "@/lib/types";
 import { loadHarnessDetail } from "@/lib/harness-loader";
 import { useFavorites } from "@/hooks/use-favorites";
 import { useZipDownload } from "@/hooks/use-zip-download";
 import { useLocalSetup } from "@/hooks/use-local-setup";
+import { useToast } from "@/hooks/use-toast";
 import { CustomizePanel } from "@/components/customizer/customize-panel";
 import { AgentList } from "@/components/detail/agent-list";
 import { WorkflowDiagram } from "@/components/detail/workflow-diagram";
 import { OutputPreview } from "@/components/detail/output-preview";
 import { CompletionBanner } from "@/components/common/completion-banner";
+import { StickyActionBar } from "@/components/detail/sticky-action-bar";
 import { CATEGORIES } from "@/lib/constants";
 
 type LoadingState = "loading" | "loaded" | "error";
@@ -58,6 +60,22 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
     supported: setupSupported,
     setup: runSetup,
   } = useLocalSetup();
+  const { addToast } = useToast();
+
+  const actionButtonsRef = useRef<HTMLDivElement>(null);
+
+  // Toast notifications for setup/zip completion
+  useEffect(() => {
+    if (setupStatus === "complete" && setupResult) {
+      addToast(`세팅 완료 — ${setupResult.filesWritten}개 파일 생성됨`, "success");
+    }
+  }, [setupStatus, setupResult, addToast]);
+
+  useEffect(() => {
+    if (zipStatus === "complete") {
+      addToast("ZIP 다운로드 완료", "success");
+    }
+  }, [zipStatus, addToast]);
 
   useEffect(() => {
     if (Number.isNaN(id) || id < 1) {
@@ -115,6 +133,9 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
   }
 
   const favorited = isFavorite(harness.id);
+  const setupDisabled = !setupSupported || setupStatus === "selecting" || setupStatus === "writing";
+  const setupLabel = setupStatus === "selecting" || setupStatus === "writing" ? "세팅 중..." : "세팅 →";
+  const zipLabel = zipStatus === "building" ? "생성 중..." : "ZIP ↓";
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
@@ -156,7 +177,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
           </div>
 
           {/* Action buttons */}
-          <div className="flex shrink-0 items-center gap-2">
+          <div ref={actionButtonsRef} className="flex shrink-0 items-center gap-2">
             <button
               type="button"
               onClick={() => toggleFavorite(harness.id)}
@@ -173,16 +194,10 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
             <button
               type="button"
               onClick={() => runSetup(harness)}
-              disabled={
-                !setupSupported ||
-                setupStatus === "selecting" ||
-                setupStatus === "writing"
-              }
+              disabled={setupDisabled}
               className="rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring"
             >
-              {setupStatus === "selecting" || setupStatus === "writing"
-                ? "세팅 중..."
-                : "세팅 →"}
+              {setupLabel}
             </button>
 
             <button
@@ -191,18 +206,17 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
               disabled={zipStatus === "building"}
               className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--muted)] active:bg-[var(--secondary)] disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring"
             >
-              {zipStatus === "building" ? "생성 중..." : "ZIP ↓"}
+              {zipLabel}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Completion banners */}
+      {/* Completion banners (kept for CLI command display) */}
       {setupStatus === "complete" && setupResult && (
         <div className="mb-6">
           <CompletionBanner
             type="setup"
-
             slug={harness.slug}
             path={setupResult.path}
             filesWritten={setupResult.filesWritten}
@@ -213,13 +227,12 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
         <div className="mb-6">
           <CompletionBanner
             type="zip"
-
             slug={harness.slug}
           />
         </div>
       )}
 
-      {/* Customization panel (Phase 2) */}
+      {/* Customization panel */}
       {customizing ? (
         <CustomizePanel harness={harness} onClose={() => setCustomizing(false)} />
       ) : (
@@ -261,6 +274,20 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
           </div>
         </>
       )}
+
+      {/* Sticky action bar */}
+      <StickyActionBar
+        name={harness.name}
+        favorited={favorited}
+        onToggleFavorite={() => toggleFavorite(harness.id)}
+        onSetup={() => runSetup(harness)}
+        onDownloadZip={() => downloadZip(harness)}
+        setupDisabled={setupDisabled}
+        zipDisabled={zipStatus === "building"}
+        setupLabel={setupLabel}
+        zipLabel={zipLabel}
+        triggerRef={actionButtonsRef}
+      />
     </div>
   );
 }

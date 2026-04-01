@@ -6,19 +6,20 @@ export interface CategoryInfo {
   readonly labelEn: string;
   readonly range: readonly [number, number];
   readonly count: number;
+  readonly color: string;
 }
 
 export const CATEGORIES: ReadonlyArray<CategoryInfo> = [
-  { slug: "content", label: "콘텐츠", labelEn: "Content", range: [1, 15], count: 15 },
-  { slug: "development", label: "개발", labelEn: "Dev", range: [16, 30], count: 15 },
-  { slug: "data-ai", label: "데이터", labelEn: "Data/AI", range: [31, 42], count: 12 },
-  { slug: "business", label: "비즈니스", labelEn: "Business", range: [43, 55], count: 13 },
-  { slug: "education", label: "교육", labelEn: "Education", range: [56, 65], count: 10 },
-  { slug: "legal", label: "법률", labelEn: "Legal", range: [66, 72], count: 7 },
-  { slug: "lifestyle", label: "라이프", labelEn: "Life", range: [73, 80], count: 8 },
-  { slug: "communication", label: "문서", labelEn: "Docs", range: [81, 88], count: 8 },
-  { slug: "operations", label: "운영", labelEn: "Ops", range: [89, 95], count: 7 },
-  { slug: "specialized", label: "전문", labelEn: "Expert", range: [96, 100], count: 5 },
+  { slug: "content", label: "콘텐츠", labelEn: "Content", range: [1, 15], count: 15, color: "#f59e0b" },
+  { slug: "development", label: "개발", labelEn: "Dev", range: [16, 30], count: 15, color: "#2563eb" },
+  { slug: "data-ai", label: "데이터", labelEn: "Data/AI", range: [31, 42], count: 12, color: "#8b5cf6" },
+  { slug: "business", label: "비즈니스", labelEn: "Business", range: [43, 55], count: 13, color: "#059669" },
+  { slug: "education", label: "교육", labelEn: "Education", range: [56, 65], count: 10, color: "#06b6d4" },
+  { slug: "legal", label: "법률", labelEn: "Legal", range: [66, 72], count: 7, color: "#6366f1" },
+  { slug: "lifestyle", label: "라이프", labelEn: "Life", range: [73, 80], count: 8, color: "#ec4899" },
+  { slug: "communication", label: "문서", labelEn: "Docs", range: [81, 88], count: 8, color: "#14b8a6" },
+  { slug: "operations", label: "운영", labelEn: "Ops", range: [89, 95], count: 7, color: "#f97316" },
+  { slug: "specialized", label: "전문", labelEn: "Expert", range: [96, 100], count: 5, color: "#e11d48" },
 ] as const;
 
 export const TOTAL_HARNESS_COUNT = 100;

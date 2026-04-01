@@ -53,8 +53,63 @@
   --code-fg: #e2e8f0;
 }
 
+/* Dark tokens — explicit user toggle */
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --border: #404040;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --accent: #f59e0b;
+  --accent-foreground: #fefce8;
+  --destructive: #f87171;
+  --radius: 0.5rem;
+
+  --card: #1c1c1c;
+  --card-foreground: #ededed;
+  --secondary: #2a2a2a;
+  --secondary-foreground: #a3a3a3;
+
+  --success: #4ade80;
+  --success-bg: #052e16;
+  --success-border: #166534;
+  --success-foreground: #bbf7d0;
+
+  --info-bg: #0c1929;
+  --info-border: #1e3a5f;
+  --info-foreground: #bfdbfe;
+
+  --danger-bg: #2a0a0a;
+  --danger-border: #991b1b;
+  --danger-foreground: #fca5a5;
+
+  --warning-bg: #1c1608;
+  --warning-border: #92400e;
+  --warning-foreground: #fde68a;
+
+  --badge-tool-bg: #0c1929;
+  --badge-tool-fg: #93c5fd;
+  --badge-framework-bg: #1a0a2e;
+  --badge-framework-fg: #c4b5fd;
+
+  --ring: #60a5fa;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+
+  --node-bg: #0c1929;
+  --node-border: #1e3a5f;
+  --node-fg: #bfdbfe;
+  --edge-stroke: #1e3a5f;
+
+  --code-bg: #0a0a0a;
+  --code-fg: #e2e8f0;
+}
+
+/* Dark tokens — system preference fallback (when no explicit choice) */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --background: #0a0a0a;
     --foreground: #ededed;
     --muted: #262626;
@@ -249,4 +304,51 @@ body {
   padding-left: 0.75rem;
   margin: 0.75rem 0;
   color: var(--muted-foreground);
+}
+
+/* Hero gradient */
+.hero-gradient {
+  background: linear-gradient(135deg, var(--info-bg), var(--background) 80%);
+}
+
+/* Toast animation */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-toast-in {
+  animation: toast-in 200ms ease-out;
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .transition-base {
+    transition-duration: 0ms !important;
+  }
+  .animate-pulse {
+    animation: none !important;
+  }
+  * {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
 }

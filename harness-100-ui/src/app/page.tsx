@@ -9,16 +9,36 @@ import { SearchBar } from "@/components/catalog/search-bar";
 import { CategoryTabs } from "@/components/catalog/category-tabs";
 import { HarnessGrid } from "@/components/catalog/harness-grid";
 import { HarnessCard } from "@/components/catalog/harness-card";
+import { HeroSection } from "@/components/catalog/hero-section";
+import { SortFilterBar, type SortKey } from "@/components/catalog/sort-filter-bar";
 import { CATEGORIES } from "@/lib/constants";
+
+function sortItems(items: ReadonlyArray<HarnessMeta>, key: SortKey): ReadonlyArray<HarnessMeta> {
+  const sorted = [...items];
+  switch (key) {
+    case "name":
+      sorted.sort((a, b) => a.name.localeCompare(b.name, "ko"));
+      break;
+    case "agentCount":
+      sorted.sort((a, b) => b.agentCount - a.agentCount);
+      break;
+    case "id":
+    default:
+      sorted.sort((a, b) => a.id - b.id);
+      break;
+  }
+  return sorted;
+}
 
 export default function CatalogPage() {
   const [catalog, setCatalog] = useState<ReadonlyArray<HarnessMeta>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState("all");
+  const [sortKey, setSortKey] = useState<SortKey>("id");
 
   const { favorites, toggle, isFavorite } = useFavorites();
-  const { results, updateQuery } = useSearch(catalog);
+  const { query, results, updateQuery } = useSearch(catalog);
 
   useEffect(() => {
     loadCatalog()
@@ -43,8 +63,8 @@ export default function CatalogPage() {
       }
     }
 
-    return items;
-  }, [results, activeCategory, favorites]);
+    return sortItems(items, sortKey);
+  }, [results, activeCategory, favorites, sortKey]);
 
   const handleCategorySelect = useCallback((slug: string) => {
     setActiveCategory(slug);
@@ -97,20 +117,27 @@ export default function CatalogPage() {
   }
 
   return (
-    <main className="max-w-7xl mx-auto px-4 py-6">
-      <p className="text-sm text-[var(--muted-foreground)] mb-4">
-        AI 에이전트 팀 워크플로우 100선 — 골라서 바로 세팅
-      </p>
+    <main id="main-content" className="max-w-7xl mx-auto px-4 py-6">
+      <HeroSection />
 
       <div className="mb-4">
         <SearchBar onSearch={updateQuery} />
       </div>
 
-      <div className="mb-6">
+      <div className="mb-4">
         <CategoryTabs
           active={activeCategory}
           onSelect={handleCategorySelect}
           favoriteCount={favorites.length}
+        />
+      </div>
+
+      <div className="mb-4">
+        <SortFilterBar
+          sortKey={sortKey}
+          onSortChange={setSortKey}
+          resultCount={filtered.length}
+          hasQuery={query.trim().length > 0}
         />
       </div>
 
@@ -134,7 +161,7 @@ export default function CatalogPage() {
       )}
 
       <div className="text-center py-8 text-xs sm:text-sm text-[var(--muted-foreground)]">
-        {filtered.length}개 하네스 · Harness 100 · Apache License 2.0
+        Harness 100 · Apache License 2.0
       </div>
     </main>
   );

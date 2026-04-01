@@ -1,6 +1,9 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import matter from "gray-matter";
 import type { Agent, Harness } from "@/lib/types";
 import { generateAgentMd, generateSkillMd } from "@/lib/zip-builder";
 import { MarkdownViewer } from "@/components/common/markdown-viewer";
@@ -33,6 +36,13 @@ function getAgentEmoji(role: string, name: string): string {
   return "🤖";
 }
 
+function getAgentMarkdownBody(agent: Agent, harness: Harness): string {
+  const rawContent = harness.rawFiles?.agents?.[agent.id];
+  const source = rawContent ?? generateAgentMd(agent);
+  const parsed = matter(source);
+  return parsed.content.trim();
+}
+
 interface MdViewerState {
   readonly title: string;
   readonly content: string;
@@ -48,14 +58,6 @@ export function AgentList({ agents, harness }: AgentListProps) {
     setExpandedId((prev) => (prev === agentId ? null : agentId));
   }, []);
 
-  const handleViewAgentMd = useCallback((agent: Agent) => {
-    const rawContent = harness.rawFiles?.agents?.[agent.id];
-    setMdViewer({
-      title: `${agent.name} — 에이전트 마크다운`,
-      content: rawContent ?? generateAgentMd(agent),
-    });
-  }, [harness]);
-
   const handleViewSkillMd = useCallback(() => {
     const mainSkillKey = Object.keys(harness.rawFiles?.skills ?? {}).find(
       (k) => k.startsWith(harness.slug + "/"),
@@ -70,6 +72,15 @@ export function AgentList({ agents, harness }: AgentListProps) {
   const handleCloseMd = useCallback(() => {
     setMdViewer(null);
   }, []);
+
+  // Pre-parse markdown bodies for all agents
+  const markdownBodies = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const agent of agents) {
+      map.set(agent.id, getAgentMarkdownBody(agent, harness));
+    }
+    return map;
+  }, [agents, harness]);
 
   return (
     <>
@@ -160,16 +171,16 @@ export function AgentList({ agents, harness }: AgentListProps) {
                     </div>
                   )}
 
-                  {/* MD 보기 버튼 */}
-                  <div className="mt-3 flex justify-end">
-                    <button
-                      type="button"
-                      onClick={() => handleViewAgentMd(agent)}
-                      className="rounded-md border border-[var(--border)] bg-[var(--secondary)] px-3 py-1.5 text-xs font-medium text-[var(--secondary-foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
-                    >
-                      MD 보기
-                    </button>
-                  </div>
+                  {/* 에이전트 마크다운 인라인 표시 */}
+                  {markdownBodies.get(agent.id) && (
+                    <div className="mt-4 rounded-lg border border-[var(--border)] bg-[var(--muted)]/30 p-3">
+                      <div className="markdown-body">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          {markdownBodies.get(agent.id)!}
+                        </ReactMarkdown>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -220,7 +231,7 @@ export function AgentList({ agents, harness }: AgentListProps) {
         )}
       </div>
 
-      {/* 마크다운 뷰어 모달 */}
+      {/* 마크다운 뷰어 모달 (스킬용) */}
       <MarkdownViewer
         title={mdViewer?.title ?? ""}
         content={mdViewer?.content ?? ""}

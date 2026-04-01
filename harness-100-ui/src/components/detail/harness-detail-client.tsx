@@ -23,18 +23,18 @@ function getCategoryLabel(category: string): string {
 function DetailSkeleton() {
   return (
     <div className="mx-auto max-w-6xl animate-pulse px-4 py-8">
-      <div className="mb-6 h-4 w-20 rounded bg-gray-200" />
-      <div className="mb-2 h-8 w-64 rounded bg-gray-200" />
-      <div className="mb-6 h-4 w-96 rounded bg-gray-200" />
+      <div className="mb-6 h-4 w-20 rounded bg-[var(--muted)]" />
+      <div className="mb-2 h-8 w-64 rounded bg-[var(--muted)]" />
+      <div className="mb-6 h-4 w-96 rounded bg-[var(--muted)]" />
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         <div className="space-y-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-16 rounded-lg bg-gray-200" />
+            <div key={i} className="h-16 rounded-lg bg-[var(--muted)]" />
           ))}
         </div>
         <div className="space-y-4">
-          <div className="h-[300px] rounded-lg bg-gray-200" />
-          <div className="h-40 rounded-lg bg-gray-200" />
+          <div className="h-[300px] rounded-lg bg-[var(--muted)]" />
+          <div className="h-40 rounded-lg bg-[var(--muted)]" />
         </div>
       </div>
     </div>
@@ -99,12 +99,12 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
       <div className="mx-auto max-w-6xl px-4 py-8">
         <Link
           href="/"
-          className="mb-4 inline-block text-sm text-blue-600 hover:text-blue-800"
+          className="mb-4 inline-block text-sm text-[var(--primary)] hover:opacity-80 transition-base focus-ring rounded"
         >
           &larr; 목록
         </Link>
-        <div className="rounded-lg border border-red-200 bg-red-50 p-6 text-center">
-          <p className="text-sm text-red-700">
+        <div className="rounded-lg border border-[var(--danger-border)] bg-[var(--danger-bg)] p-6 text-center">
+          <p className="text-sm text-[var(--danger-foreground)]">
             {errorMessage || "하네스를 불러올 수 없습니다."}
           </p>
         </div>
@@ -120,31 +120,31 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
       <div className="mb-6">
         <Link
           href="/"
-          className="mb-4 inline-block text-sm text-blue-600 transition-colors hover:text-blue-800"
+          className="mb-4 inline-block text-sm text-[var(--primary)] hover:opacity-80 transition-base focus-ring rounded"
         >
           &larr; 목록
         </Link>
 
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0 flex-1">
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-2xl font-bold text-[var(--foreground)]">
               {harness.name}
             </h1>
-            <p className="mt-1 text-sm leading-relaxed text-gray-600">
+            <p className="mt-1 text-sm leading-relaxed text-[var(--muted-foreground)]">
               {harness.description}
             </p>
             <div className="mt-3 flex flex-wrap items-center gap-2">
-              <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700">
+              <span className="rounded-full bg-[var(--secondary)] px-2.5 py-0.5 text-xs font-medium text-[var(--secondary-foreground)]">
                 {getCategoryLabel(harness.category)}
               </span>
-              <span className="text-xs text-gray-400">|</span>
-              <span className="text-xs text-gray-500">
+              <span className="text-xs text-[var(--border)]">|</span>
+              <span className="text-xs text-[var(--muted-foreground)]">
                 에이전트 {harness.agentCount}개
               </span>
               {harness.frameworks.length > 0 && (
                 <>
-                  <span className="text-xs text-gray-400">|</span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-[var(--border)]">|</span>
+                  <span className="text-xs text-[var(--muted-foreground)]">
                     {harness.frameworks.slice(0, 3).join(", ")}
                     {harness.frameworks.length > 3 && " ..."}
                   </span>
@@ -158,10 +158,10 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
             <button
               type="button"
               onClick={() => toggleFavorite(harness.id)}
-              className={`rounded-lg border px-3 py-2 text-sm transition-colors ${
+              className={`rounded-lg border px-3 py-2 text-sm transition-base focus-ring ${
                 favorited
-                  ? "border-yellow-300 bg-yellow-50 text-yellow-700"
-                  : "border-gray-200 bg-white text-gray-500 hover:bg-gray-50"
+                  ? "border-[var(--warning-border)] bg-[var(--warning-bg)] text-[var(--warning-foreground)]"
+                  : "border-[var(--border)] bg-[var(--card)] text-[var(--muted-foreground)] hover:bg-[var(--muted)]"
               }`}
               aria-label={favorited ? "즐겨찾기 해제" : "즐겨찾기"}
             >
@@ -176,7 +176,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
                 setupStatus === "selecting" ||
                 setupStatus === "writing"
               }
-              className="rounded-lg border border-blue-200 bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring"
             >
               {setupStatus === "selecting" || setupStatus === "writing"
                 ? "세팅 중..."
@@ -187,7 +187,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
               type="button"
               onClick={() => downloadZip(harness)}
               disabled={zipStatus === "building"}
-              className="rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--muted)] active:bg-[var(--secondary)] disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring"
             >
               {zipStatus === "building" ? "생성 중..." : "ZIP ↓"}
             </button>
@@ -221,7 +221,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         {/* Left panel: Agent list */}
         <section>
-          <h2 className="mb-4 text-lg font-semibold text-gray-900">
+          <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
             에이전트 ({harness.agents.length})
           </h2>
           <AgentList agents={harness.agents} />
@@ -230,7 +230,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
         {/* Right panel: Workflow + Outputs */}
         <section className="space-y-8">
           <div>
-            <h2 className="mb-4 text-lg font-semibold text-gray-900">
+            <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
               워크플로우
             </h2>
             <WorkflowDiagram agents={harness.agents} />
@@ -243,17 +243,17 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
       </div>
 
       {/* Phase 2 placeholder */}
-      <div className="mt-8 border-t border-gray-200 pt-6">
+      <div className="mt-8 border-t border-[var(--border)] pt-6">
         <div className="relative inline-block">
           <button
             type="button"
             disabled
-            className="rounded-lg border border-gray-200 bg-gray-100 px-5 py-2.5 text-sm font-medium text-gray-400 cursor-not-allowed"
+            className="rounded-lg border border-[var(--border)] bg-[var(--muted)] px-5 py-2.5 text-sm font-medium text-[var(--muted-foreground)] cursor-not-allowed"
             title="준비 중"
           >
             수정해서 받기
           </button>
-          <span className="ml-2 text-xs text-gray-400">(준비 중)</span>
+          <span className="ml-2 text-xs text-[var(--muted-foreground)]">(준비 중)</span>
         </div>
       </div>
     </div>

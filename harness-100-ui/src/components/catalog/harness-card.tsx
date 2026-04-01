@@ -20,7 +20,7 @@ export function HarnessCard({ harness, isFavorite, onToggleFavorite }: HarnessCa
   return (
     <Link
       href={`/harness/${paddedId}`}
-      className="block border border-[var(--border)] rounded-lg p-4 hover:border-[var(--primary)] transition-colors group"
+      className="block bg-[var(--card)] border border-[var(--border)] rounded-lg p-4 shadow-[var(--shadow-sm)] hover:border-[var(--primary)] hover:shadow-[var(--shadow-md)] hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2 transition-base group"
     >
       <div className="flex items-start justify-between mb-2">
         <span className="text-xs font-mono text-[var(--muted-foreground)]">{paddedId}</span>
@@ -36,10 +36,10 @@ export function HarnessCard({ harness, isFavorite, onToggleFavorite }: HarnessCa
       </p>
 
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--muted)]">
+        <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--secondary)] text-[var(--secondary-foreground)]">
           👥 {harness.agentCount}명
         </span>
-        <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--muted)]">
+        <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--secondary)] text-[var(--secondary-foreground)]">
           {categoryLabel}
         </span>
       </div>

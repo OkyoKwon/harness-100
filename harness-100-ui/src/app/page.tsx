@@ -49,11 +49,24 @@ export default function CatalogPage() {
     return (
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="animate-pulse space-y-4">
-          <div className="h-10 bg-[var(--muted)] rounded-lg w-full" />
-          <div className="h-8 bg-[var(--muted)] rounded-lg w-3/4" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="h-11 bg-[var(--muted)] rounded-lg w-full" />
+          <div className="flex gap-2">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="h-8 w-20 bg-[var(--muted)] rounded-full shrink-0" />
+            ))}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
             {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="h-48 bg-[var(--muted)] rounded-lg" />
+              <div key={i} className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 space-y-3">
+                <div className="h-3 w-8 bg-[var(--muted)] rounded" />
+                <div className="h-5 w-3/4 bg-[var(--muted)] rounded" />
+                <div className="h-3 w-full bg-[var(--muted)] rounded" />
+                <div className="h-3 w-2/3 bg-[var(--muted)] rounded" />
+                <div className="flex gap-2 pt-2">
+                  <div className="h-7 w-16 bg-[var(--muted)] rounded-lg" />
+                  <div className="h-7 w-14 bg-[var(--muted)] rounded-lg" />
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -81,7 +94,8 @@ export default function CatalogPage() {
 
       {filtered.length === 0 ? (
         <div className="text-center py-16 text-[var(--muted-foreground)]">
-          <p className="text-lg mb-2">검색 결과가 없습니다</p>
+          <div className="text-4xl mb-4">🔍</div>
+          <p className="text-lg font-medium mb-2">검색 결과가 없습니다</p>
           <p className="text-sm">다른 키워드로 검색해 보세요</p>
         </div>
       ) : (
@@ -97,7 +111,7 @@ export default function CatalogPage() {
         </HarnessGrid>
       )}
 
-      <div className="text-center py-8 text-xs text-[var(--muted-foreground)]">
+      <div className="text-center py-8 text-xs sm:text-sm text-[var(--muted-foreground)]">
         {filtered.length}개 하네스 · Harness 100 · Apache License 2.0
       </div>
     </main>

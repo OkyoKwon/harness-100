@@ -17,7 +17,7 @@ export function SetupButton({ onClick, disabled, size = "md" }: SetupButtonProps
         onClick();
       }}
       disabled={disabled}
-      className={`${sizeClass} rounded-lg font-medium bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 disabled:opacity-50 transition-opacity`}
+      className={`${sizeClass} rounded-lg font-medium bg-[var(--primary)] text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 disabled:opacity-50 transition-all focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2`}
     >
       세팅 →
     </button>

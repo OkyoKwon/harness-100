@@ -24,10 +24,10 @@ export function CopyCliButton({ text }: CopyCliButtonProps) {
     <button
       type="button"
       onClick={handleCopy}
-      className="inline-flex items-center gap-1 rounded border border-gray-300 bg-white px-2 py-1 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 active:bg-gray-100"
+      className="focus-ring transition-base inline-flex items-center gap-1 rounded border border-[var(--border)] bg-[var(--card)] px-2 py-1 text-xs font-medium text-[var(--muted-foreground)] hover:bg-[var(--muted)] active:bg-[var(--secondary)]"
     >
       {copied ? (
-        <span className="text-green-600">복사됨 ✓</span>
+        <span className="text-[var(--success)]">복사됨 ✓</span>
       ) : (
         <span>복사</span>
       )}

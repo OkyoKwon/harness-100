@@ -48,24 +48,24 @@ export function AgentList({ agents }: AgentListProps) {
         return (
           <div
             key={agent.id}
-            className="overflow-hidden rounded-lg border border-gray-200 bg-white"
+            className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--card)]"
           >
             <button
               type="button"
               onClick={() => handleToggle(agent.id)}
-              className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-gray-50"
+              className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-[var(--muted)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
             >
               <span className="text-xl" role="img" aria-label={agent.role}>
                 {emoji}
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-gray-900">
+                <p className="text-sm font-semibold text-[var(--foreground)]">
                   {agent.name}
                 </p>
-                <p className="truncate text-xs text-gray-500">{agent.role}</p>
+                <p className="truncate text-xs text-[var(--muted-foreground)]">{agent.role}</p>
               </div>
               <svg
-                className={`h-4 w-4 shrink-0 text-gray-400 transition-transform ${
+                className={`h-4 w-4 shrink-0 text-[var(--muted-foreground)] transition-transform ${
                   isExpanded ? "rotate-180" : ""
                 }`}
                 fill="none"
@@ -82,21 +82,21 @@ export function AgentList({ agents }: AgentListProps) {
             </button>
 
             {isExpanded && (
-              <div className="border-t border-gray-100 px-4 py-3">
-                <p className="text-sm leading-relaxed text-gray-700">
+              <div className="border-t border-[var(--border)] px-4 py-3">
+                <p className="text-sm leading-relaxed text-[var(--card-foreground)]">
                   {agent.description}
                 </p>
 
                 {agent.tools.length > 0 && (
                   <div className="mt-3">
-                    <p className="mb-1.5 text-xs font-medium text-gray-500">
+                    <p className="mb-1.5 text-xs font-medium text-[var(--muted-foreground)]">
                       도구
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {agent.tools.map((tool) => (
                         <span
                           key={tool}
-                          className="rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700"
+                          className="rounded-full bg-[var(--badge-tool-bg)] px-2.5 py-0.5 text-xs font-medium text-[var(--badge-tool-fg)]"
                         >
                           {tool}
                         </span>
@@ -107,10 +107,10 @@ export function AgentList({ agents }: AgentListProps) {
 
                 {agent.dependencies.length > 0 && (
                   <div className="mt-3">
-                    <p className="mb-1 text-xs font-medium text-gray-500">
+                    <p className="mb-1 text-xs font-medium text-[var(--muted-foreground)]">
                       의존성
                     </p>
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-[var(--muted-foreground)]">
                       {agent.dependencies.join(", ")}
                     </p>
                   </div>
@@ -118,10 +118,10 @@ export function AgentList({ agents }: AgentListProps) {
 
                 {agent.outputTemplate && (
                   <div className="mt-3">
-                    <p className="mb-1.5 text-xs font-medium text-gray-500">
+                    <p className="mb-1.5 text-xs font-medium text-[var(--muted-foreground)]">
                       산출물 템플릿
                     </p>
-                    <pre className="overflow-x-auto rounded-md bg-gray-900 p-3 text-xs leading-relaxed text-gray-100">
+                    <pre className="overflow-x-auto rounded-md bg-[var(--code-bg)] p-3 text-xs leading-relaxed text-[var(--code-fg)]">
                       {agent.outputTemplate}
                     </pre>
                   </div>

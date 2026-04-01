@@ -36,7 +36,7 @@ export function SearchBar({ onSearch }: SearchBarProps) {
         type="text"
         placeholder="하네스 검색... 예: 유튜브, API, 스타트업"
         onChange={handleChange}
-        className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-[var(--border)] bg-[var(--background)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent"
+        className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-[var(--border)] bg-[var(--background)] text-sm hover:border-[var(--primary)] focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2 transition-base"
       />
     </div>
   );

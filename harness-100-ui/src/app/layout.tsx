@@ -17,19 +17,19 @@ export default function RootLayout({
       <body className="min-h-screen">
         <header className="sticky top-0 z-50 bg-[var(--background)] border-b border-[var(--border)]">
           <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-            <Link href="/" className="text-lg font-bold">
+            <Link href="/" className="text-lg font-bold focus-ring rounded">
               Harness 100
             </Link>
             <nav className="flex items-center gap-4 text-sm">
               <Link
                 href="/composer"
-                className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
+                className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded px-1"
               >
                 조합기
               </Link>
               <Link
                 href="/guide"
-                className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
+                className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded px-1"
               >
                 가이드
               </Link>

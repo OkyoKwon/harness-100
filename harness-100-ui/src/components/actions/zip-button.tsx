@@ -17,7 +17,7 @@ export function ZipButton({ onClick, disabled, size = "md" }: ZipButtonProps) {
         onClick();
       }}
       disabled={disabled}
-      className={`${sizeClass} rounded-lg font-medium border border-[var(--border)] text-[var(--foreground)] hover:bg-[var(--muted)] disabled:opacity-50 transition-colors`}
+      className={`${sizeClass} rounded-lg font-medium border border-[var(--border)] text-[var(--foreground)] hover:bg-[var(--muted)] active:bg-[var(--secondary)] disabled:opacity-50 transition-colors focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2`}
     >
       ZIP ↓
     </button>

@@ -111,9 +111,9 @@ function buildNodesAndEdges(agents: ReadonlyArray<Agent>): {
         fontSize: "12px",
         textAlign: "center" as const,
         borderRadius: "8px",
-        border: "1px solid #bfdbfe",
-        background: "#eff6ff",
-        color: "#1e3a5f",
+        border: "1px solid var(--node-border)",
+        background: "var(--node-bg)",
+        color: "var(--node-fg)",
         whiteSpace: "pre-line" as const,
         padding: "8px",
         lineHeight: "1.3",
@@ -132,7 +132,7 @@ function buildNodesAndEdges(agents: ReadonlyArray<Agent>): {
           source: dep,
           target: agent.id,
           animated: true,
-          style: { stroke: "#93c5fd", strokeWidth: 2 },
+          style: { stroke: "var(--edge-stroke)", strokeWidth: 2 },
         });
       }
     }
@@ -146,14 +146,14 @@ export function WorkflowDiagram({ agents }: WorkflowDiagramProps) {
 
   if (agents.length === 0) {
     return (
-      <div className="flex h-[300px] items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-sm text-gray-500">
+      <div className="flex h-[300px] items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--muted)] text-sm text-[var(--muted-foreground)]">
         에이전트가 없습니다.
       </div>
     );
   }
 
   return (
-    <div className="h-[400px] min-h-[300px] overflow-hidden rounded-lg border border-gray-200 bg-white">
+    <div className="h-[280px] sm:h-[350px] lg:h-[400px] min-h-[300px] overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--card)]">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -165,11 +165,11 @@ export function WorkflowDiagram({ agents }: WorkflowDiagramProps) {
         zoomOnScroll
         proOptions={{ hideAttribution: true }}
       >
-        <Background color="#e5e7eb" gap={16} />
+        <Background color="var(--border)" gap={16} />
         <Controls showInteractive={false} />
         <MiniMap
-          nodeColor="#bfdbfe"
-          maskColor="rgba(255,255,255,0.8)"
+          nodeColor="var(--node-border)"
+          maskColor="rgba(128,128,128,0.3)"
           style={{ height: 80 }}
         />
       </ReactFlow>

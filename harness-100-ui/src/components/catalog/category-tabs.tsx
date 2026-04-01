@@ -10,10 +10,10 @@ interface CategoryTabsProps {
 
 export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsProps) {
   const baseClass =
-    "shrink-0 px-3 py-1.5 rounded-full text-sm font-medium transition-colors cursor-pointer whitespace-nowrap";
+    "shrink-0 px-3 py-1.5 rounded-full text-sm font-medium cursor-pointer whitespace-nowrap transition-base focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2";
   const activeClass = "bg-[var(--primary)] text-[var(--primary-foreground)]";
   const inactiveClass =
-    "bg-[var(--muted)] text-[var(--muted-foreground)] hover:bg-[var(--border)]";
+    "bg-[var(--muted)] text-[var(--secondary-foreground)] hover:bg-[var(--secondary)]";
 
   return (
     <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">

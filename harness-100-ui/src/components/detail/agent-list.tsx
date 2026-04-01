@@ -160,17 +160,6 @@ export function AgentList({ agents, harness }: AgentListProps) {
                     </div>
                   )}
 
-                  {agent.outputTemplate && (
-                    <div className="mt-3">
-                      <p className="mb-1.5 text-xs font-medium text-[var(--muted-foreground)]">
-                        산출물 템플릿
-                      </p>
-                      <pre className="overflow-x-auto rounded-md bg-[var(--code-bg)] p-3 text-xs leading-relaxed text-[var(--code-fg)]">
-                        {agent.outputTemplate}
-                      </pre>
-                    </div>
-                  )}
-
                   {/* 에이전트 마크다운 인라인 표시 */}
                   {markdownBodies.get(agent.id) && (
                     <div className="mt-4 rounded-lg border border-[var(--border)] bg-[var(--muted)]/30 p-3">

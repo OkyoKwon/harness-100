@@ -22,7 +22,8 @@ export function CompletionBanner({
 
   if (dismissed) return null;
 
-  const cliCommand = `claude --skill ${slug}`;
+  const cliCommand = `claude "/${slug}"`;
+  const skillSlug = slug;
 
   return (
     <div className="relative rounded-lg border border-[var(--success-border)] bg-[var(--success-bg)] p-4">
@@ -74,7 +75,7 @@ export function CompletionBanner({
           <p className="text-xs text-[var(--info-foreground)]">
             💡 <span className="font-medium">Tip:</span> Claude CLI에서{" "}
             <code className="rounded bg-[var(--badge-tool-bg)] px-1 font-mono text-xs">
-              /{harnessName}
+              /{skillSlug}
             </code>{" "}
             스킬을 호출하면 에이전트가 순서대로 실행됩니다.
           </p>

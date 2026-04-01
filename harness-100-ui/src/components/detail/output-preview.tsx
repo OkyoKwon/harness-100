@@ -14,7 +14,7 @@ function extractOutputTitle(template: string): string {
 }
 
 export function OutputPreview({ harness }: OutputPreviewProps) {
-  const setupCommands = `cp -r ${harness.slug}/.claude/ your-project/.claude/\ncd your-project\nclaude --skill ${harness.slug}`;
+  const setupCommands = `cp -r ${harness.slug}/.claude/ your-project/.claude/\ncd your-project\nclaude "/${harness.slug}"`;
 
   return (
     <div className="space-y-6">

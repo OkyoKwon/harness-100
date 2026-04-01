@@ -24,6 +24,20 @@ export const CATEGORIES: ReadonlyArray<CategoryInfo> = [
 
 export const TOTAL_HARNESS_COUNT = 100;
 
+/** 편집자 큐레이션 TOP 10: harness ID → 순위 (1 = 가장 인기) */
+export const POPULARITY_RANKINGS: ReadonlyMap<number, number> = new Map([
+  [16, 1],  // Fullstack Web App
+  [21, 2],  // Code Reviewer
+  [1, 3],   // YouTube Production
+  [43, 4],  // Startup Launcher
+  [32, 5],  // Data Analysis
+  [41, 6],  // LLM App Builder
+  [46, 7],  // Product Manager
+  [10, 8],  // Social Media Manager
+  [66, 9],  // Contract Analyzer
+  [44, 10], // Market Research
+]);
+
 export const STORAGE_KEYS = {
   favorites: "harness100_favorites",
   recentPaths: "harness100_recent_paths",

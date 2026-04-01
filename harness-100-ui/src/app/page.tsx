@@ -22,6 +22,9 @@ function sortItems(items: ReadonlyArray<HarnessMeta>, key: SortKey): ReadonlyArr
     case "agentCount":
       sorted.sort((a, b) => b.agentCount - a.agentCount);
       break;
+    case "popularity":
+      sorted.sort((a, b) => a.popularityRank - b.popularityRank);
+      break;
     case "id":
     default:
       sorted.sort((a, b) => a.id - b.id);
@@ -155,6 +158,7 @@ export default function CatalogPage() {
               harness={harness}
               isFavorite={isFavorite(harness.id)}
               onToggleFavorite={() => toggle(harness.id)}
+              showRank={sortKey === "popularity"}
             />
           ))}
         </HarnessGrid>

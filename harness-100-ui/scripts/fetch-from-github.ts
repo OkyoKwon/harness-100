@@ -68,6 +68,7 @@ interface Harness {
   skill: Skill;
   frameworks: string[];
   agentCount: number;
+  popularityRank: number;
   rawFiles: RawFiles;
 }
 
@@ -78,6 +79,7 @@ interface HarnessMeta {
   description: string;
   category: string;
   agentCount: number;
+  popularityRank: number;
   frameworks: string[];
 }
 
@@ -943,6 +945,7 @@ function parseHarnessDir(dirPath: string, meta: (typeof HARNESS_META)[number]): 
     skill,
     frameworks,
     agentCount: agents.length,
+    popularityRank: computePopularityRank(meta.id),
     rawFiles,
   };
 }
@@ -964,6 +967,37 @@ function readExtensionSkillContents(skillsDir: string, mainSkillSlug: string): s
   }
 
   return contents;
+}
+
+// ---------------------------------------------------------------------------
+// Popularity rankings (curated TOP 10, rest by ID order)
+// ---------------------------------------------------------------------------
+
+const POPULARITY_TOP_10: ReadonlyMap<number, number> = new Map([
+  [16, 1],  // Fullstack Web App
+  [21, 2],  // Code Reviewer
+  [1, 3],   // YouTube Production
+  [43, 4],  // Startup Launcher
+  [32, 5],  // Data Analysis
+  [41, 6],  // LLM App Builder
+  [46, 7],  // Product Manager
+  [10, 8],  // Social Media Manager
+  [66, 9],  // Contract Analyzer
+  [44, 10], // Market Research
+]);
+
+function computePopularityRank(id: number): number {
+  const topRank = POPULARITY_TOP_10.get(id);
+  if (topRank !== undefined) return topRank;
+
+  const topIds = new Set(POPULARITY_TOP_10.keys());
+  const remaining = HARNESS_META
+    .filter((m) => !topIds.has(m.id))
+    .map((m) => m.id)
+    .sort((a, b) => a - b);
+
+  const index = remaining.indexOf(id);
+  return index + 11;
 }
 
 // ---------------------------------------------------------------------------
@@ -1045,6 +1079,7 @@ function main(): void {
         category: harness.category,
         agentCount: harness.agentCount,
         frameworks: harness.frameworks,
+        popularityRank: harness.popularityRank,
       });
 
       const fileName = `${padId(id)}.json`;

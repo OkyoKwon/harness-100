@@ -66,6 +66,7 @@ export interface Harness {
   readonly skill: Skill;
   readonly frameworks: ReadonlyArray<string>;
   readonly agentCount: number;
+  readonly popularityRank: number;
   readonly rawFiles?: RawFiles;
 }
 
@@ -77,6 +78,7 @@ export interface HarnessMeta {
   readonly category: Category;
   readonly agentCount: number;
   readonly frameworks: ReadonlyArray<string>;
+  readonly popularityRank: number;
 }
 
 export interface Modification {

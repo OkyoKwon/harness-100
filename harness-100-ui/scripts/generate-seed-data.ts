@@ -43,6 +43,7 @@ interface Harness {
   skill: Skill;
   frameworks: string[];
   agentCount: number;
+  popularityRank: number;
 }
 
 interface HarnessMeta {
@@ -53,6 +54,7 @@ interface HarnessMeta {
   category: string;
   agentCount: number;
   frameworks: string[];
+  popularityRank: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -361,6 +363,38 @@ function generateSkill(raw: RawHarness, agents: readonly Agent[]): Skill {
 }
 
 // ---------------------------------------------------------------------------
+// Popularity rankings (curated TOP 10, rest by ID order)
+// ---------------------------------------------------------------------------
+
+const POPULARITY_TOP_10: ReadonlyMap<number, number> = new Map([
+  [16, 1],  // Fullstack Web App
+  [21, 2],  // Code Reviewer
+  [1, 3],   // YouTube Production
+  [43, 4],  // Startup Launcher
+  [32, 5],  // Data Analysis
+  [41, 6],  // LLM App Builder
+  [46, 7],  // Product Manager
+  [10, 8],  // Social Media Manager
+  [66, 9],  // Contract Analyzer
+  [44, 10], // Market Research
+]);
+
+function computePopularityRank(id: number): number {
+  const topRank = POPULARITY_TOP_10.get(id);
+  if (topRank !== undefined) return topRank;
+
+  // Remaining 90 harnesses: rank 11-100 in ID order, skipping TOP 10 IDs
+  const topIds = new Set(POPULARITY_TOP_10.keys());
+  const remaining = RAW_HARNESSES
+    .filter((h) => !topIds.has(h.id))
+    .map((h) => h.id)
+    .sort((a, b) => a - b);
+
+  const index = remaining.indexOf(id);
+  return index + 11;
+}
+
+// ---------------------------------------------------------------------------
 // Harness builder
 // ---------------------------------------------------------------------------
 
@@ -379,6 +413,7 @@ function buildHarness(raw: RawHarness): Harness {
     skill,
     frameworks,
     agentCount: raw.agentCount,
+    popularityRank: computePopularityRank(raw.id),
   };
 }
 
@@ -391,6 +426,7 @@ function buildMeta(harness: Harness): HarnessMeta {
     category: harness.category,
     agentCount: harness.agentCount,
     frameworks: harness.frameworks,
+    popularityRank: harness.popularityRank,
   };
 }
 

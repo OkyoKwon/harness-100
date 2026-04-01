@@ -46,6 +46,12 @@ export default function RootLayout({
             </Link>
             <nav className="flex items-center gap-3 text-sm">
               <Link
+                href="/ranking"
+                className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded px-1"
+              >
+                랭킹
+              </Link>
+              <Link
                 href="/composer"
                 className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded px-1"
               >

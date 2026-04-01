@@ -14,9 +14,16 @@ interface HarnessCardProps {
   readonly harness: HarnessMeta;
   readonly isFavorite: boolean;
   readonly onToggleFavorite: () => void;
+  readonly showRank?: boolean;
 }
 
-export function HarnessCard({ harness, isFavorite, onToggleFavorite }: HarnessCardProps) {
+const RANK_BADGES: ReadonlyArray<{ readonly emoji: string; readonly color: string }> = [
+  { emoji: "🥇", color: "bg-amber-500" },
+  { emoji: "🥈", color: "bg-gray-400" },
+  { emoji: "🥉", color: "bg-orange-500" },
+];
+
+export function HarnessCard({ harness, isFavorite, onToggleFavorite, showRank = false }: HarnessCardProps) {
   const router = useRouter();
   const paddedId = String(harness.id).padStart(2, "0");
   const category = CATEGORIES.find((c) => c.slug === harness.category);
@@ -49,7 +56,20 @@ export function HarnessCard({ harness, isFavorite, onToggleFavorite }: HarnessCa
         {/* Category color accent bar */}
         <div className="h-1" style={{ backgroundColor: categoryColor }} />
 
-        <div className="p-4">
+        <div className="p-4 relative">
+          {showRank && harness.popularityRank <= 10 && (
+            <span
+              className={`absolute -top-1 right-3 text-xs font-bold px-2 py-0.5 rounded-full shadow-sm ${
+                harness.popularityRank <= 3
+                  ? `${RANK_BADGES[harness.popularityRank - 1].color} text-white`
+                  : "bg-[var(--primary)] text-[var(--primary-foreground)]"
+              }`}
+            >
+              {harness.popularityRank <= 3
+                ? RANK_BADGES[harness.popularityRank - 1].emoji
+                : `${harness.popularityRank}위`}
+            </span>
+          )}
           <div className="flex items-start justify-between mb-2">
             <span
               className="text-sm font-bold font-mono"

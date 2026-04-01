@@ -1,6 +1,6 @@
 "use client";
 
-export type SortKey = "id" | "name" | "agentCount";
+export type SortKey = "id" | "name" | "agentCount" | "popularity";
 
 interface SortFilterBarProps {
   readonly sortKey: SortKey;
@@ -11,6 +11,7 @@ interface SortFilterBarProps {
 
 const SORT_OPTIONS: ReadonlyArray<{ readonly key: SortKey; readonly label: string }> = [
   { key: "id", label: "번호순" },
+  { key: "popularity", label: "인기순" },
   { key: "name", label: "이름순" },
   { key: "agentCount", label: "에이전트 수" },
 ];

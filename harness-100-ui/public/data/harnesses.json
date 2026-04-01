@@ -6,7 +6,8 @@
     "description": "YouTube 영상 콘텐츠의 기획→대본→썸네일→SEO를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 3
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "description": "팟캐스트 콘텐츠의 기획→리서치→대본→쇼노트→배포 전략을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 11
   },
   {
     "id": 3,
@@ -26,7 +28,8 @@
     "agentCount": 5,
     "frameworks": [
       "GDPR"
-    ]
+    ],
+    "popularityRank": 12
   },
   {
     "id": 4,
@@ -37,7 +40,8 @@
     "agentCount": 5,
     "frameworks": [
       "OKR"
-    ]
+    ],
+    "popularityRank": 13
   },
   {
     "id": 5,
@@ -46,7 +50,8 @@
     "description": "게임 스토리·퀘스트·대사·분기 시나리오를 에이전트 팀이 협업하여 설계하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 14
   },
   {
     "id": 6,
@@ -55,7 +60,8 @@
     "description": "브랜드 아이덴티티의 네이밍→슬로건→톤앤매너→가이드라인을 에이전트 팀이 협업하여 설계하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 15
   },
   {
     "id": 7,
@@ -64,7 +70,8 @@
     "description": "4컷/장편 만화 제작의 콘티→대사→이미지생성→편집을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 16
   },
   {
     "id": 8,
@@ -78,7 +85,8 @@
       "Bloom's Taxonomy",
       "REST",
       "GraphQL"
-    ]
+    ],
+    "popularityRank": 17
   },
   {
     "id": 9,
@@ -87,7 +95,8 @@
     "description": "다큐멘터리 리서치·구성안·인터뷰질문·내레이션 대본을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 18
   },
   {
     "id": 10,
@@ -96,7 +105,8 @@
     "description": "SNS 콘텐츠 달력·포스트작성·해시태그·성과분석을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 8
   },
   {
     "id": 11,
@@ -108,7 +118,8 @@
     "frameworks": [
       "AIDA",
       "SOLID"
-    ]
+    ],
+    "popularityRank": 19
   },
   {
     "id": 12,
@@ -120,7 +131,8 @@
     "frameworks": [
       "AIDA",
       "STAR"
-    ]
+    ],
+    "popularityRank": 20
   },
   {
     "id": 13,
@@ -129,7 +141,8 @@
     "description": "프레젠테이션의 기획→스토리보드→슬라이드→발표노트를 에이전트 팀이 협업하여 제작하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 21
   },
   {
     "id": 14,
@@ -140,7 +153,8 @@
     "agentCount": 5,
     "frameworks": [
       "GDPR"
-    ]
+    ],
+    "popularityRank": 22
   },
   {
     "id": 15,
@@ -149,7 +163,8 @@
     "description": "비주얼 스토리텔링의 스토리설계→텍스트집필→AI이미지생성→HTML레이아웃→통합편집을 에이전트 팀이 협업하여 제작하는 하네스.",
     "category": "content",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 23
   },
   {
     "id": 16,
@@ -162,7 +177,8 @@
       "OWASP Top 10",
       "REST",
       "CI/CD"
-    ]
+    ],
+    "popularityRank": 1
   },
   {
     "id": 17,
@@ -175,7 +191,8 @@
       "REST",
       "GraphQL",
       "CI/CD"
-    ]
+    ],
+    "popularityRank": 24
   },
   {
     "id": 18,
@@ -187,7 +204,8 @@
     "frameworks": [
       "REST",
       "GraphQL"
-    ]
+    ],
+    "popularityRank": 25
   },
   {
     "id": 19,
@@ -198,7 +216,8 @@
     "agentCount": 5,
     "frameworks": [
       "GDPR"
-    ]
+    ],
+    "popularityRank": 26
   },
   {
     "id": 20,
@@ -214,7 +233,8 @@
       "IaC",
       "Terraform",
       "CVE"
-    ]
+    ],
+    "popularityRank": 27
   },
   {
     "id": 21,
@@ -229,7 +249,8 @@
       "CI/CD",
       "CWE",
       "CVE"
-    ]
+    ],
+    "popularityRank": 2
   },
   {
     "id": 22,
@@ -242,7 +263,8 @@
       "REST",
       "GraphQL",
       "CI/CD"
-    ]
+    ],
+    "popularityRank": 28
   },
   {
     "id": 23,
@@ -259,7 +281,8 @@
       "CQRS",
       "Event Sourcing",
       "Circuit Breaker"
-    ]
+    ],
+    "popularityRank": 29
   },
   {
     "id": 24,
@@ -271,7 +294,8 @@
     "frameworks": [
       "REST",
       "CI/CD"
-    ]
+    ],
+    "popularityRank": 30
   },
   {
     "id": 25,
@@ -283,7 +307,8 @@
     "frameworks": [
       "SMART",
       "CI/CD"
-    ]
+    ],
+    "popularityRank": 31
   },
   {
     "id": 26,
@@ -299,7 +324,8 @@
       "Terraform",
       "Pulumi",
       "NIST"
-    ]
+    ],
+    "popularityRank": 32
   },
   {
     "id": 27,
@@ -308,7 +334,8 @@
     "description": "데이터 파이프라인의 수집→변환→적재→품질검증→모니터링을 에이전트 팀이 협업하여 설계·구현하는 하네스.",
     "category": "development",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 33
   },
   {
     "id": 28,
@@ -328,7 +355,8 @@
       "CWE",
       "CVE",
       "NIST"
-    ]
+    ],
+    "popularityRank": 34
   },
   {
     "id": 29,
@@ -340,7 +368,8 @@
     "frameworks": [
       "REST",
       "CI/CD"
-    ]
+    ],
+    "popularityRank": 35
   },
   {
     "id": 30,
@@ -352,7 +381,8 @@
     "frameworks": [
       "SemVer",
       "CI/CD"
-    ]
+    ],
+    "popularityRank": 36
   },
   {
     "id": 31,
@@ -365,7 +395,8 @@
       "SHAP",
       "LIME",
       "MLOps"
-    ]
+    ],
+    "popularityRank": 37
   },
   {
     "id": 32,
@@ -374,7 +405,8 @@
     "description": "데이터 분석 프로젝트의 탐색→정제→분석→시각화→보고서를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 5
   },
   {
     "id": 33,
@@ -383,7 +415,8 @@
     "description": "텍스트 처리 파이프라인: 대량 텍스트→요약·분류·개체추출·감성분석→구조화 데이터→보고서를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 38
   },
   {
     "id": 34,
@@ -392,7 +425,8 @@
     "description": "데이터 마이그레이션: 소스분석→스키마매핑→변환스크립트생성→검증쿼리→롤백계획을 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 39
   },
   {
     "id": 35,
@@ -405,7 +439,8 @@
       "REST",
       "GraphQL",
       "gRPC"
-    ]
+    ],
+    "popularityRank": 40
   },
   {
     "id": 36,
@@ -416,7 +451,8 @@
     "agentCount": 5,
     "frameworks": [
       "SOLID"
-    ]
+    ],
+    "popularityRank": 41
   },
   {
     "id": 37,
@@ -429,7 +465,8 @@
       "ACID",
       "REST",
       "Circuit Breaker"
-    ]
+    ],
+    "popularityRank": 42
   },
   {
     "id": 38,
@@ -438,7 +475,8 @@
     "description": "챗봇 구축의 의도분석→대화설계→NLU→통합→테스트를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "data-ai",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 43
   },
   {
     "id": 39,
@@ -453,7 +491,8 @@
       "GraphQL",
       "CI/CD",
       "CVE"
-    ]
+    ],
+    "popularityRank": 44
   },
   {
     "id": 40,
@@ -465,7 +504,8 @@
     "frameworks": [
       "SemVer",
       "CI/CD"
-    ]
+    ],
+    "popularityRank": 45
   },
   {
     "id": 41,
@@ -476,7 +516,8 @@
     "agentCount": 5,
     "frameworks": [
       "CI/CD"
-    ]
+    ],
+    "popularityRank": 6
   },
   {
     "id": 42,
@@ -489,7 +530,8 @@
       "SMART",
       "STAR",
       "Star Schema"
-    ]
+    ],
+    "popularityRank": 46
   },
   {
     "id": 43,
@@ -502,7 +544,8 @@
       "BMC",
       "TAM/SAM/SOM",
       "MoSCoW"
-    ]
+    ],
+    "popularityRank": 4
   },
   {
     "id": 44,
@@ -515,7 +558,8 @@
       "SWOT",
       "TAM/SAM/SOM",
       "PESTLE"
-    ]
+    ],
+    "popularityRank": 10
   },
   {
     "id": 45,
@@ -526,7 +570,8 @@
     "agentCount": 5,
     "frameworks": [
       "TAM/SAM/SOM"
-    ]
+    ],
+    "popularityRank": 47
   },
   {
     "id": 46,
@@ -540,7 +585,8 @@
       "RICE",
       "MoSCoW",
       "STAR"
-    ]
+    ],
+    "popularityRank": 7
   },
   {
     "id": 47,
@@ -555,7 +601,8 @@
       "SWOT",
       "SMART",
       "PESTLE"
-    ]
+    ],
+    "popularityRank": 48
   },
   {
     "id": 48,
@@ -564,7 +611,8 @@
     "description": "영업 지원 파이프라인: 고객분석→제안서→프레젠테이션→팔로업을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "business",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 49
   },
   {
     "id": 49,
@@ -573,7 +621,8 @@
     "description": "고객지원 시스템 구축: FAQ→응대매뉴얼→에스컬레이션→분석을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "business",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 50
   },
   {
     "id": 50,
@@ -587,7 +636,8 @@
       "Van Westendorp PSM",
       "Gabor-Granger",
       "PED/XED"
-    ]
+    ],
+    "popularityRank": 51
   },
   {
     "id": 51,
@@ -601,7 +651,8 @@
       "SMART",
       "TAM/SAM/SOM",
       "STAR"
-    ]
+    ],
+    "popularityRank": 52
   },
   {
     "id": 52,
@@ -612,7 +663,8 @@
     "agentCount": 5,
     "frameworks": [
       "PESTLE"
-    ]
+    ],
+    "popularityRank": 53
   },
   {
     "id": 53,
@@ -626,7 +678,8 @@
       "IRR",
       "NPV",
       "DCF"
-    ]
+    ],
+    "popularityRank": 54
   },
   {
     "id": 54,
@@ -637,7 +690,8 @@
     "agentCount": 5,
     "frameworks": [
       "TAM/SAM/SOM"
-    ]
+    ],
+    "popularityRank": 55
   },
   {
     "id": 55,
@@ -648,7 +702,8 @@
     "agentCount": 5,
     "frameworks": [
       "RACI"
-    ]
+    ],
+    "popularityRank": 56
   },
   {
     "id": 56,
@@ -659,7 +714,8 @@
     "agentCount": 5,
     "frameworks": [
       "CEFR"
-    ]
+    ],
+    "popularityRank": 57
   },
   {
     "id": 57,
@@ -668,7 +724,8 @@
     "description": "시험 준비의 출제경향→약점진단→맞춤학습→모의고사→오답분석 에이전트 팀 하네스.",
     "category": "education",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 58
   },
   {
     "id": 58,
@@ -679,7 +736,8 @@
     "agentCount": 5,
     "frameworks": [
       "APA"
-    ]
+    ],
+    "popularityRank": 59
   },
   {
     "id": 59,
@@ -691,7 +749,8 @@
     "frameworks": [
       "SOLID",
       "STAR"
-    ]
+    ],
+    "popularityRank": 60
   },
   {
     "id": 60,
@@ -700,7 +759,8 @@
     "description": "토론 시뮬레이션 에이전트 팀 하네스.",
     "category": "education",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 61
   },
   {
     "id": 61,
@@ -712,7 +772,8 @@
     "frameworks": [
       "SMART",
       "STAR"
-    ]
+    ],
+    "popularityRank": 62
   },
   {
     "id": 62,
@@ -728,7 +789,8 @@
       "GraphQL",
       "gRPC",
       "CI/CD"
-    ]
+    ],
+    "popularityRank": 63
   },
   {
     "id": 63,
@@ -740,7 +802,8 @@
     "frameworks": [
       "APA",
       "IEEE"
-    ]
+    ],
+    "popularityRank": 64
   },
   {
     "id": 64,
@@ -752,7 +815,8 @@
     "frameworks": [
       "RACI",
       "CI/CD"
-    ]
+    ],
+    "popularityRank": 65
   },
   {
     "id": 65,
@@ -764,7 +828,8 @@
     "frameworks": [
       "STAR",
       "CI/CD"
-    ]
+    ],
+    "popularityRank": 66
   },
   {
     "id": 66,
@@ -773,7 +838,8 @@
     "description": "계약서 분석·작성·검토·위험 평가를 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "legal",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 9
   },
   {
     "id": 67,
@@ -784,7 +850,8 @@
     "agentCount": 4,
     "frameworks": [
       "GDPR"
-    ]
+    ],
+    "popularityRank": 67
   },
   {
     "id": 68,
@@ -793,7 +860,8 @@
     "description": "특허 명세서 작성 — 선행기술조사→청구항→명세서→도면설명을 에이전트 팀이 협업하여 수행하는 하네스.",
     "category": "legal",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 68
   },
   {
     "id": 69,
@@ -805,7 +873,8 @@
     "frameworks": [
       "GDPR",
       "PIPA"
-    ]
+    ],
+    "popularityRank": 69
   },
   {
     "id": 70,
@@ -816,7 +885,8 @@
     "agentCount": 4,
     "frameworks": [
       "IRAC"
-    ]
+    ],
+    "popularityRank": 70
   },
   {
     "id": 71,
@@ -827,7 +897,8 @@
     "agentCount": 4,
     "frameworks": [
       "GDPR"
-    ]
+    ],
+    "popularityRank": 71
   },
   {
     "id": 72,
@@ -836,7 +907,8 @@
     "description": "인허가·신고서류의 요건조사→구비서류목록→신청서작성→첨부자료준비→제출체크리스트를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "legal",
     "agentCount": 4,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 72
   },
   {
     "id": 73,
@@ -845,7 +917,8 @@
     "description": "식단 관리의 영양분석→식단설계→레시피→장보기목록→조리가이드를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 4,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 73
   },
   {
     "id": 74,
@@ -854,7 +927,8 @@
     "description": "운동 프로그램의 목표별설계→주간스케줄→운동가이드→식단연계→진행기록을 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 4,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 74
   },
   {
     "id": 75,
@@ -863,7 +937,8 @@
     "description": "세금 계산·절세 전략의 소득분석→공제항목최적화→세액계산→절세시뮬레이션→신고자료준비를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 4,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 75
   },
   {
     "id": 76,
@@ -872,7 +947,8 @@
     "description": "여행 계획의 목적지분석→일정→숙소→예산→현지정보를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 4,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 76
   },
   {
     "id": 77,
@@ -881,7 +957,8 @@
     "description": "공간 인테리어 컨셉보드의 스타일분석→무드보드→컬러팔레트→가구·소품리스트→예산표→쇼핑가이드를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 77
   },
   {
     "id": 78,
@@ -890,7 +967,8 @@
     "description": "개인 재무관리의 수입지출분석→예산설계→투자전략→절세방안→은퇴설계를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 78
   },
   {
     "id": 79,
@@ -902,7 +980,8 @@
     "frameworks": [
       "TAM/SAM/SOM",
       "MoSCoW"
-    ]
+    ],
+    "popularityRank": 79
   },
   {
     "id": 80,
@@ -911,7 +990,8 @@
     "description": "결혼 준비 종합의 타임라인설계→예산관리표→업체비교표→체크리스트→청첩장문구를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "lifestyle",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 80
   },
   {
     "id": 81,
@@ -925,7 +1005,8 @@
       "GraphQL",
       "gRPC",
       "CI/CD"
-    ]
+    ],
+    "popularityRank": 81
   },
   {
     "id": 82,
@@ -937,7 +1018,8 @@
     "frameworks": [
       "SWOT",
       "SMART"
-    ]
+    ],
+    "popularityRank": 82
   },
   {
     "id": 83,
@@ -949,7 +1031,8 @@
     "frameworks": [
       "RACI",
       "SIPOC"
-    ]
+    ],
+    "popularityRank": 83
   },
   {
     "id": 84,
@@ -962,7 +1045,8 @@
       "SWOT",
       "SMART",
       "Eisenhower"
-    ]
+    ],
+    "popularityRank": 84
   },
   {
     "id": 85,
@@ -973,7 +1057,8 @@
     "agentCount": 5,
     "frameworks": [
       "STAR"
-    ]
+    ],
+    "popularityRank": 85
   },
   {
     "id": 86,
@@ -985,7 +1070,8 @@
     "frameworks": [
       "IRR",
       "NPV"
-    ]
+    ],
+    "popularityRank": 86
   },
   {
     "id": 87,
@@ -996,7 +1082,8 @@
     "agentCount": 5,
     "frameworks": [
       "STAR"
-    ]
+    ],
+    "popularityRank": 87
   },
   {
     "id": 88,
@@ -1009,7 +1096,8 @@
       "SWOT",
       "RACI",
       "SMART"
-    ]
+    ],
+    "popularityRank": 88
   },
   {
     "id": 89,
@@ -1021,7 +1109,8 @@
     "frameworks": [
       "AIDA",
       "SMART"
-    ]
+    ],
+    "popularityRank": 89
   },
   {
     "id": 90,
@@ -1033,7 +1122,8 @@
     "frameworks": [
       "Lean",
       "STAR"
-    ]
+    ],
+    "popularityRank": 90
   },
   {
     "id": 91,
@@ -1047,7 +1137,8 @@
       "RACI",
       "SMART",
       "Bloom's Taxonomy"
-    ]
+    ],
+    "popularityRank": 91
   },
   {
     "id": 92,
@@ -1058,7 +1149,8 @@
     "agentCount": 5,
     "frameworks": [
       "RACI"
-    ]
+    ],
+    "popularityRank": 92
   },
   {
     "id": 93,
@@ -1069,7 +1161,8 @@
     "agentCount": 5,
     "frameworks": [
       "SMART"
-    ]
+    ],
+    "popularityRank": 93
   },
   {
     "id": 94,
@@ -1080,7 +1173,8 @@
     "agentCount": 5,
     "frameworks": [
       "SMART"
-    ]
+    ],
+    "popularityRank": 94
   },
   {
     "id": 95,
@@ -1093,7 +1187,8 @@
       "OWASP Top 10",
       "SWOT",
       "MoSCoW"
-    ]
+    ],
+    "popularityRank": 95
   },
   {
     "id": 96,
@@ -1108,7 +1203,8 @@
       "IRR",
       "NPV",
       "DCF"
-    ]
+    ],
+    "popularityRank": 96
   },
   {
     "id": 97,
@@ -1119,7 +1215,8 @@
     "agentCount": 5,
     "frameworks": [
       "AIDA"
-    ]
+    ],
+    "popularityRank": 97
   },
   {
     "id": 98,
@@ -1132,7 +1229,8 @@
       "IMRaD",
       "APA",
       "IEEE"
-    ]
+    ],
+    "popularityRank": 98
   },
   {
     "id": 99,
@@ -1154,7 +1252,8 @@
       "UN SDGs",
       "SA8000",
       "UNGPs"
-    ]
+    ],
+    "popularityRank": 99
   },
   {
     "id": 100,
@@ -1163,6 +1262,7 @@
     "description": "지식재산 포트폴리오 관리의 IP현황분석→특허·상표·저작권매핑→갱신일정→라이선스전략→보호전략보고서를 에이전트 팀이 협업하여 생성하는 하네스.",
     "category": "specialized",
     "agentCount": 5,
-    "frameworks": []
+    "frameworks": [],
+    "popularityRank": 100
   }
 ]

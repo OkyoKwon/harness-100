@@ -74,5 +74,6 @@ export function mergeHarnesses(harnesses: ReadonlyArray<Harness>): Harness {
     skill: mergedSkill,
     frameworks: allFrameworks,
     agentCount: allAgents.length,
+    popularityRank: 0,
   };
 }

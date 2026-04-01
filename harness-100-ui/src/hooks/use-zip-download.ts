@@ -23,7 +23,8 @@ export function useZipDownload() {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         setStatus("complete");
-      } catch {
+      } catch (err) {
+        console.error("ZIP build failed:", err);
         setStatus("error");
       }
     },

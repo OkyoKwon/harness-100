@@ -1,5 +1,6 @@
 import JSZip from "jszip";
 import type { Agent, Harness, Modification } from "./types";
+import { isAllowedModificationField, isValidPath } from "./validation";
 
 function applyModifications(
   agents: ReadonlyArray<Agent>,
@@ -20,13 +21,13 @@ function applyModifications(
       );
       if (agentMods.length === 0) return agent;
 
-      let updated = { ...agent };
-      for (const mod of agentMods) {
-        if (typeof mod.value === "string") {
-          updated = { ...updated, [mod.field]: mod.value };
-        }
-      }
-      return updated;
+      return agentMods.reduce<Agent>(
+        (acc, mod) =>
+          typeof mod.value === "string" && isAllowedModificationField(mod.field)
+            ? { ...acc, [mod.field]: mod.value }
+            : acc,
+        agent,
+      );
     });
 }
 
@@ -151,9 +152,11 @@ export async function buildZip(
 
   if (raw?.skills && Object.keys(raw.skills).length > 0) {
     for (const [path, content] of Object.entries(raw.skills)) {
+      if (!isValidPath(path)) continue;
       const parts = path.split("/");
       const dirName = parts[0];
       const fileName = parts.slice(1).join("/");
+      if (!dirName || !fileName) continue;
       const dir = skillsFolder.folder(dirName);
       if (dir) {
         dir.file(fileName, content);

@@ -23,7 +23,8 @@ export function useLocalSetup() {
         const setupResult = await setupToLocal(harness, modifications);
         setResult(setupResult);
         setStatus(setupResult.success ? "complete" : "error");
-      } catch {
+      } catch (err) {
+        console.error("Local setup failed:", err);
         setStatus("error");
       }
     },

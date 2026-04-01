@@ -2,6 +2,7 @@
 
 import type { Harness } from "@/lib/types";
 import { CopyCliButton } from "@/components/actions/copy-cli-button";
+import { buildCliCommand } from "@/lib/cli";
 
 interface OutputPreviewProps {
   readonly harness: Harness;
@@ -14,7 +15,8 @@ function extractOutputTitle(template: string): string {
 }
 
 export function OutputPreview({ harness }: OutputPreviewProps) {
-  const setupCommands = `cp -r ${harness.slug}/.claude/ your-project/.claude/\ncd your-project\nclaude "/${harness.slug}"`;
+  const cliCommand = buildCliCommand(harness.slug);
+  const setupCommands = `cp -r ${harness.slug}/.claude/ your-project/.claude/\ncd your-project\n${cliCommand}`;
 
   return (
     <div className="space-y-6">
@@ -64,6 +66,35 @@ export function OutputPreview({ harness }: OutputPreviewProps) {
             <CopyCliButton text={setupCommands} />
           </div>
         </div>
+
+        {/* Mode-specific usage examples */}
+        {harness.skill.modes.length > 0 && (
+          <div className="mt-4">
+            <h4 className="mb-2 text-xs font-semibold text-[var(--muted-foreground)]">
+              요청 예시
+            </h4>
+            <ul className="space-y-1.5">
+              {harness.skill.modes.map((mode) => (
+                <li
+                  key={mode.name}
+                  className="flex items-start gap-2 text-xs text-[var(--card-foreground)]"
+                >
+                  <span className="mt-0.5 shrink-0 text-[var(--primary)]">&#8250;</span>
+                  <span>
+                    <span className="font-medium">{mode.name}</span>
+                    {" — "}
+                    <span className="text-[var(--muted-foreground)]">
+                      &ldquo;{mode.triggerPattern}&rdquo;
+                    </span>
+                    <span className="ml-1 text-[var(--muted-foreground)]">
+                      ({mode.agents.length}명)
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
     </div>
   );

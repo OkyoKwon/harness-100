@@ -44,13 +44,15 @@ export function HarnessSelector({
     return fuse.search(debouncedQuery).map((r) => r.item);
   }, [fuse, debouncedQuery, catalog]);
 
+  const selectedSet = useMemo(() => new Set(selectedIds), [selectedIds]);
+
   const selectedItems = useMemo(
-    () => catalog.filter((h) => selectedIds.includes(h.id)),
-    [catalog, selectedIds],
+    () => catalog.filter((h) => selectedSet.has(h.id)),
+    [catalog, selectedSet],
   );
 
   const groupedItems = useMemo(() => {
-    const items = filteredItems.filter((h) => !selectedIds.includes(h.id));
+    const items = filteredItems.filter((h) => !selectedSet.has(h.id));
     const groups: { label: string; items: ReadonlyArray<HarnessMeta> }[] = [];
     for (const cat of CATEGORIES) {
       const catItems = items.filter((h) => h.category === cat.slug);
@@ -59,7 +61,7 @@ export function HarnessSelector({
       }
     }
     return groups;
-  }, [filteredItems, selectedIds]);
+  }, [filteredItems, selectedSet]);
 
   return (
     <div className="flex h-full flex-col rounded-lg border border-[var(--border)] bg-[var(--card)]">
@@ -84,6 +86,7 @@ export function HarnessSelector({
             </div>
             {selectedItems.map((item) => (
               <button
+                type="button"
                 key={item.id}
                 onClick={() => onRemove(item.id)}
                 className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm bg-[var(--info-bg)] text-[var(--foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
@@ -106,6 +109,7 @@ export function HarnessSelector({
               </div>
               {group.items.map((item) => (
                 <button
+                  type="button"
                   key={item.id}
                   onClick={() => onAdd(item.id)}
                   className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm text-[var(--foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
@@ -133,6 +137,7 @@ export function HarnessSelector({
         </span>
         {selectedIds.length > 0 && (
           <button
+            type="button"
             onClick={() => selectedIds.forEach((id) => onRemove(id))}
             className="text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded"
           >

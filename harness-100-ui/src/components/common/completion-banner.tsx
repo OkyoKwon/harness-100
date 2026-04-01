@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { CopyCliButton } from "@/components/actions/copy-cli-button";
+import { buildCliCommand } from "@/lib/cli";
 
 interface CompletionBannerProps {
   readonly type: "setup" | "zip";
-  readonly harnessName: string;
   readonly path?: string;
   readonly slug: string;
   readonly filesWritten?: number;
@@ -13,7 +13,6 @@ interface CompletionBannerProps {
 
 export function CompletionBanner({
   type,
-  harnessName,
   path,
   slug,
   filesWritten,
@@ -22,8 +21,7 @@ export function CompletionBanner({
 
   if (dismissed) return null;
 
-  const cliCommand = `claude "/${slug}"`;
-  const skillSlug = slug;
+  const cliCommand = buildCliCommand(slug);
 
   return (
     <div className="relative rounded-lg border border-[var(--success-border)] bg-[var(--success-bg)] p-4">
@@ -75,9 +73,11 @@ export function CompletionBanner({
           <p className="text-xs text-[var(--info-foreground)]">
             💡 <span className="font-medium">Tip:</span> Claude CLI에서{" "}
             <code className="rounded bg-[var(--badge-tool-bg)] px-1 font-mono text-xs">
-              /{skillSlug}
+              /{slug}
             </code>{" "}
-            스킬을 호출하면 에이전트가 순서대로 실행됩니다.
+            스킬을 호출하면 에이전트가 순서대로 실행됩니다. 스킬이
+            보이지 않으면 Claude 세션을 재시작(/exit 후 다시 실행)해
+            보세요.
           </p>
         </div>
       </div>

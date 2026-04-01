@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { HarnessMeta } from "@/lib/types";
 import { FavoriteToggle } from "@/components/favorites/favorite-toggle";
@@ -14,6 +15,7 @@ interface HarnessCardProps {
 }
 
 export function HarnessCard({ harness, isFavorite, onToggleFavorite }: HarnessCardProps) {
+  const router = useRouter();
   const paddedId = String(harness.id).padStart(2, "0");
   const categoryLabel = CATEGORIES.find((c) => c.slug === harness.category)?.label ?? "";
 
@@ -45,8 +47,8 @@ export function HarnessCard({ harness, isFavorite, onToggleFavorite }: HarnessCa
       </div>
 
       <div className="flex gap-2">
-        <SetupButton onClick={() => window.location.href = `/harness/${paddedId}?action=setup`} size="sm" />
-        <ZipButton onClick={() => window.location.href = `/harness/${paddedId}?action=zip`} size="sm" />
+        <SetupButton onClick={() => router.push(`/harness/${paddedId}?action=setup`)} size="sm" />
+        <ZipButton onClick={() => router.push(`/harness/${paddedId}?action=zip`)} size="sm" />
       </div>
     </Link>
   );

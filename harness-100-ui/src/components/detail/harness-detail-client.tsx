@@ -202,7 +202,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
         <div className="mb-6">
           <CompletionBanner
             type="setup"
-            harnessName={harness.name}
+
             slug={harness.slug}
             path={setupResult.path}
             filesWritten={setupResult.filesWritten}
@@ -213,7 +213,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
         <div className="mb-6">
           <CompletionBanner
             type="zip"
-            harnessName={harness.name}
+
             slug={harness.slug}
           />
         </div>

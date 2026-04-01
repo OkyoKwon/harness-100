@@ -13,44 +13,40 @@ export function mergeHarnesses(harnesses: ReadonlyArray<Harness>): Harness {
     return harnesses[0];
   }
 
-  const allAgents: Agent[] = [];
-  const allSteps: ExecutionStep[] = [];
-  const allFrameworks = new Set<string>();
-  const allTriggers: string[] = [];
-  const allModes: SkillMode[] = [];
-
-  for (let i = 0; i < harnesses.length; i++) {
-    const harness = harnesses[i];
+  const allAgents: ReadonlyArray<Agent> = harnesses.flatMap((harness, i) => {
     const prefix = `h${i}`;
-
-    const prefixedAgents = harness.agents.map((agent) => ({
+    return harness.agents.map((agent) => ({
       ...agent,
       id: `${prefix}_${agent.id}`,
       dependencies: agent.dependencies.map((d) => `${prefix}_${d}`),
     }));
-    allAgents.push(...prefixedAgents);
+  });
 
-    const prefixedSteps = harness.skill.executionOrder.map((step) => ({
+  const allSteps: ReadonlyArray<ExecutionStep> = harnesses.flatMap((harness, i) => {
+    const prefix = `h${i}`;
+    return harness.skill.executionOrder.map((step) => ({
       ...step,
       agentId: `${prefix}_${step.agentId}`,
       dependsOn: step.dependsOn.map((d) => `${prefix}_${d}`),
     }));
-    allSteps.push(...prefixedSteps);
+  });
 
-    for (const f of harness.frameworks) {
-      allFrameworks.add(f);
-    }
+  const allFrameworks: ReadonlyArray<string> = [
+    ...new Set(harnesses.flatMap((h) => h.frameworks)),
+  ];
 
-    allTriggers.push(...harness.skill.triggerConditions);
+  const allTriggers: ReadonlyArray<string> = harnesses.flatMap(
+    (h) => h.skill.triggerConditions,
+  );
 
-    for (const mode of harness.skill.modes) {
-      allModes.push({
-        ...mode,
-        name: `[${harness.name}] ${mode.name}`,
-        agents: mode.agents.map((a) => `${prefix}_${a}`),
-      });
-    }
-  }
+  const allModes: ReadonlyArray<SkillMode> = harnesses.flatMap((harness, i) => {
+    const prefix = `h${i}`;
+    return harness.skill.modes.map((mode) => ({
+      ...mode,
+      name: `[${harness.name}] ${mode.name}`,
+      agents: mode.agents.map((a) => `${prefix}_${a}`),
+    }));
+  });
 
   const mergedSkill: Skill = {
     id: "merged",
@@ -76,7 +72,7 @@ export function mergeHarnesses(harnesses: ReadonlyArray<Harness>): Harness {
     category: harnesses[0].category,
     agents: allAgents,
     skill: mergedSkill,
-    frameworks: [...allFrameworks],
+    frameworks: allFrameworks,
     agentCount: allAgents.length,
   };
 }

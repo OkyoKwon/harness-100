@@ -18,12 +18,14 @@ export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsPr
   return (
     <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
       <button
+        type="button"
         onClick={() => onSelect("favorites")}
         className={`${baseClass} ${active === "favorites" ? activeClass : inactiveClass}`}
       >
         ★ 즐겨찾기{favoriteCount > 0 ? ` ${favoriteCount}` : ""}
       </button>
       <button
+        type="button"
         onClick={() => onSelect("all")}
         className={`${baseClass} ${active === "all" ? activeClass : inactiveClass}`}
       >
@@ -31,6 +33,7 @@ export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsPr
       </button>
       {CATEGORIES.map((cat) => (
         <button
+          type="button"
           key={cat.slug}
           onClick={() => onSelect(cat.slug)}
           className={`${baseClass} ${active === cat.slug ? activeClass : inactiveClass}`}

@@ -11,13 +11,14 @@ export function SetupButton({ onClick, disabled, size = "md" }: SetupButtonProps
 
   return (
     <button
+      type="button"
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
         onClick();
       }}
       disabled={disabled}
-      className={`${sizeClass} rounded-lg font-medium bg-[var(--primary)] text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 disabled:opacity-50 transition-all focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2`}
+      className={`${sizeClass} rounded-lg font-medium bg-[var(--primary)] text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 disabled:opacity-50 transition-base focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2`}
     >
       세팅 →
     </button>

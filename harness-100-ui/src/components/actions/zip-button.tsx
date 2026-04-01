@@ -11,6 +11,7 @@ export function ZipButton({ onClick, disabled, size = "md" }: ZipButtonProps) {
 
   return (
     <button
+      type="button"
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();

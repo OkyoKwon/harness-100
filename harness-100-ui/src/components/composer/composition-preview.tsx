@@ -114,7 +114,7 @@ export function CompositionPreview({
             {setupStatus === "complete" && setupResult && (
               <CompletionBanner
                 type="setup"
-                harnessName={merged.name}
+
                 path={setupResult.path}
                 slug={merged.slug}
                 filesWritten={setupResult.filesWritten}
@@ -123,7 +123,7 @@ export function CompositionPreview({
             {zipStatus === "complete" && (
               <CompletionBanner
                 type="zip"
-                harnessName={merged.name}
+
                 slug={merged.slug}
               />
             )}

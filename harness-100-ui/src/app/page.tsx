@@ -14,6 +14,7 @@ import { CATEGORIES } from "@/lib/constants";
 export default function CatalogPage() {
   const [catalog, setCatalog] = useState<ReadonlyArray<HarnessMeta>>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState("all");
 
   const { favorites, toggle, isFavorite } = useFavorites();
@@ -22,7 +23,11 @@ export default function CatalogPage() {
   useEffect(() => {
     loadCatalog()
       .then(setCatalog)
-      .catch(console.error)
+      .catch((err: unknown) => {
+        setError(
+          err instanceof Error ? err.message : "카탈로그를 불러오는 데 실패했습니다.",
+        );
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -69,6 +74,23 @@ export default function CatalogPage() {
               </div>
             ))}
           </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main className="max-w-7xl mx-auto px-4 py-8">
+        <div className="rounded-lg border border-[var(--danger-border)] bg-[var(--danger-bg)] p-6 text-center">
+          <p className="text-sm text-[var(--danger-foreground)]">{error}</p>
+          <button
+            type="button"
+            onClick={() => window.location.reload()}
+            className="mt-3 rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] hover:brightness-110 transition-base focus-ring"
+          >
+            다시 시도
+          </button>
         </div>
       </main>
     );

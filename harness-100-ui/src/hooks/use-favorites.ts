@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { STORAGE_KEYS } from "@/lib/constants";
+import { parseFavoriteIds, parseStoredFavorites } from "@/lib/validation";
 
 export function useFavorites() {
   const [favorites, setFavorites] = useState<ReadonlyArray<number>>([]);
@@ -10,33 +11,39 @@ export function useFavorites() {
     const params = new URLSearchParams(window.location.search);
     const fromUrl = params.get("favorites");
     if (fromUrl) {
-      setFavorites(fromUrl.split(",").map(Number).filter(Boolean));
+      setFavorites(parseFavoriteIds(fromUrl));
       return;
     }
 
-    const stored = localStorage.getItem(STORAGE_KEYS.favorites);
-    if (stored) {
-      try {
-        setFavorites(JSON.parse(stored));
-      } catch {
-        // ignore invalid JSON
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.favorites);
+      if (stored) {
+        setFavorites(parseStoredFavorites(stored));
       }
+    } catch {
+      // localStorage may be unavailable (private browsing)
     }
   }, []);
+
+  const favoriteSet = useMemo(() => new Set(favorites), [favorites]);
 
   const toggle = useCallback((id: number) => {
     setFavorites((prev) => {
       const next = prev.includes(id)
         ? prev.filter((f) => f !== id)
         : [...prev, id];
-      localStorage.setItem(STORAGE_KEYS.favorites, JSON.stringify(next));
+      try {
+        localStorage.setItem(STORAGE_KEYS.favorites, JSON.stringify(next));
+      } catch {
+        // localStorage may be unavailable (private browsing)
+      }
       return next;
     });
   }, []);
 
   const isFavorite = useCallback(
-    (id: number) => favorites.includes(id),
-    [favorites],
+    (id: number) => favoriteSet.has(id),
+    [favoriteSet],
   );
 
   const shareUrl = useMemo(() => {

@@ -1,0 +1,196 @@
+{
+  "id": 90,
+  "slug": "hiring-pipeline",
+  "name": "Hiring Pipeline",
+  "description": "JD 작성, 소싱, 스크리닝, 면접, 오퍼",
+  "category": "operations",
+  "agents": [
+    {
+      "id": "hiring-pipeline-agent-1",
+      "name": "Hiring Pipeline 분석가",
+      "role": "프로세스 분석 전문가",
+      "description": "Hiring Pipeline 하네스의 프로세스 분석 전문가. JD 작성, 소싱, 스크리닝, 면접, 오퍼 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "WebSearch",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 프로세스 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "hiring-pipeline-agent-2",
+      "name": "Hiring Pipeline 설계자",
+      "role": "운영 설계 전문가",
+      "description": "Hiring Pipeline 하네스의 운영 설계 전문가. JD 작성, 소싱, 스크리닝, 면접, 오퍼 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 운영 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "hiring-pipeline-agent-1"
+      ]
+    },
+    {
+      "id": "hiring-pipeline-agent-3",
+      "name": "Hiring Pipeline 실행자",
+      "role": "운영 실행 전문가",
+      "description": "Hiring Pipeline 하네스의 운영 실행 전문가. JD 작성, 소싱, 스크리닝, 면접, 오퍼 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 실행 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "hiring-pipeline-agent-2"
+      ]
+    },
+    {
+      "id": "hiring-pipeline-agent-4",
+      "name": "Hiring Pipeline 검수자",
+      "role": "품질 검수 전문가",
+      "description": "Hiring Pipeline 하네스의 품질 검수 전문가. JD 작성, 소싱, 스크리닝, 면접, 오퍼 워크플로에서 검수자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 검수 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "hiring-pipeline-agent-3"
+      ]
+    },
+    {
+      "id": "hiring-pipeline-agent-5",
+      "name": "Hiring Pipeline 최적화 전문가",
+      "role": "운영 최적화 전문가",
+      "description": "Hiring Pipeline 하네스의 운영 최적화 전문가. JD 작성, 소싱, 스크리닝, 면접, 오퍼 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "hiring-pipeline-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "hiring-pipeline-skill",
+    "name": "Hiring Pipeline 워크플로",
+    "triggerConditions": [
+      "Hiring Pipeline 관련 작업 요청",
+      "hiring-pipeline 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "hiring-pipeline-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "hiring-pipeline-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "hiring-pipeline-agent-1"
+        ]
+      },
+      {
+        "agentId": "hiring-pipeline-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "hiring-pipeline-agent-2"
+        ]
+      },
+      {
+        "agentId": "hiring-pipeline-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "hiring-pipeline-agent-3"
+        ]
+      },
+      {
+        "agentId": "hiring-pipeline-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "hiring-pipeline-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "hiring-pipeline-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "hiring-pipeline-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "hiring-pipeline-agent-1"
+          ]
+        },
+        {
+          "agentId": "hiring-pipeline-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "hiring-pipeline-agent-2"
+          ]
+        },
+        {
+          "agentId": "hiring-pipeline-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "hiring-pipeline-agent-3"
+          ]
+        },
+        {
+          "agentId": "hiring-pipeline-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "hiring-pipeline-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "hiring-pipeline-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "hiring-pipeline-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "hiring-pipeline-agent-1"
+          ]
+        },
+        {
+          "agentId": "hiring-pipeline-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "hiring-pipeline-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "hiring-pipeline-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SIPOC",
+    "RACI",
+    "SMART"
+  ],
+  "agentCount": 5
+}

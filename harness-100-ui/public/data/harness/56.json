@@ -1,0 +1,196 @@
+{
+  "id": 56,
+  "slug": "language-tutor",
+  "name": "Language Tutor",
+  "description": "레벨 테스트, 커리큘럼, 레슨, 퀴즈",
+  "category": "education",
+  "agents": [
+    {
+      "id": "language-tutor-agent-1",
+      "name": "Language Tutor 분석가",
+      "role": "학습 분석 전문가",
+      "description": "Language Tutor 하네스의 학습 분석 전문가. 레벨 테스트, 커리큘럼, 레슨, 퀴즈 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "language-tutor-agent-2",
+      "name": "Language Tutor 설계자",
+      "role": "교육 설계 전문가",
+      "description": "Language Tutor 하네스의 교육 설계 전문가. 레벨 테스트, 커리큘럼, 레슨, 퀴즈 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 교육 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "language-tutor-agent-1"
+      ]
+    },
+    {
+      "id": "language-tutor-agent-3",
+      "name": "Language Tutor 콘텐츠 개발자",
+      "role": "학습 자료 개발 전문가",
+      "description": "Language Tutor 하네스의 학습 자료 개발 전문가. 레벨 테스트, 커리큘럼, 레슨, 퀴즈 워크플로에서 콘텐츠 개발자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 학습 자료\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "language-tutor-agent-2"
+      ]
+    },
+    {
+      "id": "language-tutor-agent-4",
+      "name": "Language Tutor 평가자",
+      "role": "평가/피드백 전문가",
+      "description": "Language Tutor 하네스의 평가/피드백 전문가. 레벨 테스트, 커리큘럼, 레슨, 퀴즈 워크플로에서 평가자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 평가 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "language-tutor-agent-3"
+      ]
+    },
+    {
+      "id": "language-tutor-agent-5",
+      "name": "Language Tutor 코치",
+      "role": "학습 코칭 전문가",
+      "description": "Language Tutor 하네스의 학습 코칭 전문가. 레벨 테스트, 커리큘럼, 레슨, 퀴즈 워크플로에서 코치 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 코칭 가이드\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "language-tutor-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "language-tutor-skill",
+    "name": "Language Tutor 워크플로",
+    "triggerConditions": [
+      "Language Tutor 관련 작업 요청",
+      "language-tutor 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "language-tutor-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "language-tutor-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "language-tutor-agent-1"
+        ]
+      },
+      {
+        "agentId": "language-tutor-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "language-tutor-agent-2"
+        ]
+      },
+      {
+        "agentId": "language-tutor-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "language-tutor-agent-3"
+        ]
+      },
+      {
+        "agentId": "language-tutor-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "language-tutor-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "language-tutor-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "language-tutor-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "language-tutor-agent-1"
+          ]
+        },
+        {
+          "agentId": "language-tutor-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "language-tutor-agent-2"
+          ]
+        },
+        {
+          "agentId": "language-tutor-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "language-tutor-agent-3"
+          ]
+        },
+        {
+          "agentId": "language-tutor-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "language-tutor-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "language-tutor-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "language-tutor-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "language-tutor-agent-1"
+          ]
+        },
+        {
+          "agentId": "language-tutor-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "language-tutor-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "language-tutor-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "Bloom's Taxonomy",
+    "ADDIE",
+    "CEFR"
+  ],
+  "agentCount": 5
+}

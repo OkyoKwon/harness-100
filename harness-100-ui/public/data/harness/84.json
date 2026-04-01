@@ -1,0 +1,196 @@
+{
+  "id": 84,
+  "slug": "meeting-strategist",
+  "name": "Meeting Strategist",
+  "description": "안건, 배경, 의사결정 프레임워크",
+  "category": "communication",
+  "agents": [
+    {
+      "id": "meeting-strategist-agent-1",
+      "name": "Meeting Strategist 리서처",
+      "role": "배경 조사 전문가",
+      "description": "Meeting Strategist 하네스의 배경 조사 전문가. 안건, 배경, 의사결정 프레임워크 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 배경 조사\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "meeting-strategist-agent-2",
+      "name": "Meeting Strategist 구조 설계자",
+      "role": "문서 구조 설계 전문가",
+      "description": "Meeting Strategist 하네스의 문서 구조 설계 전문가. 안건, 배경, 의사결정 프레임워크 워크플로에서 구조 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 구조 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "meeting-strategist-agent-1"
+      ]
+    },
+    {
+      "id": "meeting-strategist-agent-3",
+      "name": "Meeting Strategist 작성자",
+      "role": "문서 집필 전문가",
+      "description": "Meeting Strategist 하네스의 문서 집필 전문가. 안건, 배경, 의사결정 프레임워크 워크플로에서 작성자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 초안\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "meeting-strategist-agent-2"
+      ]
+    },
+    {
+      "id": "meeting-strategist-agent-4",
+      "name": "Meeting Strategist 편집자",
+      "role": "문서 편집/검수 전문가",
+      "description": "Meeting Strategist 하네스의 문서 편집/검수 전문가. 안건, 배경, 의사결정 프레임워크 워크플로에서 편집자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 편집 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "meeting-strategist-agent-3"
+      ]
+    },
+    {
+      "id": "meeting-strategist-agent-5",
+      "name": "Meeting Strategist 전략가",
+      "role": "커뮤니케이션 전략 전문가",
+      "description": "Meeting Strategist 하네스의 커뮤니케이션 전략 전문가. 안건, 배경, 의사결정 프레임워크 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 전략 가이드\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "meeting-strategist-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "meeting-strategist-skill",
+    "name": "Meeting Strategist 워크플로",
+    "triggerConditions": [
+      "Meeting Strategist 관련 작업 요청",
+      "meeting-strategist 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "meeting-strategist-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "meeting-strategist-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "meeting-strategist-agent-1"
+        ]
+      },
+      {
+        "agentId": "meeting-strategist-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "meeting-strategist-agent-2"
+        ]
+      },
+      {
+        "agentId": "meeting-strategist-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "meeting-strategist-agent-3"
+        ]
+      },
+      {
+        "agentId": "meeting-strategist-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "meeting-strategist-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "meeting-strategist-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "meeting-strategist-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "meeting-strategist-agent-1"
+          ]
+        },
+        {
+          "agentId": "meeting-strategist-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "meeting-strategist-agent-2"
+          ]
+        },
+        {
+          "agentId": "meeting-strategist-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "meeting-strategist-agent-3"
+          ]
+        },
+        {
+          "agentId": "meeting-strategist-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "meeting-strategist-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "meeting-strategist-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "meeting-strategist-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "meeting-strategist-agent-1"
+          ]
+        },
+        {
+          "agentId": "meeting-strategist-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "meeting-strategist-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "meeting-strategist-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "Diataxis",
+    "MADR",
+    "SemVer"
+  ],
+  "agentCount": 5
+}

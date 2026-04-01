@@ -1,0 +1,195 @@
+{
+  "id": 41,
+  "slug": "llm-app-builder",
+  "name": "LLM App Builder",
+  "description": "프롬프트, RAG, 평가, 최적화, 배포",
+  "category": "data-ai",
+  "agents": [
+    {
+      "id": "llm-app-builder-agent-1",
+      "name": "LLM App Builder 데이터 분석가",
+      "role": "데이터 탐색/분석 전문가",
+      "description": "LLM App Builder 하네스의 데이터 탐색/분석 전문가. 프롬프트, RAG, 평가, 최적화, 배포 워크플로에서 데이터 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Bash",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 데이터 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "llm-app-builder-agent-2",
+      "name": "LLM App Builder 설계자",
+      "role": "파이프라인/모델 설계 전문가",
+      "description": "LLM App Builder 하네스의 파이프라인/모델 설계 전문가. 프롬프트, RAG, 평가, 최적화, 배포 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 설계 명세\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "llm-app-builder-agent-1"
+      ]
+    },
+    {
+      "id": "llm-app-builder-agent-3",
+      "name": "LLM App Builder 엔지니어",
+      "role": "구현/빌드 전문가",
+      "description": "LLM App Builder 하네스의 구현/빌드 전문가. 프롬프트, RAG, 평가, 최적화, 배포 워크플로에서 엔지니어 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 구현 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "llm-app-builder-agent-2"
+      ]
+    },
+    {
+      "id": "llm-app-builder-agent-4",
+      "name": "LLM App Builder 검증자",
+      "role": "품질/성능 검증 전문가",
+      "description": "LLM App Builder 하네스의 품질/성능 검증 전문가. 프롬프트, RAG, 평가, 최적화, 배포 워크플로에서 검증자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Bash",
+        "Write"
+      ],
+      "outputTemplate": "## 검증 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "llm-app-builder-agent-3"
+      ]
+    },
+    {
+      "id": "llm-app-builder-agent-5",
+      "name": "LLM App Builder 최적화 전문가",
+      "role": "성능 최적화 전문가",
+      "description": "LLM App Builder 하네스의 성능 최적화 전문가. 프롬프트, RAG, 평가, 최적화, 배포 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "llm-app-builder-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "llm-app-builder-skill",
+    "name": "LLM App Builder 워크플로",
+    "triggerConditions": [
+      "LLM App Builder 관련 작업 요청",
+      "llm-app-builder 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "llm-app-builder-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "llm-app-builder-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "llm-app-builder-agent-1"
+        ]
+      },
+      {
+        "agentId": "llm-app-builder-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "llm-app-builder-agent-2"
+        ]
+      },
+      {
+        "agentId": "llm-app-builder-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "llm-app-builder-agent-3"
+        ]
+      },
+      {
+        "agentId": "llm-app-builder-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "llm-app-builder-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "llm-app-builder-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "llm-app-builder-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "llm-app-builder-agent-1"
+          ]
+        },
+        {
+          "agentId": "llm-app-builder-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "llm-app-builder-agent-2"
+          ]
+        },
+        {
+          "agentId": "llm-app-builder-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "llm-app-builder-agent-3"
+          ]
+        },
+        {
+          "agentId": "llm-app-builder-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "llm-app-builder-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "llm-app-builder-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "llm-app-builder-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "llm-app-builder-agent-1"
+          ]
+        },
+        {
+          "agentId": "llm-app-builder-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "llm-app-builder-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "llm-app-builder-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "Star/Snowflake 스키마",
+    "SHAP/LIME"
+  ],
+  "agentCount": 5
+}

@@ -1,0 +1,196 @@
+{
+  "id": 86,
+  "slug": "proposal-writer",
+  "name": "Proposal Writer",
+  "description": "고객 분석, 솔루션, 가격, 차별화",
+  "category": "communication",
+  "agents": [
+    {
+      "id": "proposal-writer-agent-1",
+      "name": "Proposal Writer 리서처",
+      "role": "배경 조사 전문가",
+      "description": "Proposal Writer 하네스의 배경 조사 전문가. 고객 분석, 솔루션, 가격, 차별화 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 배경 조사\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "proposal-writer-agent-2",
+      "name": "Proposal Writer 구조 설계자",
+      "role": "문서 구조 설계 전문가",
+      "description": "Proposal Writer 하네스의 문서 구조 설계 전문가. 고객 분석, 솔루션, 가격, 차별화 워크플로에서 구조 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 구조 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "proposal-writer-agent-1"
+      ]
+    },
+    {
+      "id": "proposal-writer-agent-3",
+      "name": "Proposal Writer 작성자",
+      "role": "문서 집필 전문가",
+      "description": "Proposal Writer 하네스의 문서 집필 전문가. 고객 분석, 솔루션, 가격, 차별화 워크플로에서 작성자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 초안\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "proposal-writer-agent-2"
+      ]
+    },
+    {
+      "id": "proposal-writer-agent-4",
+      "name": "Proposal Writer 편집자",
+      "role": "문서 편집/검수 전문가",
+      "description": "Proposal Writer 하네스의 문서 편집/검수 전문가. 고객 분석, 솔루션, 가격, 차별화 워크플로에서 편집자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 편집 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "proposal-writer-agent-3"
+      ]
+    },
+    {
+      "id": "proposal-writer-agent-5",
+      "name": "Proposal Writer 전략가",
+      "role": "커뮤니케이션 전략 전문가",
+      "description": "Proposal Writer 하네스의 커뮤니케이션 전략 전문가. 고객 분석, 솔루션, 가격, 차별화 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 전략 가이드\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "proposal-writer-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "proposal-writer-skill",
+    "name": "Proposal Writer 워크플로",
+    "triggerConditions": [
+      "Proposal Writer 관련 작업 요청",
+      "proposal-writer 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "proposal-writer-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "proposal-writer-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "proposal-writer-agent-1"
+        ]
+      },
+      {
+        "agentId": "proposal-writer-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "proposal-writer-agent-2"
+        ]
+      },
+      {
+        "agentId": "proposal-writer-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "proposal-writer-agent-3"
+        ]
+      },
+      {
+        "agentId": "proposal-writer-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "proposal-writer-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "proposal-writer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "proposal-writer-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "proposal-writer-agent-1"
+          ]
+        },
+        {
+          "agentId": "proposal-writer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "proposal-writer-agent-2"
+          ]
+        },
+        {
+          "agentId": "proposal-writer-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "proposal-writer-agent-3"
+          ]
+        },
+        {
+          "agentId": "proposal-writer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "proposal-writer-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "proposal-writer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "proposal-writer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "proposal-writer-agent-1"
+          ]
+        },
+        {
+          "agentId": "proposal-writer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "proposal-writer-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "proposal-writer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "Diataxis",
+    "MADR",
+    "SemVer"
+  ],
+  "agentCount": 5
+}

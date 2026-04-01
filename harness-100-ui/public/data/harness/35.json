@@ -1,0 +1,195 @@
+{
+  "id": 35,
+  "slug": "api-client-generator",
+  "name": "API Client Generator",
+  "description": "API 클라이언트 SDK 자동 생성",
+  "category": "data-ai",
+  "agents": [
+    {
+      "id": "api-client-generator-agent-1",
+      "name": "API Client Generator 데이터 분석가",
+      "role": "데이터 탐색/분석 전문가",
+      "description": "API Client Generator 하네스의 데이터 탐색/분석 전문가. API 클라이언트 SDK 자동 생성 워크플로에서 데이터 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Bash",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 데이터 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "api-client-generator-agent-2",
+      "name": "API Client Generator 설계자",
+      "role": "파이프라인/모델 설계 전문가",
+      "description": "API Client Generator 하네스의 파이프라인/모델 설계 전문가. API 클라이언트 SDK 자동 생성 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 설계 명세\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "api-client-generator-agent-1"
+      ]
+    },
+    {
+      "id": "api-client-generator-agent-3",
+      "name": "API Client Generator 엔지니어",
+      "role": "구현/빌드 전문가",
+      "description": "API Client Generator 하네스의 구현/빌드 전문가. API 클라이언트 SDK 자동 생성 워크플로에서 엔지니어 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 구현 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "api-client-generator-agent-2"
+      ]
+    },
+    {
+      "id": "api-client-generator-agent-4",
+      "name": "API Client Generator 검증자",
+      "role": "품질/성능 검증 전문가",
+      "description": "API Client Generator 하네스의 품질/성능 검증 전문가. API 클라이언트 SDK 자동 생성 워크플로에서 검증자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Bash",
+        "Write"
+      ],
+      "outputTemplate": "## 검증 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "api-client-generator-agent-3"
+      ]
+    },
+    {
+      "id": "api-client-generator-agent-5",
+      "name": "API Client Generator 최적화 전문가",
+      "role": "성능 최적화 전문가",
+      "description": "API Client Generator 하네스의 성능 최적화 전문가. API 클라이언트 SDK 자동 생성 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "api-client-generator-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "api-client-generator-skill",
+    "name": "API Client Generator 워크플로",
+    "triggerConditions": [
+      "API Client Generator 관련 작업 요청",
+      "api-client-generator 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "api-client-generator-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "api-client-generator-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "api-client-generator-agent-1"
+        ]
+      },
+      {
+        "agentId": "api-client-generator-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "api-client-generator-agent-2"
+        ]
+      },
+      {
+        "agentId": "api-client-generator-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "api-client-generator-agent-3"
+        ]
+      },
+      {
+        "agentId": "api-client-generator-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "api-client-generator-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "api-client-generator-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "api-client-generator-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "api-client-generator-agent-1"
+          ]
+        },
+        {
+          "agentId": "api-client-generator-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "api-client-generator-agent-2"
+          ]
+        },
+        {
+          "agentId": "api-client-generator-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "api-client-generator-agent-3"
+          ]
+        },
+        {
+          "agentId": "api-client-generator-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "api-client-generator-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "api-client-generator-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "api-client-generator-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "api-client-generator-agent-1"
+          ]
+        },
+        {
+          "agentId": "api-client-generator-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "api-client-generator-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "api-client-generator-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "Star/Snowflake 스키마",
+    "SHAP/LIME"
+  ],
+  "agentCount": 5
+}

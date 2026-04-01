@@ -1,0 +1,192 @@
+{
+  "id": 96,
+  "slug": "real-estate-analyst",
+  "name": "Real Estate Analyst",
+  "description": "시장, 입지, 수익성, 리스크, 투자 보고서",
+  "category": "specialized",
+  "agents": [
+    {
+      "id": "real-estate-analyst-agent-1",
+      "name": "Real Estate Analyst 리서처",
+      "role": "전문 리서치 전문가",
+      "description": "Real Estate Analyst 하네스의 전문 리서치 전문가. 시장, 입지, 수익성, 리스크, 투자 보고서 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 리서치 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "real-estate-analyst-agent-2",
+      "name": "Real Estate Analyst 분석가",
+      "role": "전문 분석 전문가",
+      "description": "Real Estate Analyst 하네스의 전문 분석 전문가. 시장, 입지, 수익성, 리스크, 투자 보고서 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 분석 보고서\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "real-estate-analyst-agent-1"
+      ]
+    },
+    {
+      "id": "real-estate-analyst-agent-3",
+      "name": "Real Estate Analyst 실행자",
+      "role": "전문 실행 전문가",
+      "description": "Real Estate Analyst 하네스의 전문 실행 전문가. 시장, 입지, 수익성, 리스크, 투자 보고서 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 실행 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "real-estate-analyst-agent-2"
+      ]
+    },
+    {
+      "id": "real-estate-analyst-agent-4",
+      "name": "Real Estate Analyst 검토자",
+      "role": "전문 검토 전문가",
+      "description": "Real Estate Analyst 하네스의 전문 검토 전문가. 시장, 입지, 수익성, 리스크, 투자 보고서 워크플로에서 검토자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 검토 의견\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "real-estate-analyst-agent-3"
+      ]
+    },
+    {
+      "id": "real-estate-analyst-agent-5",
+      "name": "Real Estate Analyst 전략가",
+      "role": "전문 전략 전문가",
+      "description": "Real Estate Analyst 하네스의 전문 전략 전문가. 시장, 입지, 수익성, 리스크, 투자 보고서 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 전략 가이드\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "real-estate-analyst-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "real-estate-analyst-skill",
+    "name": "Real Estate Analyst 워크플로",
+    "triggerConditions": [
+      "Real Estate Analyst 관련 작업 요청",
+      "real-estate-analyst 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "real-estate-analyst-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "real-estate-analyst-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "real-estate-analyst-agent-1"
+        ]
+      },
+      {
+        "agentId": "real-estate-analyst-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "real-estate-analyst-agent-2"
+        ]
+      },
+      {
+        "agentId": "real-estate-analyst-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "real-estate-analyst-agent-3"
+        ]
+      },
+      {
+        "agentId": "real-estate-analyst-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "real-estate-analyst-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "real-estate-analyst-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "real-estate-analyst-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "real-estate-analyst-agent-1"
+          ]
+        },
+        {
+          "agentId": "real-estate-analyst-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "real-estate-analyst-agent-2"
+          ]
+        },
+        {
+          "agentId": "real-estate-analyst-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "real-estate-analyst-agent-3"
+          ]
+        },
+        {
+          "agentId": "real-estate-analyst-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "real-estate-analyst-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "real-estate-analyst-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "real-estate-analyst-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "real-estate-analyst-agent-1"
+          ]
+        },
+        {
+          "agentId": "real-estate-analyst-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "real-estate-analyst-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "real-estate-analyst-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [],
+  "agentCount": 5
+}

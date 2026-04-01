@@ -1,0 +1,195 @@
+{
+  "id": 4,
+  "slug": "content-repurposer",
+  "name": "Content Repurposer",
+  "description": "원본 콘텐츠를 다중 포맷으로 변환",
+  "category": "content",
+  "agents": [
+    {
+      "id": "content-repurposer-agent-1",
+      "name": "Content Repurposer 리서처",
+      "role": "콘텐츠 리서치 전문가",
+      "description": "Content Repurposer 하네스의 콘텐츠 리서치 전문가. 원본 콘텐츠를 다중 포맷으로 변환 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 리서치 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "content-repurposer-agent-2",
+      "name": "Content Repurposer 기획자",
+      "role": "콘텐츠 기획 전문가",
+      "description": "Content Repurposer 하네스의 콘텐츠 기획 전문가. 원본 콘텐츠를 다중 포맷으로 변환 워크플로에서 기획자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 기획안\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "content-repurposer-agent-1"
+      ]
+    },
+    {
+      "id": "content-repurposer-agent-3",
+      "name": "Content Repurposer 작성자",
+      "role": "콘텐츠 제작 전문가",
+      "description": "Content Repurposer 하네스의 콘텐츠 제작 전문가. 원본 콘텐츠를 다중 포맷으로 변환 워크플로에서 작성자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 제작물\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "content-repurposer-agent-2"
+      ]
+    },
+    {
+      "id": "content-repurposer-agent-4",
+      "name": "Content Repurposer 편집자",
+      "role": "품질 검수 전문가",
+      "description": "Content Repurposer 하네스의 품질 검수 전문가. 원본 콘텐츠를 다중 포맷으로 변환 워크플로에서 편집자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 검수 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "content-repurposer-agent-3"
+      ]
+    },
+    {
+      "id": "content-repurposer-agent-5",
+      "name": "Content Repurposer 전략가",
+      "role": "배포/최적화 전문가",
+      "description": "Content Repurposer 하네스의 배포/최적화 전문가. 원본 콘텐츠를 다중 포맷으로 변환 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "Write"
+      ],
+      "outputTemplate": "## 최적화 전략\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "content-repurposer-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "content-repurposer-skill",
+    "name": "Content Repurposer 워크플로",
+    "triggerConditions": [
+      "Content Repurposer 관련 작업 요청",
+      "content-repurposer 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "content-repurposer-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "content-repurposer-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "content-repurposer-agent-1"
+        ]
+      },
+      {
+        "agentId": "content-repurposer-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "content-repurposer-agent-2"
+        ]
+      },
+      {
+        "agentId": "content-repurposer-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "content-repurposer-agent-3"
+        ]
+      },
+      {
+        "agentId": "content-repurposer-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "content-repurposer-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "content-repurposer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "content-repurposer-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "content-repurposer-agent-1"
+          ]
+        },
+        {
+          "agentId": "content-repurposer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "content-repurposer-agent-2"
+          ]
+        },
+        {
+          "agentId": "content-repurposer-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "content-repurposer-agent-3"
+          ]
+        },
+        {
+          "agentId": "content-repurposer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "content-repurposer-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "content-repurposer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "content-repurposer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "content-repurposer-agent-1"
+          ]
+        },
+        {
+          "agentId": "content-repurposer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "content-repurposer-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "content-repurposer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "AIDA",
+    "SEO 키워드 매핑"
+  ],
+  "agentCount": 5
+}

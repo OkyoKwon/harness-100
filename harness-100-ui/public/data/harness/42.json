@@ -1,0 +1,195 @@
+{
+  "id": 42,
+  "slug": "bi-dashboard",
+  "name": "BI Dashboard",
+  "description": "KPI 설정, 시각화, 자동 보고",
+  "category": "data-ai",
+  "agents": [
+    {
+      "id": "bi-dashboard-agent-1",
+      "name": "BI Dashboard 데이터 분석가",
+      "role": "데이터 탐색/분석 전문가",
+      "description": "BI Dashboard 하네스의 데이터 탐색/분석 전문가. KPI 설정, 시각화, 자동 보고 워크플로에서 데이터 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Bash",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 데이터 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "bi-dashboard-agent-2",
+      "name": "BI Dashboard 설계자",
+      "role": "파이프라인/모델 설계 전문가",
+      "description": "BI Dashboard 하네스의 파이프라인/모델 설계 전문가. KPI 설정, 시각화, 자동 보고 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 설계 명세\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "bi-dashboard-agent-1"
+      ]
+    },
+    {
+      "id": "bi-dashboard-agent-3",
+      "name": "BI Dashboard 엔지니어",
+      "role": "구현/빌드 전문가",
+      "description": "BI Dashboard 하네스의 구현/빌드 전문가. KPI 설정, 시각화, 자동 보고 워크플로에서 엔지니어 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 구현 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "bi-dashboard-agent-2"
+      ]
+    },
+    {
+      "id": "bi-dashboard-agent-4",
+      "name": "BI Dashboard 검증자",
+      "role": "품질/성능 검증 전문가",
+      "description": "BI Dashboard 하네스의 품질/성능 검증 전문가. KPI 설정, 시각화, 자동 보고 워크플로에서 검증자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Bash",
+        "Write"
+      ],
+      "outputTemplate": "## 검증 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "bi-dashboard-agent-3"
+      ]
+    },
+    {
+      "id": "bi-dashboard-agent-5",
+      "name": "BI Dashboard 최적화 전문가",
+      "role": "성능 최적화 전문가",
+      "description": "BI Dashboard 하네스의 성능 최적화 전문가. KPI 설정, 시각화, 자동 보고 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "bi-dashboard-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "bi-dashboard-skill",
+    "name": "BI Dashboard 워크플로",
+    "triggerConditions": [
+      "BI Dashboard 관련 작업 요청",
+      "bi-dashboard 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "bi-dashboard-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "bi-dashboard-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "bi-dashboard-agent-1"
+        ]
+      },
+      {
+        "agentId": "bi-dashboard-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "bi-dashboard-agent-2"
+        ]
+      },
+      {
+        "agentId": "bi-dashboard-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "bi-dashboard-agent-3"
+        ]
+      },
+      {
+        "agentId": "bi-dashboard-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "bi-dashboard-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "bi-dashboard-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "bi-dashboard-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "bi-dashboard-agent-1"
+          ]
+        },
+        {
+          "agentId": "bi-dashboard-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "bi-dashboard-agent-2"
+          ]
+        },
+        {
+          "agentId": "bi-dashboard-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "bi-dashboard-agent-3"
+          ]
+        },
+        {
+          "agentId": "bi-dashboard-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "bi-dashboard-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "bi-dashboard-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "bi-dashboard-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "bi-dashboard-agent-1"
+          ]
+        },
+        {
+          "agentId": "bi-dashboard-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "bi-dashboard-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "bi-dashboard-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "Star/Snowflake 스키마",
+    "SHAP/LIME"
+  ],
+  "agentCount": 5
+}

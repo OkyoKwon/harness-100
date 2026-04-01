@@ -1,0 +1,192 @@
+{
+  "id": 99,
+  "slug": "sustainability-audit",
+  "name": "Sustainability Audit",
+  "description": "ESG: 환경, 사회, 거버넌스, 보고서",
+  "category": "specialized",
+  "agents": [
+    {
+      "id": "sustainability-audit-agent-1",
+      "name": "Sustainability Audit 리서처",
+      "role": "전문 리서치 전문가",
+      "description": "Sustainability Audit 하네스의 전문 리서치 전문가. ESG: 환경, 사회, 거버넌스, 보고서 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 리서치 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "sustainability-audit-agent-2",
+      "name": "Sustainability Audit 분석가",
+      "role": "전문 분석 전문가",
+      "description": "Sustainability Audit 하네스의 전문 분석 전문가. ESG: 환경, 사회, 거버넌스, 보고서 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 분석 보고서\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "sustainability-audit-agent-1"
+      ]
+    },
+    {
+      "id": "sustainability-audit-agent-3",
+      "name": "Sustainability Audit 실행자",
+      "role": "전문 실행 전문가",
+      "description": "Sustainability Audit 하네스의 전문 실행 전문가. ESG: 환경, 사회, 거버넌스, 보고서 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 실행 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "sustainability-audit-agent-2"
+      ]
+    },
+    {
+      "id": "sustainability-audit-agent-4",
+      "name": "Sustainability Audit 검토자",
+      "role": "전문 검토 전문가",
+      "description": "Sustainability Audit 하네스의 전문 검토 전문가. ESG: 환경, 사회, 거버넌스, 보고서 워크플로에서 검토자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 검토 의견\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "sustainability-audit-agent-3"
+      ]
+    },
+    {
+      "id": "sustainability-audit-agent-5",
+      "name": "Sustainability Audit 전략가",
+      "role": "전문 전략 전문가",
+      "description": "Sustainability Audit 하네스의 전문 전략 전문가. ESG: 환경, 사회, 거버넌스, 보고서 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 전략 가이드\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "sustainability-audit-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "sustainability-audit-skill",
+    "name": "Sustainability Audit 워크플로",
+    "triggerConditions": [
+      "Sustainability Audit 관련 작업 요청",
+      "sustainability-audit 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "sustainability-audit-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "sustainability-audit-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "sustainability-audit-agent-1"
+        ]
+      },
+      {
+        "agentId": "sustainability-audit-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "sustainability-audit-agent-2"
+        ]
+      },
+      {
+        "agentId": "sustainability-audit-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "sustainability-audit-agent-3"
+        ]
+      },
+      {
+        "agentId": "sustainability-audit-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "sustainability-audit-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "sustainability-audit-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "sustainability-audit-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "sustainability-audit-agent-1"
+          ]
+        },
+        {
+          "agentId": "sustainability-audit-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "sustainability-audit-agent-2"
+          ]
+        },
+        {
+          "agentId": "sustainability-audit-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "sustainability-audit-agent-3"
+          ]
+        },
+        {
+          "agentId": "sustainability-audit-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "sustainability-audit-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "sustainability-audit-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "sustainability-audit-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "sustainability-audit-agent-1"
+          ]
+        },
+        {
+          "agentId": "sustainability-audit-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "sustainability-audit-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "sustainability-audit-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [],
+  "agentCount": 5
+}

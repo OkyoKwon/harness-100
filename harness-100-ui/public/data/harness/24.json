@@ -1,0 +1,197 @@
+{
+  "id": 24,
+  "slug": "test-automation",
+  "name": "Test Automation",
+  "description": "전략, 작성, CI, 커버리지",
+  "category": "development",
+  "agents": [
+    {
+      "id": "test-automation-agent-1",
+      "name": "Test Automation 아키텍트",
+      "role": "시스템 설계 전문가",
+      "description": "Test Automation 하네스의 시스템 설계 전문가. 전략, 작성, CI, 커버리지 워크플로에서 아키텍트 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 아키텍처 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "test-automation-agent-2",
+      "name": "Test Automation 개발자",
+      "role": "구현 전문가",
+      "description": "Test Automation 하네스의 구현 전문가. 전략, 작성, CI, 커버리지 워크플로에서 개발자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 구현 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "test-automation-agent-1"
+      ]
+    },
+    {
+      "id": "test-automation-agent-3",
+      "name": "Test Automation 테스터",
+      "role": "테스트 전문가",
+      "description": "Test Automation 하네스의 테스트 전문가. 전략, 작성, CI, 커버리지 워크플로에서 테스터 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 테스트 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "test-automation-agent-2"
+      ]
+    },
+    {
+      "id": "test-automation-agent-4",
+      "name": "Test Automation 리뷰어",
+      "role": "코드 리뷰 전문가",
+      "description": "Test Automation 하네스의 코드 리뷰 전문가. 전략, 작성, CI, 커버리지 워크플로에서 리뷰어 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 리뷰 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "test-automation-agent-3"
+      ]
+    },
+    {
+      "id": "test-automation-agent-5",
+      "name": "Test Automation 데브옵스",
+      "role": "배포/운영 전문가",
+      "description": "Test Automation 하네스의 배포/운영 전문가. 전략, 작성, CI, 커버리지 워크플로에서 데브옵스 역할을 수행합니다.",
+      "tools": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "outputTemplate": "## 배포 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "test-automation-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "test-automation-skill",
+    "name": "Test Automation 워크플로",
+    "triggerConditions": [
+      "Test Automation 관련 작업 요청",
+      "test-automation 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "test-automation-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "test-automation-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "test-automation-agent-1"
+        ]
+      },
+      {
+        "agentId": "test-automation-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "test-automation-agent-2"
+        ]
+      },
+      {
+        "agentId": "test-automation-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "test-automation-agent-3"
+        ]
+      },
+      {
+        "agentId": "test-automation-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "test-automation-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "test-automation-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "test-automation-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "test-automation-agent-1"
+          ]
+        },
+        {
+          "agentId": "test-automation-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "test-automation-agent-2"
+          ]
+        },
+        {
+          "agentId": "test-automation-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "test-automation-agent-3"
+          ]
+        },
+        {
+          "agentId": "test-automation-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "test-automation-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "test-automation-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "test-automation-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "test-automation-agent-1"
+          ]
+        },
+        {
+          "agentId": "test-automation-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "test-automation-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "test-automation-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SOLID",
+    "DDD",
+    "OWASP Top 10",
+    "DORA 메트릭"
+  ],
+  "agentCount": 5
+}

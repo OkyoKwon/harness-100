@@ -1,0 +1,163 @@
+{
+  "id": 73,
+  "slug": "meal-planner",
+  "name": "Meal Planner",
+  "description": "영양 분석, 식단 설계, 레시피, 장보기",
+  "category": "lifestyle",
+  "agents": [
+    {
+      "id": "meal-planner-agent-1",
+      "name": "Meal Planner 분석가",
+      "role": "니즈 분석 전문가",
+      "description": "Meal Planner 하네스의 니즈 분석 전문가. 영양 분석, 식단 설계, 레시피, 장보기 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "meal-planner-agent-2",
+      "name": "Meal Planner 설계자",
+      "role": "플랜 설계 전문가",
+      "description": "Meal Planner 하네스의 플랜 설계 전문가. 영양 분석, 식단 설계, 레시피, 장보기 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 플랜 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "meal-planner-agent-1"
+      ]
+    },
+    {
+      "id": "meal-planner-agent-3",
+      "name": "Meal Planner 실행자",
+      "role": "실행 가이드 전문가",
+      "description": "Meal Planner 하네스의 실행 가이드 전문가. 영양 분석, 식단 설계, 레시피, 장보기 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 실행 가이드\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "meal-planner-agent-2"
+      ]
+    },
+    {
+      "id": "meal-planner-agent-4",
+      "name": "Meal Planner 최적화 전문가",
+      "role": "최적화/개선 전문가",
+      "description": "Meal Planner 하네스의 최적화/개선 전문가. 영양 분석, 식단 설계, 레시피, 장보기 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "meal-planner-agent-3"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "meal-planner-skill",
+    "name": "Meal Planner 워크플로",
+    "triggerConditions": [
+      "Meal Planner 관련 작업 요청",
+      "meal-planner 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "meal-planner-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "meal-planner-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "meal-planner-agent-1"
+        ]
+      },
+      {
+        "agentId": "meal-planner-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "meal-planner-agent-2"
+        ]
+      },
+      {
+        "agentId": "meal-planner-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "meal-planner-agent-3"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "meal-planner-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "meal-planner-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "meal-planner-agent-1"
+          ]
+        },
+        {
+          "agentId": "meal-planner-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "meal-planner-agent-2"
+          ]
+        },
+        {
+          "agentId": "meal-planner-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "meal-planner-agent-3"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "meal-planner-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "meal-planner-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "meal-planner-agent-1"
+          ]
+        },
+        {
+          "agentId": "meal-planner-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "meal-planner-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "meal-planner-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [],
+  "agentCount": 4
+}

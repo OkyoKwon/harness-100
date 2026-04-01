@@ -1,0 +1,197 @@
+{
+  "id": 19,
+  "slug": "database-architect",
+  "name": "Database Architect",
+  "description": "모델링, 마이그레이션, 인덱싱, 최적화",
+  "category": "development",
+  "agents": [
+    {
+      "id": "database-architect-agent-1",
+      "name": "Database Architect 아키텍트",
+      "role": "시스템 설계 전문가",
+      "description": "Database Architect 하네스의 시스템 설계 전문가. 모델링, 마이그레이션, 인덱싱, 최적화 워크플로에서 아키텍트 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 아키텍처 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "database-architect-agent-2",
+      "name": "Database Architect 개발자",
+      "role": "구현 전문가",
+      "description": "Database Architect 하네스의 구현 전문가. 모델링, 마이그레이션, 인덱싱, 최적화 워크플로에서 개발자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 구현 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "database-architect-agent-1"
+      ]
+    },
+    {
+      "id": "database-architect-agent-3",
+      "name": "Database Architect 테스터",
+      "role": "테스트 전문가",
+      "description": "Database Architect 하네스의 테스트 전문가. 모델링, 마이그레이션, 인덱싱, 최적화 워크플로에서 테스터 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 테스트 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "database-architect-agent-2"
+      ]
+    },
+    {
+      "id": "database-architect-agent-4",
+      "name": "Database Architect 리뷰어",
+      "role": "코드 리뷰 전문가",
+      "description": "Database Architect 하네스의 코드 리뷰 전문가. 모델링, 마이그레이션, 인덱싱, 최적화 워크플로에서 리뷰어 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 리뷰 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "database-architect-agent-3"
+      ]
+    },
+    {
+      "id": "database-architect-agent-5",
+      "name": "Database Architect 데브옵스",
+      "role": "배포/운영 전문가",
+      "description": "Database Architect 하네스의 배포/운영 전문가. 모델링, 마이그레이션, 인덱싱, 최적화 워크플로에서 데브옵스 역할을 수행합니다.",
+      "tools": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "outputTemplate": "## 배포 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "database-architect-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "database-architect-skill",
+    "name": "Database Architect 워크플로",
+    "triggerConditions": [
+      "Database Architect 관련 작업 요청",
+      "database-architect 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "database-architect-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "database-architect-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "database-architect-agent-1"
+        ]
+      },
+      {
+        "agentId": "database-architect-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "database-architect-agent-2"
+        ]
+      },
+      {
+        "agentId": "database-architect-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "database-architect-agent-3"
+        ]
+      },
+      {
+        "agentId": "database-architect-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "database-architect-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "database-architect-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "database-architect-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "database-architect-agent-1"
+          ]
+        },
+        {
+          "agentId": "database-architect-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "database-architect-agent-2"
+          ]
+        },
+        {
+          "agentId": "database-architect-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "database-architect-agent-3"
+          ]
+        },
+        {
+          "agentId": "database-architect-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "database-architect-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "database-architect-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "database-architect-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "database-architect-agent-1"
+          ]
+        },
+        {
+          "agentId": "database-architect-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "database-architect-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "database-architect-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SOLID",
+    "DDD",
+    "OWASP Top 10",
+    "DORA 메트릭"
+  ],
+  "agentCount": 5
+}

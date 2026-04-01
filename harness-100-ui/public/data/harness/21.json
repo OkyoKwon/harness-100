@@ -1,0 +1,197 @@
+{
+  "id": 21,
+  "slug": "code-reviewer",
+  "name": "Code Reviewer",
+  "description": "스타일, 보안, 성능, 아키텍처 리뷰",
+  "category": "development",
+  "agents": [
+    {
+      "id": "code-reviewer-agent-1",
+      "name": "Code Reviewer 아키텍트",
+      "role": "시스템 설계 전문가",
+      "description": "Code Reviewer 하네스의 시스템 설계 전문가. 스타일, 보안, 성능, 아키텍처 리뷰 워크플로에서 아키텍트 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 아키텍처 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "code-reviewer-agent-2",
+      "name": "Code Reviewer 개발자",
+      "role": "구현 전문가",
+      "description": "Code Reviewer 하네스의 구현 전문가. 스타일, 보안, 성능, 아키텍처 리뷰 워크플로에서 개발자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 구현 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "code-reviewer-agent-1"
+      ]
+    },
+    {
+      "id": "code-reviewer-agent-3",
+      "name": "Code Reviewer 테스터",
+      "role": "테스트 전문가",
+      "description": "Code Reviewer 하네스의 테스트 전문가. 스타일, 보안, 성능, 아키텍처 리뷰 워크플로에서 테스터 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 테스트 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "code-reviewer-agent-2"
+      ]
+    },
+    {
+      "id": "code-reviewer-agent-4",
+      "name": "Code Reviewer 리뷰어",
+      "role": "코드 리뷰 전문가",
+      "description": "Code Reviewer 하네스의 코드 리뷰 전문가. 스타일, 보안, 성능, 아키텍처 리뷰 워크플로에서 리뷰어 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 리뷰 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "code-reviewer-agent-3"
+      ]
+    },
+    {
+      "id": "code-reviewer-agent-5",
+      "name": "Code Reviewer 데브옵스",
+      "role": "배포/운영 전문가",
+      "description": "Code Reviewer 하네스의 배포/운영 전문가. 스타일, 보안, 성능, 아키텍처 리뷰 워크플로에서 데브옵스 역할을 수행합니다.",
+      "tools": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "outputTemplate": "## 배포 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "code-reviewer-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "code-reviewer-skill",
+    "name": "Code Reviewer 워크플로",
+    "triggerConditions": [
+      "Code Reviewer 관련 작업 요청",
+      "code-reviewer 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "code-reviewer-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "code-reviewer-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "code-reviewer-agent-1"
+        ]
+      },
+      {
+        "agentId": "code-reviewer-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "code-reviewer-agent-2"
+        ]
+      },
+      {
+        "agentId": "code-reviewer-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "code-reviewer-agent-3"
+        ]
+      },
+      {
+        "agentId": "code-reviewer-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "code-reviewer-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "code-reviewer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "code-reviewer-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "code-reviewer-agent-1"
+          ]
+        },
+        {
+          "agentId": "code-reviewer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "code-reviewer-agent-2"
+          ]
+        },
+        {
+          "agentId": "code-reviewer-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "code-reviewer-agent-3"
+          ]
+        },
+        {
+          "agentId": "code-reviewer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "code-reviewer-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "code-reviewer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "code-reviewer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "code-reviewer-agent-1"
+          ]
+        },
+        {
+          "agentId": "code-reviewer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "code-reviewer-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "code-reviewer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SOLID",
+    "DDD",
+    "OWASP Top 10",
+    "DORA 메트릭"
+  ],
+  "agentCount": 5
+}

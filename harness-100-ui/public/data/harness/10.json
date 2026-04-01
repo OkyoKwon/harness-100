@@ -1,0 +1,195 @@
+{
+  "id": 10,
+  "slug": "social-media-manager",
+  "name": "Social Media Manager",
+  "description": "SNS 콘텐츠 달력, 포스트, 분석",
+  "category": "content",
+  "agents": [
+    {
+      "id": "social-media-manager-agent-1",
+      "name": "Social Media Manager 리서처",
+      "role": "콘텐츠 리서치 전문가",
+      "description": "Social Media Manager 하네스의 콘텐츠 리서치 전문가. SNS 콘텐츠 달력, 포스트, 분석 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 리서치 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "social-media-manager-agent-2",
+      "name": "Social Media Manager 기획자",
+      "role": "콘텐츠 기획 전문가",
+      "description": "Social Media Manager 하네스의 콘텐츠 기획 전문가. SNS 콘텐츠 달력, 포스트, 분석 워크플로에서 기획자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 기획안\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "social-media-manager-agent-1"
+      ]
+    },
+    {
+      "id": "social-media-manager-agent-3",
+      "name": "Social Media Manager 작성자",
+      "role": "콘텐츠 제작 전문가",
+      "description": "Social Media Manager 하네스의 콘텐츠 제작 전문가. SNS 콘텐츠 달력, 포스트, 분석 워크플로에서 작성자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 제작물\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "social-media-manager-agent-2"
+      ]
+    },
+    {
+      "id": "social-media-manager-agent-4",
+      "name": "Social Media Manager 편집자",
+      "role": "품질 검수 전문가",
+      "description": "Social Media Manager 하네스의 품질 검수 전문가. SNS 콘텐츠 달력, 포스트, 분석 워크플로에서 편집자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 검수 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "social-media-manager-agent-3"
+      ]
+    },
+    {
+      "id": "social-media-manager-agent-5",
+      "name": "Social Media Manager 전략가",
+      "role": "배포/최적화 전문가",
+      "description": "Social Media Manager 하네스의 배포/최적화 전문가. SNS 콘텐츠 달력, 포스트, 분석 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "Write"
+      ],
+      "outputTemplate": "## 최적화 전략\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "social-media-manager-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "social-media-manager-skill",
+    "name": "Social Media Manager 워크플로",
+    "triggerConditions": [
+      "Social Media Manager 관련 작업 요청",
+      "social-media-manager 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "social-media-manager-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "social-media-manager-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "social-media-manager-agent-1"
+        ]
+      },
+      {
+        "agentId": "social-media-manager-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "social-media-manager-agent-2"
+        ]
+      },
+      {
+        "agentId": "social-media-manager-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "social-media-manager-agent-3"
+        ]
+      },
+      {
+        "agentId": "social-media-manager-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "social-media-manager-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "social-media-manager-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "social-media-manager-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "social-media-manager-agent-1"
+          ]
+        },
+        {
+          "agentId": "social-media-manager-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "social-media-manager-agent-2"
+          ]
+        },
+        {
+          "agentId": "social-media-manager-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "social-media-manager-agent-3"
+          ]
+        },
+        {
+          "agentId": "social-media-manager-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "social-media-manager-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "social-media-manager-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "social-media-manager-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "social-media-manager-agent-1"
+          ]
+        },
+        {
+          "agentId": "social-media-manager-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "social-media-manager-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "social-media-manager-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "AIDA",
+    "SEO 키워드 매핑"
+  ],
+  "agentCount": 5
+}

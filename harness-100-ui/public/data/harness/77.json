@@ -1,0 +1,192 @@
+{
+  "id": 77,
+  "slug": "space-concept-board",
+  "name": "Space Concept Board",
+  "description": "무드보드, 컬러, 가구, 예산",
+  "category": "lifestyle",
+  "agents": [
+    {
+      "id": "space-concept-board-agent-1",
+      "name": "Space Concept Board 분석가",
+      "role": "니즈 분석 전문가",
+      "description": "Space Concept Board 하네스의 니즈 분석 전문가. 무드보드, 컬러, 가구, 예산 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "space-concept-board-agent-2",
+      "name": "Space Concept Board 설계자",
+      "role": "플랜 설계 전문가",
+      "description": "Space Concept Board 하네스의 플랜 설계 전문가. 무드보드, 컬러, 가구, 예산 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 플랜 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "space-concept-board-agent-1"
+      ]
+    },
+    {
+      "id": "space-concept-board-agent-3",
+      "name": "Space Concept Board 실행자",
+      "role": "실행 가이드 전문가",
+      "description": "Space Concept Board 하네스의 실행 가이드 전문가. 무드보드, 컬러, 가구, 예산 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 실행 가이드\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "space-concept-board-agent-2"
+      ]
+    },
+    {
+      "id": "space-concept-board-agent-4",
+      "name": "Space Concept Board 최적화 전문가",
+      "role": "최적화/개선 전문가",
+      "description": "Space Concept Board 하네스의 최적화/개선 전문가. 무드보드, 컬러, 가구, 예산 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "space-concept-board-agent-3"
+      ]
+    },
+    {
+      "id": "space-concept-board-agent-5",
+      "name": "Space Concept Board 분석가",
+      "role": "니즈 분석 전문가",
+      "description": "Space Concept Board 하네스의 니즈 분석 전문가. 무드보드, 컬러, 가구, 예산 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "space-concept-board-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "space-concept-board-skill",
+    "name": "Space Concept Board 워크플로",
+    "triggerConditions": [
+      "Space Concept Board 관련 작업 요청",
+      "space-concept-board 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "space-concept-board-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "space-concept-board-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "space-concept-board-agent-1"
+        ]
+      },
+      {
+        "agentId": "space-concept-board-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "space-concept-board-agent-2"
+        ]
+      },
+      {
+        "agentId": "space-concept-board-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "space-concept-board-agent-3"
+        ]
+      },
+      {
+        "agentId": "space-concept-board-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "space-concept-board-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "space-concept-board-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "space-concept-board-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "space-concept-board-agent-1"
+          ]
+        },
+        {
+          "agentId": "space-concept-board-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "space-concept-board-agent-2"
+          ]
+        },
+        {
+          "agentId": "space-concept-board-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "space-concept-board-agent-3"
+          ]
+        },
+        {
+          "agentId": "space-concept-board-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "space-concept-board-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "space-concept-board-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "space-concept-board-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "space-concept-board-agent-1"
+          ]
+        },
+        {
+          "agentId": "space-concept-board-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "space-concept-board-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "space-concept-board-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [],
+  "agentCount": 5
+}

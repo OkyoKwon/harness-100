@@ -1,0 +1,167 @@
+{
+  "id": 59,
+  "slug": "coding-bootcamp",
+  "name": "Coding Bootcamp",
+  "description": "커리큘럼, 실습, 코드 리뷰, 포트폴리오",
+  "category": "education",
+  "agents": [
+    {
+      "id": "coding-bootcamp-agent-1",
+      "name": "Coding Bootcamp 분석가",
+      "role": "학습 분석 전문가",
+      "description": "Coding Bootcamp 하네스의 학습 분석 전문가. 커리큘럼, 실습, 코드 리뷰, 포트폴리오 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "coding-bootcamp-agent-2",
+      "name": "Coding Bootcamp 설계자",
+      "role": "교육 설계 전문가",
+      "description": "Coding Bootcamp 하네스의 교육 설계 전문가. 커리큘럼, 실습, 코드 리뷰, 포트폴리오 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 교육 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "coding-bootcamp-agent-1"
+      ]
+    },
+    {
+      "id": "coding-bootcamp-agent-3",
+      "name": "Coding Bootcamp 콘텐츠 개발자",
+      "role": "학습 자료 개발 전문가",
+      "description": "Coding Bootcamp 하네스의 학습 자료 개발 전문가. 커리큘럼, 실습, 코드 리뷰, 포트폴리오 워크플로에서 콘텐츠 개발자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 학습 자료\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "coding-bootcamp-agent-2"
+      ]
+    },
+    {
+      "id": "coding-bootcamp-agent-4",
+      "name": "Coding Bootcamp 평가자",
+      "role": "평가/피드백 전문가",
+      "description": "Coding Bootcamp 하네스의 평가/피드백 전문가. 커리큘럼, 실습, 코드 리뷰, 포트폴리오 워크플로에서 평가자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 평가 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "coding-bootcamp-agent-3"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "coding-bootcamp-skill",
+    "name": "Coding Bootcamp 워크플로",
+    "triggerConditions": [
+      "Coding Bootcamp 관련 작업 요청",
+      "coding-bootcamp 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "coding-bootcamp-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "coding-bootcamp-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "coding-bootcamp-agent-1"
+        ]
+      },
+      {
+        "agentId": "coding-bootcamp-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "coding-bootcamp-agent-2"
+        ]
+      },
+      {
+        "agentId": "coding-bootcamp-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "coding-bootcamp-agent-3"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "coding-bootcamp-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "coding-bootcamp-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "coding-bootcamp-agent-1"
+          ]
+        },
+        {
+          "agentId": "coding-bootcamp-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "coding-bootcamp-agent-2"
+          ]
+        },
+        {
+          "agentId": "coding-bootcamp-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "coding-bootcamp-agent-3"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "coding-bootcamp-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "coding-bootcamp-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "coding-bootcamp-agent-1"
+          ]
+        },
+        {
+          "agentId": "coding-bootcamp-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "coding-bootcamp-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "coding-bootcamp-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "Bloom's Taxonomy",
+    "ADDIE",
+    "CEFR"
+  ],
+  "agentCount": 4
+}

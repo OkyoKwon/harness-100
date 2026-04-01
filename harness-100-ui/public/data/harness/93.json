@@ -1,0 +1,196 @@
+{
+  "id": 93,
+  "slug": "feedback-analyzer",
+  "name": "Feedback Analyzer",
+  "description": "감성 분석, 주제 분류, 인사이트",
+  "category": "operations",
+  "agents": [
+    {
+      "id": "feedback-analyzer-agent-1",
+      "name": "Feedback Analyzer 분석가",
+      "role": "프로세스 분석 전문가",
+      "description": "Feedback Analyzer 하네스의 프로세스 분석 전문가. 감성 분석, 주제 분류, 인사이트 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "WebSearch",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 프로세스 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "feedback-analyzer-agent-2",
+      "name": "Feedback Analyzer 설계자",
+      "role": "운영 설계 전문가",
+      "description": "Feedback Analyzer 하네스의 운영 설계 전문가. 감성 분석, 주제 분류, 인사이트 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 운영 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "feedback-analyzer-agent-1"
+      ]
+    },
+    {
+      "id": "feedback-analyzer-agent-3",
+      "name": "Feedback Analyzer 실행자",
+      "role": "운영 실행 전문가",
+      "description": "Feedback Analyzer 하네스의 운영 실행 전문가. 감성 분석, 주제 분류, 인사이트 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 실행 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "feedback-analyzer-agent-2"
+      ]
+    },
+    {
+      "id": "feedback-analyzer-agent-4",
+      "name": "Feedback Analyzer 검수자",
+      "role": "품질 검수 전문가",
+      "description": "Feedback Analyzer 하네스의 품질 검수 전문가. 감성 분석, 주제 분류, 인사이트 워크플로에서 검수자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 검수 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "feedback-analyzer-agent-3"
+      ]
+    },
+    {
+      "id": "feedback-analyzer-agent-5",
+      "name": "Feedback Analyzer 최적화 전문가",
+      "role": "운영 최적화 전문가",
+      "description": "Feedback Analyzer 하네스의 운영 최적화 전문가. 감성 분석, 주제 분류, 인사이트 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "feedback-analyzer-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "feedback-analyzer-skill",
+    "name": "Feedback Analyzer 워크플로",
+    "triggerConditions": [
+      "Feedback Analyzer 관련 작업 요청",
+      "feedback-analyzer 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "feedback-analyzer-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "feedback-analyzer-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "feedback-analyzer-agent-1"
+        ]
+      },
+      {
+        "agentId": "feedback-analyzer-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "feedback-analyzer-agent-2"
+        ]
+      },
+      {
+        "agentId": "feedback-analyzer-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "feedback-analyzer-agent-3"
+        ]
+      },
+      {
+        "agentId": "feedback-analyzer-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "feedback-analyzer-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "feedback-analyzer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "feedback-analyzer-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "feedback-analyzer-agent-1"
+          ]
+        },
+        {
+          "agentId": "feedback-analyzer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "feedback-analyzer-agent-2"
+          ]
+        },
+        {
+          "agentId": "feedback-analyzer-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "feedback-analyzer-agent-3"
+          ]
+        },
+        {
+          "agentId": "feedback-analyzer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "feedback-analyzer-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "feedback-analyzer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "feedback-analyzer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "feedback-analyzer-agent-1"
+          ]
+        },
+        {
+          "agentId": "feedback-analyzer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "feedback-analyzer-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "feedback-analyzer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SIPOC",
+    "RACI",
+    "SMART"
+  ],
+  "agentCount": 5
+}

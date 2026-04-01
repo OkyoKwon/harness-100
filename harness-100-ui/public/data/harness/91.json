@@ -1,0 +1,196 @@
+{
+  "id": 91,
+  "slug": "onboarding-system",
+  "name": "Onboarding System",
+  "description": "체크리스트, 교육, 멘토, 30-60-90",
+  "category": "operations",
+  "agents": [
+    {
+      "id": "onboarding-system-agent-1",
+      "name": "Onboarding System 분석가",
+      "role": "프로세스 분석 전문가",
+      "description": "Onboarding System 하네스의 프로세스 분석 전문가. 체크리스트, 교육, 멘토, 30-60-90 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "WebSearch",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 프로세스 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "onboarding-system-agent-2",
+      "name": "Onboarding System 설계자",
+      "role": "운영 설계 전문가",
+      "description": "Onboarding System 하네스의 운영 설계 전문가. 체크리스트, 교육, 멘토, 30-60-90 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 운영 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "onboarding-system-agent-1"
+      ]
+    },
+    {
+      "id": "onboarding-system-agent-3",
+      "name": "Onboarding System 실행자",
+      "role": "운영 실행 전문가",
+      "description": "Onboarding System 하네스의 운영 실행 전문가. 체크리스트, 교육, 멘토, 30-60-90 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 실행 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "onboarding-system-agent-2"
+      ]
+    },
+    {
+      "id": "onboarding-system-agent-4",
+      "name": "Onboarding System 검수자",
+      "role": "품질 검수 전문가",
+      "description": "Onboarding System 하네스의 품질 검수 전문가. 체크리스트, 교육, 멘토, 30-60-90 워크플로에서 검수자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 검수 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "onboarding-system-agent-3"
+      ]
+    },
+    {
+      "id": "onboarding-system-agent-5",
+      "name": "Onboarding System 최적화 전문가",
+      "role": "운영 최적화 전문가",
+      "description": "Onboarding System 하네스의 운영 최적화 전문가. 체크리스트, 교육, 멘토, 30-60-90 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "onboarding-system-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "onboarding-system-skill",
+    "name": "Onboarding System 워크플로",
+    "triggerConditions": [
+      "Onboarding System 관련 작업 요청",
+      "onboarding-system 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "onboarding-system-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "onboarding-system-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "onboarding-system-agent-1"
+        ]
+      },
+      {
+        "agentId": "onboarding-system-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "onboarding-system-agent-2"
+        ]
+      },
+      {
+        "agentId": "onboarding-system-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "onboarding-system-agent-3"
+        ]
+      },
+      {
+        "agentId": "onboarding-system-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "onboarding-system-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "onboarding-system-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "onboarding-system-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "onboarding-system-agent-1"
+          ]
+        },
+        {
+          "agentId": "onboarding-system-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "onboarding-system-agent-2"
+          ]
+        },
+        {
+          "agentId": "onboarding-system-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "onboarding-system-agent-3"
+          ]
+        },
+        {
+          "agentId": "onboarding-system-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "onboarding-system-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "onboarding-system-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "onboarding-system-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "onboarding-system-agent-1"
+          ]
+        },
+        {
+          "agentId": "onboarding-system-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "onboarding-system-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "onboarding-system-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SIPOC",
+    "RACI",
+    "SMART"
+  ],
+  "agentCount": 5
+}

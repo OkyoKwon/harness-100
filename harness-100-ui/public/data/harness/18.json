@@ -1,0 +1,197 @@
+{
+  "id": 18,
+  "slug": "api-designer",
+  "name": "API Designer",
+  "description": "REST/GraphQL 설계, 문서화, 테스트",
+  "category": "development",
+  "agents": [
+    {
+      "id": "api-designer-agent-1",
+      "name": "API Designer 아키텍트",
+      "role": "시스템 설계 전문가",
+      "description": "API Designer 하네스의 시스템 설계 전문가. REST/GraphQL 설계, 문서화, 테스트 워크플로에서 아키텍트 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 아키텍처 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "api-designer-agent-2",
+      "name": "API Designer 개발자",
+      "role": "구현 전문가",
+      "description": "API Designer 하네스의 구현 전문가. REST/GraphQL 설계, 문서화, 테스트 워크플로에서 개발자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 구현 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "api-designer-agent-1"
+      ]
+    },
+    {
+      "id": "api-designer-agent-3",
+      "name": "API Designer 테스터",
+      "role": "테스트 전문가",
+      "description": "API Designer 하네스의 테스트 전문가. REST/GraphQL 설계, 문서화, 테스트 워크플로에서 테스터 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 테스트 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "api-designer-agent-2"
+      ]
+    },
+    {
+      "id": "api-designer-agent-4",
+      "name": "API Designer 리뷰어",
+      "role": "코드 리뷰 전문가",
+      "description": "API Designer 하네스의 코드 리뷰 전문가. REST/GraphQL 설계, 문서화, 테스트 워크플로에서 리뷰어 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 리뷰 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "api-designer-agent-3"
+      ]
+    },
+    {
+      "id": "api-designer-agent-5",
+      "name": "API Designer 데브옵스",
+      "role": "배포/운영 전문가",
+      "description": "API Designer 하네스의 배포/운영 전문가. REST/GraphQL 설계, 문서화, 테스트 워크플로에서 데브옵스 역할을 수행합니다.",
+      "tools": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "outputTemplate": "## 배포 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "api-designer-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "api-designer-skill",
+    "name": "API Designer 워크플로",
+    "triggerConditions": [
+      "API Designer 관련 작업 요청",
+      "api-designer 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "api-designer-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "api-designer-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "api-designer-agent-1"
+        ]
+      },
+      {
+        "agentId": "api-designer-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "api-designer-agent-2"
+        ]
+      },
+      {
+        "agentId": "api-designer-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "api-designer-agent-3"
+        ]
+      },
+      {
+        "agentId": "api-designer-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "api-designer-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "api-designer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "api-designer-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "api-designer-agent-1"
+          ]
+        },
+        {
+          "agentId": "api-designer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "api-designer-agent-2"
+          ]
+        },
+        {
+          "agentId": "api-designer-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "api-designer-agent-3"
+          ]
+        },
+        {
+          "agentId": "api-designer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "api-designer-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "api-designer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "api-designer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "api-designer-agent-1"
+          ]
+        },
+        {
+          "agentId": "api-designer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "api-designer-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "api-designer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SOLID",
+    "DDD",
+    "OWASP Top 10",
+    "DORA 메트릭"
+  ],
+  "agentCount": 5
+}

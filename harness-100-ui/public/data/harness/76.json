@@ -1,0 +1,163 @@
+{
+  "id": 76,
+  "slug": "travel-planner",
+  "name": "Travel Planner",
+  "description": "목적지 선정, 일정, 예산, 현지 정보",
+  "category": "lifestyle",
+  "agents": [
+    {
+      "id": "travel-planner-agent-1",
+      "name": "Travel Planner 분석가",
+      "role": "니즈 분석 전문가",
+      "description": "Travel Planner 하네스의 니즈 분석 전문가. 목적지 선정, 일정, 예산, 현지 정보 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "travel-planner-agent-2",
+      "name": "Travel Planner 설계자",
+      "role": "플랜 설계 전문가",
+      "description": "Travel Planner 하네스의 플랜 설계 전문가. 목적지 선정, 일정, 예산, 현지 정보 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 플랜 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "travel-planner-agent-1"
+      ]
+    },
+    {
+      "id": "travel-planner-agent-3",
+      "name": "Travel Planner 실행자",
+      "role": "실행 가이드 전문가",
+      "description": "Travel Planner 하네스의 실행 가이드 전문가. 목적지 선정, 일정, 예산, 현지 정보 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 실행 가이드\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "travel-planner-agent-2"
+      ]
+    },
+    {
+      "id": "travel-planner-agent-4",
+      "name": "Travel Planner 최적화 전문가",
+      "role": "최적화/개선 전문가",
+      "description": "Travel Planner 하네스의 최적화/개선 전문가. 목적지 선정, 일정, 예산, 현지 정보 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "travel-planner-agent-3"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "travel-planner-skill",
+    "name": "Travel Planner 워크플로",
+    "triggerConditions": [
+      "Travel Planner 관련 작업 요청",
+      "travel-planner 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "travel-planner-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "travel-planner-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "travel-planner-agent-1"
+        ]
+      },
+      {
+        "agentId": "travel-planner-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "travel-planner-agent-2"
+        ]
+      },
+      {
+        "agentId": "travel-planner-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "travel-planner-agent-3"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "travel-planner-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "travel-planner-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "travel-planner-agent-1"
+          ]
+        },
+        {
+          "agentId": "travel-planner-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "travel-planner-agent-2"
+          ]
+        },
+        {
+          "agentId": "travel-planner-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "travel-planner-agent-3"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "travel-planner-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "travel-planner-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "travel-planner-agent-1"
+          ]
+        },
+        {
+          "agentId": "travel-planner-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "travel-planner-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "travel-planner-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [],
+  "agentCount": 4
+}

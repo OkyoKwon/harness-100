@@ -1,0 +1,197 @@
+{
+  "id": 30,
+  "slug": "open-source-launcher",
+  "name": "Open Source Launcher",
+  "description": "코드 정리, 문서, 라이선스, 커뮤니티",
+  "category": "development",
+  "agents": [
+    {
+      "id": "open-source-launcher-agent-1",
+      "name": "Open Source Launcher 아키텍트",
+      "role": "시스템 설계 전문가",
+      "description": "Open Source Launcher 하네스의 시스템 설계 전문가. 코드 정리, 문서, 라이선스, 커뮤니티 워크플로에서 아키텍트 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 아키텍처 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "open-source-launcher-agent-2",
+      "name": "Open Source Launcher 개발자",
+      "role": "구현 전문가",
+      "description": "Open Source Launcher 하네스의 구현 전문가. 코드 정리, 문서, 라이선스, 커뮤니티 워크플로에서 개발자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 구현 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "open-source-launcher-agent-1"
+      ]
+    },
+    {
+      "id": "open-source-launcher-agent-3",
+      "name": "Open Source Launcher 테스터",
+      "role": "테스트 전문가",
+      "description": "Open Source Launcher 하네스의 테스트 전문가. 코드 정리, 문서, 라이선스, 커뮤니티 워크플로에서 테스터 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 테스트 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "open-source-launcher-agent-2"
+      ]
+    },
+    {
+      "id": "open-source-launcher-agent-4",
+      "name": "Open Source Launcher 리뷰어",
+      "role": "코드 리뷰 전문가",
+      "description": "Open Source Launcher 하네스의 코드 리뷰 전문가. 코드 정리, 문서, 라이선스, 커뮤니티 워크플로에서 리뷰어 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 리뷰 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "open-source-launcher-agent-3"
+      ]
+    },
+    {
+      "id": "open-source-launcher-agent-5",
+      "name": "Open Source Launcher 데브옵스",
+      "role": "배포/운영 전문가",
+      "description": "Open Source Launcher 하네스의 배포/운영 전문가. 코드 정리, 문서, 라이선스, 커뮤니티 워크플로에서 데브옵스 역할을 수행합니다.",
+      "tools": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "outputTemplate": "## 배포 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "open-source-launcher-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "open-source-launcher-skill",
+    "name": "Open Source Launcher 워크플로",
+    "triggerConditions": [
+      "Open Source Launcher 관련 작업 요청",
+      "open-source-launcher 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "open-source-launcher-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "open-source-launcher-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "open-source-launcher-agent-1"
+        ]
+      },
+      {
+        "agentId": "open-source-launcher-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "open-source-launcher-agent-2"
+        ]
+      },
+      {
+        "agentId": "open-source-launcher-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "open-source-launcher-agent-3"
+        ]
+      },
+      {
+        "agentId": "open-source-launcher-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "open-source-launcher-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "open-source-launcher-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "open-source-launcher-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "open-source-launcher-agent-1"
+          ]
+        },
+        {
+          "agentId": "open-source-launcher-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "open-source-launcher-agent-2"
+          ]
+        },
+        {
+          "agentId": "open-source-launcher-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "open-source-launcher-agent-3"
+          ]
+        },
+        {
+          "agentId": "open-source-launcher-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "open-source-launcher-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "open-source-launcher-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "open-source-launcher-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "open-source-launcher-agent-1"
+          ]
+        },
+        {
+          "agentId": "open-source-launcher-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "open-source-launcher-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "open-source-launcher-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SOLID",
+    "DDD",
+    "OWASP Top 10",
+    "DORA 메트릭"
+  ],
+  "agentCount": 5
+}

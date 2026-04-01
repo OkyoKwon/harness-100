@@ -1,0 +1,196 @@
+{
+  "id": 55,
+  "slug": "rfp-responder",
+  "name": "RFP Responder",
+  "description": "RFI/RFP 응답서 작성",
+  "category": "business",
+  "agents": [
+    {
+      "id": "rfp-responder-agent-1",
+      "name": "RFP Responder 리서처",
+      "role": "시장/경쟁 분석 전문가",
+      "description": "RFP Responder 하네스의 시장/경쟁 분석 전문가. RFI/RFP 응답서 작성 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 시장 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "rfp-responder-agent-2",
+      "name": "RFP Responder 전략가",
+      "role": "비즈니스 전략 전문가",
+      "description": "RFP Responder 하네스의 비즈니스 전략 전문가. RFI/RFP 응답서 작성 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 전략 보고서\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "rfp-responder-agent-1"
+      ]
+    },
+    {
+      "id": "rfp-responder-agent-3",
+      "name": "RFP Responder 기획자",
+      "role": "실행 계획 전문가",
+      "description": "RFP Responder 하네스의 실행 계획 전문가. RFI/RFP 응답서 작성 워크플로에서 기획자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 실행 계획\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "rfp-responder-agent-2"
+      ]
+    },
+    {
+      "id": "rfp-responder-agent-4",
+      "name": "RFP Responder 분석가",
+      "role": "재무/데이터 분석 전문가",
+      "description": "RFP Responder 하네스의 재무/데이터 분석 전문가. RFI/RFP 응답서 작성 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Bash",
+        "Write"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "rfp-responder-agent-3"
+      ]
+    },
+    {
+      "id": "rfp-responder-agent-5",
+      "name": "RFP Responder 어드바이저",
+      "role": "검토/자문 전문가",
+      "description": "RFP Responder 하네스의 검토/자문 전문가. RFI/RFP 응답서 작성 워크플로에서 어드바이저 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 자문 의견\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "rfp-responder-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "rfp-responder-skill",
+    "name": "RFP Responder 워크플로",
+    "triggerConditions": [
+      "RFP Responder 관련 작업 요청",
+      "rfp-responder 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "rfp-responder-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "rfp-responder-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "rfp-responder-agent-1"
+        ]
+      },
+      {
+        "agentId": "rfp-responder-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "rfp-responder-agent-2"
+        ]
+      },
+      {
+        "agentId": "rfp-responder-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "rfp-responder-agent-3"
+        ]
+      },
+      {
+        "agentId": "rfp-responder-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "rfp-responder-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "rfp-responder-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "rfp-responder-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "rfp-responder-agent-1"
+          ]
+        },
+        {
+          "agentId": "rfp-responder-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "rfp-responder-agent-2"
+          ]
+        },
+        {
+          "agentId": "rfp-responder-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "rfp-responder-agent-3"
+          ]
+        },
+        {
+          "agentId": "rfp-responder-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "rfp-responder-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "rfp-responder-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "rfp-responder-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "rfp-responder-agent-1"
+          ]
+        },
+        {
+          "agentId": "rfp-responder-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "rfp-responder-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "rfp-responder-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "BMC",
+    "Porter's 5 Forces",
+    "OKR"
+  ],
+  "agentCount": 5
+}

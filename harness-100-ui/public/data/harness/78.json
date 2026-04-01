@@ -1,0 +1,192 @@
+{
+  "id": 78,
+  "slug": "personal-finance",
+  "name": "Personal Finance",
+  "description": "수입/지출, 예산, 투자, 은퇴 설계",
+  "category": "lifestyle",
+  "agents": [
+    {
+      "id": "personal-finance-agent-1",
+      "name": "Personal Finance 분석가",
+      "role": "니즈 분석 전문가",
+      "description": "Personal Finance 하네스의 니즈 분석 전문가. 수입/지출, 예산, 투자, 은퇴 설계 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "personal-finance-agent-2",
+      "name": "Personal Finance 설계자",
+      "role": "플랜 설계 전문가",
+      "description": "Personal Finance 하네스의 플랜 설계 전문가. 수입/지출, 예산, 투자, 은퇴 설계 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 플랜 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "personal-finance-agent-1"
+      ]
+    },
+    {
+      "id": "personal-finance-agent-3",
+      "name": "Personal Finance 실행자",
+      "role": "실행 가이드 전문가",
+      "description": "Personal Finance 하네스의 실행 가이드 전문가. 수입/지출, 예산, 투자, 은퇴 설계 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 실행 가이드\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "personal-finance-agent-2"
+      ]
+    },
+    {
+      "id": "personal-finance-agent-4",
+      "name": "Personal Finance 최적화 전문가",
+      "role": "최적화/개선 전문가",
+      "description": "Personal Finance 하네스의 최적화/개선 전문가. 수입/지출, 예산, 투자, 은퇴 설계 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "personal-finance-agent-3"
+      ]
+    },
+    {
+      "id": "personal-finance-agent-5",
+      "name": "Personal Finance 분석가",
+      "role": "니즈 분석 전문가",
+      "description": "Personal Finance 하네스의 니즈 분석 전문가. 수입/지출, 예산, 투자, 은퇴 설계 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "personal-finance-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "personal-finance-skill",
+    "name": "Personal Finance 워크플로",
+    "triggerConditions": [
+      "Personal Finance 관련 작업 요청",
+      "personal-finance 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "personal-finance-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "personal-finance-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "personal-finance-agent-1"
+        ]
+      },
+      {
+        "agentId": "personal-finance-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "personal-finance-agent-2"
+        ]
+      },
+      {
+        "agentId": "personal-finance-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "personal-finance-agent-3"
+        ]
+      },
+      {
+        "agentId": "personal-finance-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "personal-finance-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "personal-finance-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "personal-finance-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "personal-finance-agent-1"
+          ]
+        },
+        {
+          "agentId": "personal-finance-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "personal-finance-agent-2"
+          ]
+        },
+        {
+          "agentId": "personal-finance-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "personal-finance-agent-3"
+          ]
+        },
+        {
+          "agentId": "personal-finance-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "personal-finance-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "personal-finance-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "personal-finance-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "personal-finance-agent-1"
+          ]
+        },
+        {
+          "agentId": "personal-finance-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "personal-finance-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "personal-finance-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [],
+  "agentCount": 5
+}

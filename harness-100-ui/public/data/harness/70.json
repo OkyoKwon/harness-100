@@ -1,0 +1,166 @@
+{
+  "id": 70,
+  "slug": "legal-research",
+  "name": "Legal Research",
+  "description": "판례, 법리 분석, 의견서",
+  "category": "legal",
+  "agents": [
+    {
+      "id": "legal-research-agent-1",
+      "name": "Legal Research 리서처",
+      "role": "법률 리서치 전문가",
+      "description": "Legal Research 하네스의 법률 리서치 전문가. 판례, 법리 분석, 의견서 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 법률 리서치\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "legal-research-agent-2",
+      "name": "Legal Research 분석가",
+      "role": "법률 분석 전문가",
+      "description": "Legal Research 하네스의 법률 분석 전문가. 판례, 법리 분석, 의견서 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 법률 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "legal-research-agent-1"
+      ]
+    },
+    {
+      "id": "legal-research-agent-3",
+      "name": "Legal Research 작성자",
+      "role": "법률 문서 작성 전문가",
+      "description": "Legal Research 하네스의 법률 문서 작성 전문가. 판례, 법리 분석, 의견서 워크플로에서 작성자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 법률 문서\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "legal-research-agent-2"
+      ]
+    },
+    {
+      "id": "legal-research-agent-4",
+      "name": "Legal Research 검토자",
+      "role": "법률 검토 전문가",
+      "description": "Legal Research 하네스의 법률 검토 전문가. 판례, 법리 분석, 의견서 워크플로에서 검토자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 검토 의견\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "legal-research-agent-3"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "legal-research-skill",
+    "name": "Legal Research 워크플로",
+    "triggerConditions": [
+      "Legal Research 관련 작업 요청",
+      "legal-research 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "legal-research-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "legal-research-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "legal-research-agent-1"
+        ]
+      },
+      {
+        "agentId": "legal-research-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "legal-research-agent-2"
+        ]
+      },
+      {
+        "agentId": "legal-research-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "legal-research-agent-3"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "legal-research-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "legal-research-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "legal-research-agent-1"
+          ]
+        },
+        {
+          "agentId": "legal-research-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "legal-research-agent-2"
+          ]
+        },
+        {
+          "agentId": "legal-research-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "legal-research-agent-3"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "legal-research-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "legal-research-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "legal-research-agent-1"
+          ]
+        },
+        {
+          "agentId": "legal-research-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "legal-research-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "legal-research-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "IRAC",
+    "GDPR/PIPA"
+  ],
+  "agentCount": 4
+}

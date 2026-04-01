@@ -1,0 +1,196 @@
+{
+  "id": 43,
+  "slug": "startup-launcher",
+  "name": "Startup Launcher",
+  "description": "아이디어 검증, 비즈니스 모델, MVP, 피칭",
+  "category": "business",
+  "agents": [
+    {
+      "id": "startup-launcher-agent-1",
+      "name": "Startup Launcher 리서처",
+      "role": "시장/경쟁 분석 전문가",
+      "description": "Startup Launcher 하네스의 시장/경쟁 분석 전문가. 아이디어 검증, 비즈니스 모델, MVP, 피칭 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 시장 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "startup-launcher-agent-2",
+      "name": "Startup Launcher 전략가",
+      "role": "비즈니스 전략 전문가",
+      "description": "Startup Launcher 하네스의 비즈니스 전략 전문가. 아이디어 검증, 비즈니스 모델, MVP, 피칭 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 전략 보고서\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "startup-launcher-agent-1"
+      ]
+    },
+    {
+      "id": "startup-launcher-agent-3",
+      "name": "Startup Launcher 기획자",
+      "role": "실행 계획 전문가",
+      "description": "Startup Launcher 하네스의 실행 계획 전문가. 아이디어 검증, 비즈니스 모델, MVP, 피칭 워크플로에서 기획자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 실행 계획\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "startup-launcher-agent-2"
+      ]
+    },
+    {
+      "id": "startup-launcher-agent-4",
+      "name": "Startup Launcher 분석가",
+      "role": "재무/데이터 분석 전문가",
+      "description": "Startup Launcher 하네스의 재무/데이터 분석 전문가. 아이디어 검증, 비즈니스 모델, MVP, 피칭 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Bash",
+        "Write"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "startup-launcher-agent-3"
+      ]
+    },
+    {
+      "id": "startup-launcher-agent-5",
+      "name": "Startup Launcher 어드바이저",
+      "role": "검토/자문 전문가",
+      "description": "Startup Launcher 하네스의 검토/자문 전문가. 아이디어 검증, 비즈니스 모델, MVP, 피칭 워크플로에서 어드바이저 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 자문 의견\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "startup-launcher-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "startup-launcher-skill",
+    "name": "Startup Launcher 워크플로",
+    "triggerConditions": [
+      "Startup Launcher 관련 작업 요청",
+      "startup-launcher 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "startup-launcher-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "startup-launcher-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "startup-launcher-agent-1"
+        ]
+      },
+      {
+        "agentId": "startup-launcher-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "startup-launcher-agent-2"
+        ]
+      },
+      {
+        "agentId": "startup-launcher-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "startup-launcher-agent-3"
+        ]
+      },
+      {
+        "agentId": "startup-launcher-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "startup-launcher-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "startup-launcher-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "startup-launcher-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "startup-launcher-agent-1"
+          ]
+        },
+        {
+          "agentId": "startup-launcher-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "startup-launcher-agent-2"
+          ]
+        },
+        {
+          "agentId": "startup-launcher-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "startup-launcher-agent-3"
+          ]
+        },
+        {
+          "agentId": "startup-launcher-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "startup-launcher-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "startup-launcher-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "startup-launcher-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "startup-launcher-agent-1"
+          ]
+        },
+        {
+          "agentId": "startup-launcher-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "startup-launcher-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "startup-launcher-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "BMC",
+    "Porter's 5 Forces",
+    "OKR"
+  ],
+  "agentCount": 5
+}

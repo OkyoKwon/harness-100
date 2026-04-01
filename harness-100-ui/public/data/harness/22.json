@@ -1,0 +1,197 @@
+{
+  "id": 22,
+  "slug": "legacy-modernizer",
+  "name": "Legacy Modernizer",
+  "description": "분석, 리팩토링, 마이그레이션",
+  "category": "development",
+  "agents": [
+    {
+      "id": "legacy-modernizer-agent-1",
+      "name": "Legacy Modernizer 아키텍트",
+      "role": "시스템 설계 전문가",
+      "description": "Legacy Modernizer 하네스의 시스템 설계 전문가. 분석, 리팩토링, 마이그레이션 워크플로에서 아키텍트 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 아키텍처 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "legacy-modernizer-agent-2",
+      "name": "Legacy Modernizer 개발자",
+      "role": "구현 전문가",
+      "description": "Legacy Modernizer 하네스의 구현 전문가. 분석, 리팩토링, 마이그레이션 워크플로에서 개발자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 구현 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "legacy-modernizer-agent-1"
+      ]
+    },
+    {
+      "id": "legacy-modernizer-agent-3",
+      "name": "Legacy Modernizer 테스터",
+      "role": "테스트 전문가",
+      "description": "Legacy Modernizer 하네스의 테스트 전문가. 분석, 리팩토링, 마이그레이션 워크플로에서 테스터 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 테스트 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "legacy-modernizer-agent-2"
+      ]
+    },
+    {
+      "id": "legacy-modernizer-agent-4",
+      "name": "Legacy Modernizer 리뷰어",
+      "role": "코드 리뷰 전문가",
+      "description": "Legacy Modernizer 하네스의 코드 리뷰 전문가. 분석, 리팩토링, 마이그레이션 워크플로에서 리뷰어 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 리뷰 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "legacy-modernizer-agent-3"
+      ]
+    },
+    {
+      "id": "legacy-modernizer-agent-5",
+      "name": "Legacy Modernizer 데브옵스",
+      "role": "배포/운영 전문가",
+      "description": "Legacy Modernizer 하네스의 배포/운영 전문가. 분석, 리팩토링, 마이그레이션 워크플로에서 데브옵스 역할을 수행합니다.",
+      "tools": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "outputTemplate": "## 배포 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "legacy-modernizer-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "legacy-modernizer-skill",
+    "name": "Legacy Modernizer 워크플로",
+    "triggerConditions": [
+      "Legacy Modernizer 관련 작업 요청",
+      "legacy-modernizer 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "legacy-modernizer-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "legacy-modernizer-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "legacy-modernizer-agent-1"
+        ]
+      },
+      {
+        "agentId": "legacy-modernizer-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "legacy-modernizer-agent-2"
+        ]
+      },
+      {
+        "agentId": "legacy-modernizer-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "legacy-modernizer-agent-3"
+        ]
+      },
+      {
+        "agentId": "legacy-modernizer-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "legacy-modernizer-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "legacy-modernizer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "legacy-modernizer-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "legacy-modernizer-agent-1"
+          ]
+        },
+        {
+          "agentId": "legacy-modernizer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "legacy-modernizer-agent-2"
+          ]
+        },
+        {
+          "agentId": "legacy-modernizer-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "legacy-modernizer-agent-3"
+          ]
+        },
+        {
+          "agentId": "legacy-modernizer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "legacy-modernizer-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "legacy-modernizer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "legacy-modernizer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "legacy-modernizer-agent-1"
+          ]
+        },
+        {
+          "agentId": "legacy-modernizer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "legacy-modernizer-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "legacy-modernizer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SOLID",
+    "DDD",
+    "OWASP Top 10",
+    "DORA 메트릭"
+  ],
+  "agentCount": 5
+}

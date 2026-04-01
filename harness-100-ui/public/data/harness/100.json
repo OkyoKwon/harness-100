@@ -1,0 +1,192 @@
+{
+  "id": 100,
+  "slug": "ip-portfolio",
+  "name": "IP Portfolio",
+  "description": "특허, 상표, 저작권, 라이선스 전략",
+  "category": "specialized",
+  "agents": [
+    {
+      "id": "ip-portfolio-agent-1",
+      "name": "IP Portfolio 리서처",
+      "role": "전문 리서치 전문가",
+      "description": "IP Portfolio 하네스의 전문 리서치 전문가. 특허, 상표, 저작권, 라이선스 전략 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 리서치 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "ip-portfolio-agent-2",
+      "name": "IP Portfolio 분석가",
+      "role": "전문 분석 전문가",
+      "description": "IP Portfolio 하네스의 전문 분석 전문가. 특허, 상표, 저작권, 라이선스 전략 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 분석 보고서\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "ip-portfolio-agent-1"
+      ]
+    },
+    {
+      "id": "ip-portfolio-agent-3",
+      "name": "IP Portfolio 실행자",
+      "role": "전문 실행 전문가",
+      "description": "IP Portfolio 하네스의 전문 실행 전문가. 특허, 상표, 저작권, 라이선스 전략 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 실행 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "ip-portfolio-agent-2"
+      ]
+    },
+    {
+      "id": "ip-portfolio-agent-4",
+      "name": "IP Portfolio 검토자",
+      "role": "전문 검토 전문가",
+      "description": "IP Portfolio 하네스의 전문 검토 전문가. 특허, 상표, 저작권, 라이선스 전략 워크플로에서 검토자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 검토 의견\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "ip-portfolio-agent-3"
+      ]
+    },
+    {
+      "id": "ip-portfolio-agent-5",
+      "name": "IP Portfolio 전략가",
+      "role": "전문 전략 전문가",
+      "description": "IP Portfolio 하네스의 전문 전략 전문가. 특허, 상표, 저작권, 라이선스 전략 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 전략 가이드\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "ip-portfolio-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "ip-portfolio-skill",
+    "name": "IP Portfolio 워크플로",
+    "triggerConditions": [
+      "IP Portfolio 관련 작업 요청",
+      "ip-portfolio 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "ip-portfolio-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "ip-portfolio-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "ip-portfolio-agent-1"
+        ]
+      },
+      {
+        "agentId": "ip-portfolio-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "ip-portfolio-agent-2"
+        ]
+      },
+      {
+        "agentId": "ip-portfolio-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "ip-portfolio-agent-3"
+        ]
+      },
+      {
+        "agentId": "ip-portfolio-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "ip-portfolio-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "ip-portfolio-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "ip-portfolio-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "ip-portfolio-agent-1"
+          ]
+        },
+        {
+          "agentId": "ip-portfolio-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "ip-portfolio-agent-2"
+          ]
+        },
+        {
+          "agentId": "ip-portfolio-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "ip-portfolio-agent-3"
+          ]
+        },
+        {
+          "agentId": "ip-portfolio-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "ip-portfolio-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "ip-portfolio-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "ip-portfolio-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "ip-portfolio-agent-1"
+          ]
+        },
+        {
+          "agentId": "ip-portfolio-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "ip-portfolio-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "ip-portfolio-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [],
+  "agentCount": 5
+}

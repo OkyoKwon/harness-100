@@ -1,0 +1,196 @@
+{
+  "id": 50,
+  "slug": "pricing-strategy",
+  "name": "Pricing Strategy",
+  "description": "원가, 경쟁 분석, 가치 기반, 시뮬레이션",
+  "category": "business",
+  "agents": [
+    {
+      "id": "pricing-strategy-agent-1",
+      "name": "Pricing Strategy 리서처",
+      "role": "시장/경쟁 분석 전문가",
+      "description": "Pricing Strategy 하네스의 시장/경쟁 분석 전문가. 원가, 경쟁 분석, 가치 기반, 시뮬레이션 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 시장 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "pricing-strategy-agent-2",
+      "name": "Pricing Strategy 전략가",
+      "role": "비즈니스 전략 전문가",
+      "description": "Pricing Strategy 하네스의 비즈니스 전략 전문가. 원가, 경쟁 분석, 가치 기반, 시뮬레이션 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 전략 보고서\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "pricing-strategy-agent-1"
+      ]
+    },
+    {
+      "id": "pricing-strategy-agent-3",
+      "name": "Pricing Strategy 기획자",
+      "role": "실행 계획 전문가",
+      "description": "Pricing Strategy 하네스의 실행 계획 전문가. 원가, 경쟁 분석, 가치 기반, 시뮬레이션 워크플로에서 기획자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 실행 계획\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "pricing-strategy-agent-2"
+      ]
+    },
+    {
+      "id": "pricing-strategy-agent-4",
+      "name": "Pricing Strategy 분석가",
+      "role": "재무/데이터 분석 전문가",
+      "description": "Pricing Strategy 하네스의 재무/데이터 분석 전문가. 원가, 경쟁 분석, 가치 기반, 시뮬레이션 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Bash",
+        "Write"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "pricing-strategy-agent-3"
+      ]
+    },
+    {
+      "id": "pricing-strategy-agent-5",
+      "name": "Pricing Strategy 어드바이저",
+      "role": "검토/자문 전문가",
+      "description": "Pricing Strategy 하네스의 검토/자문 전문가. 원가, 경쟁 분석, 가치 기반, 시뮬레이션 워크플로에서 어드바이저 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 자문 의견\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "pricing-strategy-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "pricing-strategy-skill",
+    "name": "Pricing Strategy 워크플로",
+    "triggerConditions": [
+      "Pricing Strategy 관련 작업 요청",
+      "pricing-strategy 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "pricing-strategy-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "pricing-strategy-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "pricing-strategy-agent-1"
+        ]
+      },
+      {
+        "agentId": "pricing-strategy-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "pricing-strategy-agent-2"
+        ]
+      },
+      {
+        "agentId": "pricing-strategy-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "pricing-strategy-agent-3"
+        ]
+      },
+      {
+        "agentId": "pricing-strategy-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "pricing-strategy-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "pricing-strategy-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "pricing-strategy-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "pricing-strategy-agent-1"
+          ]
+        },
+        {
+          "agentId": "pricing-strategy-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "pricing-strategy-agent-2"
+          ]
+        },
+        {
+          "agentId": "pricing-strategy-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "pricing-strategy-agent-3"
+          ]
+        },
+        {
+          "agentId": "pricing-strategy-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "pricing-strategy-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "pricing-strategy-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "pricing-strategy-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "pricing-strategy-agent-1"
+          ]
+        },
+        {
+          "agentId": "pricing-strategy-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "pricing-strategy-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "pricing-strategy-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "BMC",
+    "Porter's 5 Forces",
+    "OKR"
+  ],
+  "agentCount": 5
+}

@@ -1,0 +1,196 @@
+{
+  "id": 48,
+  "slug": "sales-enablement",
+  "name": "Sales Enablement",
+  "description": "고객 분석, 제안서, 프레젠테이션, 팔로업",
+  "category": "business",
+  "agents": [
+    {
+      "id": "sales-enablement-agent-1",
+      "name": "Sales Enablement 리서처",
+      "role": "시장/경쟁 분석 전문가",
+      "description": "Sales Enablement 하네스의 시장/경쟁 분석 전문가. 고객 분석, 제안서, 프레젠테이션, 팔로업 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 시장 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "sales-enablement-agent-2",
+      "name": "Sales Enablement 전략가",
+      "role": "비즈니스 전략 전문가",
+      "description": "Sales Enablement 하네스의 비즈니스 전략 전문가. 고객 분석, 제안서, 프레젠테이션, 팔로업 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 전략 보고서\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "sales-enablement-agent-1"
+      ]
+    },
+    {
+      "id": "sales-enablement-agent-3",
+      "name": "Sales Enablement 기획자",
+      "role": "실행 계획 전문가",
+      "description": "Sales Enablement 하네스의 실행 계획 전문가. 고객 분석, 제안서, 프레젠테이션, 팔로업 워크플로에서 기획자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 실행 계획\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "sales-enablement-agent-2"
+      ]
+    },
+    {
+      "id": "sales-enablement-agent-4",
+      "name": "Sales Enablement 분석가",
+      "role": "재무/데이터 분석 전문가",
+      "description": "Sales Enablement 하네스의 재무/데이터 분석 전문가. 고객 분석, 제안서, 프레젠테이션, 팔로업 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Bash",
+        "Write"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "sales-enablement-agent-3"
+      ]
+    },
+    {
+      "id": "sales-enablement-agent-5",
+      "name": "Sales Enablement 어드바이저",
+      "role": "검토/자문 전문가",
+      "description": "Sales Enablement 하네스의 검토/자문 전문가. 고객 분석, 제안서, 프레젠테이션, 팔로업 워크플로에서 어드바이저 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 자문 의견\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "sales-enablement-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "sales-enablement-skill",
+    "name": "Sales Enablement 워크플로",
+    "triggerConditions": [
+      "Sales Enablement 관련 작업 요청",
+      "sales-enablement 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "sales-enablement-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "sales-enablement-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "sales-enablement-agent-1"
+        ]
+      },
+      {
+        "agentId": "sales-enablement-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "sales-enablement-agent-2"
+        ]
+      },
+      {
+        "agentId": "sales-enablement-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "sales-enablement-agent-3"
+        ]
+      },
+      {
+        "agentId": "sales-enablement-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "sales-enablement-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "sales-enablement-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "sales-enablement-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "sales-enablement-agent-1"
+          ]
+        },
+        {
+          "agentId": "sales-enablement-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "sales-enablement-agent-2"
+          ]
+        },
+        {
+          "agentId": "sales-enablement-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "sales-enablement-agent-3"
+          ]
+        },
+        {
+          "agentId": "sales-enablement-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "sales-enablement-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "sales-enablement-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "sales-enablement-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "sales-enablement-agent-1"
+          ]
+        },
+        {
+          "agentId": "sales-enablement-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "sales-enablement-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "sales-enablement-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "BMC",
+    "Porter's 5 Forces",
+    "OKR"
+  ],
+  "agentCount": 5
+}

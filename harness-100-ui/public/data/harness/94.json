@@ -1,0 +1,196 @@
+{
+  "id": 94,
+  "slug": "audit-report",
+  "name": "Audit Report",
+  "description": "범위, 체크리스트, 발견사항, 권고",
+  "category": "operations",
+  "agents": [
+    {
+      "id": "audit-report-agent-1",
+      "name": "Audit Report 분석가",
+      "role": "프로세스 분석 전문가",
+      "description": "Audit Report 하네스의 프로세스 분석 전문가. 범위, 체크리스트, 발견사항, 권고 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "WebSearch",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 프로세스 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "audit-report-agent-2",
+      "name": "Audit Report 설계자",
+      "role": "운영 설계 전문가",
+      "description": "Audit Report 하네스의 운영 설계 전문가. 범위, 체크리스트, 발견사항, 권고 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 운영 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "audit-report-agent-1"
+      ]
+    },
+    {
+      "id": "audit-report-agent-3",
+      "name": "Audit Report 실행자",
+      "role": "운영 실행 전문가",
+      "description": "Audit Report 하네스의 운영 실행 전문가. 범위, 체크리스트, 발견사항, 권고 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 실행 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "audit-report-agent-2"
+      ]
+    },
+    {
+      "id": "audit-report-agent-4",
+      "name": "Audit Report 검수자",
+      "role": "품질 검수 전문가",
+      "description": "Audit Report 하네스의 품질 검수 전문가. 범위, 체크리스트, 발견사항, 권고 워크플로에서 검수자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 검수 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "audit-report-agent-3"
+      ]
+    },
+    {
+      "id": "audit-report-agent-5",
+      "name": "Audit Report 최적화 전문가",
+      "role": "운영 최적화 전문가",
+      "description": "Audit Report 하네스의 운영 최적화 전문가. 범위, 체크리스트, 발견사항, 권고 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "audit-report-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "audit-report-skill",
+    "name": "Audit Report 워크플로",
+    "triggerConditions": [
+      "Audit Report 관련 작업 요청",
+      "audit-report 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "audit-report-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "audit-report-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "audit-report-agent-1"
+        ]
+      },
+      {
+        "agentId": "audit-report-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "audit-report-agent-2"
+        ]
+      },
+      {
+        "agentId": "audit-report-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "audit-report-agent-3"
+        ]
+      },
+      {
+        "agentId": "audit-report-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "audit-report-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "audit-report-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "audit-report-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "audit-report-agent-1"
+          ]
+        },
+        {
+          "agentId": "audit-report-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "audit-report-agent-2"
+          ]
+        },
+        {
+          "agentId": "audit-report-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "audit-report-agent-3"
+          ]
+        },
+        {
+          "agentId": "audit-report-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "audit-report-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "audit-report-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "audit-report-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "audit-report-agent-1"
+          ]
+        },
+        {
+          "agentId": "audit-report-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "audit-report-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "audit-report-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SIPOC",
+    "RACI",
+    "SMART"
+  ],
+  "agentCount": 5
+}

@@ -1,0 +1,197 @@
+{
+  "id": 27,
+  "slug": "data-pipeline",
+  "name": "Data Pipeline",
+  "description": "ETL, 품질 검증, 모니터링",
+  "category": "development",
+  "agents": [
+    {
+      "id": "data-pipeline-agent-1",
+      "name": "Data Pipeline 아키텍트",
+      "role": "시스템 설계 전문가",
+      "description": "Data Pipeline 하네스의 시스템 설계 전문가. ETL, 품질 검증, 모니터링 워크플로에서 아키텍트 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 아키텍처 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "data-pipeline-agent-2",
+      "name": "Data Pipeline 개발자",
+      "role": "구현 전문가",
+      "description": "Data Pipeline 하네스의 구현 전문가. ETL, 품질 검증, 모니터링 워크플로에서 개발자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 구현 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "data-pipeline-agent-1"
+      ]
+    },
+    {
+      "id": "data-pipeline-agent-3",
+      "name": "Data Pipeline 테스터",
+      "role": "테스트 전문가",
+      "description": "Data Pipeline 하네스의 테스트 전문가. ETL, 품질 검증, 모니터링 워크플로에서 테스터 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 테스트 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "data-pipeline-agent-2"
+      ]
+    },
+    {
+      "id": "data-pipeline-agent-4",
+      "name": "Data Pipeline 리뷰어",
+      "role": "코드 리뷰 전문가",
+      "description": "Data Pipeline 하네스의 코드 리뷰 전문가. ETL, 품질 검증, 모니터링 워크플로에서 리뷰어 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 리뷰 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "data-pipeline-agent-3"
+      ]
+    },
+    {
+      "id": "data-pipeline-agent-5",
+      "name": "Data Pipeline 데브옵스",
+      "role": "배포/운영 전문가",
+      "description": "Data Pipeline 하네스의 배포/운영 전문가. ETL, 품질 검증, 모니터링 워크플로에서 데브옵스 역할을 수행합니다.",
+      "tools": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "outputTemplate": "## 배포 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "data-pipeline-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "data-pipeline-skill",
+    "name": "Data Pipeline 워크플로",
+    "triggerConditions": [
+      "Data Pipeline 관련 작업 요청",
+      "data-pipeline 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "data-pipeline-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "data-pipeline-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "data-pipeline-agent-1"
+        ]
+      },
+      {
+        "agentId": "data-pipeline-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "data-pipeline-agent-2"
+        ]
+      },
+      {
+        "agentId": "data-pipeline-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "data-pipeline-agent-3"
+        ]
+      },
+      {
+        "agentId": "data-pipeline-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "data-pipeline-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "data-pipeline-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "data-pipeline-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "data-pipeline-agent-1"
+          ]
+        },
+        {
+          "agentId": "data-pipeline-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "data-pipeline-agent-2"
+          ]
+        },
+        {
+          "agentId": "data-pipeline-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "data-pipeline-agent-3"
+          ]
+        },
+        {
+          "agentId": "data-pipeline-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "data-pipeline-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "data-pipeline-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "data-pipeline-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "data-pipeline-agent-1"
+          ]
+        },
+        {
+          "agentId": "data-pipeline-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "data-pipeline-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "data-pipeline-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SOLID",
+    "DDD",
+    "OWASP Top 10",
+    "DORA 메트릭"
+  ],
+  "agentCount": 5
+}

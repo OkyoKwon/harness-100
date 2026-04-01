@@ -1,0 +1,195 @@
+{
+  "id": 66,
+  "slug": "contract-analyzer",
+  "name": "Contract Analyzer",
+  "description": "계약서 분석, 작성, 검토, 위험 평가",
+  "category": "legal",
+  "agents": [
+    {
+      "id": "contract-analyzer-agent-1",
+      "name": "Contract Analyzer 리서처",
+      "role": "법률 리서치 전문가",
+      "description": "Contract Analyzer 하네스의 법률 리서치 전문가. 계약서 분석, 작성, 검토, 위험 평가 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 법률 리서치\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "contract-analyzer-agent-2",
+      "name": "Contract Analyzer 분석가",
+      "role": "법률 분석 전문가",
+      "description": "Contract Analyzer 하네스의 법률 분석 전문가. 계약서 분석, 작성, 검토, 위험 평가 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 법률 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "contract-analyzer-agent-1"
+      ]
+    },
+    {
+      "id": "contract-analyzer-agent-3",
+      "name": "Contract Analyzer 작성자",
+      "role": "법률 문서 작성 전문가",
+      "description": "Contract Analyzer 하네스의 법률 문서 작성 전문가. 계약서 분석, 작성, 검토, 위험 평가 워크플로에서 작성자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 법률 문서\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "contract-analyzer-agent-2"
+      ]
+    },
+    {
+      "id": "contract-analyzer-agent-4",
+      "name": "Contract Analyzer 검토자",
+      "role": "법률 검토 전문가",
+      "description": "Contract Analyzer 하네스의 법률 검토 전문가. 계약서 분석, 작성, 검토, 위험 평가 워크플로에서 검토자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 검토 의견\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "contract-analyzer-agent-3"
+      ]
+    },
+    {
+      "id": "contract-analyzer-agent-5",
+      "name": "Contract Analyzer 리서처",
+      "role": "법률 리서치 전문가",
+      "description": "Contract Analyzer 하네스의 법률 리서치 전문가. 계약서 분석, 작성, 검토, 위험 평가 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 법률 리서치\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "contract-analyzer-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "contract-analyzer-skill",
+    "name": "Contract Analyzer 워크플로",
+    "triggerConditions": [
+      "Contract Analyzer 관련 작업 요청",
+      "contract-analyzer 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "contract-analyzer-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "contract-analyzer-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "contract-analyzer-agent-1"
+        ]
+      },
+      {
+        "agentId": "contract-analyzer-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "contract-analyzer-agent-2"
+        ]
+      },
+      {
+        "agentId": "contract-analyzer-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "contract-analyzer-agent-3"
+        ]
+      },
+      {
+        "agentId": "contract-analyzer-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "contract-analyzer-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "contract-analyzer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "contract-analyzer-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "contract-analyzer-agent-1"
+          ]
+        },
+        {
+          "agentId": "contract-analyzer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "contract-analyzer-agent-2"
+          ]
+        },
+        {
+          "agentId": "contract-analyzer-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "contract-analyzer-agent-3"
+          ]
+        },
+        {
+          "agentId": "contract-analyzer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "contract-analyzer-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "contract-analyzer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "contract-analyzer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "contract-analyzer-agent-1"
+          ]
+        },
+        {
+          "agentId": "contract-analyzer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "contract-analyzer-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "contract-analyzer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "IRAC",
+    "GDPR/PIPA"
+  ],
+  "agentCount": 5
+}

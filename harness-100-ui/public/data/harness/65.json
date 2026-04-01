@@ -1,0 +1,196 @@
+{
+  "id": 65,
+  "slug": "personal-branding",
+  "name": "Personal Branding",
+  "description": "이력서, 포트폴리오, LinkedIn 최적화",
+  "category": "education",
+  "agents": [
+    {
+      "id": "personal-branding-agent-1",
+      "name": "Personal Branding 분석가",
+      "role": "학습 분석 전문가",
+      "description": "Personal Branding 하네스의 학습 분석 전문가. 이력서, 포트폴리오, LinkedIn 최적화 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "personal-branding-agent-2",
+      "name": "Personal Branding 설계자",
+      "role": "교육 설계 전문가",
+      "description": "Personal Branding 하네스의 교육 설계 전문가. 이력서, 포트폴리오, LinkedIn 최적화 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 교육 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "personal-branding-agent-1"
+      ]
+    },
+    {
+      "id": "personal-branding-agent-3",
+      "name": "Personal Branding 콘텐츠 개발자",
+      "role": "학습 자료 개발 전문가",
+      "description": "Personal Branding 하네스의 학습 자료 개발 전문가. 이력서, 포트폴리오, LinkedIn 최적화 워크플로에서 콘텐츠 개발자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 학습 자료\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "personal-branding-agent-2"
+      ]
+    },
+    {
+      "id": "personal-branding-agent-4",
+      "name": "Personal Branding 평가자",
+      "role": "평가/피드백 전문가",
+      "description": "Personal Branding 하네스의 평가/피드백 전문가. 이력서, 포트폴리오, LinkedIn 최적화 워크플로에서 평가자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 평가 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "personal-branding-agent-3"
+      ]
+    },
+    {
+      "id": "personal-branding-agent-5",
+      "name": "Personal Branding 코치",
+      "role": "학습 코칭 전문가",
+      "description": "Personal Branding 하네스의 학습 코칭 전문가. 이력서, 포트폴리오, LinkedIn 최적화 워크플로에서 코치 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 코칭 가이드\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "personal-branding-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "personal-branding-skill",
+    "name": "Personal Branding 워크플로",
+    "triggerConditions": [
+      "Personal Branding 관련 작업 요청",
+      "personal-branding 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "personal-branding-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "personal-branding-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "personal-branding-agent-1"
+        ]
+      },
+      {
+        "agentId": "personal-branding-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "personal-branding-agent-2"
+        ]
+      },
+      {
+        "agentId": "personal-branding-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "personal-branding-agent-3"
+        ]
+      },
+      {
+        "agentId": "personal-branding-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "personal-branding-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "personal-branding-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "personal-branding-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "personal-branding-agent-1"
+          ]
+        },
+        {
+          "agentId": "personal-branding-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "personal-branding-agent-2"
+          ]
+        },
+        {
+          "agentId": "personal-branding-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "personal-branding-agent-3"
+          ]
+        },
+        {
+          "agentId": "personal-branding-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "personal-branding-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "personal-branding-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "personal-branding-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "personal-branding-agent-1"
+          ]
+        },
+        {
+          "agentId": "personal-branding-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "personal-branding-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "personal-branding-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "Bloom's Taxonomy",
+    "ADDIE",
+    "CEFR"
+  ],
+  "agentCount": 5
+}

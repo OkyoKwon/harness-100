@@ -1,0 +1,195 @@
+{
+  "id": 5,
+  "slug": "game-narrative",
+  "name": "Game Narrative",
+  "description": "게임 스토리, 퀘스트, 대사, 분기 시나리오",
+  "category": "content",
+  "agents": [
+    {
+      "id": "game-narrative-agent-1",
+      "name": "Game Narrative 리서처",
+      "role": "콘텐츠 리서치 전문가",
+      "description": "Game Narrative 하네스의 콘텐츠 리서치 전문가. 게임 스토리, 퀘스트, 대사, 분기 시나리오 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 리서치 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "game-narrative-agent-2",
+      "name": "Game Narrative 기획자",
+      "role": "콘텐츠 기획 전문가",
+      "description": "Game Narrative 하네스의 콘텐츠 기획 전문가. 게임 스토리, 퀘스트, 대사, 분기 시나리오 워크플로에서 기획자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 기획안\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "game-narrative-agent-1"
+      ]
+    },
+    {
+      "id": "game-narrative-agent-3",
+      "name": "Game Narrative 작성자",
+      "role": "콘텐츠 제작 전문가",
+      "description": "Game Narrative 하네스의 콘텐츠 제작 전문가. 게임 스토리, 퀘스트, 대사, 분기 시나리오 워크플로에서 작성자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 제작물\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "game-narrative-agent-2"
+      ]
+    },
+    {
+      "id": "game-narrative-agent-4",
+      "name": "Game Narrative 편집자",
+      "role": "품질 검수 전문가",
+      "description": "Game Narrative 하네스의 품질 검수 전문가. 게임 스토리, 퀘스트, 대사, 분기 시나리오 워크플로에서 편집자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 검수 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "game-narrative-agent-3"
+      ]
+    },
+    {
+      "id": "game-narrative-agent-5",
+      "name": "Game Narrative 전략가",
+      "role": "배포/최적화 전문가",
+      "description": "Game Narrative 하네스의 배포/최적화 전문가. 게임 스토리, 퀘스트, 대사, 분기 시나리오 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "Write"
+      ],
+      "outputTemplate": "## 최적화 전략\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "game-narrative-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "game-narrative-skill",
+    "name": "Game Narrative 워크플로",
+    "triggerConditions": [
+      "Game Narrative 관련 작업 요청",
+      "game-narrative 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "game-narrative-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "game-narrative-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "game-narrative-agent-1"
+        ]
+      },
+      {
+        "agentId": "game-narrative-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "game-narrative-agent-2"
+        ]
+      },
+      {
+        "agentId": "game-narrative-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "game-narrative-agent-3"
+        ]
+      },
+      {
+        "agentId": "game-narrative-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "game-narrative-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "game-narrative-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "game-narrative-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "game-narrative-agent-1"
+          ]
+        },
+        {
+          "agentId": "game-narrative-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "game-narrative-agent-2"
+          ]
+        },
+        {
+          "agentId": "game-narrative-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "game-narrative-agent-3"
+          ]
+        },
+        {
+          "agentId": "game-narrative-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "game-narrative-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "game-narrative-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "game-narrative-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "game-narrative-agent-1"
+          ]
+        },
+        {
+          "agentId": "game-narrative-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "game-narrative-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "game-narrative-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "AIDA",
+    "SEO 키워드 매핑"
+  ],
+  "agentCount": 5
+}

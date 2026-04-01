@@ -1,0 +1,38 @@
+{
+  "name": "harness-100-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "seed": "tsx scripts/generate-seed-data.ts",
+    "prebuild": "tsx scripts/generate-seed-data.ts",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.32.1",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@xyflow/react": "^12.10.2",
+    "file-saver": "^2.0.5",
+    "fuse.js": "^7.1.0",
+    "gray-matter": "^4.0.3",
+    "jszip": "^3.10.1",
+    "next": "^16.2.2",
+    "postcss": "^8.5.8",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/file-saver": "^2.0.7",
+    "@types/node": "25.5.0",
+    "tsx": "^4.21.0"
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "id": 95,
+  "slug": "procurement-docs",
+  "name": "Procurement Docs",
+  "description": "요구사항, 벤더 비교, 평가, 검수",
+  "category": "operations",
+  "agents": [
+    {
+      "id": "procurement-docs-agent-1",
+      "name": "Procurement Docs 분석가",
+      "role": "프로세스 분석 전문가",
+      "description": "Procurement Docs 하네스의 프로세스 분석 전문가. 요구사항, 벤더 비교, 평가, 검수 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "WebSearch",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 프로세스 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "procurement-docs-agent-2",
+      "name": "Procurement Docs 설계자",
+      "role": "운영 설계 전문가",
+      "description": "Procurement Docs 하네스의 운영 설계 전문가. 요구사항, 벤더 비교, 평가, 검수 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 운영 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "procurement-docs-agent-1"
+      ]
+    },
+    {
+      "id": "procurement-docs-agent-3",
+      "name": "Procurement Docs 실행자",
+      "role": "운영 실행 전문가",
+      "description": "Procurement Docs 하네스의 운영 실행 전문가. 요구사항, 벤더 비교, 평가, 검수 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 실행 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "procurement-docs-agent-2"
+      ]
+    },
+    {
+      "id": "procurement-docs-agent-4",
+      "name": "Procurement Docs 검수자",
+      "role": "품질 검수 전문가",
+      "description": "Procurement Docs 하네스의 품질 검수 전문가. 요구사항, 벤더 비교, 평가, 검수 워크플로에서 검수자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 검수 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "procurement-docs-agent-3"
+      ]
+    },
+    {
+      "id": "procurement-docs-agent-5",
+      "name": "Procurement Docs 최적화 전문가",
+      "role": "운영 최적화 전문가",
+      "description": "Procurement Docs 하네스의 운영 최적화 전문가. 요구사항, 벤더 비교, 평가, 검수 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "procurement-docs-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "procurement-docs-skill",
+    "name": "Procurement Docs 워크플로",
+    "triggerConditions": [
+      "Procurement Docs 관련 작업 요청",
+      "procurement-docs 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "procurement-docs-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "procurement-docs-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "procurement-docs-agent-1"
+        ]
+      },
+      {
+        "agentId": "procurement-docs-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "procurement-docs-agent-2"
+        ]
+      },
+      {
+        "agentId": "procurement-docs-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "procurement-docs-agent-3"
+        ]
+      },
+      {
+        "agentId": "procurement-docs-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "procurement-docs-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "procurement-docs-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "procurement-docs-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "procurement-docs-agent-1"
+          ]
+        },
+        {
+          "agentId": "procurement-docs-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "procurement-docs-agent-2"
+          ]
+        },
+        {
+          "agentId": "procurement-docs-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "procurement-docs-agent-3"
+          ]
+        },
+        {
+          "agentId": "procurement-docs-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "procurement-docs-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "procurement-docs-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "procurement-docs-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "procurement-docs-agent-1"
+          ]
+        },
+        {
+          "agentId": "procurement-docs-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "procurement-docs-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "procurement-docs-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SIPOC",
+    "RACI",
+    "SMART"
+  ],
+  "agentCount": 5
+}

@@ -1,0 +1,196 @@
+{
+  "id": 81,
+  "slug": "technical-writer",
+  "name": "Technical Writer",
+  "description": "구조 설계, 집필, 다이어그램, 리뷰",
+  "category": "communication",
+  "agents": [
+    {
+      "id": "technical-writer-agent-1",
+      "name": "Technical Writer 리서처",
+      "role": "배경 조사 전문가",
+      "description": "Technical Writer 하네스의 배경 조사 전문가. 구조 설계, 집필, 다이어그램, 리뷰 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 배경 조사\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "technical-writer-agent-2",
+      "name": "Technical Writer 구조 설계자",
+      "role": "문서 구조 설계 전문가",
+      "description": "Technical Writer 하네스의 문서 구조 설계 전문가. 구조 설계, 집필, 다이어그램, 리뷰 워크플로에서 구조 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 구조 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "technical-writer-agent-1"
+      ]
+    },
+    {
+      "id": "technical-writer-agent-3",
+      "name": "Technical Writer 작성자",
+      "role": "문서 집필 전문가",
+      "description": "Technical Writer 하네스의 문서 집필 전문가. 구조 설계, 집필, 다이어그램, 리뷰 워크플로에서 작성자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 초안\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "technical-writer-agent-2"
+      ]
+    },
+    {
+      "id": "technical-writer-agent-4",
+      "name": "Technical Writer 편집자",
+      "role": "문서 편집/검수 전문가",
+      "description": "Technical Writer 하네스의 문서 편집/검수 전문가. 구조 설계, 집필, 다이어그램, 리뷰 워크플로에서 편집자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 편집 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "technical-writer-agent-3"
+      ]
+    },
+    {
+      "id": "technical-writer-agent-5",
+      "name": "Technical Writer 전략가",
+      "role": "커뮤니케이션 전략 전문가",
+      "description": "Technical Writer 하네스의 커뮤니케이션 전략 전문가. 구조 설계, 집필, 다이어그램, 리뷰 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 전략 가이드\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "technical-writer-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "technical-writer-skill",
+    "name": "Technical Writer 워크플로",
+    "triggerConditions": [
+      "Technical Writer 관련 작업 요청",
+      "technical-writer 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "technical-writer-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "technical-writer-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "technical-writer-agent-1"
+        ]
+      },
+      {
+        "agentId": "technical-writer-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "technical-writer-agent-2"
+        ]
+      },
+      {
+        "agentId": "technical-writer-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "technical-writer-agent-3"
+        ]
+      },
+      {
+        "agentId": "technical-writer-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "technical-writer-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "technical-writer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "technical-writer-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "technical-writer-agent-1"
+          ]
+        },
+        {
+          "agentId": "technical-writer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "technical-writer-agent-2"
+          ]
+        },
+        {
+          "agentId": "technical-writer-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "technical-writer-agent-3"
+          ]
+        },
+        {
+          "agentId": "technical-writer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "technical-writer-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "technical-writer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "technical-writer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "technical-writer-agent-1"
+          ]
+        },
+        {
+          "agentId": "technical-writer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "technical-writer-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "technical-writer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "Diataxis",
+    "MADR",
+    "SemVer"
+  ],
+  "agentCount": 5
+}

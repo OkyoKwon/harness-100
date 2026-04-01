@@ -1,0 +1,195 @@
+{
+  "id": 14,
+  "slug": "translation-localization",
+  "name": "Translation & Localization",
+  "description": "다국어 번역, 현지화, 용어 관리",
+  "category": "content",
+  "agents": [
+    {
+      "id": "translation-localization-agent-1",
+      "name": "Translation & Localization 리서처",
+      "role": "콘텐츠 리서치 전문가",
+      "description": "Translation & Localization 하네스의 콘텐츠 리서치 전문가. 다국어 번역, 현지화, 용어 관리 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 리서치 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "translation-localization-agent-2",
+      "name": "Translation & Localization 기획자",
+      "role": "콘텐츠 기획 전문가",
+      "description": "Translation & Localization 하네스의 콘텐츠 기획 전문가. 다국어 번역, 현지화, 용어 관리 워크플로에서 기획자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 기획안\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "translation-localization-agent-1"
+      ]
+    },
+    {
+      "id": "translation-localization-agent-3",
+      "name": "Translation & Localization 작성자",
+      "role": "콘텐츠 제작 전문가",
+      "description": "Translation & Localization 하네스의 콘텐츠 제작 전문가. 다국어 번역, 현지화, 용어 관리 워크플로에서 작성자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 제작물\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "translation-localization-agent-2"
+      ]
+    },
+    {
+      "id": "translation-localization-agent-4",
+      "name": "Translation & Localization 편집자",
+      "role": "품질 검수 전문가",
+      "description": "Translation & Localization 하네스의 품질 검수 전문가. 다국어 번역, 현지화, 용어 관리 워크플로에서 편집자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 검수 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "translation-localization-agent-3"
+      ]
+    },
+    {
+      "id": "translation-localization-agent-5",
+      "name": "Translation & Localization 전략가",
+      "role": "배포/최적화 전문가",
+      "description": "Translation & Localization 하네스의 배포/최적화 전문가. 다국어 번역, 현지화, 용어 관리 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "Write"
+      ],
+      "outputTemplate": "## 최적화 전략\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "translation-localization-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "translation-localization-skill",
+    "name": "Translation & Localization 워크플로",
+    "triggerConditions": [
+      "Translation & Localization 관련 작업 요청",
+      "translation-localization 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "translation-localization-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "translation-localization-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "translation-localization-agent-1"
+        ]
+      },
+      {
+        "agentId": "translation-localization-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "translation-localization-agent-2"
+        ]
+      },
+      {
+        "agentId": "translation-localization-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "translation-localization-agent-3"
+        ]
+      },
+      {
+        "agentId": "translation-localization-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "translation-localization-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "translation-localization-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "translation-localization-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "translation-localization-agent-1"
+          ]
+        },
+        {
+          "agentId": "translation-localization-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "translation-localization-agent-2"
+          ]
+        },
+        {
+          "agentId": "translation-localization-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "translation-localization-agent-3"
+          ]
+        },
+        {
+          "agentId": "translation-localization-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "translation-localization-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "translation-localization-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "translation-localization-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "translation-localization-agent-1"
+          ]
+        },
+        {
+          "agentId": "translation-localization-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "translation-localization-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "translation-localization-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "AIDA",
+    "SEO 키워드 매핑"
+  ],
+  "agentCount": 5
+}

@@ -1,0 +1,163 @@
+{
+  "id": 74,
+  "slug": "fitness-program",
+  "name": "Fitness Program",
+  "description": "프로그램 설계, 가이드, 식단 연계",
+  "category": "lifestyle",
+  "agents": [
+    {
+      "id": "fitness-program-agent-1",
+      "name": "Fitness Program 분석가",
+      "role": "니즈 분석 전문가",
+      "description": "Fitness Program 하네스의 니즈 분석 전문가. 프로그램 설계, 가이드, 식단 연계 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "Read",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "fitness-program-agent-2",
+      "name": "Fitness Program 설계자",
+      "role": "플랜 설계 전문가",
+      "description": "Fitness Program 하네스의 플랜 설계 전문가. 프로그램 설계, 가이드, 식단 연계 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 플랜 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "fitness-program-agent-1"
+      ]
+    },
+    {
+      "id": "fitness-program-agent-3",
+      "name": "Fitness Program 실행자",
+      "role": "실행 가이드 전문가",
+      "description": "Fitness Program 하네스의 실행 가이드 전문가. 프로그램 설계, 가이드, 식단 연계 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 실행 가이드\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "fitness-program-agent-2"
+      ]
+    },
+    {
+      "id": "fitness-program-agent-4",
+      "name": "Fitness Program 최적화 전문가",
+      "role": "최적화/개선 전문가",
+      "description": "Fitness Program 하네스의 최적화/개선 전문가. 프로그램 설계, 가이드, 식단 연계 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "fitness-program-agent-3"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "fitness-program-skill",
+    "name": "Fitness Program 워크플로",
+    "triggerConditions": [
+      "Fitness Program 관련 작업 요청",
+      "fitness-program 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "fitness-program-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "fitness-program-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "fitness-program-agent-1"
+        ]
+      },
+      {
+        "agentId": "fitness-program-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "fitness-program-agent-2"
+        ]
+      },
+      {
+        "agentId": "fitness-program-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "fitness-program-agent-3"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "fitness-program-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "fitness-program-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "fitness-program-agent-1"
+          ]
+        },
+        {
+          "agentId": "fitness-program-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "fitness-program-agent-2"
+          ]
+        },
+        {
+          "agentId": "fitness-program-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "fitness-program-agent-3"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "fitness-program-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "fitness-program-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "fitness-program-agent-1"
+          ]
+        },
+        {
+          "agentId": "fitness-program-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "fitness-program-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "fitness-program-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [],
+  "agentCount": 4
+}

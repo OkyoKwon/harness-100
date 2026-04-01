@@ -1,0 +1,196 @@
+{
+  "id": 89,
+  "slug": "event-organizer",
+  "name": "Event Organizer",
+  "description": "컨셉, 프로그램, 홍보, 실행, 평가",
+  "category": "operations",
+  "agents": [
+    {
+      "id": "event-organizer-agent-1",
+      "name": "Event Organizer 분석가",
+      "role": "프로세스 분석 전문가",
+      "description": "Event Organizer 하네스의 프로세스 분석 전문가. 컨셉, 프로그램, 홍보, 실행, 평가 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "WebSearch",
+        "WebFetch"
+      ],
+      "outputTemplate": "## 프로세스 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "event-organizer-agent-2",
+      "name": "Event Organizer 설계자",
+      "role": "운영 설계 전문가",
+      "description": "Event Organizer 하네스의 운영 설계 전문가. 컨셉, 프로그램, 홍보, 실행, 평가 워크플로에서 설계자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 운영 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "event-organizer-agent-1"
+      ]
+    },
+    {
+      "id": "event-organizer-agent-3",
+      "name": "Event Organizer 실행자",
+      "role": "운영 실행 전문가",
+      "description": "Event Organizer 하네스의 운영 실행 전문가. 컨셉, 프로그램, 홍보, 실행, 평가 워크플로에서 실행자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 실행 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "event-organizer-agent-2"
+      ]
+    },
+    {
+      "id": "event-organizer-agent-4",
+      "name": "Event Organizer 검수자",
+      "role": "품질 검수 전문가",
+      "description": "Event Organizer 하네스의 품질 검수 전문가. 컨셉, 프로그램, 홍보, 실행, 평가 워크플로에서 검수자 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Write"
+      ],
+      "outputTemplate": "## 검수 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "event-organizer-agent-3"
+      ]
+    },
+    {
+      "id": "event-organizer-agent-5",
+      "name": "Event Organizer 최적화 전문가",
+      "role": "운영 최적화 전문가",
+      "description": "Event Organizer 하네스의 운영 최적화 전문가. 컨셉, 프로그램, 홍보, 실행, 평가 워크플로에서 최적화 전문가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 최적화 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "event-organizer-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "event-organizer-skill",
+    "name": "Event Organizer 워크플로",
+    "triggerConditions": [
+      "Event Organizer 관련 작업 요청",
+      "event-organizer 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "event-organizer-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "event-organizer-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "event-organizer-agent-1"
+        ]
+      },
+      {
+        "agentId": "event-organizer-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "event-organizer-agent-2"
+        ]
+      },
+      {
+        "agentId": "event-organizer-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "event-organizer-agent-3"
+        ]
+      },
+      {
+        "agentId": "event-organizer-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "event-organizer-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "event-organizer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "event-organizer-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "event-organizer-agent-1"
+          ]
+        },
+        {
+          "agentId": "event-organizer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "event-organizer-agent-2"
+          ]
+        },
+        {
+          "agentId": "event-organizer-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "event-organizer-agent-3"
+          ]
+        },
+        {
+          "agentId": "event-organizer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "event-organizer-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "event-organizer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "event-organizer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "event-organizer-agent-1"
+          ]
+        },
+        {
+          "agentId": "event-organizer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "event-organizer-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "event-organizer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SIPOC",
+    "RACI",
+    "SMART"
+  ],
+  "agentCount": 5
+}

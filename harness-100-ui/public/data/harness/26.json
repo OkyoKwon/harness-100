@@ -1,0 +1,197 @@
+{
+  "id": 26,
+  "slug": "infra-as-code",
+  "name": "Infrastructure as Code",
+  "description": "Terraform/Pulumi, 보안, 비용 최적화",
+  "category": "development",
+  "agents": [
+    {
+      "id": "infra-as-code-agent-1",
+      "name": "Infrastructure as Code 아키텍트",
+      "role": "시스템 설계 전문가",
+      "description": "Infrastructure as Code 하네스의 시스템 설계 전문가. Terraform/Pulumi, 보안, 비용 최적화 워크플로에서 아키텍트 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 아키텍처 설계\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "infra-as-code-agent-2",
+      "name": "Infrastructure as Code 개발자",
+      "role": "구현 전문가",
+      "description": "Infrastructure as Code 하네스의 구현 전문가. Terraform/Pulumi, 보안, 비용 최적화 워크플로에서 개발자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 구현 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "infra-as-code-agent-1"
+      ]
+    },
+    {
+      "id": "infra-as-code-agent-3",
+      "name": "Infrastructure as Code 테스터",
+      "role": "테스트 전문가",
+      "description": "Infrastructure as Code 하네스의 테스트 전문가. Terraform/Pulumi, 보안, 비용 최적화 워크플로에서 테스터 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Bash"
+      ],
+      "outputTemplate": "## 테스트 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "infra-as-code-agent-2"
+      ]
+    },
+    {
+      "id": "infra-as-code-agent-4",
+      "name": "Infrastructure as Code 리뷰어",
+      "role": "코드 리뷰 전문가",
+      "description": "Infrastructure as Code 하네스의 코드 리뷰 전문가. Terraform/Pulumi, 보안, 비용 최적화 워크플로에서 리뷰어 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "Bash"
+      ],
+      "outputTemplate": "## 리뷰 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "infra-as-code-agent-3"
+      ]
+    },
+    {
+      "id": "infra-as-code-agent-5",
+      "name": "Infrastructure as Code 데브옵스",
+      "role": "배포/운영 전문가",
+      "description": "Infrastructure as Code 하네스의 배포/운영 전문가. Terraform/Pulumi, 보안, 비용 최적화 워크플로에서 데브옵스 역할을 수행합니다.",
+      "tools": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "outputTemplate": "## 배포 리포트\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "infra-as-code-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "infra-as-code-skill",
+    "name": "Infrastructure as Code 워크플로",
+    "triggerConditions": [
+      "Infrastructure as Code 관련 작업 요청",
+      "infra-as-code 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "infra-as-code-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "infra-as-code-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "infra-as-code-agent-1"
+        ]
+      },
+      {
+        "agentId": "infra-as-code-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "infra-as-code-agent-2"
+        ]
+      },
+      {
+        "agentId": "infra-as-code-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "infra-as-code-agent-3"
+        ]
+      },
+      {
+        "agentId": "infra-as-code-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "infra-as-code-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "infra-as-code-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "infra-as-code-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "infra-as-code-agent-1"
+          ]
+        },
+        {
+          "agentId": "infra-as-code-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "infra-as-code-agent-2"
+          ]
+        },
+        {
+          "agentId": "infra-as-code-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "infra-as-code-agent-3"
+          ]
+        },
+        {
+          "agentId": "infra-as-code-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "infra-as-code-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "infra-as-code-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "infra-as-code-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "infra-as-code-agent-1"
+          ]
+        },
+        {
+          "agentId": "infra-as-code-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "infra-as-code-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "infra-as-code-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "SOLID",
+    "DDD",
+    "OWASP Top 10",
+    "DORA 메트릭"
+  ],
+  "agentCount": 5
+}

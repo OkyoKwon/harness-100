@@ -1,0 +1,196 @@
+{
+  "id": 54,
+  "slug": "grant-writer",
+  "name": "Grant Writer",
+  "description": "공고 분석, 사업 계획, 예산",
+  "category": "business",
+  "agents": [
+    {
+      "id": "grant-writer-agent-1",
+      "name": "Grant Writer 리서처",
+      "role": "시장/경쟁 분석 전문가",
+      "description": "Grant Writer 하네스의 시장/경쟁 분석 전문가. 공고 분석, 사업 계획, 예산 워크플로에서 리서처 역할을 수행합니다.",
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "outputTemplate": "## 시장 분석\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": []
+    },
+    {
+      "id": "grant-writer-agent-2",
+      "name": "Grant Writer 전략가",
+      "role": "비즈니스 전략 전문가",
+      "description": "Grant Writer 하네스의 비즈니스 전략 전문가. 공고 분석, 사업 계획, 예산 워크플로에서 전략가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Write",
+        "Edit"
+      ],
+      "outputTemplate": "## 전략 보고서\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "grant-writer-agent-1"
+      ]
+    },
+    {
+      "id": "grant-writer-agent-3",
+      "name": "Grant Writer 기획자",
+      "role": "실행 계획 전문가",
+      "description": "Grant Writer 하네스의 실행 계획 전문가. 공고 분석, 사업 계획, 예산 워크플로에서 기획자 역할을 수행합니다.",
+      "tools": [
+        "Write",
+        "Edit",
+        "Read"
+      ],
+      "outputTemplate": "## 실행 계획\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "grant-writer-agent-2"
+      ]
+    },
+    {
+      "id": "grant-writer-agent-4",
+      "name": "Grant Writer 분석가",
+      "role": "재무/데이터 분석 전문가",
+      "description": "Grant Writer 하네스의 재무/데이터 분석 전문가. 공고 분석, 사업 계획, 예산 워크플로에서 분석가 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Bash",
+        "Write"
+      ],
+      "outputTemplate": "## 분석 결과\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "grant-writer-agent-3"
+      ]
+    },
+    {
+      "id": "grant-writer-agent-5",
+      "name": "Grant Writer 어드바이저",
+      "role": "검토/자문 전문가",
+      "description": "Grant Writer 하네스의 검토/자문 전문가. 공고 분석, 사업 계획, 예산 워크플로에서 어드바이저 역할을 수행합니다.",
+      "tools": [
+        "Read",
+        "Edit",
+        "WebSearch"
+      ],
+      "outputTemplate": "## 자문 의견\n\n### 요약\n- 주요 발견 사항\n- 권장 사항\n\n### 상세\n(상세 내용)",
+      "dependencies": [
+        "grant-writer-agent-4"
+      ]
+    }
+  ],
+  "skill": {
+    "id": "grant-writer-skill",
+    "name": "Grant Writer 워크플로",
+    "triggerConditions": [
+      "Grant Writer 관련 작업 요청",
+      "grant-writer 키워드 감지"
+    ],
+    "executionOrder": [
+      {
+        "agentId": "grant-writer-agent-1",
+        "parallel": false,
+        "dependsOn": []
+      },
+      {
+        "agentId": "grant-writer-agent-2",
+        "parallel": false,
+        "dependsOn": [
+          "grant-writer-agent-1"
+        ]
+      },
+      {
+        "agentId": "grant-writer-agent-3",
+        "parallel": false,
+        "dependsOn": [
+          "grant-writer-agent-2"
+        ]
+      },
+      {
+        "agentId": "grant-writer-agent-4",
+        "parallel": false,
+        "dependsOn": [
+          "grant-writer-agent-3"
+        ]
+      },
+      {
+        "agentId": "grant-writer-agent-5",
+        "parallel": false,
+        "dependsOn": [
+          "grant-writer-agent-4"
+        ]
+      }
+    ],
+    "modes": {
+      "full": [
+        {
+          "agentId": "grant-writer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "grant-writer-agent-2",
+          "parallel": false,
+          "dependsOn": [
+            "grant-writer-agent-1"
+          ]
+        },
+        {
+          "agentId": "grant-writer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "grant-writer-agent-2"
+          ]
+        },
+        {
+          "agentId": "grant-writer-agent-4",
+          "parallel": false,
+          "dependsOn": [
+            "grant-writer-agent-3"
+          ]
+        },
+        {
+          "agentId": "grant-writer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "grant-writer-agent-4"
+          ]
+        }
+      ],
+      "reduced": [
+        {
+          "agentId": "grant-writer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        },
+        {
+          "agentId": "grant-writer-agent-3",
+          "parallel": false,
+          "dependsOn": [
+            "grant-writer-agent-1"
+          ]
+        },
+        {
+          "agentId": "grant-writer-agent-5",
+          "parallel": false,
+          "dependsOn": [
+            "grant-writer-agent-3"
+          ]
+        }
+      ],
+      "single": [
+        {
+          "agentId": "grant-writer-agent-1",
+          "parallel": false,
+          "dependsOn": []
+        }
+      ]
+    }
+  },
+  "frameworks": [
+    "BMC",
+    "Porter's 5 Forces",
+    "OKR"
+  ],
+  "agentCount": 5
+}

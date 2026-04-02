@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import type { Harness } from "@/lib/types";
 import { loadHarnessDetail } from "@/lib/harness-loader";
 import { mergeHarnesses } from "@/lib/merge-harnesses";
+import { useLocale } from "@/hooks/use-locale";
 
 interface ComposerState {
   readonly selectedIds: ReadonlyArray<number>;
@@ -20,6 +21,7 @@ const INITIAL_STATE: ComposerState = {
 };
 
 export function useComposer() {
+  const { locale } = useLocale();
   const [state, setState] = useState<ComposerState>(INITIAL_STATE);
   const loadingRef = useRef(false);
 
@@ -75,7 +77,7 @@ export function useComposer() {
     const loadAll = async () => {
       try {
         const harnesses = await Promise.all(
-          ids.map((id) => loadHarnessDetail(id)),
+          ids.map((id) => loadHarnessDetail(id, locale)),
         );
 
         if (cancelled) return;
@@ -104,7 +106,7 @@ export function useComposer() {
     return () => {
       cancelled = true;
     };
-  }, [state.selectedIds]);
+  }, [state.selectedIds, locale]);
 
   return {
     selectedIds: state.selectedIds,

@@ -1,16 +1,18 @@
 "use client";
 
 import { useTheme } from "@/hooks/use-theme";
+import { useLocale } from "@/hooks/use-locale";
 
 export function ThemeToggle() {
   const { effective, toggle } = useTheme();
+  const { t } = useLocale();
 
   return (
     <button
       type="button"
       onClick={toggle}
       className="rounded-md p-1.5 text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
-      aria-label={effective === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환"}
+      aria-label={effective === "dark" ? t("a11y.lightMode") : t("a11y.darkMode")}
     >
       {effective === "dark" ? (
         <svg

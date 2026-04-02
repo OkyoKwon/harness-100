@@ -4,6 +4,7 @@ import { useState, useMemo, useRef, useCallback } from "react";
 import Fuse, { type IFuseOptions } from "fuse.js";
 import type { HarnessMeta } from "@/lib/types";
 import { CATEGORIES } from "@/lib/constants";
+import { useLocale } from "@/hooks/use-locale";
 
 interface HarnessSelectorProps {
   readonly catalog: ReadonlyArray<HarnessMeta>;
@@ -27,6 +28,7 @@ export function HarnessSelector({
   onAdd,
   onRemove,
 }: HarnessSelectorProps) {
+  const { t, locale } = useLocale();
   const [query, setQuery] = useState("");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [debouncedQuery, setDebouncedQuery] = useState("");
@@ -57,11 +59,11 @@ export function HarnessSelector({
     for (const cat of CATEGORIES) {
       const catItems = items.filter((h) => h.category === cat.slug);
       if (catItems.length > 0) {
-        groups.push({ label: cat.label, items: catItems });
+        groups.push({ label: locale === "en" ? cat.labelEn : cat.label, items: catItems });
       }
     }
     return groups;
-  }, [filteredItems, selectedSet]);
+  }, [filteredItems, selectedSet, locale]);
 
   return (
     <div className="flex h-full flex-col rounded-lg border border-[var(--border)] bg-[var(--card)]">
@@ -71,7 +73,7 @@ export function HarnessSelector({
           type="text"
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
-          placeholder="에이전트 팀 검색..."
+          placeholder={t("composer.searchPlaceholder")}
           className="w-full rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-1.5 text-sm focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2 transition-base"
         />
       </div>
@@ -82,7 +84,7 @@ export function HarnessSelector({
         {selectedItems.length > 0 && (
           <div className="border-b border-[var(--border)] p-2">
             <div className="px-2 py-1 text-xs font-semibold text-[var(--primary)]">
-              선택됨 ({selectedItems.length})
+              {t("composer.selected", { count: selectedItems.length })}
             </div>
             {selectedItems.map((item) => (
               <button
@@ -117,14 +119,14 @@ export function HarnessSelector({
                   <span className="text-[var(--muted-foreground)]">○</span>
                   <span className="text-xs opacity-60 font-mono">{padId(item.id)}</span>
                   <span className="truncate font-medium flex-1 text-left">{item.name}</span>
-                  <span className="text-xs text-[var(--muted-foreground)]">{item.agentCount}명</span>
+                  <span className="text-xs text-[var(--muted-foreground)]">{t("composer.agentCount", { count: item.agentCount })}</span>
                 </button>
               ))}
             </div>
           ))}
           {groupedItems.length === 0 && debouncedQuery && (
             <div className="py-8 text-center text-sm text-[var(--muted-foreground)]">
-              검색 결과 없음
+              {t("composer.noResults")}
             </div>
           )}
         </div>
@@ -133,7 +135,7 @@ export function HarnessSelector({
       {/* Footer */}
       <div className="flex items-center justify-between border-t border-[var(--border)] px-3 py-2">
         <span className="text-xs text-[var(--muted-foreground)]">
-          {selectedIds.length}개 선택
+          {t("composer.selectedCount", { count: selectedIds.length })}
         </span>
         {selectedIds.length > 0 && (
           <button
@@ -141,7 +143,7 @@ export function HarnessSelector({
             onClick={() => selectedIds.forEach((id) => onRemove(id))}
             className="text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded"
           >
-            전체 해제
+            {t("composer.clearAll")}
           </button>
         )}
       </div>

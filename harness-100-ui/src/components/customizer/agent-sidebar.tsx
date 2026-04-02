@@ -1,6 +1,7 @@
 "use client";
 
 import type { Agent } from "@/lib/types";
+import { useLocale } from "@/hooks/use-locale";
 
 interface AgentSidebarProps {
   readonly agents: ReadonlyArray<Agent>;
@@ -17,10 +18,11 @@ export function AgentSidebar({
   onSelect,
   onToggle,
 }: AgentSidebarProps) {
+  const { t } = useLocale();
   return (
     <div className="space-y-1">
       <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">
-        에이전트 목록
+        {t("customizer.agentList")}
       </h3>
       <ul className="space-y-1">
         {agents.map((agent) => {
@@ -32,7 +34,7 @@ export function AgentSidebar({
                 type="button"
                 onClick={() => onToggle(agent.id)}
                 className="shrink-0 text-base focus-ring rounded"
-                aria-label={enabled ? `${agent.name} 비활성화` : `${agent.name} 활성화`}
+                aria-label={enabled ? t("customizer.disableAgent", { name: agent.name }) : t("customizer.enableAgent", { name: agent.name })}
               >
                 {enabled ? "✅" : "☐"}
               </button>

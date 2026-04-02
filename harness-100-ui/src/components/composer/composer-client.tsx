@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import type { HarnessMeta } from "@/lib/types";
 import { loadCatalog } from "@/lib/harness-loader";
+import { useLocale } from "@/hooks/use-locale";
 import { useComposer } from "@/hooks/use-composer";
 import { HarnessSelector } from "@/components/composer/harness-selector";
 import { CompositionPreview } from "@/components/composer/composition-preview";
@@ -23,6 +24,7 @@ function buildComposeParam(ids: ReadonlyArray<number>): string {
 export function ComposerClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { t, locale } = useLocale();
 
   const [catalog, setCatalog] = useState<ReadonlyArray<HarnessMeta>>([]);
   const [catalogError, setCatalogError] = useState<string | null>(null);
@@ -44,19 +46,19 @@ export function ComposerClient() {
 
     const load = async () => {
       try {
-        const data = await loadCatalog();
+        const data = await loadCatalog(locale);
         if (!cancelled) setCatalog(data);
       } catch (error) {
         if (!cancelled) {
           console.error("Failed to load catalog:", error);
-          setCatalogError("카탈로그를 불러오는데 실패했습니다.");
+          setCatalogError(t("composer.catalogError"));
         }
       }
     };
 
     load();
     return () => { cancelled = true; };
-  }, []);
+  }, [locale, t]);
 
   // Restore selection from URL on mount
   const [initialized, setInitialized] = useState(false);
@@ -117,10 +119,10 @@ export function ComposerClient() {
       <div className="mb-6 flex items-start justify-between">
         <div>
           <h1 className="text-3xl font-bold text-[var(--foreground)]">
-            하네스 조합기
+            {t("composer.title")}
           </h1>
           <p className="mt-2 text-[var(--muted-foreground)]">
-            서로 다른 하네스의 에이전트를 조합하여 나만의 워크플로우를 만드세요.
+            {t("composer.description")}
           </p>
         </div>
         {selectedIds.length > 0 && (
@@ -129,7 +131,7 @@ export function ComposerClient() {
             onClick={clear}
             className="shrink-0 rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-sm text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)] active:bg-[var(--secondary)] transition-base focus-ring"
           >
-            초기화
+            {t("composer.reset")}
           </button>
         )}
       </div>

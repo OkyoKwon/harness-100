@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
+import { useLocale } from "@/hooks/use-locale";
 
 interface CopyCliButtonProps {
   readonly text: string;
 }
 
 export function CopyCliButton({ text }: CopyCliButtonProps) {
+  const { t } = useLocale();
   const [copied, setCopied] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
@@ -34,9 +36,9 @@ export function CopyCliButton({ text }: CopyCliButtonProps) {
       className="focus-ring transition-base inline-flex items-center gap-1 rounded border border-[var(--border)] bg-[var(--card)] px-2 py-1 text-xs font-medium text-[var(--muted-foreground)] hover:bg-[var(--muted)] active:bg-[var(--secondary)]"
     >
       {copied ? (
-        <span className="text-[var(--success)]">복사됨 ✓</span>
+        <span className="text-[var(--success)]">{t("action.copied")}</span>
       ) : (
-        <span>복사</span>
+        <span>{t("action.copy")}</span>
       )}
     </button>
   );

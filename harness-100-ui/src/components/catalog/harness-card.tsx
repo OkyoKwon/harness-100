@@ -9,6 +9,7 @@ import { SetupButton } from "@/components/actions/setup-button";
 import { ZipButton } from "@/components/actions/zip-button";
 import { QuickPreview } from "@/components/catalog/quick-preview";
 import { CATEGORIES } from "@/lib/constants";
+import { useLocale } from "@/hooks/use-locale";
 
 interface HarnessCardProps {
   readonly harness: HarnessMeta;
@@ -25,9 +26,10 @@ const RANK_BADGES: ReadonlyArray<{ readonly emoji: string; readonly color: strin
 
 export function HarnessCard({ harness, isFavorite, onToggleFavorite, showRank = false }: HarnessCardProps) {
   const router = useRouter();
+  const { t, locale } = useLocale();
   const paddedId = String(harness.id).padStart(2, "0");
   const category = CATEGORIES.find((c) => c.slug === harness.category);
-  const categoryLabel = category?.label ?? "";
+  const categoryLabel = locale === "en" ? (category?.labelEn ?? "") : (category?.label ?? "");
   const categoryColor = category?.color ?? "var(--primary)";
 
   const [showPreview, setShowPreview] = useState(false);
@@ -67,7 +69,7 @@ export function HarnessCard({ harness, isFavorite, onToggleFavorite, showRank = 
             >
               {harness.popularityRank <= 3
                 ? RANK_BADGES[harness.popularityRank - 1].emoji
-                : `${harness.popularityRank}위`}
+                : locale === "en" ? `#${harness.popularityRank}` : `${harness.popularityRank}위`}
             </span>
           )}
           <div className="flex items-start justify-between mb-2">
@@ -90,7 +92,7 @@ export function HarnessCard({ harness, isFavorite, onToggleFavorite, showRank = 
 
           <div className="flex items-center gap-2 mb-3">
             <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--secondary)] text-[var(--secondary-foreground)]">
-              👥 {harness.agentCount}명
+              {t("card.agents", { count: harness.agentCount })}
             </span>
             <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--secondary)] text-[var(--secondary-foreground)]">
               {categoryLabel}

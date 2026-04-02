@@ -8,6 +8,7 @@ import { useFavorites } from "@/hooks/use-favorites";
 import { useZipDownload } from "@/hooks/use-zip-download";
 import { useLocalSetup } from "@/hooks/use-local-setup";
 import { useToast } from "@/hooks/use-toast";
+import { useLocale } from "@/hooks/use-locale";
 import { CustomizePanel } from "@/components/customizer/customize-panel";
 import { AgentList } from "@/components/detail/agent-list";
 import { WorkflowDiagram } from "@/components/detail/workflow-diagram";
@@ -19,9 +20,10 @@ import { buildCliCommand } from "@/lib/cli";
 
 type LoadingState = "loading" | "loaded" | "error";
 
-function getCategoryLabel(category: string): string {
+function getCategoryLabel(category: string, locale: string): string {
   const found = CATEGORIES.find((c) => c.slug === category);
-  return found ? found.label : category;
+  if (!found) return category;
+  return locale === "en" ? found.labelEn : found.label;
 }
 
 function DetailSkeleton() {
@@ -62,33 +64,34 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
     setup: runSetup,
   } = useLocalSetup();
   const { addToast } = useToast();
+  const { t, locale } = useLocale();
 
   const actionButtonsRef = useRef<HTMLDivElement>(null);
 
   // Toast notifications for setup/zip completion
   useEffect(() => {
     if (setupStatus === "complete" && setupResult) {
-      addToast(`세팅 완료 — ${setupResult.filesWritten}개 파일 생성됨`, "success");
+      addToast(t("toast.setupComplete", { count: setupResult.filesWritten }), "success");
     }
   }, [setupStatus, setupResult, addToast]);
 
   useEffect(() => {
     if (zipStatus === "complete") {
-      addToast("ZIP 다운로드 완료", "success");
+      addToast(t("toast.zipComplete"), "success");
     }
   }, [zipStatus, addToast]);
 
   useEffect(() => {
     if (Number.isNaN(id) || id < 1) {
       setLoadingState("error");
-      setErrorMessage("올바르지 않은 하네스 ID입니다.");
+      setErrorMessage(t("detail.invalidId"));
       return;
     }
 
     let cancelled = false;
     setLoadingState("loading");
 
-    loadHarnessDetail(id)
+    loadHarnessDetail(id, locale)
       .then((data) => {
         if (!cancelled) {
           setHarness(data);
@@ -101,7 +104,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
           setErrorMessage(
             err instanceof Error
               ? err.message
-              : "하네스를 불러오는 데 실패했습니다.",
+              : t("detail.loadError"),
           );
         }
       });
@@ -109,7 +112,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
     return () => {
       cancelled = true;
     };
-  }, [id]);
+  }, [id, locale]);
 
   if (loadingState === "loading") {
     return <DetailSkeleton />;
@@ -122,11 +125,11 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
           href="/"
           className="mb-4 inline-block text-sm text-[var(--primary)] hover:opacity-80 transition-base focus-ring rounded"
         >
-          &larr; 목록
+          &larr; {t("detail.backToList")}
         </Link>
         <div className="rounded-lg border border-[var(--danger-border)] bg-[var(--danger-bg)] p-6 text-center">
           <p className="text-sm text-[var(--danger-foreground)]">
-            {errorMessage || "하네스를 불러올 수 없습니다."}
+            {errorMessage || t("detail.cannotLoad")}
           </p>
         </div>
       </div>
@@ -135,8 +138,8 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
 
   const favorited = isFavorite(harness.id);
   const setupDisabled = !setupSupported || setupStatus === "selecting" || setupStatus === "writing";
-  const setupLabel = setupStatus === "selecting" || setupStatus === "writing" ? "세팅 중..." : "세팅 →";
-  const zipLabel = zipStatus === "building" ? "생성 중..." : "ZIP ↓";
+  const setupLabel = setupStatus === "selecting" || setupStatus === "writing" ? t("action.setupInProgress") : t("action.setup");
+  const zipLabel = zipStatus === "building" ? t("action.zipBuilding") : t("action.zip");
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
@@ -146,7 +149,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
           href="/"
           className="mb-4 inline-block text-sm text-[var(--primary)] hover:opacity-80 transition-base focus-ring rounded"
         >
-          &larr; 목록
+          &larr; {t("detail.backToList")}
         </Link>
 
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -159,11 +162,11 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
             </p>
             <div className="mt-3 flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-[var(--secondary)] px-2.5 py-0.5 text-xs font-medium text-[var(--secondary-foreground)]">
-                {getCategoryLabel(harness.category)}
+                {getCategoryLabel(harness.category, locale)}
               </span>
               <span className="text-xs text-[var(--border)]">|</span>
               <span className="text-xs text-[var(--muted-foreground)]">
-                에이전트 {harness.agentCount}개
+                {t("detail.agentCount", { count: harness.agentCount })}
               </span>
               {harness.frameworks.length > 0 && (
                 <>
@@ -187,7 +190,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
                   ? "border-[var(--warning-border)] bg-[var(--warning-bg)] text-[var(--warning-foreground)]"
                   : "border-[var(--border)] bg-[var(--card)] text-[var(--muted-foreground)] hover:bg-[var(--muted)]"
               }`}
-              aria-label={favorited ? "즐겨찾기 해제" : "즐겨찾기"}
+              aria-label={favorited ? t("favorite.remove") : t("favorite.add")}
             >
               {favorited ? "★" : "☆"}
             </button>
@@ -235,22 +238,20 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
 
       {/* 세팅 가이드 */}
       <div className="mb-6 rounded-lg border border-[var(--info-border)] bg-[var(--info-bg)] px-4 py-3">
-        <p className="text-sm font-semibold text-[var(--info-foreground)] mb-2">세팅 가이드</p>
+        <p className="text-sm font-semibold text-[var(--info-foreground)] mb-2">{t("setup.guideTitle")}</p>
         <ol className="space-y-1 text-xs text-[var(--info-foreground)] list-decimal list-inside">
+          <li>{t("setup.step1")}</li>
+          <li>{t("setup.step2")}</li>
           <li>
-            위의 <span className="font-medium">&quot;세팅 →&quot;</span> 버튼 클릭
-          </li>
-          <li>프로젝트 폴더 선택 — <code className="rounded bg-[var(--badge-tool-bg)] px-1 font-mono">.claude/</code> 폴더가 자동 생성됩니다</li>
-          <li>
-            터미널에서{" "}
+            {t("setup.step3prefix")}{" "}
             <code className="rounded bg-[var(--badge-tool-bg)] px-1 font-mono">
               {buildCliCommand(harness.slug)}
             </code>{" "}
-            실행
+            {t("setup.step3suffix")}
           </li>
         </ol>
         <p className="mt-2 text-[10px] text-[var(--info-foreground)] opacity-70">
-          💡 브라우저가 File System Access API를 지원하지 않으면 <span className="font-medium">&quot;ZIP ↓&quot;</span> 버튼으로 다운로드 후 프로젝트에 복사하세요.
+          {t("setup.tip")}
         </p>
       </div>
 
@@ -264,7 +265,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
             {/* Left panel: Agent list */}
             <section>
               <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
-                에이전트 ({harness.agents.length})
+                {t("detail.agents", { count: harness.agents.length })}
               </h2>
               <AgentList agents={harness.agents} harness={harness} />
             </section>
@@ -273,7 +274,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
             <section className="space-y-8">
               <div>
                 <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
-                  워크플로우
+                  {t("detail.workflow")}
                 </h2>
                 <WorkflowDiagram agents={harness.agents} />
               </div>
@@ -291,7 +292,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
               onClick={() => setCustomizing(true)}
               className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-5 py-2.5 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--muted)] active:bg-[var(--secondary)] transition-base focus-ring"
             >
-              수정해서 받기
+              {t("detail.customize")}
             </button>
           </div>
         </>

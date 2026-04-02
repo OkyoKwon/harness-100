@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import type { Harness } from "@/lib/types";
 import { loadHarnessDetail } from "@/lib/harness-loader";
+import { useLocale } from "@/hooks/use-locale";
 
 interface QuickPreviewProps {
   readonly harnessId: number;
@@ -11,6 +12,7 @@ interface QuickPreviewProps {
 }
 
 export function QuickPreview({ harnessId, anchorRef, onClose }: QuickPreviewProps) {
+  const { t, locale } = useLocale();
   const [detail, setDetail] = useState<Harness | null>(null);
   const [loading, setLoading] = useState(true);
   const popoverRef = useRef<HTMLDivElement>(null);
@@ -18,7 +20,7 @@ export function QuickPreview({ harnessId, anchorRef, onClose }: QuickPreviewProp
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    loadHarnessDetail(harnessId)
+    loadHarnessDetail(harnessId, locale)
       .then((data) => {
         if (!cancelled) {
           setDetail(data);
@@ -29,7 +31,7 @@ export function QuickPreview({ harnessId, anchorRef, onClose }: QuickPreviewProp
         if (!cancelled) setLoading(false);
       });
     return () => { cancelled = true; };
-  }, [harnessId]);
+  }, [harnessId, locale]);
 
   // Close on click outside
   useEffect(() => {
@@ -56,7 +58,7 @@ export function QuickPreview({ harnessId, anchorRef, onClose }: QuickPreviewProp
       {loading ? (
         <div className="flex items-center gap-2 py-2">
           <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-[var(--muted)] border-t-[var(--primary)]" />
-          <span className="text-xs text-[var(--muted-foreground)]">로딩 중...</span>
+          <span className="text-xs text-[var(--muted-foreground)]">{t("preview.loading")}</span>
         </div>
       ) : detail ? (
         <div className="space-y-2">
@@ -66,7 +68,7 @@ export function QuickPreview({ harnessId, anchorRef, onClose }: QuickPreviewProp
 
           <div>
             <p className="text-[10px] font-medium text-[var(--muted-foreground)] mb-1">
-              에이전트 ({detail.agents.length})
+              {t("detail.agents", { count: detail.agents.length })}
             </p>
             <div className="flex flex-wrap gap-1">
               {detail.agents.map((agent) => (
@@ -94,7 +96,7 @@ export function QuickPreview({ harnessId, anchorRef, onClose }: QuickPreviewProp
           )}
         </div>
       ) : (
-        <p className="text-xs text-[var(--muted-foreground)]">정보를 불러올 수 없습니다</p>
+        <p className="text-xs text-[var(--muted-foreground)]">{t("preview.error")}</p>
       )}
     </div>
   );

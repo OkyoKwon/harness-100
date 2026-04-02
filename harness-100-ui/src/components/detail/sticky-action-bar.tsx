@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useLocale } from "@/hooks/use-locale";
 
 interface StickyActionBarProps {
   readonly name: string;
@@ -27,6 +28,7 @@ export function StickyActionBar({
   zipLabel,
   triggerRef,
 }: StickyActionBarProps) {
+  const { t } = useLocale();
   const [visible, setVisible] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -65,7 +67,7 @@ export function StickyActionBar({
                 ? "text-[var(--warning-foreground)]"
                 : "text-[var(--muted-foreground)]"
             }`}
-            aria-label={favorited ? "즐겨찾기 해제" : "즐겨찾기"}
+            aria-label={favorited ? t("favorite.remove") : t("favorite.add")}
           >
             {favorited ? "★" : "☆"}
           </button>

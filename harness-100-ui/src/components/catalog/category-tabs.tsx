@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import { CATEGORIES, TOTAL_HARNESS_COUNT } from "@/lib/constants";
+import { useLocale } from "@/hooks/use-locale";
 
 interface CategoryTabsProps {
   readonly active: string;
@@ -10,6 +11,7 @@ interface CategoryTabsProps {
 }
 
 export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsProps) {
+  const { t, locale } = useLocale();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -59,7 +61,7 @@ export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsPr
             type="button"
             onClick={() => scroll("left")}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-[var(--card)] border border-[var(--border)] shadow-[var(--shadow-sm)] p-1 text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring"
-            aria-label="이전 카테고리"
+            aria-label={t("a11y.prevCategory")}
           >
             <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -76,7 +78,7 @@ export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsPr
             type="button"
             onClick={() => scroll("right")}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-[var(--card)] border border-[var(--border)] shadow-[var(--shadow-sm)] p-1 text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring"
-            aria-label="다음 카테고리"
+            aria-label={t("a11y.nextCategory")}
           >
             <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -94,14 +96,14 @@ export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsPr
           onClick={() => onSelect("favorites")}
           className={`${baseClass} ${active === "favorites" ? activeClass : inactiveClass}`}
         >
-          ★ 즐겨찾기{favoriteCount > 0 ? ` ${favoriteCount}` : ""}
+          {`★ ${t("category.favorites")}${favoriteCount > 0 ? ` ${favoriteCount}` : ""}`}
         </button>
         <button
           type="button"
           onClick={() => onSelect("all")}
           className={`${baseClass} ${active === "all" ? activeClass : inactiveClass}`}
         >
-          전체 {TOTAL_HARNESS_COUNT}
+          {t("category.all")} {TOTAL_HARNESS_COUNT}
         </button>
         {CATEGORIES.map((cat) => (
           <button
@@ -110,7 +112,7 @@ export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsPr
             onClick={() => onSelect(cat.slug)}
             className={`${baseClass} ${active === cat.slug ? activeClass : inactiveClass}`}
           >
-            {cat.label} {cat.count}
+            {locale === "en" ? cat.labelEn : cat.label} {cat.count}
           </button>
         ))}
       </div>

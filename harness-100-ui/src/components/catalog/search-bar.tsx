@@ -1,12 +1,14 @@
 "use client";
 
 import { useRef, useCallback, useEffect, useState } from "react";
+import { useLocale } from "@/hooks/use-locale";
 
 interface SearchBarProps {
   readonly onSearch: (query: string) => void;
 }
 
 export function SearchBar({ onSearch }: SearchBarProps) {
+  const { t } = useLocale();
   const inputRef = useRef<HTMLInputElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isDebouncing, setIsDebouncing] = useState(false);
@@ -61,7 +63,7 @@ export function SearchBar({ onSearch }: SearchBarProps) {
       <input
         ref={inputRef}
         type="text"
-        placeholder="하네스 검색... 예: 유튜브, API, 스타트업"
+        placeholder={t("search.placeholder")}
         onChange={handleChange}
         className="w-full pl-10 pr-16 py-2.5 rounded-lg border border-[var(--border)] bg-[var(--background)] text-sm hover:border-[var(--primary)] focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2 transition-base"
       />

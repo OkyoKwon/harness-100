@@ -1,0 +1,1320 @@
+[
+  {
+    "id": 1,
+    "slug": "youtube-production",
+    "name": "YouTube Production",
+    "description": "A harness where an agent team collaborates to produce YouTube video content through the pipeline of strategy, script, thumbnail, and SEO.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [
+      "STAR"
+    ],
+    "popularityRank": 3
+  },
+  {
+    "id": 2,
+    "slug": "podcast-studio",
+    "name": "Podcast Studio",
+    "description": "A harness where an agent team collaborates to produce podcast content through the pipeline of planning, research, scripting, show notes, and distribution strategy.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 11
+  },
+  {
+    "id": 3,
+    "slug": "newsletter-engine",
+    "name": "Newsletter Engine",
+    "description": "A harness where an agent team collaborates to produce newsletter content through the pipeline of curation, writing, A/B testing, and send optimization.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [
+      "GDPR"
+    ],
+    "popularityRank": 12
+  },
+  {
+    "id": 4,
+    "slug": "content-repurposer",
+    "name": "Content Repurposer",
+    "description": "A harness where an agent team transforms a single source piece of content into multiple formats: blog posts, social media, newsletters, presentations, and scripts.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [
+      "OKR",
+      "Agile",
+      "REST"
+    ],
+    "popularityRank": 13
+  },
+  {
+    "id": 5,
+    "slug": "game-narrative",
+    "name": "Game Narrative",
+    "description": "A harness where an agent team collaborates to design game story, quests, dialogue, and branching scenarios.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [
+      "REST"
+    ],
+    "popularityRank": 14
+  },
+  {
+    "id": 6,
+    "slug": "brand-identity",
+    "name": "Brand Identity",
+    "description": "A harness where an agent team collaborates to design brand identity from naming through slogans, tone and manner, and visual guidelines.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [
+      "SOLID"
+    ],
+    "popularityRank": 15
+  },
+  {
+    "id": 7,
+    "slug": "comic-creator",
+    "name": "Comic Creator",
+    "description": "A harness where an agent team collaborates to produce comics — from storyboarding through dialogue, image generation, and editing — for formats ranging from 4-panel strips to long-form series.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 16
+  },
+  {
+    "id": 8,
+    "slug": "course-builder",
+    "name": "Course Builder",
+    "description": "A harness where an agent team collaborates to produce online courses from curriculum design through lesson plans, quizzes, and hands-on labs.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [
+      "ADDIE",
+      "Bloom's Taxonomy",
+      "REST",
+      "GraphQL"
+    ],
+    "popularityRank": 17
+  },
+  {
+    "id": 9,
+    "slug": "documentary-research",
+    "name": "Documentary Research",
+    "description": "A harness where an agent team collaborates to produce documentary research, treatment plans, interview questions, and narration scripts.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 18
+  },
+  {
+    "id": 10,
+    "slug": "social-media-manager",
+    "name": "Social Media Manager",
+    "description": "A harness where an agent team collaborates to produce SNS content calendars, post copy, hashtags, and performance analysis.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 8
+  },
+  {
+    "id": 11,
+    "slug": "book-publishing",
+    "name": "Book Publishing",
+    "description": "A harness where an agent team collaborates to produce e-book publishing deliverables: manuscript editing, cover design, table of contents, metadata, and distribution setup.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [
+      "AIDA",
+      "SOLID"
+    ],
+    "popularityRank": 19
+  },
+  {
+    "id": 12,
+    "slug": "advertising-campaign",
+    "name": "Advertising Campaign",
+    "description": "A harness where an agent team collaborates to design advertising campaigns: target analysis, copy, creative, and media plans.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [
+      "AIDA",
+      "Lean",
+      "STAR"
+    ],
+    "popularityRank": 20
+  },
+  {
+    "id": 13,
+    "slug": "presentation-designer",
+    "name": "Presentation Designer",
+    "description": "A harness where an agent team collaborates to produce presentations: planning, storyboards, slides, and speaker notes.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 21
+  },
+  {
+    "id": 14,
+    "slug": "translation-localization",
+    "name": "Translation & Localization",
+    "description": "A harness where an agent team collaborates to perform multilingual translation, localization, cultural adaptation, and terminology management.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [
+      "GDPR"
+    ],
+    "popularityRank": 22
+  },
+  {
+    "id": 15,
+    "slug": "visual-storytelling",
+    "name": "Visual Storytelling",
+    "description": "A harness where an agent team collaborates to produce visual storytelling: story design, text writing, AI image generation, HTML layout, and integrated editing.",
+    "category": "content",
+    "agentCount": 5,
+    "frameworks": [
+      "Lean"
+    ],
+    "popularityRank": 23
+  },
+  {
+    "id": 16,
+    "slug": "fullstack-webapp",
+    "name": "Fullstack Web App",
+    "description": "A harness where an agent team collaborates to develop fullstack web apps through the pipeline of requirements, design, frontend, backend, testing, and deployment.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "OWASP Top 10",
+      "REST",
+      "CI/CD"
+    ],
+    "popularityRank": 1
+  },
+  {
+    "id": 17,
+    "slug": "mobile-app-builder",
+    "name": "Mobile App Builder",
+    "description": "A harness where an agent team collaborates to perform UI/UX design, native code generation, API integration, and store deployment preparation for mobile apps.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "REST",
+      "GraphQL",
+      "CI/CD"
+    ],
+    "popularityRank": 24
+  },
+  {
+    "id": 18,
+    "slug": "api-designer",
+    "name": "API Designer",
+    "description": "A harness where an agent team collaborates to design, document, mock, and test REST/GraphQL APIs.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "REST",
+      "GraphQL"
+    ],
+    "popularityRank": 25
+  },
+  {
+    "id": 19,
+    "slug": "database-architect",
+    "name": "Database Architect",
+    "description": "A harness where an agent team collaborates to perform DB design from modeling through migration, indexing, and query optimization.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "GDPR",
+      "REST"
+    ],
+    "popularityRank": 26
+  },
+  {
+    "id": 20,
+    "slug": "cicd-pipeline",
+    "name": "CI/CD Pipeline",
+    "description": "A harness where an agent team collaborates to design, build, monitor, and optimize CI/CD pipelines.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "DORA",
+      "SemVer",
+      "CI/CD",
+      "IaC",
+      "Terraform",
+      "CVE"
+    ],
+    "popularityRank": 27
+  },
+  {
+    "id": 21,
+    "slug": "code-reviewer",
+    "name": "Code Reviewer",
+    "description": "A harness where an agent team collaborates to perform automated code review across style, security, performance, and architecture.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "SOLID",
+      "OWASP Top 10",
+      "CI/CD",
+      "CWE",
+      "CVE"
+    ],
+    "popularityRank": 2
+  },
+  {
+    "id": 22,
+    "slug": "legacy-modernizer",
+    "name": "Legacy Modernizer",
+    "description": "An agent team harness for transforming legacy codebases into modern architectures. Automates the analysis -> refactoring strategy -> migration -> verification pipeline.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "REST",
+      "GraphQL",
+      "CI/CD"
+    ],
+    "popularityRank": 28
+  },
+  {
+    "id": 23,
+    "slug": "microservice-designer",
+    "name": "Microservice Designer",
+    "description": "An agent team harness for designing, decomposing, communicating, and monitoring microservice architectures. Automates the full pipeline from domain analysis to observability design.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "DDD",
+      "CAP Theorem",
+      "REST",
+      "GraphQL",
+      "gRPC",
+      "CQRS",
+      "Event Sourcing",
+      "Saga Pattern",
+      "Circuit Breaker"
+    ],
+    "popularityRank": 29
+  },
+  {
+    "id": 24,
+    "slug": "test-automation",
+    "name": "Test Automation",
+    "description": "An agent team harness that collaborates on test automation strategy development, test writing, CI integration, and coverage analysis.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "REST",
+      "CI/CD"
+    ],
+    "popularityRank": 30
+  },
+  {
+    "id": 25,
+    "slug": "incident-postmortem",
+    "name": "Incident Postmortem",
+    "description": "An agent team harness that collaborates to generate incident postmortem reports. Automates the pipeline of timeline reconstruction -> root cause analysis -> impact assessment -> remediation planning -> report generation.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "SMART",
+      "REST",
+      "CI/CD"
+    ],
+    "popularityRank": 31
+  },
+  {
+    "id": 26,
+    "slug": "infra-as-code",
+    "name": "Infrastructure as Code",
+    "description": "An agent team harness for Infrastructure as Code (IaC) design and implementation. Automates Terraform/Pulumi-based environment configuration, security, and cost optimization pipelines.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "REST",
+      "CI/CD",
+      "IaC",
+      "Terraform",
+      "Pulumi",
+      "NIST"
+    ],
+    "popularityRank": 32
+  },
+  {
+    "id": 27,
+    "slug": "data-pipeline",
+    "name": "Data Pipeline",
+    "description": "An agent team harness that collaborates to design and implement data pipelines covering ingestion, transformation, loading, quality verification, and monitoring.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 33
+  },
+  {
+    "id": 28,
+    "slug": "security-audit",
+    "name": "Security Audit",
+    "description": "An agent team harness for performing security audits covering vulnerability scanning, code analysis, penetration test reporting, and remediation recommendations.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "OWASP Top 10",
+      "GDPR",
+      "REST",
+      "GraphQL",
+      "Terraform",
+      "STRIDE",
+      "MITRE ATT&CK",
+      "CWE",
+      "CVE",
+      "NIST"
+    ],
+    "popularityRank": 34
+  },
+  {
+    "id": 29,
+    "slug": "performance-optimizer",
+    "name": "Performance Optimizer",
+    "description": "An agent team harness for performance optimization covering profiling, bottleneck analysis, optimization, and benchmarking.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "REST"
+    ],
+    "popularityRank": 35
+  },
+  {
+    "id": 30,
+    "slug": "open-source-launcher",
+    "name": "Open Source Launcher",
+    "description": "An agent team harness for preparing open source project launches covering code cleanup, documentation, licensing, and community building.",
+    "category": "development",
+    "agentCount": 5,
+    "frameworks": [
+      "SemVer",
+      "CI/CD"
+    ],
+    "popularityRank": 36
+  },
+  {
+    "id": 31,
+    "slug": "ml-experiment",
+    "name": "ML Experiment",
+    "description": "A harness where an agent team collaborates to perform the full ML experiment lifecycle: data preparation → model design → training → evaluation → deployment.",
+    "category": "data-ai",
+    "agentCount": 5,
+    "frameworks": [
+      "SHAP",
+      "LIME",
+      "MLOps"
+    ],
+    "popularityRank": 37
+  },
+  {
+    "id": 32,
+    "slug": "data-analysis",
+    "name": "Data Analysis",
+    "description": "A harness where an agent team collaborates to perform the full data analysis lifecycle: exploration → cleaning → analysis → visualization → reporting.",
+    "category": "data-ai",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 5
+  },
+  {
+    "id": 33,
+    "slug": "text-processor",
+    "name": "Text Processor",
+    "description": "Text processing pipeline: a harness in which an agent team collaborates to transform bulk text into summaries, classifications, entity extractions, and sentiment analyses, producing structured data and reports.",
+    "category": "data-ai",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 38
+  },
+  {
+    "id": 34,
+    "slug": "data-migration",
+    "name": "Data Migration",
+    "description": "Data migration: a harness in which an agent team collaborates to perform source analysis, schema mapping, transformation script generation, validation queries, and rollback planning.",
+    "category": "data-ai",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 39
+  },
+  {
+    "id": 35,
+    "slug": "api-client-generator",
+    "name": "API Client Generator",
+    "description": "API client SDK generation: a harness in which an agent team collaborates to perform spec parsing, type generation, client code development, testing, and usage documentation.",
+    "category": "data-ai",
+    "agentCount": 5,
+    "frameworks": [
+      "REST",
+      "GraphQL",
+      "gRPC",
+      "Circuit Breaker"
+    ],
+    "popularityRank": 40
+  },
+  {
+    "id": 36,
+    "slug": "design-system",
+    "name": "Design System",
+    "description": "UI design system construction: a harness in which an agent team collaborates to create design tokens, a component library, Storybook, accessibility verification, and documentation.",
+    "category": "data-ai",
+    "agentCount": 5,
+    "frameworks": [
+      "SOLID"
+    ],
+    "popularityRank": 41
+  },
+  {
+    "id": 37,
+    "slug": "web-scraper",
+    "name": "Web Scraper",
+    "description": "Web scraping system construction: a harness in which an agent team collaborates to build target analysis, crawler design, parsing, storage, and monitoring.",
+    "category": "data-ai",
+    "agentCount": 5,
+    "frameworks": [
+      "ACID",
+      "REST",
+      "Circuit Breaker"
+    ],
+    "popularityRank": 42
+  },
+  {
+    "id": 38,
+    "slug": "chatbot-builder",
+    "name": "Chatbot Builder",
+    "description": "Chatbot construction: a harness where an agent team collaborates to perform intent analysis, conversation design, NLU development, integration, and testing.",
+    "category": "data-ai",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 43
+  },
+  {
+    "id": 39,
+    "slug": "changelog-generator",
+    "name": "Changelog Generator",
+    "description": "Changelog generation: a harness where an agent team collaborates to perform commit analysis → change classification → release note writing → migration guide → announcement.",
+    "category": "data-ai",
+    "agentCount": 5,
+    "frameworks": [
+      "SemVer",
+      "REST",
+      "GraphQL",
+      "CI/CD",
+      "CVE"
+    ],
+    "popularityRank": 44
+  },
+  {
+    "id": 40,
+    "slug": "cli-tool-builder",
+    "name": "CLI Tool Builder",
+    "description": "CLI tool construction: a harness where an agent team collaborates to perform command design → core development → testing → documentation → release.",
+    "category": "data-ai",
+    "agentCount": 5,
+    "frameworks": [
+      "SemVer",
+      "CI/CD"
+    ],
+    "popularityRank": 45
+  },
+  {
+    "id": 41,
+    "slug": "llm-app-builder",
+    "name": "LLM App Builder",
+    "description": "LLM application construction: a harness where an agent team collaborates to perform prompt engineering → RAG architecture → optimization → evaluation → deployment.",
+    "category": "data-ai",
+    "agentCount": 5,
+    "frameworks": [
+      "Circuit Breaker",
+      "CI/CD"
+    ],
+    "popularityRank": 6
+  },
+  {
+    "id": 42,
+    "slug": "bi-dashboard",
+    "name": "BI Dashboard",
+    "description": "BI dashboard construction: a harness where an agent team collaborates to perform KPI design → data engineering → dashboard building → report automation → review.",
+    "category": "data-ai",
+    "agentCount": 5,
+    "frameworks": [
+      "SMART",
+      "STAR",
+      "Star Schema",
+      "Snowflake Schema"
+    ],
+    "popularityRank": 46
+  },
+  {
+    "id": 43,
+    "slug": "startup-launcher",
+    "name": "Startup Launcher",
+    "description": "Startup launch planning: a harness where an agent team collaborates to perform market analysis → business modeling → MVP architecture → pitch deck creation → launch review.",
+    "category": "business",
+    "agentCount": 5,
+    "frameworks": [
+      "BMC",
+      "RICE",
+      "TAM/SAM/SOM",
+      "MoSCoW"
+    ],
+    "popularityRank": 4
+  },
+  {
+    "id": 44,
+    "slug": "market-research",
+    "name": "Market Research",
+    "description": "Market research: a harness where an agent team collaborates to perform industry analysis → competitor analysis → consumer analysis → trend analysis → research review.",
+    "category": "business",
+    "agentCount": 5,
+    "frameworks": [
+      "SWOT",
+      "Porter's Five Forces",
+      "TAM/SAM/SOM",
+      "PESTLE"
+    ],
+    "popularityRank": 10
+  },
+  {
+    "id": 45,
+    "slug": "gov-funding-plan",
+    "name": "Gov Funding Plan",
+    "description": "Government funding proposal: a harness where an agent team collaborates to perform announcement analysis → business plan writing → technical writing → budget planning → submission review.",
+    "category": "business",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 47
+  },
+  {
+    "id": 46,
+    "slug": "product-manager",
+    "name": "Product Manager",
+    "description": "A harness where an agent team collaborates to generate the full PM workflow: Roadmap, PRD, User Stories, Sprint Plan, and Retrospective.",
+    "category": "business",
+    "agentCount": 5,
+    "frameworks": [
+      "OKR",
+      "RICE",
+      "MoSCoW",
+      "Scrum",
+      "Agile",
+      "REST",
+      "STAR"
+    ],
+    "popularityRank": 7
+  },
+  {
+    "id": 47,
+    "slug": "strategy-framework",
+    "name": "Strategy Framework",
+    "description": "A harness where an agent team collaborates to generate an organizational strategy framework in sequence: OKR Design, BSC Mapping, SWOT Analysis, Vision & Mission Statement, and Strategy Execution Roadmap.",
+    "category": "business",
+    "agentCount": 5,
+    "frameworks": [
+      "OKR",
+      "BSC",
+      "SWOT",
+      "SMART",
+      "PESTLE"
+    ],
+    "popularityRank": 48
+  },
+  {
+    "id": 48,
+    "slug": "sales-enablement",
+    "name": "Sales Enablement",
+    "description": "A sales enablement pipeline where an agent team collaborates to produce: Customer Analysis, Proposal, Presentation, and Follow-up Plan.",
+    "category": "business",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 49
+  },
+  {
+    "id": 49,
+    "slug": "customer-support",
+    "name": "Customer Support",
+    "description": "Build a customer support system: an agent team collaborates to produce FAQ, response manuals, escalation policies, and analytics.",
+    "category": "business",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 50
+  },
+  {
+    "id": 50,
+    "slug": "pricing-strategy",
+    "name": "Pricing Strategy",
+    "description": "Develop a pricing strategy: an agent team collaborates to produce cost analysis, competitive pricing, value-based pricing, and simulations.",
+    "category": "business",
+    "agentCount": 5,
+    "frameworks": [
+      "TAM/SAM/SOM",
+      "Van Westendorp PSM",
+      "Gabor-Granger",
+      "PED/XED"
+    ],
+    "popularityRank": 51
+  },
+  {
+    "id": 51,
+    "slug": "investor-report",
+    "name": "Investor Report",
+    "description": "Investor report generation: an agent team collaborates to produce financial performance analysis, KPI dashboard, market trends, strategy updates, and risk disclosures.",
+    "category": "business",
+    "agentCount": 5,
+    "frameworks": [
+      "OKR",
+      "SMART",
+      "TAM/SAM/SOM",
+      "STAR"
+    ],
+    "popularityRank": 52
+  },
+  {
+    "id": 52,
+    "slug": "scenario-planner",
+    "name": "Scenario Planner",
+    "description": "An agent team harness that defines key variables in uncertain environments, constructs a scenario matrix, and develops impact analysis and response strategies.",
+    "category": "business",
+    "agentCount": 5,
+    "frameworks": [
+      "PESTLE"
+    ],
+    "popularityRank": 53
+  },
+  {
+    "id": 53,
+    "slug": "financial-modeler",
+    "name": "Financial Modeler",
+    "description": "A harness where an agent team collaborates to produce the full financial modeling lifecycle: revenue model, cost structure, scenario analysis, and valuation.",
+    "category": "business",
+    "agentCount": 5,
+    "frameworks": [
+      "TAM/SAM/SOM",
+      "IRR",
+      "NPV",
+      "DCF"
+    ],
+    "popularityRank": 54
+  },
+  {
+    "id": 54,
+    "slug": "grant-writer",
+    "name": "Grant Writer",
+    "description": "A harness where an agent team collaborates on grant and funding applications: announcement analysis, business plan writing, budget design, and submission verification.",
+    "category": "business",
+    "agentCount": 5,
+    "frameworks": [
+      "TAM/SAM/SOM"
+    ],
+    "popularityRank": 55
+  },
+  {
+    "id": 55,
+    "slug": "rfp-responder",
+    "name": "RFP Responder",
+    "description": "A harness where an agent team collaborates to create RFI/RFP responses: requirements analysis, capability matching, technical proposal, pricing proposal, and differentiation strategy.",
+    "category": "business",
+    "agentCount": 5,
+    "frameworks": [
+      "SWOT",
+      "RACI"
+    ],
+    "popularityRank": 56
+  },
+  {
+    "id": 56,
+    "slug": "language-tutor",
+    "name": "Language Tutor",
+    "description": "An agent team harness for foreign language learning: level testing, curriculum design, lessons, quizzes, and review management.",
+    "category": "education",
+    "agentCount": 5,
+    "frameworks": [
+      "CEFR"
+    ],
+    "popularityRank": 57
+  },
+  {
+    "id": 57,
+    "slug": "exam-prep",
+    "name": "Exam Prep",
+    "description": "An agent team harness for exam preparation: exam trend analysis, weakness diagnosis, customized study plans, mock exams, and error analysis.",
+    "category": "education",
+    "agentCount": 5,
+    "frameworks": [
+      "Bloom's Taxonomy"
+    ],
+    "popularityRank": 58
+  },
+  {
+    "id": 58,
+    "slug": "thesis-advisor",
+    "name": "Thesis Advisor",
+    "description": "An agent team harness for thesis writing: topic selection, literature review, methodology, writing, and proofreading.",
+    "category": "education",
+    "agentCount": 5,
+    "frameworks": [
+      "APA"
+    ],
+    "popularityRank": 59
+  },
+  {
+    "id": 59,
+    "slug": "coding-bootcamp",
+    "name": "Coding Bootcamp",
+    "description": "A harness where an agent team collaborates to deliver coding education: curriculum design, hands-on exercises, code review, projects, and portfolio building.",
+    "category": "education",
+    "agentCount": 4,
+    "frameworks": [
+      "SOLID",
+      "CAP Theorem",
+      "STAR"
+    ],
+    "popularityRank": 60
+  },
+  {
+    "id": 60,
+    "slug": "debate-simulator",
+    "name": "Debate Simulator",
+    "description": "An agent team harness for debate simulation.",
+    "category": "education",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 61
+  },
+  {
+    "id": 61,
+    "slug": "competency-modeler",
+    "name": "Competency Modeler",
+    "description": "A harness where an agent team collaborates to perform the full competency modeling pipeline: job analysis → competency dictionary → assessment rubric design → development plan → competency matrix.",
+    "category": "education",
+    "agentCount": 4,
+    "frameworks": [
+      "SMART",
+      "REST",
+      "STAR"
+    ],
+    "popularityRank": 62
+  },
+  {
+    "id": 62,
+    "slug": "adr-writer",
+    "name": "ADR Writer",
+    "description": "An agent team harness for creating Architecture Decision Records (ADRs).",
+    "category": "education",
+    "agentCount": 5,
+    "frameworks": [
+      "OWASP Top 10",
+      "MADR",
+      "CAP Theorem",
+      "REST",
+      "GraphQL",
+      "gRPC",
+      "CI/CD"
+    ],
+    "popularityRank": 63
+  },
+  {
+    "id": 63,
+    "slug": "research-assistant",
+    "name": "Research Assistant",
+    "description": "An agent team harness for academic research assistance.",
+    "category": "education",
+    "agentCount": 5,
+    "frameworks": [
+      "APA",
+      "IEEE"
+    ],
+    "popularityRank": 64
+  },
+  {
+    "id": 64,
+    "slug": "knowledge-base-builder",
+    "name": "Knowledge Base Builder",
+    "description": "An agent team harness for building organizational knowledge management systems.",
+    "category": "education",
+    "agentCount": 5,
+    "frameworks": [
+      "RACI",
+      "CI/CD"
+    ],
+    "popularityRank": 65
+  },
+  {
+    "id": 65,
+    "slug": "personal-branding",
+    "name": "Personal Branding",
+    "description": "A personal branding agent team harness.",
+    "category": "education",
+    "agentCount": 5,
+    "frameworks": [
+      "STAR",
+      "CI/CD"
+    ],
+    "popularityRank": 66
+  },
+  {
+    "id": 66,
+    "slug": "contract-analyzer",
+    "name": "Contract Analyzer",
+    "description": "A contract analysis agent team harness.",
+    "category": "legal",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 9
+  },
+  {
+    "id": 67,
+    "slug": "compliance-checker",
+    "name": "Compliance Checker",
+    "description": "Regulatory compliance verification — an agent team collaborates to perform law mapping, status audit, gap analysis, and remediation planning.",
+    "category": "legal",
+    "agentCount": 4,
+    "frameworks": [
+      "GDPR",
+      "REST"
+    ],
+    "popularityRank": 67
+  },
+  {
+    "id": 68,
+    "slug": "patent-drafter",
+    "name": "Patent Drafter",
+    "description": "A patent application drafting agent team harness.",
+    "category": "legal",
+    "agentCount": 5,
+    "frameworks": [
+      "SMART",
+      "REST"
+    ],
+    "popularityRank": 68
+  },
+  {
+    "id": 69,
+    "slug": "privacy-engineer",
+    "name": "Privacy Engineer",
+    "description": "A privacy engineering agent team harness.",
+    "category": "legal",
+    "agentCount": 4,
+    "frameworks": [
+      "GDPR",
+      "PIPA",
+      "REST"
+    ],
+    "popularityRank": 69
+  },
+  {
+    "id": 70,
+    "slug": "legal-research",
+    "name": "Legal Research",
+    "description": "A legal research agent team harness.",
+    "category": "legal",
+    "agentCount": 4,
+    "frameworks": [
+      "IRAC"
+    ],
+    "popularityRank": 70
+  },
+  {
+    "id": 71,
+    "slug": "service-legal-docs",
+    "name": "Service Legal Docs",
+    "description": "A service terms and legal document drafting agent team harness.",
+    "category": "legal",
+    "agentCount": 4,
+    "frameworks": [
+      "GDPR"
+    ],
+    "popularityRank": 71
+  },
+  {
+    "id": 72,
+    "slug": "regulatory-filing",
+    "name": "Regulatory Filing",
+    "description": "A regulatory filing and permit application agent team harness.",
+    "category": "legal",
+    "agentCount": 4,
+    "frameworks": [],
+    "popularityRank": 72
+  },
+  {
+    "id": 73,
+    "slug": "meal-planner",
+    "name": "Meal Planner",
+    "description": "A meal planning agent team harness.",
+    "category": "lifestyle",
+    "agentCount": 4,
+    "frameworks": [
+      "RICE",
+      "Lean"
+    ],
+    "popularityRank": 73
+  },
+  {
+    "id": 74,
+    "slug": "fitness-program",
+    "name": "Fitness Program",
+    "description": "A fitness program design agent team harness.",
+    "category": "lifestyle",
+    "agentCount": 4,
+    "frameworks": [
+      "Lean",
+      "REST"
+    ],
+    "popularityRank": 74
+  },
+  {
+    "id": 75,
+    "slug": "tax-calculator",
+    "name": "Tax Calculator",
+    "description": "A tax calculation agent team harness.",
+    "category": "lifestyle",
+    "agentCount": 4,
+    "frameworks": [],
+    "popularityRank": 75
+  },
+  {
+    "id": 76,
+    "slug": "travel-planner",
+    "name": "Travel Planner",
+    "description": "A harness where an agent team collaborates to generate destination analysis, itinerary, accommodation, budget, and local information for travel planning.",
+    "category": "lifestyle",
+    "agentCount": 4,
+    "frameworks": [
+      "REST",
+      "STAR"
+    ],
+    "popularityRank": 76
+  },
+  {
+    "id": 77,
+    "slug": "space-concept-board",
+    "name": "Space Concept Board",
+    "description": "A harness where an agent team collaborates to generate style analysis, moodboard, color palette, furniture/accessory list, budget sheet, and shopping guide for an interior space concept board.",
+    "category": "lifestyle",
+    "agentCount": 5,
+    "frameworks": [
+      "SOLID"
+    ],
+    "popularityRank": 77
+  },
+  {
+    "id": 78,
+    "slug": "personal-finance",
+    "name": "Personal Finance",
+    "description": "itemsperson financialmanagement incomeexpenseanalysis→budgetdesign→investmentstrategy→tax savingsapproach→retirementdesign A harness where an agent team collaborates to produce deliverables.",
+    "category": "lifestyle",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 78
+  },
+  {
+    "id": 79,
+    "slug": "side-project-launcher",
+    "name": "Side Project Launcher",
+    "description": "companyproject basis ideaverify→tech stack→MVP→developmentroadmap→launchchecklist A harness where an agent team collaborates to produce deliverables.",
+    "category": "lifestyle",
+    "agentCount": 5,
+    "frameworks": [
+      "TAM/SAM/SOM",
+      "MoSCoW"
+    ],
+    "popularityRank": 79
+  },
+  {
+    "id": 80,
+    "slug": "wedding-planner",
+    "name": "Wedding Planner",
+    "description": "wedding preparation comprehensive timelinedesign→budgetmanagementtable→vendorcomparisontable→checklist→invitationdocument A harness where an agent team collaborates to produce deliverables.",
+    "category": "lifestyle",
+    "agentCount": 5,
+    "frameworks": [],
+    "popularityRank": 80
+  },
+  {
+    "id": 81,
+    "slug": "technical-writer",
+    "name": "Technical Writer",
+    "description": "technical document writing structuredesign→→diagram→review→versionmanagement A harness where an agent team collaborates to produce deliverables.",
+    "category": "communication",
+    "agentCount": 5,
+    "frameworks": [
+      "REST",
+      "GraphQL",
+      "gRPC",
+      "CI/CD"
+    ],
+    "popularityRank": 81
+  },
+  {
+    "id": 82,
+    "slug": "report-generator",
+    "name": "Report Generator",
+    "description": "work report datacollection→analysis→visualization→→summary A harness where an agent team collaborates to produce deliverables.",
+    "category": "communication",
+    "agentCount": 5,
+    "frameworks": [
+      "SWOT",
+      "SMART"
+    ],
+    "popularityRank": 82
+  },
+  {
+    "id": 83,
+    "slug": "sop-writer",
+    "name": "SOP Writer",
+    "description": "standard operating procedure(SOP) processanalysis→procedure document→checklist→training materials→versionmanagement A harness where an agent team collaborates to produce deliverables.",
+    "category": "communication",
+    "agentCount": 5,
+    "frameworks": [
+      "RACI",
+      "SIPOC"
+    ],
+    "popularityRank": 83
+  },
+  {
+    "id": 84,
+    "slug": "meeting-strategist",
+    "name": "Meeting Strategist",
+    "description": "meeting strategy document agenda itemstructuredesign→backgroundmaterialresearch→decision-makingframework→meetingrecordtemplate→ A harness where an agent team collaborates to produce deliverables.",
+    "category": "communication",
+    "agentCount": 5,
+    "frameworks": [
+      "SWOT",
+      "SMART",
+      "Eisenhower"
+    ],
+    "popularityRank": 84
+  },
+  {
+    "id": 85,
+    "slug": "public-speaking",
+    "name": "Public Speaking",
+    "description": "comprehensive speechdocument→presentationversus→debatepreparationfrom→Q&Aexpectedanswer→rehearsalguide A harness where an agent team collaborates to produce deliverables.",
+    "category": "communication",
+    "agentCount": 5,
+    "frameworks": [
+      "STAR"
+    ],
+    "popularityRank": 85
+  },
+  {
+    "id": 86,
+    "slug": "proposal-writer",
+    "name": "Proposal Writer",
+    "description": "proposal clientanalysis→solutiondesign→price→differentiation→specialistperson A harness where an agent team collaborates to produce deliverables.",
+    "category": "communication",
+    "agentCount": 5,
+    "frameworks": [
+      "IRR",
+      "NPV"
+    ],
+    "popularityRank": 86
+  },
+  {
+    "id": 87,
+    "slug": "crisis-communication",
+    "name": "Crisis Communication",
+    "description": "crisis situation occurrence when situationidentify→messagestrategy→press release→Q&A→monitoringto agent team to integration crisis package creation .",
+    "category": "communication",
+    "agentCount": 5,
+    "frameworks": [
+      "STAR"
+    ],
+    "popularityRank": 87
+  },
+  {
+    "id": 88,
+    "slug": "risk-register",
+    "name": "Risk Register",
+    "description": "project risk managementversus: riskidentification→probability·impactassessment→responsestrategyestablish→monitoringplan→statusreportto A harness where an agent team collaborates to produce deliverables.",
+    "category": "communication",
+    "agentCount": 5,
+    "frameworks": [
+      "SWOT",
+      "RACI",
+      "SMART"
+    ],
+    "popularityRank": 88
+  },
+  {
+    "id": 89,
+    "slug": "event-organizer",
+    "name": "Event Organizer",
+    "description": "event basis·operations: concept→venue→program→promotion→execution→companyafterassessmentto A harness where an agent team collaborates to produce deliverables.",
+    "category": "operations",
+    "agentCount": 5,
+    "frameworks": [
+      "AIDA",
+      "SMART"
+    ],
+    "popularityRank": 89
+  },
+  {
+    "id": 90,
+    "slug": "hiring-pipeline",
+    "name": "Hiring Pipeline",
+    "description": "hiring process: JDwriting→sourcing→screening→interview→assessment→offerto A harness where an agent team collaborates to produce deliverables.",
+    "category": "operations",
+    "agentCount": 5,
+    "frameworks": [
+      "Lean",
+      "STAR"
+    ],
+    "popularityRank": 90
+  },
+  {
+    "id": 91,
+    "slug": "onboarding-system",
+    "name": "Onboarding System",
+    "description": "New hire onboarding: A harness where an agent team collaborates to generate everything from checklists to training, mentor assignments, and 30-60-90 day plans.",
+    "category": "operations",
+    "agentCount": 5,
+    "frameworks": [
+      "ADDIE",
+      "RACI",
+      "SMART",
+      "Bloom's Taxonomy",
+      "REST"
+    ],
+    "popularityRank": 91
+  },
+  {
+    "id": 92,
+    "slug": "operations-manual",
+    "name": "Operations Manual",
+    "description": "An automated operations manual generation harness. An agent team collaborates to analyze existing documents/code and generate process flowcharts, step-by-step manuals, FAQs, and training materials.",
+    "category": "operations",
+    "agentCount": 5,
+    "frameworks": [
+      "RACI",
+      "Bloom's Taxonomy"
+    ],
+    "popularityRank": 92
+  },
+  {
+    "id": 93,
+    "slug": "feedback-analyzer",
+    "name": "Feedback Analyzer",
+    "description": "A customer/employee feedback analysis harness. An agent team collaborates to handle everything from data collection through sentiment analysis, topic classification, trend detection, and insight reporting.",
+    "category": "operations",
+    "agentCount": 5,
+    "frameworks": [
+      "SMART",
+      "STAR"
+    ],
+    "popularityRank": 93
+  },
+  {
+    "id": 94,
+    "slug": "audit-report",
+    "name": "Audit Report",
+    "description": "An internal audit report generation harness. An agent team collaborates to handle everything from audit scope design through checklist creation, findings analysis, improvement recommendations, and tracking ledger management.",
+    "category": "operations",
+    "agentCount": 5,
+    "frameworks": [
+      "SMART"
+    ],
+    "popularityRank": 94
+  },
+  {
+    "id": 95,
+    "slug": "procurement-docs",
+    "name": "Procurement Docs",
+    "description": "A procurement document set generation harness. An agent team collaborates to produce everything from requirements definition through vendor comparison, evaluation criteria, contract review, and acceptance criteria.",
+    "category": "operations",
+    "agentCount": 5,
+    "frameworks": [
+      "OWASP Top 10",
+      "SWOT",
+      "MoSCoW"
+    ],
+    "popularityRank": 95
+  },
+  {
+    "id": 96,
+    "slug": "real-estate-analyst",
+    "name": "Real Estate Analyst",
+    "description": "A real estate analysis harness. An agent team collaborates to produce market research, location analysis, profitability analysis, risk assessment, and investment reports.",
+    "category": "specialized",
+    "agentCount": 5,
+    "frameworks": [
+      "SWOT",
+      "Cap Rate",
+      "IRR",
+      "NPV",
+      "DCF"
+    ],
+    "popularityRank": 96
+  },
+  {
+    "id": 97,
+    "slug": "ecommerce-launcher",
+    "name": "E-commerce Launcher",
+    "description": "An e-commerce launch harness. An agent team collaborates to produce product planning, product detail pages, pricing strategy, marketing plans, and customer service architecture for online store launches.",
+    "category": "specialized",
+    "agentCount": 5,
+    "frameworks": [
+      "AIDA",
+      "SMART",
+      "ACID",
+      "REST",
+      "STAR"
+    ],
+    "popularityRank": 97
+  },
+  {
+    "id": 98,
+    "slug": "academic-paper",
+    "name": "Academic Paper",
+    "description": "An academic paper writing harness. An agent team collaborates to produce research design, experiment management, statistical analysis, paper writing, and submission preparation.",
+    "category": "specialized",
+    "agentCount": 5,
+    "frameworks": [
+      "REST",
+      "IMRaD",
+      "APA",
+      "IEEE"
+    ],
+    "popularityRank": 98
+  },
+  {
+    "id": 99,
+    "slug": "sustainability-audit",
+    "name": "Sustainability Audit",
+    "description": "A sustainability audit harness. An agent team collaborates to produce environmental analysis, social assessment, governance review, ESG reporting, and improvement planning.",
+    "category": "specialized",
+    "agentCount": 5,
+    "frameworks": [
+      "GRI Standards",
+      "GHG Protocol",
+      "TCFD",
+      "ISSB",
+      "CSRD",
+      "ESRS",
+      "K-ESG",
+      "SBTi",
+      "ISO 14064",
+      "UN SDGs",
+      "SA8000",
+      "UNGPs"
+    ],
+    "popularityRank": 99
+  },
+  {
+    "id": 100,
+    "slug": "ip-portfolio",
+    "name": "IP Portfolio",
+    "description": "An intellectual property portfolio management harness. An agent team collaborates to produce IP analysis, patent mapping, protection strategy, licensing strategy, and renewal scheduling.",
+    "category": "specialized",
+    "agentCount": 5,
+    "frameworks": [
+      "STAR"
+    ],
+    "popularityRank": 100
+  }
+]

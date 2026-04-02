@@ -1,5 +1,7 @@
 "use client";
 
+import { useLocale } from "@/hooks/use-locale";
+
 interface SetupButtonProps {
   readonly onClick: () => void;
   readonly disabled?: boolean;
@@ -7,6 +9,7 @@ interface SetupButtonProps {
 }
 
 export function SetupButton({ onClick, disabled, size = "md" }: SetupButtonProps) {
+  const { t } = useLocale();
   const sizeClass = size === "sm" ? "px-3 py-1 text-xs" : "px-4 py-2 text-sm";
 
   return (
@@ -20,7 +23,7 @@ export function SetupButton({ onClick, disabled, size = "md" }: SetupButtonProps
       disabled={disabled}
       className={`${sizeClass} rounded-lg font-medium bg-[var(--primary)] text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 disabled:opacity-50 transition-base focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2`}
     >
-      세팅 →
+      {t("action.setup")}
     </button>
   );
 }

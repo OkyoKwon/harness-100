@@ -42,4 +42,5 @@ export const STORAGE_KEYS = {
   favorites: "harness100_favorites",
   recentPaths: "harness100_recent_paths",
   customizations: "harness100_customizations",
+  locale: "harness100_lang",
 } as const;

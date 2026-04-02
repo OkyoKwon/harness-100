@@ -1,5 +1,7 @@
 "use client";
 
+import { useLocale } from "@/hooks/use-locale";
+
 export type SortKey = "id" | "name" | "agentCount" | "popularity";
 
 interface SortFilterBarProps {
@@ -9,22 +11,24 @@ interface SortFilterBarProps {
   readonly hasQuery: boolean;
 }
 
-const SORT_OPTIONS: ReadonlyArray<{ readonly key: SortKey; readonly label: string }> = [
-  { key: "id", label: "번호순" },
-  { key: "popularity", label: "인기순" },
-  { key: "name", label: "이름순" },
-  { key: "agentCount", label: "에이전트 수" },
-];
-
 export function SortFilterBar({ sortKey, onSortChange, resultCount, hasQuery }: SortFilterBarProps) {
+  const { t } = useLocale();
+
+  const sortOptions: ReadonlyArray<{ readonly key: SortKey; readonly label: string }> = [
+    { key: "id", label: t("sort.byId") },
+    { key: "popularity", label: t("sort.byPopularity") },
+    { key: "name", label: t("sort.byName") },
+    { key: "agentCount", label: t("sort.byAgentCount") },
+  ];
+
   return (
     <div className="flex items-center justify-between gap-3 text-sm">
       <div className="text-xs text-[var(--muted-foreground)]">
-        {hasQuery ? `${resultCount}개 결과` : `${resultCount}개 하네스`}
+        {hasQuery ? t("catalog.resultCount", { count: resultCount }) : t("catalog.harnessCount", { count: resultCount })}
       </div>
       <div className="flex items-center gap-1.5">
         <label htmlFor="sort-select" className="text-xs text-[var(--muted-foreground)] shrink-0">
-          정렬
+          {t("sort.label")}
         </label>
         <select
           id="sort-select"
@@ -32,7 +36,7 @@ export function SortFilterBar({ sortKey, onSortChange, resultCount, hasQuery }: 
           onChange={(e) => onSortChange(e.target.value as SortKey)}
           className="rounded-md border border-[var(--border)] bg-[var(--card)] px-2 py-1 text-xs text-[var(--foreground)] focus-visible:outline-2 focus-visible:outline-[var(--ring)] transition-base"
         >
-          {SORT_OPTIONS.map((opt) => (
+          {sortOptions.map((opt) => (
             <option key={opt.key} value={opt.key}>
               {opt.label}
             </option>

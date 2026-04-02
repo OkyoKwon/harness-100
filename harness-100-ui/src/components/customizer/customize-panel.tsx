@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Harness } from "@/lib/types";
+import { useLocale } from "@/hooks/use-locale";
 import { useModifications } from "@/hooks/use-modifications";
 import { useZipDownload } from "@/hooks/use-zip-download";
 import { useLocalSetup } from "@/hooks/use-local-setup";
@@ -14,6 +15,7 @@ interface CustomizePanelProps {
 }
 
 export function CustomizePanel({ harness, onClose }: CustomizePanelProps) {
+  const { t } = useLocale();
   const [selectedAgentId, setSelectedAgentId] = useState<string | null>(
     harness.agents[0]?.id ?? null,
   );
@@ -38,7 +40,7 @@ export function CustomizePanel({ harness, onClose }: CustomizePanelProps) {
       {/* Header */}
       <div className="flex items-center justify-between border-b border-[var(--border)] px-4 py-3">
         <h2 className="text-sm font-semibold text-[var(--foreground)]">
-          수정 모드 &mdash; {harness.name}
+          {t("customizer.editMode")} &mdash; {harness.name}
         </h2>
         <div className="flex items-center gap-2">
           <button
@@ -47,13 +49,13 @@ export function CustomizePanel({ harness, onClose }: CustomizePanelProps) {
             disabled={!hasChanges}
             className="rounded px-2.5 py-1 text-xs text-[var(--muted-foreground)] hover:bg-[var(--muted)] disabled:opacity-40 transition-base focus-ring"
           >
-            원본 복원
+            {t("customizer.restore")}
           </button>
           <button
             type="button"
             onClick={onClose}
             className="rounded p-1 text-[var(--muted-foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
-            aria-label="닫기"
+            aria-label={t("a11y.close")}
           >
             ✕
           </button>
@@ -79,11 +81,11 @@ export function CustomizePanel({ harness, onClose }: CustomizePanelProps) {
             />
           ) : selectedAgentId ? (
             <div className="flex h-full items-center justify-center text-sm text-[var(--muted-foreground)]">
-              비활성화된 에이전트입니다.
+              {t("customizer.disabledAgent")}
             </div>
           ) : (
             <div className="flex h-full items-center justify-center text-sm text-[var(--muted-foreground)]">
-              에이전트를 선택해주세요.
+              {t("customizer.selectAgent")}
             </div>
           )}
         </div>
@@ -92,7 +94,7 @@ export function CustomizePanel({ harness, onClose }: CustomizePanelProps) {
       {/* Footer */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[var(--border)] px-4 py-3">
         <span className="text-xs text-[var(--muted-foreground)]">
-          변경사항: {changeCount}개 수정됨
+          {t("customizer.changeCount", { count: changeCount })}
         </span>
 
         <div className="flex items-center gap-2">
@@ -102,7 +104,7 @@ export function CustomizePanel({ harness, onClose }: CustomizePanelProps) {
             disabled={!hasChanges}
             className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-xs font-medium text-[var(--foreground)] hover:bg-[var(--muted)] disabled:opacity-40 transition-base focus-ring"
           >
-            원본 복원
+            {t("customizer.restore")}
           </button>
 
           <button
@@ -112,8 +114,8 @@ export function CustomizePanel({ harness, onClose }: CustomizePanelProps) {
             className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-xs font-medium text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring"
           >
             {setupStatus === "selecting" || setupStatus === "writing"
-              ? "세팅 중..."
-              : "수정본 세팅 →"}
+              ? t("action.setupInProgress")
+              : t("customizer.setupModified")}
           </button>
 
           <button
@@ -122,7 +124,7 @@ export function CustomizePanel({ harness, onClose }: CustomizePanelProps) {
             disabled={zipStatus === "building"}
             className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-xs font-medium text-[var(--foreground)] hover:bg-[var(--muted)] disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring"
           >
-            {zipStatus === "building" ? "생성 중..." : "수정본 ZIP ↓"}
+            {zipStatus === "building" ? t("action.zipBuilding") : t("customizer.zipModified")}
           </button>
         </div>
       </div>

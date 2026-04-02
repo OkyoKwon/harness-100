@@ -3,6 +3,7 @@
 import type { Harness } from "@/lib/types";
 import { CopyCliButton } from "@/components/actions/copy-cli-button";
 import { buildCliCommand } from "@/lib/cli";
+import { useLocale } from "@/hooks/use-locale";
 
 interface OutputPreviewProps {
   readonly harness: Harness;
@@ -11,10 +12,11 @@ interface OutputPreviewProps {
 function extractOutputTitle(template: string): string {
   const firstLine = template.trim().split("\n")[0] ?? "";
   // Strip leading markdown headings or dashes
-  return firstLine.replace(/^[#\-*\s]+/, "").trim() || "산출물";
+  return firstLine.replace(/^[#\-*\s]+/, "").trim();
 }
 
 export function OutputPreview({ harness }: OutputPreviewProps) {
+  const { t } = useLocale();
   const cliCommand = buildCliCommand(harness.slug);
   const setupCommands = `cp -r ${harness.slug}/.claude/ your-project/.claude/\ncd your-project\n${cliCommand}`;
 
@@ -22,14 +24,14 @@ export function OutputPreview({ harness }: OutputPreviewProps) {
     <div className="space-y-6">
       {/* Outputs */}
       <section>
-        <h3 className="mb-3 text-sm font-semibold text-[var(--foreground)]">산출물</h3>
+        <h3 className="mb-3 text-sm font-semibold text-[var(--foreground)]">{t("detail.outputs")}</h3>
         <ul className="space-y-1.5">
           {harness.agents.map((agent) => (
             <li key={agent.id} className="flex items-start gap-2 text-sm">
               <span className="mt-0.5 text-[var(--primary)]">&#8226;</span>
               <span className="text-[var(--card-foreground)]">
                 <span className="font-medium">{agent.name}:</span>{" "}
-                {extractOutputTitle(agent.outputTemplate)}
+                {extractOutputTitle(agent.outputTemplate) || t("detail.outputsFallback")}
               </span>
             </li>
           ))}
@@ -40,7 +42,7 @@ export function OutputPreview({ harness }: OutputPreviewProps) {
       {harness.frameworks.length > 0 && (
         <section>
           <h3 className="mb-3 text-sm font-semibold text-[var(--foreground)]">
-            적용 프레임워크
+            {t("detail.frameworks")}
           </h3>
           <div className="flex flex-wrap gap-2">
             {harness.frameworks.map((fw) => (
@@ -57,7 +59,7 @@ export function OutputPreview({ harness }: OutputPreviewProps) {
 
       {/* Usage */}
       <section>
-        <h3 className="mb-3 text-sm font-semibold text-[var(--foreground)]">사용법</h3>
+        <h3 className="mb-3 text-sm font-semibold text-[var(--foreground)]">{t("detail.usage")}</h3>
         <div className="relative">
           <pre className="overflow-x-auto rounded-lg bg-[var(--code-bg)] p-4 text-xs leading-relaxed text-[var(--code-fg)]">
             {setupCommands}
@@ -71,7 +73,7 @@ export function OutputPreview({ harness }: OutputPreviewProps) {
         {harness.skill.modes.length > 0 && (
           <div className="mt-4">
             <h4 className="mb-2 text-xs font-semibold text-[var(--muted-foreground)]">
-              요청 예시
+              {t("detail.requestExamples")}
             </h4>
             <ul className="space-y-1.5">
               {harness.skill.modes.map((mode) => (
@@ -87,7 +89,7 @@ export function OutputPreview({ harness }: OutputPreviewProps) {
                       &ldquo;{mode.triggerPattern}&rdquo;
                     </span>
                     <span className="ml-1 text-[var(--muted-foreground)]">
-                      ({mode.agents.length}명)
+                      {t("detail.modeAgents", { count: mode.agents.length })}
                     </span>
                   </span>
                 </li>

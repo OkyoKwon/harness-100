@@ -11,6 +11,7 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import type { Agent } from "@/lib/types";
+import { useLocale } from "@/hooks/use-locale";
 
 interface WorkflowDiagramProps {
   readonly agents: ReadonlyArray<Agent>;
@@ -160,12 +161,13 @@ function buildGraph(agents: ReadonlyArray<Agent>): {
 }
 
 export function WorkflowDiagram({ agents }: WorkflowDiagramProps) {
+  const { t } = useLocale();
   const { nodes, edges } = useMemo(() => buildGraph(agents), [agents]);
 
   if (agents.length === 0) {
     return (
       <div className="flex h-[200px] items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--muted)] text-sm text-[var(--muted-foreground)]">
-        에이전트가 없습니다.
+        {t("detail.noAgents")}
       </div>
     );
   }

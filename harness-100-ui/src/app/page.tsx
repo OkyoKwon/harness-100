@@ -5,6 +5,7 @@ import type { HarnessMeta } from "@/lib/types";
 import { loadCatalog } from "@/lib/harness-loader";
 import { useFavorites } from "@/hooks/use-favorites";
 import { useSearch } from "@/hooks/use-search";
+import { useLocale } from "@/hooks/use-locale";
 import { SearchBar } from "@/components/catalog/search-bar";
 import { CategoryTabs } from "@/components/catalog/category-tabs";
 import { HarnessGrid } from "@/components/catalog/harness-grid";
@@ -13,11 +14,11 @@ import { HeroSection } from "@/components/catalog/hero-section";
 import { SortFilterBar, type SortKey } from "@/components/catalog/sort-filter-bar";
 import { CATEGORIES } from "@/lib/constants";
 
-function sortItems(items: ReadonlyArray<HarnessMeta>, key: SortKey): ReadonlyArray<HarnessMeta> {
+function sortItems(items: ReadonlyArray<HarnessMeta>, key: SortKey, locale: string): ReadonlyArray<HarnessMeta> {
   const sorted = [...items];
   switch (key) {
     case "name":
-      sorted.sort((a, b) => a.name.localeCompare(b.name, "ko"));
+      sorted.sort((a, b) => a.name.localeCompare(b.name, locale));
       break;
     case "agentCount":
       sorted.sort((a, b) => b.agentCount - a.agentCount);
@@ -34,6 +35,7 @@ function sortItems(items: ReadonlyArray<HarnessMeta>, key: SortKey): ReadonlyArr
 }
 
 export default function CatalogPage() {
+  const { locale, t } = useLocale();
   const [catalog, setCatalog] = useState<ReadonlyArray<HarnessMeta>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -44,15 +46,15 @@ export default function CatalogPage() {
   const { query, results, updateQuery } = useSearch(catalog);
 
   useEffect(() => {
-    loadCatalog()
+    loadCatalog(locale)
       .then(setCatalog)
       .catch((err: unknown) => {
         setError(
-          err instanceof Error ? err.message : "카탈로그를 불러오는 데 실패했습니다.",
+          err instanceof Error ? err.message : t("catalog.loadError"),
         );
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [locale]);
 
   const filtered = useMemo(() => {
     let items = results;
@@ -66,8 +68,8 @@ export default function CatalogPage() {
       }
     }
 
-    return sortItems(items, sortKey);
-  }, [results, activeCategory, favorites, sortKey]);
+    return sortItems(items, sortKey, locale);
+  }, [results, activeCategory, favorites, sortKey, locale]);
 
   const handleCategorySelect = useCallback((slug: string) => {
     setActiveCategory(slug);
@@ -112,7 +114,7 @@ export default function CatalogPage() {
             onClick={() => window.location.reload()}
             className="mt-3 rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] hover:brightness-110 transition-base focus-ring"
           >
-            다시 시도
+            {t("catalog.retry")}
           </button>
         </div>
       </main>
@@ -147,8 +149,8 @@ export default function CatalogPage() {
       {filtered.length === 0 ? (
         <div className="text-center py-16 text-[var(--muted-foreground)]">
           <div className="text-4xl mb-4">🔍</div>
-          <p className="text-lg font-medium mb-2">검색 결과가 없습니다</p>
-          <p className="text-sm">다른 키워드로 검색해 보세요</p>
+          <p className="text-lg font-medium mb-2">{t("catalog.noResults")}</p>
+          <p className="text-sm">{t("catalog.tryOther")}</p>
         </div>
       ) : (
         <HarnessGrid>

@@ -1,6 +1,7 @@
 "use client";
 
 import type { ToastItem } from "@/hooks/use-toast";
+import { useLocale } from "@/hooks/use-locale";
 
 interface ToastProps {
   readonly item: ToastItem;
@@ -20,6 +21,7 @@ const TYPE_ICONS: Record<ToastItem["type"], string> = {
 };
 
 export function Toast({ item, onDismiss }: ToastProps) {
+  const { t } = useLocale();
   return (
     <div
       className={`flex items-start gap-2 rounded-lg border px-3 py-2.5 shadow-[var(--shadow-md)] text-sm animate-toast-in ${TYPE_STYLES[item.type]}`}
@@ -32,7 +34,7 @@ export function Toast({ item, onDismiss }: ToastProps) {
         type="button"
         onClick={onDismiss}
         className="shrink-0 opacity-60 hover:opacity-100 transition-opacity text-xs"
-        aria-label="닫기"
+        aria-label={t("a11y.close")}
       >
         ✕
       </button>

@@ -4,6 +4,7 @@ import type { Harness } from "@/lib/types";
 import { CompletionBanner } from "@/components/common/completion-banner";
 import { useZipDownload } from "@/hooks/use-zip-download";
 import { useLocalSetup } from "@/hooks/use-local-setup";
+import { useLocale } from "@/hooks/use-locale";
 
 interface CompositionPreviewProps {
   readonly merged: Harness | null;
@@ -13,6 +14,7 @@ interface CompositionPreviewProps {
 }
 
 function HarnessCard({ harness }: { readonly harness: Harness }) {
+  const { t } = useLocale();
   return (
     <div className="rounded-lg border border-[var(--border)] bg-[var(--background)] p-3">
       <div className="flex items-center justify-between mb-2">
@@ -20,7 +22,7 @@ function HarnessCard({ harness }: { readonly harness: Harness }) {
           {harness.name}
         </span>
         <span className="rounded-full bg-[var(--secondary)] px-2 py-0.5 text-xs text-[var(--secondary-foreground)]">
-          {harness.agentCount}명
+          {t("composer.agentCount", { count: harness.agentCount })}
         </span>
       </div>
       <div className="flex flex-wrap gap-1">
@@ -43,6 +45,7 @@ export function CompositionPreview({
   selectedCount,
   loadedHarnesses,
 }: CompositionPreviewProps) {
+  const { t } = useLocale();
   const { status: zipStatus, download: downloadZip } = useZipDownload();
   const {
     status: setupStatus,
@@ -58,7 +61,7 @@ export function CompositionPreview({
       {/* Header + Actions */}
       <div className="flex items-center justify-between border-b border-[var(--border)] px-4 py-3">
         <h2 className="text-base font-semibold text-[var(--foreground)]">
-          조합 결과 미리보기
+          {t("composer.previewTitle")}
         </h2>
         {merged && selectedCount > 0 && !loading && (
           <div className="flex items-center gap-2">
@@ -68,7 +71,7 @@ export function CompositionPreview({
               disabled={setupStatus === "selecting" || setupStatus === "writing"}
               className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-xs font-medium text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 disabled:opacity-50 transition-base focus-ring"
             >
-              {setupStatus === "selecting" || setupStatus === "writing" ? "세팅 중..." : "조합 세팅 →"}
+              {setupStatus === "selecting" || setupStatus === "writing" ? t("action.setupInProgress") : t("composer.setupComposed")}
             </button>
             <button
               type="button"
@@ -76,7 +79,7 @@ export function CompositionPreview({
               disabled={zipStatus === "building"}
               className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-xs font-medium text-[var(--foreground)] hover:bg-[var(--muted)] active:bg-[var(--secondary)] disabled:opacity-50 transition-base focus-ring"
             >
-              {zipStatus === "building" ? "생성 중..." : "ZIP ↓"}
+              {zipStatus === "building" ? t("action.zipBuilding") : t("action.zip")}
             </button>
           </div>
         )}
@@ -91,21 +94,21 @@ export function CompositionPreview({
         ) : !merged || selectedCount === 0 ? (
           <div className="flex h-48 flex-col items-center justify-center text-[var(--muted-foreground)]">
             <span className="mb-3 text-4xl">🧩</span>
-            <p className="text-sm">왼쪽에서 하네스를 선택하세요</p>
+            <p className="text-sm">{t("composer.selectPrompt")}</p>
           </div>
         ) : (
           <div className="space-y-4">
             {/* Summary */}
             <div className="flex flex-wrap gap-2">
               <span className="rounded-full bg-[var(--secondary)] px-2.5 py-0.5 text-xs font-medium text-[var(--secondary-foreground)]">
-                하네스 {loadedHarnesses.length}개
+                {t("composer.harnessCount", { count: loadedHarnesses.length })}
               </span>
               <span className="rounded-full bg-[var(--secondary)] px-2.5 py-0.5 text-xs font-medium text-[var(--secondary-foreground)]">
-                에이전트 총 {merged.agentCount}명
+                {t("composer.totalAgents", { count: merged.agentCount })}
               </span>
               {merged.frameworks.length > 0 && (
                 <span className="rounded-full bg-[var(--badge-framework-bg)] px-2.5 py-0.5 text-xs font-medium text-[var(--badge-framework-fg)]">
-                  프레임워크 {[...new Set(merged.frameworks)].length}개
+                  {t("composer.frameworkCount", { count: [...new Set(merged.frameworks)].length })}
                 </span>
               )}
             </div>

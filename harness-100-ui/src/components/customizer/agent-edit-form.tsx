@@ -1,6 +1,7 @@
 "use client";
 
 import type { Modification } from "@/lib/types";
+import { useLocale } from "@/hooks/use-locale";
 
 interface AgentEditFormProps {
   readonly agentId: string;
@@ -9,6 +10,7 @@ interface AgentEditFormProps {
 }
 
 export function AgentEditForm({ agentId, getModifiedValue, updateAgent }: AgentEditFormProps) {
+  const { t } = useLocale();
   const name = getModifiedValue(agentId, "name") as string;
   const role = getModifiedValue(agentId, "role") as string;
   const outputTemplate = getModifiedValue(agentId, "outputTemplate") as string;
@@ -16,7 +18,7 @@ export function AgentEditForm({ agentId, getModifiedValue, updateAgent }: AgentE
   return (
     <div className="space-y-4">
       <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">
-        편집 영역
+        {t("customizer.editArea")}
       </h3>
 
       <div>
@@ -24,7 +26,7 @@ export function AgentEditForm({ agentId, getModifiedValue, updateAgent }: AgentE
           htmlFor="agent-name"
           className="mb-1 block text-sm font-medium text-[var(--foreground)]"
         >
-          이름
+          {t("customizer.name")}
         </label>
         <input
           id="agent-name"
@@ -40,7 +42,7 @@ export function AgentEditForm({ agentId, getModifiedValue, updateAgent }: AgentE
           htmlFor="agent-role"
           className="mb-1 block text-sm font-medium text-[var(--foreground)]"
         >
-          역할
+          {t("customizer.role")}
         </label>
         <textarea
           id="agent-role"
@@ -56,7 +58,7 @@ export function AgentEditForm({ agentId, getModifiedValue, updateAgent }: AgentE
           htmlFor="agent-output"
           className="mb-1 block text-sm font-medium text-[var(--foreground)]"
         >
-          산출물 템플릿
+          {t("customizer.outputTemplate")}
         </label>
         <textarea
           id="agent-output"

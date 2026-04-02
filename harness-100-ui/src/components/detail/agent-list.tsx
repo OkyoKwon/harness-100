@@ -7,6 +7,7 @@ import matter from "gray-matter";
 import type { Agent, Harness } from "@/lib/types";
 import { generateAgentMd, generateSkillMd } from "@/lib/zip-builder";
 import { MarkdownViewer } from "@/components/common/markdown-viewer";
+import { useLocale } from "@/hooks/use-locale";
 
 interface AgentListProps {
   readonly agents: ReadonlyArray<Agent>;
@@ -51,6 +52,7 @@ interface MdViewerState {
 export function AgentList({ agents, harness }: AgentListProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [mdViewer, setMdViewer] = useState<MdViewerState | null>(null);
+  const { t } = useLocale();
 
   const handleToggle = useCallback((agentId: string) => {
     setExpandedId((prev) => (prev === agentId ? null : agentId));
@@ -62,7 +64,7 @@ export function AgentList({ agents, harness }: AgentListProps) {
     );
     const rawContent = mainSkillKey ? harness.rawFiles?.skills?.[mainSkillKey] : undefined;
     setMdViewer({
-      title: `${harness.skill.name} — 스킬 마크다운`,
+      title: `${harness.skill.name} — ${t("detail.skillMarkdown")}`,
       content: rawContent ?? generateSkillMd(harness),
     });
   }, [harness]);
@@ -128,7 +130,7 @@ export function AgentList({ agents, harness }: AgentListProps) {
                   {agent.tools.length > 0 && (
                     <div className="mt-3">
                       <p className="mb-1.5 text-xs font-medium text-[var(--muted-foreground)]">
-                        도구
+                        {t("detail.tools")}
                       </p>
                       <div className="flex flex-wrap gap-1.5">
                         {agent.tools.map((tool) => (
@@ -146,7 +148,7 @@ export function AgentList({ agents, harness }: AgentListProps) {
                   {agent.dependencies.length > 0 && (
                     <div className="mt-3">
                       <p className="mb-1 text-xs font-medium text-[var(--muted-foreground)]">
-                        의존성
+                        {t("detail.dependencies")}
                       </p>
                       <p className="text-xs text-[var(--muted-foreground)]">
                         {agent.dependencies.join(", ")}
@@ -179,7 +181,7 @@ export function AgentList({ agents, harness }: AgentListProps) {
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
-          스킬 마크다운 보기
+          {t("detail.viewSkillMd")}
         </button>
 
         {/* 확장 스킬 버튼들 */}
@@ -197,7 +199,7 @@ export function AgentList({ agents, harness }: AgentListProps) {
                   type="button"
                   onClick={() =>
                     setMdViewer({
-                      title: `${extSkill.name} — 확장 스킬`,
+                      title: `${extSkill.name} — ${t("detail.extensionSkill")}`,
                       content: rawContent,
                     })
                   }

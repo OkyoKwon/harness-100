@@ -4,6 +4,7 @@ import { useEffect, useCallback, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import matter from "gray-matter";
+import { useLocale } from "@/hooks/use-locale";
 
 interface MarkdownViewerProps {
   readonly title: string;
@@ -48,6 +49,7 @@ export function MarkdownViewer({
   open,
   onClose,
 }: MarkdownViewerProps) {
+  const { t } = useLocale();
   const overlayRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const titleId = "md-viewer-title";
@@ -127,7 +129,7 @@ export function MarkdownViewer({
             type="button"
             onClick={onClose}
             className="rounded-md p-1 text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)] transition-base focus-ring"
-            aria-label="닫기"
+            aria-label={t("a11y.close")}
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

@@ -90,6 +90,7 @@ interface HarnessMeta {
 const REPO_URL = "https://github.com/revfactory/harness-100.git";
 const TEMP_DIR = resolve("/tmp/harness-100-source");
 const KO_DIR = join(TEMP_DIR, "ko");
+const EN_DIR = join(TEMP_DIR, "en");
 
 const KNOWN_TOOLS = [
   "WebSearch",
@@ -407,7 +408,7 @@ function parseWorkflowTable(
   agentFileNames: string[],
 ): { steps: ExecutionStep[]; agentOrder: string[] } {
   // Find the workflow table (Phase 2 section usually)
-  const tableRegex = /\|[^\n]*순서[^\n]*\|[^\n]*\n\|[-| ]+\n((?:\|[^\n]*\n)*)/;
+  const tableRegex = /\|[^\n]*(?:순서|Order|Step)[^\n]*\|[^\n]*\n\|[-| ]+\n((?:\|[^\n]*\n)*)/;
   const match = body.match(tableRegex);
 
   if (!match) {
@@ -512,14 +513,14 @@ function parseDependencies(
   agentFileNames: string[],
   agentOrder: string[],
 ): string[] {
-  if (!depStr || depStr === "없음" || depStr === "-" || depStr === "none") {
+  if (!depStr || depStr === "없음" || depStr === "-" || depStr.toLowerCase() === "none" || depStr === "—") {
     return [];
   }
 
   const deps: string[] = [];
 
-  // Pattern: "작업 1", "작업 1a, 1b", "작업 1, 2"
-  const taskRefs = depStr.match(/작업\s*[\d]+[a-z]?/gi) ?? [];
+  // Pattern: "작업 1", "작업 1a, 1b", "작업 1, 2", "Task 1", "Step 1"
+  const taskRefs = depStr.match(/(?:작업|Task|Step)\s*[\d]+[a-z]?/gi) ?? [];
   for (const ref of taskRefs) {
     const numMatch = ref.match(/(\d+)([a-z])?/i);
     if (!numMatch) continue;
@@ -601,11 +602,13 @@ function parseModesTable(body: string, agentFileNames: string[]): SkillMode[] {
   const modesSection =
     extractSection(body, "작업 규모별 모드") ||
     extractSection(body, "실행 모드") ||
+    extractSection(body, "Modes by Scope") ||
+    extractSection(body, "Execution Modes") ||
     "";
 
   if (!modesSection) return buildDefaultModes(agentFileNames);
 
-  const tableRegex = /\|[^\n]*(?:요청|모드|패턴)[^\n]*\|\n\|[-| ]+\n((?:\|[^\n]*\n)*)/;
+  const tableRegex = /\|[^\n]*(?:요청|모드|패턴|Request|Mode|Pattern|Trigger)[^\n]*\|\n\|[-| ]+\n((?:\|[^\n]*\n)*)/;
   const match = modesSection.match(tableRegex);
 
   if (!match) return buildDefaultModes(agentFileNames);
@@ -639,10 +642,10 @@ function parseModesTable(body: string, agentFileNames: string[]): SkillMode[] {
 
 function parseModeAgents(agentsStr: string, agentFileNames: string[]): string[] {
   // Handle special cases
-  if (/전원|전체|all|5명/i.test(agentsStr)) {
+  if (/전원|전체|all\b|everyone|5명/i.test(agentsStr)) {
     return [...agentFileNames];
   }
-  if (/단독|alone|only|1명/i.test(agentsStr)) {
+  if (/단독|alone|solo|only|1명/i.test(agentsStr)) {
     // Find the mentioned agent by matching all name parts
     const lower = agentsStr.toLowerCase();
     for (const name of agentFileNames) {
@@ -704,11 +707,13 @@ function parseExtensionSkills(body: string): ExtensionSkill[] {
   const section =
     extractSection(body, "에이전트별 확장 스킬") ||
     extractSection(body, "확장 스킬") ||
+    extractSection(body, "Extension Skills per Agent") ||
+    extractSection(body, "Extension Skills") ||
     "";
 
   if (!section) return [];
 
-  const tableRegex = /\|[^\n]*스킬[^\n]*\|\n\|[-| ]+\n((?:\|[^\n]*\n)*)/;
+  const tableRegex = /\|[^\n]*(?:스킬|Skill)[^\n]*\|\n\|[-| ]+\n((?:\|[^\n]*\n)*)/;
   const match = section.match(tableRegex);
   if (!match) return [];
 
@@ -750,7 +755,7 @@ function extractTriggerConditions(description: string): string[] {
  * Extract output template from agent body
  */
 function extractOutputTemplate(body: string): string {
-  const section = extractSection(body, "산출물 포맷") || extractSection(body, "산출물");
+  const section = extractSection(body, "산출물 포맷") || extractSection(body, "산출물") || extractSection(body, "Output Format") || extractSection(body, "Output");
   if (!section) return "";
 
   // Extract the markdown code block (may contain nested code blocks)
@@ -785,7 +790,7 @@ function extractOutputTemplate(body: string): string {
 
   // Return section content after the file path line
   const lines = section.split("\n");
-  const startIdx = lines.findIndex((l) => l.includes("파일로 저장"));
+  const startIdx = lines.findIndex((l) => l.includes("파일로 저장") || l.includes("save to file") || l.includes("Save to"));
   if (startIdx >= 0) {
     const content = lines.slice(startIdx + 1).join("\n").trim();
     // Remove leading/trailing code fences
@@ -1019,52 +1024,45 @@ function writeJson(filePath: string, data: unknown): void {
 }
 
 // ---------------------------------------------------------------------------
-// Main
+// Locale processing
 // ---------------------------------------------------------------------------
 
-function main(): void {
-  console.log("Step 1: Cloning repository...");
+function processLocale(
+  langDir: string,
+  outputDataDir: string,
+  locale: string,
+): { count: number; errors: string[] } {
+  const harnessDir = resolve(outputDataDir, "harness");
 
-  if (existsSync(TEMP_DIR)) {
-    rmSync(TEMP_DIR, { recursive: true, force: true });
-  }
-
-  execSync(`git clone --depth 1 ${REPO_URL} ${TEMP_DIR}`, {
-    stdio: "pipe",
-  });
-  console.log("  ✓ Repository cloned");
-
-  console.log("Step 2: Parsing 100 harnesses...");
-
-  const projectRoot = resolve(__dirname, "..");
-  const dataDir = resolve(projectRoot, "public", "data");
-  const harnessDir = resolve(dataDir, "harness");
-
-  ensureDir(dataDir);
+  ensureDir(outputDataDir);
   ensureDir(harnessDir);
 
   const metaList: HarnessMeta[] = [];
   const errors: string[] = [];
 
-  // Find all harness directories
-  const koDirs = readdirSync(KO_DIR)
+  if (!existsSync(langDir)) {
+    console.log(`  ⚠ Directory not found: ${langDir} — skipping ${locale}`);
+    return { count: 0, errors: [`Directory not found: ${langDir}`] };
+  }
+
+  const dirs = readdirSync(langDir)
     .filter((d) => {
-      const fullPath = join(KO_DIR, d);
+      const fullPath = join(langDir, d);
       return statSync(fullPath).isDirectory() && /^\d{2,3}-/.test(d);
     })
     .sort();
 
-  console.log(`  Found ${koDirs.length} harness directories`);
+  console.log(`  Found ${dirs.length} harness directories for ${locale}`);
 
-  for (const dir of koDirs) {
-    const dirPath = join(KO_DIR, dir);
+  for (const dir of dirs) {
+    const dirPath = join(langDir, dir);
     const idMatch = dir.match(/^(\d+)-/);
     if (!idMatch) continue;
 
     const id = parseInt(idMatch[1], 10);
     const meta = HARNESS_META.find((m) => m.id === id);
     if (!meta) {
-      errors.push(`No metadata for harness ${id} (${dir})`);
+      errors.push(`[${locale}] No metadata for harness ${id} (${dir})`);
       continue;
     }
 
@@ -1086,25 +1084,58 @@ function main(): void {
       writeJson(resolve(harnessDir, fileName), harness);
 
       console.log(
-        `  ✓ ${padId(id)} ${meta.name} — ${harness.agentCount} agents, ${harness.skill.modes.length} modes, ${harness.frameworks.length} frameworks`,
+        `  ✓ [${locale}] ${padId(id)} ${meta.name} — ${harness.agentCount} agents, ${harness.skill.modes.length} modes`,
       );
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
-      errors.push(`Error parsing ${dir}: ${msg}`);
-      console.error(`  ✗ ${padId(id)} ${meta.name} — ${msg}`);
+      errors.push(`[${locale}] Error parsing ${dir}: ${msg}`);
+      console.error(`  ✗ [${locale}] ${padId(id)} ${meta.name} — ${msg}`);
     }
   }
 
-  // Write catalog
   metaList.sort((a, b) => a.id - b.id);
-  writeJson(resolve(dataDir, "harnesses.json"), metaList);
+  writeJson(resolve(outputDataDir, "harnesses.json"), metaList);
+
+  return { count: metaList.length, errors };
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+
+function main(): void {
+  console.log("Step 1: Cloning repository...");
+
+  if (existsSync(TEMP_DIR)) {
+    rmSync(TEMP_DIR, { recursive: true, force: true });
+  }
+
+  execSync(`git clone --depth 1 ${REPO_URL} ${TEMP_DIR}`, {
+    stdio: "pipe",
+  });
+  console.log("  ✓ Repository cloned");
+
+  const projectRoot = resolve(__dirname, "..");
+  const dataDir = resolve(projectRoot, "public", "data");
+  const allErrors: string[] = [];
+
+  // Process Korean
+  console.log("\nStep 2a: Parsing Korean harnesses...");
+  const ko = processLocale(KO_DIR, resolve(dataDir, "ko"), "ko");
+  allErrors.push(...ko.errors);
+
+  // Process English
+  console.log("\nStep 2b: Parsing English harnesses...");
+  const en = processLocale(EN_DIR, resolve(dataDir, "en"), "en");
+  allErrors.push(...en.errors);
 
   console.log(`\nStep 3: Complete!`);
-  console.log(`  Generated ${metaList.length} harnesses → public/data/`);
+  console.log(`  Korean: ${ko.count} harnesses → public/data/ko/`);
+  console.log(`  English: ${en.count} harnesses → public/data/en/`);
 
-  if (errors.length > 0) {
-    console.log(`\n  ⚠ ${errors.length} errors:`);
-    for (const err of errors) {
+  if (allErrors.length > 0) {
+    console.log(`\n  ⚠ ${allErrors.length} errors:`);
+    for (const err of allErrors) {
       console.log(`    - ${err}`);
     }
   }

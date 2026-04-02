@@ -21,31 +21,31 @@ export default function GuidePage() {
 
         <div className="space-y-6">
           <div className="p-4 rounded-lg border border-[var(--border)]">
-            <h3 className="font-semibold mb-2">{t("guide.install.setup.title")}</h3>
+            <h3 className="font-semibold mb-2">{t("guide.install.method1.title")}</h3>
             <p className="text-sm text-[var(--muted-foreground)] mb-3">
-              {t("guide.install.setup.description")}
+              {t("guide.install.method1.desc")}
             </p>
             <ol className="list-decimal list-inside text-sm space-y-1">
-              <li>{t("guide.install.setup.step1")}</li>
-              <li>{t("guide.install.setup.step2")}</li>
-              <li>{t("guide.install.setup.step3")}</li>
+              <li>{t("guide.install.method1.step1")}</li>
+              <li>{t("guide.install.method1.step2")}</li>
+              <li>{t("guide.install.method1.step3")}</li>
             </ol>
           </div>
 
           <div className="p-4 rounded-lg border border-[var(--border)]">
-            <h3 className="font-semibold mb-2">{t("guide.install.zip.title")}</h3>
+            <h3 className="font-semibold mb-2">{t("guide.install.method2.title")}</h3>
             <p className="text-sm text-[var(--muted-foreground)] mb-3">
-              {t("guide.install.zip.description")}
+              {t("guide.install.method2.desc")}
             </p>
             <ol className="list-decimal list-inside text-sm space-y-1">
-              <li>{t("guide.install.zip.step1")}</li>
-              <li>{t("guide.install.zip.step2")}</li>
-              <li>{t("guide.install.zip.step3")}</li>
+              <li>{t("guide.install.method2.step1")}</li>
+              <li>{t("guide.install.method2.step2")}</li>
+              <li>{t("guide.install.method2.step3")}</li>
             </ol>
           </div>
 
           <div className="p-4 rounded-lg border border-[var(--border)]">
-            <h3 className="font-semibold mb-2">{t("guide.install.cli.title")}</h3>
+            <h3 className="font-semibold mb-2">{t("guide.install.method3.title")}</h3>
             <pre className="bg-[var(--muted)] p-3 rounded text-sm overflow-x-auto">
 {`cp -r {NN}-{harness-name}/.claude/ /path/to/my-project/.claude/
 cd /path/to/my-project
@@ -102,26 +102,26 @@ claude`}
         <div className="space-y-4">
           <div>
             <h3 className="font-semibold mb-1">
-              {t("guide.faq.existingFolder.question")}
+              {t("guide.faq.q1")}
             </h3>
             <p className="text-sm text-[var(--muted-foreground)]">
-              {t("guide.faq.existingFolder.answer")}
+              {t("guide.faq.a1")}
             </p>
           </div>
           <div>
             <h3 className="font-semibold mb-1">
-              {t("guide.faq.multipleHarness.question")}
+              {t("guide.faq.q2")}
             </h3>
             <p className="text-sm text-[var(--muted-foreground)]">
-              {t("guide.faq.multipleHarness.answer")}
+              {t("guide.faq.a2")}
             </p>
           </div>
           <div>
             <h3 className="font-semibold mb-1">
-              {t("guide.faq.loginRequired.question")}
+              {t("guide.faq.q3")}
             </h3>
             <p className="text-sm text-[var(--muted-foreground)]">
-              {t("guide.faq.loginRequired.answer")}
+              {t("guide.faq.a3")}
             </p>
           </div>
         </div>

@@ -1,10 +1,35 @@
+# Dependencies
 node_modules/
+.pnpm-store/
+
+# Next.js
 .next/
 out/
-*.tsbuildinfo
-.DS_Store
+next-env.d.ts
+
+# Environment variables
 .env
 .env.*
-.vercel
+!.env.example
+
+# Storybook
 storybook-static/
+
+# Testing
 coverage/
+
+# Build artifacts
+*.tsbuildinfo
+
+# macOS
+.DS_Store
+
+# Vercel
+.vercel/
+
+# Claude Code
+.claude/plans/
+.claude/settings.local.json
+
+# Workspace (agent-generated artifacts)
+_workspace/

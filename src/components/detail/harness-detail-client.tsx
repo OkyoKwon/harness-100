@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import type { Harness } from "@/lib/types";
 import { loadHarnessDetail } from "@/lib/harness-loader";
@@ -9,13 +9,11 @@ import { useZipDownload } from "@/hooks/use-zip-download";
 import { useLocalSetup } from "@/hooks/use-local-setup";
 import { useToast } from "@/hooks/use-toast";
 import { useLocale } from "@/hooks/use-locale";
-import { CustomizePanel } from "@/components/customizer/customize-panel";
 import { AgentList } from "@/components/detail/agent-list";
 import { WorkflowDiagram } from "@/components/detail/workflow-diagram";
 import { OutputPreview } from "@/components/detail/output-preview";
 import { CompletionBanner } from "@/components/common/completion-banner";
 import { ConflictModal } from "@/components/setup/conflict-modal";
-import { StickyActionBar } from "@/components/detail/sticky-action-bar";
 import { CATEGORIES } from "@/lib/constants";
 import { buildCliCommand } from "@/lib/cli";
 
@@ -54,7 +52,6 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
   const [harness, setHarness] = useState<Harness | null>(null);
   const [loadingState, setLoadingState] = useState<LoadingState>("loading");
   const [errorMessage, setErrorMessage] = useState("");
-  const [customizing, setCustomizing] = useState(false);
 
   const { toggle: toggleFavorite, isFavorite } = useFavorites();
   const { status: zipStatus, download: downloadZip } = useZipDownload();
@@ -69,8 +66,6 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
   } = useLocalSetup();
   const { addToast } = useToast();
   const { t, locale } = useLocale();
-
-  const actionButtonsRef = useRef<HTMLDivElement>(null);
 
   // Toast notifications for setup/zip completion
   useEffect(() => {
@@ -185,7 +180,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
           </div>
 
           {/* Action buttons */}
-          <div ref={actionButtonsRef} className="flex shrink-0 items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <button
               type="button"
               onClick={() => toggleFavorite(harness.id)}
@@ -271,62 +266,31 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
         </p>
       </div>
 
-      {/* Customization panel */}
-      {customizing ? (
-        <CustomizePanel harness={harness} onClose={() => setCustomizing(false)} />
-      ) : (
-        <>
-          {/* Main content: two-panel on desktop, stacked on mobile */}
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            {/* Left panel: Agent list */}
-            <section>
-              <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
-                {t("detail.agents", { count: harness.agents.length })}
-              </h2>
-              <AgentList agents={harness.agents} harness={harness} />
-            </section>
+      {/* Main content: two-panel on desktop, stacked on mobile */}
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        {/* Left panel: Agent list */}
+        <section>
+          <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
+            {t("detail.agents", { count: harness.agents.length })}
+          </h2>
+          <AgentList agents={harness.agents} harness={harness} />
+        </section>
 
-            {/* Right panel: Workflow + Outputs */}
-            <section className="space-y-8">
-              <div>
-                <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
-                  {t("detail.workflow")}
-                </h2>
-                <WorkflowDiagram agents={harness.agents} />
-              </div>
-
-              <div>
-                <OutputPreview harness={harness} />
-              </div>
-            </section>
+        {/* Right panel: Workflow + Outputs */}
+        <section className="space-y-8">
+          <div>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
+              {t("detail.workflow")}
+            </h2>
+            <WorkflowDiagram agents={harness.agents} />
           </div>
 
-          {/* Customize button */}
-          <div className="mt-8 border-t border-[var(--border)] pt-6">
-            <button
-              type="button"
-              onClick={() => setCustomizing(true)}
-              className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-5 py-2.5 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--muted)] active:bg-[var(--secondary)] transition-base focus-ring"
-            >
-              {t("detail.customize")}
-            </button>
+          <div>
+            <OutputPreview harness={harness} />
           </div>
-        </>
-      )}
+        </section>
+      </div>
 
-      {/* Sticky action bar */}
-      <StickyActionBar
-        name={harness.name}
-        favorited={favorited}
-        onToggleFavorite={() => toggleFavorite(harness.id)}
-        onSetup={() => runSetup(harness)}
-        onDownloadZip={() => downloadZip(harness)}
-        setupDisabled={setupDisabled}
-        zipDisabled={zipStatus === "building"}
-        setupLabel={setupLabel}
-        zipLabel={zipLabel}
-        triggerRef={actionButtonsRef}
-      />
     </div>
   );
 }

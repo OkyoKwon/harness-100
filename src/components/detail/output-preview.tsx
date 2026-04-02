@@ -1,8 +1,6 @@
 "use client";
 
 import type { Harness } from "@/lib/types";
-import { CopyCliButton } from "@/components/actions/copy-cli-button";
-import { buildCliCommand } from "@/lib/cli";
 import { useLocale } from "@/hooks/use-locale";
 
 interface OutputPreviewProps {
@@ -17,9 +15,6 @@ function extractOutputTitle(template: string): string {
 
 export function OutputPreview({ harness }: OutputPreviewProps) {
   const { t } = useLocale();
-  const cliCommand = buildCliCommand(harness.slug);
-  const setupCommands = `cp -r ${harness.slug}/.claude/ your-project/.claude/\ncd your-project\n${cliCommand}`;
-
   return (
     <div className="space-y-6">
       {/* Outputs */}
@@ -59,16 +54,6 @@ export function OutputPreview({ harness }: OutputPreviewProps) {
 
       {/* Usage */}
       <section>
-        <h3 className="mb-3 text-sm font-semibold text-[var(--foreground)]">{t("detail.usage")}</h3>
-        <div className="relative">
-          <pre className="overflow-x-auto rounded-lg bg-[var(--code-bg)] p-4 text-xs leading-relaxed text-[var(--code-fg)]">
-            {setupCommands}
-          </pre>
-          <div className="absolute right-2 top-2">
-            <CopyCliButton text={setupCommands} />
-          </div>
-        </div>
-
         {/* Mode-specific usage examples */}
         {harness.skill.modes.length > 0 && (
           <div className="mt-4">

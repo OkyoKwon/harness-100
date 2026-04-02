@@ -1,0 +1,169 @@
+/* ===== Semantic Tokens =====
+ * Role-based aliases referencing primitive tokens.
+ * These define the visual meaning (background, primary, danger, etc.)
+ * and handle light/dark theme switching.
+ */
+
+/* --- Light Theme (default) --- */
+:root {
+  --background: var(--color-white);
+  --foreground: var(--color-gray-900);
+  --muted: var(--color-gray-100);
+  --muted-foreground: var(--color-gray-500);
+  --border: var(--color-gray-200);
+  --primary: var(--color-blue-600);
+  --primary-foreground: var(--color-white);
+  --accent: var(--color-amber-500);
+  --accent-foreground: var(--color-gray-900);
+  --destructive: var(--color-red-500);
+  --radius: var(--radius-md);
+
+  --card: var(--color-white);
+  --card-foreground: var(--color-gray-900);
+  --secondary: var(--color-gray-100);
+  --secondary-foreground: var(--color-gray-600);
+
+  --success: var(--color-green-600);
+  --success-bg: var(--color-green-50);
+  --success-border: var(--color-green-200);
+  --success-foreground: var(--color-green-800);
+
+  --info-bg: var(--color-blue-50);
+  --info-border: var(--color-blue-200);
+  --info-foreground: var(--color-blue-800);
+
+  --danger-bg: var(--color-red-50);
+  --danger-border: var(--color-red-200);
+  --danger-foreground: var(--color-red-800);
+
+  --warning-bg: var(--color-amber-50);
+  --warning-border: var(--color-amber-200);
+  --warning-foreground: var(--color-amber-800);
+
+  --badge-tool-bg: var(--color-blue-50);
+  --badge-tool-fg: var(--color-blue-700);
+  --badge-framework-bg: var(--color-violet-50);
+  --badge-framework-fg: var(--color-violet-600);
+
+  --ring: var(--color-blue-500);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+
+  --node-bg: var(--color-blue-50);
+  --node-border: var(--color-blue-200);
+  --node-fg: var(--color-blue-800);
+  --edge-stroke: var(--color-blue-300);
+
+  --code-bg: #1a1a2e;
+  --code-fg: #e2e8f0;
+}
+
+/* --- Dark Theme (explicit toggle) --- */
+[data-theme="dark"] {
+  --background: var(--color-gray-950);
+  --foreground: #ededed;
+  --muted: var(--color-gray-800);
+  --muted-foreground: var(--color-gray-400);
+  --border: var(--color-gray-700);
+  --primary: var(--color-blue-500);
+  --primary-foreground: var(--color-white);
+  --accent: var(--color-amber-500);
+  --accent-foreground: var(--color-yellow-50);
+  --destructive: var(--color-red-400);
+  --radius: var(--radius-md);
+
+  --card: #1c1c1c;
+  --card-foreground: #ededed;
+  --secondary: #2a2a2a;
+  --secondary-foreground: var(--color-gray-400);
+
+  --success: var(--color-green-400);
+  --success-bg: var(--color-green-950);
+  --success-border: var(--color-green-800);
+  --success-foreground: var(--color-green-200);
+
+  --info-bg: var(--color-blue-900);
+  --info-border: var(--color-blue-800);
+  --info-foreground: var(--color-blue-200);
+
+  --danger-bg: var(--color-red-950);
+  --danger-border: var(--color-red-800);
+  --danger-foreground: var(--color-red-300);
+
+  --warning-bg: #1c1608;
+  --warning-border: var(--color-amber-800);
+  --warning-foreground: var(--color-amber-200);
+
+  --badge-tool-bg: var(--color-blue-900);
+  --badge-tool-fg: var(--color-blue-300);
+  --badge-framework-bg: var(--color-violet-900);
+  --badge-framework-fg: var(--color-violet-300);
+
+  --ring: var(--color-blue-400);
+  --shadow-sm: var(--shadow-sm-dark);
+  --shadow-md: var(--shadow-md-dark);
+
+  --node-bg: var(--color-blue-900);
+  --node-border: var(--color-blue-800);
+  --node-fg: var(--color-blue-200);
+  --edge-stroke: var(--color-blue-800);
+
+  --code-bg: var(--color-gray-950);
+  --code-fg: #e2e8f0;
+}
+
+/* --- Dark Theme (system preference fallback) --- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: var(--color-gray-950);
+    --foreground: #ededed;
+    --muted: var(--color-gray-800);
+    --muted-foreground: var(--color-gray-400);
+    --border: var(--color-gray-700);
+    --primary: var(--color-blue-500);
+    --primary-foreground: var(--color-white);
+    --accent: var(--color-amber-500);
+    --accent-foreground: var(--color-yellow-50);
+    --destructive: var(--color-red-400);
+    --radius: var(--radius-md);
+
+    --card: #1c1c1c;
+    --card-foreground: #ededed;
+    --secondary: #2a2a2a;
+    --secondary-foreground: var(--color-gray-400);
+
+    --success: var(--color-green-400);
+    --success-bg: var(--color-green-950);
+    --success-border: var(--color-green-800);
+    --success-foreground: var(--color-green-200);
+
+    --info-bg: var(--color-blue-900);
+    --info-border: var(--color-blue-800);
+    --info-foreground: var(--color-blue-200);
+
+    --danger-bg: var(--color-red-950);
+    --danger-border: var(--color-red-800);
+    --danger-foreground: var(--color-red-300);
+
+    --warning-bg: #1c1608;
+    --warning-border: var(--color-amber-800);
+    --warning-foreground: var(--color-amber-200);
+
+    --badge-tool-bg: var(--color-blue-900);
+    --badge-tool-fg: var(--color-blue-300);
+    --badge-framework-bg: var(--color-violet-900);
+    --badge-framework-fg: var(--color-violet-300);
+
+    --ring: var(--color-blue-400);
+    --shadow-sm: var(--shadow-sm-dark);
+    --shadow-md: var(--shadow-md-dark);
+
+    --node-bg: var(--color-blue-900);
+    --node-border: var(--color-blue-800);
+    --node-fg: var(--color-blue-200);
+    --edge-stroke: var(--color-blue-800);
+
+    --code-bg: var(--color-gray-950);
+    --code-fg: #e2e8f0;
+  }
+}

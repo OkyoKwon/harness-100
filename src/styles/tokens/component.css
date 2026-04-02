@@ -1,0 +1,51 @@
+/* ===== Component Tokens =====
+ * Component-specific tokens referencing semantic tokens.
+ * Used by UI primitives in src/components/ui/.
+ */
+
+:root {
+  /* --- Button --- */
+  --button-primary-bg: var(--primary);
+  --button-primary-fg: var(--primary-foreground);
+  --button-outline-bg: transparent;
+  --button-outline-border: var(--border);
+  --button-outline-fg: var(--foreground);
+  --button-ghost-bg: transparent;
+  --button-ghost-fg: var(--foreground);
+  --button-ghost-hover-bg: var(--muted);
+  --button-dashed-bg: transparent;
+  --button-dashed-border: var(--border);
+  --button-dashed-fg: var(--muted-foreground);
+  --button-disabled-opacity: 0.5;
+
+  /* --- Input --- */
+  --input-bg: var(--background);
+  --input-border: var(--border);
+  --input-fg: var(--foreground);
+  --input-placeholder: var(--muted-foreground);
+  --input-focus-border: var(--primary);
+
+  /* --- Select --- */
+  --select-bg: var(--background);
+  --select-border: var(--border);
+  --select-fg: var(--foreground);
+
+  /* --- Card --- */
+  --card-bg: var(--card);
+  --card-border: var(--border);
+  --card-fg: var(--card-foreground);
+  --card-shadow: var(--shadow-sm);
+  --card-hover-border: var(--primary);
+  --card-hover-shadow: var(--shadow-md);
+
+  /* --- Badge --- */
+  --badge-default-bg: var(--secondary);
+  --badge-default-fg: var(--secondary-foreground);
+
+  /* --- Modal --- */
+  --modal-overlay: rgb(0 0 0 / 0.5);
+  --modal-bg: var(--card);
+  --modal-border: var(--border);
+  --modal-fg: var(--card-foreground);
+  --modal-header-border: var(--border);
+}

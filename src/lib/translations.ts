@@ -8,6 +8,8 @@ const translations: Record<string, TranslationEntry> = {
   "nav.ranking": { ko: "랭킹", en: "Ranking" },
   "nav.composer": { ko: "조합기", en: "Composer" },
   "nav.guide": { ko: "가이드", en: "Guide" },
+  "nav.menu": { ko: "메뉴", en: "Menu" },
+  "nav.closeMenu": { ko: "메뉴 닫기", en: "Close menu" },
 
   // ── Accessibility ──
   "a11y.skipToContent": { ko: "본문으로 건너뛰기", en: "Skip to content" },

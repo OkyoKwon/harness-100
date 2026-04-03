@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--background)]">
+    <footer className="border-t border-[var(--border)] bg-[var(--background)] safe-bottom">
       <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-center gap-2 text-sm text-[var(--muted-foreground)]">
         <span>Curated by the community</span>
         <a

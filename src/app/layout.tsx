@@ -1,9 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "@/styles/globals.css";
 import { Header } from "@/components/common/header";
 import { Footer } from "@/components/common/footer";
 import { LanguageProvider } from "@/hooks/use-locale";
 import { ToastProvider } from "@/components/common/toast-provider";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   title: "Harness 100 — AI Agent Team Harness",

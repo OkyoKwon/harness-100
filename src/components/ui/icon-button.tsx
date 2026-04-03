@@ -7,8 +7,8 @@ interface IconButtonProps
 }
 
 const SIZE_CLASSES = {
-  sm: "p-1",
-  md: "p-1.5",
+  sm: "p-1 min-w-[44px] min-h-[44px] flex items-center justify-center",
+  md: "p-1.5 min-w-[44px] min-h-[44px] flex items-center justify-center",
 } as const;
 
 export function IconButton({

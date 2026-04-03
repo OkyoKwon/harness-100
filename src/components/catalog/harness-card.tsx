@@ -10,6 +10,7 @@ import { ZipButton } from "@/components/actions/zip-button";
 import { QuickPreview } from "@/components/catalog/quick-preview";
 import { CATEGORIES } from "@/lib/constants";
 import { useLocale } from "@/hooks/use-locale";
+import { useHoverCapable } from "@/hooks/use-hover-capable";
 
 interface HarnessCardProps {
   readonly harness: HarnessMeta;
@@ -27,6 +28,7 @@ const RANK_BADGES: ReadonlyArray<{ readonly emoji: string; readonly color: strin
 export function HarnessCard({ harness, isFavorite, onToggleFavorite, showRank = false }: HarnessCardProps) {
   const router = useRouter();
   const { t, locale } = useLocale();
+  const hoverCapable = useHoverCapable();
   const paddedId = String(harness.id).padStart(2, "0");
   const category = CATEGORIES.find((c) => c.slug === harness.category);
   const categoryLabel = locale === "en" ? (category?.labelEn ?? "") : (category?.label ?? "");
@@ -48,12 +50,16 @@ export function HarnessCard({ harness, isFavorite, onToggleFavorite, showRank = 
     setShowPreview(false);
   }, []);
 
+  const hoverHandlers = hoverCapable
+    ? { onMouseEnter: handleMouseEnter, onMouseLeave: handleMouseLeave }
+    : {};
+
   return (
-    <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div className="relative" {...hoverHandlers}>
       <Link
         ref={cardRef}
         href={`/harness/${paddedId}`}
-        className="block bg-[var(--card)] border border-[var(--border)] rounded-lg overflow-hidden shadow-[var(--shadow-sm)] hover:border-[var(--primary)] hover:shadow-[var(--shadow-md)] hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2 transition-base group"
+        className="block bg-[var(--card)] border border-[var(--border)] rounded-lg overflow-hidden shadow-[var(--shadow-sm)] hover:border-[var(--primary)] hover:shadow-[var(--shadow-md)] hover:-translate-y-1 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2 transition-base group"
       >
         {/* Category color accent bar */}
         <div className="h-1" style={{ backgroundColor: categoryColor }} />
@@ -106,7 +112,7 @@ export function HarnessCard({ harness, isFavorite, onToggleFavorite, showRank = 
         </div>
       </Link>
 
-      {showPreview && (
+      {showPreview && hoverCapable && (
         <QuickPreview
           harnessId={harness.id}
           anchorRef={cardRef}

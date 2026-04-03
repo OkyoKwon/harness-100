@@ -141,7 +141,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
   const zipLabel = zipStatus === "building" ? t("action.zipBuilding") : t("action.zip");
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
+    <div className="mx-auto max-w-6xl px-4 pt-8 pb-24 lg:pb-8">
       {/* Header */}
       <div className="mb-6">
         <Link

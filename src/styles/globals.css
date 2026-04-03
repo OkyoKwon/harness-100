@@ -179,6 +179,10 @@ body {
   border-width: 0;
 }
 
+/* Safe area utilities */
+.safe-top    { padding-top:    env(safe-area-inset-top, 0px); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .transition-base {

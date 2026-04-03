@@ -12,7 +12,7 @@ export function LanguageToggle() {
     <IconButton
       ariaLabel={locale === "ko" ? "Switch to English" : "한국어로 전환"}
       onClick={toggle}
-      className="px-1.5 py-0.5 text-xs font-semibold"
+      className="text-xs font-semibold"
     >
       {locale === "ko" ? "EN" : "한"}
     </IconButton>

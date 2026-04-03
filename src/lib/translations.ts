@@ -79,6 +79,8 @@ const translations: Record<string, TranslationEntry> = {
   "detail.frameworks": { ko: "적용 프레임워크", en: "Frameworks" },
   "detail.usage": { ko: "사용법", en: "Usage" },
   "detail.requestExamples": { ko: "요청 예시", en: "Request Examples" },
+  "detail.tryAsking": { ko: "이렇게 요청해 보세요", en: "Try asking" },
+  "detail.executionModes": { ko: "실행 모드", en: "Execution Modes" },
   "detail.modeAgents": { ko: "({count}명)", en: "({count})" },
   "detail.noAgents": { ko: "에이전트가 없습니다.", en: "No agents." },
   "detail.invalidId": {

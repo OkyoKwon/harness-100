@@ -272,6 +272,93 @@ const translations: Record<string, TranslationEntry> = {
   "guide.install.method2.step2": { ko: "ZIP 파일 압축 해제", en: "Extract the ZIP file" },
   "guide.install.method2.step3": { ko: ".claude/ 폴더를 프로젝트 루트에 복사", en: "Copy the .claude/ folder to your project root" },
   "guide.install.method3.title": { ko: "방법 3: CLI", en: "Method 3: CLI" },
+  "guide.usage.title": { ko: "사용 방법", en: "How to Use" },
+  "guide.usage.body": {
+    ko: "하네스를 설치한 프로젝트 폴더에서 Claude Code를 실행하세요. 스킬에 등록된 트리거 조건에 맞는 프롬프트를 입력하면 에이전트가 자동으로 실행됩니다.",
+    en: "Run Claude Code in the project folder where you installed the harness. Type a prompt that matches the skill's trigger conditions, and agents will run automatically.",
+  },
+  "guide.usage.step1": {
+    ko: "프로젝트 폴더에서 claude 명령어 실행",
+    en: "Run the claude command in your project folder",
+  },
+  "guide.usage.step2": {
+    ko: "트리거 프롬프트 입력 (예: \"유튜브 영상 기획해줘\")",
+    en: "Type a trigger prompt (e.g., \"plan a YouTube video\")",
+  },
+  "guide.usage.step3": {
+    ko: "스킬이 자동 감지되어 에이전트가 순서대로 실행됨",
+    en: "The skill is auto-detected and agents run in sequence",
+  },
+  "guide.usage.tip": {
+    ko: "💡 각 하네스의 상세 페이지에서 트리거 조건과 실행 모드를 확인할 수 있습니다.",
+    en: "💡 Check trigger conditions and execution modes on each harness's detail page.",
+  },
+  "guide.modes.title": { ko: "실행 모드", en: "Execution Modes" },
+  "guide.modes.body": {
+    ko: "하네스마다 여러 실행 모드를 제공합니다. 전체 파이프라인을 실행하거나, 특정 작업만 수행하는 부분 모드를 선택할 수 있습니다.",
+    en: "Each harness offers multiple execution modes. You can run the full pipeline or choose a focused mode for a specific task.",
+  },
+  "guide.modes.example1": {
+    ko: "\"풀 프로덕션\" → 풀 파이프라인 모드 (전체 에이전트 실행)",
+    en: "\"full production\" → Full Pipeline mode (runs all agents)",
+  },
+  "guide.modes.example2": {
+    ko: "\"대본만 써줘\" → 대본 모드 (일부 에이전트만 실행)",
+    en: "\"write a script only\" → Script mode (runs a subset of agents)",
+  },
+  "guide.modes.example3": {
+    ko: "\"이 대본 검토해줘\" → 리뷰 모드 (리뷰어 에이전트만 실행)",
+    en: "\"review this script\" → Review mode (runs reviewer agent only)",
+  },
+  "guide.fileStructure.title": {
+    ko: "설치 후 파일 구조",
+    en: "File Structure After Installation",
+  },
+  "guide.fileStructure.body": {
+    ko: "설치하면 프로젝트 루트에 .claude/ 폴더가 생성됩니다.",
+    en: "After installation, a .claude/ folder is created in your project root.",
+  },
+  "guide.fileStructure.agents": {
+    ko: ".claude/agents/ — 에이전트 역할과 지시사항이 담긴 마크다운 파일",
+    en: ".claude/agents/ — Markdown files with agent roles and instructions",
+  },
+  "guide.fileStructure.skills": {
+    ko: ".claude/skills/ — 에이전트 실행 순서를 조율하는 스킬 파일",
+    en: ".claude/skills/ — Skill files that orchestrate agent execution order",
+  },
+  "guide.fileStructure.claudeMd": {
+    ko: ".claude/CLAUDE.md — 하네스 메타데이터 및 프로젝트 설정",
+    en: ".claude/CLAUDE.md — Harness metadata and project configuration",
+  },
+  "guide.fileStructure.customizeTip": {
+    ko: "💡 에이전트 파일을 직접 편집하여 역할, 지시사항, 산출물 형식을 커스터마이즈할 수 있습니다.",
+    en: "💡 You can directly edit agent files to customize roles, instructions, and output formats.",
+  },
+  "guide.troubleshooting.title": { ko: "문제 해결", en: "Troubleshooting" },
+  "guide.troubleshooting.q1": {
+    ko: "스킬이 인식되지 않아요",
+    en: "Skill is not recognized",
+  },
+  "guide.troubleshooting.a1": {
+    ko: "Claude Code를 재시작하세요. 터미널에서 /exit 입력 후 다시 claude를 실행합니다.",
+    en: "Restart Claude Code. Type /exit in the terminal and run claude again.",
+  },
+  "guide.troubleshooting.q2": {
+    ko: "설치가 제대로 되었는지 확인하고 싶어요",
+    en: "How do I verify the installation?",
+  },
+  "guide.troubleshooting.a2": {
+    ko: "프로젝트 루트에 .claude/agents/ 와 .claude/skills/ 폴더가 있는지 확인하세요.",
+    en: "Check that .claude/agents/ and .claude/skills/ folders exist in your project root.",
+  },
+  "guide.troubleshooting.q3": {
+    ko: "에이전트 동작을 수정하고 싶어요",
+    en: "I want to modify agent behavior",
+  },
+  "guide.troubleshooting.a3": {
+    ko: ".claude/agents/ 폴더의 마크다운 파일을 직접 편집하세요. 변경사항은 다음 실행부터 반영됩니다.",
+    en: "Edit the markdown files in .claude/agents/ directly. Changes take effect on the next run.",
+  },
   "guide.browser.title": { ko: "브라우저 호환성", en: "Browser Compatibility" },
   "guide.browser.feature": { ko: "기능", en: "Feature" },
   "guide.browser.catalogBrowse": { ko: "카탈로그 탐색", en: "Catalog Browse" },

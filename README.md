@@ -1,11 +1,78 @@
 # Harness 100
 
-**100개의 AI 에이전트 팀, 3번의 클릭으로 세팅**
+**100 AI Agent Teams, Set Up in 3 Clicks**
 
-[![Deploy](https://github.com/OkyoKwon/harness-100/actions/workflows/deploy.yml/badge.svg)](https://github.com/OkyoKwon/harness-100/actions/workflows/deploy.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 [English](#english) | [한국어](#한국어)
+
+---
+
+## English
+
+A web app to browse, customize, and set up 100 Claude Code harnesses (agent teams + orchestrator skills) directly into your projects.
+
+> **Browse → Click → Run**
+>
+> Open-source · No login required · Set up directly in your browser
+
+### Features
+
+- **Catalog** — 10 categories, fuzzy search, sort by number/popularity/name
+- **3 Setup Methods** — Browser direct setup (File System Access API) / ZIP download / CLI copy
+- **Conflict Detection & Merge** — Overwrite, skip, or merge when `.claude/` files already exist
+- **Customization** — Edit agent names, roles, and output templates before setup
+- **Harness Composer** — Combine agents from multiple harnesses into a custom workflow
+- **Popularity Ranking** — Community top 10 harnesses
+- **Favorites** — Locally persisted, viewable in favorites tab
+- **Multilingual** — English / Korean
+- **Dark Mode** — System preference + manual toggle
+
+### Demo
+
+**https://harness100.vercel.app**
+
+### Quick Start
+
+```bash
+git clone https://github.com/OkyoKwon/harness-100.git
+cd harness-100
+pnpm install
+pnpm dev
+```
+
+Open http://localhost:3000.
+
+### Scripts
+
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Development server |
+| `pnpm build` | Static build (→ `out/`) |
+| `pnpm test` | Run tests |
+| `pnpm test:coverage` | Tests with coverage |
+| `pnpm storybook` | Run Storybook |
+| `pnpm seed` | Fetch harness data from GitHub |
+
+### Tech Stack
+
+| Area | Technology |
+|------|-----------|
+| Framework | Next.js 16 (App Router, Static Export) |
+| Language | TypeScript 6 |
+| Styling | Tailwind CSS 4 |
+| Testing | Vitest + Testing Library + MSW |
+| Storybook | Storybook 10 |
+| Package Manager | pnpm 10 |
+| Deployment | Vercel |
+
+### Acknowledgments
+
+This project is based on [revfactory/harness-100](https://github.com/revfactory/harness-100).
+
+### License
+
+[Apache License 2.0](LICENSE)
 
 ---
 
@@ -31,7 +98,7 @@ Claude Code용 하네스(에이전트 팀 + 오케스트레이터 스킬) 100개
 
 ### 데모
 
-**https://okyokwon.github.io/harness-100**
+**https://harness100.vercel.app**
 
 ### 빠른 시작
 
@@ -89,76 +156,10 @@ scripts/                    — 시드 데이터 스크립트
 .storybook/                 — 스토리북 설정
 ```
 
-### 배포
+### 감사의 말
 
-**GitHub Pages** — `main` 브랜치에 푸시하면 자동 배포됩니다.
-
-**Vercel** — Root Directory를 빈칸으로 설정하세요.
+이 프로젝트는 [revfactory/harness-100](https://github.com/revfactory/harness-100)을 기반으로 제작되었습니다.
 
 ### 라이선스
-
-[Apache License 2.0](LICENSE)
-
----
-
-## English
-
-A web app to browse, customize, and set up 100 Claude Code harnesses (agent teams + orchestrator skills) directly into your projects.
-
-> **Browse → Click → Run**
->
-> Open-source · No login required · Set up directly in your browser
-
-### Features
-
-- **Catalog** — 10 categories, fuzzy search, sort by number/popularity/name
-- **3 Setup Methods** — Browser direct setup (File System Access API) / ZIP download / CLI copy
-- **Conflict Detection & Merge** — Overwrite, skip, or merge when `.claude/` files already exist
-- **Customization** — Edit agent names, roles, and output templates before setup
-- **Harness Composer** — Combine agents from multiple harnesses into a custom workflow
-- **Popularity Ranking** — Community top 10 harnesses
-- **Favorites** — Locally persisted, viewable in favorites tab
-- **Multilingual** — Korean / English
-- **Dark Mode** — System preference + manual toggle
-
-### Demo
-
-**https://okyokwon.github.io/harness-100**
-
-### Quick Start
-
-```bash
-git clone https://github.com/OkyoKwon/harness-100.git
-cd harness-100
-pnpm install
-pnpm dev
-```
-
-Open http://localhost:3000.
-
-### Scripts
-
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Development server |
-| `pnpm build` | Static build (→ `out/`) |
-| `pnpm test` | Run tests |
-| `pnpm test:coverage` | Tests with coverage |
-| `pnpm storybook` | Run Storybook |
-| `pnpm seed` | Fetch harness data from GitHub |
-
-### Tech Stack
-
-| Area | Technology |
-|------|-----------|
-| Framework | Next.js 16 (App Router, Static Export) |
-| Language | TypeScript 6 |
-| Styling | Tailwind CSS 4 |
-| Testing | Vitest + Testing Library + MSW |
-| Storybook | Storybook 10 |
-| Package Manager | pnpm 10 |
-| Deployment | GitHub Pages / Vercel |
-
-### License
 
 [Apache License 2.0](LICENSE)

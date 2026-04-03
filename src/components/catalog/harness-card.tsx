@@ -86,7 +86,7 @@ export function HarnessCard({ harness, isFavorite, onToggleFavorite, showRank = 
             {harness.name}
           </h3>
 
-          <p className="text-xs text-[var(--muted-foreground)] mb-3 line-clamp-2">
+          <p className="text-xs text-[var(--muted-foreground)] mb-3 line-clamp-2 min-h-[2lh]">
             {harness.description}
           </p>
 

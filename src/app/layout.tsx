@@ -52,6 +52,8 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: langScript }} />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2KBZQ7BMQM" />
+        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-2KBZQ7BMQM');` }} />
       </head>
       <body className="min-h-screen">
         <LanguageProvider>

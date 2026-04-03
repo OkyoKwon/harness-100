@@ -4,12 +4,14 @@ import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import type { HarnessMeta } from "@/lib/types";
 import { CATEGORIES } from "@/lib/constants";
+import { useLocale } from "@/hooks/use-locale";
 
 interface RankingTableProps {
   readonly items: ReadonlyArray<HarnessMeta>;
 }
 
 export function RankingTable({ items }: RankingTableProps) {
+  const { t, locale } = useLocale();
   const [categoryFilter, setCategoryFilter] = useState("all");
 
   const filtered = useMemo(() => {
@@ -25,17 +27,17 @@ export function RankingTable({ items }: RankingTableProps) {
     <div>
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-bold text-[var(--foreground)]">
-          전체 순위
+          {t("ranking.fullRanking")}
         </h2>
         <select
           value={categoryFilter}
           onChange={handleFilterChange}
           className="rounded-md border border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-xs text-[var(--foreground)] focus-visible:outline-2 focus-visible:outline-[var(--ring)] transition-base"
         >
-          <option value="all">전체 카테고리</option>
+          <option value="all">{t("ranking.allCategories")}</option>
           {CATEGORIES.map((cat) => (
             <option key={cat.slug} value={cat.slug}>
-              {cat.label}
+              {locale === "en" ? cat.labelEn : cat.label}
             </option>
           ))}
         </select>
@@ -45,16 +47,17 @@ export function RankingTable({ items }: RankingTableProps) {
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-[var(--secondary)] text-[var(--muted-foreground)]">
-              <th className="text-left px-4 py-3 font-medium w-16">순위</th>
-              <th className="text-left px-4 py-3 font-medium">하네스</th>
-              <th className="text-left px-4 py-3 font-medium hidden sm:table-cell">카테고리</th>
-              <th className="text-center px-4 py-3 font-medium hidden sm:table-cell w-24">에이전트</th>
+              <th className="text-left px-4 py-3 font-medium w-16">{t("ranking.rankHeader")}</th>
+              <th className="text-left px-4 py-3 font-medium">{t("ranking.harnessHeader")}</th>
+              <th className="text-left px-4 py-3 font-medium hidden sm:table-cell">{t("ranking.categoryHeader")}</th>
+              <th className="text-center px-4 py-3 font-medium hidden sm:table-cell w-24">{t("ranking.agentHeader")}</th>
             </tr>
           </thead>
           <tbody>
             {filtered.map((harness) => {
               const paddedId = String(harness.id).padStart(2, "0");
               const category = CATEGORIES.find((c) => c.slug === harness.category);
+              const categoryLabel = locale === "en" ? (category?.labelEn ?? "") : (category?.label ?? "");
               return (
                 <tr
                   key={harness.id}
@@ -82,13 +85,13 @@ export function RankingTable({ items }: RankingTableProps) {
                         className="text-xs px-2 py-0.5 rounded-full text-white"
                         style={{ backgroundColor: category.color }}
                       >
-                        {category.label}
+                        {categoryLabel}
                       </span>
                     )}
                   </td>
                   <td className="px-4 py-3 text-center hidden sm:table-cell">
                     <span className="text-xs text-[var(--muted-foreground)]">
-                      {harness.agentCount}명
+                      {t("card.agents", { count: harness.agentCount })}
                     </span>
                   </td>
                 </tr>
@@ -100,7 +103,7 @@ export function RankingTable({ items }: RankingTableProps) {
 
       {filtered.length === 0 && (
         <div className="text-center py-8 text-[var(--muted-foreground)]">
-          <p className="text-sm">해당 카테고리에 하네스가 없습니다</p>
+          <p className="text-sm">{t("ranking.emptyCategory")}</p>
         </div>
       )}
     </div>

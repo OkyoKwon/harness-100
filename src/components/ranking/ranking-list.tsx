@@ -3,14 +3,17 @@
 import Link from "next/link";
 import type { HarnessMeta } from "@/lib/types";
 import { CATEGORIES } from "@/lib/constants";
+import { useLocale } from "@/hooks/use-locale";
 
 interface RankingListProps {
   readonly items: ReadonlyArray<HarnessMeta>;
 }
 
 function RankingListItem({ harness }: { readonly harness: HarnessMeta }) {
+  const { t, locale } = useLocale();
   const paddedId = String(harness.id).padStart(2, "0");
   const category = CATEGORIES.find((c) => c.slug === harness.category);
+  const categoryLabel = locale === "en" ? (category?.labelEn ?? "") : (category?.label ?? "");
 
   return (
     <Link
@@ -34,14 +37,14 @@ function RankingListItem({ harness }: { readonly harness: HarnessMeta }) {
 
       <div className="hidden sm:flex items-center gap-2 shrink-0">
         <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--secondary)] text-[var(--secondary-foreground)]">
-          👥 {harness.agentCount}명
+          {t("card.agents", { count: harness.agentCount })}
         </span>
         {category && (
           <span
             className="text-xs px-2 py-0.5 rounded-full text-white"
             style={{ backgroundColor: category.color }}
           >
-            {category.label}
+            {categoryLabel}
           </span>
         )}
       </div>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { HarnessMeta } from "@/lib/types";
 import { CATEGORIES } from "@/lib/constants";
+import { useLocale } from "@/hooks/use-locale";
 
 interface RankingPodiumProps {
   readonly items: ReadonlyArray<HarnessMeta>;
@@ -15,9 +16,11 @@ const MEDAL_STYLES = [
 ] as const;
 
 function PodiumCard({ harness, rank }: { readonly harness: HarnessMeta; readonly rank: number }) {
+  const { t, locale } = useLocale();
   const style = MEDAL_STYLES[rank];
   const paddedId = String(harness.id).padStart(2, "0");
   const category = CATEGORIES.find((c) => c.slug === harness.category);
+  const categoryLabel = locale === "en" ? (category?.labelEn ?? "") : (category?.label ?? "");
   const isFirst = rank === 0;
 
   return (
@@ -28,7 +31,7 @@ function PodiumCard({ harness, rank }: { readonly harness: HarnessMeta; readonly
       <div className="text-center">
         <div className={`${isFirst ? "text-5xl" : "text-4xl"} mb-2`}>{style.emoji}</div>
         <div className="text-xs font-bold text-[var(--muted-foreground)] mb-1">
-          {rank + 1}위
+          {t("ranking.rank", { rank: rank + 1 })}
         </div>
         <h3 className={`font-bold mb-2 ${isFirst ? "text-lg" : "text-base"} text-[var(--foreground)]`}>
           {harness.name}
@@ -38,14 +41,14 @@ function PodiumCard({ harness, rank }: { readonly harness: HarnessMeta; readonly
         </p>
         <div className="flex items-center justify-center gap-2">
           <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--secondary)] text-[var(--secondary-foreground)]">
-            👥 {harness.agentCount}명
+            {t("card.agents", { count: harness.agentCount })}
           </span>
           {category && (
             <span
               className="text-xs px-2 py-0.5 rounded-full text-white"
               style={{ backgroundColor: category.color }}
             >
-              {category.label}
+              {categoryLabel}
             </span>
           )}
         </div>
@@ -61,7 +64,7 @@ export function RankingPodium({ items }: RankingPodiumProps) {
 
   return (
     <div className="mb-8">
-      {/* Desktop: 2위-1위-3위 포디엄 배치 */}
+      {/* Desktop: 2nd-1st-3rd podium layout */}
       <div className="hidden md:grid md:grid-cols-3 gap-4 items-end">
         <div className="pt-8">
           <PodiumCard harness={top3[1]} rank={1} />
@@ -74,7 +77,7 @@ export function RankingPodium({ items }: RankingPodiumProps) {
         </div>
       </div>
 
-      {/* Mobile: 1위-2위-3위 순서 */}
+      {/* Mobile: 1st-2nd-3rd order */}
       <div className="md:hidden space-y-3">
         {top3.map((harness, i) => (
           <PodiumCard key={harness.id} harness={harness} rank={i} />

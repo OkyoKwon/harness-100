@@ -2,6 +2,11 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { RankingPodium } from "../ranking-podium";
 import { createHarnessMeta } from "@/test/mocks/harness-fixtures";
+import { LanguageProvider } from "@/hooks/use-locale";
+
+function renderWithLocale(ui: React.ReactElement) {
+  return render(<LanguageProvider>{ui}</LanguageProvider>);
+}
 
 describe("RankingPodium", () => {
   const top3 = [
@@ -33,7 +38,7 @@ describe("RankingPodium", () => {
 
   it("renders 3 items with correct medals", () => {
     // Arrange & Act
-    render(<RankingPodium items={top3} />);
+    renderWithLocale(<RankingPodium items={top3} />);
 
     // Assert
     expect(screen.getAllByText("\u{1F947}")).toHaveLength(2); // gold appears in desktop + mobile
@@ -43,7 +48,7 @@ describe("RankingPodium", () => {
 
   it("links navigate to correct harness detail pages", () => {
     // Arrange & Act
-    render(<RankingPodium items={top3} />);
+    renderWithLocale(<RankingPodium items={top3} />);
 
     // Assert - each harness appears in desktop and mobile layout (6 links total)
     const links = screen.getAllByRole("link");
@@ -55,7 +60,7 @@ describe("RankingPodium", () => {
 
   it("shows category and agent count", () => {
     // Arrange & Act
-    render(<RankingPodium items={top3} />);
+    renderWithLocale(<RankingPodium items={top3} />);
 
     // Assert
     expect(screen.getAllByText("개발").length).toBeGreaterThanOrEqual(2);
@@ -67,7 +72,7 @@ describe("RankingPodium", () => {
 
   it("renders harness names", () => {
     // Arrange & Act
-    render(<RankingPodium items={top3} />);
+    renderWithLocale(<RankingPodium items={top3} />);
 
     // Assert
     expect(screen.getAllByText("Fullstack Web App").length).toBeGreaterThanOrEqual(1);
@@ -80,7 +85,7 @@ describe("RankingPodium", () => {
     const twoItems = top3.slice(0, 2);
 
     // Act
-    const { container } = render(<RankingPodium items={twoItems} />);
+    const { container } = renderWithLocale(<RankingPodium items={twoItems} />);
 
     // Assert
     expect(container.innerHTML).toBe("");
@@ -88,7 +93,7 @@ describe("RankingPodium", () => {
 
   it("returns null for empty items array", () => {
     // Arrange & Act
-    const { container } = render(<RankingPodium items={[]} />);
+    const { container } = renderWithLocale(<RankingPodium items={[]} />);
 
     // Assert
     expect(container.innerHTML).toBe("");
@@ -96,7 +101,7 @@ describe("RankingPodium", () => {
 
   it("shows rank number text", () => {
     // Arrange & Act
-    render(<RankingPodium items={top3} />);
+    renderWithLocale(<RankingPodium items={top3} />);
 
     // Assert
     expect(screen.getAllByText("1위").length).toBeGreaterThanOrEqual(1);

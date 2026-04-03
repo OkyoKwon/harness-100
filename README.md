@@ -10,15 +10,19 @@
 
 ## English
 
-A web app to browse, customize, and set up 100 Claude Code harnesses (agent teams + orchestrator skills) directly into your projects.
+A web app to browse, customize, and set up 100 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) harnesses (agent teams + orchestrator skills) directly into your projects.
 
 > **Browse → Click → Run**
 >
 > Open-source · No login required · Set up directly in your browser
 
+Based on [revfactory/harness-100](https://github.com/revfactory/harness-100).
+
+![Catalog](docs/screenshots/catalog.png)
+
 ### Features
 
-- **Catalog** — 10 categories, fuzzy search, sort by number/popularity/name
+- **Catalog** — 10 categories, fuzzy search, sort by number / popularity / name
 - **3 Setup Methods** — Browser direct setup (File System Access API) / ZIP download / CLI copy
 - **Conflict Detection & Merge** — Overwrite, skip, or merge when `.claude/` files already exist
 - **Customization** — Edit agent names, roles, and output templates before setup
@@ -66,10 +70,6 @@ Open http://localhost:3000.
 | Package Manager | pnpm 10 |
 | Deployment | Vercel |
 
-### Acknowledgments
-
-This project is based on [revfactory/harness-100](https://github.com/revfactory/harness-100).
-
 ### License
 
 [Apache License 2.0](LICENSE)
@@ -78,11 +78,13 @@ This project is based on [revfactory/harness-100](https://github.com/revfactory/
 
 ## 한국어
 
-Claude Code용 하네스(에이전트 팀 + 오케스트레이터 스킬) 100개를 탐색하고, 커스터마이즈하고, 바로 프로젝트에 세팅할 수 있는 웹앱입니다.
+[Claude Code](https://docs.anthropic.com/en/docs/claude-code)용 하네스(에이전트 팀 + 오케스트레이터 스킬) 100개를 탐색하고, 커스터마이즈하고, 바로 프로젝트에 세팅할 수 있는 웹앱입니다.
 
 > **고르고 → 클릭하고 → 바로 실행**
 >
 > 오픈소스 기반 · 로그인 없이 · 브라우저에서 바로 세팅
+
+[revfactory/harness-100](https://github.com/revfactory/harness-100) 기반으로 제작되었습니다.
 
 ### 주요 기능
 
@@ -132,33 +134,7 @@ http://localhost:3000 에서 확인하세요.
 | 테스트 | Vitest + Testing Library + MSW |
 | 스토리북 | Storybook 10 |
 | 패키지 매니저 | pnpm 10 |
-| 배포 | GitHub Pages / Vercel |
-
-### 프로젝트 구조
-
-```
-src/
-├── app/                    — 페이지 (카탈로그, 상세, 조합기, 가이드, 랭킹)
-├── components/
-│   ├── ui/                 — 공통 UI (Button, Card, Modal, Input 등)
-│   ├── catalog/            — 카탈로그 (검색, 필터, 그리드, 카드)
-│   ├── detail/             — 상세 (에이전트 목록, 워크플로우 다이어그램)
-│   ├── composer/           — 하네스 조합기
-│   ├── customizer/         — 에이전트 커스터마이즈 패널
-│   ├── setup/              — 충돌 해결 모달
-│   └── actions/            — 세팅·ZIP·CLI 버튼
-├── hooks/                  — 커스텀 훅
-├── lib/                    — 유틸리티 (타입, 로더, 번역, ZIP 빌더 등)
-└── styles/                 — CSS 토큰 & 글로벌 스타일
-
-public/data/{en,ko}/       — 하네스 JSON 데이터 (다국어)
-scripts/                    — 시드 데이터 스크립트
-.storybook/                 — 스토리북 설정
-```
-
-### 감사의 말
-
-이 프로젝트는 [revfactory/harness-100](https://github.com/revfactory/harness-100)을 기반으로 제작되었습니다.
+| 배포 | Vercel |
 
 ### 라이선스
 

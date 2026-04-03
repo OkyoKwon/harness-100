@@ -7,8 +7,10 @@ import { loadCatalog } from "@/lib/harness-loader";
 import { RankingPodium } from "@/components/ranking/ranking-podium";
 import { RankingList } from "@/components/ranking/ranking-list";
 import { RankingTable } from "@/components/ranking/ranking-table";
+import { useLocale } from "@/hooks/use-locale";
 
 export default function RankingPage() {
+  const { t } = useLocale();
   const [catalog, setCatalog] = useState<ReadonlyArray<HarnessMeta>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -18,11 +20,11 @@ export default function RankingPage() {
       .then(setCatalog)
       .catch((err: unknown) => {
         setError(
-          err instanceof Error ? err.message : "데이터를 불러오는 데 실패했습니다.",
+          err instanceof Error ? err.message : t("ranking.loadError"),
         );
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [t]);
 
   const sorted = useMemo(
     () => [...catalog].sort((a, b) => a.popularityRank - b.popularityRank),
@@ -63,7 +65,7 @@ export default function RankingPage() {
             onClick={() => window.location.reload()}
             className="mt-3 rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] hover:brightness-110 transition-base focus-ring"
           >
-            다시 시도
+            {t("ranking.retry")}
           </button>
         </div>
       </main>
@@ -77,33 +79,33 @@ export default function RankingPage() {
           href="/"
           className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded"
         >
-          ← 카탈로그
+          {t("ranking.backToCatalog")}
         </Link>
       </div>
 
       <div className="mb-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-2">
-          인기 랭킹
+          {t("ranking.title")}
         </h1>
         <p className="text-sm text-[var(--muted-foreground)]">
-          가장 실용적이고 범용적인 하네스 TOP 10과 전체 순위표
+          {t("ranking.subtitle")}
         </p>
       </div>
 
       {/* TOP 3 Podium */}
       <RankingPodium items={top3} />
 
-      {/* 4-10위 List */}
+      {/* 4-10 List */}
       {top4to10.length > 0 && (
         <div className="mb-8">
           <h2 className="text-lg font-bold text-[var(--foreground)] mb-4">
-            4 ~ 10위
+            {t("ranking.top4to10")}
           </h2>
           <RankingList items={top4to10} />
         </div>
       )}
 
-      {/* 11-100위 Table */}
+      {/* 11-100 Table */}
       {rest.length > 0 && <RankingTable items={rest} />}
 
       <div className="text-center py-8 text-xs sm:text-sm text-[var(--muted-foreground)]">

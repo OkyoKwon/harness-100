@@ -3,6 +3,11 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { RankingTable } from "../ranking-table";
 import { createHarnessMeta } from "@/test/mocks/harness-fixtures";
+import { LanguageProvider } from "@/hooks/use-locale";
+
+function renderWithLocale(ui: React.ReactElement) {
+  return render(<LanguageProvider>{ui}</LanguageProvider>);
+}
 
 describe("RankingTable", () => {
   const items = [
@@ -34,7 +39,7 @@ describe("RankingTable", () => {
 
   it("renders all items in the table", () => {
     // Arrange & Act
-    render(<RankingTable items={items} />);
+    renderWithLocale(<RankingTable items={items} />);
 
     // Assert
     expect(screen.getByText("Data Analysis")).toBeInTheDocument();
@@ -44,7 +49,7 @@ describe("RankingTable", () => {
 
   it("shows harness descriptions", () => {
     // Arrange & Act
-    render(<RankingTable items={items} />);
+    renderWithLocale(<RankingTable items={items} />);
 
     // Assert
     expect(screen.getByText("Data analysis pipeline")).toBeInTheDocument();
@@ -53,7 +58,7 @@ describe("RankingTable", () => {
 
   it("shows popularity rank numbers", () => {
     // Arrange & Act
-    render(<RankingTable items={items} />);
+    renderWithLocale(<RankingTable items={items} />);
 
     // Assert
     expect(screen.getByText("11")).toBeInTheDocument();
@@ -64,9 +69,9 @@ describe("RankingTable", () => {
   it("filters rows when category is changed", async () => {
     // Arrange
     const user = userEvent.setup();
-    render(<RankingTable items={items} />);
+    renderWithLocale(<RankingTable items={items} />);
 
-    // Act - select "비즈니스" category
+    // Act - select "business" category
     const select = screen.getByRole("combobox");
     await user.selectOptions(select, "business");
 
@@ -79,7 +84,7 @@ describe("RankingTable", () => {
   it("shows 'no results' message when filter matches nothing", async () => {
     // Arrange
     const user = userEvent.setup();
-    render(<RankingTable items={items} />);
+    renderWithLocale(<RankingTable items={items} />);
 
     // Act - select a category with no items
     const select = screen.getByRole("combobox");
@@ -92,7 +97,7 @@ describe("RankingTable", () => {
   it("shows all items when filter is reset to 'all'", async () => {
     // Arrange
     const user = userEvent.setup();
-    render(<RankingTable items={items} />);
+    renderWithLocale(<RankingTable items={items} />);
     const select = screen.getByRole("combobox");
 
     // Act - filter then reset
@@ -107,7 +112,7 @@ describe("RankingTable", () => {
 
   it("links to detail pages with padded IDs", () => {
     // Arrange & Act
-    render(<RankingTable items={items} />);
+    renderWithLocale(<RankingTable items={items} />);
 
     // Assert
     const links = screen.getAllByRole("link");
@@ -119,7 +124,7 @@ describe("RankingTable", () => {
 
   it("renders table headers", () => {
     // Arrange & Act
-    render(<RankingTable items={items} />);
+    renderWithLocale(<RankingTable items={items} />);
 
     // Assert
     expect(screen.getByText("순위")).toBeInTheDocument();

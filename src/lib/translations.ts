@@ -317,6 +317,31 @@ const translations: Record<string, TranslationEntry> = {
     en: "{written} created · {merged} merged · {skipped} skipped",
   },
 
+  // ── Ranking ──
+  "ranking.title": { ko: "인기 랭킹", en: "Popular Ranking" },
+  "ranking.subtitle": {
+    ko: "가장 실용적이고 범용적인 하네스 TOP 10과 전체 순위표",
+    en: "Top 10 most practical and versatile harnesses and full leaderboard",
+  },
+  "ranking.backToCatalog": { ko: "← 카탈로그", en: "← Catalog" },
+  "ranking.top4to10": { ko: "4 ~ 10위", en: "4th – 10th Place" },
+  "ranking.rank": { ko: "{rank}위", en: "#{rank}" },
+  "ranking.fullRanking": { ko: "전체 순위", en: "Full Ranking" },
+  "ranking.allCategories": { ko: "전체 카테고리", en: "All Categories" },
+  "ranking.rankHeader": { ko: "순위", en: "Rank" },
+  "ranking.harnessHeader": { ko: "하네스", en: "Harness" },
+  "ranking.categoryHeader": { ko: "카테고리", en: "Category" },
+  "ranking.agentHeader": { ko: "에이전트", en: "Agents" },
+  "ranking.emptyCategory": {
+    ko: "해당 카테고리에 하네스가 없습니다",
+    en: "No harnesses in this category",
+  },
+  "ranking.loadError": {
+    ko: "데이터를 불러오는 데 실패했습니다.",
+    en: "Failed to load data.",
+  },
+  "ranking.retry": { ko: "다시 시도", en: "Retry" },
+
   // ── Metadata ──
   "metadata.title": {
     ko: "Harness 100 — AI 에이전트 팀 하네스",

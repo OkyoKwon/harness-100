@@ -115,13 +115,46 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "게임 시나리오 전체 설계, 풀 내러티브",
         "agents": [
           "branch-architect",
           "dialogue-writer",
           "narrative-reviewer",
           "quest-designer",
           "worldbuilder"
+        ]
+      },
+      {
+        "name": "세계관 모드",
+        "triggerPattern": "세계관만 설계해줘",
+        "agents": [
+          "worldbuilder",
+          "narrative-reviewer"
+        ]
+      },
+      {
+        "name": "퀘스트 모드",
+        "triggerPattern": "이 세계관으로 퀘스트 만들어줘 (기존 파일)",
+        "agents": [
+          "quest-designer",
+          "dialogue-writer",
+          "narrative-reviewer"
+        ]
+      },
+      {
+        "name": "대사 모드",
+        "triggerPattern": "NPC 대사만 써줘 (기존 퀘스트 있음)",
+        "agents": [
+          "dialogue-writer",
+          "narrative-reviewer"
+        ]
+      },
+      {
+        "name": "분기 모드",
+        "triggerPattern": "분기 시나리오만 설계해줘 (기존 퀘스트 있음)",
+        "agents": [
+          "branch-architect",
+          "narrative-reviewer"
         ]
       }
     ],

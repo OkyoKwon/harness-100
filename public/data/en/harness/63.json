@@ -133,12 +133,44 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "문헌 리뷰 해줘, 선행 연구 분석",
         "agents": [
           "critic-synthesizer",
           "literature-searcher",
           "note-taker",
           "reference-manager",
+          "research-coordinator"
+        ]
+      },
+      {
+        "name": "검색 모드",
+        "triggerPattern": "논문 검색만 해줘",
+        "agents": [
+          "literature-searcher",
+          "reference-manager"
+        ]
+      },
+      {
+        "name": "메모 모드",
+        "triggerPattern": "이 논문들 정리해줘 (기존 문헌 제공)",
+        "agents": [
+          "note-taker",
+          "critic-synthesizer",
+          "reference-manager"
+        ]
+      },
+      {
+        "name": "서지 모드",
+        "triggerPattern": "참고문헌 형식 바꿔줘",
+        "agents": [
+          "reference-manager"
+        ]
+      },
+      {
+        "name": "종합 모드",
+        "triggerPattern": "이 문헌들 종합 분석해줘",
+        "agents": [
+          "critic-synthesizer",
           "research-coordinator"
         ]
       }

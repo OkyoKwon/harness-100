@@ -92,12 +92,34 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "법률 리서치 전체, 법적 쟁점 종합 분석",
         "agents": [
           "case-searcher",
           "legal-analyst",
           "opinion-writer",
           "strategy-advisor"
+        ]
+      },
+      {
+        "name": "판례 검색 모드",
+        "triggerPattern": "관련 판례만 찾아줘",
+        "agents": [
+          "case-searcher"
+        ]
+      },
+      {
+        "name": "법리 분석 모드",
+        "triggerPattern": "이 쟁점의 법리를 분석해줘",
+        "agents": [
+          "case-searcher",
+          "legal-analyst"
+        ]
+      },
+      {
+        "name": "의견서 모드",
+        "triggerPattern": "법률 의견서만 작성해줘 (분석 결과 있음)",
+        "agents": [
+          "opinion-writer"
         ]
       }
     ],

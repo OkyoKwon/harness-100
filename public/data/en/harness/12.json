@@ -130,13 +130,46 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "광고 캠페인 기획해줘, 풀 캠페인",
         "agents": [
           "campaign-reviewer",
           "copywriter",
           "creative-director",
           "market-analyst",
           "media-planner"
+        ]
+      },
+      {
+        "name": "카피 모드",
+        "triggerPattern": "광고 카피만 써줘",
+        "agents": [
+          "market-analyst",
+          "copywriter",
+          "campaign-reviewer"
+        ]
+      },
+      {
+        "name": "크리에이티브 모드",
+        "triggerPattern": "이 카피로 크리에이티브 만들어줘 (기존 카피)",
+        "agents": [
+          "creative-director",
+          "campaign-reviewer"
+        ]
+      },
+      {
+        "name": "미디어 모드",
+        "triggerPattern": "미디어 플랜만 짜줘",
+        "agents": [
+          "market-analyst",
+          "media-planner",
+          "campaign-reviewer"
+        ]
+      },
+      {
+        "name": "리뷰 모드",
+        "triggerPattern": "이 캠페인 검토해줘",
+        "agents": [
+          "campaign-reviewer"
         ]
       }
     ],

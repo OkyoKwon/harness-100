@@ -116,13 +116,44 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "ADR 작성해줘, 아키텍처 결정 기록",
         "agents": [
           "adr-author",
           "alternative-researcher",
           "context-analyst",
           "impact-tracker",
           "tradeoff-evaluator"
+        ]
+      },
+      {
+        "name": "대안 분석 모드",
+        "triggerPattern": "대안 비교만 해줘",
+        "agents": [
+          "context-analyst",
+          "alternative-researcher",
+          "tradeoff-evaluator"
+        ]
+      },
+      {
+        "name": "문서화 모드",
+        "triggerPattern": "이 결정 문서화해줘 (결정 완료 상태)",
+        "agents": [
+          "adr-author",
+          "impact-tracker"
+        ]
+      },
+      {
+        "name": "영향 분석 모드",
+        "triggerPattern": "이 ADR 영향 분석해줘 (기존 ADR 있음)",
+        "agents": [
+          "impact-tracker"
+        ]
+      },
+      {
+        "name": "컨텍스트 모드",
+        "triggerPattern": "기술 컨텍스트 정리해줘",
+        "agents": [
+          "context-analyst"
         ]
       }
     ],

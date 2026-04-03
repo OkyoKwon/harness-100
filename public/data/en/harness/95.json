@@ -109,13 +109,42 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "구매 문서 전체 만들어줘",
         "agents": [
           "acceptance-builder",
           "contract-reviewer",
           "evaluation-designer",
           "requirements-definer",
           "vendor-comparator"
+        ]
+      },
+      {
+        "name": "사양서 모드",
+        "triggerPattern": "요구사항 사양서만 써줘",
+        "agents": [
+          "requirements-definer"
+        ]
+      },
+      {
+        "name": "비교 모드",
+        "triggerPattern": "벤더 비교만 해줘",
+        "agents": [
+          "requirements-definer",
+          "vendor-comparator"
+        ]
+      },
+      {
+        "name": "평가 모드",
+        "triggerPattern": "평가 기준표만 만들어줘",
+        "agents": [
+          "requirements-definer"
+        ]
+      },
+      {
+        "name": "검토 모드",
+        "triggerPattern": "이 계약서 검토해줘",
+        "agents": [
+          "contract-reviewer"
         ]
       }
     ],

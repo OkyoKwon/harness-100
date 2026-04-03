@@ -97,11 +97,39 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "식단 전체 짜줘, 일주일 식단",
         "agents": [
           "meal-designer",
           "nutritionist",
           "recipe-writer",
+          "shopping-coordinator"
+        ]
+      },
+      {
+        "name": "영양분석 모드",
+        "triggerPattern": "내 칼로리 계산해줘",
+        "agents": [
+          "nutritionist"
+        ]
+      },
+      {
+        "name": "레시피 모드",
+        "triggerPattern": "오늘 저녁 레시피 알려줘",
+        "agents": [
+          "recipe-writer"
+        ]
+      },
+      {
+        "name": "분석 모드",
+        "triggerPattern": "이 식단 영양 분석해줘 (기존 파일)",
+        "agents": [
+          "nutritionist"
+        ]
+      },
+      {
+        "name": "장보기 모드",
+        "triggerPattern": "장보기 목록만 만들어줘 (식단 있음)",
+        "agents": [
           "shopping-coordinator"
         ]
       }

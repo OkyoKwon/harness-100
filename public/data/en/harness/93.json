@@ -118,13 +118,44 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "피드백 전체 분석해줘",
         "agents": [
           "data-collector",
           "insight-writer",
           "sentiment-analyst",
           "topic-classifier",
           "trend-detector"
+        ]
+      },
+      {
+        "name": "감성 모드",
+        "triggerPattern": "감성분석만 해줘",
+        "agents": [
+          "data-collector",
+          "sentiment-analyst"
+        ]
+      },
+      {
+        "name": "분류 모드",
+        "triggerPattern": "이 데이터 주제별로 분류해줘",
+        "agents": [
+          "data-collector",
+          "topic-classifier"
+        ]
+      },
+      {
+        "name": "트렌드 모드",
+        "triggerPattern": "트렌드만 봐줘 (기존 분석 있음)",
+        "agents": [
+          "trend-detector",
+          "insight-writer"
+        ]
+      },
+      {
+        "name": "보고서 모드",
+        "triggerPattern": "경영 보고서만 써줘 (기존 분석 있음)",
+        "agents": [
+          "insight-writer"
         ]
       }
     ],

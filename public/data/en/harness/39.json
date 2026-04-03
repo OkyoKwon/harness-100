@@ -14,7 +14,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 릴리스 공지문 — v[X.Y.Z]\n\n## 블로그 포스트\n### [제목]\n[도입부 — 이번 릴리스 요약 1~2문장]\n\n#### 주요 변경사항\n[하이라이트 3~5개 상세 설명]\n\n#### 업그레이드 방법\n[설치/업그레이드 명령어]\n\n#### Breaking Changes\n[해당 시 마이그레이션 가이드 링크]\n\n#### 기여자\n[감사 인사]\n\n---\n\n## SNS 게시물\n\n### Twitter/X (280자)\n[짧은 발표문 + 해시태그 + 링크]\n\n### LinkedIn\n[전문적 톤의 발표문 + 해시태그]\n\n---\n\n## 이메일 뉴스레터\n**제목**: [이메일 제목]\n**본문**:\n[인사 → 요약 → 하이라이트 → CTA → 마무리]\n\n---\n\n## Slack/Discord 공지\n[간결한 공지 + 링크]",
       "dependencies": []
     },
     {
@@ -26,7 +26,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 변경 분류 결과\n\n## 분류 요약\n| 분류 | 건수 | 영향도 |\n|------|------|--------|\n\n## Breaking Changes\n### [변경 제목]\n- **커밋**: [해시 목록]\n- **영향 범위**: [모듈/API]\n- **이전 동작**: [변경 전]\n- **새 동작**: [변경 후]\n- **마이그레이션 필요 여부**: 예/아니오\n- **마이그레이션 난이도**: 쉬움/보통/어려움\n\n## New Features\n### [기능 제목]\n- **커밋**: [해시]\n- **설명**: [사용자 관점 기능 설명]\n- **사용 방법**: [간략한 사용법]\n\n## Bug Fixes\n### [수정 제목]\n- **커밋**: [해시]\n- **증상**: [사용자가 겪던 문제]\n- **원인**: [기술적 원인]\n- **해결**: [수정 방법]\n\n## 릴리스 노트 작성자 전달 사항\n## 마이그레이션 가이드 작성자 전달 사항",
       "dependencies": [
         "commit-analyst"
       ]
@@ -40,7 +40,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 커밋 분석 보고서\n\n## 릴리스 범위\n- **이전 버전**: [태그/커밋]\n- **현재 버전**: [태그/커밋]\n- **총 커밋 수**: N\n- **기간**: [시작일] ~ [종료일]\n\n## 커밋 목록\n| 해시 | 메시지 | 작성자 | PR# | 이슈# | 영향 파일 |\n|------|--------|--------|-----|-------|----------|\n\n## 영향 범위 분석\n| 모듈/패키지 | 변경 파일 수 | 추가 라인 | 삭제 라인 | 주요 변경 |\n|-----------|------------|---------|---------|----------|\n\n## 기여자 목록\n| 기여자 | 커밋 수 | 주요 기여 영역 |\n|--------|--------|-------------|\n\n## Conventional Commit 파싱 결과\n| 타입 | 건수 |\n|------|------|\n| feat | N |\n| fix | N |\n| BREAKING CHANGE | N |\n| refactor | N |\n| docs | N |\n| chore | N |\n\n## 변경 분류자 전달 사항\n## 릴리스 노트 작성자 전달 사항",
       "dependencies": []
     },
     {
@@ -52,7 +52,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 마이그레이션 가이드: v[이전] → v[현재]\n\n## 마이그레이션 개요\n- **난이도**: 쉬움/보통/어려움\n- **예상 소요 시간**: [시간]\n- **Breaking Changes 수**: N개\n- **자동 마이그레이션 가능 비율**: X%\n\n## 사전 준비\n1. 현재 버전 확인\n2. 데이터 백업\n3. 의존성 호환성 확인\n\n## 호환성 매트릭스\n| 의존성 | 최소 버전 | 권장 버전 | 비고 |\n|--------|----------|----------|------|\n\n## 단계별 마이그레이션\n\n### 1. [Breaking Change 제목]\n**변경 내용**: [무엇이 바뀌었는가]\n**영향 범위**: [어떤 코드가 영향받는가]\n\n**이전 (v[이전]):**\n    [이전 코드]\n\n**이후 (v[현재]):**\n    [새 코드]\n\n**자동 변환**: [codemod 명령어] (해당 시)\n\n### 2. ...\n\n## 롤백 가이드\n[문제 발생 시 이전 버전 복귀 절차]\n\n## FAQ\n[흔한 마이그레이션 질문과 답변]",
       "dependencies": []
     },
     {
@@ -64,7 +64,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# Release Notes — v[X.Y.Z]\n\n> 릴리스 날짜: [YYYY-MM-DD]\n\n## 하이라이트\n\n### [핵심 변경 1 제목]\n[2~3문장 사용자 관점 설명. 왜 중요한지, 어떻게 사용하는지.]\n\n### [핵심 변경 2 제목]\n...\n\n## Breaking Changes ⚠️\n- [변경 설명] (#PR번호) — 마이그레이션 가이드: [링크]\n\n## Added ✨\n- [기능 설명] (#PR번호)\n\n## Changed\n- [변경 설명] (#PR번호)\n\n## Fixed 🐛\n- [수정 설명] (#PR번호)\n\n## Security 🔒\n- [보안 패치 설명] (#PR번호)\n\n## Deprecated 📦\n- [사용 중단 예정 기능] — 대안: [대체 방법]\n\n## Contributors\n@[username1], @[username2], ...\n\n---\n**Full Changelog**: [이전 버전]...[현재 버전]",
       "dependencies": [
         "change-classifier"
       ]
@@ -119,13 +119,38 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "릴리스 준비 전체, 체인지로그 + 공지문",
         "agents": [
           "announcement-writer",
           "change-classifier",
           "commit-analyst",
           "migration-guide-writer",
           "release-note-writer"
+        ]
+      },
+      {
+        "name": "노트 모드",
+        "triggerPattern": "CHANGELOG만 만들어줘",
+        "agents": [
+          "commit-analyst",
+          "change-classifier",
+          "release-note-writer"
+        ]
+      },
+      {
+        "name": "마이그레이션 모드",
+        "triggerPattern": "마이그레이션 가이드만",
+        "agents": [
+          "commit-analyst",
+          "change-classifier",
+          "announcement-writer"
+        ]
+      },
+      {
+        "name": "공지 모드",
+        "triggerPattern": "릴리스 공지문만 써줘 (노트 완료)",
+        "agents": [
+          "announcement-writer"
         ]
       }
     ],

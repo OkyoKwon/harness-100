@@ -90,12 +90,42 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "세금 전체 계산하고 절세 방법 알려줘",
         "agents": [
           "deduction-optimizer",
           "income-analyst",
           "strategy-advisor",
           "tax-engine"
+        ]
+      },
+      {
+        "name": "간편 계산 모드",
+        "triggerPattern": "연봉 5000만원이면 세금 얼마야",
+        "agents": [
+          "income-analyst",
+          "tax-engine"
+        ]
+      },
+      {
+        "name": "공제 모드",
+        "triggerPattern": "공제 항목 최적화해줘",
+        "agents": [
+          "income-analyst",
+          "deduction-optimizer"
+        ]
+      },
+      {
+        "name": "전략 모드",
+        "triggerPattern": "절세 방법만 알려줘",
+        "agents": [
+          "strategy-advisor"
+        ]
+      },
+      {
+        "name": "신고 준비 모드",
+        "triggerPattern": "연말정산 준비 뭐 해야 해",
+        "agents": [
+          "strategy-advisor"
         ]
       }
     ],

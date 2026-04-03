@@ -121,13 +121,37 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "특허 명세서 전체 작성해줘",
         "agents": [
           "claim-drafter",
           "drawing-designer",
           "patent-reviewer",
           "prior-art-researcher",
           "specification-writer"
+        ]
+      },
+      {
+        "name": "조사 모드",
+        "triggerPattern": "선행기술만 조사해줘",
+        "agents": [
+          "prior-art-researcher"
+        ]
+      },
+      {
+        "name": "청구항 모드",
+        "triggerPattern": "청구항만 작성해줘",
+        "agents": [
+          "claim-drafter",
+          "patent-reviewer"
+        ]
+      },
+      {
+        "name": "명세서 모드",
+        "triggerPattern": "이 청구항으로 명세서 써줘 (기존 청구항 있음)",
+        "agents": [
+          "specification-writer",
+          "drawing-designer",
+          "patent-reviewer"
         ]
       }
     ],

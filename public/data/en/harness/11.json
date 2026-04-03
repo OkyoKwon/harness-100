@@ -121,12 +121,45 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "전자책 출판해줘, 풀 출판 준비",
         "agents": [
           "cover-designer",
           "manuscript-editor",
           "metadata-manager",
           "proofreader",
+          "publishing-reviewer"
+        ]
+      },
+      {
+        "name": "편집 모드",
+        "triggerPattern": "원고 편집만 해줘",
+        "agents": [
+          "manuscript-editor",
+          "proofreader",
+          "publishing-reviewer"
+        ]
+      },
+      {
+        "name": "교정 모드",
+        "triggerPattern": "교정교열만 해줘",
+        "agents": [
+          "proofreader",
+          "publishing-reviewer"
+        ]
+      },
+      {
+        "name": "표지 모드",
+        "triggerPattern": "책 표지만 만들어줘",
+        "agents": [
+          "cover-designer",
+          "publishing-reviewer"
+        ]
+      },
+      {
+        "name": "메타 모드",
+        "triggerPattern": "메타데이터만 세팅해줘",
+        "agents": [
+          "metadata-manager",
           "publishing-reviewer"
         ]
       }

@@ -110,14 +110,49 @@
     ],
     "modes": [
       {
-        "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "name": "풀 감사",
+        "triggerPattern": "ESG 감사 해줘, 지속가능성 보고서",
         "agents": [
           "environmental-analyst",
           "esg-reporter",
           "governance-reviewer",
           "improvement-planner",
           "social-assessor"
+        ]
+      },
+      {
+        "name": "환경 단독",
+        "triggerPattern": "탄소배출량만 산정해줘",
+        "agents": [
+          "environmental-analyst"
+        ]
+      },
+      {
+        "name": "거버넌스 단독",
+        "triggerPattern": "거버넌스만 점검해줘",
+        "agents": [
+          "governance-reviewer"
+        ]
+      },
+      {
+        "name": "개선 모드",
+        "triggerPattern": "ESG 개선 계획 세워줘 + 기존 보고서",
+        "agents": [
+          "improvement-planner"
+        ]
+      },
+      {
+        "name": "보고서 모드",
+        "triggerPattern": "이 보고서 GRI 형식으로 변환해줘",
+        "agents": [
+          "esg-reporter"
+        ]
+      },
+      {
+        "name": "부분 감사",
+        "triggerPattern": "환경이랑 사회만 봐줘",
+        "agents": [
+          "esg-reporter"
         ]
       }
     ],

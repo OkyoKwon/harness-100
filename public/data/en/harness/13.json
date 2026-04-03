@@ -128,13 +128,45 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "프레젠테이션 만들어줘, 풀 덱",
         "agents": [
           "deck-reviewer",
           "info-architect",
           "presentation-coach",
           "storyteller",
           "visual-designer"
+        ]
+      },
+      {
+        "name": "스토리 모드",
+        "triggerPattern": "발표 스토리보드만 짜줘",
+        "agents": [
+          "storyteller",
+          "deck-reviewer"
+        ]
+      },
+      {
+        "name": "슬라이드 모드",
+        "triggerPattern": "이 자료로 슬라이드 만들어줘 (기존 내용)",
+        "agents": [
+          "info-architect",
+          "visual-designer",
+          "deck-reviewer"
+        ]
+      },
+      {
+        "name": "코칭 모드",
+        "triggerPattern": "발표 준비 도와줘 (기존 슬라이드)",
+        "agents": [
+          "presentation-coach",
+          "deck-reviewer"
+        ]
+      },
+      {
+        "name": "리뷰 모드",
+        "triggerPattern": "이 프레젠테이션 검토해줘",
+        "agents": [
+          "deck-reviewer"
         ]
       }
     ],

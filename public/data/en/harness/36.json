@@ -14,7 +14,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 접근성 검증 보고서\n\n## 검증 개요\n- **기준**: WCAG 2.1 Level AA\n- **검증 대상**: [컴포넌트 N개]\n- **종합 판정**: PASS / CONDITIONAL PASS / FAIL\n\n## 컴포넌트별 결과\n### [컴포넌트명]\n| 검증 항목 | WCAG 기준 | 결과 | 심각도 | 상세 |\n|----------|----------|------|--------|------|\n\n## 발견 사항\n### P0 — 차단 (즉시 수정)\n| 컴포넌트 | 이슈 | WCAG 기준 | 수정 제안 코드 |\n|---------|------|----------|-------------|\n\n### P1 — 주요 (다음 릴리스 전 수정)\n| 컴포넌트 | 이슈 | WCAG 기준 | 수정 제안 |\n|---------|------|----------|----------|\n\n### P2 — 보완 (개선 권장)\n| 컴포넌트 | 이슈 | WCAG 기준 | 수정 제안 |\n|---------|------|----------|----------|\n\n## 색상 대비 매트릭스\n| 전경색 | 배경색 | 대비비 | AA(일반) | AA(대형) | AAA |\n|--------|-------|--------|---------|---------|-----|\n\n## 키보드 네비게이션 테스트\n| 컴포넌트 | Tab | Enter | Space | Escape | Arrow | 결과 |\n|---------|-----|-------|-------|--------|-------|------|\n\n## 수정 가이드\n[자주 발견되는 이슈별 수정 패턴 코드]",
       "dependencies": []
     },
     {
@@ -40,7 +40,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "_workspace/05_docs/\n├── index.md                 — 디자인 시스템 소개\n├── principles.md            — 설계 원칙\n├── getting-started.md       — 시작하기 (설치, 설정, 첫 사용)\n├── tokens/\n│   ├── overview.md          — 토큰 개요\n│   ├── colors.md            — 색상 사용 가이드\n│   ├── typography.md        — 타이포 사용 가이드\n│   └── spacing.md           — 간격 사용 가이드\n├── components/\n│   ├── overview.md          — 컴포넌트 개요\n│   ├── button.md            — Button 사용 가이드\n│   ├── input.md             — Input 사용 가이드\n│   └── ...\n├── patterns/\n│   ├── forms.md             — 폼 패턴\n│   ├── navigation.md        — 네비게이션 패턴\n│   └── feedback.md          — 피드백 패턴\n├── accessibility.md         — 접근성 가이드\n├── contributing.md          — 기여 가이드\n├── changelog.md             — 변경 로그\n└── migration.md             — 마이그레이션 가이드",
       "dependencies": []
     },
     {
@@ -52,7 +52,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "_workspace/03_storybook/\n├── .storybook/\n│   ├── main.ts              — 스토리북 설정\n│   ├── preview.ts           — 글로벌 데코레이터\n│   └── theme.ts             — 스토리북 테마\n├── stories/\n│   ├── tokens/              — 토큰 시각화\n│   │   ├── Colors.stories.tsx\n│   │   ├── Typography.stories.tsx\n│   │   └── Spacing.stories.tsx\n│   ├── atoms/               — 원자 컴포넌트 스토리\n│   │   ├── Button.stories.tsx\n│   │   └── Input.stories.tsx\n│   ├── molecules/           — 분자 컴포넌트 스토리\n│   └── organisms/           — 유기체 컴포넌트 스토리\n└── README.md                — 스토리북 실행 가이드",
       "dependencies": []
     },
     {
@@ -64,7 +64,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "_workspace/01_design_tokens/\n├── tokens.json              — 전체 토큰 (Style Dictionary 호환)\n├── colors.css               — CSS 커스텀 프로퍼티 (색상)\n├── typography.css            — CSS 커스텀 프로퍼티 (타이포)\n├── spacing.css              — CSS 커스텀 프로퍼티 (간격)\n├── shadows.css              — CSS 커스텀 프로퍼티 (그림자)\n├── motion.css               — CSS 커스텀 프로퍼티 (모션)\n├── breakpoints.css          — CSS 커스텀 프로퍼티 (반응형)\n├── tokens.ts                — TypeScript 토큰 객체\n└── README.md                — 토큰 설계 문서",
       "dependencies": []
     }
   ],
@@ -114,13 +114,58 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "디자인 시스템 전체 구축",
         "agents": [
           "a11y-auditor",
           "component-developer",
           "doc-writer",
           "storybook-builder",
           "token-designer"
+        ]
+      },
+      {
+        "name": "토큰 모드",
+        "triggerPattern": "토큰만 설계해줘",
+        "agents": [
+          "token-designer"
+        ]
+      },
+      {
+        "name": "컴포넌트 모드",
+        "triggerPattern": "이 토큰으로 컴포넌트 만들어줘",
+        "agents": [
+          "component-developer",
+          "storybook-builder"
+        ]
+      },
+      {
+        "name": "검증 모드",
+        "triggerPattern": "접근성 검증만 해줘",
+        "agents": [
+          "a11y-auditor"
+        ]
+      },
+      {
+        "name": "스토리북 모드",
+        "triggerPattern": "스토리북만 추가해줘",
+        "agents": [
+          "storybook-builder"
+        ]
+      },
+      {
+        "name": "문서 모드",
+        "triggerPattern": "문서만 작성해줘",
+        "agents": [
+          "doc-writer"
+        ]
+      },
+      {
+        "name": "단일 컴포넌트",
+        "triggerPattern": "Button 컴포넌트만 추가",
+        "agents": [
+          "component-developer",
+          "a11y-auditor",
+          "storybook-builder"
         ]
       }
     ],

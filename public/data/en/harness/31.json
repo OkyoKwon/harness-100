@@ -122,13 +122,44 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "ML 실험 전체 설계해줘",
         "agents": [
           "data-engineer",
           "evaluation-analyst",
           "experiment-reviewer",
           "model-designer",
           "training-manager"
+        ]
+      },
+      {
+        "name": "데이터 모드",
+        "triggerPattern": "데이터 전처리해줘",
+        "agents": [
+          "data-engineer",
+          "experiment-reviewer"
+        ]
+      },
+      {
+        "name": "모델 모드",
+        "triggerPattern": "모델 아키텍처 설계해줘",
+        "agents": [
+          "model-designer",
+          "experiment-reviewer"
+        ]
+      },
+      {
+        "name": "평가 모드",
+        "triggerPattern": "이 모델 평가해줘 (기존 결과)",
+        "agents": [
+          "evaluation-analyst",
+          "experiment-reviewer"
+        ]
+      },
+      {
+        "name": "리뷰 모드",
+        "triggerPattern": "이 실험 리뷰해줘",
+        "agents": [
+          "experiment-reviewer"
         ]
       }
     ],

@@ -103,12 +103,33 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "개인정보보호 체계 전체 설계, 프라이버시 풀 설계",
         "agents": [
           "consent-designer",
           "pia-assessor",
           "privacy-law-analyst",
           "process-architect"
+        ]
+      },
+      {
+        "name": "법률 분석 모드",
+        "triggerPattern": "GDPR 적용 여부 분석해줘",
+        "agents": [
+          "privacy-law-analyst"
+        ]
+      },
+      {
+        "name": "PIA 모드",
+        "triggerPattern": "PIA만 수행해줘 (법률 분석 있음)",
+        "agents": [
+          "pia-assessor"
+        ]
+      },
+      {
+        "name": "동의서 모드",
+        "triggerPattern": "동의서만 작성해줘",
+        "agents": [
+          "consent-designer"
         ]
       }
     ],

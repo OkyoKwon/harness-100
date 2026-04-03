@@ -99,12 +99,40 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "규정 준수 전체 점검, 컴플라이언스 풀 감사",
         "agents": [
           "gap-analyst",
           "law-mapper",
           "remediation-planner",
           "status-auditor"
+        ]
+      },
+      {
+        "name": "법률 매핑 모드",
+        "triggerPattern": "어떤 법률이 적용되는지 알려줘",
+        "agents": [
+          "law-mapper"
+        ]
+      },
+      {
+        "name": "현황 진단 모드",
+        "triggerPattern": "현재 준수 현황만 진단해줘 (기존 매핑 있음)",
+        "agents": [
+          "status-auditor"
+        ]
+      },
+      {
+        "name": "갭 분석 모드",
+        "triggerPattern": "갭분석만 해줘 (매핑+현황 있음)",
+        "agents": [
+          "gap-analyst"
+        ]
+      },
+      {
+        "name": "개선 계획 모드",
+        "triggerPattern": "개선 계획만 세워줘 (갭분석 결과 있음)",
+        "agents": [
+          "remediation-planner"
         ]
       }
     ],

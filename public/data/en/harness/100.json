@@ -117,7 +117,52 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "IP 포트폴리오 관리해줘",
+        "agents": [
+          "ip-analyst",
+          "license-strategist",
+          "patent-mapper",
+          "protection-advisor",
+          "renewal-scheduler"
+        ]
+      },
+      {
+        "name": "분석 모드",
+        "triggerPattern": "특허 현황 분석해줘",
+        "agents": [
+          "ip-analyst",
+          "patent-mapper"
+        ]
+      },
+      {
+        "name": "갱신 모드",
+        "triggerPattern": "IP 갱신 일정 정리해줘",
+        "agents": [
+          "ip-analyst",
+          "patent-mapper",
+          "renewal-scheduler"
+        ]
+      },
+      {
+        "name": "라이선스 모드",
+        "triggerPattern": "라이선스 전략 세워줘",
+        "agents": [
+          "ip-analyst",
+          "license-strategist"
+        ]
+      },
+      {
+        "name": "보호 모드",
+        "triggerPattern": "IP 보호 전략 수립해줘",
+        "agents": [
+          "ip-analyst",
+          "patent-mapper",
+          "protection-advisor"
+        ]
+      },
+      {
+        "name": "맞춤 모드",
+        "triggerPattern": "이 IP 목록으로 관리 체계 만들어줘 + 목록",
         "agents": [
           "ip-analyst",
           "license-strategist",

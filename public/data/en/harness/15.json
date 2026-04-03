@@ -129,13 +129,44 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "비주얼 스토리 만들어줘, 풀 프로덕션",
         "agents": [
           "editorial-reviewer",
           "essay-writer",
           "image-prompter",
           "layout-builder",
           "story-architect"
+        ]
+      },
+      {
+        "name": "기획 모드",
+        "triggerPattern": "스토리 기획만 해줘",
+        "agents": [
+          "story-architect",
+          "editorial-reviewer"
+        ]
+      },
+      {
+        "name": "이미지 모드",
+        "triggerPattern": "이 글에 이미지 생성해줘 (기존 텍스트)",
+        "agents": [
+          "image-prompter",
+          "editorial-reviewer"
+        ]
+      },
+      {
+        "name": "레이아웃 모드",
+        "triggerPattern": "텍스트와 이미지로 HTML 만들어줘 (기존 소재)",
+        "agents": [
+          "layout-builder",
+          "editorial-reviewer"
+        ]
+      },
+      {
+        "name": "리뷰 모드",
+        "triggerPattern": "이 비주얼 스토리 검토해줘",
+        "agents": [
+          "editorial-reviewer"
         ]
       }
     ],

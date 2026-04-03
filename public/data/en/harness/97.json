@@ -121,7 +121,49 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "이커머스 런칭해줘, 상품 출시 풀 준비",
+        "agents": [
+          "cs-architect",
+          "detail-page-writer",
+          "marketing-manager",
+          "pricing-strategist",
+          "product-planner"
+        ]
+      },
+      {
+        "name": "상세페이지 모드",
+        "triggerPattern": "상세페이지만 만들어줘",
+        "agents": [
+          "product-planner",
+          "detail-page-writer"
+        ]
+      },
+      {
+        "name": "가격 모드",
+        "triggerPattern": "가격 전략 세워줘",
+        "agents": [
+          "product-planner",
+          "pricing-strategist"
+        ]
+      },
+      {
+        "name": "마케팅 모드",
+        "triggerPattern": "마케팅 계획 짜줘 (기존 기획 있음)",
+        "agents": [
+          "marketing-manager"
+        ]
+      },
+      {
+        "name": "CS 모드",
+        "triggerPattern": "CS 매뉴얼 만들어줘",
+        "agents": [
+          "product-planner",
+          "cs-architect"
+        ]
+      },
+      {
+        "name": "보완 모드",
+        "triggerPattern": "이 기획서로 나머지 준비해줘 + 기존 파일",
         "agents": [
           "cs-architect",
           "detail-page-writer",

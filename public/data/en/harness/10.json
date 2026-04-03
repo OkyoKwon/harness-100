@@ -119,13 +119,45 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "SNS 콘텐츠 만들어줘, 풀 관리",
         "agents": [
           "copywriter",
           "hashtag-analyst",
           "performance-reviewer",
           "sns-strategist",
           "visual-planner"
+        ]
+      },
+      {
+        "name": "전략 모드",
+        "triggerPattern": "콘텐츠 달력만 짜줘",
+        "agents": [
+          "sns-strategist",
+          "performance-reviewer"
+        ]
+      },
+      {
+        "name": "카피 모드",
+        "triggerPattern": "인스타 포스트만 써줘",
+        "agents": [
+          "copywriter",
+          "hashtag-analyst",
+          "performance-reviewer"
+        ]
+      },
+      {
+        "name": "해시태그 모드",
+        "triggerPattern": "해시태그만 분석해줘",
+        "agents": [
+          "hashtag-analyst",
+          "performance-reviewer"
+        ]
+      },
+      {
+        "name": "리뷰 모드",
+        "triggerPattern": "이 포스트 검토해줘",
+        "agents": [
+          "performance-reviewer"
         ]
       }
     ],

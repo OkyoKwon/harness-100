@@ -100,12 +100,49 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "여행 전체 계획 짜줘",
         "agents": [
           "budget-manager",
           "destination-analyst",
           "itinerary-designer",
           "local-guide"
+        ]
+      },
+      {
+        "name": "목적지 추천 모드",
+        "triggerPattern": "일본 어디가 좋을까",
+        "agents": [
+          "destination-analyst"
+        ]
+      },
+      {
+        "name": "일정 모드",
+        "triggerPattern": "파리 3박4일 일정만",
+        "agents": [
+          "destination-analyst",
+          "itinerary-designer"
+        ]
+      },
+      {
+        "name": "예산 모드",
+        "triggerPattern": "여행 예산만 계산해줘",
+        "agents": [
+          "budget-manager"
+        ]
+      },
+      {
+        "name": "가이드 모드",
+        "triggerPattern": "현지에서 필요한 정보",
+        "agents": [
+          "local-guide"
+        ]
+      },
+      {
+        "name": "분석 모드",
+        "triggerPattern": "이 일정 개선해줘 (기존 파일)",
+        "agents": [
+          "itinerary-designer",
+          "budget-manager"
         ]
       }
     ],

@@ -131,13 +131,52 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "데이터 분석해줘, 풀 분석",
         "agents": [
           "analyst",
           "cleaner",
           "explorer",
           "reporter",
           "visualizer"
+        ]
+      },
+      {
+        "name": "탐색 모드",
+        "triggerPattern": "EDA만 해줘, 데이터 탐색",
+        "agents": [
+          "explorer",
+          "visualizer"
+        ]
+      },
+      {
+        "name": "정제 모드",
+        "triggerPattern": "데이터 정제해줘, 클리닝",
+        "agents": [
+          "explorer",
+          "cleaner"
+        ]
+      },
+      {
+        "name": "분석 모드",
+        "triggerPattern": "통계 분석만, 가설 검정",
+        "agents": [
+          "analyst",
+          "visualizer",
+          "reporter"
+        ]
+      },
+      {
+        "name": "시각화 모드",
+        "triggerPattern": "시각화만 해줘, 차트 그려줘",
+        "agents": [
+          "visualizer"
+        ]
+      },
+      {
+        "name": "보고서 모드",
+        "triggerPattern": "분석 보고서 써줘 (기존 분석 있음)",
+        "agents": [
+          "reporter"
         ]
       }
     ],

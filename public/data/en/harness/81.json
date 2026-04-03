@@ -14,7 +14,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 다이어그램 모음\n\n## 다이어그램 목록\n| ID | 유형 | 제목 | 삽입 위치 |\n|----|------|------|----------|\n| D1 | 아키텍처 | [제목] | 섹션 X |\n| D2 | 시퀀스 | [제목] | 섹션 Y |\n\n## D1: [제목]\n**목적**: [이 다이어그램이 보여주는 것]\n**삽입 위치**: 섹션 X\n\n```mermaid\ngraph TD\n    A[컴포넌트A] --> B[컴포넌트B]\n    B --> C[컴포넌트C]\n```\n\n**설명**: [다이어그램 해석 가이드 1~2문장]\n\n## D2: [제목]\n**목적**: [이 다이어그램이 보여주는 것]\n**삽입 위치**: 섹션 Y\n\n```mermaid\nsequenceDiagram\n    Client->>Server: 요청\n    Server->>DB: 조회\n    DB-->>Server: 결과\n    Server-->>Client: 응답\n```\n\n**설명**: [다이어그램 해석 가이드]",
       "dependencies": []
     },
     {
@@ -26,7 +26,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# [문서 제목]\n\n> **대상 독자**: [독자 정의]\n> **최종 업데이트**: YYYY-MM-DD\n> **버전**: X.Y\n\n## 개요\n[문서의 목적과 범위를 1~2문단으로 설명]\n\n## 선행 조건\n- [필요한 사전 지식/설치/설정]\n\n## [섹션 1: 제목]\n[본문]\n\n### [하위 섹션]\n[본문]\n\n```[언어]\n// 코드 예제\n```\n\n> **참고**: [보충 설명]\n\n> **주의**: [주의사항]\n\n## 문제 해결 (Troubleshooting)\n| 증상 | 원인 | 해결 |\n|------|------|------|\n\n## 다음 단계\n- [관련 문서 링크]\n\n## 용어집\n| 용어 | 정의 |\n|------|------|",
       "dependencies": [
         "diagram-maker"
       ]
@@ -40,7 +40,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 문서 구조 설계서\n\n## 문서 메타\n- **문서 제목**:\n- **문서 유형**: API레퍼런스/튜토리얼/가이드/아키텍처문서/운영매뉴얼\n- **대상 독자**: [역할 + 기술 수준]\n- **선행 조건**: [독자가 먼저 알아야 할 것]\n- **예상 분량**: 페이지/단어\n\n## 독자 분석\n| 항목 | 내용 |\n|------|------|\n| 주요 독자 | |\n| 기술 수준 | 초급/중급/고급 |\n| 읽는 목적 | 학습/참조/문제해결/의사결정 |\n| 읽는 상황 | 처음 접할 때/개발 중/장애 대응 |\n\n## 목차 (계층 구조)\n1. [섹션 1: 제목]\n    - 목적: [이 섹션을 읽으면 알 수 있는 것]\n    - 깊이: 개요/상세\n    - 예상 분량: X 단어\n    1.1. [하위 섹션]\n    1.2. [하위 섹션]\n2. [섹션 2: 제목]\n    ...\n\n## 콘텐츠 전략\n| 섹션 | 콘텐츠 유형 | 핵심 요소 | 다이어그램 필요 |\n|------|-----------|----------|--------------|\n| 개요 | 설명 | 아키텍처 개요 | ✅ 시스템 다이어그램 |\n| 시작하기 | 튜토리얼 | 단계별 가이드 | ❌ |\n| API 레퍼런스 | 레퍼런스 | 엔드포인트 테이블 | ❌ |\n\n## 교차 참조 맵\n| 현재 섹션 | 관련 문서/섹션 | 참조 유형 |\n|----------|-------------|----------|\n| | | 선행/관련/심화 |\n\n## 집필자 전달 사항\n## 다이어그램 작성자 전달 사항",
       "dependencies": [
         "doc-writer"
       ]
@@ -55,7 +55,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 기술 문서 리뷰 보고서\n\n## 종합 평가\n- **발행 준비 상태**: 🟢 발행 가능 / 🟡 수정 후 발행 / 🔴 재작성 필요\n- **총평**: [1~2문장 요약]\n\n## 발견 사항\n\n### 🔴 필수 수정\n1. **[위치: 섹션/줄]**: [문제 설명]\n   - 현재: [현재 내용]\n   - 제안: [수정 제안]\n\n### 🟡 권장 수정\n1. ...\n\n### 🟢 참고 사항\n1. ...\n\n## 정합성 매트릭스\n| 검증 항목 | 상태 | 비고 |\n|----------|------|------|\n| 기술 정확성 | ✅/⚠️/❌ | |\n| 완전성 | ✅/⚠️/❌ | |\n| 일관성 | ✅/⚠️/❌ | |\n| 독자 적합성 | ✅/⚠️/❌ | |\n| 다이어그램 | ✅/⚠️/❌ | |\n\n## 최종 산출물 체크리스트\n- [ ] 문서 구조 확정\n- [ ] 본문 초안 완성\n- [ ] 다이어그램 완성\n- [ ] 리뷰 반영\n- [ ] 버전 메타데이터 완성",
       "dependencies": [
         "info-architect"
       ]
@@ -69,7 +69,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 문서 버전 관리\n\n## 문서 메타데이터\n| 항목 | 값 |\n|------|------|\n| 문서 ID | DOC-XXXX |\n| 제목 | |\n| 현재 버전 | X.Y.Z |\n| 상태 | Draft/In Review/Approved/Published |\n| 작성자 | |\n| 리뷰어 | |\n| 최초 작성일 | YYYY-MM-DD |\n| 최종 수정일 | YYYY-MM-DD |\n| 카테고리 | API/가이드/튜토리얼/아키텍처/운영 |\n| 태그 | |\n| 대상 독자 | |\n\n## 변경 이력\n| 버전 | 날짜 | 변경 내용 | 변경 사유 | 작성자 |\n|------|------|----------|----------|--------|\n| 1.0.0 | YYYY-MM-DD | 최초 작성 | 신규 문서 | |\n| | | | | |\n\n## 파일 구성\n| 파일 | 용도 | 포맷 |\n|------|------|------|\n| 01_doc_structure.md | 구조 설계 | Markdown |\n| 02_doc_draft.md | 본문 | Markdown |\n| 03_diagrams.md | 다이어그램 | Mermaid |\n| 04_review_report.md | 리뷰 보고서 | Markdown |\n| 05_version_meta.md | 버전 메타 | Markdown |\n\n## 배포 체크리스트\n- [ ] 모든 🔴 필수 수정 반영\n- [ ] 목차와 본문 일치\n- [ ] 코드 예제 검증\n- [ ] 다이어그램 렌더링 확인\n- [ ] 내부 링크 유효성 확인\n- [ ] 메타데이터 완성\n- [ ] 용어집 최신화\n\n## 유지보수 가이드\n| 항목 | 내용 |\n|------|------|\n| 업데이트 주기 | 분기/반기/수시 |\n| 업데이트 트리거 | 기능 변경/API 변경/피드백 |\n| 담당자 | |\n| 폐기 기준 | |\n| 아카이브 정책 | |",
       "dependencies": [
         "tech-reviewer"
       ]
@@ -130,11 +130,52 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "기술 문서 전체 작성",
         "agents": [
           "diagram-maker",
           "doc-writer",
           "info-architect",
+          "tech-reviewer",
+          "version-controller"
+        ]
+      },
+      {
+        "name": "설계 모드",
+        "triggerPattern": "문서 구조만 잡아줘",
+        "agents": [
+          "info-architect",
+          "tech-reviewer"
+        ]
+      },
+      {
+        "name": "집필 모드",
+        "triggerPattern": "이 내용으로 문서 써줘 (구조 있음)",
+        "agents": [
+          "doc-writer",
+          "diagram-maker",
+          "tech-reviewer"
+        ]
+      },
+      {
+        "name": "다이어그램 모드",
+        "triggerPattern": "이 문서에 다이어그램 추가",
+        "agents": [
+          "diagram-maker",
+          "tech-reviewer"
+        ]
+      },
+      {
+        "name": "리뷰 모드",
+        "triggerPattern": "이 문서 리뷰해줘",
+        "agents": [
+          "tech-reviewer"
+        ]
+      },
+      {
+        "name": "업데이트 모드",
+        "triggerPattern": "이 문서 업데이트해줘 (기존 버전)",
+        "agents": [
+          "doc-writer",
           "tech-reviewer",
           "version-controller"
         ]

@@ -16,7 +16,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 콘텐츠 전략 브리프",
       "dependencies": []
     },
     {
@@ -29,7 +29,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 프로덕션 리뷰 보고서",
       "dependencies": []
     },
     {
@@ -55,7 +55,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# SEO 패키지\n\n## 최종 제목 (랭킹 순위)\n1. [제목] — 키워드: [포함된 키워드], CTR 예상: [높음/중간]\n2. [제목] — ...\n3. [제목] — ...\n\n## 설명란\n\n[설명란 전문 — 복사 붙여넣기 가능한 형태로 작성]\n\n## 태그\n\n[태그1], [태그2], [태그3], ...\n\n## 해시태그\n#[해시태그1] #[해시태그2] #[해시태그3]\n\n## 챕터 마커\n\n0:00 인트로\n0:30 [세그먼트1 제목]\n2:30 [세그먼트2 제목]\n...\n\n## 카드/엔드스크린 추천\n- [타임코드] 카드: [관련 영상/재생목록 제안]\n- 엔드스크린: [추천 영상 유형]\n\n## 키워드 밀도 체크\n| 키워드 | 제목 | 설명 | 태그 | 대본 내 빈도 |\n|--------|------|------|------|-------------|",
       "dependencies": []
     },
     {
@@ -68,7 +68,7 @@
         "Skill",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 썸네일 컨셉 시트",
       "dependencies": [
         "content-strategist"
       ]
@@ -122,13 +122,45 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "유튜브 영상 기획해줘, 풀 프로덕션",
         "agents": [
           "content-strategist",
           "production-reviewer",
           "scriptwriter",
           "seo-optimizer",
           "thumbnail-designer"
+        ]
+      },
+      {
+        "name": "대본 모드",
+        "triggerPattern": "대본만 써줘, 스크립트만",
+        "agents": [
+          "content-strategist",
+          "scriptwriter",
+          "production-reviewer"
+        ]
+      },
+      {
+        "name": "SEO 모드",
+        "triggerPattern": "이 대본으로 SEO 최적화해줘 (기존 파일)",
+        "agents": [
+          "seo-optimizer",
+          "production-reviewer"
+        ]
+      },
+      {
+        "name": "썸네일 모드",
+        "triggerPattern": "영상 썸네일 만들어줘 (기존 기획 있음)",
+        "agents": [
+          "thumbnail-designer",
+          "production-reviewer"
+        ]
+      },
+      {
+        "name": "리뷰 모드",
+        "triggerPattern": "이 대본 검토해줘",
+        "agents": [
+          "production-reviewer"
         ]
       }
     ],

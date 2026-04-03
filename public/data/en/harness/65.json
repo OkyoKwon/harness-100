@@ -118,14 +118,46 @@
     ],
     "modes": [
       {
-        "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "name": "풀 패키지",
+        "triggerPattern": "개인 브랜딩 해줘, 취업 준비",
         "agents": [
           "cover-letter-writer",
           "portfolio-designer",
           "positioning-strategist",
           "profile-optimizer",
           "resume-writer"
+        ]
+      },
+      {
+        "name": "이력서 모드",
+        "triggerPattern": "이력서만 써줘",
+        "agents": [
+          "positioning-strategist",
+          "resume-writer"
+        ]
+      },
+      {
+        "name": "포트폴리오 모드",
+        "triggerPattern": "포트폴리오 만들어줘",
+        "agents": [
+          "positioning-strategist",
+          "portfolio-designer"
+        ]
+      },
+      {
+        "name": "프로필 모드",
+        "triggerPattern": "LinkedIn 프로필 최적화해줘",
+        "agents": [
+          "positioning-strategist",
+          "profile-optimizer"
+        ]
+      },
+      {
+        "name": "커버레터 모드",
+        "triggerPattern": "자기소개서 써줘, 커버레터",
+        "agents": [
+          "positioning-strategist",
+          "cover-letter-writer"
         ]
       }
     ],

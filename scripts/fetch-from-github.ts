@@ -1100,6 +1100,61 @@ function processLocale(
 }
 
 // ---------------------------------------------------------------------------
+// Enrich English data from Korean data
+// ---------------------------------------------------------------------------
+
+function enrichEnglishFromKorean(dataDir: string): number {
+  const koHarnessDir = resolve(dataDir, "ko", "harness");
+  const enHarnessDir = resolve(dataDir, "en", "harness");
+
+  if (!existsSync(koHarnessDir) || !existsSync(enHarnessDir)) return 0;
+
+  let enriched = 0;
+
+  const enFiles = readdirSync(enHarnessDir).filter((f) => f.endsWith(".json"));
+
+  for (const file of enFiles) {
+    const koPath = resolve(koHarnessDir, file);
+    const enPath = resolve(enHarnessDir, file);
+
+    if (!existsSync(koPath)) continue;
+
+    const koHarness: Harness = JSON.parse(readFileSync(koPath, "utf-8"));
+    const enHarness: Harness = JSON.parse(readFileSync(enPath, "utf-8"));
+    let changed = false;
+
+    // Enrich outputTemplate: copy from KO agent if EN agent's is empty
+    for (const enAgent of enHarness.agents) {
+      if (enAgent.outputTemplate.trim() === "") {
+        const koAgent = koHarness.agents.find((a) => a.id === enAgent.id);
+        if (koAgent && koAgent.outputTemplate.trim() !== "") {
+          enAgent.outputTemplate = koAgent.outputTemplate;
+          changed = true;
+        }
+      }
+    }
+
+    // Enrich modes: copy from KO if EN has only the default fallback mode
+    const isDefaultFallback =
+      enHarness.skill.modes.length === 1 &&
+      enHarness.skill.modes[0].name === "풀 파이프라인" &&
+      enHarness.skill.modes[0].triggerPattern === "전체 작업 요청";
+
+    if (isDefaultFallback && koHarness.skill.modes.length > 1) {
+      enHarness.skill.modes = koHarness.skill.modes;
+      changed = true;
+    }
+
+    if (changed) {
+      writeJson(enPath, enHarness);
+      enriched++;
+    }
+  }
+
+  return enriched;
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
@@ -1129,7 +1184,12 @@ function main(): void {
   const en = processLocale(EN_DIR, resolve(dataDir, "en"), "en");
   allErrors.push(...en.errors);
 
-  console.log(`\nStep 3: Complete!`);
+  // Enrich English data from Korean
+  console.log("\nStep 3: Enriching English data from Korean...");
+  const enrichedCount = enrichEnglishFromKorean(dataDir);
+  console.log(`  ✓ Enriched ${enrichedCount} English harnesses`);
+
+  console.log(`\nStep 4: Complete!`);
   console.log(`  Korean: ${ko.count} harnesses → public/data/ko/`);
   console.log(`  English: ${en.count} harnesses → public/data/en/`);
 
@@ -1141,7 +1201,7 @@ function main(): void {
   }
 
   // Cleanup
-  console.log("\nStep 4: Cleaning up temp directory...");
+  console.log("\nStep 5: Cleaning up temp directory...");
   rmSync(TEMP_DIR, { recursive: true, force: true });
   console.log("  ✓ Done");
 }

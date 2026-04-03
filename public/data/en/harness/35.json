@@ -14,7 +14,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "_workspace/05_docs/\n├── README.md              — 메인 README\n├── getting-started.md     — 빠른 시작 가이드\n├── api-reference.md       — API 레퍼런스\n├── examples/              — 사용 예제\n│   ├── basic-usage.md\n│   ├── authentication.md\n│   ├── pagination.md\n│   ├── error-handling.md\n│   └── advanced-config.md\n├── changelog.md           — 변경 로그\n└── troubleshooting.md     — 트러블슈팅",
       "dependencies": []
     },
     {
@@ -26,7 +26,7 @@
         "Read",
         "Write"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "_workspace/03_client/\n├── client.ts              — 메인 클라이언트 클래스\n├── resources/             — 리소스별 메서드\n│   ├── users.ts\n│   ├── orders.ts\n│   └── ...\n├── auth/                  — 인증 관련\n│   ├── authenticator.ts\n│   └── token-manager.ts\n├── http/                  — HTTP 레이어\n│   ├── request-builder.ts\n│   ├── response-handler.ts\n│   └── interceptors.ts\n├── pagination/            — 페이지네이션\n│   └── paginator.ts\n├── errors/                — 커스텀 에러\n│   └── api-error.ts\n├── config.ts              — 설정\n├── index.ts               — 진입점\n└── package.json           — 패키지 설정",
       "dependencies": []
     },
     {
@@ -38,7 +38,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# API 스펙 분석 결과\n\n## API 개요\n- **API 이름**: [이름]\n- **버전**: [버전]\n- **스펙 포맷**: [OpenAPI 3.1 / GraphQL / gRPC 등]\n- **베이스 URL**: [URL]\n- **인증 방식**: [Bearer / OAuth2 / API Key 등]\n\n## 엔드포인트 요약\n| 그룹 | 엔드포인트 수 | 주요 리소스 |\n|------|-------------|-----------|\n\n## 엔드포인트 상세\n### [그룹명] — [리소스 설명]\n#### [METHOD] [경로]\n- **설명**: [operationId, summary]\n- **파라미터**:\n    | 이름 | 위치 | 타입 | 필수 | 설명 |\n    |------|------|------|------|------|\n- **요청 바디**: [모델명, Content-Type]\n- **응답**:\n    | 상태코드 | 모델 | 설명 |\n    |---------|------|------|\n- **인증**: [필요 여부, 스코프]\n- **폐기 여부**: [deprecated]\n\n## 모델(스키마) 목록\n| 모델명 | 필드 수 | 참조 횟수 | 복잡도 | 비고 |\n|--------|---------|---------|--------|------|\n\n## 모델 상세\n### [모델명]\n| 필드 | 타입 | 필수 | 설명 | 제약조건 |\n|------|------|------|------|---------|\n\n## 복잡한 스키마 패턴\n- **순환 참조**: [모델A → 모델B → 모델A]\n- **다형성**: [oneOf/anyOf + discriminator]\n- **제네릭 패턴**: [페이지네이션 응답 등]\n\n## 인증 상세\n[인증 플로우, 토큰 갱신, 스코프 목록]\n\n## 스펙 품질 이슈\n| 이슈 | 위치 | 심각도 | 영향 |\n|------|------|--------|------|\n\n## type-generator 전달 사항\n## sdk-developer 전달 사항",
       "dependencies": []
     },
     {
@@ -50,7 +50,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "_workspace/04_tests/\n├── unit/                    — 단위 테스트\n│   ├── resources/\n│   │   ├── users.test.ts\n│   │   └── orders.test.ts\n│   ├── auth.test.ts\n│   └── pagination.test.ts\n├── integration/             — 통합 테스트\n│   ├── client.test.ts\n│   └── error-handling.test.ts\n├── fixtures/                — 테스트 데이터\n│   ├── responses/           — API 응답 목 데이터\n│   └── factories.ts         — 테스트 데이터 팩토리\n├── mocks/                   — 목 설정\n│   └── server.ts\n├── setup.ts                 — 테스트 환경 설정\n└── README.md                — 테스트 실행 가이드",
       "dependencies": []
     },
     {
@@ -62,7 +62,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "_workspace/02_types/\n├── models.ts (또는 .py/.go/.java)  — 요청/응답 모델\n├── enums.ts                        — 열거형 타입\n├── unions.ts                       — 유니온/교차 타입\n├── generics.ts                     — 제네릭 유틸리티 타입\n├── serializers.ts                  — 직렬화/역직렬화 헬퍼\n└── index.ts                        — 모든 타입 re-export",
       "dependencies": [
         "spec-parser"
       ]
@@ -113,13 +113,44 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "SDK 전체 생성, 풀 클라이언트",
         "agents": [
           "doc-writer",
           "sdk-developer",
           "spec-parser",
           "test-engineer",
           "type-generator"
+        ]
+      },
+      {
+        "name": "타입 모드",
+        "triggerPattern": "타입만 생성해줘",
+        "agents": [
+          "spec-parser",
+          "type-generator"
+        ]
+      },
+      {
+        "name": "코드 모드",
+        "triggerPattern": "클라이언트 코드만",
+        "agents": [
+          "spec-parser",
+          "type-generator",
+          "sdk-developer"
+        ]
+      },
+      {
+        "name": "테스트 모드",
+        "triggerPattern": "테스트만 작성 (기존 SDK 있음)",
+        "agents": [
+          "test-engineer"
+        ]
+      },
+      {
+        "name": "문서 모드",
+        "triggerPattern": "문서만 작성 (기존 SDK 있음)",
+        "agents": [
+          "doc-writer"
         ]
       }
     ],

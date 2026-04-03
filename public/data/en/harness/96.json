@@ -112,12 +112,41 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "부동산 투자 분석 전체 해줘",
         "agents": [
           "location-analyst",
           "market-researcher",
           "profitability-analyst",
           "report-writer",
+          "risk-assessor"
+        ]
+      },
+      {
+        "name": "시장 모드",
+        "triggerPattern": "이 지역 시장 조사만",
+        "agents": [
+          "market-researcher"
+        ]
+      },
+      {
+        "name": "입지 모드",
+        "triggerPattern": "이 아파트 입지 분석만",
+        "agents": [
+          "location-analyst"
+        ]
+      },
+      {
+        "name": "수익 모드",
+        "triggerPattern": "수익률 계산만 해줘",
+        "agents": [
+          "profitability-analyst"
+        ]
+      },
+      {
+        "name": "리스크 모드",
+        "triggerPattern": "투자 리스크만 평가해줘",
+        "agents": [
+          "market-researcher",
           "risk-assessor"
         ]
       }

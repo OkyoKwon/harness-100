@@ -121,14 +121,46 @@
     ],
     "modes": [
       {
-        "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "name": "풀 분석",
+        "triggerPattern": "계약서 검토해줘, 전체 분석",
         "agents": [
           "clause-analyst",
           "clause-drafter",
           "comparison-reviewer",
           "contract-coordinator",
           "risk-assessor"
+        ]
+      },
+      {
+        "name": "작성 모드",
+        "triggerPattern": "계약서 써줘, 계약서 작성",
+        "agents": [
+          "clause-drafter",
+          "risk-assessor",
+          "contract-coordinator"
+        ]
+      },
+      {
+        "name": "리스크 모드",
+        "triggerPattern": "리스크만 평가해줘",
+        "agents": [
+          "clause-analyst",
+          "risk-assessor"
+        ]
+      },
+      {
+        "name": "비교 모드",
+        "triggerPattern": "이전 버전과 비교해줘",
+        "agents": [
+          "clause-analyst",
+          "comparison-reviewer"
+        ]
+      },
+      {
+        "name": "수정 모드",
+        "triggerPattern": "이 조항 수정해줘",
+        "agents": [
+          "clause-analyst"
         ]
       }
     ],

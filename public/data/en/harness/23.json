@@ -15,7 +15,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 아키텍처 리뷰 보고서\n\n## 종합 평가\n- **아키텍처 성숙도**: 🟢 프로덕션 준비 / 🟡 수정 후 진행 / 🔴 재설계 필요\n- **총평**: [1~2문장 요약]\n\n## 발견 사항\n### 🔴 필수 수정\n### 🟡 권장 수정\n### 🟢 참고 사항\n\n## 정합성 매트릭스\n| 검증 항목 | 상태 | 비고 |\n|----------|------|------|\n| 도메인 ↔ 서비스 | ✅/⚠️/❌ | |\n| 서비스 ↔ 통신 | ✅/⚠️/❌ | |\n| 통신 ↔ 관측성 | ✅/⚠️/❌ | |\n| 분산 시스템 원칙 | ✅/⚠️/❌ | |\n| 운영 준비도 | ✅/⚠️/❌ | |\n\n## 최종 산출물 체크리스트\n- [ ] 도메인 분석 보고서\n- [ ] 서비스 설계서\n- [ ] 통신 설계서\n- [ ] 관측성 설계서",
       "dependencies": []
     },
     {
@@ -27,7 +27,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 통신 설계서\n\n## 통신 매트릭스\n| 출발 서비스 | 도착 서비스 | 패턴 | 프로토콜 | 토픽/엔드포인트 | 타임아웃 | 재시도 |\n|-----------|-----------|------|---------|--------------|---------|--------|\n\n## 통신 흐름 (Mermaid)\n    mermaid\n    sequenceDiagram\n        Client->>API GW: POST /orders\n        API GW->>OrderSvc: CreateOrder\n        OrderSvc->>EventBus: OrderCreated\n        EventBus->>PaymentSvc: OrderCreated\n        PaymentSvc->>EventBus: PaymentCompleted\n\n## 이벤트 버스 설계\n### 브로커 선택: [Kafka / RabbitMQ / NATS]\n- **선택 근거**: [처리량, 순서 보장, 내구성 등]\n\n### 토픽 설계\n| 토픽명 | 발행 서비스 | 구독 서비스 | 파티션 키 | 보존 기간 |\n|--------|-----------|-----------|----------|----------|\n\n### 이벤트 스키마\n| 이벤트 | 버전 | 필드 | 스키마 진화 전략 |\n|--------|------|------|----------------|\n\n## API 게이트웨이\n- **선택**: [Kong / Envoy / AWS API Gateway / ...]\n- **라우팅 규칙**:\n| 경로 패턴 | 대상 서비스 | 인증 | 레이트 리밋 | 캐싱 |\n|----------|-----------|------|-----------|------|\n\n## Saga 설계\n### [비즈니스 프로세스명] Saga\n- **패턴**: Choreography / Orchestration\n- **단계**:\n| 순서 | 서비스 | 액션 | 보상 액션 | 타임아웃 |\n|------|--------|------|---------|---------|\n\n## 탄력성 패턴\n| 패턴 | 적용 대상 | 설정 | 폴백 전략 |\n|------|---------|------|---------|\n| 서킷 브레이커 | OrderSvc→PaymentSvc | 실패 5회/10초 | 캐시된 결과 반환 |\n| 벌크헤드 | OrderSvc | 스레드풀 20 | 큐잉 후 처리 |\n| 재시도 | EventBus 소비자 | 3회, 지수 백오프 | DLQ 이동 |\n\n## Dead Letter Queue 정책\n| DLQ 명 | 원본 토픽 | 재처리 전략 | 알림 임계값 |\n|--------|---------|-----------|-----------|",
       "dependencies": []
     },
     {
@@ -39,7 +39,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 도메인 분석 보고서\n\n## 비즈니스 도메인 개요\n- **핵심 도메인**: [비즈니스의 핵심 경쟁력]\n- **지원 도메인**: [핵심을 지원하는 영역]\n- **일반 도메인**: [범용적 기능 — 외부 솔루션 활용 가능]\n\n## 바운디드 컨텍스트\n| 컨텍스트 | 핵심 책임 | 도메인 유형 | 핵심 엔티티 | 팀 소유권 |\n|---------|----------|-----------|-----------|----------|\n\n## 컨텍스트 맵 (Mermaid)\n    mermaid\n    graph LR\n        A[주문 컨텍스트] -->|Downstream| B[결제 컨텍스트]\n        A -->|ACL| C[배송 컨텍스트]\n\n## 이벤트 스토밍 결과\n### 도메인 이벤트\n| 이벤트 | 발생 컨텍스트 | 트리거 | 후속 액션 |\n|--------|------------|--------|----------|\n\n### 커맨드\n| 커맨드 | 액터 | 대상 애그리거트 | 생성 이벤트 |\n|--------|------|--------------|-----------|\n\n### 애그리거트\n| 애그리거트 | 루트 엔티티 | 값 객체 | 불변식(Invariant) | 컨텍스트 |\n|-----------|-----------|--------|-----------------|---------|\n\n## 유비쿼터스 언어 사전\n| 용어 | 정의 | 컨텍스트 | 비고 |\n|------|------|---------|------|\n\n## 서비스 설계자 전달 사항\n- [바운디드 컨텍스트 → 서비스 매핑 제안]\n- [데이터 소유권 경계 제안]",
       "dependencies": []
     },
     {
@@ -52,7 +52,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 관측성 설계서\n\n## SLI/SLO 정의\n| 서비스 | SLI | 측정 방법 | SLO 목표 | 에러 버짓(월간) |\n|--------|-----|---------|---------|--------------|\n| 주문 서비스 | 요청 성공률 | 성공 응답 / 전체 응답 | 99.9% | 43.8분 |\n| 주문 서비스 | P99 지연시간 | 히스토그램 | < 500ms | — |\n\n## 메트릭 설계\n### 서비스 메트릭 (RED)\n| 서비스 | 메트릭명 | 타입 | 라벨 | 설명 |\n|--------|---------|------|------|------|\n| order-svc | http_requests_total | Counter | method, path, status | 요청 수 |\n| order-svc | http_request_duration_seconds | Histogram | method, path | 요청 지연시간 |\n\n### 인프라 메트릭 (USE)\n| 리소스 | Utilization | Saturation | Errors |\n|--------|------------|-----------|--------|\n\n## 분산 트레이싱\n- **계측 라이브러리**: OpenTelemetry SDK\n- **백엔드**: [Jaeger / Tempo / Zipkin]\n- **샘플링 전략**: [확률적 1% / 테일 기반 / 에러 100%]\n\n### 스팬 설계\n| 서비스 | 스팬명 | 속성 | 이벤트 |\n|--------|-------|------|--------|\n\n### 트레이스 전파\n- **전파 형식**: W3C TraceContext\n- **헤더**: traceparent, tracestate\n\n## 로깅 전략\n- **포맷**: JSON 구조화 로그\n- **필수 필드**: timestamp, level, service, trace_id, span_id, message\n- **수집**: [Fluentd / Vector / Filebeat] → [Elasticsearch / Loki]\n\n| 로그 수준 | 사용 기준 | 보존 기간 |\n|----------|---------|---------|\n| ERROR | 즉각 대응 필요한 실패 | 90일 |\n| WARN | 잠재적 문제 | 30일 |\n| INFO | 비즈니스 이벤트 | 14일 |\n| DEBUG | 개발/디버깅용 | 3일 (프로덕션 비활성) |\n\n## 알림 체계\n| 알림명 | 조건 | 심각도 | 채널 | Runbook |\n|--------|------|--------|------|---------|\n| HighErrorRate | error_rate > 1% (5분간) | Critical | PagerDuty | link |\n| HighLatency | P99 > 2s (5분간) | Warning | Slack | link |\n\n## 대시보드 설계\n### 서비스 개요 대시보드\n- 패널 1: 전체 서비스 건강 상태 (히트맵)\n- 패널 2: 요청률/에러률 (시계열)\n- 패널 3: 지연시간 분포 (히스토그램)\n- 패널 4: 서비스 의존성 맵",
       "dependencies": [
         "architecture-reviewer"
       ]
@@ -66,7 +66,7 @@
         "Write",
         "Read"
       ],
-      "outputTemplate": "",
+      "outputTemplate": "# 서비스 설계서\n\n## 서비스 카탈로그\n| 서비스명 | 바운디드 컨텍스트 | 핵심 책임 | 기술 스택 | 데이터 저장소 | 팀 |\n|---------|----------------|----------|----------|------------|-----|\n\n## 서비스 의존성 그래프 (Mermaid)\n    mermaid\n    graph TD\n        API_GW[API Gateway] --> OrderSvc[주문 서비스]\n        OrderSvc --> PaymentSvc[결제 서비스]\n        OrderSvc --> InventorySvc[재고 서비스]\n\n## API 계약\n### [서비스명] API\n- **프로토콜**: REST / gRPC / GraphQL\n- **베이스 URL**: `/api/v1/[리소스]`\n\n| 엔드포인트 | 메서드 | 요청 | 응답 | 설명 |\n|-----------|--------|------|------|------|\n\n### API 버저닝 전략\n- [URL / Header / Query Parameter]\n\n## 데이터 전략\n| 서비스 | 소유 데이터 | 저장소 유형 | 공유 전략 | 일관성 모델 |\n|--------|-----------|-----------|----------|-----------|\n| 주문 서비스 | 주문, 주문항목 | PostgreSQL | 이벤트 발행 | 최종 일관성 |\n\n## 서비스 내부 아키텍처\n### [서비스명]\n- **아키텍처 패턴**: Hexagonal Architecture\n- **디렉토리 구조**:\n        src/\n        ├── domain/       — 엔티티, 값 객체, 도메인 서비스\n        ├── application/  — 유스케이스, 포트\n        ├── infrastructure/ — 어댑터, 리포지토리 구현\n        └── interface/    — 컨트롤러, DTO\n\n## 배포 전략\n| 서비스 | 컨테이너 | 리소스 | 스케일링 정책 | 헬스체크 |\n|--------|---------|--------|------------|---------|\n\n## 통신 설계자 전달 사항\n## 관측성 엔지니어 전달 사항",
       "dependencies": []
     }
   ],
@@ -117,13 +117,36 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "마이크로서비스 아키텍처 설계해줘",
         "agents": [
           "architecture-reviewer",
           "communication-designer",
           "domain-analyst",
           "observability-engineer",
           "service-architect"
+        ]
+      },
+      {
+        "name": "도메인 모드",
+        "triggerPattern": "도메인 분석해줘, 이벤트 스토밍",
+        "agents": [
+          "domain-analyst",
+          "architecture-reviewer"
+        ]
+      },
+      {
+        "name": "서비스 모드",
+        "triggerPattern": "서비스 분해해줘 (도메인 분석 있음)",
+        "agents": [
+          "architecture-reviewer"
+        ]
+      },
+      {
+        "name": "통신 모드",
+        "triggerPattern": "서비스 간 통신 설계해줘",
+        "agents": [
+          "communication-designer",
+          "architecture-reviewer"
         ]
       }
     ],

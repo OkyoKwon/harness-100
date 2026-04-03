@@ -117,13 +117,50 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "논문 써줘, 연구 논문 작성",
         "agents": [
           "experiment-manager",
           "paper-writer",
           "research-designer",
           "statistical-analyst",
           "submission-preparer"
+        ]
+      },
+      {
+        "name": "설계 모드",
+        "triggerPattern": "연구 설계만 해줘",
+        "agents": [
+          "research-designer"
+        ]
+      },
+      {
+        "name": "분석 모드",
+        "triggerPattern": "이 데이터 분석해줘 + 데이터",
+        "agents": [
+          "statistical-analyst",
+          "paper-writer"
+        ]
+      },
+      {
+        "name": "리라이팅 모드",
+        "triggerPattern": "논문 초고 다듬어줘 + 초고",
+        "agents": [
+          "paper-writer",
+          "submission-preparer"
+        ]
+      },
+      {
+        "name": "투고 모드",
+        "triggerPattern": "투고 준비해줘 + 원고",
+        "agents": [
+          "submission-preparer"
+        ]
+      },
+      {
+        "name": "후속 모드",
+        "triggerPattern": "이 연구 설계로 나머지 진행해줘 + 설계서",
+        "agents": [
+          "experiment-manager"
         ]
       }
     ],

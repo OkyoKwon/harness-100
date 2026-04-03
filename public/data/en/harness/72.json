@@ -97,12 +97,42 @@
     "modes": [
       {
         "name": "풀 파이프라인",
-        "triggerPattern": "전체 작업 요청",
+        "triggerPattern": "인허가 서류 전체 준비해줘",
         "agents": [
           "attachment-preparer",
           "document-drafter",
           "requirements-investigator",
           "submission-verifier"
+        ]
+      },
+      {
+        "name": "요건조사 모드",
+        "triggerPattern": "어떤 서류가 필요한지만 알려줘",
+        "agents": [
+          "requirements-investigator"
+        ]
+      },
+      {
+        "name": "검증 모드",
+        "triggerPattern": "이 신청서 검토해줘 (기존 파일)",
+        "agents": [
+          "submission-verifier"
+        ]
+      },
+      {
+        "name": "작성 모드",
+        "triggerPattern": "신청서만 작성해줘 (요건 파악 완료)",
+        "agents": [
+          "document-drafter",
+          "submission-verifier"
+        ]
+      },
+      {
+        "name": "자료준비 모드",
+        "triggerPattern": "첨부서류 준비 방법 알려줘",
+        "agents": [
+          "requirements-investigator",
+          "attachment-preparer"
         ]
       }
     ],

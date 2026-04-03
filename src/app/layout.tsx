@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 import { Header } from "@/components/common/header";
+import { Footer } from "@/components/common/footer";
 import { LanguageProvider } from "@/hooks/use-locale";
 import { ToastProvider } from "@/components/common/toast-provider";
 
@@ -61,6 +62,7 @@ export default function RootLayout({
           <ToastProvider>
             {children}
           </ToastProvider>
+          <Footer />
         </LanguageProvider>
       </body>
     </html>

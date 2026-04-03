@@ -26,11 +26,24 @@ const LocaleContext = createContext<LocaleContextValue>({
   t: (key) => key,
 });
 
-function getStoredLocale(): Locale {
-  if (typeof window === "undefined") return DEFAULT_LOCALE;
+function getStoredLocale(): Locale | null {
+  if (typeof window === "undefined") return null;
   const stored = localStorage.getItem(LOCALE_STORAGE_KEY);
   if (stored === "ko" || stored === "en") return stored;
-  return DEFAULT_LOCALE;
+  return null;
+}
+
+async function detectLocaleByIP(): Promise<Locale> {
+  try {
+    const res = await fetch("https://ipapi.co/country_code/", {
+      signal: AbortSignal.timeout(3000),
+    });
+    if (!res.ok) return DEFAULT_LOCALE;
+    const countryCode = (await res.text()).trim().toUpperCase();
+    return countryCode === "KR" ? "ko" : "en";
+  } catch {
+    return DEFAULT_LOCALE;
+  }
 }
 
 export function LanguageProvider({ children }: { readonly children: ReactNode }) {
@@ -38,8 +51,17 @@ export function LanguageProvider({ children }: { readonly children: ReactNode })
 
   useEffect(() => {
     const stored = getStoredLocale();
-    setLocaleState(stored);
-    document.documentElement.lang = stored;
+    if (stored) {
+      setLocaleState(stored);
+      document.documentElement.lang = stored;
+      return;
+    }
+
+    detectLocaleByIP().then((detected) => {
+      setLocaleState(detected);
+      document.documentElement.lang = detected;
+      localStorage.setItem(LOCALE_STORAGE_KEY, detected);
+    });
   }, []);
 
   const setLocale = useCallback((next: Locale) => {

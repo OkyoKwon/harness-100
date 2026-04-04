@@ -1,11 +1,23 @@
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen, act } from "@testing-library/react";
 import { RankingPodium } from "../ranking-podium";
 import { createHarnessMeta } from "@/test/mocks/harness-fixtures";
 import { LanguageProvider } from "@/hooks/use-locale";
 
-function renderWithLocale(ui: React.ReactElement) {
-  return render(<LanguageProvider>{ui}</LanguageProvider>);
+// Mock fetch for detectLocaleByIP → return "KR" so locale becomes "ko"
+beforeEach(() => {
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
+    ok: true,
+    text: () => Promise.resolve("KR"),
+  }));
+});
+
+async function renderWithLocale(ui: React.ReactElement) {
+  let result: ReturnType<typeof render>;
+  await act(async () => {
+    result = render(<LanguageProvider>{ui}</LanguageProvider>);
+  });
+  return result!;
 }
 
 describe("RankingPodium", () => {
@@ -36,9 +48,9 @@ describe("RankingPodium", () => {
     }),
   ];
 
-  it("renders 3 items with correct medals", () => {
+  it("renders 3 items with correct medals", async () => {
     // Arrange & Act
-    renderWithLocale(<RankingPodium items={top3} />);
+    await renderWithLocale(<RankingPodium items={top3} />);
 
     // Assert
     expect(screen.getAllByText("\u{1F947}")).toHaveLength(2); // gold appears in desktop + mobile
@@ -46,9 +58,9 @@ describe("RankingPodium", () => {
     expect(screen.getAllByText("\u{1F949}")).toHaveLength(2); // bronze appears in desktop + mobile
   });
 
-  it("links navigate to correct harness detail pages", () => {
+  it("links navigate to correct harness detail pages", async () => {
     // Arrange & Act
-    renderWithLocale(<RankingPodium items={top3} />);
+    await renderWithLocale(<RankingPodium items={top3} />);
 
     // Assert - each harness appears in desktop and mobile layout (6 links total)
     const links = screen.getAllByRole("link");
@@ -58,9 +70,9 @@ describe("RankingPodium", () => {
     expect(hrefs).toContain("/harness/01");
   });
 
-  it("shows category and agent count", () => {
+  it("shows category and agent count", async () => {
     // Arrange & Act
-    renderWithLocale(<RankingPodium items={top3} />);
+    await renderWithLocale(<RankingPodium items={top3} />);
 
     // Assert
     expect(screen.getAllByText("개발").length).toBeGreaterThanOrEqual(2);
@@ -70,9 +82,9 @@ describe("RankingPodium", () => {
     expect(screen.getAllByText(/6명/).length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders harness names", () => {
+  it("renders harness names", async () => {
     // Arrange & Act
-    renderWithLocale(<RankingPodium items={top3} />);
+    await renderWithLocale(<RankingPodium items={top3} />);
 
     // Assert
     expect(screen.getAllByText("Fullstack Web App").length).toBeGreaterThanOrEqual(1);
@@ -80,28 +92,28 @@ describe("RankingPodium", () => {
     expect(screen.getAllByText("YouTube Production").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("returns null if less than 3 items", () => {
+  it("returns null if less than 3 items", async () => {
     // Arrange
     const twoItems = top3.slice(0, 2);
 
     // Act
-    const { container } = renderWithLocale(<RankingPodium items={twoItems} />);
+    const { container } = await renderWithLocale(<RankingPodium items={twoItems} />);
 
     // Assert
     expect(container.innerHTML).toBe("");
   });
 
-  it("returns null for empty items array", () => {
+  it("returns null for empty items array", async () => {
     // Arrange & Act
-    const { container } = renderWithLocale(<RankingPodium items={[]} />);
+    const { container } = await renderWithLocale(<RankingPodium items={[]} />);
 
     // Assert
     expect(container.innerHTML).toBe("");
   });
 
-  it("shows rank number text", () => {
+  it("shows rank number text", async () => {
     // Arrange & Act
-    renderWithLocale(<RankingPodium items={top3} />);
+    await renderWithLocale(<RankingPodium items={top3} />);
 
     // Assert
     expect(screen.getAllByText("1위").length).toBeGreaterThanOrEqual(1);

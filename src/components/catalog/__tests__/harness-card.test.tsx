@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { HarnessCard } from "../harness-card";
 import { createHarnessMeta } from "@/test/mocks/harness-fixtures";
@@ -27,9 +27,19 @@ vi.mock("@/hooks/use-locale", () => ({
   }),
 }));
 
-// Mock QuickPreview to avoid loading harness detail
+// Mock QuickPreview to render a visible element
 vi.mock("@/components/catalog/quick-preview", () => ({
-  QuickPreview: () => null,
+  QuickPreview: ({ onClose }: { onClose: () => void }) => (
+    <div data-testid="quick-preview">
+      <button onClick={onClose}>close-preview</button>
+    </div>
+  ),
+}));
+
+// Mock useHoverCapable - default to true for hover tests
+const mockHoverCapable = vi.fn().mockReturnValue(true);
+vi.mock("@/hooks/use-hover-capable", () => ({
+  useHoverCapable: () => mockHoverCapable(),
 }));
 
 describe("HarnessCard", () => {
@@ -236,5 +246,89 @@ describe("HarnessCard", () => {
 
     // Assert
     expect(screen.getByLabelText("즐겨찾기 제거")).toBeInTheDocument();
+  });
+
+  it("clears hover timer and hides preview on mouse leave", () => {
+    // Arrange
+    vi.useFakeTimers();
+    render(
+      <HarnessCard
+        harness={defaultHarness}
+        isFavorite={false}
+        onToggleFavorite={vi.fn()}
+      />,
+    );
+
+    // Act - hover to start timer, then leave before 400ms
+    const card = screen.getByRole("link").parentElement!;
+    fireEvent.mouseEnter(card);
+    fireEvent.mouseLeave(card);
+    act(() => { vi.advanceTimersByTime(500); });
+
+    // Assert - preview should not appear
+    expect(screen.queryByTestId("quick-preview")).not.toBeInTheDocument();
+    vi.useRealTimers();
+  });
+
+  it("shows quick preview after hover delay when hoverCapable", () => {
+    // Arrange
+    vi.useFakeTimers();
+    render(
+      <HarnessCard
+        harness={defaultHarness}
+        isFavorite={false}
+        onToggleFavorite={vi.fn()}
+      />,
+    );
+
+    // Act - hover and wait for the 400ms delay
+    const card = screen.getByRole("link").parentElement!;
+    fireEvent.mouseEnter(card);
+    act(() => { vi.advanceTimersByTime(500); });
+
+    // Assert
+    expect(screen.getByTestId("quick-preview")).toBeInTheDocument();
+    vi.useRealTimers();
+  });
+
+  it("does not show quick preview when not hoverCapable", () => {
+    // Arrange
+    mockHoverCapable.mockReturnValue(false);
+    vi.useFakeTimers();
+    render(
+      <HarnessCard
+        harness={defaultHarness}
+        isFavorite={false}
+        onToggleFavorite={vi.fn()}
+      />,
+    );
+
+    // Act
+    const card = screen.getByRole("link").parentElement!;
+    fireEvent.mouseEnter(card);
+    act(() => { vi.advanceTimersByTime(500); });
+
+    // Assert
+    expect(screen.queryByTestId("quick-preview")).not.toBeInTheDocument();
+    mockHoverCapable.mockReturnValue(true);
+    vi.useRealTimers();
+  });
+
+  it("navigates to setup action when setup button is clicked", () => {
+    // Arrange
+    render(
+      <HarnessCard
+        harness={defaultHarness}
+        isFavorite={false}
+        onToggleFavorite={vi.fn()}
+      />,
+    );
+
+    // Act
+    const setupButton = screen.getByText("세팅");
+    fireEvent.click(setupButton);
+
+    // Assert
+    expect(mockPush).toHaveBeenCalledWith("/harness/16?action=setup");
   });
 });

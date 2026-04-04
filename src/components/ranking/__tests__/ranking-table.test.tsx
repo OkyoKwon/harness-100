@@ -1,12 +1,24 @@
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { RankingTable } from "../ranking-table";
 import { createHarnessMeta } from "@/test/mocks/harness-fixtures";
 import { LanguageProvider } from "@/hooks/use-locale";
 
-function renderWithLocale(ui: React.ReactElement) {
-  return render(<LanguageProvider>{ui}</LanguageProvider>);
+// Mock fetch for detectLocaleByIP → return "KR" so locale becomes "ko"
+beforeEach(() => {
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
+    ok: true,
+    text: () => Promise.resolve("KR"),
+  }));
+});
+
+async function renderWithLocale(ui: React.ReactElement) {
+  let result: ReturnType<typeof render>;
+  await act(async () => {
+    result = render(<LanguageProvider>{ui}</LanguageProvider>);
+  });
+  return result!;
 }
 
 describe("RankingTable", () => {
@@ -37,9 +49,9 @@ describe("RankingTable", () => {
     }),
   ];
 
-  it("renders all items in the table", () => {
+  it("renders all items in the table", async () => {
     // Arrange & Act
-    renderWithLocale(<RankingTable items={items} />);
+    await renderWithLocale(<RankingTable items={items} />);
 
     // Assert
     expect(screen.getByText("Data Analysis")).toBeInTheDocument();
@@ -47,18 +59,18 @@ describe("RankingTable", () => {
     expect(screen.getByText("Fullstack Web App")).toBeInTheDocument();
   });
 
-  it("shows harness descriptions", () => {
+  it("shows harness descriptions", async () => {
     // Arrange & Act
-    renderWithLocale(<RankingTable items={items} />);
+    await renderWithLocale(<RankingTable items={items} />);
 
     // Assert
     expect(screen.getByText("Data analysis pipeline")).toBeInTheDocument();
     expect(screen.getByText("Startup planning toolkit")).toBeInTheDocument();
   });
 
-  it("shows popularity rank numbers", () => {
+  it("shows popularity rank numbers", async () => {
     // Arrange & Act
-    renderWithLocale(<RankingTable items={items} />);
+    await renderWithLocale(<RankingTable items={items} />);
 
     // Assert
     expect(screen.getByText("11")).toBeInTheDocument();
@@ -69,7 +81,7 @@ describe("RankingTable", () => {
   it("filters rows when category is changed", async () => {
     // Arrange
     const user = userEvent.setup();
-    renderWithLocale(<RankingTable items={items} />);
+    await renderWithLocale(<RankingTable items={items} />);
 
     // Act - select "business" category
     const select = screen.getByRole("combobox");
@@ -84,7 +96,7 @@ describe("RankingTable", () => {
   it("shows 'no results' message when filter matches nothing", async () => {
     // Arrange
     const user = userEvent.setup();
-    renderWithLocale(<RankingTable items={items} />);
+    await renderWithLocale(<RankingTable items={items} />);
 
     // Act - select a category with no items
     const select = screen.getByRole("combobox");
@@ -97,7 +109,7 @@ describe("RankingTable", () => {
   it("shows all items when filter is reset to 'all'", async () => {
     // Arrange
     const user = userEvent.setup();
-    renderWithLocale(<RankingTable items={items} />);
+    await renderWithLocale(<RankingTable items={items} />);
     const select = screen.getByRole("combobox");
 
     // Act - filter then reset
@@ -110,9 +122,9 @@ describe("RankingTable", () => {
     expect(screen.getByText("Fullstack Web App")).toBeInTheDocument();
   });
 
-  it("links to detail pages with padded IDs", () => {
+  it("links to detail pages with padded IDs", async () => {
     // Arrange & Act
-    renderWithLocale(<RankingTable items={items} />);
+    await renderWithLocale(<RankingTable items={items} />);
 
     // Assert
     const links = screen.getAllByRole("link");
@@ -122,9 +134,9 @@ describe("RankingTable", () => {
     expect(hrefs).toContain("/harness/16");
   });
 
-  it("renders table headers", () => {
+  it("renders table headers", async () => {
     // Arrange & Act
-    renderWithLocale(<RankingTable items={items} />);
+    await renderWithLocale(<RankingTable items={items} />);
 
     // Assert
     expect(screen.getByText("순위")).toBeInTheDocument();

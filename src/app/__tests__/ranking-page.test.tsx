@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, act } from "@testing-library/react";
 import RankingPage from "../ranking/page";
 import { createRankingFixture } from "@/test/mocks/harness-fixtures";
 import { LanguageProvider } from "@/hooks/use-locale";
@@ -15,6 +15,7 @@ vi.mock("next/link", () => ({
 const mockLoadCatalog = vi.fn();
 vi.mock("@/lib/harness-loader", () => ({
   loadCatalog: (...args: unknown[]) => mockLoadCatalog(...args),
+  clearCache: vi.fn(),
 }));
 
 // Mock child components to isolate ranking page logic
@@ -48,8 +49,15 @@ vi.mock("@/components/ranking/ranking-table", () => ({
   ),
 }));
 
-function renderWithLocale(ui: React.ReactElement) {
-  return render(<LanguageProvider>{ui}</LanguageProvider>);
+// Mock fetch for detectLocaleByIP → return "KR" so locale becomes "ko"
+const mockFetch = vi.fn();
+
+async function renderWithLocale(ui: React.ReactElement) {
+  let result: ReturnType<typeof render>;
+  await act(async () => {
+    result = render(<LanguageProvider>{ui}</LanguageProvider>);
+  });
+  return result!;
 }
 
 describe("RankingPage", () => {
@@ -57,14 +65,20 @@ describe("RankingPage", () => {
 
   beforeEach(() => {
     mockLoadCatalog.mockReset();
+    mockFetch.mockReset();
+    mockFetch.mockResolvedValue({
+      ok: true,
+      text: () => Promise.resolve("KR"),
+    });
+    vi.stubGlobal("fetch", mockFetch);
   });
 
-  it("renders loading skeleton initially", () => {
+  it("renders loading skeleton initially", async () => {
     // Arrange - loadCatalog never resolves
     mockLoadCatalog.mockReturnValue(new Promise(() => {}));
 
     // Act
-    renderWithLocale(<RankingPage />);
+    await renderWithLocale(<RankingPage />);
 
     // Assert - skeleton has animate-pulse class
     const main = document.querySelector(".animate-pulse");
@@ -76,7 +90,7 @@ describe("RankingPage", () => {
     mockLoadCatalog.mockResolvedValue(rankingData);
 
     // Act
-    renderWithLocale(<RankingPage />);
+    await renderWithLocale(<RankingPage />);
 
     // Assert
     await waitFor(() => {
@@ -90,7 +104,7 @@ describe("RankingPage", () => {
     mockLoadCatalog.mockResolvedValue(rankingData);
 
     // Act
-    renderWithLocale(<RankingPage />);
+    await renderWithLocale(<RankingPage />);
 
     // Assert
     await waitFor(() => {
@@ -106,7 +120,7 @@ describe("RankingPage", () => {
     mockLoadCatalog.mockResolvedValue(rankingData);
 
     // Act
-    renderWithLocale(<RankingPage />);
+    await renderWithLocale(<RankingPage />);
 
     // Assert
     await waitFor(() => {
@@ -121,7 +135,7 @@ describe("RankingPage", () => {
     mockLoadCatalog.mockResolvedValue(rankingData);
 
     // Act
-    renderWithLocale(<RankingPage />);
+    await renderWithLocale(<RankingPage />);
 
     // Assert
     await waitFor(() => {
@@ -136,7 +150,7 @@ describe("RankingPage", () => {
     mockLoadCatalog.mockRejectedValue(new Error("Network error"));
 
     // Act
-    renderWithLocale(<RankingPage />);
+    await renderWithLocale(<RankingPage />);
 
     // Assert
     await waitFor(() => {
@@ -150,7 +164,7 @@ describe("RankingPage", () => {
     mockLoadCatalog.mockRejectedValue("unknown failure");
 
     // Act
-    renderWithLocale(<RankingPage />);
+    await renderWithLocale(<RankingPage />);
 
     // Assert
     await waitFor(() => {
@@ -164,7 +178,7 @@ describe("RankingPage", () => {
     mockLoadCatalog.mockResolvedValue(smallData);
 
     // Act
-    renderWithLocale(<RankingPage />);
+    await renderWithLocale(<RankingPage />);
 
     // Assert
     await waitFor(() => {
@@ -179,7 +193,7 @@ describe("RankingPage", () => {
     mockLoadCatalog.mockResolvedValue(top3Only);
 
     // Act
-    renderWithLocale(<RankingPage />);
+    await renderWithLocale(<RankingPage />);
 
     // Assert
     await waitFor(() => {
@@ -193,7 +207,7 @@ describe("RankingPage", () => {
     mockLoadCatalog.mockResolvedValue(rankingData);
 
     // Act
-    renderWithLocale(<RankingPage />);
+    await renderWithLocale(<RankingPage />);
 
     // Assert
     await waitFor(() => {

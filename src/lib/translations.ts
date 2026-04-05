@@ -108,7 +108,7 @@ const translations: Record<string, TranslationEntry> = {
   "detail.step": { ko: "단계 {n}", en: "Step {n}" },
   "detail.parallelStep": { ko: "단계 {n} (병렬)", en: "Step {n} (parallel)" },
   "detail.setupTip": {
-    ko: "💡 Setup으로 설치하거나 ZIP으로 다운로드하세요",
+    ko: "💡 세팅으로 설치하거나 ZIP으로 다운로드하세요",
     en: "💡 Click Setup to install, or download as ZIP",
   },
   "detail.executionModes": { ko: "실행 모드", en: "Execution Modes" },

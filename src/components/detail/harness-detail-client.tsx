@@ -54,7 +54,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
   const [harness, setHarness] = useState<Harness | null>(null);
   const [loadingState, setLoadingState] = useState<LoadingState>("loading");
   const [errorMessage, setErrorMessage] = useState("");
-  const [guideExpanded, setGuideExpanded] = useState(false);
+  const [guideExpanded, setGuideExpanded] = useState(true);
   const [skillMdOpen, setSkillMdOpen] = useState(false);
 
   const { toggle: toggleFavorite, isFavorite } = useFavorites();

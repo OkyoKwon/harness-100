@@ -93,26 +93,6 @@ export interface LocalCustomization {
   readonly createdAt: string;
 }
 
-export interface DemoStepOutput {
-  readonly title: string;
-  readonly snippet: string;
-}
-
-export interface DemoStep {
-  readonly agentId: string;
-  readonly action: string;
-  readonly durationMs: number;
-  readonly toolsUsed: ReadonlyArray<string>;
-  readonly output: DemoStepOutput;
-}
-
-export interface DemoScenario {
-  readonly id: string;
-  readonly title: string;
-  readonly userPrompt: string;
-  readonly steps: ReadonlyArray<DemoStep>;
-}
-
 export type Favorites = ReadonlyArray<number>;
 
 export interface RecentPath {

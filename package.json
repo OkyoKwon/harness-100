@@ -7,7 +7,6 @@
     "dev": "next dev",
     "seed": "tsx scripts/fetch-from-github.ts",
     "seed:legacy": "tsx scripts/generate-seed-data.ts",
-    "demo:generate": "tsx scripts/generate-demo-data.ts",
     "build": "next build",
     "start": "next start",
     "test": "vitest run",

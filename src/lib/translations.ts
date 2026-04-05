@@ -462,33 +462,6 @@ const translations: Record<string, TranslationEntry> = {
     ko: "100개의 에이전트 팀 워크플로우를 골라서 바로 적용하세요",
     en: "Browse and apply 100 agent team workflows instantly",
   },
-
-  // ── Demo ──
-  "demo.seeItInAction": {
-    ko: "작동 방식 보기",
-    en: "See it in action",
-  },
-  "demo.title": {
-    ko: "데모 시나리오",
-    en: "Demo Scenario",
-  },
-  "demo.stepOf": {
-    ko: "단계 {current}/{total}",
-    en: "Step {current} of {total}",
-  },
-  "demo.autoPlay": { ko: "자동 재생", en: "Auto-play" },
-  "demo.pause": { ko: "일시정지", en: "Pause" },
-  "demo.prev": { ko: "이전", en: "Prev" },
-  "demo.next": { ko: "다음", en: "Next" },
-  "demo.userPrompt": { ko: "사용자 요청", en: "User prompt" },
-  "demo.outputPreview": { ko: "산출물 미리보기", en: "Output preview" },
-  "demo.loading": { ko: "데모 로딩 중...", en: "Loading demo..." },
-  "demo.error": {
-    ko: "데모를 불러올 수 없습니다",
-    en: "Could not load demo",
-  },
-  "demo.toolsUsed": { ko: "사용 도구", en: "Tools" },
-  "demo.restart": { ko: "처음부터", en: "Restart" },
 } as const;
 
 export function t(

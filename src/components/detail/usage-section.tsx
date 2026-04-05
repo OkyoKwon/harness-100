@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import type { Harness } from "@/lib/types";
 import { useLocale } from "@/hooks/use-locale";
 
@@ -8,19 +7,11 @@ interface UsageSectionProps {
   readonly harness: Harness;
 }
 
-const TRIGGER_VISIBLE_COUNT = 4;
-
 export function UsageSection({ harness }: UsageSectionProps) {
   const { t } = useLocale();
-  const [triggersExpanded, setTriggersExpanded] = useState(false);
-
   const triggerConditions = harness.skill.triggerConditions;
   const modes = harness.skill.modes;
   const hasMultipleModes = modes.length > 1;
-  const hasMoreTriggers = triggerConditions.length > TRIGGER_VISIBLE_COUNT;
-  const visibleTriggers = triggersExpanded
-    ? triggerConditions
-    : triggerConditions.slice(0, TRIGGER_VISIBLE_COUNT);
 
   if (triggerConditions.length === 0 && !hasMultipleModes) return null;
 
@@ -33,7 +24,7 @@ export function UsageSection({ harness }: UsageSectionProps) {
             {t("detail.tryAsking")}
           </h3>
           <div className="flex flex-wrap gap-1.5">
-            {visibleTriggers.map((condition) => (
+            {triggerConditions.map((condition) => (
               <span
                 key={condition}
                 className="rounded-full border border-[var(--border)] bg-[var(--secondary)] px-2.5 py-1 text-xs text-[var(--muted-foreground)]"
@@ -41,17 +32,6 @@ export function UsageSection({ harness }: UsageSectionProps) {
                 &ldquo;{condition}&rdquo;
               </span>
             ))}
-            {hasMoreTriggers && (
-              <button
-                type="button"
-                onClick={() => setTriggersExpanded((prev) => !prev)}
-                className="rounded-full border border-dashed border-[var(--border)] px-2.5 py-1 text-xs text-[var(--primary)] hover:bg-[var(--muted)] transition-base focus-ring"
-              >
-                {triggersExpanded
-                  ? t("a11y.close")
-                  : `+${triggerConditions.length - TRIGGER_VISIBLE_COUNT}`}
-              </button>
-            )}
           </div>
         </section>
       )}

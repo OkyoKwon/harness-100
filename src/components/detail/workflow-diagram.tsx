@@ -11,6 +11,7 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import type { Agent } from "@/lib/types";
+import { computeDepth } from "@/lib/execution-order";
 import { useLocale } from "@/hooks/use-locale";
 
 interface WorkflowDiagramProps {
@@ -21,41 +22,6 @@ const NODE_W = 160;
 const NODE_H = 52;
 const GAP_X = 60;
 const GAP_Y = 28;
-
-function computeDepth(
-  agents: ReadonlyArray<Agent>,
-): Map<string, number> {
-  const ids = new Set(agents.map((a) => a.id));
-  const depth = new Map<string, number>();
-
-  let changed = true;
-  while (changed) {
-    changed = false;
-    for (const agent of agents) {
-      const deps = agent.dependencies.filter((d) => ids.has(d));
-      if (deps.length === 0) {
-        if (!depth.has(agent.id)) {
-          depth.set(agent.id, 0);
-          changed = true;
-        }
-      } else {
-        const depDepths = deps.map((d) => depth.get(d));
-        if (depDepths.every((d) => d !== undefined)) {
-          const col = Math.max(...(depDepths as number[])) + 1;
-          if (depth.get(agent.id) !== col) {
-            depth.set(agent.id, col);
-            changed = true;
-          }
-        }
-      }
-    }
-  }
-
-  for (const a of agents) {
-    if (!depth.has(a.id)) depth.set(a.id, 0);
-  }
-  return depth;
-}
 
 function buildGraph(agents: ReadonlyArray<Agent>): {
   readonly nodes: Node[];
@@ -173,12 +139,12 @@ export function WorkflowDiagram({ agents }: WorkflowDiagramProps) {
   }
 
   return (
-    <div className="workflow-diagram h-[180px] sm:h-[200px] lg:h-[220px] overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--card)]">
+    <div className="workflow-diagram h-[260px] sm:h-[300px] lg:h-[340px] overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--card)]">
       <ReactFlow
         nodes={nodes}
         edges={edges}
         fitView
-        fitViewOptions={{ padding: 0.15, maxZoom: 1 }}
+        fitViewOptions={{ padding: 0.2, maxZoom: 1 }}
         nodesDraggable={false}
         nodesConnectable={false}
         elementsSelectable={false}

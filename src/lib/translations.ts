@@ -104,6 +104,15 @@ const translations: Record<string, TranslationEntry> = {
     en: "Could not load harness.",
   },
 
+  // ── Detail Page (Step indicators) ──
+  "detail.step": { ko: "단계 {n}", en: "Step {n}" },
+  "detail.parallelStep": { ko: "단계 {n} (병렬)", en: "Step {n} (parallel)" },
+  "detail.setupTip": {
+    ko: "💡 Setup으로 설치하거나 ZIP으로 다운로드하세요",
+    en: "💡 Click Setup to install, or download as ZIP",
+  },
+  "detail.executionModes": { ko: "실행 모드", en: "Execution Modes" },
+
   // ── Core Concepts (Detail Page) ──
   "detail.concepts.title": {
     ko: "구조 이해하기",

@@ -5,14 +5,17 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import matter from "gray-matter";
 import type { Locale } from "@/lib/locale";
-import type { Agent, Harness } from "@/lib/types";
-import { generateAgentMd, generateSkillMd } from "@/lib/zip-builder";
+import type { Agent, Harness, ExecutionStep } from "@/lib/types";
+import { generateAgentMd } from "@/lib/zip-builder";
+import { groupAgentsByStep } from "@/lib/execution-order";
 import { MarkdownViewer } from "@/components/common/markdown-viewer";
 import { useLocale } from "@/hooks/use-locale";
 
 interface AgentListProps {
   readonly agents: ReadonlyArray<Agent>;
   readonly harness: Harness;
+  readonly executionOrder: ReadonlyArray<ExecutionStep>;
+  readonly onViewSkillMd: () => void;
 }
 
 const ROLE_EMOJI_MAP: ReadonlyArray<readonly [ReadonlyArray<string>, string]> = [
@@ -50,7 +53,7 @@ interface MdViewerState {
   readonly content: string;
 }
 
-export function AgentList({ agents, harness }: AgentListProps) {
+export function AgentList({ agents, harness, executionOrder, onViewSkillMd }: AgentListProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [mdViewer, setMdViewer] = useState<MdViewerState | null>(null);
   const { locale, t } = useLocale();
@@ -59,22 +62,10 @@ export function AgentList({ agents, harness }: AgentListProps) {
     setExpandedId((prev) => (prev === agentId ? null : agentId));
   }, []);
 
-  const handleViewSkillMd = useCallback(() => {
-    const mainSkillKey = Object.keys(harness.rawFiles?.skills ?? {}).find(
-      (k) => k.startsWith(harness.slug + "/"),
-    );
-    const rawContent = mainSkillKey ? harness.rawFiles?.skills?.[mainSkillKey] : undefined;
-    setMdViewer({
-      title: `${harness.skill.name} — ${t("detail.skillMarkdown")}`,
-      content: rawContent ?? generateSkillMd(harness, locale),
-    });
-  }, [harness, locale]);
-
   const handleCloseMd = useCallback(() => {
     setMdViewer(null);
   }, []);
 
-  // Pre-parse markdown bodies for all agents
   const markdownBodies = useMemo(() => {
     const map = new Map<string, string>();
     for (const agent of agents) {
@@ -83,141 +74,167 @@ export function AgentList({ agents, harness }: AgentListProps) {
     return map;
   }, [agents, harness, locale]);
 
-  return (
-    <>
-      <div className="space-y-2">
-        {agents.map((agent) => {
-          const isExpanded = expandedId === agent.id;
-          const emoji = getAgentEmoji(agent.role, agent.name);
+  const stepGroups = useMemo(
+    () => groupAgentsByStep(agents, executionOrder),
+    [agents, executionOrder],
+  );
 
-          return (
-            <div
-              key={agent.id}
-              className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--card)]"
-            >
-              <button
-                type="button"
-                onClick={() => handleToggle(agent.id)}
-                className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-[var(--muted)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
-              >
-                <span className="text-xl" role="img" aria-label={agent.role}>
-                  {emoji}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-semibold text-[var(--foreground)]">
-                    {agent.name}
-                  </p>
-                  <p className="truncate text-xs text-[var(--muted-foreground)]">{agent.role}</p>
-                </div>
-                <svg
-                  className={`h-4 w-4 shrink-0 text-[var(--muted-foreground)] transition-transform ${
-                    isExpanded ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
+  // Build extension skill lookup by targetAgent
+  const extensionsByAgent = useMemo(() => {
+    const map = new Map<string, typeof harness.skill.extensionSkills>();
+    for (const ext of harness.skill.extensionSkills) {
+      const existing = map.get(ext.targetAgent) ?? [];
+      map.set(ext.targetAgent, [...existing, ext]);
+    }
+    return map;
+  }, [harness.skill.extensionSkills]);
 
-              {isExpanded && (
-                <div className="border-t border-[var(--border)] px-4 py-3">
-                  {agent.tools.length > 0 && (
-                    <div className="mt-3">
-                      <p className="mb-1.5 text-xs font-medium text-[var(--muted-foreground)]">
-                        {t("detail.tools")}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {agent.tools.map((tool) => (
-                          <span
-                            key={tool}
-                            className="rounded-full bg-[var(--badge-tool-bg)] px-2.5 py-0.5 text-xs font-medium text-[var(--badge-tool-fg)]"
-                          >
-                            {tool}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+  const renderAgentCard = (agent: Agent) => {
+    const isExpanded = expandedId === agent.id;
+    const emoji = getAgentEmoji(agent.role, agent.name);
+    const agentExtensions = extensionsByAgent.get(agent.id) ?? [];
 
-                  {agent.dependencies.length > 0 && (
-                    <div className="mt-3">
-                      <p className="mb-1 text-xs font-medium text-[var(--muted-foreground)]">
-                        {t("detail.dependencies")}
-                      </p>
-                      <p className="text-xs text-[var(--muted-foreground)]">
-                        {agent.dependencies.join(", ")}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* 에이전트 마크다운 인라인 표시 */}
-                  {markdownBodies.get(agent.id) && (
-                    <div className="mt-4 rounded-lg border border-[var(--border)] bg-[var(--muted)]/30 p-3">
-                      <div className="markdown-body">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                          {markdownBodies.get(agent.id)!}
-                        </ReactMarkdown>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          );
-        })}
-
-        {/* 스킬 마크다운 보기 버튼 */}
+    return (
+      <div
+        key={agent.id}
+        className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--card)]"
+      >
         <button
           type="button"
-          onClick={handleViewSkillMd}
-          className="flex w-full items-center justify-center gap-2 rounded-lg border border-dashed border-[var(--border)] bg-[var(--card)] px-4 py-3 text-sm font-medium text-[var(--muted-foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-base focus-ring"
+          onClick={() => handleToggle(agent.id)}
+          className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-[var(--muted)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
         >
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <span className="text-xl" role="img" aria-label={agent.role}>
+            {emoji}
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-semibold text-[var(--foreground)]">
+              {agent.name}
+            </p>
+            <p className="truncate text-xs text-[var(--muted-foreground)]">{agent.role}</p>
+          </div>
+          <svg
+            className={`h-4 w-4 shrink-0 text-[var(--muted-foreground)] transition-transform ${
+              isExpanded ? "rotate-180" : ""
+            }`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
           </svg>
-          {t("detail.viewSkillMd")}
         </button>
 
-        {/* 확장 스킬 버튼들 */}
-        {harness.skill.extensionSkills.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {harness.skill.extensionSkills.map((extSkill) => {
-              const rawKey = Object.keys(harness.rawFiles?.skills ?? {}).find(
-                (k) => k.startsWith(extSkill.name + "/"),
-              );
-              const rawContent = rawKey ? harness.rawFiles?.skills?.[rawKey] : undefined;
-              if (!rawContent) return null;
-              return (
-                <button
-                  key={extSkill.name}
-                  type="button"
-                  onClick={() =>
-                    setMdViewer({
-                      title: `${extSkill.name} — ${t("detail.extensionSkill")}`,
-                      content: rawContent,
-                    })
-                  }
-                  className="flex items-center gap-1.5 rounded-lg border border-dashed border-[var(--border)] bg-[var(--card)] px-3 py-2 text-xs font-medium text-[var(--muted-foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-base focus-ring"
-                >
-                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                  {extSkill.name}
-                </button>
-              );
-            })}
+        {isExpanded && (
+          <div className="border-t border-[var(--border)] px-4 py-3">
+            {agent.tools.length > 0 && (
+              <div className="mt-3">
+                <p className="mb-1.5 text-xs font-medium text-[var(--muted-foreground)]">
+                  {t("detail.tools")}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {agent.tools.map((tool) => (
+                    <span
+                      key={tool}
+                      className="rounded-full bg-[var(--badge-tool-bg)] px-2.5 py-0.5 text-xs font-medium text-[var(--badge-tool-fg)]"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {agent.dependencies.length > 0 && (
+              <div className="mt-3">
+                <p className="mb-1 text-xs font-medium text-[var(--muted-foreground)]">
+                  {t("detail.dependencies")}
+                </p>
+                <p className="text-xs text-[var(--muted-foreground)]">
+                  {agent.dependencies.join(", ")}
+                </p>
+              </div>
+            )}
+
+            {/* Extension skills inline */}
+            {agentExtensions.length > 0 && (
+              <div className="mt-3">
+                <p className="mb-1.5 text-xs font-medium text-[var(--muted-foreground)]">
+                  {t("detail.extensionSkill")}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {agentExtensions.map((extSkill) => {
+                    const rawKey = Object.keys(harness.rawFiles?.skills ?? {}).find(
+                      (k) => k.startsWith(extSkill.name + "/"),
+                    );
+                    const rawContent = rawKey ? harness.rawFiles?.skills?.[rawKey] : undefined;
+                    if (!rawContent) return null;
+                    return (
+                      <button
+                        key={extSkill.name}
+                        type="button"
+                        onClick={() =>
+                          setMdViewer({
+                            title: `${extSkill.name} — ${t("detail.extensionSkill")}`,
+                            content: rawContent,
+                          })
+                        }
+                        className="flex items-center gap-1.5 rounded-lg border border-dashed border-[var(--border)] bg-[var(--background)] px-2.5 py-1.5 text-xs font-medium text-[var(--muted-foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-base focus-ring"
+                      >
+                        <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        {extSkill.name}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {markdownBodies.get(agent.id) && (
+              <div className="mt-4 rounded-lg border border-[var(--border)] bg-[var(--muted)]/30 p-3">
+                <div className="markdown-body">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {markdownBodies.get(agent.id)!}
+                  </ReactMarkdown>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
+    );
+  };
 
-      {/* 마크다운 뷰어 모달 (스킬용) */}
+  return (
+    <>
+      <div className="space-y-4">
+        {stepGroups.map((group) => (
+          <div key={group.step}>
+            {/* Step divider */}
+            <div className="mb-2 flex items-center gap-2">
+              <div className="h-4 w-0.5 rounded-full bg-[var(--primary)]" />
+              <span className="text-xs font-medium text-[var(--muted-foreground)]">
+                {group.parallel
+                  ? t("detail.parallelStep", { n: group.step })
+                  : t("detail.step", { n: group.step })}
+              </span>
+              <div className="flex-1 border-t border-[var(--border)]" />
+            </div>
+            {/* Agent cards */}
+            <div className="space-y-2">
+              {group.agents.map(renderAgentCard)}
+            </div>
+          </div>
+        ))}
+      </div>
+
       <MarkdownViewer
         title={mdViewer?.title ?? ""}
         content={mdViewer?.content ?? ""}

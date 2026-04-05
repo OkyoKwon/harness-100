@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import type { Harness } from "@/lib/types";
 import { loadHarnessDetail } from "@/lib/harness-loader";
@@ -13,10 +13,11 @@ import { AgentList } from "@/components/detail/agent-list";
 import { WorkflowDiagram } from "@/components/detail/workflow-diagram";
 import { OutputPreview } from "@/components/detail/output-preview";
 import { CompletionBanner } from "@/components/common/completion-banner";
-import { ConceptRelationshipDiagram } from "@/components/common/concept-diagram";
+import { MarkdownViewer } from "@/components/common/markdown-viewer";
 import { ConflictModal } from "@/components/setup/conflict-modal";
 import { CATEGORIES } from "@/lib/constants";
 import { buildCliCommand } from "@/lib/cli";
+import { generateSkillMd } from "@/lib/zip-builder";
 
 type LoadingState = "loading" | "loaded" | "error";
 
@@ -33,14 +34,14 @@ function DetailSkeleton() {
       <div className="mb-2 h-8 w-64 rounded bg-[var(--muted)]" />
       <div className="mb-6 h-4 w-96 rounded bg-[var(--muted)]" />
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div className="space-y-4">
+          <div className="h-[300px] rounded-lg bg-[var(--muted)]" />
+          <div className="h-40 rounded-lg bg-[var(--muted)]" />
+        </div>
         <div className="space-y-3">
           {[1, 2, 3].map((i) => (
             <div key={i} className="h-16 rounded-lg bg-[var(--muted)]" />
           ))}
-        </div>
-        <div className="space-y-4">
-          <div className="h-[300px] rounded-lg bg-[var(--muted)]" />
-          <div className="h-40 rounded-lg bg-[var(--muted)]" />
         </div>
       </div>
     </div>
@@ -53,7 +54,8 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
   const [harness, setHarness] = useState<Harness | null>(null);
   const [loadingState, setLoadingState] = useState<LoadingState>("loading");
   const [errorMessage, setErrorMessage] = useState("");
-  const [conceptsExpanded, setConceptsExpanded] = useState(false);
+  const [guideExpanded, setGuideExpanded] = useState(false);
+  const [skillMdOpen, setSkillMdOpen] = useState(false);
 
   const { toggle: toggleFavorite, isFavorite } = useFavorites();
   const { status: zipStatus, errorMessage: zipError, download: downloadZip } = useZipDownload();
@@ -118,6 +120,14 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
     };
   }, [id, locale]);
 
+  const handleViewSkillMd = useCallback(() => {
+    setSkillMdOpen(true);
+  }, []);
+
+  const handleCloseSkillMd = useCallback(() => {
+    setSkillMdOpen(false);
+  }, []);
+
   if (loadingState === "loading") {
     return <DetailSkeleton />;
   }
@@ -144,6 +154,14 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
   const setupDisabled = !setupSupported || setupStatus === "selecting" || setupStatus === "writing" || setupStatus === "confirming";
   const setupLabel = setupStatus === "selecting" || setupStatus === "writing" || setupStatus === "confirming" ? t("action.setupInProgress") : t("action.setup");
   const zipLabel = zipStatus === "building" ? t("action.zipBuilding") : t("action.zip");
+
+  // Skill markdown content
+  const mainSkillKey = Object.keys(harness.rawFiles?.skills ?? {}).find(
+    (k) => k.startsWith(harness.slug + "/"),
+  );
+  const skillMdContent = mainSkillKey
+    ? harness.rawFiles?.skills?.[mainSkillKey] ?? generateSkillMd(harness, locale)
+    : generateSkillMd(harness, locale);
 
   return (
     <div className="mx-auto max-w-6xl px-4 pt-8 pb-24 lg:pb-8">
@@ -236,7 +254,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
         />
       )}
 
-      {/* Completion banners (kept for CLI command display) */}
+      {/* Completion banners */}
       {setupStatus === "complete" && setupResult && (
         <div className="mb-6">
           <CompletionBanner
@@ -258,38 +276,19 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
         </div>
       )}
 
-      {/* 세팅 가이드 */}
-      <div className="mb-6 rounded-lg border border-[var(--info-border)] bg-[var(--info-bg)] px-4 py-3">
-        <p className="text-sm font-semibold text-[var(--info-foreground)] mb-2">{t("setup.guideTitle")}</p>
-        <ol className="space-y-1 text-xs text-[var(--info-foreground)] list-decimal list-inside">
-          <li>{t("setup.step1")}</li>
-          <li>{t("setup.step2")}</li>
-          <li>
-            {t("setup.step3prefix")}{" "}
-            <code className="rounded bg-[var(--badge-tool-bg)] px-1 font-mono">
-              {buildCliCommand(harness.slug)}
-            </code>{" "}
-            {t("setup.step3suffix")}
-          </li>
-        </ol>
-        <p className="mt-2 text-[10px] text-[var(--info-foreground)] opacity-70">
-          {t("setup.tip")}
-        </p>
-      </div>
-
-      {/* Core Concepts — collapsible */}
+      {/* Setup tip — collapsible single-line */}
       <div className="mb-6 rounded-lg border border-[var(--info-border)] bg-[var(--info-bg)]">
         <button
           type="button"
-          onClick={() => setConceptsExpanded((prev) => !prev)}
-          className="flex w-full items-center justify-between px-4 py-3 text-left"
+          onClick={() => setGuideExpanded((prev) => !prev)}
+          className="flex w-full items-center justify-between px-4 py-2.5 text-left"
         >
-          <span className="text-sm font-semibold text-[var(--info-foreground)]">
-            {t("detail.concepts.title")}
+          <span className="text-xs text-[var(--info-foreground)]">
+            {t("detail.setupTip")}
           </span>
           <svg
-            className={`h-4 w-4 shrink-0 text-[var(--info-foreground)] transition-transform ${
-              conceptsExpanded ? "rotate-180" : ""
+            className={`h-3.5 w-3.5 shrink-0 text-[var(--info-foreground)] transition-transform ${
+              guideExpanded ? "rotate-180" : ""
             }`}
             fill="none"
             viewBox="0 0 24 24"
@@ -299,39 +298,30 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-        {conceptsExpanded && (
-          <div className="px-4 pb-4">
-            <div className="space-y-2 text-xs text-[var(--info-foreground)]">
-              <p>
-                <strong>{t("detail.concepts.agentLabel")}</strong>{" "}
-                {t("detail.concepts.agentDesc")}
-              </p>
-              <p>
-                <strong>{t("detail.concepts.skillLabel")}</strong>{" "}
-                {t("detail.concepts.skillDesc")}
-              </p>
-              <p>
-                <strong>{t("detail.concepts.extensionLabel")}</strong>{" "}
-                {t("detail.concepts.extensionDesc")}
-              </p>
-            </div>
-            <ConceptRelationshipDiagram compact />
+        {guideExpanded && (
+          <div className="border-t border-[var(--info-border)] px-4 py-3">
+            <ol className="space-y-1 text-xs text-[var(--info-foreground)] list-decimal list-inside">
+              <li>{t("setup.step1")}</li>
+              <li>{t("setup.step2")}</li>
+              <li>
+                {t("setup.step3prefix")}{" "}
+                <code className="rounded bg-[var(--badge-tool-bg)] px-1 font-mono">
+                  {buildCliCommand(harness.slug)}
+                </code>{" "}
+                {t("setup.step3suffix")}
+              </li>
+            </ol>
+            <p className="mt-2 text-[10px] text-[var(--info-foreground)] opacity-70">
+              {t("setup.tip")}
+            </p>
           </div>
         )}
       </div>
 
       {/* Main content: two-panel on desktop, stacked on mobile */}
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-        {/* Left panel: Agent list */}
-        <section>
-          <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
-            {t("detail.agents", { count: harness.agents.length })}
-          </h2>
-          <AgentList agents={harness.agents} harness={harness} />
-        </section>
-
-        {/* Right panel: Workflow + Outputs */}
-        <section className="space-y-8">
+        {/* Left panel: Workflow (sticky) + Outputs */}
+        <section className="space-y-8 lg:sticky lg:top-20 lg:self-start">
           <div>
             <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
               {t("detail.workflow")}
@@ -343,8 +333,40 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
             <OutputPreview harness={harness} />
           </div>
         </section>
+
+        {/* Right panel: Agent list */}
+        <section>
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-[var(--foreground)]">
+              {t("detail.agents", { count: harness.agents.length })}
+            </h2>
+            <button
+              type="button"
+              onClick={handleViewSkillMd}
+              className="flex items-center gap-1.5 rounded-lg border border-dashed border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-xs font-medium text-[var(--muted-foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-base focus-ring"
+            >
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              {t("detail.viewSkillMd")}
+            </button>
+          </div>
+          <AgentList
+            agents={harness.agents}
+            harness={harness}
+            executionOrder={harness.skill.executionOrder}
+            onViewSkillMd={handleViewSkillMd}
+          />
+        </section>
       </div>
 
+      {/* Skill markdown viewer modal */}
+      <MarkdownViewer
+        title={`${harness.skill.name} — ${t("detail.skillMarkdown")}`}
+        content={skillMdContent}
+        open={skillMdOpen}
+        onClose={handleCloseSkillMd}
+      />
     </div>
   );
 }

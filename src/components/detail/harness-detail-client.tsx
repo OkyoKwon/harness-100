@@ -12,6 +12,7 @@ import { useLocale } from "@/hooks/use-locale";
 import { AgentList } from "@/components/detail/agent-list";
 import { WorkflowDiagram } from "@/components/detail/workflow-diagram";
 import { OutputPreview } from "@/components/detail/output-preview";
+import { UsageSection } from "@/components/detail/usage-section";
 import { CompletionBanner } from "@/components/common/completion-banner";
 import { MarkdownViewer } from "@/components/common/markdown-viewer";
 import { ConflictModal } from "@/components/setup/conflict-modal";
@@ -359,6 +360,9 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
           />
         </section>
       </div>
+
+      {/* Usage: trigger conditions + execution modes — full width */}
+      <UsageSection harness={harness} />
 
       {/* Skill markdown viewer modal */}
       <MarkdownViewer

@@ -1,0 +1,75 @@
+{
+  "id": "youtube-production-demo",
+  "title": "YouTube Production",
+  "userPrompt": "plan a YouTube video",
+  "steps": [
+    {
+      "agentId": "content-strategist",
+      "action": "YouTube content strategist.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "콘텐츠 전략 브리프",
+        "snippet": "# 콘텐츠 전략 브리프"
+      }
+    },
+    {
+      "agentId": "scriptwriter",
+      "action": "YouTube scriptwriter.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Output",
+        "snippet": "[YouTube Scriptwriter output will appear here]"
+      }
+    },
+    {
+      "agentId": "thumbnail-designer",
+      "action": "YouTube thumbnail designer.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Write",
+        "Skill",
+        "Read"
+      ],
+      "output": {
+        "title": "썸네일 컨셉 시트",
+        "snippet": "# 썸네일 컨셉 시트"
+      }
+    },
+    {
+      "agentId": "seo-optimizer",
+      "action": "YouTube SEO specialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "SEO 패키지",
+        "snippet": "# SEO 패키지\n\n## 최종 제목 (랭킹 순위)\n1. [제목] — 키워드: [포함된 키워드], CTR 예상: [높음/중간]\n2. [제목] — ..."
+      }
+    },
+    {
+      "agentId": "production-reviewer",
+      "action": "YouTube production reviewer (QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "프로덕션 리뷰 보고서",
+        "snippet": "# 프로덕션 리뷰 보고서"
+      }
+    }
+  ]
+}

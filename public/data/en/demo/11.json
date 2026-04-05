@@ -1,0 +1,75 @@
+{
+  "id": "book-publishing-demo",
+  "title": "Book Publishing",
+  "userPrompt": "publish my e-book",
+  "steps": [
+    {
+      "agentId": "manuscript-editor",
+      "action": "Manuscript editor.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Edit",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Edited Manuscript",
+        "snippet": "# Edited Manuscript\n\n## Editing Overview\n- **Manuscript Title**: [Title]\n- **Author**: [Author name]"
+      }
+    },
+    {
+      "agentId": "proofreader",
+      "action": "Proofreader.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Proofreading Report",
+        "snippet": "# Proofreading Report\n\n## Proofreading Overview\n- **Manuscript Title**: [Title]\n- **Total Corrections**: [N items]"
+      }
+    },
+    {
+      "agentId": "cover-designer",
+      "action": "Cover designer.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Write",
+        "Skill",
+        "Read"
+      ],
+      "output": {
+        "title": "Cover Concept Sheet",
+        "snippet": "# Cover Concept Sheet\n\n## Main Concept (Option A)\n- **Concept Description**: [One-line concept]\n- **Visual Elements**: [Main image/illustration/typography-focused]"
+      }
+    },
+    {
+      "agentId": "metadata-manager",
+      "action": "Metadata manager.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "E-Book Metadata & Distribution Settings",
+        "snippet": "# E-Book Metadata & Distribution Settings\n\n## Basic Information\n- **Title**: [Title]\n- **Subtitle**: [Subtitle]"
+      }
+    },
+    {
+      "agentId": "publishing-reviewer",
+      "action": "Publishing reviewer (QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Publishing Review Report",
+        "snippet": "# Publishing Review Report\n\n## Overall Assessment\n- **Distribution Readiness**: GREEN Ready / YELLOW Proceed After Revisions / RED Rework Needed\n- **Summary**: [1-2 sentence summary]"
+      }
+    }
+  ]
+}

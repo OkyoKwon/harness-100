@@ -1,0 +1,73 @@
+{
+  "id": "technical-writer-demo",
+  "title": "Technical Writer",
+  "userPrompt": "기술 문서 작성해줘",
+  "steps": [
+    {
+      "agentId": "info-architect",
+      "action": "정보 설계자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "문서 구조 설계서",
+        "snippet": "# 문서 구조 설계서\n\n## 문서 메타\n- **문서 제목**:\n- **문서 유형**: API레퍼런스/튜토리얼/가이드/아키텍처문서/운영매뉴얼"
+      }
+    },
+    {
+      "agentId": "doc-writer",
+      "action": "기술 문서 집필자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "[문서 제목]",
+        "snippet": "# [문서 제목]\n\n> **대상 독자**: [독자 정의]\n> **최종 업데이트**: YYYY-MM-DD\n> **버전**: X.Y"
+      }
+    },
+    {
+      "agentId": "diagram-maker",
+      "action": "다이어그램 작성자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "다이어그램 모음",
+        "snippet": "# 다이어그램 모음\n\n## 다이어그램 목록\n| ID | 유형 | 제목 | 삽입 위치 |\n|----|------|------|----------|"
+      }
+    },
+    {
+      "agentId": "tech-reviewer",
+      "action": "기술 리뷰어(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "기술 문서 리뷰 보고서",
+        "snippet": "# 기술 문서 리뷰 보고서\n\n## 종합 평가\n- **발행 준비 상태**: 🟢 발행 가능 / 🟡 수정 후 발행 / 🔴 재작성 필요\n- **총평**: [1~2문장 요약]"
+      }
+    },
+    {
+      "agentId": "version-controller",
+      "action": "버전 관리자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "문서 버전 관리",
+        "snippet": "# 문서 버전 관리\n\n## 문서 메타데이터\n| 항목 | 값 |\n|------|------|"
+      }
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "id": "report-generator-demo",
+  "title": "Report Generator",
+  "userPrompt": "업무 보고서 만들어줘",
+  "steps": [
+    {
+      "agentId": "data-collector",
+      "action": "업무 보고서 데이터 수집가.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Read"
+      ],
+      "output": {
+        "title": "데이터 수집 보고서",
+        "snippet": "# 데이터 수집 보고서\n\n## 수집 개요\n- **보고서 주제**: [주제]\n- **수집 기간**: [데이터 기준 기간]"
+      }
+    },
+    {
+      "agentId": "analyst",
+      "action": "업무 보고서 분석가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "분석 보고서",
+        "snippet": "# 분석 보고서\n\n## 분석 개요\n- **분석 대상**: [주제/기간]\n- **분석 방법**: [사용한 분석 기법]"
+      }
+    },
+    {
+      "agentId": "visualizer",
+      "action": "업무 보고서 시각화 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "시각화 명세서",
+        "snippet": "# 시각화 명세서\n\n## 시각화 목록\n\n### VIZ-01: [차트 제목]"
+      }
+    },
+    {
+      "agentId": "report-writer",
+      "action": "업무 보고서 작성자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "[보고서 제목]",
+        "snippet": "# [보고서 제목]\n\n> **보고 대상**: [경영진/팀장/실무자/외부]\n> **보고 일자**: [날짜]\n> **작성 부서**: [부서명]"
+      }
+    },
+    {
+      "agentId": "executive-summarizer",
+      "action": "업무 보고서 요약 및 교차 검증 전문가(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "경영진 요약 & 검증 보고서",
+        "snippet": "# 경영진 요약 & 검증 보고서\n\n## Part 1: 경영진 요약 (Executive Summary)\n\n### 핵심 메시지"
+      }
+    }
+  ]
+}

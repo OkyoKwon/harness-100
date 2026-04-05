@@ -1,0 +1,74 @@
+{
+  "id": "comic-creator-demo",
+  "title": "Comic Creator",
+  "userPrompt": "만화 만들어줘",
+  "steps": [
+    {
+      "agentId": "storyboarder",
+      "action": "만화 스토리보더.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "만화 스토리보드",
+        "snippet": "# 만화 스토리보드\n\n## 작품 개요\n- **제목**: [작품 제목]\n- **장르**: [코미디/드라마/판타지/일상/액션/호러/SF/...]"
+      }
+    },
+    {
+      "agentId": "dialogue-writer",
+      "action": "만화 대사 작가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "대사 스크립트",
+        "snippet": "# 대사 스크립트\n\n## 캐릭터 말투 가이드\n| 캐릭터 | 말투 특징 | 자주 쓰는 표현 | 감정 표현 방식 |\n|--------|---------|--------------|--------------|"
+      }
+    },
+    {
+      "agentId": "image-generator",
+      "action": "만화 이미지 생성자.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Skill",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "이미지 생성 결과",
+        "snippet": "# 이미지 생성 결과\n\n## 아트 스타일 가이드\n- **스타일**: [일본 만화/미국 코믹/웹툰/카툰/...]\n- **선화**: [깔끔한 선화/러프한 선화/선 없는 스타일]"
+      }
+    },
+    {
+      "agentId": "comic-editor",
+      "action": "만화 편집자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "페이지 레이아웃 편집 지시서",
+        "snippet": "# 페이지 레이아웃 편집 지시서\n\n## 편집 규격\n- **판형**: [A4/B5/웹툰(세로스크롤)]\n- **해상도**: [300dpi/72dpi(웹)]"
+      }
+    },
+    {
+      "agentId": "quality-reviewer",
+      "action": "만화 품질 검증자(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "만화 품질 리뷰 보고서",
+        "snippet": "# 만화 품질 리뷰 보고서\n\n## 종합 평가\n- **제작 준비 상태**: 🟢 준비 완료 / 🟡 수정 후 진행 / 🔴 재작업 필요\n- **총평**: [1~2문장 요약]"
+      }
+    }
+  ]
+}

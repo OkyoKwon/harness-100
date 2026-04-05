@@ -1,0 +1,74 @@
+{
+  "id": "wedding-planner-demo",
+  "title": "Wedding Planner",
+  "userPrompt": "wedding preparation ",
+  "steps": [
+    {
+      "agentId": "budget-controller",
+      "action": "budget managementspecialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "결혼 예산 관리표",
+        "snippet": "# 결혼 예산 관리표\n\n## 예산 총괄\n- **총 예산**: ₩\n- **신랑측 부담**: ₩ (%)"
+      }
+    },
+    {
+      "agentId": "checklist-builder",
+      "action": "checklist .",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "결혼 준비 체크리스트 + 청첩장 문구",
+        "snippet": "# 결혼 준비 체크리스트 + 청첩장 문구\n\n## 종합 체크리스트\n\n### 🏛 예식 관련"
+      }
+    },
+    {
+      "agentId": "timeline-designer",
+      "action": "timeline designspecialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "결혼 준비 타임라인",
+        "snippet": "# 결혼 준비 타임라인\n\n## 기본 정보\n- **결혼식 날짜**: YYYY년 MM월 DD일 (D-day)\n- **남은 기간**: X개월"
+      }
+    },
+    {
+      "agentId": "vendor-analyst",
+      "action": "vendor comparison analysis.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "업체 비교표",
+        "snippet": "# 업체 비교표\n\n## 웨딩홀 비교\n| 항목 | 업체 A | 업체 B | 업체 C |\n|------|--------|--------|--------|"
+      }
+    },
+    {
+      "agentId": "wedding-reviewer",
+      "action": "reviewer(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "웨딩 플랜 리뷰 보고서",
+        "snippet": "# 웨딩 플랜 리뷰 보고서\n\n## 종합 평가\n- **준비 시작 가능 상태**: 🟢 바로 시작 / 🟡 수정 후 시작 / 🔴 재검토 필요\n- **총평**: [1~2문장 요약]"
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import type { Harness } from "@/lib/types";
 import { loadHarnessDetail } from "@/lib/harness-loader";
@@ -14,6 +14,7 @@ import { WorkflowDiagram } from "@/components/detail/workflow-diagram";
 import { OutputPreview } from "@/components/detail/output-preview";
 import { CompletionBanner } from "@/components/common/completion-banner";
 import { ConflictModal } from "@/components/setup/conflict-modal";
+import { DemoPanel } from "@/components/detail/demo-panel";
 import { CATEGORIES } from "@/lib/constants";
 import { buildCliCommand } from "@/lib/cli";
 
@@ -66,6 +67,11 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
   } = useLocalSetup();
   const { addToast } = useToast();
   const { t, locale } = useLocale();
+  const [demoActiveAgentId, setDemoActiveAgentId] = useState<string | null>(null);
+
+  const handleDemoAgentChange = useCallback((agentId: string | null) => {
+    setDemoActiveAgentId(agentId);
+  }, []);
 
   // Toast notifications for setup/zip completion
   useEffect(() => {
@@ -275,6 +281,13 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
         </p>
       </div>
 
+      {/* Demo scenario */}
+      <DemoPanel
+        harnessId={harness.id}
+        agents={harness.agents}
+        onActiveAgentChange={handleDemoAgentChange}
+      />
+
       {/* Main content: two-panel on desktop, stacked on mobile */}
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         {/* Left panel: Agent list */}
@@ -291,7 +304,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
             <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
               {t("detail.workflow")}
             </h2>
-            <WorkflowDiagram agents={harness.agents} />
+            <WorkflowDiagram agents={harness.agents} activeAgentId={demoActiveAgentId} />
           </div>
 
           <div>

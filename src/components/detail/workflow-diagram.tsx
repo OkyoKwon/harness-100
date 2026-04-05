@@ -15,6 +15,7 @@ import { useLocale } from "@/hooks/use-locale";
 
 interface WorkflowDiagramProps {
   readonly agents: ReadonlyArray<Agent>;
+  readonly activeAgentId?: string | null;
 }
 
 const NODE_W = 160;
@@ -57,7 +58,10 @@ function computeDepth(
   return depth;
 }
 
-function buildGraph(agents: ReadonlyArray<Agent>): {
+function buildGraph(
+  agents: ReadonlyArray<Agent>,
+  activeAgentId?: string | null,
+): {
   readonly nodes: Node[];
   readonly edges: Edge[];
 } {
@@ -96,6 +100,7 @@ function buildGraph(agents: ReadonlyArray<Agent>): {
     const col = depthMap.get(agent.id) ?? 0;
     const isFirst = col === 0;
     const isLast = col === maxCol;
+    const isActive = activeAgentId === agent.id;
 
     // Use short label: if name is long (merged agents), use role instead
     const shortLabel = agent.name.length > 16 ? agent.role.split(" ").slice(0, 3).join(" ") : agent.name;
@@ -111,24 +116,32 @@ function buildGraph(agents: ReadonlyArray<Agent>): {
         alignItems: "center",
         justifyContent: "center",
         fontSize: "12px",
-        fontWeight: 500,
+        fontWeight: isActive ? 700 : 500,
         textAlign: "center" as const,
         overflow: "hidden",
         textOverflow: "ellipsis",
         borderRadius: "10px",
-        border: isFirst
-          ? "2px solid var(--primary)"
-          : isLast
-            ? "2px solid var(--success)"
-            : "1.5px solid var(--node-border)",
-        background: isFirst
+        border: isActive
+          ? "2.5px solid var(--primary)"
+          : isFirst
+            ? "2px solid var(--primary)"
+            : isLast
+              ? "2px solid var(--success)"
+              : "1.5px solid var(--node-border)",
+        background: isActive
           ? "var(--info-bg)"
-          : isLast
-            ? "var(--success-bg)"
-            : "var(--node-bg)",
+          : isFirst
+            ? "var(--info-bg)"
+            : isLast
+              ? "var(--success-bg)"
+              : "var(--node-bg)",
         color: "var(--foreground)",
         padding: "6px 10px",
-        boxShadow: "var(--shadow-sm)",
+        boxShadow: isActive
+          ? "0 0 12px var(--primary)"
+          : "var(--shadow-sm)",
+        transition: "all 0.3s ease",
+        transform: isActive ? "scale(1.08)" : "scale(1)",
       },
       draggable: false,
       connectable: false,
@@ -160,9 +173,9 @@ function buildGraph(agents: ReadonlyArray<Agent>): {
   return { nodes, edges };
 }
 
-export function WorkflowDiagram({ agents }: WorkflowDiagramProps) {
+export function WorkflowDiagram({ agents, activeAgentId }: WorkflowDiagramProps) {
   const { t } = useLocale();
-  const { nodes, edges } = useMemo(() => buildGraph(agents), [agents]);
+  const { nodes, edges } = useMemo(() => buildGraph(agents, activeAgentId), [agents, activeAgentId]);
 
   if (agents.length === 0) {
     return (

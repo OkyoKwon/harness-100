@@ -1,0 +1,73 @@
+{
+  "id": "operations-manual-demo",
+  "title": "Operations Manual",
+  "userPrompt": "업무 매뉴얼 만들어줘",
+  "steps": [
+    {
+      "agentId": "document-analyst",
+      "action": "기존 문서·코드·위키 분석 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Read",
+        "Write"
+      ],
+      "output": {
+        "title": "문서·코드 분석 보고서",
+        "snippet": "# 문서·코드 분석 보고서\n\n## 분석 대상 인벤토리\n| # | 소스 유형 | 파일/경로 | 최종 수정 | 신뢰도 | 핵심 내용 |\n|---|----------|----------|----------|--------|----------|"
+      }
+    },
+    {
+      "agentId": "flowchart-designer",
+      "action": "프로세스 플로차트 설계 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "프로세스 플로차트",
+        "snippet": "# 프로세스 플로차트\n\n## Level 0: 전체 업무 맵\n\n```mermaid"
+      }
+    },
+    {
+      "agentId": "manual-writer",
+      "action": "단계별 업무 매뉴얼 작성 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "업무 매뉴얼",
+        "snippet": "# 업무 매뉴얼\n\n> **버전**: v1.0 | **작성일**: YYYY-MM-DD | **검토 주기**: [월/분기/반기]\n> **대상 독자**: [역할/직급]\n> **관련 시스템**: [시스템 목록]"
+      }
+    },
+    {
+      "agentId": "faq-builder",
+      "action": "FAQ 및 트러블슈팅 가이드 작성 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "FAQ & 트러블슈팅 가이드",
+        "snippet": "# FAQ & 트러블슈팅 가이드\n\n## FAQ\n\n### 카테고리 1: [카테고리명]"
+      }
+    },
+    {
+      "agentId": "training-producer",
+      "action": "교육자료 제작 전문가.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Write",
+        "Bash",
+        "Read"
+      ],
+      "output": {
+        "title": "교육자료 패키지",
+        "snippet": "# 교육자료 패키지\n\n## 학습 목표\n\n### 필수 학습 (Day 1)"
+      }
+    }
+  ]
+}

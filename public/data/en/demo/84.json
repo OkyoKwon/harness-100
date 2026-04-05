@@ -1,0 +1,74 @@
+{
+  "id": "meeting-strategist-demo",
+  "title": "Meeting Strategist",
+  "userPrompt": "meeting preparationplease do",
+  "steps": [
+    {
+      "agentId": "agenda-architect",
+      "action": "meeting agenda item designspecialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "회의 안건 설계서",
+        "snippet": "# 회의 안건 설계서\n\n## 회의 개요\n- **회의명**: [회의 제목]\n- **목적**: [정보공유/의사결정/브레인스토밍/문제해결/복합]"
+      }
+    },
+    {
+      "agentId": "background-researcher",
+      "action": "meeting background researchKRW.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "배경 자료 브리프",
+        "snippet": "# 배경 자료 브리프\n\n## 브리프 개요\n- **대상 회의**: [회의명]\n- **조사 범위**: [안건별 조사 영역]"
+      }
+    },
+    {
+      "agentId": "followup-planner",
+      "action": "meeting and cross-verification expert(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "팔로업 플랜 & 검증 보고서",
+        "snippet": "# 팔로업 플랜 & 검증 보고서\n\n## Part 1: 팔로업 플랜\n\n### 실행 과제 목록"
+      }
+    },
+    {
+      "agentId": "framework-designer",
+      "action": "decision-making framework designspecialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "의사결정 프레임워크",
+        "snippet": "# 의사결정 프레임워크\n\n## 프레임워크 개요\n- **대상 회의**: [회의명]\n- **의사결정 안건 수**: [N개]"
+      }
+    },
+    {
+      "agentId": "template-builder",
+      "action": "meeting document template .",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "회의 문서 템플릿 세트",
+        "snippet": "# 회의 문서 템플릿 세트\n\n## TPL-01: 회의록 템플릿\n\n---"
+      }
+    }
+  ]
+}

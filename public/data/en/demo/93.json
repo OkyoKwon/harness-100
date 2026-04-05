@@ -1,0 +1,72 @@
+{
+  "id": "feedback-analyzer-demo",
+  "title": "Feedback Analyzer",
+  "userPrompt": "analyze feedback",
+  "steps": [
+    {
+      "agentId": "data-collector",
+      "action": "Feedback data collection and cleansing expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Feedback Data Collection & Cleansing Report",
+        "snippet": "# Feedback Data Collection & Cleansing Report\n\n## Data Source Summary\n| Channel | Count | Period | Format | Quality |\n|---------|-------|--------|--------|---------|"
+      }
+    },
+    {
+      "agentId": "sentiment-analyst",
+      "action": "Sentiment analysis expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Sentiment Analysis Report",
+        "snippet": "# Sentiment Analysis Report\n\n## Overall Summary\n- **Total analyzed**: N entries\n- **Positive**: X (XX%) | **Negative**: Y (YY%) | **Neutral**: Z (ZZ%) | **Mixed**: W (WW%)"
+      }
+    },
+    {
+      "agentId": "topic-classifier",
+      "action": "Topic classification expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Topic Classification Report",
+        "snippet": "# Topic Classification Report\n\n## Category System\n### Major Categories\n| Major | Mid | Sub | Count | Ratio |"
+      }
+    },
+    {
+      "agentId": "trend-detector",
+      "action": "Trend analysis expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Trend Analysis Report",
+        "snippet": "# Trend Analysis Report\n\n## Key Trends Summary\n| # | Trend | Direction | Period | Strength | Related Event |\n|---|-------|-----------|--------|----------|---------------|"
+      }
+    },
+    {
+      "agentId": "insight-writer",
+      "action": "Insight report writing expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Feedback Insight Report",
+        "snippet": "# Feedback Insight Report\n\n## Executive Summary (1-page for leadership)\n\n### Key Metrics"
+      }
+    }
+  ]
+}

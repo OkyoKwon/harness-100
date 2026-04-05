@@ -1,0 +1,73 @@
+{
+  "id": "contract-analyzer-demo",
+  "title": "Contract Analyzer",
+  "userPrompt": "review the contract",
+  "steps": [
+    {
+      "agentId": "clause-analyst",
+      "action": "Clause analyst.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Read",
+        "Write"
+      ],
+      "output": {
+        "title": "Clause Analysis Report",
+        "snippet": "# Clause Analysis Report\n\n> Warning: This analysis is for reference only and does not constitute legal advice.\n\n## Contract Overview"
+      }
+    },
+    {
+      "agentId": "risk-assessor",
+      "action": "Risk assessor.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Risk Assessment Report",
+        "snippet": "# Risk Assessment Report\n\n> Warning: This assessment is for reference only. Review by a legal professional is recommended.\n\n## Risk Summary"
+      }
+    },
+    {
+      "agentId": "comparison-reviewer",
+      "action": "Comparison reviewer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Comparison Review Report",
+        "snippet": "# Comparison Review Report\n\n> Warning: This report is for reference only. Review by a legal professional is recommended.\n\n## Comparison Overview"
+      }
+    },
+    {
+      "agentId": "clause-drafter",
+      "action": "Clause drafting and revision expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Clause Drafts / Amendments",
+        "snippet": "# Clause Drafts / Amendments\n\n> Warning: This document is for reference only. Please have it reviewed by a legal professional.\n\n## Proposed Amendments"
+      }
+    },
+    {
+      "agentId": "contract-coordinator",
+      "action": "Contract coordinator (QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Comprehensive Legal Opinion",
+        "snippet": "# Comprehensive Legal Opinion\n\n> Warning: This opinion is an AI-based analysis and does not constitute legal advice.\n> For important contracts, please have a qualified attorney review this."
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "ecommerce-launcher-demo",
+  "title": "E-commerce Launcher",
+  "userPrompt": "launch an e-commerce product",
+  "steps": [
+    {
+      "agentId": "product-planner",
+      "action": "E-commerce product planner.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "Product Planning Brief",
+        "snippet": "# Product Planning Brief\n\n## Product Overview\n- **Product Name Candidates** (3-5): Considering search optimization + brand recognition\n- **Category**: Main category > Subcategory > Sub-subcategory"
+      }
+    },
+    {
+      "agentId": "detail-page-writer",
+      "action": "E-commerce detail page writer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Detail Page Copy",
+        "snippet": "# Detail Page Copy\n\n> Platform: [Naver/Coupang/Own Store] | Mobile-optimized\n\n---"
+      }
+    },
+    {
+      "agentId": "pricing-strategist",
+      "action": "E-commerce pricing strategist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Pricing Strategy Document",
+        "snippet": "# Pricing Strategy Document\n\n## Cost Structure\n| Item | Amount | Share | Notes |\n|------|--------|-------|-------|"
+      }
+    },
+    {
+      "agentId": "marketing-manager",
+      "action": "E-commerce marketing manager.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Marketing Plan",
+        "snippet": "# Marketing Plan\n\n## Marketing Objectives\n- **Month 1 Launch Target**: Revenue $ / Units sold / Reviews collected\n- **Core KPIs**: ROAS / CPA / CVR"
+      }
+    },
+    {
+      "agentId": "cs-architect",
+      "action": "E-commerce CS architect.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "CS Operations Manual",
+        "snippet": "# CS Operations Manual\n\n## Return/Exchange Policy\n### Eligible for Exchange/Return\n- Conditions:"
+      }
+    }
+  ]
+}

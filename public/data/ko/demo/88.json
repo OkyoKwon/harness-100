@@ -1,0 +1,74 @@
+{
+  "id": "risk-register-demo",
+  "title": "Risk Register",
+  "userPrompt": "리스크 관리",
+  "steps": [
+    {
+      "agentId": "risk-identifier",
+      "action": "리스크 식별 전문가.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "WebSearch",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "리스크 식별 보고서",
+        "snippet": "# 리스크 식별 보고서\n\n## RBS (Risk Breakdown Structure)\n\n### Level 1: 기술 리스크"
+      }
+    },
+    {
+      "agentId": "assessment-analyst",
+      "action": "리스크 평가 분석가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "리스크 확률·영향 평가 보고서",
+        "snippet": "# 리스크 확률·영향 평가 보고서\n\n## 평가 기준표\n\n### 확률 기준"
+      }
+    },
+    {
+      "agentId": "response-strategist",
+      "action": "리스크 대응 전략가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "리스크 대응 전략 계획서",
+        "snippet": "# 리스크 대응 전략 계획서\n\n## 대응 전략 요약\n| ID | 리스크 요약 | 우선순위 | 대응 전략 | 핵심 행동 | 담당 | 기한 | 예산 |\n|----|-----------|---------|----------|----------|------|------|------|"
+      }
+    },
+    {
+      "agentId": "monitoring-planner",
+      "action": "리스크 모니터링 설계자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "리스크 모니터링 계획",
+        "snippet": "# 리스크 모니터링 계획\n\n## KRI (핵심리스크지표)\n| ID | 리스크 | KRI | 기준값 | 경고값 | 위험값 | 측정방법 | 주기 |\n|----|--------|-----|-------|-------|-------|---------|------|"
+      }
+    },
+    {
+      "agentId": "report-writer",
+      "action": "리스크 상태 보고서 작성자.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "리스크 상태 보고서",
+        "snippet": "# 리스크 상태 보고서\n\n## 경영진 요약 (1-Page)\n- **보고 일자**:\n- **프로젝트명**:"
+      }
+    }
+  ]
+}

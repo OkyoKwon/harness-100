@@ -1,0 +1,75 @@
+{
+  "id": "brand-identity-demo",
+  "title": "Brand Identity",
+  "userPrompt": "브랜드 만들어줘",
+  "steps": [
+    {
+      "agentId": "brand-strategist",
+      "action": "브랜드 전략가.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "브랜드 전략 보고서",
+        "snippet": "# 브랜드 전략 보고서\n\n## 브랜드 개요\n- **사업 영역**:\n- **핵심 제품/서비스**:"
+      }
+    },
+    {
+      "agentId": "naming-specialist",
+      "action": "브랜드 네이밍 전문가.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "WebSearch",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "네이밍 후보 보고서",
+        "snippet": "# 네이밍 후보 보고서\n\n## 네이밍 방향\n- **브랜드 에센스 반영**: [어떤 가치를 이름에 담을 것인가]\n- **아키타입 반영**: [아키타입의 어떤 특성을 이름에 반영하는가]"
+      }
+    },
+    {
+      "agentId": "copywriter",
+      "action": "브랜드 카피라이터.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "버벌 아이덴티티",
+        "snippet": "# 버벌 아이덴티티\n\n## 슬로건 후보 (TOP 5)\n\n### 1. \"[슬로건]\""
+      }
+    },
+    {
+      "agentId": "visual-director",
+      "action": "비주얼 디렉터.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "비주얼 아이덴티티",
+        "snippet": "# 비주얼 아이덴티티\n\n## 디자인 원칙\n- **핵심 키워드**: [비주얼을 관통하는 3가지 키워드]\n- **무드**: [따뜻한/차가운/미니멀/맥시멀/유기적/기하학적]"
+      }
+    },
+    {
+      "agentId": "identity-reviewer",
+      "action": "브랜드 아이덴티티 검증자(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "아이덴티티 검증 보고서",
+        "snippet": "# 아이덴티티 검증 보고서\n\n## 종합 평가\n- **런칭 준비 상태**: 🟢 준비 완료 / 🟡 수정 후 진행 / 🔴 재작업 필요\n- **브랜드 일관성 점수**: X/10"
+      }
+    }
+  ]
+}

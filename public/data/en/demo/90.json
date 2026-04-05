@@ -1,0 +1,74 @@
+{
+  "id": "hiring-pipeline-demo",
+  "title": "Hiring Pipeline",
+  "userPrompt": "hiring",
+  "steps": [
+    {
+      "agentId": "interview-designer",
+      "action": "interview designspecialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "면접 설계서",
+        "snippet": "# 면접 설계서\n\n## 면접 구조\n| 단계 | 유형 | 시간 | 면접관 | 평가 역량 |\n|------|------|------|--------|---------|"
+      }
+    },
+    {
+      "agentId": "jd-writer",
+      "action": "JD writing expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "직무기술서 및 채용공고",
+        "snippet": "# 직무기술서 및 채용공고\n\n## 직무 개요\n- **포지션명**:\n- **소속 부서/팀**:"
+      }
+    },
+    {
+      "agentId": "offer-coordinator",
+      "action": "assessment·offer total.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "최종 평가 및 오퍼 가이드",
+        "snippet": "# 최종 평가 및 오퍼 가이드\n\n## 최종 후보 평가 종합\n| 후보 | 서류 | 과제 | 스크리닝 | 1차면접 | 2차면접 | 최종 | 총점 | 순위 |\n|------|------|------|---------|--------|--------|------|------|------|"
+      }
+    },
+    {
+      "agentId": "screening-expert",
+      "action": "screening expert.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "스크리닝 프레임워크",
+        "snippet": "# 스크리닝 프레임워크\n\n## 스크리닝 파이프라인\n| 단계 | 방법 | 소요시간 | 목표 통과율 | 평가자 |\n|------|------|---------|-----------|--------|"
+      }
+    },
+    {
+      "agentId": "sourcing-specialist",
+      "action": "sourcing expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "소싱 전략",
+        "snippet": "# 소싱 전략\n\n## 채널 전략\n| 채널 | 타깃 후보 | 예상 비용 | 예상 지원자 수 | 품질 | 우선순위 |\n|------|---------|----------|-------------|------|---------|"
+      }
+    }
+  ]
+}

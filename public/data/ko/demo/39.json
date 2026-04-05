@@ -1,0 +1,74 @@
+{
+  "id": "changelog-generator-demo",
+  "title": "Changelog Generator",
+  "userPrompt": "릴리스 노트 만들어줘",
+  "steps": [
+    {
+      "agentId": "commit-analyst",
+      "action": "커밋 분석가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "커밋 분석 보고서",
+        "snippet": "# 커밋 분석 보고서\n\n## 릴리스 범위\n- **이전 버전**: [태그/커밋]\n- **현재 버전**: [태그/커밋]"
+      }
+    },
+    {
+      "agentId": "change-classifier",
+      "action": "변경 분류자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "변경 분류 결과",
+        "snippet": "# 변경 분류 결과\n\n## 분류 요약\n| 분류 | 건수 | 영향도 |\n|------|------|--------|"
+      }
+    },
+    {
+      "agentId": "release-note-writer",
+      "action": "릴리스 노트 작성자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Release Notes — v[X.Y.Z]",
+        "snippet": "# Release Notes — v[X.Y.Z]\n\n> 릴리스 날짜: [YYYY-MM-DD]\n\n## 하이라이트"
+      }
+    },
+    {
+      "agentId": "announcement-writer",
+      "action": "공지문 작성자.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Write",
+        "Bash",
+        "Read"
+      ],
+      "output": {
+        "title": "릴리스 공지문 — v[X.Y.Z]",
+        "snippet": "# 릴리스 공지문 — v[X.Y.Z]\n\n## 블로그 포스트\n### [제목]\n[도입부 — 이번 릴리스 요약 1~2문장]"
+      }
+    },
+    {
+      "agentId": "migration-guide-writer",
+      "action": "마이그레이션 가이드 작성자.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Write",
+        "Bash",
+        "Read"
+      ],
+      "output": {
+        "title": "마이그레이션 가이드: v[이전] → v[현재]",
+        "snippet": "# 마이그레이션 가이드: v[이전] → v[현재]\n\n## 마이그레이션 개요\n- **난이도**: 쉬움/보통/어려움\n- **예상 소요 시간**: [시간]"
+      }
+    }
+  ]
+}

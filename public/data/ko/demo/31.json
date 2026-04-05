@@ -1,0 +1,75 @@
+{
+  "id": "ml-experiment-demo",
+  "title": "ML Experiment",
+  "userPrompt": "ML 실험 설계해줘",
+  "steps": [
+    {
+      "agentId": "data-engineer",
+      "action": "ML 데이터 엔지니어.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Write",
+        "Bash",
+        "Read"
+      ],
+      "output": {
+        "title": "데이터 준비 계획 및 파이프라인",
+        "snippet": "# 데이터 준비 계획 및 파이프라인\n\n## 데이터셋 개요\n| 항목 | 값 |\n|------|-----|"
+      }
+    },
+    {
+      "agentId": "model-designer",
+      "action": "모델 설계자.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Write",
+        "Bash",
+        "Read"
+      ],
+      "output": {
+        "title": "모델 아키텍처 설계",
+        "snippet": "# 모델 아키텍처 설계\n\n## 문제 정의\n- 문제 유형: [분류/회귀/생성/...]\n- 입력 형상: [shape]"
+      }
+    },
+    {
+      "agentId": "training-manager",
+      "action": "학습 관리자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "학습 설정 및 실험 추적",
+        "snippet": "# 학습 설정 및 실험 추적\n\n## 실험 추적 설정\n- 플랫폼: [MLflow / W&B / TensorBoard]\n- 프로젝트명:"
+      }
+    },
+    {
+      "agentId": "evaluation-analyst",
+      "action": "평가 분석가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "평가 보고서",
+        "snippet": "# 평가 보고서\n\n## 성능 요약\n| 모델 | Accuracy | Precision | Recall | F1 | AUC-ROC | 추론시간 |\n|------|----------|-----------|--------|-----|---------|---------|"
+      }
+    },
+    {
+      "agentId": "experiment-reviewer",
+      "action": "실험 리뷰어(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "실험 리뷰 보고서",
+        "snippet": "# 실험 리뷰 보고서\n\n## 종합 평가\n- **실험 품질**: 🟢 논문 수준 / 🟡 보완 필요 / 🔴 재실험 필요\n- **총평**: [1~2문장 요약]"
+      }
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "id": "contract-analyzer-demo",
+  "title": "Contract Analyzer",
+  "userPrompt": "계약서 검토해줘",
+  "steps": [
+    {
+      "agentId": "clause-analyst",
+      "action": "조항 분석가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "조항 분석서",
+        "snippet": "# 조항 분석서\n\n> ⚠️ 이 분석은 참고용이며, 법적 조언을 구성하지 않습니다.\n\n## 계약 개요"
+      }
+    },
+    {
+      "agentId": "risk-assessor",
+      "action": "리스크 평가자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "리스크 평가 보고서",
+        "snippet": "# 리스크 평가 보고서\n\n> ⚠️ 이 평가는 참고용이며, 법률 전문가의 검토를 권고합니다.\n\n## 리스크 요약"
+      }
+    },
+    {
+      "agentId": "comparison-reviewer",
+      "action": "비교 검토자.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "WebSearch",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "비교 검토 보고서",
+        "snippet": "# 비교 검토 보고서\n\n> ⚠️ 이 보고서는 참고용이며, 법률 전문가의 검토를 권고합니다.\n\n## 비교 개요"
+      }
+    },
+    {
+      "agentId": "clause-drafter",
+      "action": "조항 작성·수정 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "조항 작성/수정안",
+        "snippet": "# 조항 작성/수정안\n\n> ⚠️ 이 문서는 참고용이며, 반드시 법률 전문가의 검토를 받으십시오.\n\n## 수정 제안 조항"
+      }
+    },
+    {
+      "agentId": "contract-coordinator",
+      "action": "계약 조율자(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "종합 법률 의견서",
+        "snippet": "# 종합 법률 의견서\n\n> ⚠️ 이 의견서는 AI 기반 분석이며 법적 조언을 구성하지 않습니다.\n> 중요한 계약에 대해서는 반드시 자격 있는 변호사의 검토를 받으십시오."
+      }
+    }
+  ]
+}

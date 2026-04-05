@@ -6,6 +6,8 @@ import type {
   Skill,
   ExecutionStep,
   SkillMode,
+  DemoScenario,
+  DemoStep,
 } from "@/lib/types";
 
 let idCounter = 1;
@@ -94,6 +96,36 @@ export function createHarnessMeta(
     agentCount: 3,
     frameworks: ["vitest"],
     popularityRank: 0,
+    ...overrides,
+  };
+}
+
+export function createDemoStep(overrides?: Partial<DemoStep>): DemoStep {
+  return {
+    agentId: "agent-1",
+    action: "Performs analysis.",
+    durationMs: 2000,
+    toolsUsed: ["Read", "Write"],
+    output: {
+      title: "Analysis Report",
+      snippet: "# Analysis\n\nSample output...",
+    },
+    ...overrides,
+  };
+}
+
+export function createDemoScenario(
+  overrides?: Partial<DemoScenario>,
+): DemoScenario {
+  return {
+    id: "test-demo",
+    title: "Test Demo",
+    userPrompt: "Run the test harness",
+    steps: overrides?.steps ?? [
+      createDemoStep({ agentId: "agent-1" }),
+      createDemoStep({ agentId: "agent-2", action: "Reviews output." }),
+      createDemoStep({ agentId: "agent-3", action: "Finalizes report." }),
+    ],
     ...overrides,
   };
 }

@@ -1,0 +1,75 @@
+{
+  "id": "llm-app-builder-demo",
+  "title": "LLM App Builder",
+  "userPrompt": "build me an LLM app",
+  "steps": [
+    {
+      "agentId": "prompt-engineer",
+      "action": "Prompt engineer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "프롬프트 설계서",
+        "snippet": "# 프롬프트 설계서\n\n## 앱 개요\n- **앱 목적**: [LLM 앱이 해결하는 문제]\n- **타깃 사용자**: [누가 사용하는가]"
+      }
+    },
+    {
+      "agentId": "rag-architect",
+      "action": "RAG pipeline designer.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "RAG 파이프라인 설계서",
+        "snippet": "# RAG 파이프라인 설계서\n\n## 아키텍처 개요\n문서 → 전처리 → 청킹 → 임베딩 → 벡터DB → 검색 → 리랭킹 → 컨텍스트 주입 → LLM"
+      }
+    },
+    {
+      "agentId": "eval-specialist",
+      "action": "LLM evaluation specialist.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "평가 프레임워크",
+        "snippet": "# 평가 프레임워크\n\n## 평가 전략\n- **자동 평가 비율**: X%\n- **LLM-as-Judge 비율**: Y%"
+      }
+    },
+    {
+      "agentId": "optimization-engineer",
+      "action": "LLM app optimization engineer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "최적화 전략",
+        "snippet": "# 최적화 전략\n\n## 현재 성능 베이스라인\n| 메트릭 | 현재 값 | 목표 값 |\n|--------|--------|--------|"
+      }
+    },
+    {
+      "agentId": "deploy-engineer",
+      "action": "LLM app deployment engineer.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "배포 설정",
+        "snippet": "# 배포 설정\n\n## 아키텍처\n[배포 아키텍처 다이어그램: 클라이언트 → API 서버 → LLM/벡터DB]"
+      }
+    }
+  ]
+}

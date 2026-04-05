@@ -1,0 +1,73 @@
+{
+  "id": "performance-optimizer-demo",
+  "title": "Performance Optimizer",
+  "userPrompt": "performance optimization",
+  "steps": [
+    {
+      "agentId": "benchmark-manager",
+      "action": "benchmark administrator.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "벤치마크 결과 및 비교",
+        "snippet": "# 벤치마크 결과 및 비교\n\n## 테스트 환경\n- 서버 사양:\n- 테스트 도구: [k6/Locust/JMeter]"
+      }
+    },
+    {
+      "agentId": "bottleneck-analyst",
+      "action": "bottleneck analyst.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "병목 분석 보고서",
+        "snippet": "# 병목 분석 보고서\n\n## 요약\n- **1순위 병목**: [설명] — 예상 개선 효과: [X%]\n- **2순위 병목**: [설명] — 예상 개선 효과: [X%]"
+      }
+    },
+    {
+      "agentId": "optimization-engineer",
+      "action": "optimization engineer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "최적화 계획 및 구현",
+        "snippet": "# 최적화 계획 및 구현\n\n## 요약\n| 최적화 항목 | 대상 병목 | 예상 개선 | 구현 난이도 | 상태 |\n|-----------|---------|---------|-----------|------|"
+      }
+    },
+    {
+      "agentId": "perf-reviewer",
+      "action": "performance reviewer(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "성능 최적화 리뷰 보고서",
+        "snippet": "# 성능 최적화 리뷰 보고서\n\n## 종합 평가\n- **최적화 효과**: 🟢 목표 달성 / 🟡 부분 달성 / 🔴 미달\n- **총평**: [1~2문장 요약]"
+      }
+    },
+    {
+      "agentId": "profiler",
+      "action": "performance profiler.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "프로파일링 결과",
+        "snippet": "# 프로파일링 결과\n\n## 프로파일링 환경\n- 대상 시스템:\n- 기술 스택:"
+      }
+    }
+  ]
+}

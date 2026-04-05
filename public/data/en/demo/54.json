@@ -1,0 +1,72 @@
+{
+  "id": "grant-writer-demo",
+  "title": "Grant Writer",
+  "userPrompt": "grant application",
+  "steps": [
+    {
+      "agentId": "announcement-analyst",
+      "action": "Grant/funding announcement analysis expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "공고 분석서",
+        "snippet": "# 공고 분석서\n\n## 공고 개요\n- **사업명**: [정확한 사업명]\n- **주관 기관**: [기관명]"
+      }
+    },
+    {
+      "agentId": "plan-writer",
+      "action": "Business plan writing expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "사업계획서",
+        "snippet": "# 사업계획서\n\n## 1. 사업 개요\n\n### 1.1 사업 배경 및 필요성"
+      }
+    },
+    {
+      "agentId": "budget-designer",
+      "action": "Budget design expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "예산 편성서",
+        "snippet": "# 예산 편성서\n\n## 예산 총괄표\n| 비목 | 정부지원금 | 자부담 | 합계 | 비율 |\n|------|----------|--------|------|------|"
+      }
+    },
+    {
+      "agentId": "compliance-checker",
+      "action": "Compliance verification expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "규정 준수 보고서",
+        "snippet": "# 규정 준수 보고서\n\n## 종합 평가\n- **신청 적격 여부**: ✅ 적격 / ❌ 부적격 — 사유: ...\n- **예상 점수 범위**: [X~Y점 / 100점]"
+      }
+    },
+    {
+      "agentId": "submission-verifier",
+      "action": "Submission verification expert (QA).",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "제출 체크리스트",
+        "snippet": "# 제출 체크리스트\n\n## 제출 정보\n- **제출 시스템**: [시스템명/URL]\n- **마감 일시**: [일시]"
+      }
+    }
+  ]
+}

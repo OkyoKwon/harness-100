@@ -1,0 +1,73 @@
+{
+  "id": "bi-dashboard-demo",
+  "title": "BI Dashboard",
+  "userPrompt": "BI 대시보드 만들어줘",
+  "steps": [
+    {
+      "agentId": "data-engineer",
+      "action": "BI 데이터 엔지니어.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "데이터 웨어하우스 설계서",
+        "snippet": "# 데이터 웨어하우스 설계서\n\n## 원천 데이터 인벤토리\n| 소스명 | 유형 | 갱신 주기 | 주요 테이블/엔드포인트 | 데이터 품질 평가 |\n|--------|------|----------|---------------------|----------------|"
+      }
+    },
+    {
+      "agentId": "kpi-designer",
+      "action": "KPI 설계자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "KPI 정의서",
+        "snippet": "# KPI 정의서\n\n## 비즈니스 목표 → KPI 트리\n\n## KPI 상세 정의"
+      }
+    },
+    {
+      "agentId": "dashboard-builder",
+      "action": "대시보드 빌더.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "대시보드 시각화 명세",
+        "snippet": "# 대시보드 시각화 명세\n\n## 대시보드 구조\n| 탭/페이지 | 대상 사용자 | 핵심 질문 | 갱신 주기 |\n|----------|-----------|----------|----------|"
+      }
+    },
+    {
+      "agentId": "report-automator",
+      "action": "보고서 자동화 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "자동 보고 설정서",
+        "snippet": "# 자동 보고 설정서\n\n## 보고서 유형 정의\n| 보고서명 | 대상 | 주기 | 포맷 | 배포 채널 | 포함 KPI |\n|---------|------|------|------|----------|---------|"
+      }
+    },
+    {
+      "agentId": "bi-reviewer",
+      "action": "BI 검증자(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "BI 검증 보고서",
+        "snippet": "# BI 검증 보고서\n\n## 종합 평가\n- **구축 준비 상태**: 🟢 준비 완료 / 🟡 수정 후 진행 / 🔴 재작업 필요\n- **총평**: [1~2문장 요약]"
+      }
+    }
+  ]
+}

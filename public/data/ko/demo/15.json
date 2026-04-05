@@ -1,0 +1,75 @@
+{
+  "id": "visual-storytelling-demo",
+  "title": "Visual Storytelling",
+  "userPrompt": "비주얼 스토리 만들어줘",
+  "steps": [
+    {
+      "agentId": "story-architect",
+      "action": "스토리 설계자.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "WebSearch",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "스토리 블루프린트",
+        "snippet": "# 스토리 블루프린트\n\n## 스토리 개요\n- **제목**: [스토리 제목]\n- **장르/유형**: [에세이/포토에세이/인포그래픽/브랜드스토리/여행기/다큐멘터리]"
+      }
+    },
+    {
+      "agentId": "essay-writer",
+      "action": "에세이 작가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "에세이 텍스트",
+        "snippet": "# 에세이 텍스트\n\n## 스토리 제목: [제목]\n\n---"
+      }
+    },
+    {
+      "agentId": "image-prompter",
+      "action": "이미지 프롬프터.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Skill",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "이미지 프롬프트 시트",
+        "snippet": "# 이미지 프롬프트 시트\n\n## 공통 스타일 가이드\n- **아트 스타일**: [수채화/유화/디지털/포토리얼]\n- **컬러 팔레트**: [공통 색상 — HEX 코드]"
+      }
+    },
+    {
+      "agentId": "layout-builder",
+      "action": "레이아웃 빌더.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "<!DOCTYPE html>",
+        "snippet": "<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
+      }
+    },
+    {
+      "agentId": "editorial-reviewer",
+      "action": "편집 리뷰어(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "편집 리뷰 보고서",
+        "snippet": "# 편집 리뷰 보고서\n\n## 종합 평가\n- **게시 준비 상태**: 🟢 준비 완료 / 🟡 수정 후 게시 / 🔴 재작업 필요\n- **총평**: [1~2문장 요약]"
+      }
+    }
+  ]
+}

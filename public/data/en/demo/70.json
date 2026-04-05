@@ -1,0 +1,60 @@
+{
+  "id": "legal-research-demo",
+  "title": "Legal Research",
+  "userPrompt": "Legal Research 관련 작업 요청",
+  "steps": [
+    {
+      "agentId": "case-searcher",
+      "action": "",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "Case Search Report",
+        "snippet": "# Case Search Report\n\n## 1. Search Overview\n- **Legal Issue**: \n- **Relevant Legal Provisions**:"
+      }
+    },
+    {
+      "agentId": "legal-analyst",
+      "action": "",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Legal Doctrine Analysis Report",
+        "snippet": "# Legal Doctrine Analysis Report\n\n## 1. Issue Structure Map\n- **Major Issue 1**: [Issue Title]\n    - Sub-issue 1-1:"
+      }
+    },
+    {
+      "agentId": "opinion-writer",
+      "action": "",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Legal Opinion",
+        "snippet": "# Legal Opinion\n\n## Disclaimer\nThis opinion is an AI-generated legal analysis for reference purposes only and does not substitute for professional legal advice.\nFor actual legal decision-making, please consult a licensed attorney."
+      }
+    },
+    {
+      "agentId": "strategy-advisor",
+      "action": "",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Legal Strategy Report",
+        "snippet": "# Legal Strategy Report\n\n## 1. Strategy Summary\n- **Recommended Strategy**: [Core strategy in one sentence]\n- **Expected Outcomes**: [Best / Expected / Worst scenarios]"
+      }
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "id": "exam-prep-demo",
+  "title": "Exam Prep",
+  "userPrompt": "시험 준비 도와줘",
+  "steps": [
+    {
+      "agentId": "trend-analyst",
+      "action": "시험 출제경향 분석가.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "출제경향 분석 보고서",
+        "snippet": "# 출제경향 분석 보고서\n\n## 시험 개요\n- **시험명**:\n- **시행기관**:"
+      }
+    },
+    {
+      "agentId": "diagnostician",
+      "action": "약점 진단 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "약점 진단 보고서",
+        "snippet": "# 약점 진단 보고서\n\n## 진단 개요\n- **대상 시험**:\n- **진단 일시**:"
+      }
+    },
+    {
+      "agentId": "learning-designer",
+      "action": "맞춤학습 설계자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "맞춤학습 계획서",
+        "snippet": "# 맞춤학습 계획서\n\n## 학습 전략 요약\n- **남은 기간**: D-XX\n- **목표**: [현재 예상 점수] → [목표 점수]"
+      }
+    },
+    {
+      "agentId": "examiner",
+      "action": "모의고사 출제자.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "WebSearch",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "모의고사",
+        "snippet": "# 모의고사\n\n## 시험 정보\n- **대상 시험**:\n- **총 문항 수**: X문항"
+      }
+    },
+    {
+      "agentId": "error-analyst",
+      "action": "오답 분석가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "오답 분석 보고서",
+        "snippet": "# 오답 분석 보고서\n\n## 모의고사 결과 요약\n- **총점**: X / Y점\n- **정답률**: X%"
+      }
+    }
+  ]
+}

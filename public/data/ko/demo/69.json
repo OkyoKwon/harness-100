@@ -1,0 +1,62 @@
+{
+  "id": "privacy-engineer-demo",
+  "title": "Privacy Engineer",
+  "userPrompt": "개인정보보호 설계",
+  "steps": [
+    {
+      "agentId": "privacy-law-analyst",
+      "action": "개인정보보호 법률 분석가.",
+      "durationMs": 4000,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "개인정보보호 법률 분석 보고서",
+        "snippet": "# 개인정보보호 법률 분석 보고서\n\n## 1. 분석 대상\n- **서비스명**:\n- **서비스 유형**:"
+      }
+    },
+    {
+      "agentId": "pia-assessor",
+      "action": "PIA 수행자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "개인정보 영향평가(PIA) 보고서",
+        "snippet": "# 개인정보 영향평가(PIA) 보고서\n\n## 1. 평가 개요\n- **평가 대상**:\n- **평가 사유**: 법적 의무/자발적 수행"
+      }
+    },
+    {
+      "agentId": "consent-designer",
+      "action": "동의서 작성자.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Write",
+        "Bash",
+        "Read"
+      ],
+      "output": {
+        "title": "동의서·고지사항 세트",
+        "snippet": "# 동의서·고지사항 세트\n\n## 1. 개인정보 수집·이용 동의서\n\n### 필수 동의 사항"
+      }
+    },
+    {
+      "agentId": "process-architect",
+      "action": "프로세스 설계자.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Write",
+        "Bash",
+        "Read"
+      ],
+      "output": {
+        "title": "개인정보 처리 프로세스 설계서",
+        "snippet": "# 개인정보 처리 프로세스 설계서\n\n## 1. 설계 원칙\n- Privacy by Design 적용 사항\n- 데이터 최소화 원칙 적용 방안"
+      }
+    }
+  ]
+}

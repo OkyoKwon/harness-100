@@ -1,0 +1,75 @@
+{
+  "id": "space-concept-board-demo",
+  "title": "Space Concept Board",
+  "userPrompt": "interior concept design",
+  "steps": [
+    {
+      "agentId": "style-analyst",
+      "action": "Space style analyst.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "공간 스타일 분석 보고서",
+        "snippet": "# 공간 스타일 분석 보고서\n\n## 공간 현황\n- **공간 유형**: 거실/침실/서재/원룸/오피스\n- **면적**: ㎡ (평)"
+      }
+    },
+    {
+      "agentId": "moodboard-designer",
+      "action": "Moodboard designer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "무드보드 + 컬러팔레트",
+        "snippet": "# 무드보드 + 컬러팔레트\n\n## 무드 키워드\n[형용사 5~7개를 나열]"
+      }
+    },
+    {
+      "agentId": "item-curator",
+      "action": "Item curator.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "가구·소품 리스트 + 배치 제안",
+        "snippet": "# 가구·소품 리스트 + 배치 제안\n\n## 공간 배치 가이드\n### 평면 배치 개요\n- **동선**: 주 동선과 보조 동선 설명"
+      }
+    },
+    {
+      "agentId": "budget-manager",
+      "action": "Budget manager.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "예산표 + 쇼핑가이드",
+        "snippet": "# 예산표 + 쇼핑가이드\n\n## 예산 총괄\n| 항목 | 예산 비율 | 배정 금액 | 실 소요 예상 | 차이 |\n|------|----------|----------|------------|------|"
+      }
+    },
+    {
+      "agentId": "concept-reviewer",
+      "action": "Concept reviewer (QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "컨셉보드 리뷰 보고서",
+        "snippet": "# 컨셉보드 리뷰 보고서\n\n## 종합 평가\n- **구매 진행 가능 상태**: 🟢 바로 진행 / 🟡 수정 후 진행 / 🔴 재검토 필요\n- **총평**: [1~2문장 요약]"
+      }
+    }
+  ]
+}

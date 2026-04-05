@@ -1,0 +1,74 @@
+{
+  "id": "scenario-planner-demo",
+  "title": "Scenario Planner",
+  "userPrompt": "시나리오 분석",
+  "steps": [
+    {
+      "agentId": "variable-analyst",
+      "action": "시나리오 기획의 핵심 변수 분석가.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "핵심 변수 분석서",
+        "snippet": "# 핵심 변수 분석서\n\n## 분석 대상\n- **의사결정 주제**: [사용자가 제시한 주제]\n- **시간 지평**: [분석 대상 기간]"
+      }
+    },
+    {
+      "agentId": "scenario-designer",
+      "action": "시나리오 매트릭스 설계자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "시나리오 매트릭스",
+        "snippet": "# 시나리오 매트릭스\n\n## 매트릭스 구조\n\n|  | 축2: [극단값 A] | 축2: [극단값 B] |"
+      }
+    },
+    {
+      "agentId": "impact-assessor",
+      "action": "시나리오별 영향 평가 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "영향 분석 보고서",
+        "snippet": "# 영향 분석 보고서\n\n## 영향 평가 프레임워크\n- **평가 차원**: [선정한 차원 목록과 선정 근거]\n- **평가 척도**: 1(최소) ~ 5(최대), 방향(+긍정/-부정)"
+      }
+    },
+    {
+      "agentId": "strategy-architect",
+      "action": "대응 전략 수립 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "대응 전략서",
+        "snippet": "# 대응 전략서\n\n## 전략 분류 체계\n- **로버스트 전략**: 모든 시나리오에서 유효 → 즉시 실행\n- **헤지 전략**: 특정 리스크 대비 → 조건부 실행"
+      }
+    },
+    {
+      "agentId": "integration-reviewer",
+      "action": "시나리오 기획 통합 리뷰어(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "시나리오 기획 리뷰 보고서",
+        "snippet": "# 시나리오 기획 리뷰 보고서\n\n## 종합 평가\n- **완성도**: 🟢 활용 가능 / 🟡 수정 후 활용 / 🔴 재작업 필요\n- **총평**: [1~2문장 요약]"
+      }
+    }
+  ]
+}

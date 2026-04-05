@@ -1,0 +1,76 @@
+{
+  "id": "ml-experiment-demo",
+  "title": "ML Experiment",
+  "userPrompt": "design an ML experiment",
+  "steps": [
+    {
+      "agentId": "data-engineer",
+      "action": "ML Data Engineer.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Data Preparation Plan and Pipeline",
+        "snippet": "# Data Preparation Plan and Pipeline\n\n## Dataset Overview\n| Item | Value |\n|------|-------|"
+      }
+    },
+    {
+      "agentId": "model-designer",
+      "action": "Model Designer.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Model Architecture Design",
+        "snippet": "# Model Architecture Design\n\n## Problem Definition\n- Problem Type: [classification/regression/generation/...]\n- Input Shape: [shape]"
+      }
+    },
+    {
+      "agentId": "training-manager",
+      "action": "Training Manager.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Training Configuration and Experiment Tracking",
+        "snippet": "# Training Configuration and Experiment Tracking\n\n## Experiment Tracking Setup\n- Platform: [MLflow / W&B / TensorBoard]\n- Project Name:"
+      }
+    },
+    {
+      "agentId": "evaluation-analyst",
+      "action": "Evaluation Analyst.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Evaluation Report",
+        "snippet": "# Evaluation Report\n\n## Performance Summary\n| Model | Accuracy | Precision | Recall | F1 | AUC-ROC | Inference Time |\n|-------|----------|-----------|--------|-----|---------|---------------|"
+      }
+    },
+    {
+      "agentId": "experiment-reviewer",
+      "action": "Experiment Reviewer (QA).",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "SendMessage",
+        "Bash",
+        "Write"
+      ],
+      "output": {
+        "title": "Experiment Review Report",
+        "snippet": "# Experiment Review Report\n\n## Overall Assessment\n- **Experiment Quality**: 🟢 Publication-ready / 🟡 Needs improvement / 🔴 Re-experiment required\n- **Summary**: [1-2 sentence summary]"
+      }
+    }
+  ]
+}

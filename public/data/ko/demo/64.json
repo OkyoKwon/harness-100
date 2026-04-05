@@ -1,0 +1,72 @@
+{
+  "id": "knowledge-base-builder-demo",
+  "title": "Knowledge Base Builder",
+  "userPrompt": "지식베이스 만들어줘",
+  "steps": [
+    {
+      "agentId": "knowledge-collector",
+      "action": "지식 수집가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "지식 수집 인벤토리",
+        "snippet": "# 지식 수집 인벤토리\n\n## 수집 범위\n- **조직/프로젝트**: [이름]\n- **소스 유형**: [문서, 코드, 프로세스 등]"
+      }
+    },
+    {
+      "agentId": "taxonomy-designer",
+      "action": "분류 체계 설계자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "분류 체계 설계서",
+        "snippet": "# 분류 체계 설계서\n\n## 설계 원칙\n- **대상 사용자**: [누가 사용하는가]\n- **핵심 사용 시나리오**: [어떤 상황에서 지식을 찾는가]"
+      }
+    },
+    {
+      "agentId": "wiki-builder",
+      "action": "위키 빌더.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Read",
+        "Write"
+      ],
+      "output": {
+        "title": "_workspace/03_wiki/",
+        "snippet": "_workspace/03_wiki/\n├── index.md                    — 위키 홈페이지\n├── [category-1]/\n│   ├── index.md                — 카테고리 인덱스\n│   ├── [page-1].md             — 개별 페이지"
+      }
+    },
+    {
+      "agentId": "search-optimizer",
+      "action": "검색 최적화 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "검색 인덱스 및 메타데이터",
+        "snippet": "# 검색 인덱스 및 메타데이터\n\n## 페이지별 메타데이터\n| 페이지 경로 | 제목 | 설명 | 키워드 | 검색 의도 |\n|-----------|------|------|--------|----------|"
+      }
+    },
+    {
+      "agentId": "maintenance-planner",
+      "action": "유지보수 플래너.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "지식 베이스 유지보수 가이드",
+        "snippet": "# 지식 베이스 유지보수 가이드\n\n## 거버넌스 모델\n### 역할 정의\n| 역할 | 책임 | 담당자/팀 |"
+      }
+    }
+  ]
+}

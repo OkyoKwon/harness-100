@@ -1,0 +1,73 @@
+{
+  "id": "debate-simulator-demo",
+  "title": "Debate Simulator",
+  "userPrompt": "토론 시뮬레이션",
+  "steps": [
+    {
+      "agentId": "topic-analyst",
+      "action": "토론 주제 분석가.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "토론 주제 분석 보고서",
+        "snippet": "# 토론 주제 분석 보고서\n\n## 주제\n- **논제**: [정확한 토론 논제]\n- **유형**: 사실 논쟁 / 가치 논쟁 / 정책 논쟁"
+      }
+    },
+    {
+      "agentId": "pro-debater",
+      "action": "찬성 토론자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "찬성 측 논거서",
+        "snippet": "# 찬성 측 논거서\n\n## 입장 요약\n[찬성 입장의 핵심을 3문장으로 요약]"
+      }
+    },
+    {
+      "agentId": "con-debater",
+      "action": "반대 토론자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "반대 측 논거서",
+        "snippet": "# 반대 측 논거서\n\n## 입장 요약\n[반대 입장의 핵심을 3문장으로 요약]"
+      }
+    },
+    {
+      "agentId": "judge",
+      "action": "토론 심판.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "심판 평가서",
+        "snippet": "# 심판 평가서\n\n## 평가 기준\n\n| 기준 | 배점 | 설명 |"
+      }
+    },
+    {
+      "agentId": "rapporteur",
+      "action": "종합정리자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "토론 종합 보고서",
+        "snippet": "# 토론 종합 보고서\n\n## 토론 개요\n- **논제**: [논제]\n- **토론 형식**: [형식]"
+      }
+    }
+  ]
+}

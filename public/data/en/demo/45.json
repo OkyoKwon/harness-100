@@ -1,0 +1,73 @@
+{
+  "id": "gov-funding-plan-demo",
+  "title": "Gov Funding Plan",
+  "userPrompt": "write a government funding proposal",
+  "steps": [
+    {
+      "agentId": "announcement-analyst",
+      "action": "Announcement analyst.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Read",
+        "Write"
+      ],
+      "output": {
+        "title": "공고 요건 분석서",
+        "snippet": "# 공고 요건 분석서\n\n## 사업 개요\n- **사업명**: \n- **주관기관**:"
+      }
+    },
+    {
+      "agentId": "tech-writer",
+      "action": "Technical section writer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "기술성 파트",
+        "snippet": "# 기술성 파트\n\n## 1. 기술 개발 목표\n\n### 1.1 최종 목표"
+      }
+    },
+    {
+      "agentId": "biz-writer",
+      "action": "Business feasibility writer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "사업성 파트",
+        "snippet": "# 사업성 파트\n\n## 1. 시장 분석\n\n### 1.1 목표 시장 규모"
+      }
+    },
+    {
+      "agentId": "budget-planner",
+      "action": "Budget planner.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "예산 편성서",
+        "snippet": "# 예산 편성서\n\n## 총괄 예산\n| 구분 | 정부출연금 | 민간부담금(현금) | 민간부담금(현물) | 합계 |\n|------|----------|---------------|---------------|------|"
+      }
+    },
+    {
+      "agentId": "submission-reviewer",
+      "action": "Submission reviewer (QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "제출 검증 보고서",
+        "snippet": "# 제출 검증 보고서\n\n## 종합 평가\n- **제출 준비 상태**: 🟢 제출 가능 / 🟡 수정 후 제출 / 🔴 재작업 필요\n- **예상 점수대**: __~__점 / 100점"
+      }
+    }
+  ]
+}

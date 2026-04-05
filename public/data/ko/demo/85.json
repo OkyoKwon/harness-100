@@ -1,0 +1,74 @@
+{
+  "id": "public-speaking-demo",
+  "title": "Public Speaking",
+  "userPrompt": "연설문 써줘",
+  "steps": [
+    {
+      "agentId": "audience-analyst",
+      "action": "퍼블릭스피킹 청중 분석가.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "WebSearch",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "청중 분석 보고서",
+        "snippet": "# 청중 분석 보고서\n\n## 발표 맥락\n- **행사/상황**: [행사명, 유형]\n- **발표 형식**: [기조연설/프레젠테이션/패널토론/토론/피치]"
+      }
+    },
+    {
+      "agentId": "speech-writer",
+      "action": "퍼블릭스피킹 연설/발표 작가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "[발표/연설 제목]",
+        "snippet": "# [발표/연설 제목]\n\n> **발표 형식**: [기조연설/프레젠테이션/피치]\n> **예상 시간**: [XX분]\n> **톤**: [격식/반격식/캐주얼]"
+      }
+    },
+    {
+      "agentId": "debate-preparer",
+      "action": "토론 준비 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "토론 준비서",
+        "snippet": "# 토론 준비서\n\n## 논증 구조\n\n### 핵심 주장 (Thesis)"
+      }
+    },
+    {
+      "agentId": "qa-strategist",
+      "action": "Q&A 전략가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Q&A 예상 답변집 (Playbook)",
+        "snippet": "# Q&A 예상 답변집 (Playbook)\n\n## Q&A 운영 전략\n- **시간 배분**: [Q&A 할당 시간]\n- **질문 수용 방식**: [거수/마이크 전달/사전 수집/채팅]"
+      }
+    },
+    {
+      "agentId": "rehearsal-coach",
+      "action": "리허설 코치 및 교차 검증 전문가(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "리허설 가이드 & 검증 보고서",
+        "snippet": "# 리허설 가이드 & 검증 보고서\n\n## Part 1: 리허설 가이드\n\n### 리허설 계획"
+      }
+    }
+  ]
+}

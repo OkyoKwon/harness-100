@@ -1,0 +1,73 @@
+{
+  "id": "game-narrative-demo",
+  "title": "Game Narrative",
+  "userPrompt": "create a game scenario",
+  "steps": [
+    {
+      "agentId": "worldbuilder",
+      "action": "Game world designer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "World-Building Document",
+        "snippet": "# World-Building Document\n\n## World Overview\n- **World Name**:\n- **Genre**: [Fantasy/Sci-Fi/Post-Apocalyptic/Modern/Historical/...]"
+      }
+    },
+    {
+      "agentId": "quest-designer",
+      "action": "Game quest designer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Quest Design Document",
+        "snippet": "# Quest Design Document\n\n## Quest Overview\n- **Total Quests**: Main X + Side X\n- **Estimated Playtime**: X hours"
+      }
+    },
+    {
+      "agentId": "dialogue-writer",
+      "action": "Game dialogue writer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Dialogue Script",
+        "snippet": "# Dialogue Script\n\n## Dialogue Rules\n- **Base Language Tone**: [Language tone guide matching the world-building]\n- **Prohibited Expressions**: [Modern expressions that break the world-building, etc.]"
+      }
+    },
+    {
+      "agentId": "branch-architect",
+      "action": "Game branch architect.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Branch Structure Map",
+        "snippet": "# Branch Structure Map\n\n## Branch Overview\n- **Total Branch Points**: X\n- **Number of Endings**: X (Main X + Hidden X)"
+      }
+    },
+    {
+      "agentId": "narrative-reviewer",
+      "action": "Game narrative reviewer (QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Narrative Review Report",
+        "snippet": "# Narrative Review Report\n\n## Overall Assessment\n- **Development Readiness**: GREEN Ready / YELLOW Proceed After Revisions / RED Rework Needed\n- **Summary**: [1-2 sentence summary]"
+      }
+    }
+  ]
+}

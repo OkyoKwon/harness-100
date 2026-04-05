@@ -1,0 +1,60 @@
+{
+  "id": "service-legal-docs-demo",
+  "title": "Service Legal Docs",
+  "userPrompt": "create service terms",
+  "steps": [
+    {
+      "agentId": "tos-specialist",
+      "action": "",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Terms of Service",
+        "snippet": "# Terms of Service\n\n## Article 1 (Purpose)\nThese Terms of Service govern the conditions and procedures for using the services provided by [Service Name] (hereinafter \"Company\"),\nas well as the rights, obligations, and responsibilities of the Company and users."
+      }
+    },
+    {
+      "agentId": "privacy-specialist",
+      "action": "",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Privacy Policy",
+        "snippet": "# Privacy Policy\n\n[Service Name] (hereinafter \"Company\") establishes and discloses the following\nPrivacy Policy in accordance with the Personal Information Protection Act\nto protect users' personal information and to handle related grievances"
+      }
+    },
+    {
+      "agentId": "consumer-analyst",
+      "action": "",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Refund Policy",
+        "snippet": "# Refund Policy\n\n## 1. Scope of Application\nThis refund policy applies to [service type] provided by [service name]."
+      }
+    },
+    {
+      "agentId": "consistency-reviewer",
+      "action": "",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Consistency Validation Report",
+        "snippet": "# Consistency Validation Report\n\n## Overall Assessment\n- **Document Set Status**: 🟢 Ready to use / 🟡 Use after revision / 🔴 Rework required\n- **Summary**:"
+      }
+    }
+  ]
+}

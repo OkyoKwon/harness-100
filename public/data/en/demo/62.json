@@ -1,0 +1,73 @@
+{
+  "id": "adr-writer-demo",
+  "title": "ADR Writer",
+  "userPrompt": "write an ADR",
+  "steps": [
+    {
+      "agentId": "context-analyst",
+      "action": "Technical Context Analyst.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Technical Context Analysis",
+        "snippet": "# Technical Context Analysis\n\n## Decision Background\n- **Decision Title**: [One-line summary]\n- **Decision Trigger**: Why this decision is needed"
+      }
+    },
+    {
+      "agentId": "alternative-researcher",
+      "action": "Alternative Researcher.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "Alternatives Research Report",
+        "snippet": "# Alternatives Research Report\n\n## Research Scope\n- **Decision Topic**: [Decision title from context analysis]\n- **Selection Criteria**: [Criteria used to screen alternatives]"
+      }
+    },
+    {
+      "agentId": "tradeoff-evaluator",
+      "action": "Tradeoff Evaluator.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Tradeoff Evaluation",
+        "snippet": "# Tradeoff Evaluation\n\n## Evaluation Methodology\n- **Weight Source**: Quality attribute priorities from context analysis\n- **Scoring Criteria**: 1 (Very Poor) to 5 (Excellent)"
+      }
+    },
+    {
+      "agentId": "adr-author",
+      "action": "ADR Document Author.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "ADR-[Number]: [Decision Title]",
+        "snippet": "# ADR-[Number]: [Decision Title]\n\n- **Status**: Proposed / Accepted / Superseded / Deprecated\n- **Date**: YYYY-MM-DD\n- **Decision Makers**: [Participants in the decision]"
+      }
+    },
+    {
+      "agentId": "impact-tracker",
+      "action": "Impact Tracker.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Impact Assessment and Tracking",
+        "snippet": "# Impact Assessment and Tracking\n\n## Impact Scope Summary\n- **Decision Title**: [ADR title]\n- **Impact Rating**: High / Medium / Low"
+      }
+    }
+  ]
+}

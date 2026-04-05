@@ -1,0 +1,76 @@
+{
+  "id": "market-research-demo",
+  "title": "Market Research",
+  "userPrompt": "시장 조사해줘",
+  "steps": [
+    {
+      "agentId": "industry-analyst",
+      "action": "산업 분석가.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "산업 분석 보고서",
+        "snippet": "# 산업 분석 보고서\n\n## 산업 개요\n- **산업 정의**: 분석 대상 산업의 범위와 정의\n- **산업 분류 코드**: KSIC/NAICS 코드"
+      }
+    },
+    {
+      "agentId": "competitor-analyst",
+      "action": "경쟁 분석가.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "WebSearch",
+        "Read",
+        "Write"
+      ],
+      "output": {
+        "title": "경쟁 분석 보고서",
+        "snippet": "# 경쟁 분석 보고서\n\n## 경쟁 구도 개요\n- **경쟁 강도**: 높음/중간/낮음\n- **시장 집중도**: CR3, CR5, HHI 지수"
+      }
+    },
+    {
+      "agentId": "consumer-analyst",
+      "action": "소비자 분석가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "소비자 분석 보고서",
+        "snippet": "# 소비자 분석 보고서\n\n## 고객 세그먼테이션\n| 세그먼트 | 규모 | 특성 | 니즈 | 매력도 | 우선순위 |\n|---------|------|------|------|--------|---------|"
+      }
+    },
+    {
+      "agentId": "trend-analyst",
+      "action": "트렌드 분석가.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "WebSearch",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "트렌드 분석 보고서",
+        "snippet": "# 트렌드 분석 보고서\n\n## PESTLE 분석\n| 영역 | 트렌드 | 영향도 (1-5) | 시간 프레임 | 기회/위협 |\n|------|--------|------------|-----------|----------|"
+      }
+    },
+    {
+      "agentId": "research-reviewer",
+      "action": "리서치 검증자(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "종합 리서치 보고서",
+        "snippet": "# 종합 리서치 보고서\n\n## 종합 평가\n- **리서치 완성도**: 🟢 완료 / 🟡 보완 필요 / 🔴 재작업 필요\n- **총평**: [1~2문장 요약]"
+      }
+    }
+  ]
+}

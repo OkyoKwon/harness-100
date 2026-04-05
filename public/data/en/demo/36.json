@@ -1,0 +1,72 @@
+{
+  "id": "design-system-demo",
+  "title": "Design System",
+  "userPrompt": "build a design system",
+  "steps": [
+    {
+      "agentId": "token-designer",
+      "action": "Design token specialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "_workspace/01_design_tokens/",
+        "snippet": "_workspace/01_design_tokens/\n├── tokens.json              — 전체 토큰 (Style Dictionary 호환)\n├── colors.css               — CSS 커스텀 프로퍼티 (색상)\n├── typography.css            — CSS 커스텀 프로퍼티 (타이포)\n├── spacing.css              — CSS 커스텀 프로퍼티 (간격)"
+      }
+    },
+    {
+      "agentId": "component-developer",
+      "action": "UI component development specialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Read",
+        "Write"
+      ],
+      "output": {
+        "title": "Output",
+        "snippet": "[UI Component Development Specialist output will appear here]"
+      }
+    },
+    {
+      "agentId": "storybook-builder",
+      "action": "Storybook builder.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "_workspace/03_storybook/",
+        "snippet": "_workspace/03_storybook/\n├── .storybook/\n│   ├── main.ts              — 스토리북 설정\n│   ├── preview.ts           — 글로벌 데코레이터\n│   └── theme.ts             — 스토리북 테마"
+      }
+    },
+    {
+      "agentId": "a11y-auditor",
+      "action": "Accessibility (A11y) verification specialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "접근성 검증 보고서",
+        "snippet": "# 접근성 검증 보고서\n\n## 검증 개요\n- **기준**: WCAG 2.1 Level AA\n- **검증 대상**: [컴포넌트 N개]"
+      }
+    },
+    {
+      "agentId": "doc-writer",
+      "action": "Design system documentation specialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "_workspace/05_docs/",
+        "snippet": "_workspace/05_docs/\n├── index.md                 — 디자인 시스템 소개\n├── principles.md            — 설계 원칙\n├── getting-started.md       — 시작하기 (설치, 설정, 첫 사용)\n├── tokens/"
+      }
+    }
+  ]
+}

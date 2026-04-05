@@ -1,0 +1,76 @@
+{
+  "id": "pricing-strategy-demo",
+  "title": "Pricing Strategy",
+  "userPrompt": "가격 전략 세워줘",
+  "steps": [
+    {
+      "agentId": "cost-analyst",
+      "action": "원가 분석 전문가.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "WebSearch",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "원가 분석서",
+        "snippet": "# 원가 분석서\n\n## 제품/서비스 개요\n- **제품/서비스명**:\n- **유형**: [SaaS/제조/서비스/구독]"
+      }
+    },
+    {
+      "agentId": "competitive-analyst",
+      "action": "경쟁 가격 분석 전문가.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "경쟁 가격 분석서",
+        "snippet": "# 경쟁 가격 분석서\n\n## 경쟁 환경 개요\n- **시장 규모**: [TAM/SAM/SOM]\n- **경쟁 강도**: [높음/보통/낮음]"
+      }
+    },
+    {
+      "agentId": "value-assessor",
+      "action": "가치 기반 가격 전문가.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "WebSearch",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "가치 기반 가격 분석서",
+        "snippet": "# 가치 기반 가격 분석서\n\n## 가치 드라이버 분석\n\n### 핵심 가치 드라이버"
+      }
+    },
+    {
+      "agentId": "pricing-simulator",
+      "action": "가격 시뮬레이션 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "가격 시뮬레이션 보고서",
+        "snippet": "# 가격 시뮬레이션 보고서\n\n## 시뮬레이션 전제 조건\n- **분석 기간**: [12개월/36개월]\n- **시장 규모**: [TAM/SAM/SOM]"
+      }
+    },
+    {
+      "agentId": "pricing-reviewer",
+      "action": "가격 전략 리뷰어(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "가격 전략 리뷰 보고서",
+        "snippet": "# 가격 전략 리뷰 보고서\n\n## 종합 평가\n- **가격 전략 상태**: 🟢 실행 가능 / 🟡 보완 후 실행 / 🔴 재분석 필요\n- **총평**: [2~3문장]"
+      }
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "id": "patent-drafter-demo",
+  "title": "Patent Drafter",
+  "userPrompt": "특허 명세서 작성해줘",
+  "steps": [
+    {
+      "agentId": "prior-art-researcher",
+      "action": "선행기술 조사원.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "선행기술 조사 보고서",
+        "snippet": "# 선행기술 조사 보고서\n\n## 1. 발명 개요\n- **발명의 명칭**:\n- **기술 분야**:"
+      }
+    },
+    {
+      "agentId": "claim-drafter",
+      "action": "청구항 작성자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "특허 청구항",
+        "snippet": "# 특허 청구항\n\n## 1. 청구항 전략\n- **발명의 카테고리**: 물건/방법/장치/시스템/조성물\n- **독립항 수**: N개"
+      }
+    },
+    {
+      "agentId": "specification-writer",
+      "action": "명세서 작성자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "특허 명세서",
+        "snippet": "# 특허 명세서\n\n## 발명의 명칭\n[명칭]"
+      }
+    },
+    {
+      "agentId": "drawing-designer",
+      "action": "도면 설계자.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "도면 설명서",
+        "snippet": "# 도면 설명서\n\n## 1. 도면 목록\n| 도면 번호 | 도면 유형 | 설명 | 관련 청구항 |\n|----------|----------|------|-----------|"
+      }
+    },
+    {
+      "agentId": "patent-reviewer",
+      "action": "특허 검증자.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "특허 명세서 검증 보고서",
+        "snippet": "# 특허 명세서 검증 보고서\n\n## 종합 평가\n- **등록 가능성**: 🟢 높음 / 🟡 보통 / 🔴 낮음\n- **총평**: [1~2문장 요약]"
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "onboarding-system-demo",
+  "title": "Onboarding System",
+  "userPrompt": "onboarding",
+  "steps": [
+    {
+      "agentId": "onboarding-architect",
+      "action": "Onboarding architect.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Onboarding Checklist and Schedule",
+        "snippet": "# Onboarding Checklist and Schedule\n\n## Pre-boarding (D-7 to D-1)\n| # | Item | Owner | Deadline | Status |\n|---|------|-------|----------|--------|"
+      }
+    },
+    {
+      "agentId": "training-builder",
+      "action": "Training content builder.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Training Program",
+        "snippet": "# Training Program\n\n## Curriculum Overview\n\n### Required Training (Weeks 1-2)"
+      }
+    },
+    {
+      "agentId": "mentor-matcher",
+      "action": "Mentor/buddy matching expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Mentor/Buddy Assignment Guide",
+        "snippet": "# Mentor/Buddy Assignment Guide\n\n## Role Definitions\n| Role | Purpose | Key Activities | Duration | Time Investment |\n|------|---------|----------------|----------|-----------------|"
+      }
+    },
+    {
+      "agentId": "milestone-tracker",
+      "action": "30-60-90 day milestone designer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "30-60-90 Day Plan",
+        "snippet": "# 30-60-90 Day Plan\n\n## 30 Days: Learning\n**Theme**: \"Understand and ask questions\""
+      }
+    },
+    {
+      "agentId": "experience-reviewer",
+      "action": "Onboarding experience reviewer.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Onboarding Program Review Report",
+        "snippet": "# Onboarding Program Review Report\n\n## Overall Assessment\n- **Program Readiness**: [Ready to launch / Ready after revisions / Redesign needed]\n- **Summary**:"
+      }
+    }
+  ]
+}

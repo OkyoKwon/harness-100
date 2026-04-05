@@ -1,0 +1,61 @@
+{
+  "id": "regulatory-filing-demo",
+  "title": "Regulatory Filing",
+  "userPrompt": "Regulatory Filing 관련 작업 요청",
+  "steps": [
+    {
+      "agentId": "requirements-investigator",
+      "action": "",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "Permit & License Requirements Research Report",
+        "snippet": "# Permit & License Requirements Research Report\n\n## Overview\n- **Permit Type**: [Permit / Registration / Notification / Authorization / Designation, etc.]\n- **Legal Basis**: [Name of Statute, Article X]"
+      }
+    },
+    {
+      "agentId": "document-drafter",
+      "action": "",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Permit/License Application Document Draft",
+        "snippet": "# Permit/License Application Document Draft\n\n## Drafting Overview\n- **Application Type**: [Permit/Registration/Notification]\n- **Legal Basis**: [Law Name, Article X]"
+      }
+    },
+    {
+      "agentId": "attachment-preparer",
+      "action": "",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Attachment Preparation Guide",
+        "snippet": "# Attachment Preparation Guide\n\n## Preparation Schedule Summary\n- **Estimated Total Preparation Period**: [X to Y days]\n- **Advance Preparation Required**: [Starting with the longest lead-time documents]"
+      }
+    },
+    {
+      "agentId": "submission-verifier",
+      "action": "",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Submission Checklist and Verification Report",
+        "snippet": "# Submission Checklist and Verification Report\n\n## Overall Assessment\n- **Submission Readiness**: 🟢 Ready to submit / 🟡 Submit after supplementation / 🔴 Requires re-preparation\n- **Summary**: [1–2 sentence summary]"
+      }
+    }
+  ]
+}

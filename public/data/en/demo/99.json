@@ -1,0 +1,72 @@
+{
+  "id": "sustainability-audit-demo",
+  "title": "Sustainability Audit",
+  "userPrompt": "run an ESG audit",
+  "steps": [
+    {
+      "agentId": "environmental-analyst",
+      "action": "ESG environmental analyst.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Environmental (E) Assessment",
+        "snippet": "# Environmental (E) Assessment\n\n## Carbon Emissions Inventory\n| Category | Source | Activity Data | Emission Factor | Emissions (tCO2e) | Notes |\n|----------|--------|-------------|----------------|-------------------|-------|"
+      }
+    },
+    {
+      "agentId": "social-assessor",
+      "action": "ESG social impact assessor.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Social (S) Assessment",
+        "snippet": "# Social (S) Assessment\n\n## Labor Practices\n| Indicator | Value | Industry Benchmark | Rating | Notes |\n|-----------|-------|-------------------|--------|-------|"
+      }
+    },
+    {
+      "agentId": "governance-reviewer",
+      "action": "ESG governance reviewer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Governance (G) Assessment",
+        "snippet": "# Governance (G) Assessment\n\n## Board Structure\n| Item | Current Status | Recommended Standard | Compliance |\n|------|---------------|---------------------|-----------|"
+      }
+    },
+    {
+      "agentId": "esg-reporter",
+      "action": "ESG report writer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "ESG/Sustainability Report",
+        "snippet": "# ESG/Sustainability Report\n\n## CEO Message\n[Management commitment to sustainability — template]"
+      }
+    },
+    {
+      "agentId": "improvement-planner",
+      "action": "ESG improvement planner.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "ESG Improvement Plan",
+        "snippet": "# ESG Improvement Plan\n\n## Gap Analysis Summary\n| ESG Pillar | Current Rating | Target Rating | Key Gap | Urgency |\n|-----------|---------------|--------------|---------|---------|"
+      }
+    }
+  ]
+}

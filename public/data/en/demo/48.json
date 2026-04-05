@@ -1,0 +1,75 @@
+{
+  "id": "sales-enablement-demo",
+  "title": "Sales Enablement",
+  "userPrompt": "create a sales proposal",
+  "steps": [
+    {
+      "agentId": "customer-analyst",
+      "action": "Customer Analysis Expert.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "고객 분석서",
+        "snippet": "# 고객 분석서\n\n## 고객 프로파일\n- **회사명**:\n- **산업**: / **매출 규모**: / **직원 수**:"
+      }
+    },
+    {
+      "agentId": "proposal-writer",
+      "action": "Sales Proposal Writing Expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "[고객사명] 맞춤 솔루션 제안서",
+        "snippet": "# [고객사명] 맞춤 솔루션 제안서\n\n## Executive Summary\n[고객 과제 → 솔루션 → 기대효과를 3문장으로 압축]"
+      }
+    },
+    {
+      "agentId": "presenter",
+      "action": "Sales Presentation Design Expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "프레젠테이션 구성안",
+        "snippet": "# 프레젠테이션 구성안\n\n## 프레젠테이션 개요\n- **제목**: [발표 제목]\n- **목적**: [이 발표로 달성하려는 것]"
+      }
+    },
+    {
+      "agentId": "followup-manager",
+      "action": "Sales Follow-up Management Expert.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Write",
+        "Bash",
+        "Read"
+      ],
+      "output": {
+        "title": "팔로업 계획서",
+        "snippet": "# 팔로업 계획서\n\n## 팔로업 타임라인\n| Day | 채널 | 액션 | 목적 | 핵심 메시지 | CTA |\n|-----|------|------|------|-----------|-----|"
+      }
+    },
+    {
+      "agentId": "sales-reviewer",
+      "action": "Sales Enablement Reviewer (QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "영업 지원 리뷰 보고서",
+        "snippet": "# 영업 지원 리뷰 보고서\n\n## 종합 평가\n- **영업 준비 상태**: 🟢 즉시 투입 / 🟡 수정 후 투입 / 🔴 재작업 필요\n- **총평**: [2~3문장]"
+      }
+    }
+  ]
+}

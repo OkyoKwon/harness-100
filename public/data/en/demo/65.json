@@ -1,0 +1,73 @@
+{
+  "id": "personal-branding-demo",
+  "title": "Personal Branding",
+  "userPrompt": "write my resume",
+  "steps": [
+    {
+      "agentId": "positioning-strategist",
+      "action": "Positioning Strategist.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "WebSearch",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Positioning Strategy",
+        "snippet": "# Positioning Strategy\n\n## Personal Analysis\n- **Core Competencies**: [Top 3-5 skills]\n- **Key Achievements**: [Quantified results]"
+      }
+    },
+    {
+      "agentId": "resume-writer",
+      "action": "Resume/CV Writing Specialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Resume / CV",
+        "snippet": "# Resume / CV\n\n## English Resume\n\n### [Full Name]"
+      }
+    },
+    {
+      "agentId": "portfolio-designer",
+      "action": "Portfolio Designer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Portfolio Design",
+        "snippet": "# Portfolio Design\n\n## Portfolio Overview\n- **Type**: [Web / Document / Hybrid]\n- **Platform**: [Recommended platform]"
+      }
+    },
+    {
+      "agentId": "profile-optimizer",
+      "action": "LinkedIn Profile Optimization Specialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "LinkedIn Profile Optimization",
+        "snippet": "# LinkedIn Profile Optimization\n\n## Headline\n[Optimized headline — 120 characters max]"
+      }
+    },
+    {
+      "agentId": "cover-letter-writer",
+      "action": "Cover Letter Writing Specialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Cover Letter",
+        "snippet": "# Cover Letter\n\n## English Cover Letter\n\nDear [Hiring Manager],"
+      }
+    }
+  ]
+}

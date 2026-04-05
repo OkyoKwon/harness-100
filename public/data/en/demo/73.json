@@ -1,0 +1,59 @@
+{
+  "id": "meal-planner-demo",
+  "title": "Meal Planner",
+  "userPrompt": "Meal Planner 관련 작업 요청",
+  "steps": [
+    {
+      "agentId": "nutritionist",
+      "action": "",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Nutrition Analysis Report",
+        "snippet": "# Nutrition Analysis Report\n\n## User Profile\n| Item | Value | Notes |\n|------|-------|-------|"
+      }
+    },
+    {
+      "agentId": "meal-designer",
+      "action": "",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Weekly Meal Plan",
+        "snippet": "# Weekly Meal Plan\n\n## Design Criteria\n- **Daily Calorie Target**: [X] kcal\n- **Macro Ratio**: Carbs X% / Protein X% / Fat X%"
+      }
+    },
+    {
+      "agentId": "recipe-writer",
+      "action": "",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Recipe Collection",
+        "snippet": "# Recipe Collection\n\n## Recipe Index\n| # | Menu Name | Cook Time | Difficulty | Calories (per serving) | Meal Plan |\n|---|-----------|-----------|------------|----------------------|-----------|"
+      }
+    },
+    {
+      "agentId": "shopping-coordinator",
+      "action": "Shopping & cooking coordinator.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Shopping List (04_shopping_list.md)",
+        "snippet": "# Shopping List (04_shopping_list.md)\n\n## Purchase Summary\n- **Total Items**: X items\n- **Estimated Total Cost**: Approx. X KRW"
+      }
+    }
+  ]
+}

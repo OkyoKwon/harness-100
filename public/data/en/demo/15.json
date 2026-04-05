@@ -1,0 +1,74 @@
+{
+  "id": "visual-storytelling-demo",
+  "title": "Visual Storytelling",
+  "userPrompt": "Visual Story ",
+  "steps": [
+    {
+      "agentId": "editorial-reviewer",
+      "action": "Editorial reviewer (QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "`_workspace/05_review_report.md` file::",
+        "snippet": "`_workspace/05_review_report.md` file::\n\n # Editing Review \n\n ## Overall Assessment"
+      }
+    },
+    {
+      "agentId": "essay-writer",
+      "action": "Essay writer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "`_workspace/02_essay_text.md` file::",
+        "snippet": "`_workspace/02_essay_text.md` file::\n\n # in Text\n\n ## Story : []"
+      }
+    },
+    {
+      "agentId": "image-prompter",
+      "action": "Image .",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Skill",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "`_workspace/03_image_prompts.md` file::",
+        "snippet": "`_workspace/03_image_prompts.md` file::\n\n # Image Prompt when\n\n ## Style Guide"
+      }
+    },
+    {
+      "agentId": "layout-builder",
+      "action": "Layout .",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Read",
+        "Write"
+      ],
+      "output": {
+        "title": "`_workspace/04_layout.html` file:. HTML Filein line CSS :",
+        "snippet": "`_workspace/04_layout.html` file:. HTML Filein line CSS :\n\n <!DOCTYPE html>\n <html lang=\"ko\">\n <head>"
+      }
+    },
+    {
+      "agentId": "story-architect",
+      "action": "Story Design.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "`_workspace/01_story_blueprint.md` file::",
+        "snippet": "`_workspace/01_story_blueprint.md` file::\n\n # Story lean\n\n ## Story"
+      }
+    }
+  ]
+}

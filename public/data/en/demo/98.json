@@ -1,0 +1,73 @@
+{
+  "id": "academic-paper-demo",
+  "title": "Academic Paper",
+  "userPrompt": "write an academic paper",
+  "steps": [
+    {
+      "agentId": "research-designer",
+      "action": "Academic research designer.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "Research Design Document",
+        "snippet": "# Research Design Document\n\n## Research Overview\n- **Working Title**: \n- **Research Field**:"
+      }
+    },
+    {
+      "agentId": "experiment-manager",
+      "action": "Academic experiment manager.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Experiment Protocol",
+        "snippet": "# Experiment Protocol\n\n## Experiment Overview\n- **Experiment Type**: Lab/Field/Online\n- **Participants**: (N per condition)"
+      }
+    },
+    {
+      "agentId": "statistical-analyst",
+      "action": "Academic statistical analyst.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Statistical Analysis Report",
+        "snippet": "# Statistical Analysis Report\n\n## Analysis Strategy Overview\n| Hypothesis | Independent Variable | Dependent Variable | Analysis Method | Assumption Tests |\n|-----------|---------------------|-------------------|----------------|-----------------|"
+      }
+    },
+    {
+      "agentId": "paper-writer",
+      "action": "Academic paper writer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "[Paper Title]",
+        "snippet": "# [Paper Title]\n\n## Abstract\n**Objective**: \n**Method**:"
+      }
+    },
+    {
+      "agentId": "submission-preparer",
+      "action": "Academic paper submission preparer.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "Submission Package",
+        "snippet": "# Submission Package\n\n## Target Journal Recommendations\n| Rank | Journal Name | IF | Field | Review Period | APC | Fit Score | Notes |\n|------|-------------|-----|-------|-------------|-----|-----------|-------|"
+      }
+    }
+  ]
+}

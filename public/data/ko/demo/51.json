@@ -1,0 +1,76 @@
+{
+  "id": "investor-report-demo",
+  "title": "Investor Report",
+  "userPrompt": "투자자 보고서 만들어줘",
+  "steps": [
+    {
+      "agentId": "financial-analyst",
+      "action": "재무 분석 전문가.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "재무 실적 분석서",
+        "snippet": "# 재무 실적 분석서\n\n## 재무 하이라이트\n1. [핵심 포인트 1 — 가장 중요한 실적]\n2. [핵심 포인트 2]"
+      }
+    },
+    {
+      "agentId": "market-analyst",
+      "action": "시장 동향 분석 전문가.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "시장 동향 보고서",
+        "snippet": "# 시장 동향 보고서\n\n## 시장 개요\n- **시장 정의**: [어떤 시장인가]\n- **시장 규모**: [TAM/SAM] (출처: [기관], [연도])"
+      }
+    },
+    {
+      "agentId": "kpi-designer",
+      "action": "KPI 대시보드 설계 전문가.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "WebSearch",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "KPI 대시보드",
+        "snippet": "# KPI 대시보드\n\n## KPI 스코어카드\n| KPI | 당기 | 전기 | 변동 | 연간목표 | 달성률 | 상태 |\n|-----|------|------|------|---------|--------|------|"
+      }
+    },
+    {
+      "agentId": "strategy-updater",
+      "action": "전략 업데이트 작성 전문가.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "WebSearch",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "전략 업데이트 및 리스크 공시",
+        "snippet": "# 전략 업데이트 및 리스크 공시\n\n## 경영진 메시지\n[CEO/대표이사의 1-pager 메시지 — 핵심 실적, 전략 방향, 비전]"
+      }
+    },
+    {
+      "agentId": "ir-reviewer",
+      "action": "IR 보고서 리뷰어(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "IR 보고서 리뷰 보고서",
+        "snippet": "# IR 보고서 리뷰 보고서\n\n## 종합 평가\n- **보고서 상태**: 🟢 발송 가능 / 🟡 수정 후 발송 / 🔴 재작성 필요\n- **총평**: [2~3문장]"
+      }
+    }
+  ]
+}

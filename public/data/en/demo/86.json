@@ -1,0 +1,74 @@
+{
+  "id": "proposal-writer-demo",
+  "title": "Proposal Writer",
+  "userPrompt": "proposal create it",
+  "steps": [
+    {
+      "agentId": "client-analyst",
+      "action": "proposal client analysis.",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "WebSearch",
+        "WebFetch",
+        "Write"
+      ],
+      "output": {
+        "title": "고객 분석 보고서",
+        "snippet": "# 고객 분석 보고서\n\n## 고객 개요\n- **고객사**: [회사명]\n- **산업**: [산업/업종]"
+      }
+    },
+    {
+      "agentId": "differentiator",
+      "action": "proposal differentiation strategy.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "차별화 전략서",
+        "snippet": "# 차별화 전략서\n\n## Win Theme (수주 핵심 테마)\n\n### Theme 1: [테마명 — 예: \"검증된 전문성\"]"
+      }
+    },
+    {
+      "agentId": "pricing-strategist",
+      "action": "proposal price strategy.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "가격 전략서",
+        "snippet": "# 가격 전략서\n\n## 가격 전략 개요\n- **가격 포지셔닝**: [프리미엄/경쟁가/가치기반/침투가격]\n- **가격 모델**: [일시불/구독/성과기반/하이브리드]"
+      }
+    },
+    {
+      "agentId": "proposal-designer",
+      "action": "proposal integration specialist and cross-verification expert(QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "최종 제안서 & 검증 보고서",
+        "snippet": "# 최종 제안서 & 검증 보고서\n\n## Part 1: 제안서\n\n### 표지"
+      }
+    },
+    {
+      "agentId": "solution-architect",
+      "action": "proposal solution designspecialist.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "솔루션 설계서",
+        "snippet": "# 솔루션 설계서\n\n## 솔루션 개요\n- **솔루션명**: [프로젝트/서비스명]\n- **핵심 가치**: [이 솔루션이 고객에게 제공하는 핵심 가치]"
+      }
+    }
+  ]
+}

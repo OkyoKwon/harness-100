@@ -1,0 +1,74 @@
+{
+  "id": "test-automation-demo",
+  "title": "Test Automation",
+  "userPrompt": "automate tests",
+  "steps": [
+    {
+      "agentId": "test-strategist",
+      "action": "Test strategy expert.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "테스트 전략서",
+        "snippet": "# 테스트 전략서\n\n## 프로젝트 분석\n- **언어/프레임워크**: [예: TypeScript/NestJS]\n- **아키텍처**: [모놀리스/MSA/서버리스]"
+      }
+    },
+    {
+      "agentId": "unit-tester",
+      "action": "Unit testing expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "단위 테스트",
+        "snippet": "# 단위 테스트\n\n## 테스트 구조\n    tests/\n    ├── unit/"
+      }
+    },
+    {
+      "agentId": "integration-tester",
+      "action": "Integration testing expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "통합 테스트",
+        "snippet": "# 통합 테스트\n\n## 테스트 환경 구성\n### Docker Compose\n    yaml"
+      }
+    },
+    {
+      "agentId": "coverage-analyst",
+      "action": "Coverage analysis expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "커버리지 분석 보고서",
+        "snippet": "# 커버리지 분석 보고서\n\n## 전체 커버리지 요약\n| 지표 | 현재 | 목표 | 갭 | 판정 |\n|------|------|------|-----|------|"
+      }
+    },
+    {
+      "agentId": "qa-reviewer",
+      "action": "Test automation reviewer (QA).",
+      "durationMs": 3600,
+      "toolsUsed": [
+        "SendMessage",
+        "Bash",
+        "Write"
+      ],
+      "output": {
+        "title": "테스트 자동화 리뷰 보고서",
+        "snippet": "# 테스트 자동화 리뷰 보고서\n\n## 종합 평가\n- **테스트 품질 상태**: 🟢 우수 / 🟡 보통 / 🔴 개선 필요\n- **총평**: [1~2문장 요약]"
+      }
+    }
+  ]
+}

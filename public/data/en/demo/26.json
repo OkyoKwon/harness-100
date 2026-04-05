@@ -1,0 +1,75 @@
+{
+  "id": "infra-as-code-demo",
+  "title": "Infrastructure as Code",
+  "userPrompt": "design IaC",
+  "steps": [
+    {
+      "agentId": "infra-architect",
+      "action": "Infrastructure design expert.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "인프라 설계서",
+        "snippet": "# 인프라 설계서\n\n## 아키텍처 개요\n- **클라우드 프로바이더**: [AWS / GCP / Azure]\n- **리전**: [주 리전 / DR 리전]"
+      }
+    },
+    {
+      "agentId": "security-engineer",
+      "action": "Infrastructure security expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Read",
+        "Write"
+      ],
+      "output": {
+        "title": "보안 설계서",
+        "snippet": "# 보안 설계서\n\n## 보안 아키텍처 개요\n- **보안 프레임워크**: [CIS / NIST / ISO 27001]\n- **보안 계층**: 네트워크 → 컴퓨트 → 데이터 → 애플리케이션 → 모니터링"
+      }
+    },
+    {
+      "agentId": "cost-optimizer",
+      "action": "Cloud cost optimization expert.",
+      "durationMs": 2800,
+      "toolsUsed": [
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "비용 분석 보고서",
+        "snippet": "# 비용 분석 보고서\n\n## 비용 요약\n| 환경 | 월간 비용(추정) | 연간 비용(추정) | 최적화 후 | 절감률 |\n|------|--------------|--------------|---------|--------|"
+      }
+    },
+    {
+      "agentId": "drift-detector",
+      "action": "Drift detection expert.",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "Bash",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "드리프트 감지 정책",
+        "snippet": "# 드리프트 감지 정책\n\n## 감지 전략\n- **감지 도구**: [terraform plan / driftctl / AWS Config]\n- **실행 주기**: [매시간 / 매일 / 이벤트 기반]"
+      }
+    },
+    {
+      "agentId": "iac-reviewer",
+      "action": "IaC reviewer (QA).",
+      "durationMs": 3200,
+      "toolsUsed": [
+        "SendMessage",
+        "Write",
+        "Read"
+      ],
+      "output": {
+        "title": "IaC 리뷰 보고서",
+        "snippet": "# IaC 리뷰 보고서\n\n## 종합 평가\n- **프로비저닝 준비 상태**: 🟢 적용 가능 / 🟡 수정 후 적용 / 🔴 재설계 필요\n- **총평**: [1~2문장]"
+      }
+    }
+  ]
+}

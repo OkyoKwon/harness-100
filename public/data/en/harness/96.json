@@ -41,7 +41,10 @@
         "Read"
       ],
       "outputTemplate": "# Profitability Analysis Report\n\n## Investment Overview\n- **Purchase Price**: [Amount]\n- **Acquisition Costs**: [Amount] ([Percentage]%)\n- **Total Investment**: [Amount]\n- **Equity**: [Amount] / **Loan**: [Amount] (LTV [Percentage]%)\n- **Loan Interest Rate**: [Rate]% (Variable/Fixed)\n- **Investment Period**: [Years]\n\n## Rental Income Analysis\n| Item | Monthly | Annual | Notes |\n|------|---------|--------|-------|\n| Expected rent | | | |\n| Management fees (landlord) | | | |\n| Vacancy loss (X% rate) | | | |\n| Repair/maintenance | | | |\n| Property tax | | | |\n| Insurance | | | |\n| **Net Operating Income (NOI)** | | | |\n\n| Yield Metric | Value | Notes |\n|-------------|-------|-------|\n| Gross rental yield | | Rent/Purchase price |\n| Net rental yield (Cap Rate) | | NOI/Purchase price |\n| Return on equity (ROE) | | (NOI-Interest)/Equity |\n\n## Capital Gains Analysis\n| Scenario | Annual Appreciation | Expected Sale Price | Capital Gain | Capital Gains Tax | Net Gain |\n|----------|-------------------|--------------------|--------------|--------------------|----------|\n| Optimistic | | | | | |\n| Neutral | | | | | |\n| Pessimistic | | | | | |\n\n## Cash Flow Analysis\n| Year | Rental Income | Loan Interest | Other Costs | Net Cash Flow | Cumulative |\n|------|-------------|---------------|-------------|--------------|------------|\n| 0 | - | - | Acquisition costs | -[Investment] | -[Investment] |\n| 1 | | | | | |\n\n## Investment Return Metrics\n| Metric | Optimistic | Neutral | Pessimistic | Basis |\n|--------|-----------|---------|-------------|-------|\n| IRR | | | | Discount rate X% |\n| NPV | | | | Discount rate X% |\n| Payback Period | | | | |\n\n## Leverage Effect\n| Scenario | LTV | Interest Rate | ROE | Leverage Effect |\n|----------|-----|-------------|-----|----------------|\n| Current rate | | | | Positive/Negative |\n| Rate +1%p | | | | Positive/Negative |\n| Rate +2%p | | | | Positive/Negative |\n| No leverage | 0% | - | | Baseline |\n\n## Opportunity Cost Comparison\n| Investment Vehicle | Expected Return | Risk | Liquidity |\n|-------------------|----------------|------|-----------|\n| This property (neutral) | | Medium-High | Low |\n| Fixed deposit | | Very Low | High |\n| Equities (index) | | High | High |\n| Government bonds | | Low | Medium |",
-      "dependencies": []
+      "dependencies": [
+        "market-researcher",
+        "location-analyst"
+      ]
     },
     {
       "id": "report-writer",
@@ -53,7 +56,11 @@
         "Read"
       ],
       "outputTemplate": "# Real Estate Investment Analysis Report\n\n> This report is reference material for investment and is not investment advice.\n> Make final investment decisions after professional consultation and at your own judgment.\n\n## Executive Summary\n\n### Analysis Target\n- **Property**: [Address, type, area, price]\n\n### Key Figures\n| Item | Value |\n|------|-------|\n| Purchase price | |\n| Expected net rental yield | |\n| Expected IRR (neutral scenario) | |\n| Location score | /5.0 |\n| Overall risk rating | High/Medium/Low |\n\n### Investment Opinion: **[Buy / Hold / Avoid]**\n[2-3 sentence key rationale]\n\n---\n\n## 1. Market Environment Summary\n[Market research key summary — current market phase, outlook]\n\n## 2. Location Evaluation Summary\n[Location analysis key summary — strengths, weaknesses, development catalysts]\n\n## 3. Profitability Summary\n[Profitability key summary — rental yield, capital gains outlook, IRR]\n\n## 4. Risk Summary\n[Risk key summary — Top 3 risks, stress test results]\n\n## 5. Scenario-based Investment Performance Comparison\n| Item | Optimistic | Neutral | Pessimistic |\n|------|-----------|---------|-------------|\n| Annual appreciation rate | | | |\n| Expected return after [N] years | | | |\n| IRR | | | |\n| Maximum loss | | | |\n\n## 6. Detailed Investment Opinion\n### Positive Factors\n1. [Factor and evidence]\n2. ...\n\n### Negative Factors\n1. [Factor and evidence]\n2. ...\n\n### Overall Judgment\n[Detailed investment opinion and rationale]\n\n## 7. Pre-Investment Checklist\n- [ ] Verify title/encumbrances\n- [ ] On-site visit (physical inspection)\n- [ ] Review maintenance/repair history\n- [ ] Verify existing lease status\n- [ ] Mortgage pre-approval\n- [ ] Tax advisor consultation (tax simulation)\n- [ ] Legal consultation (contract review)\n\n## 8. Analysis Limitations and Caveats\n- **Data reference date**: [YYYY-MM]\n- **Estimation scope**: [Scope]\n- **Items not included in analysis**: [Items]",
-      "dependencies": []
+      "dependencies": [
+        "market-researcher",
+        "location-analyst",
+        "profitability-analyst"
+      ]
     },
     {
       "id": "risk-assessor",
@@ -65,7 +72,10 @@
         "Read"
       ],
       "outputTemplate": "# Risk Assessment Report\n\n> This report is not investment advice. Consult professionals before making investment decisions.\n\n## Risk Summary\n- **Overall Risk Rating**: High/Medium/Low\n- **Maximum Expected Loss**: [Amount/Percentage]\n- **Top 3 Risks**:\n    1. [Risk 1] — [One-line description]\n    2. [Risk 2] — [One-line description]\n    3. [Risk 3] — [One-line description]\n\n## Risk Detail\n\n### 1. Regulatory Risk\n| Risk | Current Status | Probability | Impact | Risk Score | Response Strategy |\n|------|---------------|------------|--------|-----------|------------------|\n| Tighter mortgage regulations | | High/Medium/Low | High/Medium/Low | | |\n| Tax policy changes | | High/Medium/Low | High/Medium/Low | | |\n| Reconstruction regulations | | High/Medium/Low | High/Medium/Low | | |\n\n### 2. Market Risk\n| Risk | Current Status | Probability | Impact | Risk Score | Response Strategy |\n|------|---------------|------------|--------|-----------|------------------|\n\n### 3. Liquidity Risk\n- **Average selling period**: [Months]\n- **Distressed sale discount**: [Percentage]%\n- **Transaction volume trend**: [Increasing/Decreasing/Stable]\n\n### 4. Structural/Physical Risk\n| Item | Status | Risk Level | Estimated Cost | Response |\n|------|--------|-----------|---------------|----------|\n\n### 5. Legal Risk\n| Item | Findings | Risk Level | Response |\n|------|----------|-----------|----------|\n| Title encumbrances | | | |\n| Zoning | | | |\n| Existing leases | | | |\n\n## Risk Matrix\n|  | Low Impact | Medium Impact | High Impact |\n|--|-----------|--------------|-------------|\n| **High Probability** | | | [Critical] |\n| **Medium Probability** | | [Caution] | [Warning] |\n| **Low Probability** | [Accept] | | |\n\n## Stress Tests\n| Scenario | Conditions | Expected Impact | Response |\n|----------|-----------|----------------|----------|\n| Interest rate +2%p | Higher interest burden | Monthly increase of [Amount] | |\n| Price -20% | Valuation loss | [Amount] loss | |\n| 6-month vacancy | Zero rental income | Cash flow shortfall of [Amount] | |\n| Distressed sale | [Percentage]% below market | | |",
-      "dependencies": []
+      "dependencies": [
+        "market-researcher",
+        "location-analyst"
+      ]
     }
   ],
   "skill": {
@@ -96,17 +106,27 @@
       {
         "agentId": "profitability-analyst",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "market-researcher",
+          "location-analyst"
+        ]
       },
       {
         "agentId": "risk-assessor",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "market-researcher",
+          "location-analyst"
+        ]
       },
       {
         "agentId": "report-writer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "market-researcher",
+          "location-analyst",
+          "profitability-analyst"
+        ]
       }
     ],
     "modes": [

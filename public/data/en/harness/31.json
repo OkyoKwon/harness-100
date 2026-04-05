@@ -28,7 +28,11 @@
         "Read"
       ],
       "outputTemplate": "# Evaluation Report\n\n## Performance Summary\n| Model | Accuracy | Precision | Recall | F1 | AUC-ROC | Inference Time |\n|-------|----------|-----------|--------|-----|---------|---------------|\n| Baseline | | | | | | |\n| Candidate 1 | | | | | | |\n| Candidate 2 | | | | | | |\n\n## Best Model Selection\n- Selected Model: [model name]\n- Selection Rationale:\n- Hyperparameters: [optimal values]\n\n## Confusion Matrix\n| | Predicted: Pos | Predicted: Neg |\n|---|---------------|---------------|\n| Actual: Pos | TP= | FN= |\n| Actual: Neg | FP= | TN= |\n\n## Error Analysis\n### Misclassification Patterns\n| Pattern | Frequency | Estimated Cause | Improvement Direction |\n|---------|-----------|----------------|----------------------|\n\n### Representative Misclassification Cases\n- Case 1: [input → prediction → ground truth → cause]\n- Case 2: ...\n\n## Bias Verification\n| Protected Attribute | Metric | Group A | Group B | Difference | Verdict |\n|--------------------|--------|---------|---------|------------|---------|\n| Gender | Equal Opportunity | | | | |\n| Age | Demographic Parity | | | | |\n\n## Interpretability (XAI)\n### SHAP/LIME Analysis\n- Top feature importance:\n| Rank | Feature | SHAP Value | Impact Direction |\n|------|---------|-----------|-----------------|\n\n### Model Decision Explanation Examples\n- Example 1: [input → SHAP contributions → prediction]\n\n## Deployment Readiness\n| Item | Value | Criterion | Verdict |\n|------|-------|-----------|---------|\n| Model Size | MB | | |\n| Inference Time | ms | | |\n| Memory Usage | MB | | |\n| Batch Throughput | /sec | | |\n\n## Statistical Verification\n- Cross-validation results: [mean ± std]\n- Model comparison: [t-test / Wilcoxon p-value]\n\n## Improvement Recommendations\n1. [Short-term improvement]: ...\n2. [Data improvement]: ...\n3. [Model improvement]: ...",
-      "dependencies": []
+      "dependencies": [
+        "data-engineer",
+        "model-designer",
+        "training-manager"
+      ]
     },
     {
       "id": "experiment-reviewer",
@@ -42,7 +46,10 @@
         "Read"
       ],
       "outputTemplate": "# Experiment Review Report\n\n## Overall Assessment\n- **Experiment Quality**: 🟢 Publication-ready / 🟡 Needs improvement / 🔴 Re-experiment required\n- **Summary**: [1-2 sentence summary]\n\n## Findings\n\n### 🔴 Must Fix\n1. **[Location]**: [Problem description]\n   - Current: [current content]\n   - Suggestion: [correction suggestion]\n\n### 🟡 Recommended Fix\n1. ...\n\n### 🟢 For Reference\n1. ...\n\n## Consistency Matrix\n| Verification Item | Status | Notes |\n|-------------------|--------|-------|\n| Data ↔ Model | ✅/⚠️/❌ | |\n| Model ↔ Training | ✅/⚠️/❌ | |\n| Training ↔ Evaluation | ✅/⚠️/❌ | |\n| Reproducibility | ✅/⚠️/❌ | |\n| Data Leakage Check | ✅/⚠️/❌ | |\n\n## Experiment Results Summary\n| Model | Key Metric | vs Baseline | Statistical Significance |\n|-------|-----------|-------------|------------------------|\n\n## Follow-up Experiment Suggestions\n1. [Suggestion 1]: ...\n2. [Suggestion 2]: ...",
-      "dependencies": []
+      "dependencies": [
+        "data-engineer",
+        "evaluation-analyst"
+      ]
     },
     {
       "id": "model-designer",
@@ -70,7 +77,10 @@
         "Read"
       ],
       "outputTemplate": "# Training Configuration and Experiment Tracking\n\n## Experiment Tracking Setup\n- Platform: [MLflow / W&B / TensorBoard]\n- Project Name:\n- Experiment Naming Convention: [naming convention]\n- Logging Items:\n    - Metrics: [loss, accuracy, F1, ...]\n    - Parameters: [lr, batch_size, ...]\n    - Artifacts: [model, config, graphs]\n\n## Training Configuration\n| Item | Value | Notes |\n|------|-------|-------|\n| Optimizer | [Adam/AdamW/SGD] | |\n| Learning Rate | | |\n| LR Scheduler | [CosineAnnealing/StepLR] | |\n| Batch Size | | |\n| Epochs (max) | | |\n| Early Stopping | patience= | monitor= |\n| Gradient Clipping | max_norm= | |\n| Mixed Precision | [True/False] | |\n\n## Reproducibility Settings\n- Random Seed: [42]\n- CUBLAS_WORKSPACE_CONFIG:\n- torch.backends.cudnn.deterministic:\n- Environment Recording: [requirements.txt / conda env export]\n\n## Checkpoint Strategy\n- Save Condition: [val_loss minimum / every N epochs]\n- Save Path:\n- Model Registry:\n\n## Hyperparameter Tuning\n- Tool: [Optuna / Ray Tune]\n- Search Algorithm: [TPE / Bayesian / Grid]\n- Number of Trials:\n- Objective Function: [minimize val_loss]\n- Early Termination: [MedianPruner / HyperbandPruner]\n\n## Training Script\n[Full training loop code]\n\n## Infrastructure Requirements\n| Resource | Minimum | Recommended |\n|----------|---------|-------------|\n| GPU | | |\n| VRAM | | |\n| RAM | | |\n| Storage | | |\n\n## Notes for Evaluation Analyst",
-      "dependencies": []
+      "dependencies": [
+        "data-engineer",
+        "model-designer"
+      ]
     }
   ],
   "skill": {
@@ -106,17 +116,27 @@
       {
         "agentId": "training-manager",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "data-engineer",
+          "model-designer"
+        ]
       },
       {
         "agentId": "evaluation-analyst",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "data-engineer",
+          "model-designer",
+          "training-manager"
+        ]
       },
       {
         "agentId": "experiment-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "data-engineer",
+          "evaluation-analyst"
+        ]
       }
     ],
     "modes": [

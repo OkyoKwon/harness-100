@@ -29,7 +29,10 @@
         "Read"
       ],
       "outputTemplate": "# Audit Findings Report\n\n## Findings Summary\n- **Total findings**: N\n- **Critical**: X | **Major**: Y | **Minor**: Z | **Observation**: W\n\n## Findings Detail\n\n### F-001: [Finding Title]\n- **Risk Rating**: Critical/Major/Minor/Observation\n- **Related Checklist**: CL-[Number]\n- **Audit Criteria**: [Applicable standard/clause]\n\n#### 4C Analysis\n- **Condition**: [Actual current state discovered]\n- **Criteria**: [Standard/regulation that should be met]\n- **Cause**: [Root cause of the discrepancy]\n- **Effect**: [Actual/potential impact]\n\n#### Root Cause Analysis (5 Whys)\n1. Why: [First-level cause]\n2. Why: [Second-level cause]\n3. Why: [Third-level cause]\n→ **Root Cause**: [Final identified root cause]\n\n#### Impact Assessment\n| Impact Type | Severity | Description |\n|------------|----------|-------------|\n| Financial | High/Medium/Low | [Estimated amount] |\n| Regulatory | High/Medium/Low | [Violated clause] |\n| Operational | High/Medium/Low | [Impact scope] |\n| Reputational | High/Medium/Low | [Risk description] |\n\n- **Evidence**: [Evidence list]\n\n### F-002: [Finding Title]\n...\n\n## Pattern Analysis\n| Pattern | Related Findings | Systemic Cause | Impact Scope |\n|---------|-----------------|---------------|-------------|",
-      "dependencies": []
+      "dependencies": [
+        "scope-designer",
+        "checklist-builder"
+      ]
     },
     {
       "id": "recommendation-writer",
@@ -67,7 +70,10 @@
         "Read"
       ],
       "outputTemplate": "# Implementation Tracking Ledger\n\n## Status Dashboard\n- **Total findings**: N\n- **Closed**: X (XX%)\n- **In progress**: Y (YY%)\n- **Delayed**: Z (ZZ%)\n- **Not started**: W (WW%)\n\n## Tracking Ledger\n\n| ID | Finding | Rating | Recommendation | Owner | Deadline | Status | Evidence | Notes |\n|----|---------|--------|---------------|-------|----------|--------|----------|-------|\n| F-001 | [Title] | Critical | R-001 | [Dept] | [Date] | Not started | - | - |\n\n## Closure Criteria Definitions\n\n### F-001: [Finding Title]\n- **Closure conditions**:\n    1. [ ] [Specific evidence 1 has been submitted]\n    2. [ ] [Specific evidence 2 has been verified]\n    3. [ ] [Follow-up test resulted in conforming determination]\n- **Closure approver**: [Title/Role]\n\n## Escalation Procedures\n| Level | Trigger | Action | Target | Timeframe |\n|-------|---------|--------|--------|-----------|\n| Level 1 | 2 weeks before deadline | Send notification | Owner | Immediate |\n| Level 2 | Deadline exceeded | Send warning | Department head | 3 days |\n| Level 3 | 2 weeks past deadline | Report | Audit committee | 1 week |\n\n## Departmental Status\n| Department | Total | Closed | In Progress | Delayed | Not Started |\n|-----------|-------|--------|-------------|---------|-------------|\n\n## Follow-up Audit Proposals\n| Target | Reason | Proposed Timing | Priority |\n|--------|--------|----------------|----------|",
-      "dependencies": []
+      "dependencies": [
+        "findings-analyst",
+        "recommendation-writer"
+      ]
     }
   ],
   "skill": {
@@ -99,7 +105,10 @@
       {
         "agentId": "findings-analyst",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "scope-designer",
+          "checklist-builder"
+        ]
       },
       {
         "agentId": "recommendation-writer",
@@ -111,7 +120,10 @@
       {
         "agentId": "tracking-manager",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "findings-analyst",
+          "recommendation-writer"
+        ]
       }
     ],
     "modes": [

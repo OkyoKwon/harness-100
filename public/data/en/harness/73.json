@@ -41,7 +41,10 @@
         "Read"
       ],
       "outputTemplate": "# Recipe Collection\n\n## Recipe Index\n| # | Menu Name | Cook Time | Difficulty | Calories (per serving) | Meal Plan |\n|---|-----------|-----------|------------|----------------------|-----------|\n\n---\n\n## Recipe 01: [Menu Name]\n\n> Cook time: Prep X min + Cook X min | Difficulty: ★☆☆ | Per serving\n\n### Ingredients (1 serving)\n| Ingredient | Amount | Conversion | Substitution |\n|------------|--------|------------|-------------|\n| [ingredient] | Xg | approx. X tbsp | [alternative] |\n\n### Instructions\n1. **Prep**: [preparation method]\n2. **Cook**: [specific instructions — temperature, time, visual/state change cues]\n3. **Finish**: [plating, garnish]\n\n### Cooking Tips\n- Failure prevention: [key points]\n- Variations: [flavor variation ideas]\n- Storage: [refrigerate X days / freeze X weeks]\n\n### Nutritional Information (per serving)\n| Calories | Carbs | Protein | Fat | Sodium | Fiber |\n|----------|-------|---------|-----|--------|-------|\n| kcal | g | g | g | mg | g |\n\n### Serving Adjustment\n| Servings | Ingredient Multiplier | Cook Time Adjustment |\n|----------|----------------------|---------------------|\n\n---\n\n## Recipe 02: ...",
-      "dependencies": []
+      "dependencies": [
+        "nutritionist",
+        "meal-designer"
+      ]
     },
     {
       "id": "shopping-coordinator",
@@ -53,7 +56,10 @@
         "Read"
       ],
       "outputTemplate": "# Shopping List (04_shopping_list.md)\n\n## Purchase Summary\n- **Total Items**: X items\n- **Estimated Total Cost**: Approx. X KRW\n- **Recommended Shopping Frequency**: X times per week\n- **Serving Size**: Based on X person(s)\n\n## 1st Shopping Trip (Before Monday)\n### 🥩 Meat & Seafood\n| Ingredient | Total Needed | Purchase Unit | Estimated Price | Used In | Storage |\n|------------|-------------|---------------|-----------------|---------|---------|\n\n### 🥬 Vegetables\n| Ingredient | Total Needed | Purchase Unit | Estimated Price | Used In | Storage |\n|------------|-------------|---------------|-----------------|---------|---------|\n\n### 🍎 Fruits\n### 🥛 Dairy & Eggs\n### 🍚 Grains & Dry Goods\n### 🫙 Seasonings & Sauces\n\n## 2nd Shopping Trip (Thursday)\n...\n\n## Pantry Staples Check (Items You May Already Have)\n| Ingredient | Amount Needed | Notes |\n|------------|---------------|-------|\n\n## Budget Summary\n| Category | Estimated Cost | Notes |\n|----------|----------------|-------|\n| Total | KRW | |\n\n---\n\n# Cooking Guide (05_cooking_guide.md)\n\n## Meal Prep Plan (Sunday)\n\n### Timeline\n| Time | Task | Duration | Notes |\n|------|------|----------|-------|\n| 10:00 | Soak rice | 30 min | |\n| 10:00 | Prep vegetables (simultaneously) | 20 min | |\n| 10:30 | ... | | |\n\n### Pre-Preparation Items\n| Item | Preparation Details | Storage Container | Storage Duration | Used In |\n|------|---------------------|-------------------|-----------------|---------|\n\n## Daily Cooking Guide\n\n### Day 1 — Monday\n#### Breakfast (X min cooking)\n1. [Brief cooking steps summary]\n\n#### Dinner (X min cooking)\n1. [Brief cooking steps summary]\n- 💡 Tip: [Time-saving tip]\n\n### Day 2 — Tuesday\n...\n\n## Ingredient Storage Guide\n| Ingredient | Storage Method | Storage Duration | Portioning Tips |\n|------------|----------------|-----------------|-----------------|",
-      "dependencies": []
+      "dependencies": [
+        "meal-designer",
+        "recipe-writer"
+      ]
     }
   ],
   "skill": {
@@ -79,19 +85,26 @@
       {
         "agentId": "recipe-writer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "nutritionist",
+          "meal-designer"
+        ]
       },
       {
         "agentId": "shopping-coordinator",
         "parallel": true,
         "dependsOn": [
+          "meal-designer",
           "recipe-writer"
         ]
       },
       {
         "agentId": "shopping-coordinator",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "meal-designer",
+          "recipe-writer"
+        ]
       }
     ],
     "modes": [

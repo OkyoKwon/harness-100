@@ -27,7 +27,10 @@
         "Read"
       ],
       "outputTemplate": "# Feedback Insight Report\n\n## Executive Summary (1-page for leadership)\n\n### Key Metrics\n- **Overall satisfaction**: [Score/Grade]\n- **Change from previous period**: [↑/↓/→ value]\n- **Most urgent issue**: [One-line summary]\n- **Greatest strength**: [One-line summary]\n\n### Top 3 Insights\n1. **[Insight title]**: [2-sentence description] → Recommendation: [Action]\n2. ...\n3. ...\n\n---\n\n## Detailed Insights\n\n### Insight 1: [Title]\n- **Supporting data**: [Data source and figures]\n- **Impact scope**: [Affected customer/employee volume]\n- **Current status**: [Status description]\n- **Trend**: [Improving/Worsening/Stable]\n- **Action items**:\n    | Action | Owner | Deadline | Expected Impact | Difficulty |\n    |--------|-------|----------|----------------|------------|\n\n### Insight 2: [Title]\n...\n\n---\n\n## Priority Matrix\n\n|  | Easy to Implement | Hard to Implement |\n|--|-------------------|-------------------|\n| **High Impact** | [Quick Win] | [Strategic Initiative] |\n| **Low Impact** | [Incremental Improvement] | [Defer] |\n\n## Monitoring Dashboard Proposal\n\n### Tracking KPIs\n| KPI | Current Value | Target Value | Measurement Cycle | Data Source |\n|-----|-------------|-------------|-------------------|-------------|\n\n### Alert Triggers\n| Condition | Threshold | Alert Recipient | Channel |\n|-----------|-----------|----------------|---------|",
-      "dependencies": []
+      "dependencies": [
+        "sentiment-analyst",
+        "topic-classifier"
+      ]
     },
     {
       "id": "sentiment-analyst",
@@ -67,7 +70,10 @@
         "Read"
       ],
       "outputTemplate": "# Trend Analysis Report\n\n## Key Trends Summary\n| # | Trend | Direction | Period | Strength | Related Event |\n|---|-------|-----------|--------|----------|---------------|\n| 1 | [Trend description] | ↑/↓/→ | [Period] | Strong/Medium/Weak | [Event] |\n\n## Detailed Time-series Analysis\n\n### Overall Sentiment Trend\n| Period | Total Count | Average Sentiment | Positive Rate | Negative Rate | Change |\n|--------|------------|-------------------|---------------|---------------|--------|\n\n### Topic-level Trends\n| Period | [Topic A] Count | [Topic A] Sentiment | [Topic B] Count | [Topic B] Sentiment |\n|--------|----------------|---------------------|-----------------|---------------------|\n\n## Anomaly Detection\n| Detection Date/Period | Type | Description | Severity | Estimated Cause |\n|----------------------|------|-------------|----------|-----------------|\n\n## Seasonality/Cyclicality\n- **Day-of-week pattern**: [Findings]\n- **Monthly pattern**: [Findings]\n- **Quarterly pattern**: [Findings]\n\n## Event Correlation\n| Event | Date | Feedback Change | Sentiment Change | Correlation Strength |\n|-------|------|----------------|------------------|---------------------|\n\n## Forecast and Early Warnings\n- **If current trend continues**: [Forecast]\n- **Early warning signals**: [Detected risk signals]\n- **Recommended monitoring metrics**: [Metric list]",
-      "dependencies": []
+      "dependencies": [
+        "sentiment-analyst",
+        "topic-classifier"
+      ]
     }
   ],
   "skill": {
@@ -107,12 +113,18 @@
       {
         "agentId": "trend-detector",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "sentiment-analyst",
+          "topic-classifier"
+        ]
       },
       {
         "agentId": "insight-writer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "sentiment-analyst",
+          "topic-classifier"
+        ]
       }
     ],
     "modes": [

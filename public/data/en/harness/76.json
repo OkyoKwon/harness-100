@@ -15,7 +15,10 @@
         "Read"
       ],
       "outputTemplate": "# Travel Budget Plan\n\n## Budget Overview\n| Item | Budget | Standard | Luxury |\n|------|--------|----------|--------|\n| Flights | $ | $ | $ |\n| Accommodation (X nights) | $ | $ | $ |\n| Meals (X days) | $ | $ | $ |\n| Transport | $ | $ | $ |\n| Sightseeing/Admission | $ | $ | $ |\n| Shopping/Souvenirs | $ | $ | $ |\n| Travel Insurance | $ | $ | $ |\n| Emergency Reserve (10%) | $ | $ | $ |\n| **Total Budget** | **$** | **$** | **$** |\n\n## Exchange Rate Information\n- **Local Currency**: [Currency name]\n- **Reference Rate**: 1 [Currency] = $X (as of YYYY.MM.DD)\n- **Exchange Tips**: [Best exchange methods, card fees]\n\n## Detailed Breakdown\n\n### ✈️ Flights\n| Route | Airline | Type | Price Range | Booking Tips |\n|-------|---------|------|------------|-------------|\n| [Origin]→[Dest] | | Direct/Layover | $X~Y | Book X months early |\n\n### 🏨 Accommodation\n| Area | Type | Per Night | X Nights Total | Platform |\n|------|------|-----------|---------------|----------|\n\n### 🍽️ Meals\n| Meal | Budget | Standard | Luxury | Notes |\n|------|--------|----------|--------|-------|\n| Breakfast | $ | $ | $ | |\n| Lunch | $ | $ | $ | |\n| Dinner | $ | $ | $ | |\n| Cafe/Snacks | $ | $ | $ | |\n| **Daily Total** | **$** | **$** | **$** | |\n\n### 🚌 Transport\n| Route/Mode | Cost | Pass/Discount | Notes |\n|-----------|------|--------------|-------|\n| Airport↔City | $ | | |\n| City transit | $/day | [Transit pass] | |\n| Inter-city travel | $ | | |\n\n### 🎫 Sightseeing/Admission\n| Attraction | Regular Price | Discounted | Pass Included | Notes |\n|-----------|-------------|-----------|--------------|-------|\n\n## Savings Tips\n| Category | Tip | Estimated Savings |\n|----------|-----|-------------------|\n| Transport | [Use transit passes] | $X |\n| Sightseeing | [Museum/City pass] | $X |\n| Meals | [Grocery/Takeout] | $X |\n| Accommodation | [Off-season/Weekday discounts] | $X |\n\n## Daily Budget Allocation\n| Date | Accommodation | Meals | Transport | Sightseeing | Other | Total |\n|------|--------------|-------|-----------|-------------|-------|-------|\n\n## Payment Methods Guide\n- Cash vs. card ratio:\n- Recommended cards (no foreign transaction fees):\n- ATM withdrawal (ATM fees):\n- Tipping culture:",
-      "dependencies": []
+      "dependencies": [
+        "destination-analyst",
+        "itinerary-designer"
+      ]
     },
     {
       "id": "destination-analyst",
@@ -55,7 +58,10 @@
         "Read"
       ],
       "outputTemplate": "# Local Information Guide\n\n## 🛬 Arrival & Airport Guide\n### Entry Procedures\n1. [Immigration process]\n2. [Baggage claim]\n3. [Customs declaration]\n4. [SIM/Wi-Fi purchase location]\n5. [City transport options]\n\n### Airport→City Transport\n| Mode | Duration | Cost | Operating Hours | Advantages |\n|------|----------|------|----------------|------------|\n\n## 🚌 Transport Guide\n### Public Transit Usage\n- **Metro/Subway**: [Lines, fare system, usage]\n- **Bus**: [Routes, fares, boarding]\n- **Taxi**: [Hailing method, fare system, tips]\n- **Transit Pass**: [Types, prices, where to buy, coverage]\n\n### Recommended Transport Apps\n| App Name | Purpose | Notes |\n|----------|---------|-------|\n\n## 🍽️ Restaurant & Cafe Guide\n\n### [Area 1] Restaurants\n| Restaurant | Recommended Menu | Price Range | Hours | Location | Features |\n|-----------|-----------------|------------|-------|----------|----------|\n\n### [Area 2] Restaurants\n...\n\n### Must-Try Local Food\n| Dish | Description | Recommended Spot | Price |\n|------|-------------|-----------------|-------|\n\n### Cafes & Desserts\n| Cafe | Features | Location | Price Range |\n|------|----------|----------|------------|\n\n## 🎌 Culture & Etiquette\n- **Greetings**: [Local greeting customs]\n- **Dining etiquette**: [Things to note]\n- **Tipping culture**: [Tip amounts/percentages]\n- **Dress code**: [Religious sites, upscale restaurants, etc.]\n- **Photography**: [Precautions]\n- **Behaviors to avoid**: [Cultural taboos]\n\n## 📱 Practical Information\n### Communication\n- **SIM Card**: [Where to buy, price, data]\n- **Wi-Fi**: [Pocket Wi-Fi rental, free Wi-Fi spots]\n- **Roaming**: [Carrier-specific rates]\n\n### Useful Apps\n| App | Purpose | Priority |\n|-----|---------|----------|\n| [Maps app] | Navigation | ⭐⭐⭐ |\n| [Translation app] | Communication | ⭐⭐⭐ |\n| [Transit app] | Public transport | ⭐⭐⭐ |\n| [Restaurant app] | Finding restaurants | ⭐⭐ |\n\n### Shopping Guide\n- **Recommended shopping areas**: [Area-specific features]\n- **Tax Refund**: [Conditions, process, minimum purchase]\n- **Recommended souvenirs**: [Items, price ranges]\n\n## 🗣️ Useful Local Phrases\n| English | Local Language | Pronunciation |\n|---------|---------------|---------------|\n| Hello | | |\n| Thank you | | |\n| How much? | | |\n| Where is the restroom? | | |\n| Help me | | |\n| This one, please | | |\n\n## 🚨 Emergency Contacts\n| Organization | Number | Notes |\n|-------------|--------|-------|\n| Police | | |\n| Ambulance | | |\n| Fire Department | | |\n| Home Embassy | | |\n| Travel Insurance Hotline | | |\n| Card Loss Report | | |\n\n### Emergency Procedures\n- **Passport lost**: [Steps]\n- **Pickpocketing/Theft**: [Steps]\n- **Medical emergency**: [Steps]\n- **Flight issues**: [Steps]",
-      "dependencies": []
+      "dependencies": [
+        "destination-analyst",
+        "itinerary-designer"
+      ]
     }
   ],
   "skill": {
@@ -89,12 +95,18 @@
       {
         "agentId": "budget-manager",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "destination-analyst",
+          "itinerary-designer"
+        ]
       },
       {
         "agentId": "local-guide",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "destination-analyst",
+          "itinerary-designer"
+        ]
       }
     ],
     "modes": [

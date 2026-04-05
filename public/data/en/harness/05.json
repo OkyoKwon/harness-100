@@ -15,7 +15,10 @@
         "Read"
       ],
       "outputTemplate": "# Branch Structure Map\n\n## Branch Overview\n- **Total Branch Points**: X\n- **Number of Endings**: X (Main X + Hidden X)\n- **Estimated Playtime Per Playthrough**: X hours\n- **Replay Value**: [Elements that make players want to try different choices]\n\n## Key Branch Points\n\n### BP-01: [Branch Point Name] (During MQ-XX)\n- **Situation**: [The dilemma the player faces]\n- **Choices**:\n  - A: [Choice A]: [Action description]\n    - Immediate Result: [Immediately visible change]\n    - Long-term Result: [Later impact]\n    - Flag: `flag_bp01 = A`\n  - B: [Choice B]: [Action description]\n    - Immediate Result:\n    - Long-term Result:\n    - Flag: `flag_bp01 = B`\n- **Convergence Point**: [Quest/moment where branches reconverge]\n\n### BP-02: [Branch Point Name]\n...\n\n## Ending Structure\n\n### Ending A: [Ending Name]\n- **Condition**: `flag_bp01 == A AND flag_bp03 == B AND reputation >= 50`\n- **Epilogue Summary**: [1-2 sentences]\n- **Emotional Tone**: [Hopeful/Tragic/Ironic/Open-ended]\n\n### Ending B: [Ending Name]\n...\n\n### Hidden Ending: [Ending Name]\n- **Condition**: [Hard-to-discover special conditions]\n...\n\n## Flag System\n\n### Binary Flags (ON/OFF)\n| Flag Name | Set Timing | Impact | Related Quests |\n|-----------|-----------|--------|----------------|\n\n### Numeric Flags (Cumulative)\n| Flag Name | Range | Increment/Decrement Conditions | Results by Threshold |\n|-----------|-------|-------------------------------|---------------------|\n\n### Reputation System\n| Faction/Character | Initial Value | Increase Conditions | Decrease Conditions | Threshold Events |\n|-------------------|--------------|--------------------|--------------------|-----------------|\n\n## Branch Flow Diagram\n[Text-based diagram — Branch Point -> Path -> Convergence -> Ending]\n\n## Replay Guide\n| Playthrough | Recommended Path | Unlocked Elements | New Discoveries |\n|-------------|-----------------|-------------------|-----------------|",
-      "dependencies": []
+      "dependencies": [
+        "worldbuilder",
+        "quest-designer"
+      ]
     },
     {
       "id": "dialogue-writer",
@@ -27,7 +30,10 @@
         "Read"
       ],
       "outputTemplate": "# Dialogue Script\n\n## Dialogue Rules\n- **Base Language Tone**: [Language tone guide matching the world-building]\n- **Prohibited Expressions**: [Modern expressions that break the world-building, etc.]\n- **Emotion Tag Legend**: [neutral], [angry], [sad], [excited], [whisper], [shout]\n\n## Cutscene Dialogue\n\n### CS-01: [Cutscene Name] (Related to MQ-XX)\n**Setting**: [Location, situation description]\n**Characters Present**: [Characters in this scene]\n\n**[Character A]** [neutral->angry]:\n\"[Dialogue]\"\n\n**[Character B]** [sad]:\n\"[Dialogue]\"\n\n**[Player Choices]**:\n- A: \"[Choice A — Empathy]\" -> [Result hint]\n- B: \"[Choice B — Challenge]\" -> [Result hint]\n- C: \"[Choice C — Avoidance]\" -> [Result hint]\n\n**[After Choice A]**:\n**[Character A]** [grateful]:\n\"[Reaction dialogue]\"\n\n---\n\n## NPC Conversations\n\n### NPC: [NPC Name] — [Role/Location]\n**Personality Summary**: [3 words]\n**Speech Characteristics**: [Specific speech pattern description]\n\n#### First Encounter\n**[NPC Name]** [curious]:\n\"[Dialogue]\"\n\n#### Quest Acceptance (SQ-XX)\n**[NPC Name]** [worried]:\n\"[Request dialogue]\"\n\n#### Quest Completion\n**[NPC Name]** [relieved]:\n\"[Thank you dialogue]\"\n\n#### Idle Conversation (3-5 variations)\n1. \"[Idle line 1]\"\n2. \"[Idle line 2]\"\n3. \"[Idle line 3]\"\n\n---\n\n## Barks (Short Situational Lines)\n\n### Combat Barks\n| Character | Battle Start | Hit Taken | Victory | Ally Down |\n|-----------|-------------|-----------|---------|-----------|\n\n### Exploration Barks\n| Character | New Area Discovered | Item Found | Danger Sensed |\n|-----------|-------------------|------------|---------------|\n\n## Notes for Branch Architect",
-      "dependencies": []
+      "dependencies": [
+        "worldbuilder",
+        "quest-designer"
+      ]
     },
     {
       "id": "narrative-reviewer",
@@ -40,7 +46,11 @@
         "Read"
       ],
       "outputTemplate": "# Narrative Review Report\n\n## Overall Assessment\n- **Development Readiness**: GREEN Ready / YELLOW Proceed After Revisions / RED Rework Needed\n- **Summary**: [1-2 sentence summary]\n\n## Findings\n\n### RED Must Fix (Plot Holes/Logical Contradictions)\n1. **[Location]**: [Problem description]\n   - Current: [Current content]\n   - Suggestion: [Revision suggestion]\n\n### YELLOW Recommended Fix (Balance/Improvements)\n1. ...\n\n### GREEN Notes\n1. ...\n\n## Consistency Matrix\n| Verification Item | Status | Notes |\n|-------------------|--------|-------|\n| World-Building <-> Quests | PASS/WARN/FAIL | |\n| Quests <-> Dialogue | PASS/WARN/FAIL | |\n| Dialogue <-> Branches | PASS/WARN/FAIL | |\n| Branch Path Completeness | PASS/WARN/FAIL | |\n| Character Consistency | PASS/WARN/FAIL | |\n\n## Branch Path Simulation\n| Path | Choice Sequence | Ending | Playtime | Expected Satisfaction |\n|------|----------------|--------|----------|----------------------|\n\n## Final Deliverables Checklist\n- [ ] World-building document complete\n- [ ] Quest design complete\n- [ ] Dialogue script complete\n- [ ] Branch structure map complete",
-      "dependencies": []
+      "dependencies": [
+        "quest-designer",
+        "dialogue-writer",
+        "branch-architect"
+      ]
     },
     {
       "id": "quest-designer",
@@ -99,17 +109,27 @@
       {
         "agentId": "dialogue-writer",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "worldbuilder",
+          "quest-designer"
+        ]
       },
       {
         "agentId": "branch-architect",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "worldbuilder",
+          "quest-designer"
+        ]
       },
       {
         "agentId": "narrative-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "quest-designer",
+          "dialogue-writer",
+          "branch-architect"
+        ]
       }
     ],
     "modes": [

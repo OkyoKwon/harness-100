@@ -30,7 +30,10 @@
         "Read"
       ],
       "outputTemplate": "# 포스트모텀 리뷰 보고서\n\n## 종합 평가\n- **보고서 완성도**: 🟢 발행 가능 / 🟡 수정 후 발행 / 🔴 재작성 필요\n- **총평**: [1~2문장]\n\n## 발견 사항\n### 🔴 필수 수정\n### 🟡 권장 수정\n### 🟢 참고 사항\n\n## 정합성 매트릭스\n| 검증 항목 | 상태 | 비고 |\n|----------|------|------|\n| 타임라인 ↔ 근본원인 | ✅/⚠️/❌ | |\n| 근본원인 ↔ 대책 | ✅/⚠️/❌ | |\n| 영향 ↔ 대책 비례성 | ✅/⚠️/❌ | |\n| 비난 없는 문화 | ✅/⚠️/❌ | |\n| 액션 아이템 SMART | ✅/⚠️/❌ | |\n\n## 최종 산출물 체크리스트\n- [ ] 타임라인 완성\n- [ ] 근본원인 분석 완성\n- [ ] 영향범위 산정 완성\n- [ ] 재발방지 대책 완성\n- [ ] 통합 포스트모텀 보고서 생성",
-      "dependencies": []
+      "dependencies": [
+        "timeline-reconstructor",
+        "impact-assessor"
+      ]
     },
     {
       "id": "remediation-planner",
@@ -42,7 +45,10 @@
         "Read"
       ],
       "outputTemplate": "# 재발방지 대책\n\n## 대책 요약\n- **총 액션 아이템**: N개\n- **단기 (즉시~1주)**: N개\n- **중기 (1~4주)**: N개\n- **장기 (1~3개월)**: N개\n\n## 방어 계층 매핑\n| 계층 | 현재 상태 | 갭 | 대책 |\n|------|---------|-----|------|\n| 예방 (Prevention) | 코드 리뷰만 | 자동화 부재 | 정적 분석 도입 |\n| 탐지 (Detection) | 수동 모니터링 | MTTD 8분 | 이상 탐지 자동화 |\n| 대응 (Response) | 수동 롤백 | MTTR 35분 | 자동 롤백 구현 |\n| 복구 (Recovery) | 수동 확인 | — | 자동 헬스체크 |\n\n## 단기 대책 (즉시~1주)\n| ID | 대책 | 대상 원인 | 오너 | 기한 | 상태 | KPI |\n|----|------|---------|------|------|------|-----|\n| REM-001 | 카나리 배포 활성화 | 전체 배포로 인한 전면 장애 | DevOps팀 | D+3 | 미착수 | 카나리 배포 적용률 100% |\n| REM-002 | 알림 임계값 조정 | MTTD 지연 | SRE팀 | D+1 | 미착수 | MTTD < 2분 |\n\n## 중기 대책 (1~4주)\n| ID | 대책 | 대상 원인 | 오너 | 기한 | 상태 | KPI |\n|----|------|---------|------|------|------|-----|\n\n## 장기 대책 (1~3개월)\n| ID | 대책 | 대상 원인 | 오너 | 기한 | 상태 | KPI |\n|----|------|---------|------|------|------|-----|\n\n## 우선순위 매트릭스\n| 대책 ID | 영향(1-5) | 실행 용이성(1-5) | 점수 | 우선순위 |\n|---------|---------|---------------|------|---------|\n\n## 추적 계획\n- **리뷰 주기**: [주간/격주]\n- **보고 대상**: [팀/부서/경영진]\n- **추적 도구**: [JIRA/Notion/GitHub Issues]\n- **완료 기준**: 모든 단기 대책 완료 + 중기 대책 50% 이상 착수",
-      "dependencies": []
+      "dependencies": [
+        "root-cause-investigator",
+        "impact-assessor"
+      ]
     },
     {
       "id": "root-cause-investigator",
@@ -107,12 +113,18 @@
       {
         "agentId": "remediation-planner",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "root-cause-investigator",
+          "impact-assessor"
+        ]
       },
       {
         "agentId": "postmortem-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "timeline-reconstructor",
+          "impact-assessor"
+        ]
       }
     ],
     "modes": [

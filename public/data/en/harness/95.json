@@ -15,7 +15,10 @@
         "Read"
       ],
       "outputTemplate": "# Acceptance Criteria\n\n## Acceptance Overview\n- **Subject**: [Deliverable]\n- **Method**: Document review/Functional test/Performance test/On-site inspection\n- **Period**: [Duration]\n- **Acceptance Panel**: [Composition]\n\n## Acceptance Phases\n| Phase | Type | Content | Duration | Owner |\n|-------|------|---------|----------|-------|\n| 1 | Document review | Verify delivery document completeness | [Duration] | [Owner] |\n| 2 | Functional test | Verify required functionality | [Duration] | [Owner] |\n| 3 | Performance test | Verify performance requirements | [Duration] | [Owner] |\n| 4 | Final approval | Overall determination | [Duration] | [Owner] |\n\n## Acceptance Item Details\n\n### AC-001: [Inspection Item]\n- **Related Requirement**: REQ-[Number]\n- **Inspection Type**: Functional/Performance/Document\n- **Test Procedure**:\n    1. [Test step 1]\n    2. [Test step 2]\n    3. [Result verification method]\n- **Pass Criteria**: [Specific value/condition]\n- **Conditional Pass**: [Tolerance range]\n- **Fail Criteria**: [Criteria]\n- **Evidence**: [Required evidence type]\n- **Result**: [ ] Pass / [ ] Conditional pass / [ ] Fail\n- **Notes**:\n\n### AC-002: [Inspection Item]\n...\n\n## Determination Criteria\n| Determination | Condition | Follow-up |\n|--------------|-----------|-----------|\n| Pass | All items pass | Acceptance complete, payment authorized |\n| Conditional pass | [N] or fewer Minor defects | Remediation deadline [period], re-inspection |\n| Fail | 1+ must-have items fail | Return/redo, liquidated damages |\n\n## Defect Handling Procedure\n1. **Defect notification**: Written notice upon discovery\n2. **Remediation deadline**: Within [N] days of notification\n3. **Re-inspection**: Within [N] days of remediation completion\n4. **Non-remediation**: [Follow-up action]\n\n## Acceptance Record Form\n| Item | Determination | Notes | Inspector Signature |\n|------|-------------|-------|-------------------|",
-      "dependencies": []
+      "dependencies": [
+        "requirements-definer",
+        "acceptance-builder"
+      ]
     },
     {
       "id": "contract-reviewer",
@@ -27,7 +30,10 @@
         "Read"
       ],
       "outputTemplate": "# Contract Terms Review\n\n> ⚠️ This document does not replace legal counsel. Legal review is recommended before final contract execution.\n\n## Contract Structure\n| Article | Title | Key Content | Importance |\n|---------|-------|------------|------------|\n\n## Key Contract Terms\n\n### Delivery and Acceptance\n- **Delivery Schedule**: [Terms]\n- **Acceptance Period**: [Period] (linked to acceptance criteria)\n- **Liquidated Damages**: [Rate/conditions]\n\n### Payment\n- **Payment Terms**: [Advance/milestone/completion]\n- **Payment Schedule**: [Within N days of acceptance]\n- **Price Adjustment**: [Price index/exchange rate conditions]\n\n### Warranty\n- **Warranty Period**: [Period]\n- **Warranty Scope**: [Scope]\n- **Defect Repair Procedure**: [Procedure]\n\n### SLA/Service Levels (if applicable)\n| Metric | Target | Measurement Method | Non-compliance Penalty |\n|--------|--------|-------------------|----------------------|\n\n## Risk Analysis\n| Risk Clause | Current Content | Risk Level | Recommended Change |\n|-------------|----------------|-----------|-------------------|\n| Liability cap | [Content] | High/Medium/Low | [Suggested change] |\n| Termination | [Content] | High/Medium/Low | [Suggested change] |\n| Force majeure | [Content] | High/Medium/Low | [Suggested change] |\n| IP ownership | [Content] | High/Medium/Low | [Suggested change] |\n\n## Negotiation Points\n| Rank | Item | Current Terms | Target Terms | Negotiation Strategy |\n|------|------|-------------|-------------|---------------------|\n\n## Checklist\n- [ ] Delivery scope matches requirements\n- [ ] Payment terms comply with internal policies\n- [ ] SLA metrics are measurable and reasonable\n- [ ] IP ownership is clearly defined\n- [ ] Dispute resolution procedure is specified",
-      "dependencies": []
+      "dependencies": [
+        "requirements-definer",
+        "vendor-comparator"
+      ]
     },
     {
       "id": "evaluation-designer",
@@ -98,12 +104,18 @@
       {
         "agentId": "contract-reviewer",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "requirements-definer",
+          "vendor-comparator"
+        ]
       },
       {
         "agentId": "acceptance-builder",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "requirements-definer",
+          "acceptance-builder"
+        ]
       }
     ],
     "modes": [

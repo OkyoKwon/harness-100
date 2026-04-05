@@ -28,7 +28,11 @@
         "Read"
       ],
       "outputTemplate": "# DB 설계 통합 리뷰 보고서\n\n## 종합 평가\n- **배포 준비 상태**: 🟢 준비 완료 / 🟡 수정 후 진행 / 🔴 재작업 필요\n- **총평**: [1~2문장 요약]\n\n## 발견 사항\n\n### 🔴 필수 수정\n1. **[위치]**: [문제 설명]\n   - 현재: [현재 내용]\n   - 제안: [수정 SQL/설정]\n\n### 🟡 권장 수정\n1. ...\n\n### 🟢 참고 사항\n1. ...\n\n## 정합성 매트릭스\n| 검증 항목 | 상태 | 비고 |\n|----------|------|------|\n| 모델 ↔ DDL | ✅/⚠️/❌ | |\n| DDL ↔ 인덱스 | ✅/⚠️/❌ | |\n| 성능 전략 | ✅/⚠️/❌ | |\n| 보안 설정 | ✅/⚠️/❌ | |\n| 운영 준비 | ✅/⚠️/❌ | |\n\n## 최종 산출물 체크리스트\n- [ ] 데이터 모델 문서\n- [ ] 마이그레이션 스크립트 (UP + DOWN)\n- [ ] 인덱스 전략 및 쿼리 최적화\n- [ ] 보안 설정 및 감사 로깅\n- [ ] 백업/복구 절차",
-      "dependencies": []
+      "dependencies": [
+        "migration-manager",
+        "performance-analyst",
+        "security-auditor"
+      ]
     },
     {
       "id": "migration-manager",
@@ -54,7 +58,10 @@
         "Write"
       ],
       "outputTemplate": "# 성능 최적화 보고서\n\n## 성능 목표\n- **예상 데이터 규모**: 테이블별 행 수\n- **예상 TPS**: 초당 트랜잭션 수\n- **응답 시간 목표**: p50 < 50ms, p99 < 200ms\n- **읽기/쓰기 비율**: 80:20\n\n## 인덱스 전략\n| 테이블 | 인덱스 | 타입 | 컬럼 | 용도 | 예상 효과 |\n|--------|--------|------|------|------|----------|\n| users | idx_users_email | B-Tree UNIQUE | email | 로그인 조회 | Seq Scan → Index Scan |\n| orders | idx_orders_user_status | B-Tree | (user_id, status) | 사용자별 주문 | 복합 인덱스 활용 |\n\n## 주요 쿼리 최적화\n\n### 쿼리 1: [설명]\n- **원본 쿼리**:\n    SELECT ... FROM ... WHERE ...\n- **실행 계획 분석**:\n    Seq Scan → 예상 비용 높음\n- **최적화 쿼리**:\n    SELECT ... FROM ... WHERE ... (인덱스 활용)\n- **예상 개선**: [응답 시간, 비용]\n\n## 파티셔닝 설계\n| 테이블 | 파티셔닝 유형 | 파티션 키 | 파티션 수 | 이유 |\n|--------|-------------|----------|----------|------|\n\n## 커넥션 풀 설정\n- **풀 크기**: (CPU 코어 수 * 2) + 유효 디스크 수\n- **최소 유휴**: 5\n- **최대 생존**: 30분\n- **연결 타임아웃**: 5초\n\n## 캐싱 전략\n| 대상 | 캐시 유형 | TTL | 무효화 전략 | 예상 히트율 |\n|------|----------|-----|-----------|-----------|\n\n## Materialized View\n| 뷰 이름 | 소스 쿼리 | 갱신 주기 | 용도 |\n|---------|----------|----------|------|\n\n## 모니터링 지표\n| 지표 | 임계값 | 알림 조건 |\n|------|--------|----------|\n| 슬로우 쿼리 | > 1초 | 5분간 10회 이상 |\n| 커넥션 사용률 | > 80% | 즉시 |\n| 디스크 사용률 | > 85% | 즉시 |\n| 캐시 히트율 | < 90% | 1시간 평균 |",
-      "dependencies": []
+      "dependencies": [
+        "data-modeler",
+        "migration-manager"
+      ]
     },
     {
       "id": "security-auditor",
@@ -66,7 +73,10 @@
         "Read"
       ],
       "outputTemplate": "# DB 보안 검증 보고서\n\n## 보안 개요\n- **데이터 분류**: 공개 / 내부 / 기밀 / 극비\n- **규정 준수**: GDPR / 개인정보보호법 / PCI-DSS\n- **암호화 수준**:\n\n## 접근 제어 설계\n\n### 역할(Role) 정의\n| 역할 | 대상 | SELECT | INSERT | UPDATE | DELETE | DDL |\n|------|------|--------|--------|--------|--------|-----|\n| app_reader | 모든 테이블 | ✅ | ❌ | ❌ | ❌ | ❌ |\n| app_writer | 모든 테이블 | ✅ | ✅ | ✅ | ❌ | ❌ |\n| app_admin | 모든 테이블 | ✅ | ✅ | ✅ | ✅ | ❌ |\n| dba | 전체 | ✅ | ✅ | ✅ | ✅ | ✅ |\n\n### GRANT 스크립트\nGRANT SELECT ON ALL TABLES IN SCHEMA public TO app_reader;\n\n### 행 수준 보안 (RLS)\n| 테이블 | 정책 | 조건 |\n|--------|------|------|\n\n## 민감 데이터 보호\n| 테이블 | 컬럼 | 분류 | 암호화 | 마스킹 | 보존 기간 |\n|--------|------|------|--------|--------|----------|\n| users | email | PII | AES-256 | 부분(*@*) | 탈퇴 후 1년 |\n| users | password_hash | Secret | bcrypt | 전체 | - |\n\n## 감사 로깅\n- **트리거 기반**: 핵심 테이블 변경 시 audit_log에 기록\n- **기록 항목**: 시각, 사용자, 테이블, 변경 유형, 이전값, 이후값\n- **보존 기간**: 2년\n\n## 백업/복구 전략\n| 유형 | 주기 | 보존 기간 | 저장 위치 | RPO | RTO |\n|------|------|----------|----------|-----|-----|\n| 풀 백업 | 일 1회 | 30일 | S3 | 24시간 | 4시간 |\n| WAL 아카이브 | 실시간 | 7일 | S3 | 5분 | 1시간 |\n\n## 보안 체크리스트\n- [ ] 기본 계정(postgres) 비밀번호 변경\n- [ ] 원격 접근 IP 제한 (pg_hba.conf)\n- [ ] SSL/TLS 강제\n- [ ] 슈퍼유저 로그인 감사\n- [ ] 민감 데이터 암호화 적용\n- [ ] SQL 인젝션 방어 (Prepared Statement)",
-      "dependencies": []
+      "dependencies": [
+        "data-modeler",
+        "migration-manager"
+      ]
     }
   ],
   "skill": {
@@ -100,17 +110,27 @@
       {
         "agentId": "performance-analyst",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "data-modeler",
+          "migration-manager"
+        ]
       },
       {
         "agentId": "security-auditor",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "data-modeler",
+          "migration-manager"
+        ]
       },
       {
         "agentId": "integration-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "migration-manager",
+          "performance-analyst",
+          "security-auditor"
+        ]
       }
     ],
     "modes": [

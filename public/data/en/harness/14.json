@@ -15,7 +15,9 @@
         "Read"
       ],
       "outputTemplate": "`_workspace/04_localization.md` file::\n\n # Localization application and\n\n ## Localization Information\n - **Target market**: [/]\n - **Target language**: [language — : , during between]\n - ** type**: [///]\n\n ## Localization application Body text\n\n [Localization total Text]\n\n ## Localization to\n | # | Source text | Translation | Localization and | | type |\n |---|------|------|-----------|----------|------|\n | 1 | [Source text] | [] | [Localization] | [] | /Format/ |\n\n ## Sensitivity and\n | | | |\n |------|------|------|\n | Color/Image | ✅/⚠️ | |\n | humor/metaphors | ✅/⚠️ | |\n | / | ✅/⚠️ | |\n | per/age | ✅/⚠️ | |\n\n ## Format conversion summary\n | | Source text Format | Localization Format |\n |------|----------|-----------|\n | Date | | |\n | Currency | | |\n | Units of measurement | | |",
-      "dependencies": []
+      "dependencies": [
+        "terminology-manager"
+      ]
     },
     {
       "id": "quality-reviewer",
@@ -29,7 +31,8 @@
       ],
       "outputTemplate": "`_workspace/05_review_report.md` file::\n\n # Translation quality verification \n\n ## Overall Assessment\n - **Quality **: 🟢 when / 🟡 after when / 🔴 Translation \n - **MQM **: [100 — ]\n - ****: [1~2 summary]\n\n ## summary\n | | 🔴 | 🟡 major | 🟢 | |\n |---------|---------|---------|---------|------|\n | Accuracy | | | | |\n | Fluency | | | | |\n | Terminology | | | | |\n | Style | | | | |\n | to | | | | |\n | **** | | | | |\n\n ## Findings\n\n ### 🔴 Must Fix\n 1. **[]**: [] — [ description]\n - Source text: [Source text]\n - Current Translation: [Translation]\n - Suggestion: [ Suggestion]\n\n ### 🟡 Recommended Fix\n 1. ...\n\n ### 🟢 Notes\n 1. ...\n\n ## Terminology Consistency Verification\n | Terminology | Glossary Translation | | | |\n |------|-----------|----------|------|------|\n\n ## Consistency Matrix\n | Verification | | |\n |----------|------|------|\n | Accuracy | ✅/⚠️/❌ | |\n | Fluency | ✅/⚠️/❌ | |\n | Terminology Consistency | ✅/⚠️/❌ | |\n | Localization Suitability | ✅/⚠️/❌ | |\n | Style | ✅/⚠️/❌ | |\n\n ##",
       "dependencies": [
-        "localizer"
+        "terminology-manager",
+        "translator"
       ]
     },
     {
@@ -43,7 +46,7 @@
       ],
       "outputTemplate": "## 부록: 스타일 가이드\n\n### 톤앤보이스\n- **전체 톤**: [친근한/전문적/권위적/캐주얼]\n- **호칭**: [당신/귀하/사용자]\n- **존댓말**: [합쇼체/해요체]\n\n### 문체 규칙\n- 문장 최대 길이: [N자]\n- 능동태 우선\n- 번역체 금지 표현 목록: [...]\n\n### 표기 규칙\n- 외래어: [국립국어원 표준/자체 기준]\n- 숫자: [아라비아 숫자 기준, 단 열 이하는 한글]\n- 날짜: [YYYY.MM.DD]",
       "dependencies": [
-        "quality-reviewer"
+        "translator"
       ]
     },
     {
@@ -56,9 +59,7 @@
         "Read"
       ],
       "outputTemplate": "`_workspace/02_terminology.md` file::\n\n # Glossary (Glossary)\n\n ## to Information\n - ****: [IT/of///]\n - **Source text language**: [language]\n - **Target language**: [language]\n - **Terminology **: [ N]\n\n ## core Terminology\n | # | Source text | Translation | | definition | context/ | |\n |---|------|------|------|------|----------|------|\n | 1 | [term] | [Translation] | | [] | [ context] | Industry standards |\n | 2 | [term] | [Translation] | | [] | [ context] | |\n\n ## Translation Terminology (Do Not Translate)\n | Source text | | |\n |------|------|----------|\n | [brand names] | Brand | Source text |\n | [] | etc. | Source text |\n\n ## taboo Translation (Do Not Use)\n | Source text | taboo Translation | | correct Translation |\n |------|----------|------|-----------|\n\n ## abbreviations \n | abbreviations | | Translation | |\n |------|--------|------|------|\n\n ## Terminology \n | Date | Terminology | before | after | |\n |------|------|---------|---------|------|",
-      "dependencies": [
-        "style-harmonizer"
-      ]
+      "dependencies": []
     },
     {
       "id": "translator",
@@ -94,28 +95,29 @@
       {
         "agentId": "localizer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "terminology-manager"
+        ]
       },
       {
         "agentId": "quality-reviewer",
         "parallel": false,
         "dependsOn": [
-          "localizer"
+          "terminology-manager",
+          "translator"
         ]
       },
       {
         "agentId": "style-harmonizer",
         "parallel": false,
         "dependsOn": [
-          "quality-reviewer"
+          "translator"
         ]
       },
       {
         "agentId": "terminology-manager",
-        "parallel": false,
-        "dependsOn": [
-          "style-harmonizer"
-        ]
+        "parallel": true,
+        "dependsOn": []
       },
       {
         "agentId": "translator",

@@ -58,7 +58,10 @@
         "Read"
       ],
       "outputTemplate": "# Submission Checklist and Verification Report\n\n## Overall Assessment\n- **Submission Readiness**: 🟢 Ready to submit / 🟡 Submit after supplementation / 🔴 Requires re-preparation\n- **Summary**: [1–2 sentence summary]\n\n## Findings\n\n### 🔴 Grounds for Rejection (Immediate correction required)\n1. **[Document/Item]**: [Problem description]\n   - Current: [Current status]\n   - Action: [How to correct]\n\n### 🟡 Expected Correction Requests\n1. ...\n\n### 🟢 Notes for Reference\n1. ...\n\n## Submission Checklist\n| # | Document Name | Copies | Original/Copy | Seal/Signature | Validity Period | Status |\n|---|---------------|--------|---------------|----------------|-----------------|--------|\n\n## Submission Order and Binding Guide\n1. Application form (top)\n2. Business plan\n3. Supporting documents (in order of issuance date)\n\n## Reception Guide\n- **Reception office**: [Agency name, address, department]\n- **Submission method**: In person / Online / Mail\n- **Reception hours**: [Business hours]\n- **Fee payment**: [Amount, payment method]\n\n## Correction Preparation Guide\n| Common Correction Reasons | Response Measures | Estimated Time Required |\n|---------------------------|-------------------|------------------------|\n\n## Post-Approval Procedures\n- Receipt of permit:\n- Additional notifications before business commencement:\n- Periodic reporting/renewal:",
-      "dependencies": []
+      "dependencies": [
+        "document-drafter",
+        "attachment-preparer"
+      ]
     }
   ],
   "skill": {
@@ -91,7 +94,10 @@
       {
         "agentId": "submission-verifier",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "document-drafter",
+          "attachment-preparer"
+        ]
       }
     ],
     "modes": [

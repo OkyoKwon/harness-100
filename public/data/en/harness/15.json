@@ -16,7 +16,10 @@
         "Read"
       ],
       "outputTemplate": "`_workspace/05_review_report.md` file::\n\n # Editing Review \n\n ## Overall Assessment\n - **when **: 🟢 Ready / 🟡 after when / 🔴 Rework Needed\n - ****: [1~2 summary]\n\n ## Findings\n\n ### 🔴 Must Fix\n 1. **[]**: [ description]\n - Current: [Current ]\n - Suggestion: [ Suggestion]\n\n ### 🟡 Recommended Fix\n 1. ...\n\n ### 🟢 Notes\n 1. ...\n\n ## Consistency Matrix\n | Verification | | |\n |----------|------|------|\n | Story ↔ Text | ✅/⚠️/❌ | |\n | Text ↔ Image | ✅/⚠️/❌ | |\n | Image ↔ Layout | ✅/⚠️/❌ | |\n | Visual Unity | ✅/⚠️/❌ | |\n | | ✅/⚠️/❌ | |\n\n ## Final Deliverables Checklist\n - [ ] Story lean \n - [ ] in Text \n - [ ] Image ( Prompt )\n - [ ] HTML Layout \n - [ ] Responsive Verification",
-      "dependencies": []
+      "dependencies": [
+        "essay-writer",
+        "image-prompter"
+      ]
     },
     {
       "id": "essay-writer",
@@ -29,7 +32,7 @@
       ],
       "outputTemplate": "`_workspace/02_essay_text.md` file::\n\n # in Text\n\n ## Story : []\n\n ---\n\n ## Scene 1: [Scene ]\n **Text type**: [Body text/Caption/Quote]\n\n [Text Body text]\n\n ---\n\n ## Scene 2: [Scene ]\n **Text type**: [Body text/Caption/Quote]\n\n [Text Body text]\n\n > [Quote — case]\n\n ---\n\n ( total Scene)\n\n ---\n\n ## Text \n - ** **: [N]\n - **Scene **: [N]\n - ** whenbetween**: [ N]\n\n ## Image before \n - Sceneof Text before Emotion, Image \n\n ## Layout before \n - Text placement , Text( / ), Quote Style",
       "dependencies": [
-        "editorial-reviewer"
+        "story-architect"
       ]
     },
     {
@@ -44,7 +47,7 @@
       ],
       "outputTemplate": "`_workspace/03_image_prompts.md` file::\n\n # Image Prompt when\n\n ## Style Guide\n - ** Style**: [//digital/]\n - **color palette**: [ Color — HEX ]\n - ** **: [ visual element]\n - ****: [///]\n - ** **: [16:9 / 1:1 / ]\n\n ## Sceneper Image\n\n ### Scene 1: [Scene ]\n - **Image Role**: [introduction//Information/Emotion/before]\n - **composition**: [description]\n - ** Prompt**:\n \"[before Prompt Text]\"\n - **vs Prompt**:\n \"[vs Text]\"\n - ****: [16:9]\n - ** and**: [File when]\n\n ### Scene 2: [Scene ]\n ...\n\n ## Layout before \n - Image File, , placement ,",
       "dependencies": [
-        "essay-writer"
+        "story-architect"
       ]
     },
     {
@@ -58,6 +61,7 @@
       ],
       "outputTemplate": "`_workspace/04_layout.html` file:. HTML Filein line CSS :\n\n <!DOCTYPE html>\n <html lang=\"ko\">\n <head>\n <meta charset=\"UTF-8\">\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n <title>[Story ]</title>\n <link href=\"https://fonts.googleapis.com/css2?family=...\" rel=\"stylesheet\">\n <style>\n /* design system */\n :root {\n --color-primary: #...;\n --color-secondary: #...;\n --color-text: #...;\n --color-bg: #...;\n --font-heading: '...', serif;\n --font-body: '...', sans-serif;\n }\n /* Layout Pattern */\n /* Responsive */\n </style>\n </head>\n <body>\n <!-- Scene 1: to -->\n <section class=\"hero-full\">...</section>\n\n <!-- Scene 2: Text + Image -->\n <section class=\"text-image\">...</section>\n\n <!-- Sceneper -->\n </body>\n </html>",
       "dependencies": [
+        "essay-writer",
         "image-prompter"
       ]
     },
@@ -71,9 +75,7 @@
         "Read"
       ],
       "outputTemplate": "`_workspace/01_story_blueprint.md` file::\n\n # Story lean\n\n ## Story \n - ****: [Story ]\n - **/type**: [in/in/graphic/BrandStory//]\n - **core Message**: [one sentence]\n - ****: [///intense/]\n - ** Scene **: [N]\n - **Target **: [ Story]\n\n ## Narrative arc\n ### ACT 1: introduction (Scene 1~N)\n - ****: [, , ]\n - **Emotion**: [//]\n\n ### ACT 2: development (Scene N~M)\n - ****: [etc. , Information before, ]\n - **Emotion**: [//]\n\n ### ACT 3: climaxand afterglow (Scene M~)\n - ****: [, Emotion , ]\n - **Emotion**: [/of/afterglow]\n\n ## Sceneper Design\n | # | Scene | Role | visual | Text type | Emotion | Image |\n |---|----------|------|----------|-----------|------|------------|\n | 1 | [] | introduction/ | Image 80% | Caption | | [] |\n | 2 | [] | background | Text 60% | narration | | [] |\n | ... | | | | | | |\n\n ## Visual \n - ** Color**: [ + of]\n - ** /**: [ + of]\n - **composition Pattern**: [and→to etc.]\n\n ## in before \n - Sceneof Text Role, Guide, Emotion \n\n ## Image before \n - Sceneof Image concep",
-      "dependencies": [
-        "layout-builder"
-      ]
+      "dependencies": []
     }
   ],
   "skill": {
@@ -95,35 +97,37 @@
       {
         "agentId": "editorial-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "essay-writer",
+          "image-prompter"
+        ]
       },
       {
         "agentId": "essay-writer",
-        "parallel": false,
+        "parallel": true,
         "dependsOn": [
-          "editorial-reviewer"
+          "story-architect"
         ]
       },
       {
         "agentId": "image-prompter",
-        "parallel": false,
+        "parallel": true,
         "dependsOn": [
-          "essay-writer"
+          "story-architect"
         ]
       },
       {
         "agentId": "layout-builder",
         "parallel": false,
         "dependsOn": [
+          "essay-writer",
           "image-prompter"
         ]
       },
       {
         "agentId": "story-architect",
         "parallel": false,
-        "dependsOn": [
-          "layout-builder"
-        ]
+        "dependsOn": []
       }
     ],
     "modes": [

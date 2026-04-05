@@ -40,7 +40,10 @@
         "Read"
       ],
       "outputTemplate": "# 종합 코드 리뷰 보고서\n\n## 최종 판정\n- **결과**: 🟢 Approve / 🟡 Request Changes / 🔴 Reject\n- **총평**: [2~3문장 요약]\n\n## 통합 발견 사항 (우선순위순)\n\n### 🔴 즉시 수정 (머지 차단)\n1. **[파일:라인]** — [영역: 보안/성능/아키텍처/스타일]\n   - 문제: [설명]\n   - 수정 방향: [구체적 가이드]\n   - 참조: [해당 영역 리뷰 항목 번호]\n\n### 🟡 머지 후 수정 (다음 PR에서)\n1. ...\n\n### 🟢 개선 제안 (팀 논의)\n1. ...\n\n## 영역별 요약\n| 영역 | 점수 | 핵심 발견 | 자동화 가능 |\n|------|------|---------|-----------|\n| 스타일 | A/B/C/D | | ESLint, Prettier |\n| 보안 | A/B/C/D | | Semgrep, Snyk |\n| 성능 | A/B/C/D | | Profiler |\n| 아키텍처 | A/B/C/D | | SonarQube |\n\n## 영역 간 충돌 해결\n| 충돌 | 영역 1 | 영역 2 | 판정 | 근거 |\n|------|--------|--------|------|------|\n\n## 액션 아이템 (담당자별)\n| # | 항목 | 우선순위 | 예상 시간 | 비고 |\n|---|------|---------|----------|------|\n| 1 | [수정 내용] | 🔴 | 30분 | |\n| 2 | [수정 내용] | 🟡 | 1시간 | |\n\n## 칭찬할 점\n[잘 작성된 코드, 좋은 설계 결정 3~5개]\n\n## 학습 자료\n[발견된 이슈와 관련된 학습 자료 링크/키워드]\n\n## 최종 산출물 체크리스트\n- [ ] 스타일 리뷰 완료\n- [ ] 보안 리뷰 완료\n- [ ] 성능 리뷰 완료\n- [ ] 아키텍처 리뷰 완료\n- [ ] 영역 간 충돌 해결\n- [ ] 액션 아이템 생성",
-      "dependencies": []
+      "dependencies": [
+        "style-inspector",
+        "architecture-reviewer"
+      ]
     },
     {
       "id": "security-analyst",
@@ -105,7 +108,10 @@
       {
         "agentId": "review-synthesizer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "style-inspector",
+          "architecture-reviewer"
+        ]
       }
     ],
     "modes": [

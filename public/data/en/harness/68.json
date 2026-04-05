@@ -44,7 +44,12 @@
         "Read"
       ],
       "outputTemplate": "# Patent Specification Review Report\n\n## Overall Assessment\n- **Registration Likelihood**: Green (High) / Yellow (Medium) / Red (Low)\n- **Summary**: [1-2 sentence summary]\n\n## Findings\n\n### Red: Must Fix (Anticipated Grounds for Rejection)\n1. **[Location/Claim Number]**: [Problem description]\n   - Current: [Current content]\n   - Suggestion: [Modification suggestion]\n   - Basis: [Related legal provisions/examination guidelines]\n\n### Yellow: Recommended Fix\n### Green: Reference\n\n## Consistency Matrix\n| Verification Item | Status | Notes |\n|------------------|--------|-------|\n| Claims <-> Specification support | OK/Warning/Fail | |\n| Claims <-> Drawing reference numerals | OK/Warning/Fail | |\n| Specification <-> Drawing reference numerals | OK/Warning/Fail | |\n| Prior art <-> Claims differentiation | OK/Warning/Fail | |\n| Term consistency | OK/Warning/Fail | |\n| Formal requirements | OK/Warning/Fail | |\n\n## Description Requirements Checklist\n- [ ] Claim clarity (Article 42, Paragraph 4, Item 2)\n- [ ] Specification support (Article 42, Paragraph 4, Item 1)\n- [ ] Enablement requirement (Article 42, Paragraph 3, Item 1)\n- [ ] Unity of invention (Article 45)\n- [ ] Novelty (Article 29, Paragraph 1)\n- [ ] Inventive step (Article 29, Paragraph 2)",
-      "dependencies": []
+      "dependencies": [
+        "prior-art-researcher",
+        "claim-drafter",
+        "specification-writer",
+        "drawing-designer"
+      ]
     },
     {
       "id": "prior-art-researcher",
@@ -70,7 +75,10 @@
         "Read"
       ],
       "outputTemplate": "# Patent Specification\n\n## Title of Invention\n[Title]\n\n## Technical Field\nThe present invention relates to [technical field], and more specifically, to [specific technical field].\n\n## Background Art\n[Objective description of current state and problems of prior art]\n\n## Summary of the Invention\n\n### Problem to be Solved\n[Problems derived from limitations of existing technology]\n\n### Means for Solving the Problem\n[Explanation of the core claim elements in natural language]\n\n### Effects of the Invention\n[Technical effects resulting from solving the problem]\n\n## Brief Description of Drawings\nFig. 1 is [description]\nFig. 2 is [description]\n...\n\n## Detailed Description of Embodiments\n\n### First Embodiment\n[Detailed description with reference to drawing numerals]\n\n### Second Embodiment (Optional)\n[Alternative embodiment]\n\n### Variations\n[Various possible variations within the claim scope]\n\n## Description of Reference Numerals\n| Numeral | Name |\n|---------|------|\n| 100 | [Component] |\n| 110 | [Sub-component] |",
-      "dependencies": []
+      "dependencies": [
+        "prior-art-researcher",
+        "claim-drafter"
+      ]
     }
   ],
   "skill": {
@@ -103,7 +111,10 @@
       {
         "agentId": "specification-writer",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "prior-art-researcher",
+          "claim-drafter"
+        ]
       },
       {
         "agentId": "drawing-designer",
@@ -115,7 +126,12 @@
       {
         "agentId": "patent-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "prior-art-researcher",
+          "claim-drafter",
+          "specification-writer",
+          "drawing-designer"
+        ]
       }
     ],
     "modes": [

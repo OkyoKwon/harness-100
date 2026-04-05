@@ -43,7 +43,11 @@
         "Read"
       ],
       "outputTemplate": "# 모의고사\n\n## 시험 정보\n- **대상 시험**:\n- **총 문항 수**: X문항\n- **제한 시간**: X분\n- **총 배점**: X점\n- **합격 기준**: X점\n\n## 유의 사항\n1. 실전과 동일한 시간을 설정하고 풀 것\n2. 답안을 별도로 기록할 것\n3. 모르는 문항은 표시(★)하고 넘어갈 것\n\n---\n\n### [과목/영역 1] (X문항, X점)\n\n**1.** [문제 내용]\n\n(A) [선택지]\n(B) [선택지]\n(C) [선택지]\n(D) [선택지]\n\n**2.** ...",
-      "dependencies": []
+      "dependencies": [
+        "trend-analyst",
+        "diagnostician",
+        "learning-designer"
+      ]
     },
     {
       "id": "learning-designer",
@@ -55,7 +59,10 @@
         "Read"
       ],
       "outputTemplate": "# 맞춤학습 계획서\n\n## 학습 전략 요약\n- **남은 기간**: D-XX\n- **목표**: [현재 예상 점수] → [목표 점수]\n- **핵심 전략**: [1~2문장]\n\n## 학습 우선순위 매트릭스\n\n| 우선순위 | 영역 | 현재 숙달도 | 출제비중 | 예상 향상 점수 | 투자 시간 |\n|---------|------|-----------|---------|-------------|----------|\n\n## 주간 학습 일정\n\n### Week 1: [주제]\n| 요일 | 시간 | 영역 | 학습 내용 | 학습 방법 | 목표 |\n|------|------|------|----------|----------|------|\n| 월 | 2h | | | 이론 정리 | |\n| 화 | 2h | | | 유형별 풀이 | |\n| ... | | | | | |\n| 일 | 1h | | | 주간 복습 테스트 | |\n\n### Week 2: ...\n\n## 영역별 핵심 개념 요약\n\n### [영역 1]\n#### 핵심 개념\n- **[개념명]**: [설명]\n\n#### 필수 공식/법칙\n- [공식 1]\n- [공식 2]\n\n#### 자주 출제되는 유형\n1. [유형] — 풀이 전략:\n\n## 복습 스케줄\n| 학습 항목 | 1차 복습 | 2차 복습 | 3차 복습 | 4차 복습 |\n|----------|---------|---------|---------|---------|\n| | +1일 | +3일 | +7일 | +14일 |\n\n## 주간 마일스톤\n| 주차 | 목표 숙달도 | 확인 방법 | 달성 기준 |\n|------|-----------|----------|----------|\n\n## 출제자 전달 사항",
-      "dependencies": []
+      "dependencies": [
+        "trend-analyst",
+        "diagnostician"
+      ]
     },
     {
       "id": "trend-analyst",
@@ -103,12 +110,19 @@
       {
         "agentId": "learning-designer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "trend-analyst",
+          "diagnostician"
+        ]
       },
       {
         "agentId": "examiner",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "trend-analyst",
+          "diagnostician",
+          "learning-designer"
+        ]
       },
       {
         "agentId": "error-analyst",

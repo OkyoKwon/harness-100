@@ -55,7 +55,11 @@
         "Read"
       ],
       "outputTemplate": "# Progress Tracking Template\n\n## Usage Guide\n- Complete the log after every workout session\n- Measure body composition once per week under the same conditions (immediately upon waking, fasted)\n- Conduct periodic evaluations every 4 weeks\n\n---\n\n## 1. Daily Workout Log\n\n### [Date] — [Split Name]\n| # | Exercise | Set 1 | Set 2 | Set 3 | Set 4 | RPE | Notes |\n|---|----------|-------|-------|-------|-------|-----|-------|\n| 1 | | kg×reps | kg×reps | kg×reps | kg×reps | /10 | |\n| 2 | | kg×reps | kg×reps | kg×reps | | /10 | |\n\n**Session Notes**:\n- Condition: ★★★☆☆\n- Sleep: X hours\n- Remarks:\n\n---\n\n## 2. Weekly Summary\n\n### Week [#] Summary\n| Day | Split | Completed | Total Volume (kg) | Condition | Notes |\n|-----|-------|-----------|-------------------|-----------|-------|\n| Mon | | ✅/❌ | | ★/5 | |\n\n**Weekly Nutrition Check**:\n| Item | Target | Actual Avg | Achievement |\n|------|--------|------------|-------------|\n| Calories | kcal | kcal | % |\n| Protein | g | g | % |\n| Hydration | L | L | % |\n\n---\n\n## 3. Body Composition Tracker\n\n| Date | Weight (kg) | Body Fat (%) | Muscle Mass (kg) | Chest (cm) | Waist (cm) | Hips (cm) | Thigh (cm) | Arm (cm) |\n|------|-------------|--------------|------------------|------------|------------|-----------|------------|----------|\n| W1 | | | | | | | | |\n| W2 | | | | | | | | |\n\n### Measurement Guide\n- **Weight**: Immediately upon waking, after using the bathroom, in a fasted state\n- **Circumference**: Same location, same tension, keep the tape measure horizontal\n- **Photos**: Same location, same lighting, same posture (front/side/back)\n\n---\n\n## 4. Periodic Evaluation (Every 4 Weeks)\n\n### Phase [#] Evaluation — [Period]\n\n#### Numerical Changes\n| Item | Start | Current | Change | vs. Target |\n|------|-------|---------|--------|------------|\n\n#### Key Lift Progress\n| Exercise | Starting 1RM (est.) | Current 1RM (est.) | Increase | % Increase |\n|----------|---------------------|--------------------|----------|------------|\n\n#### Qualitative Assessment\n- What went well:\n- Areas for improvement:\n- Adjustments for next phase:\n\n---\n\n## 5. Daily Condition Check\n\n| Date | Sleep (hrs) | Sleep Quality (1–5) | Fatigue (1–5) | Pain Location | Stress (1–5) | Motivation (1–5) |\n|------|-------------|---------------------|---------------|---------------|--------------|------------------|",
-      "dependencies": []
+      "dependencies": [
+        "program-architect",
+        "exercise-guide",
+        "nutrition-linker"
+      ]
     }
   ],
   "skill": {
@@ -97,7 +101,11 @@
       {
         "agentId": "template-builder",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "program-architect",
+          "exercise-guide",
+          "nutrition-linker"
+        ]
       }
     ],
     "modes": [

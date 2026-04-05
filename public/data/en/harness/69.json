@@ -16,7 +16,10 @@
         "Read"
       ],
       "outputTemplate": "# Consent & Notice Document Set\n\n## 1. Personal Information Collection and Use Consent Form\n\n### Required Consent Items\n| Item | Collection Purpose | Collected Fields | Retention Period |\n|------|-------------------|-----------------|-----------------|\n| Membership Registration | [Purpose] | Name, Email... | [Period] |\n\n※ You have the right to refuse the above consent; however, refusal may result in [service restrictions]\n\n### Optional Consent Items\n| Item | Collection Purpose | Collected Fields | Retention Period |\n|------|-------------------|-----------------|-----------------|\n\n※ Refusing the above consent will not restrict your use of the service.\n\n## 2. Third-Party Personal Information Disclosure Consent Form (if applicable)\n| Recipient | Purpose of Disclosure | Disclosed Fields | Retention Period |\n|----------|-----------------------|-----------------|-----------------|\n\n## 3. Marketing Use Consent Form (if applicable)\n## 4. Cross-Border Personal Information Transfer Consent Form (if applicable)\n\n## 5. Privacy Policy (Summary)\n[Summary of key privacy policy content — full text in a separate document]\n\n## 6. Data Subject Rights Guide\n- How to request access:\n- How to request correction/deletion:\n- How to request processing suspension:\n- How to withdraw consent:\n- How to file an objection:\n\n## 7. Consent UI/UX Guide\n- Recommended consent screen layout\n- Checkbox placement guide\n- How to indicate required/optional distinction",
-      "dependencies": []
+      "dependencies": [
+        "privacy-law-analyst",
+        "pia-assessor"
+      ]
     },
     {
       "id": "pia-assessor",
@@ -58,7 +61,10 @@
         "Read"
       ],
       "outputTemplate": "# Personal Data Processing Process Design Document\n\n## 1. Design Principles\n- Privacy by Design application items\n- Data minimization principle implementation approach\n- Purpose limitation principle implementation method\n\n## 2. Personal Data Processing Lifecycle\n\n### Collection Phase\n- **Collection Channels**: Web / App / Offline / API\n- **Consent Collection Process**: [Linked to consent documents]\n- **Minimum Collection Principle Application**:\n\n### Use Phase\n- **Access Permission Framework**: Role-Based Access Control (RBAC)\n- **Controls Against Use Outside Original Purpose**:\n- **Log Records**:\n\n### Provision and Outsourcing Phase\n- **Third-Party Provision Procedures**:\n- **Outsourcing Management Process**:\n- **Cross-Border Transfer Measures**: (if applicable)\n\n### Retention Phase\n- **Encryption Approach**: In transit / At rest\n- **Access Control Details**:\n- **Automated Retention Period Management**:\n\n### Destruction Phase\n- **Destruction Criteria and Methods**: Electronic / Physical\n- **Destruction Verification Procedures**:\n- **Destruction Record Management**:\n\n## 3. Technical Safeguards — Detail\n| Measure | Target | Technology Stack | Implementation Method | Verification Method |\n|---------|--------|------------------|-----------------------|---------------------|\n| Encryption | DB stored data | AES-256 | [Detail] | [Verification] |\n\n## 4. Administrative Safeguards — Detail\n| Measure | Content | Frequency | Responsible Party |\n|---------|---------|-----------|-------------------|\n| Internal Management Plan | [Detail] | Annually | CPO |\n| Personal Data Protection Training | [Detail] | Annually | All Staff |\n\n## 5. Data Subject Rights Exercise Processes\n### Access Request Handling Procedure\nRequest received → Identity verification → Processing (within 10 days) → Result notification\n\n### Rectification and Deletion Request Handling Procedure\n### Consent Withdrawal Handling Procedure\n\n## 6. Personal Data Breach Incident Response Framework\n### Detection → Initial Response → Impact Analysis → Notification → Post-Incident Measures\n- Notification to data subjects: Without undue delay\n- Supervisory authority report: Within 72 hours (GDPR) / Within 24 hours (PIPA)\n- Breach response team formation\n\n## 7. Comprehensive Monitoring Framework\n- Periodic inspection items and frequency\n- Internal audit plan\n- CPO/DPO reporting structure",
-      "dependencies": []
+      "dependencies": [
+        "privacy-law-analyst",
+        "pia-assessor"
+      ]
     }
   ],
   "skill": {
@@ -92,12 +98,18 @@
       {
         "agentId": "consent-designer",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "privacy-law-analyst",
+          "pia-assessor"
+        ]
       },
       {
         "agentId": "process-architect",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "privacy-law-analyst",
+          "pia-assessor"
+        ]
       }
     ],
     "modes": [

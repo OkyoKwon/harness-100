@@ -15,7 +15,10 @@
         "Read"
       ],
       "outputTemplate": "# Gap Analysis Report\n\n## 1. Analysis Overview\n- **Analysis Basis**: Based on law mapping report\n- **Analysis Scope**: Gaps found in N out of N obligations\n\n## 2. Gap Analysis Summary\n\n### Overall Status\n| Risk Grade | Gap Count | Ratio | Action Timeline |\n|-----------|----------|-------|----------------|\n| Red - Critical | n items | n% | Immediate |\n| Orange - High | n items | n% | Within 30 days |\n| Yellow - Medium | n items | n% | Within 90 days |\n| Green - Low | n items | n% | Plan and schedule |\n\n## 3. Detailed Gap Analysis\n\n### GAP-001: [Gap Title]\n- **Related Law**: [Law Name, Article X]\n- **Legal Requirement**: [Original text or summary]\n- **Current Status**: [Compliance status]\n- **Gap Description**: [Specific difference]\n- **Root Cause**: [Awareness / Resources / Process / Technology]\n- **Risk Assessment**:\n    - Probability: [1-5]\n    - Impact: [1-5]\n    - Risk Score: [Probability x Impact]\n    - Risk Grade: [Critical/High/Medium/Low]\n- **Legal Sanctions**: [Penalty details]\n- **Remediation Difficulty**: [High/Medium/Low]\n- **Recommended Deadline**: [Immediate/30 days/90 days/Planned]\n\n## 4. Risk Matrix\n|              | Impact 1 | Impact 2 | Impact 3 | Impact 4 | Impact 5 |\n|-------------|----------|----------|----------|----------|----------|\n| Probability 5 |        |          |          |          |          |\n| ...          |          |          |          |          |          |\n\n## 5. Priority Matrix\n| Rank | GAP ID | Risk Grade | Legal Deadline | Remediation Difficulty | Overall Priority |\n|------|--------|-----------|---------------|----------------------|-----------------|\n\n## 6. Root Cause Classification\n| Cause Type | Affected Gaps | Ratio | Structural Solution |\n|-----------|--------------|-------|-------------------|\n\n## 7. Notes for Remediation Planner",
-      "dependencies": []
+      "dependencies": [
+        "law-mapper",
+        "status-auditor"
+      ]
     },
     {
       "id": "law-mapper",
@@ -41,7 +44,11 @@
         "Read"
       ],
       "outputTemplate": "# Remediation Plan\n\n## 1. Executive Summary\n- **Total Remediation Items**: N items\n- **Estimated Completion Period**:\n- **Estimated Resources Required**:\n- **Compliance Target Rate**:\n\n## 2. Quick Wins — Immediately Actionable Items\n| Rank | GAP ID | Corrective Action | Owner | Deadline | Expected Impact |\n|------|--------|-------------------|-------|----------|----------------|\n\n## 3. Short-Term Remediation Plan (30 days)\n### Corrective Action RM-001: [Title]\n- **Target Gap**: GAP-XXX\n- **Action Description**:\n- **Detailed Steps**:\n    1. [Step 1] — Deadline: D+N\n    2. [Step 2] — Deadline: D+N\n- **Required Resources**: Personnel/Budget/Technology\n- **Responsible Organization**:\n- **Completion Criteria**:\n- **Verification Method**:\n\n## 4. Mid-Term Remediation Plan (90 days)\n## 5. Long-Term Remediation Plan (180 days)\n\n## 6. Resource Estimation Summary\n| Category | Personnel (Person-Months) | Budget | Technology Adoption | Notes |\n|---------|--------------------------|--------|--------------------| ------|\n| Short-term | | | | |\n| Mid-term | | | | |\n| Long-term | | | | |\n| Total | | | | |\n\n## 7. Monitoring Framework\n### KPI Design\n| KPI | Measurement Method | Target Value | Review Cycle | Owner |\n|-----|-------------------|-------------|-------------|-------|\n\n### Regular Inspection Schedule\n| Inspection Type | Cycle | Scope | Report To |\n|----------------|-------|-------|----------|\n\n### Regulatory Change Response Process\n- Law amendment monitoring system\n- Change impact assessment procedure\n- Compliance plan update method\n\n## 8. Comprehensive Opinion\n- Overall compliance status assessment\n- Key risk summary\n- Executive briefing items",
-      "dependencies": []
+      "dependencies": [
+        "law-mapper",
+        "status-auditor",
+        "gap-analyst"
+      ]
     },
     {
       "id": "status-auditor",
@@ -88,12 +95,19 @@
       {
         "agentId": "gap-analyst",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "law-mapper",
+          "status-auditor"
+        ]
       },
       {
         "agentId": "remediation-planner",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "law-mapper",
+          "status-auditor",
+          "gap-analyst"
+        ]
       }
     ],
     "modes": [

@@ -27,7 +27,11 @@
         "Read"
       ],
       "outputTemplate": "# Clause Drafts / Amendments\n\n> Warning: This document is for reference only. Please have it reviewed by a legal professional.\n\n## Proposed Amendments\n\n### Article X [Clause Title] — Modification Recommended\n**Reason for Modification**: [Why modification is needed]\n\n**Current Clause:**\n> [Current original text]\n\n**Proposed Amendment:**\n> [Revised wording]\n\n**Explanation of Changes**: [What changed and why]\n\n---\n\n## Proposed Additional Clauses\n\n### [New Clause: Title]\n**Reason for Addition**: [Why this clause is needed]\n\n> [Clause text]\n\n---\n\n## Full Contract Draft (For New Contracts)\n\n**[Contract Type] Agreement**\n\n[Party designation]\n\nArticle 1 (Purpose)\n...\n\nArticle 2 (Definitions)\n...\n\n## Terminology Unification List\n| Current Expression | Unified Expression | Applied Location |\n|-------------------|-------------------|-----------------|",
-      "dependencies": []
+      "dependencies": [
+        "clause-analyst",
+        "risk-assessor",
+        "comparison-reviewer"
+      ]
     },
     {
       "id": "comparison-reviewer",
@@ -54,7 +58,11 @@
         "Read"
       ],
       "outputTemplate": "# Comprehensive Legal Opinion\n\n> Warning: This opinion is an AI-based analysis and does not constitute legal advice.\n> For important contracts, please have a qualified attorney review this.\n\n## Overall Opinion\n- **Signing Recommendation**: Green (Safe to sign) / Yellow (Sign after modifications) / Red (Hold signing)\n- **Summary**: [2-3 sentence summary]\n- **Key Risk Count**: Red [N], Yellow [N]\n\n## Required Actions (Before Signing)\n\n### Red: Must Modify\n1. **[Clause]**: [Issue] -> [Modification direction]\n\n### Yellow: Modification Recommended\n1. **[Clause]**: [Issue] -> [Modification direction]\n\n### Green: Verified\n1. **[Clause]**: [Reason for satisfactory status]\n\n## Consistency Matrix\n| Verification Item | Status | Notes |\n|------------------|--------|-------|\n| Clause Analysis <-> Amendments | OK/Warning/Fail | |\n| Risk <-> Amendments | OK/Warning/Fail | |\n| Comparison Review <-> Risk | OK/Warning/Fail | |\n| Essential Clause Completeness | OK/Warning/Fail | |\n\n## Negotiation Recommendation Summary\n| Priority | Item | Current | Demand | Acceptable Fallback |\n|---------|------|---------|--------|-------------------|\n\n## Pre-Signing Checklist\n- [ ] Red items modified\n- [ ] Both parties' signing authority confirmed\n- [ ] Ancillary documents prepared (if needed)\n- [ ] Seals/signatures applied\n- [ ] 2 original copies retained\n\n## Ancillary Document Requirements\n| Document | Required | Status |\n|---------|----------|--------|",
-      "dependencies": []
+      "dependencies": [
+        "clause-analyst",
+        "risk-assessor",
+        "comparison-reviewer"
+      ]
     },
     {
       "id": "risk-assessor",
@@ -111,12 +119,20 @@
       {
         "agentId": "clause-drafter",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "clause-analyst",
+          "risk-assessor",
+          "comparison-reviewer"
+        ]
       },
       {
         "agentId": "contract-coordinator",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "clause-analyst",
+          "risk-assessor",
+          "comparison-reviewer"
+        ]
       }
     ],
     "modes": [

@@ -43,7 +43,10 @@
         "Read"
       ],
       "outputTemplate": "# CLI 문서\n\n## README.md 초안\n\n### [CLI 이름]\n> [한 줄 설명]\n\n#### 설치\n    bash\n    [설치 명령어]\n\n#### 빠른 시작\n    bash\n    [가장 기본적인 사용 예시]\n\n#### 사용 예시\n    bash\n    # [시나리오 1 설명]\n    [명령어]\n\n    # [시나리오 2 설명]\n    [명령어]\n\n## 명령 레퍼런스\n### [subcommand]\n**설명**: [상세 설명]\n**사용법**: `[cli] [subcommand] [인자] [옵션]`\n**옵션**:\n[옵션 테이블]\n**예시**:\n    bash\n    [예시]\n\n## 튜토리얼\n### [시나리오 제목]\n[단계별 가이드]\n\n## --help 텍스트\n[각 커맨드의 --help 출력 텍스트]\n\n## FAQ\n| 질문 | 답변 |\n|------|------|",
-      "dependencies": []
+      "dependencies": [
+        "command-designer",
+        "core-developer"
+      ]
     },
     {
       "id": "release-engineer",
@@ -56,7 +59,10 @@
         "Read"
       ],
       "outputTemplate": "# 릴리스 설정\n\n## 빌드 설정\n- **빌드 도구**: [setuptools/poetry/esbuild/goreleaser]\n- **엔트리포인트**: [경로]\n- **빌드 명령**: [명령어]\n\n## 패키징\n- **배포 형식**: [wheel/binary/npm]\n- **포함 파일**: [목록]\n- **제외 파일**: [.gitignore 기반]\n\n## 배포 채널\n### [채널명]\n- **설정 파일**: [경로]\n- **배포 명령**: [명령어]\n- **인증**: [토큰/키]\n\n## CI/CD (GitHub Actions)\n### ci.yml\n[테스트 + 린트 워크플로우]\n\n### release.yml\n[태그 push 시 자동 배포 워크플로우]\n\n## 크로스 플랫폼 빌드 매트릭스\n| OS | 아키텍처 | 빌드 명령 | 산출물 |\n|----|---------|----------|--------|\n\n## 버전 관리\n- **현재 버전**: [버전]\n- **버전 소스**: [pyproject.toml/package.json]\n- **버전 bump 명령**: [명령어]",
-      "dependencies": []
+      "dependencies": [
+        "core-developer",
+        "test-engineer"
+      ]
     },
     {
       "id": "test-engineer",
@@ -110,12 +116,18 @@
       {
         "agentId": "docs-writer",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "command-designer",
+          "core-developer"
+        ]
       },
       {
         "agentId": "release-engineer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "core-developer",
+          "test-engineer"
+        ]
       }
     ],
     "modes": [

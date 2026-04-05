@@ -16,7 +16,11 @@
         "Read"
       ],
       "outputTemplate": "`_workspace/05_review_report.md` file::\n\n # Review \n\n ## Overall Assessment\n - **Presentation **: 🟢 Ready / 🟡 Proceed After Revisions / 🔴 Rework Needed\n - ****: [1~2 summary]\n\n ## Findings\n\n ### 🔴 Must Fix\n 1. **[Slide /]**: [ description]\n - Current: [Current within]\n - Suggestion: [ Suggestion]\n\n ### 🟡 Recommended Fix\n 1. ...\n\n ### 🟢 Notes\n 1. ...\n\n ## Consistency Matrix\n | Verification | | |\n |----------|------|------|\n | Story ↔ Slide | ✅/⚠️/❌ | |\n | Information ↔ Visual | ✅/⚠️/❌ | |\n | Slide ↔ Presentation | ✅/⚠️/❌ | |\n | whenbetween allocation | ✅/⚠️/❌ | |\n | Consistency | ✅/⚠️/❌ | |\n\n ## Final Deliverables Checklist\n - [ ] Story Structure \n - [ ] Information Design \n - [ ] Slide Deck \n - [ ] Speaker notes \n - [ ] Q&A",
-      "dependencies": []
+      "dependencies": [
+        "info-architect",
+        "visual-designer",
+        "presentation-coach"
+      ]
     },
     {
       "id": "info-architect",
@@ -29,7 +33,7 @@
       ],
       "outputTemplate": "`_workspace/02_info_design.md` file::\n\n # Information Design Guide\n\n ## Visualization \n | Slide | type | Chart type | core Insight | |\n |---------|-----------|----------|-------------|-----------|\n\n ## Slideper Information Design\n\n ### Slide N: []\n - **Information type**: [/process/comparison/concept]\n - **Visualization **: [Chart type ]\n - **core **: [ number]\n - **comparison context**: [of comparison subject]\n - **Mermaid **: ( case)\n\n ### Slide M: ...\n\n ## Color \n - **/**: [Color]\n - **Competitive/**: [Color]\n - **during/**: [Color]\n - **/**: [Color]\n\n ## expression Guide\n | | Storytelling expression | comparison context |\n |----------|---------------|----------|\n\n ## Visual before \n - Chart Style Guide, Color ,",
       "dependencies": [
-        "deck-reviewer"
+        "storyteller"
       ]
     },
     {
@@ -43,7 +47,8 @@
       ],
       "outputTemplate": "`_workspace/04_speaker_notes.md` file::\n\n # Speaker notes & Coaching Guide\n\n ## Presentation \n - ** Presentation whenbetween**: []\n - **Slide **: []\n - ** Slide whenbetween**: []\n - **Audience Engagement **: [N]\n\n ## Timing \n | Slide | | whenbetween | whenbetween | |\n |---------|------|------|----------|------|\n | 1 | [] | 0:30 | 0:30 | + |\n | 2 | [] | 1:30 | 2:00 | |\n | ... | | | | |\n\n ## Slideper Speaker notes\n\n ### Slide 1: [] (0:00~0:30)\n **core :**\n - [before core Message]\n\n **Presentation Guide:**\n \"[ Presentation when — ]\"\n\n **before:** \"[ Slideto ]\"\n\n ---\n\n ### Slide 2: [] (0:30~2:00)\n ...\n\n ## Audience Engagement \n | when | Slide | Engagement | Presentation |\n |------|---------|----------|----------|\n | 2:00 | 3 | | \"when launch ?\" |\n | 8:00 | 8 | when + | \" , when?\" |\n\n ## Q&A\n | # | | core | |\n |---|----------|----------|----------|\n | 1 | [] | [ — 2~3] | [ Slide/] |\n | ... | | | |\n\n ## Rehearsal Guide\n - **1 Rehearsal**: Slide total Flow ( )\n - **2 Rehearsal**: whenbetween ",
       "dependencies": [
-        "info-architect"
+        "storyteller",
+        "visual-designer"
       ]
     },
     {
@@ -56,9 +61,7 @@
         "Read"
       ],
       "outputTemplate": "`_workspace/01_story_structure.md` file::\n\n # Story Structure\n\n ## \n - ****: [ ]\n - **core Message**: [one sentence]\n - **Presentation whenbetween**: []\n - **Slide **: [ ]\n - **Presentation Format**: [//Suggestion//]\n\n ## Audience Analysis\n - **Audience**: []\n - **background knowledge**: [ in vs ]\n - **interests**: [ ]\n - **decision-making authority**: [decision ]\n - ** **: [ ]\n\n ## Story arc\n ### ACT 1: introduction (Slide 1~N)\n - ****: Audienceof of / \n - Slide 1: [] — Role: [...]\n - Slide 2: [/ ] — Role: [...]\n - ...\n\n ### ACT 2: development (Slide N~M)\n - ****: and when\n - Slide N: [...] — Role: [...]\n - ...\n\n ### ACT 3: climaxand (Slide M~)\n - ****: core Insight before + \n - ...\n\n ## Emotion Curve\n | Slide | Emotion | in | before |\n |---------|------|--------|----------|\n | 1~2 | | ▲ | / |\n | 3~5 | | ▬ | /Story |\n | ... | | | |\n\n ## InformationDesign before \n - Visualization Slide and type\n\n ## Visual before \n - total , , Image Slide\n\n ## Presentation before \n - core before , Audi",
-      "dependencies": [
-        "presentation-coach"
-      ]
+      "dependencies": []
     },
     {
       "id": "visual-designer",
@@ -71,7 +74,8 @@
       ],
       "outputTemplate": "`_workspace/03_slide_deck.md` file::\n\n # [ ]\n\n ## design system\n - **color palette**\n - : [HEX] — , \n - : [HEX] — Body text, background\n - : [HEX] — CTA, core \n - background: [HEX]\n - **Typography**\n - : [] / [] / []\n - Body text: [] / []\n - Caption: [] / []\n - **icon Style**: [line//]\n - **Image Style**: [photography/illustration/]\n\n ---\n\n ## Slide 1: []\n - **Layout**: [Pattern]\n - **within**:\n - : [Text]\n - : [Text]\n - **Visual **: [Image/Color/placement description]\n\n ---\n\n ## Slide 2: []\n - **Layout**: [Pattern]\n - **within**:\n - line: [Text]\n - Body text: [Text]\n - Chart: [InformationDesign Guide ]\n - **Visual **: [description]\n\n ---\n ( total Slide)",
       "dependencies": [
-        "storyteller"
+        "storyteller",
+        "info-architect"
       ]
     }
   ],
@@ -93,35 +97,39 @@
     "executionOrder": [
       {
         "agentId": "deck-reviewer",
-        "parallel": false,
-        "dependsOn": []
+        "parallel": true,
+        "dependsOn": [
+          "info-architect",
+          "visual-designer",
+          "presentation-coach"
+        ]
       },
       {
         "agentId": "info-architect",
         "parallel": false,
         "dependsOn": [
-          "deck-reviewer"
+          "storyteller"
         ]
       },
       {
         "agentId": "presentation-coach",
-        "parallel": false,
+        "parallel": true,
         "dependsOn": [
-          "info-architect"
+          "storyteller",
+          "visual-designer"
         ]
       },
       {
         "agentId": "storyteller",
         "parallel": false,
-        "dependsOn": [
-          "presentation-coach"
-        ]
+        "dependsOn": []
       },
       {
         "agentId": "visual-designer",
         "parallel": false,
         "dependsOn": [
-          "storyteller"
+          "storyteller",
+          "info-architect"
         ]
       }
     ],

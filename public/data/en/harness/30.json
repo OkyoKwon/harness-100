@@ -29,7 +29,9 @@
       ],
       "outputTemplate": "# 커뮤니티 구성 및 거버넌스\n\n## 거버넌스 구조\n- 프로젝트 리드:\n- 메인테이너 기준:\n- 의사결정 방식: [합의/투표/BDFL]\n- 기여자 등급: [Contributor → Committer → Maintainer]\n\n## Code of Conduct\n[Contributor Covenant 2.1 기반 — _workspace/generated_files/CODE_OF_CONDUCT.md 에 저장]\n\n## GitHub 설정\n### 이슈 템플릿\n- Bug Report: [_workspace/generated_files/.github/ISSUE_TEMPLATE/bug_report.md]\n- Feature Request: [_workspace/generated_files/.github/ISSUE_TEMPLATE/feature_request.md]\n- Question: [_workspace/generated_files/.github/ISSUE_TEMPLATE/question.md]\n\n### PR 템플릿\n[_workspace/generated_files/.github/PULL_REQUEST_TEMPLATE.md]\n\n### 라벨 체계\n| 라벨 | 색상 | 설명 |\n|------|------|------|\n| bug | #d73a4a | 버그 리포트 |\n| enhancement | #a2eeef | 기능 요청 |\n| good first issue | #7057ff | 첫 기여자 환영 |\n| help wanted | #008672 | 도움 필요 |\n| documentation | #0075ca | 문서 |\n\n## CI/CD 파이프라인\n### GitHub Actions 워크플로우\n- ci.yml: [빌드 + 테스트 + 린트]\n- release.yml: [태그 기반 릴리스]\n- stale.yml: [비활성 이슈/PR 자동 정리]\n\n## 릴리스 전략\n- 버전 체계: SemVer (MAJOR.MINOR.PATCH)\n- 릴리스 주기: [정기/비정기]\n- 배포 채널: [npm/PyPI/crates.io/GitHub Releases]\n- 브레이킹 체인지 정책:\n\n## 커뮤니티 채널\n| 채널 | 용도 | URL |\n|------|------|-----|\n| GitHub Discussions | Q&A, 아이디어 | |\n| Discord/Slack | 실시간 소통 | |\n\n## 런칭 체크리스트\n- [ ] GitHub 저장소 공개 설정\n- [ ] 소셜 미디어 공지 (Twitter, Reddit, Hacker News)\n- [ ] 관련 awesome-list PR\n- [ ] 블로그 포스트 (런칭 발표)",
       "dependencies": [
-        "code-organizer"
+        "code-organizer",
+        "doc-writer",
+        "license-specialist"
       ]
     },
     {
@@ -43,7 +45,7 @@
       ],
       "outputTemplate": "# 문서 패키지\n\n## README.md\n[전문 — _workspace/generated_files/README.md 에 저장]\n\n### README 구조\n1. 프로젝트명 + 한줄 설명 + 배지\n2. 스크린샷/데모 GIF (해당 시)\n3. 주요 기능\n4. 빠른 시작 (Quick Start)\n5. 설치 방법\n6. 사용법 (코드 예시)\n7. API 레퍼런스 (또는 링크)\n8. 기여 방법 (CONTRIBUTING.md 링크)\n9. 라이선스\n10. 감사의 글\n\n## CONTRIBUTING.md\n[전문 — _workspace/generated_files/CONTRIBUTING.md 에 저장]\n\n## API 문서\n### [함수/클래스명]\n- 설명:\n- 파라미터:\n- 반환값:\n- 예시:\n\n## 튜토리얼\n### 튜토리얼 1: [제목]\n- 목표:\n- 사전 요구사항:\n- 단계별 가이드:\n\n## CHANGELOG.md\n[전문 — _workspace/generated_files/CHANGELOG.md 에 저장]\n\n## 라이선스전문가 전달 사항\n## 커뮤니티매니저 전달 사항",
       "dependencies": [
-        "community-manager"
+        "code-organizer"
       ]
     },
     {
@@ -59,7 +61,8 @@
       ],
       "outputTemplate": "# 런칭 리뷰 보고서\n\n## 종합 평가\n- **런칭 준비 상태**: 🟢 즉시 공개 가능 / 🟡 수정 후 공개 / 🔴 재준비 필요\n- **총평**: [1~2문장 요약]\n\n## 발견 사항\n\n### 🔴 필수 수정\n1. **[위치]**: [문제 설명]\n   - 현재: [현재 내용]\n   - 제안: [수정 제안]\n\n### 🟡 권장 수정\n1. ...\n\n### 🟢 참고 사항\n1. ...\n\n## 정합성 매트릭스\n| 검증 항목 | 상태 | 비고 |\n|----------|------|------|\n| 코드 ↔ 문서 | ✅/⚠️/❌ | |\n| 라이선스 일관성 | ✅/⚠️/❌ | |\n| 의존성 ↔ 라이선스 | ✅/⚠️/❌ | |\n| CI ↔ 빌드 | ✅/⚠️/❌ | |\n\n## 런칭 최종 체크리스트\n- [ ] 모든 🔴 항목 해결\n- [ ] 저장소 공개 설정 확인\n- [ ] 첫 릴리스 태그 준비\n- [ ] 런칭 공지 준비",
       "dependencies": [
-        "doc-writer"
+        "code-organizer",
+        "license-specialist"
       ]
     },
     {
@@ -73,7 +76,7 @@
       ],
       "outputTemplate": "# 라이선스 검토 및 선정\n\n## 라이선스 선정\n- **권장 라이선스**: [MIT / Apache 2.0 / GPL-3.0 / ...]\n- **선정 이유**: [상세 근거]\n- **대안**: [차선 라이선스와 비교]\n\n## 라이선스 비교표\n| 항목 | MIT | Apache 2.0 | GPL-3.0 | LGPL-3.0 |\n|------|-----|-----------|---------|----------|\n| 상업적 사용 | ✅ | ✅ | ✅ | ✅ |\n| 수정 배포 | ✅ | ✅ | ✅(소스공개) | ✅(라이브러리만) |\n| 특허 허여 | ❌ | ✅ | ✅ | ✅ |\n| 카피레프트 | ❌ | ❌ | ✅ | ✅(약함) |\n\n## 의존성 호환성 검증\n| 패키지 | 라이선스 | 프로젝트 라이선스와 호환 | 의무사항 | 비고 |\n|--------|---------|---------------------|---------|------|\n\n## 호환성 이슈\n### 이슈 1: [설명]\n- 충돌 내용:\n- 해결 방안:\n\n## LICENSE 파일\n[전문 — _workspace/generated_files/LICENSE 에 저장]\n\n## NOTICE 파일\n[전문 — _workspace/generated_files/NOTICE 에 저장]\n\n## CLA/DCO\n- 선택: [CLA / DCO]\n- 이유:\n- 설정 방법:\n\n## 커뮤니티매니저 전달 사항",
       "dependencies": [
-        "launch-reviewer"
+        "code-organizer"
       ]
     }
   ],
@@ -102,28 +105,31 @@
         "agentId": "community-manager",
         "parallel": false,
         "dependsOn": [
-          "code-organizer"
+          "code-organizer",
+          "doc-writer",
+          "license-specialist"
         ]
       },
       {
         "agentId": "doc-writer",
-        "parallel": false,
+        "parallel": true,
         "dependsOn": [
-          "community-manager"
+          "code-organizer"
         ]
       },
       {
         "agentId": "launch-reviewer",
         "parallel": false,
         "dependsOn": [
-          "doc-writer"
+          "code-organizer",
+          "license-specialist"
         ]
       },
       {
         "agentId": "license-specialist",
-        "parallel": false,
+        "parallel": true,
         "dependsOn": [
-          "launch-reviewer"
+          "code-organizer"
         ]
       }
     ],

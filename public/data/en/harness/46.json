@@ -16,7 +16,10 @@
         "Read"
       ],
       "outputTemplate": "# PM 검증 보고서\n\n## 종합 평가\n- **실행 준비 상태**: 🟢 착수 가능 / 🟡 수정 후 착수 / 🔴 재계획 필요\n- **총평**: [1~2문장 요약]\n\n## 발견 사항\n\n### 🔴 필수 수정\n### 🟡 권장 수정\n### 🟢 참고 사항\n\n## 정합성 매트릭스\n| 검증 항목 | 상태 | 비고 |\n|----------|------|------|\n| 로드맵 ↔ PRD | ✅/⚠️/❌ | |\n| PRD ↔ 유저스토리 | ✅/⚠️/❌ | |\n| 유저스토리 ↔ 스프린트 | ✅/⚠️/❌ | |\n| OKR ↔ 성공 지표 | ✅/⚠️/❌ | |\n\n## 요구사항 추적 매트릭스\n| PRD 요구사항 | 유저스토리 | 스프린트 | 상태 |\n|-------------|----------|---------|------|\n| FR-001 | US-001, US-002 | Sprint 1 | ✅ |\n| FR-002 | US-003 | Sprint 1 | ✅ |\n\n## 최종 산출물 체크리스트\n- [ ] 제품 로드맵 완성\n- [ ] PRD 완성\n- [ ] 유저스토리 목록 완성\n- [ ] 스프린트 계획 완성\n- [ ] 회고 템플릿 준비",
-      "dependencies": []
+      "dependencies": [
+        "strategist",
+        "sprint-planner"
+      ]
     },
     {
       "id": "prd-writer",
@@ -56,7 +59,10 @@
         "Read"
       ],
       "outputTemplate": "# 유저스토리 목록\n\n## 스토리맵 개요\n\n### 사용자 활동 1: [활동명]\n    [태스크 1.1] → [태스크 1.2] → [태스크 1.3]\n         │              │              │\n    [Story 1]      [Story 3]      [Story 5]\n    [Story 2]      [Story 4]      [Story 6]\n\n## Epic 1: [에픽명]\n\n### US-001: [스토리 제목]\n- **유저스토리**: As a [사용자 역할], I want [기능], so that [가치]\n- **우선순위**: P0\n- **스토리포인트**: 5\n- **AC (인수 기준)**:\n    - [ ] Given [전제조건], When [사용자 액션], Then [예상 결과]\n    - [ ] Given [전제조건], When [사용자 액션], Then [예상 결과]\n    - [ ] Given [에러 상황], When [사용자 액션], Then [에러 처리]\n- **의존성**: 없음\n- **기술 노트**: [개발팀 참고사항]\n\n### US-002: [스토리 제목]\n- **유저스토리**: As a ...\n- **우선순위**: P0\n- **스토리포인트**: 3\n- **AC**:\n    - [ ] ...\n- **의존성**: US-001 완료 후\n\n## Epic 2: [에픽명]\n...\n\n## Technical Stories\n\n### TS-001: [기술 태스크]\n- **설명**: [기술적 구현 내용]\n- **스토리포인트**: 5\n- **의존성**: [연결된 유저스토리]\n\n## 스토리 요약\n| ID | 제목 | 에픽 | 우선순위 | SP | 의존성 | 스프린트 |\n|----|------|------|---------|-----|--------|---------|\n| US-001 | | | P0 | 5 | - | Sprint 1 |\n| US-002 | | | P0 | 3 | US-001 | Sprint 1 |\n\n## 총 스토리포인트 합계\n- P0 스토리: __ SP\n- P1 스토리: __ SP\n- P2 스토리: __ SP\n- Technical Stories: __ SP\n- **전체 합계**: __ SP",
-      "dependencies": []
+      "dependencies": [
+        "strategist",
+        "prd-writer"
+      ]
     },
     {
       "id": "strategist",
@@ -105,7 +111,10 @@
       {
         "agentId": "story-writer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "strategist",
+          "prd-writer"
+        ]
       },
       {
         "agentId": "sprint-planner",
@@ -117,7 +126,10 @@
       {
         "agentId": "pm-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "strategist",
+          "sprint-planner"
+        ]
       }
     ],
     "modes": [

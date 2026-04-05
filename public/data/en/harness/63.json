@@ -73,7 +73,11 @@
         "Read"
       ],
       "outputTemplate": "# Research Coordination Report\n\n## Overall Assessment\n- **Research Assistance Completeness**: GREEN (Complete) / YELLOW (Supplementation Needed) / RED (Rework Needed)\n- **Summary**: [1-2 sentence assessment]\n\n## Verification Results\n\n### RED — Must Fix\n1. **[Location]**: [Problem description]\n   - Current: [Current content]\n   - Suggested: [Correction suggestion]\n\n### YELLOW — Recommended Fix\n### GREEN — Informational Notes\n\n## Consistency Matrix\n| Verification Item | Status | Notes |\n|-------------------|--------|-------|\n| Search Comprehensiveness | Pass/Warning/Fail | |\n| Note-Synthesis Consistency | Pass/Warning/Fail | |\n| Citation Accuracy | Pass/Warning/Fail | |\n| Logical Consistency | Pass/Warning/Fail | |\n| Reference Completeness | Pass/Warning/Fail | |\n\n## Research Status Summary\n- Sources found: [N]\n- Analysis completed: [N]\n- Research gaps identified: [N]\n- Key themes: [Theme list]\n\n## Recommended Follow-up Actions\n- [Recommendation 1]\n- [Recommendation 2]",
-      "dependencies": []
+      "dependencies": [
+        "note-taker",
+        "reference-manager",
+        "critic-synthesizer"
+      ]
     }
   ],
   "skill": {
@@ -105,9 +109,9 @@
       },
       {
         "agentId": "reference-manager",
-        "parallel": true,
+        "parallel": false,
         "dependsOn": [
-          "literature-searcher"
+          "reference-manager"
         ]
       },
       {
@@ -127,7 +131,11 @@
       {
         "agentId": "research-coordinator",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "note-taker",
+          "reference-manager",
+          "critic-synthesizer"
+        ]
       }
     ],
     "modes": [

@@ -29,7 +29,10 @@
         "Read"
       ],
       "outputTemplate": "# License Strategy Document\n\n## Monetization Portfolio Classification\n| IP | Rating | Monetization Method | Expected Revenue | Priority |\n|----|--------|-------------------|-----------------|----------|\n| | S | Core commercialization | - | Retain |\n| | A | Licensing | $ | High |\n| | B | Cross-licensing | Indirect | Medium |\n| | C | Sale/Abandonment | $ | Low |\n\n---\n\n## License Target IP Details\n\n### [IP-001] [Patent Name]\n- **Monetization Method**: Non-exclusive license\n- **Target Licensees**: [Potential licensee list]\n- **Royalty Terms**:\n    - Upfront Fee: $\n    - Running Royalty: %\n    - Minimum Guarantee: $/year\n- **License Scope**: Territory / Duration / Field of use\n- **Expected Annual Revenue**: $\n\n---\n\n## Cross-Licensing Strategy\n| Target Company | Our IP | Their IP | Balance Assessment | Proposed Terms |\n|---------------|--------|---------|-------------------|---------------|\n\n## Standard-Essential Patent (SEP) Strategy\n- SEP portfolio:\n- FRAND declaration status:\n- License program design:\n\n---\n\n## Open Source Strategy\n### Open Source in Use\n| Project | License | Obligations | Risk | Response |\n|---------|---------|-----------|------|----------|\n\n### Open Source Contribution Policy\n- Permitted contribution scope:\n- IP rights allocation:\n- CLA (Contributor License Agreement):\n\n---\n\n## Technology Transfer Strategy\n| Target | Technology Area | Transfer Terms | Expected Impact |\n|--------|---------------|---------------|----------------|\n\n---\n\n## License Revenue Projections\n| Year | License Revenue | Tech Transfer | Sales | Total |\n|------|----------------|-------------|-------|-------|\n| Year 1 | | | | |\n| Year 2 | | | | |\n| Year 3 | | | | |\n\n## License Agreement Key Terms Guide\n- Grant Scope:\n- Royalty:\n- Audit Rights:\n- Improvements:\n- Termination:\n- Governing Law:",
-      "dependencies": []
+      "dependencies": [
+        "ip-analyst",
+        "patent-mapper"
+      ]
     },
     {
       "id": "patent-mapper",
@@ -55,7 +58,12 @@
         "Read"
       ],
       "outputTemplate": "# IP Protection Strategy Report\n\n## Protection Status Diagnosis\n| Area | Current Level | Target Level | Gap | Priority Action |\n|------|-------------|-------------|-----|-----------------|\n| Patent Protection | Level | Level | | |\n| Trademark Protection | Level | Level | | |\n| Copyright Protection | Level | Level | | |\n| Trade Secrets | Level | Level | | |\n\n---\n\n## Infringement Risk Analysis\n| IP | Infringement Type | Likelihood | Impact | Current Response | Recommended Action |\n|----|------------------|-----------|--------|-----------------|-------------------|\n\n### High-Risk IP Details\n#### [IP Name]\n- **Infringement Scenario**:\n- **Potential Infringers**:\n- **Estimated Damages**:\n- **Response Strategy**:\n\n---\n\n## Infringement Monitoring System\n### Patent Monitoring\n- Surveillance targets: [Competitor filings, product launches]\n- Tools/Services:\n- Frequency:\n- Responsible party:\n\n### Trademark Monitoring\n- Similar trademark filing surveillance:\n- Online counterfeit monitoring:\n- Domain surveillance:\n\n### Copyright Monitoring\n- Digital content unauthorized use surveillance:\n- Software piracy surveillance:\n\n---\n\n## Defense Strategy\n\n### Proactive IP Acquisition\n| Gap Area | Recommended Filing Type | Estimated Cost | Priority | Impact |\n|----------|----------------------|---------------|----------|--------|\n\n### Defensive Patents\n- Defensive publication targets:\n- Freedom to operate (FTO) strategy:\n\n---\n\n## Dispute Response Manual\n\n### Cease-and-Desist Letter Process\n1. Confirm infringement facts and gather evidence\n2. Internal review (technical team + legal team)\n3. Send cease-and-desist letter\n4. Negotiation/settlement\n5. Litigation review\n\n### Responding to a Cease-and-Desist Letter\n1. Immediate preservation (documents, products, communications)\n2. Claims analysis + non-infringement arguments\n3. Invalidity grounds research\n4. Develop response strategy\n\n### Litigation Cost Estimates\n| Stage | Domestic | United States | Notes |\n|-------|---------|--------------|-------|\n| Cease-and-desist | | | |\n| Negotiation/Mediation | | | |\n| Trial (1st instance) | | | |\n| Appeal | | | |\n\n---\n\n## Trade Secret Protection\n### Management Framework\n- Confidentiality classification levels:\n- Access controls:\n- NDA framework:\n- Departing employee management:\n\n### Confidentiality Checklist\n- [ ] Identify and mark confidential information\n- [ ] Minimize access privileges\n- [ ] Execute NDAs (employees/partners)\n- [ ] Physical/electronic security\n- [ ] Periodic audits\n\n---\n\n## Protection Strategy Roadmap\n| Timeframe | Initiative | Budget | Expected Impact |\n|-----------|----------|--------|----------------|\n| Immediate | | | |\n| 6 Months | | | |\n| 1 Year | | | |\n| 3 Years | | | |\n\n## Annual Protection Cost Estimate\n| Item | Cost | Notes |\n|------|------|-------|\n| Monitoring Services | | |\n| Legal Advisory | | |\n| Filing/Registration Fees | | |\n| Dispute Response Reserve | | |\n| **Total** | | |",
-      "dependencies": []
+      "dependencies": [
+        "ip-analyst",
+        "patent-mapper",
+        "renewal-scheduler",
+        "license-strategist"
+      ]
     },
     {
       "id": "renewal-scheduler",
@@ -67,7 +75,10 @@
         "Read"
       ],
       "outputTemplate": "# IP Renewal Schedule\n\n## Renewal Calendar (Next 12 Months)\n| Month | IP Type | Registration No. | IP Name | Deadline | Cost | Rating | Action |\n|-------|---------|-----------------|---------|----------|------|--------|--------|\n| Jan | | | | | | | |\n| Feb | | | | | | | |\n| ... | | | | | | | |\n\n## Urgent Renewals (Within 30 Days)\n| IP | Deadline | Cost | Required? | Action |\n|----|----------|------|----------|--------|\n\n## Annual Renewal Cost Summary\n| IP Type | Count | Annual Cost | Year-over-Year | Notes |\n|---------|-------|-----------|---------------|-------|\n| Patents | | | | |\n| Trademarks | | | | |\n| Designs | | | | |\n| Foreign IP | | | | |\n| **Total** | | **Grand Total** | | |\n\n## Multi-Year Cost Projections (5 Years)\n| Year | Patents | Trademarks | Designs | Foreign | Total |\n|------|---------|-----------|---------|---------|-------|\n\n---\n\n## Retention/Abandonment Review Candidates\n| IP | Rating | Annual Cost | Business Relevance | Recommendation | Reason |\n|----|--------|-----------|-------------------|----------------|--------|\n\n### Abandonment Recommended (C-tier and below)\n| IP | Cost Savings | Risk | Alternative |\n|----|------------|------|------------|\n\n### Mandatory Retention (S/A-tier)\n| IP | Cost | Reason |\n|----|------|--------|\n\n---\n\n## Alert System\n| Timing | Audience | Alert Method | Escalation |\n|--------|---------|-------------|-----------|\n| 6 months before deadline | Staff | Email | - |\n| 3 months before deadline | Staff + Manager | Email + Messenger | - |\n| 1 month before deadline | Manager + Executive | Urgent report | Decision required |\n| 1 week before deadline | All | Emergency | Immediate action |\n\n## Foreign IP Jurisdiction Notes\n| Country | Renewal Cycle | Special Considerations | Key Deadlines |\n|---------|-------------|----------------------|--------------|",
-      "dependencies": []
+      "dependencies": [
+        "ip-analyst",
+        "patent-mapper"
+      ]
     }
   ],
   "skill": {
@@ -101,17 +112,28 @@
       {
         "agentId": "renewal-scheduler",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "ip-analyst",
+          "patent-mapper"
+        ]
       },
       {
         "agentId": "license-strategist",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "ip-analyst",
+          "patent-mapper"
+        ]
       },
       {
         "agentId": "protection-advisor",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "ip-analyst",
+          "patent-mapper",
+          "renewal-scheduler",
+          "license-strategist"
+        ]
       }
     ],
     "modes": [

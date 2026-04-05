@@ -15,7 +15,10 @@
         "Read"
       ],
       "outputTemplate": "# 릴리스 공지문 — v[X.Y.Z]\n\n## 블로그 포스트\n### [제목]\n[도입부 — 이번 릴리스 요약 1~2문장]\n\n#### 주요 변경사항\n[하이라이트 3~5개 상세 설명]\n\n#### 업그레이드 방법\n[설치/업그레이드 명령어]\n\n#### Breaking Changes\n[해당 시 마이그레이션 가이드 링크]\n\n#### 기여자\n[감사 인사]\n\n---\n\n## SNS 게시물\n\n### Twitter/X (280자)\n[짧은 발표문 + 해시태그 + 링크]\n\n### LinkedIn\n[전문적 톤의 발표문 + 해시태그]\n\n---\n\n## 이메일 뉴스레터\n**제목**: [이메일 제목]\n**본문**:\n[인사 → 요약 → 하이라이트 → CTA → 마무리]\n\n---\n\n## Slack/Discord 공지\n[간결한 공지 + 링크]",
-      "dependencies": []
+      "dependencies": [
+        "release-note-writer",
+        "announcement-writer"
+      ]
     },
     {
       "id": "change-classifier",
@@ -105,15 +108,19 @@
       },
       {
         "agentId": "announcement-writer",
-        "parallel": true,
+        "parallel": false,
         "dependsOn": [
-          "change-classifier"
+          "release-note-writer",
+          "announcement-writer"
         ]
       },
       {
         "agentId": "announcement-writer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "release-note-writer",
+          "announcement-writer"
+        ]
       }
     ],
     "modes": [

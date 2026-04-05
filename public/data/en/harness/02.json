@@ -15,7 +15,10 @@
         "Read"
       ],
       "outputTemplate": "# 배포 패키지\n\n## 에피소드 메타데이터\n- **제목**: [최종 에피소드 제목]\n- **시즌/에피소드 번호**: SXX EXX\n- **카테고리**: [Apple Podcasts 카테고리]\n- **태그**: [태그1], [태그2], [태그3], ...\n- **명시적 콘텐츠**: 아니오/예\n\n## 플랫폼별 설명문\n\n### Apple Podcasts / Spotify\n[설명문 — 첫 2줄에 핵심 가치 + 키워드]\n\n### YouTube Podcasts\n[설명문 — 챕터 마커 포함]\n\n### 네이버 오디오클립\n[설명문 — 한국어 최적화]\n\n## SNS 홍보 카피\n\n### Twitter/X (3개 변형)\n1. [티저형]\n2. [인용구형]\n3. [질문형]\n\n### Instagram\n**캡션:**\n[캡션 텍스트]\n\n**해시태그:**\n[해시태그 목록]\n\n### LinkedIn\n[전문성 강조 톤의 홍보 텍스트]\n\n## 뉴스레터 소개문\n**제목**: [이메일 제목]\n**본문:**\n[이메일 본문]\n\n## 홍보 캘린더\n| 시점 | 플랫폼 | 액션 | 콘텐츠 |\n|------|--------|------|--------|\n| D-3 | Twitter/X | 티저 | 티저형 카피 |\n| D-Day | 전 플랫폼 | 에피소드 공개 | 메인 카피 |\n| D+1 | Instagram | 인용구 카드 | 핵심 인용구 |\n| D+3 | LinkedIn | 심화 포스트 | 전문성 카피 |\n| D+7 | 뉴스레터 | 주간 요약 | 뉴스레터 소개문 |",
-      "dependencies": []
+      "dependencies": [
+        "researcher",
+        "scriptwriter"
+      ]
     },
     {
       "id": "production-reviewer",
@@ -28,7 +31,11 @@
         "Read"
       ],
       "outputTemplate": "# 프로덕션 리뷰 보고서\n\n## 종합 평가\n- **제작 준비 상태**: 🟢 준비 완료 / 🟡 수정 후 진행 / 🔴 재작업 필요\n- **총평**: [1~2문장 요약]\n\n## 발견 사항\n\n### 🔴 필수 수정\n1. **[위치]**: [문제 설명]\n   - 현재: [현재 내용]\n   - 제안: [수정 제안]\n\n### 🟡 권장 수정\n1. ...\n\n### 🟢 참고 사항\n1. ...\n\n## 정합성 매트릭스\n| 검증 항목 | 상태 | 비고 |\n|----------|------|------|\n| 리서치 ↔ 대본 | ✅/⚠️/❌ | |\n| 대본 ↔ 쇼노트 | ✅/⚠️/❌ | |\n| 대본 ↔ 배포 | ✅/⚠️/❌ | |\n| 팩트 정확성 | ✅/⚠️/❌ | |\n\n## 최종 산출물 체크리스트\n- [ ] 리서치 브리프 완성\n- [ ] 에피소드 대본 완성\n- [ ] 쇼노트 완성\n- [ ] 배포 패키지 완성",
-      "dependencies": []
+      "dependencies": [
+        "scriptwriter",
+        "shownote-editor",
+        "distribution-manager"
+      ]
     },
     {
       "id": "researcher",
@@ -68,7 +75,10 @@
         "Read"
       ],
       "outputTemplate": "# 쇼노트: [에피소드 제목]\n\n## 에피소드 한 줄 소개\n[1문장 엘리베이터 피치]\n\n## 에피소드 요약\n[3~5문장으로 에피소드 핵심 내용 요약]\n\n## 타임스탬프\n- 00:00 인트로\n- 01:00 [세그먼트1 제목]\n- 08:00 [세그먼트2 제목]\n- 16:30 [세그먼트3 제목]\n- XX:XX 클로징\n\n## 게스트 소개 (해당 시)\n**[게스트 이름]** — [직함/소속]\n- [약력 2~3문장]\n- 웹사이트: [URL]\n- SNS: [링크]\n\n## 핵심 인용구\n> \"[인용구 1]\" — [화자]\n> \"[인용구 2]\" — [화자]\n\n## 언급된 자료\n### 책\n- 📖 [책 제목] — [저자]\n\n### 웹사이트 & 도구\n- 🔗 [사이트명](URL) — [간단 설명]\n\n### 연구/논문\n- 📄 [논문 제목] — [저자, 연도]\n\n## 관련 에피소드\n- EP.XX: [이전 에피소드 제목] (관련 주제)\n\n## 피드백 & 참여\n- 이메일: [이메일]\n- SNS: [해시태그]\n- 리뷰 부탁 문구",
-      "dependencies": []
+      "dependencies": [
+        "researcher",
+        "scriptwriter"
+      ]
     }
   ],
   "skill": {
@@ -100,17 +110,27 @@
       {
         "agentId": "shownote-editor",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "researcher",
+          "scriptwriter"
+        ]
       },
       {
         "agentId": "distribution-manager",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "researcher",
+          "scriptwriter"
+        ]
       },
       {
         "agentId": "production-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "scriptwriter",
+          "shownote-editor",
+          "distribution-manager"
+        ]
       }
     ],
     "modes": [

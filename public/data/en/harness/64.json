@@ -27,7 +27,11 @@
         "Read"
       ],
       "outputTemplate": "# Knowledge Base Maintenance Plan\n\n## Governance Model\n- **Content Ownership**: [RACI matrix]\n- **Review Process**: [Workflow description]\n- **Approval Authority**: [By content type]\n\n## Update Cycles\n| Content Type | Review Cycle | Update Trigger | Owner |\n|-------------|-------------|----------------|-------|\n\n## Quality Standards\n| Criterion | Standard | Measurement | Frequency |\n|-----------|---------|-------------|-----------|\n\n## Quality Audit Checklist\n- [ ] [Audit item 1]\n- [ ] [Audit item 2]\n\n## Contribution Guidelines\n### For New Contributors\n1. [Step 1]\n2. [Step 2]\n\n### Writing Standards\n- [Standard 1]\n- [Standard 2]\n\n## Archival Strategy\n| Condition | Action | Retention Period |\n|-----------|--------|-----------------|\n\n## Monitoring Dashboard\n| Metric | Current Value | Target | Trend |\n|--------|-------------|--------|-------|",
-      "dependencies": []
+      "dependencies": [
+        "knowledge-collector",
+        "taxonomy-designer",
+        "wiki-builder"
+      ]
     },
     {
       "id": "search-optimizer",
@@ -67,7 +71,10 @@
         "Read"
       ],
       "outputTemplate": "# Wiki Articles\n\n## Article Template\n\n### [Article Title]\n\n> **Summary**: [1-2 sentence summary]\n> **Audience**: [Target audience]\n> **Last Updated**: [Date]\n> **Tags**: [tag1, tag2]\n\n#### Prerequisites\n- [Prerequisite 1]\n\n#### Content\n[Main content]\n\n#### Examples\n[Practical examples]\n\n#### Troubleshooting\n| Problem | Cause | Solution |\n|---------|-------|----------|\n\n#### Related Articles\n- [Related article 1]\n\n#### Changelog\n| Date | Author | Changes |\n|------|--------|---------|\n\n---\n\n## Written Articles List\n| No. | Title | Category | Status | Word Count |\n|-----|-------|----------|--------|------------|",
-      "dependencies": []
+      "dependencies": [
+        "knowledge-collector",
+        "taxonomy-designer"
+      ]
     }
   ],
   "skill": {
@@ -100,12 +107,17 @@
       {
         "agentId": "wiki-builder",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "knowledge-collector",
+          "taxonomy-designer"
+        ]
       },
       {
         "agentId": "search-optimizer",
-        "parallel": true,
-        "dependsOn": []
+        "parallel": false,
+        "dependsOn": [
+          "wiki-builder"
+        ]
       },
       {
         "agentId": "search-optimizer",
@@ -117,7 +129,11 @@
       {
         "agentId": "maintenance-planner",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "knowledge-collector",
+          "taxonomy-designer",
+          "wiki-builder"
+        ]
       }
     ],
     "modes": [

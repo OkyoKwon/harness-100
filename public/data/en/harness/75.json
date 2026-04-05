@@ -41,7 +41,11 @@
         "Read"
       ],
       "outputTemplate": "# Tax Savings Strategy & Simulation (04_tax_strategy.md)\n\n## Current Tax Summary\n| Item | Amount |\n|------|--------|\n| Determined Tax Amount | KRW |\n| Effective Tax Rate | % |\n| Amount Due (Refund) | KRW |\n\n## Tax Savings Simulation\n\n### Scenario 1: [Strategy Name]\n- **Details**: [Specific method]\n- **Tax before application**: KRW\n- **Tax after application**: KRW\n- **Tax savings effect**: KRW\n- **Implementation difficulty**: ★☆☆\n- **Risk**: [If applicable]\n- **Required actions**: [Specific execution method]\n\n### Scenario 2: [Strategy Name]\n...\n\n### Scenario 3: [Strategy Name]\n...\n\n## Scenario Comparison Table\n| Scenario | Tax Savings | Difficulty | Risk | Recommendation |\n|----------|-------------|------------|------|----------------|\n| Current | Baseline | - | - | - |\n| Scenario 1 | +X KRW | ★☆☆ | Low | ⭐⭐⭐ |\n| Scenario 2 | +X KRW | ★★☆ | Medium | ⭐⭐ |\n| Scenario 3 | +X KRW | ★★★ | High | ⭐ |\n\n## Medium-to-Long-Term Tax Savings Plan\n### Financial Product Utilization\n| Product | Annual Limit | Tax Benefit | Annual Tax Savings | Notes |\n|---------|-------------|-------------|-------------------|-------|\n| Pension Savings | KRW 6,000,000 | Tax credit 13.2~16.5% | Up to KRW 990,000 | Withdrawal after age 55 |\n| IRP | KRW 9,000,000 (incl. pension savings) | Tax credit 13.2~16.5% | Up to KRW 1,485,000 | Other income tax on early withdrawal |\n| ISA | KRW 20,000,000 | Tax-exempt KRW 2,000,000~4,000,000 | Variable | 3-year mandatory enrollment |\n\n### Annual Roadmap\n| Period | Action Items | Expected Effect |\n|--------|-------------|----------------|\n\n## Disclaimers\n- This analysis is for reference purposes; consult a tax accountant for accurate tax processing\n- Tax laws are revised annually — verify current regulations before taking action\n\n---\n\n# Filing Preparation Guide (05_filing_preparation.md)\n\n## Filing Deadlines\n| Filing Type | Deadline | Notes |\n|-------------|----------|-------|\n| Year-end Tax Settlement | February | Submit to employer |\n| Global Income Tax | May 1~31 | File directly |\n| Interim Tax Payment | November | Business income |\n\n## Required Supporting Documents Checklist\n| # | Document Name | Purpose | Issuing Authority | Status |\n|---|---------------|---------|-------------------|--------|\n| 1 | Earned Income Withholding Receipt | Verify earned income | Employer | ☐ |\n| 2 | Income & Tax Deduction Certificate | Apply deductions | NTS Simplified Service | ☐ |\n| 3 | Donation Receipt | Donation deduction | Donee organization | ☐ |\n| 4 | Medical Expense Receipt | Medical expense deduction | Medical institution | ☐ |\n\n## Filing Instructions\n### Hometax Electronic Filing\n1. Access Hometax (www.hometax.go.kr)\n2. Log in (joint certificate / simplified authentication)\n3. [File/Pay] → [Global Income Tax] or [Year-end Tax Settlement]\n4. Import simplified service data\n5. Enter additional deduction items\n6. Confirm tax amount and submit return\n\n### Notes\n- Items not reflected in the simplified service must be entered separately\n- Amended return deadline: within 5 years after the statutory filing deadline\n\n## Tax Savings Execution Calendar\n| Month | Action Items | Notes |\n|-------|-------------|-------|",
-      "dependencies": []
+      "dependencies": [
+        "income-analyst",
+        "deduction-optimizer",
+        "tax-engine"
+      ]
     },
     {
       "id": "tax-engine",
@@ -53,7 +57,10 @@
         "Read"
       ],
       "outputTemplate": "# Tax Calculation Statement\n\n## Calculation Summary\n| Item | Amount |\n|------|--------|\n| Gross Income | KRW |\n| (−) Income Deductions | KRW |\n| **Tax Base** | **KRW** |\n| Computed Tax | KRW |\n| (−) Tax Reductions | KRW |\n| (−) Tax Credits | KRW |\n| **Determined Tax** | **KRW** |\n| (−) Prepaid Tax | KRW |\n| **Tax Payable (Refundable)** | **KRW** |\n| Local Income Tax | KRW |\n| **Total Payable (Refundable)** | **KRW** |\n\n## Detailed Calculation Process\n\n### Step 1: Derive Tax Base\nGross Income: [KRW]\n(−) Total Income Deductions: [KRW]\n    - Personal Deductions: [KRW]\n    - Pension Insurance Premium Deduction: [KRW]\n    - Special Income Deductions: [KRW]\n    - Other Income Deductions: [KRW]\n= **Tax Base: [KRW]**\n\n### Step 2: Computed Tax\nTax Base [KRW] × Tax Rate [X%] − Progressive Deduction [KRW]\n= **Computed Tax: [KRW]**\n\n### Step 3: Tax Reductions\n| Reduction Item | Reduction Amount | Basis |\n|----------------|-----------------|-------|\n| Total | KRW | |\n\n### Step 4: Tax Credits\n| Credit Item | Credit Amount | Notes |\n|-------------|--------------|-------|\n| Total | KRW | |\n\n### Step 5: Determined Tax\nComputed Tax [KRW] − Tax Reductions [KRW] − Tax Credits [KRW]\n= **Determined Tax: [KRW]**\n(If determined tax is negative, treat as KRW 0; excess tax credits cannot be carried forward or refunded)\n\n### Step 6: Prepaid Tax\n| Item | Amount | Notes |\n|------|--------|-------|\n| Withholding Tax | KRW | Wage income withholding |\n| Interim Prepayment | KRW | If applicable to business income |\n| Occasional Assessment | KRW | |\n| Total | KRW | |\n\n### Step 7: Final Payable (Refundable)\nDetermined Tax [KRW] − Prepaid Tax [KRW]\n= **Tax Payable: [KRW]** (positive: payable, negative: refundable)\n\n### Step 8: Local Income Tax\nDetermined Tax [KRW] × 10% = **Local Income Tax: [KRW]**\n\n## Separately Taxed Income (if applicable)\n| Income Type | Amount | Tax Rate | Tax Amount |\n|-------------|--------|----------|------------|\n\n## Effective Tax Rate Analysis\n- **Nominal Top Marginal Rate**: X%\n- **Effective Tax Rate**: X% (Determined Tax ÷ Gross Income)\n- **Total Tax Burden Rate**: X% ((Income Tax + Local Income Tax) ÷ Total Income)\n\n## Notes for Tax Strategy Specialist",
-      "dependencies": []
+      "dependencies": [
+        "income-analyst",
+        "deduction-optimizer"
+      ]
     }
   ],
   "skill": {
@@ -79,12 +86,19 @@
       {
         "agentId": "tax-engine",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "income-analyst",
+          "deduction-optimizer"
+        ]
       },
       {
         "agentId": "strategy-advisor",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "income-analyst",
+          "deduction-optimizer",
+          "tax-engine"
+        ]
       }
     ],
     "modes": [

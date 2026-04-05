@@ -27,7 +27,11 @@
         "Read"
       ],
       "outputTemplate": "# ESG/Sustainability Report\n\n## CEO Message\n[Management commitment to sustainability — template]\n\n## Report Overview\n- **Reporting Period**:\n- **Reporting Scope**:\n- **Applied Frameworks**: GRI / SASB / TCFD / ISSB\n- **Third-Party Verification**: Yes/No\n\n---\n\n## Materiality Assessment\n\n### Double Materiality Matrix\n| Issue | Financial Materiality | Impact Materiality | Overall Rating |\n|-------|---------------------|-------------------|---------------|\n\n### Top 10 Material Issues\n| Rank | Issue | ESG Pillar | Related GRI Topic | Response Status |\n|------|-------|-----------|------------------|----------------|\n\n---\n\n## Environmental\n### Key Performance\n[Environmental assessment key data summary]\n\n### GRI Disclosure Items\n| GRI Number | Item | Disclosure Content |\n|-----------|------|-------------------|\n| 302-1 | Energy Consumption | |\n| 305-1 | Scope 1 Emissions | |\n| 305-2 | Scope 2 Emissions | |\n| 306-3 | Waste Generated | |\n\n---\n\n## Social\n### Key Performance\n[Social assessment key data summary]\n\n### GRI Disclosure Items\n| GRI Number | Item | Disclosure Content |\n|-----------|------|-------------------|\n| 401-1 | New Hires and Turnover | |\n| 403-9 | Work-Related Injuries | |\n| 405-1 | Diversity | |\n\n---\n\n## Governance\n### Key Performance\n[Governance assessment key data summary]\n\n### GRI Disclosure Items\n| GRI Number | Item | Disclosure Content |\n|-----------|------|-------------------|\n| 2-9 | Governance Structure | |\n| 2-15 | Conflicts of Interest | |\n| 205-2 | Anti-Corruption Training | |\n\n---\n\n## ESG Scorecard\n| Pillar | Rating | Year-over-Year | Industry Average | Key Indicators |\n|--------|--------|---------------|-----------------|---------------|\n| E | | | | |\n| S | | | | |\n| G | | | | |\n| **Overall** | | | | |\n\n---\n\n## TCFD Disclosure\n| TCFD Core Element | Disclosure Content |\n|------------------|-------------------|\n| Governance | |\n| Strategy | |\n| Risk Management | |\n| Metrics and Targets | |\n\n---\n\n## UN SDGs Alignment\n| SDG | Related Activities | Contribution Level |\n|-----|-------------------|-------------------|\n\n---\n\n## GRI Content Index\n| GRI Number | Item | Report Location | Omission Reason |\n|-----------|------|----------------|----------------|",
-      "dependencies": []
+      "dependencies": [
+        "environmental-analyst",
+        "social-assessor",
+        "governance-reviewer"
+      ]
     },
     {
       "id": "governance-reviewer",
@@ -51,7 +55,11 @@
         "Read"
       ],
       "outputTemplate": "# ESG Improvement Plan\n\n## Gap Analysis Summary\n| ESG Pillar | Current Rating | Target Rating | Key Gap | Urgency |\n|-----------|---------------|--------------|---------|---------|\n| Environmental (E) | | | | |\n| Social (S) | | | | |\n| Governance (G) | | | | |\n\n---\n\n## Improvement Initiative List\n| ID | Initiative | ESG Pillar | Priority | Impact | Feasibility | Type |\n|----|----------|-----------|----------|--------|------------|------|\n| E-01 | | E | A | | | Quick Win |\n| S-01 | | S | B | | | Strategic |\n| G-01 | | G | A | | | Must-do |\n\n---\n\n## Detailed Initiative Plans\n\n### [E-01] [Initiative Name]\n- **Current Status**: \n- **Target**: \n- **Action Plan**:\n- **Responsible Department**:\n- **Timeline**: \n- **Budget**: $\n- **KPI**: \n- **Expected Impact**:\n\n### [S-01] [Initiative Name]\n...\n\n---\n\n## Roadmap\n\n### Short-Term (Year 1)\n| Q | Initiative | Milestone | Budget |\n|---|----------|-----------|--------|\n| Q1 | | | |\n| Q2 | | | |\n| Q3 | | | |\n| Q4 | | | |\n\n### Medium-Term (Years 2-3)\n| Year | Key Initiatives | Target | Investment |\n|------|----------------|--------|-----------|\n\n### Long-Term (Years 4-5)\n| Year | Key Initiatives | Target | Investment |\n|------|----------------|--------|-----------|\n\n---\n\n## Investment Plan Summary\n| Item | Year 1 | Year 2 | Year 3 | Total |\n|------|--------|--------|--------|-------|\n| Environmental Improvements | | | | |\n| Social Improvements | | | | |\n| Governance Improvements | | | | |\n| Systems/Infrastructure | | | | |\n| Personnel/Training | | | | |\n| **Total** | | | | |\n\n## KPI Dashboard\n| KPI | Current | Year 1 Target | Year 3 Target | Measurement Frequency |\n|-----|---------|--------------|--------------|---------------------|\n\n## ESG Rating Improvement Scenarios\n| Scenario | Investment Level | Expected Rating Change | ROI |\n|----------|-----------------|----------------------|-----|\n| Minimum Investment | | | |\n| Recommended Investment | | | |\n| Aggressive Investment | | | |",
-      "dependencies": []
+      "dependencies": [
+        "environmental-analyst",
+        "social-assessor",
+        "governance-reviewer"
+      ]
     },
     {
       "id": "social-assessor",
@@ -100,12 +108,20 @@
       {
         "agentId": "esg-reporter",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "environmental-analyst",
+          "social-assessor",
+          "governance-reviewer"
+        ]
       },
       {
         "agentId": "improvement-planner",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "environmental-analyst",
+          "social-assessor",
+          "governance-reviewer"
+        ]
       }
     ],
     "modes": [

@@ -27,7 +27,10 @@
         "Read"
       ],
       "outputTemplate": "# FAQ & Troubleshooting Guide\n\n## FAQ\n\n### Category 1: [Category Name]\n\n**Q1. [Question]**\nA. [Key answer in 3 sentences or fewer]\n\n<details>\n<summary>Detailed Explanation</summary>\n[Additional explanation, examples, reference links]\n</details>\n\n---\n\n## Troubleshooting Guide\n\n### Problem 1: [Symptom Description]\n\n| Rank | Possible Cause | How to Verify | How to Fix |\n|------|---------------|---------------|------------|\n| 1 | [Most common cause] | [Verification steps] | [Resolution steps] |\n| 2 | [Second cause] | ... | ... |\n\n---\n\n## Decision Trees\n\n### [Situation Requiring Judgment]\n\n```mermaid\nflowchart TD\n    A{Criterion 1} -->|Yes| B[Action A]\n    A -->|No| C{Criterion 2}\n    C -->|Yes| D[Action B]\n    C -->|No| E[Escalate]\n```\n\n---\n\n## Escalation Matrix\n\n| Situation Type | Primary Contact | Secondary Contact | Target Response Time |\n|---------------|----------------|-------------------|---------------------|",
-      "dependencies": []
+      "dependencies": [
+        "document-analyst",
+        "flowchart-designer"
+      ]
     },
     {
       "id": "flowchart-designer",
@@ -53,7 +56,10 @@
         "Read"
       ],
       "outputTemplate": "# Operations Manual\n\n> **Version**: v1.0 | **Created**: YYYY-MM-DD | **Review Cycle**: [Monthly/Quarterly/Semi-annual]\n> **Target Audience**: [Role/Level]\n> **Related Systems**: [System list]\n\n## 1. [Process Name]\n\n### Overview\n- **Purpose**: [Why this procedure is needed]\n- **Trigger**: [When to start this procedure]\n- **Owner**: [Who performs it]\n- **Estimated Duration**: [Minutes/Hours]\n- **Related Flowchart**: [Reference section in 02_process_flowcharts.md]\n\n### Prerequisites\n- [ ] [Required permissions/access]\n- [ ] [Required tools/software]\n- [ ] [Prior completed tasks]\n\n### Procedure\n\n#### Step 1: [Task Name]\n**How to:**\n1. [Specific action 1]\n2. [Specific action 2]\n\n**Expected Result:** [What you can verify after completing this step]\n\n> ⚠️ Warning: [Common mistakes or cautions]\n\n<!-- 📸 Screenshot: [Screen description] -->\n\n### Completion Checklist\n- [ ] [Verification item 1]\n- [ ] [Output saved/shared confirmation]\n\n### Exception Handling\n| Situation | Symptoms | Response | Escalation |\n|-----------|----------|----------|------------|",
-      "dependencies": []
+      "dependencies": [
+        "document-analyst",
+        "flowchart-designer"
+      ]
     },
     {
       "id": "training-producer",
@@ -65,7 +71,10 @@
         "Write"
       ],
       "outputTemplate": "# Training Materials Package\n\n## Learning Objectives\n\n### Required Learning (Day 1)\n- [ ] [Learning objective 1] — Level: Knowledge/Comprehension\n- [ ] [Learning objective 2] — Level: Application\n\n### Advanced Learning (Week 1)\n- [ ] [Learning objective 3] — Level: Analysis\n\n---\n\n## Summary Cards (Cheat Sheets)\n\n### [Process Name] Summary\n| Step | Action | Key Point | Caution |\n|------|--------|-----------|---------|\n| 1 | ... | ... | ... |\n\n**Quick Reference:**\n- [Shortcuts/commands/URLs and other instant reference info]\n\n---\n\n## Comprehension Quizzes\n\n### Quiz 1: [Topic]\n**Q.** [Question]\n- A) [Option]\n- B) [Option]\n- C) [Option]\n- D) [Option]\n\n**Answer:** [Answer] — [Explanation]\n\n### Scenario Quiz\n**Situation:** [Real-world scenario description]\n**Question:** What is the correct response in this situation?\n\n---\n\n## Hands-on Exercises\n\n### Basic Exercise: [Exercise Name]\n- **Objective**: [Link to learning objective]\n- **Scenario**: [Exercise situation description]\n- **Steps**: [Step-by-step instructions]\n- **Completion Criteria**: [Success criteria]\n\n### Intermediate Exercise: [Exercise Name]\n...\n\n---\n\n## Onboarding Checklist\n\n### Day 1: Basic Understanding\n- [ ] Read manual sections 1-2\n- [ ] Review summary cards\n- [ ] Pass basic quiz\n\n### Week 1: Practical Application\n- [ ] Complete basic hands-on exercise\n- [ ] Confirm with mentor in 1:1",
-      "dependencies": []
+      "dependencies": [
+        "manual-writer",
+        "faq-builder"
+      ]
     }
   ],
   "skill": {
@@ -97,17 +106,26 @@
       {
         "agentId": "manual-writer",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "document-analyst",
+          "flowchart-designer"
+        ]
       },
       {
         "agentId": "faq-builder",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "document-analyst",
+          "flowchart-designer"
+        ]
       },
       {
         "agentId": "training-producer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "manual-writer",
+          "faq-builder"
+        ]
       }
     ],
     "modes": [

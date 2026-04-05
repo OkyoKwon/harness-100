@@ -16,7 +16,11 @@
         "Read"
       ],
       "outputTemplate": "# Fact-Check/Review Report\n\n## Overall Assessment\n- **Production Readiness**: GREEN Ready / YELLOW Proceed After Revisions / RED Rework Needed\n- **Summary**: [1-2 sentence summary]\n- **Fact Accuracy**: [Verified facts N / Total N — N%]\n\n## Fact-Check Results\n| # | Claim/Fact | Source | Verification Result | Notes |\n|---|-----------|--------|-------------------|-------|\n| 1 | [Claim] | [Source] | PASS / PARTIAL / FAIL | [Notes] |\n\n## Findings\n\n### RED Must Fix\n1. **[Location]**: [Problem description]\n   - Current: [Current content]\n   - Suggestion: [Revision suggestion]\n\n### YELLOW Recommended Fix\n1. ...\n\n### GREEN Notes\n1. ...\n\n## Consistency Matrix\n| Verification Item | Status | Notes |\n|-------------------|--------|-------|\n| Factual Accuracy | PASS/WARN/FAIL | |\n| Source Reliability | PASS/WARN/FAIL | |\n| Balance & Fairness | PASS/WARN/FAIL | |\n| Research <-> Narration | PASS/WARN/FAIL | |\n| Legal & Ethical | PASS/WARN/FAIL | |\n\n## Final Deliverables Checklist\n- [ ] Research brief complete\n- [ ] Treatment complete\n- [ ] Interview guide complete\n- [ ] Narration script complete",
-      "dependencies": []
+      "dependencies": [
+        "researcher",
+        "interviewer",
+        "narrator"
+      ]
     },
     {
       "id": "interviewer",
@@ -28,7 +32,10 @@
         "Read"
       ],
       "outputTemplate": "# Interview Guide\n\n## Interview Subject List (Priority Order)\n| Rank | Name/Title | Interview Purpose | Est. Time | Target Scene |\n|------|-----------|-------------------|-----------|--------------|\n\n## Interview 1: [Subject Name/Title]\n\n### Interview Information\n- **Purpose**: [What to obtain from this interview]\n- **Placement**: [Which scene in the treatment will this be used in]\n- **Estimated Time**: [N minutes]\n- **Location Suggestion**: [Suitable interview location]\n- **Filming Setup**: [Camera angle, lighting, etc.]\n\n### Question Flow\n\n**Warm-Up (5 min)**\n1. [Light self-introduction question]\n2. [Question about their connection to the topic]\n\n**Core Questions (20 min)**\n3. [Core question 1]\n   - Expected response direction: [...]\n   - Follow-up A: [If positive response]\n   - Follow-up B: [If negative response]\n   - Interview tip: [Wait/Express empathy/Request specifics]\n\n4. [Core question 2]\n   - ...\n\n**Sensitive Questions (10 min)**\n5. [Sensitive but essential question]\n   - Approach strategy: [Context explanation before the question, alternative if refused]\n\n**Closing (5 min)**\n6. \"Is there anything I haven't asked that you'd really like to talk about?\"\n7. [Closing thanks, follow-up contact information]\n\n### Precautions\n- [Legal/ethical precautions]\n- [Considerations when approaching sensitive topics]\n\n## Interview 2: ...",
-      "dependencies": []
+      "dependencies": [
+        "researcher",
+        "story-architect"
+      ]
     },
     {
       "id": "narrator",
@@ -40,7 +47,10 @@
         "Read"
       ],
       "outputTemplate": "# Narration Script\n\n## Production Information\n- **Title**: [Confirmed title]\n- **Total Length**: [N minutes]\n- **Narration Tone**: [Base tone]\n- **Narrator Guide**: [Voice quality — calm/powerful/warm/...]\n\n## Act 1: [Act Title]\n\n### Scene 1-1: [Scene Title] (0:00~N:00)\n\n**[Visual: Opening sequence — (visual description)]**\n\n(Narration — Tone: [tone direction])\n[Narration text]\n\n**[Visual: (visual transition description)]**\n\n[Narration text]\n\n**[Interview Insert: (Subject name) — Est. length N seconds]**\n(Narration — Interview introduction)\n[Narration introducing the interview]\n\n**[After Interview — Tone shift: (tone change)]**\n[Narration continuing from interview content]\n\n### Scene 1-2: ...\n\n## Act 2: ...\n## Act 3: ...\n\n## Script Statistics\n- Total word count:\n- Estimated narration time: (approx. 250 words per minute)\n- Narration ratio: N% of total length\n- Interview insert count:",
-      "dependencies": []
+      "dependencies": [
+        "researcher",
+        "story-architect"
+      ]
     },
     {
       "id": "researcher",
@@ -99,17 +109,27 @@
       {
         "agentId": "interviewer",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "researcher",
+          "story-architect"
+        ]
       },
       {
         "agentId": "narrator",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "researcher",
+          "story-architect"
+        ]
       },
       {
         "agentId": "fact-checker",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "researcher",
+          "interviewer",
+          "narrator"
+        ]
       }
     ],
     "modes": [

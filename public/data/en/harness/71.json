@@ -16,7 +16,11 @@
         "Read"
       ],
       "outputTemplate": "# Consistency Validation Report\n\n## Overall Assessment\n- **Document Set Status**: 🟢 Ready to use / 🟡 Use after revision / 🔴 Rework required\n- **Summary**:\n\n## Findings\n\n### 🔴 Required Fixes\n1. **[Document/Location]**: [Issue]\n   - Current: [Content]\n   - Suggestion: [Revision]\n\n### 🟡 Recommended Fixes\n### 🟢 Notes\n\n## Consistency Matrix\n| Validation Item | Status | Notes |\n|----------------|--------|-------|\n| Terms ↔ Privacy Policy | ✅/⚠️/❌ | |\n| Terms ↔ Refund Policy | ✅/⚠️/❌ | |\n| Terms ↔ Copyright Notice | ✅/⚠️/❌ | |\n| Privacy Policy ↔ Cookie Policy | ✅/⚠️/❌ | |\n| Overall terminology consistency | ✅/⚠️/❌ | |\n\n## Legal Requirements Checklist Results\n| Law | Required Items | Met | Not Met | Compliance Rate |\n|-----|---------------|-----|---------|-----------------|\n\n## Final Output Checklist\n- [ ] Terms of Service complete\n- [ ] Privacy Policy complete\n- [ ] Cookie Policy complete\n- [ ] Refund Policy complete\n- [ ] Copyright Notice complete",
-      "dependencies": []
+      "dependencies": [
+        "tos-specialist",
+        "privacy-specialist",
+        "consumer-analyst"
+      ]
     },
     {
       "id": "consumer-analyst",
@@ -89,7 +93,11 @@
       {
         "agentId": "consistency-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "tos-specialist",
+          "privacy-specialist",
+          "consumer-analyst"
+        ]
       }
     ],
     "modes": [

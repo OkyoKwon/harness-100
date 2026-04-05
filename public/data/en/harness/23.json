@@ -16,7 +16,10 @@
         "Read"
       ],
       "outputTemplate": "# 아키텍처 리뷰 보고서\n\n## 종합 평가\n- **아키텍처 성숙도**: 🟢 프로덕션 준비 / 🟡 수정 후 진행 / 🔴 재설계 필요\n- **총평**: [1~2문장 요약]\n\n## 발견 사항\n### 🔴 필수 수정\n### 🟡 권장 수정\n### 🟢 참고 사항\n\n## 정합성 매트릭스\n| 검증 항목 | 상태 | 비고 |\n|----------|------|------|\n| 도메인 ↔ 서비스 | ✅/⚠️/❌ | |\n| 서비스 ↔ 통신 | ✅/⚠️/❌ | |\n| 통신 ↔ 관측성 | ✅/⚠️/❌ | |\n| 분산 시스템 원칙 | ✅/⚠️/❌ | |\n| 운영 준비도 | ✅/⚠️/❌ | |\n\n## 최종 산출물 체크리스트\n- [ ] 도메인 분석 보고서\n- [ ] 서비스 설계서\n- [ ] 통신 설계서\n- [ ] 관측성 설계서",
-      "dependencies": []
+      "dependencies": [
+        "domain-analyst",
+        "observability-engineer"
+      ]
     },
     {
       "id": "communication-designer",
@@ -28,7 +31,10 @@
         "Read"
       ],
       "outputTemplate": "# 통신 설계서\n\n## 통신 매트릭스\n| 출발 서비스 | 도착 서비스 | 패턴 | 프로토콜 | 토픽/엔드포인트 | 타임아웃 | 재시도 |\n|-----------|-----------|------|---------|--------------|---------|--------|\n\n## 통신 흐름 (Mermaid)\n    mermaid\n    sequenceDiagram\n        Client->>API GW: POST /orders\n        API GW->>OrderSvc: CreateOrder\n        OrderSvc->>EventBus: OrderCreated\n        EventBus->>PaymentSvc: OrderCreated\n        PaymentSvc->>EventBus: PaymentCompleted\n\n## 이벤트 버스 설계\n### 브로커 선택: [Kafka / RabbitMQ / NATS]\n- **선택 근거**: [처리량, 순서 보장, 내구성 등]\n\n### 토픽 설계\n| 토픽명 | 발행 서비스 | 구독 서비스 | 파티션 키 | 보존 기간 |\n|--------|-----------|-----------|----------|----------|\n\n### 이벤트 스키마\n| 이벤트 | 버전 | 필드 | 스키마 진화 전략 |\n|--------|------|------|----------------|\n\n## API 게이트웨이\n- **선택**: [Kong / Envoy / AWS API Gateway / ...]\n- **라우팅 규칙**:\n| 경로 패턴 | 대상 서비스 | 인증 | 레이트 리밋 | 캐싱 |\n|----------|-----------|------|-----------|------|\n\n## Saga 설계\n### [비즈니스 프로세스명] Saga\n- **패턴**: Choreography / Orchestration\n- **단계**:\n| 순서 | 서비스 | 액션 | 보상 액션 | 타임아웃 |\n|------|--------|------|---------|---------|\n\n## 탄력성 패턴\n| 패턴 | 적용 대상 | 설정 | 폴백 전략 |\n|------|---------|------|---------|\n| 서킷 브레이커 | OrderSvc→PaymentSvc | 실패 5회/10초 | 캐시된 결과 반환 |\n| 벌크헤드 | OrderSvc | 스레드풀 20 | 큐잉 후 처리 |\n| 재시도 | EventBus 소비자 | 3회, 지수 백오프 | DLQ 이동 |\n\n## Dead Letter Queue 정책\n| DLQ 명 | 원본 토픽 | 재처리 전략 | 알림 임계값 |\n|--------|---------|-----------|-----------|",
-      "dependencies": []
+      "dependencies": [
+        "domain-analyst",
+        "architecture-reviewer"
+      ]
     },
     {
       "id": "domain-analyst",
@@ -93,13 +99,17 @@
         "agentId": "architecture-reviewer",
         "parallel": false,
         "dependsOn": [
-          "domain-analyst"
+          "domain-analyst",
+          "observability-engineer"
         ]
       },
       {
         "agentId": "communication-designer",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "domain-analyst",
+          "architecture-reviewer"
+        ]
       },
       {
         "agentId": "observability-engineer",
@@ -111,7 +121,10 @@
       {
         "agentId": "architecture-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "domain-analyst",
+          "observability-engineer"
+        ]
       }
     ],
     "modes": [

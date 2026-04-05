@@ -43,7 +43,10 @@
         "Read"
       ],
       "outputTemplate": "# E-Book Metadata & Distribution Settings\n\n## Basic Information\n- **Title**: [Title]\n- **Subtitle**: [Subtitle]\n- **Author**: [Author name]\n- **Publisher**: [Publisher name / Self-published]\n- **Publication Date**: [Planned date]\n- **ISBN**: [Needs issuance / Already issued number]\n- **Language**: [Language]\n- **Page Count**: [Estimated pages]\n\n## Book Classification\n- **BISAC Category**: [Code] — [Category name]\n- **KDC Classification**: [Code] — [Category name]\n- **Additional Classification**: [Bookstore-specific subcategories]\n\n## Book Description\n\n### Short Description (150 chars)\n[For Kyobo/Ridibooks short intro]\n\n### Long Description (1,000 chars)\n[For detail page — HTML tags may be included]\n\n### Author Bio (300 chars)\n[Author biography]\n\n## Keywords (Search Optimization)\n| Rank | Keyword | Search Intent | Competition |\n|------|---------|--------------|-------------|\n| 1 | [Keyword] | [Intent] | [High/Med/Low] |\n\n## Pricing Strategy\n- **Recommended Price**: [Amount]\n- **Rationale**: [Competitor pricing, length, genre norms]\n- **Promotion Suggestions**: [Launch discount, free chapters, etc.]\n\n## Distribution Platform Settings\n| Platform | File Format | Price | DRM | Notes |\n|----------|------------|-------|-----|-------|\n| Kyobo | EPUB | [Amount] | [Yes/No] | [Metadata notes] |\n| Ridibooks | EPUB | [Amount] | [Yes/No] | ... |\n| Yes24 | EPUB | [Amount] | [Yes/No] | ... |\n| Millie's Library | EPUB | [Subscription] | — | ... |\n| Amazon KDP | EPUB/MOBI | [USD] | [Yes/No] | ... |\n\n## Legal Matters\n- **Copyright Notice**: [Copyright statement]\n- **License**: [All rights / Specific rights transfer / CC License]\n- **Disclaimer**: [If needed]",
-      "dependencies": []
+      "dependencies": [
+        "manuscript-editor",
+        "proofreader"
+      ]
     },
     {
       "id": "proofreader",
@@ -70,7 +73,10 @@
         "Read"
       ],
       "outputTemplate": "# Publishing Review Report\n\n## Overall Assessment\n- **Distribution Readiness**: GREEN Ready / YELLOW Proceed After Revisions / RED Rework Needed\n- **Summary**: [1-2 sentence summary]\n\n## Findings\n\n### RED Must Fix\n1. **[Location]**: [Problem description]\n   - Current: [Current content]\n   - Suggestion: [Revision suggestion]\n\n### YELLOW Recommended Fix\n1. ...\n\n### GREEN Notes\n1. ...\n\n## Consistency Matrix\n| Verification Item | Status | Notes |\n|-------------------|--------|-------|\n| Manuscript <-> Proofreading | PASS/WARN/FAIL | |\n| Manuscript <-> Cover | PASS/WARN/FAIL | |\n| Manuscript <-> Metadata | PASS/WARN/FAIL | |\n| Distribution Readiness | PASS/WARN/FAIL | |\n\n## Pre-Distribution Checklist\n- [ ] Edited manuscript finalized\n- [ ] Proofreading complete\n- [ ] Cover image finalized\n- [ ] Metadata entry complete\n- [ ] ISBN registered\n- [ ] Copyright notice\n- [ ] Distribution platform settings",
-      "dependencies": []
+      "dependencies": [
+        "proofreader",
+        "cover-designer"
+      ]
     }
   ],
   "skill": {
@@ -110,12 +116,18 @@
       {
         "agentId": "metadata-manager",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "manuscript-editor",
+          "proofreader"
+        ]
       },
       {
         "agentId": "publishing-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "proofreader",
+          "cover-designer"
+        ]
       }
     ],
     "modes": [

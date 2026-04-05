@@ -16,7 +16,11 @@
         "Read"
       ],
       "outputTemplate": "# Onboarding Program Review Report\n\n## Overall Assessment\n- **Program Readiness**: [Ready to launch / Ready after revisions / Redesign needed]\n- **Summary**:\n\n## Consistency Matrix\n| Validation Item | Status | Notes |\n|----------------|--------|-------|\n| Checklist ↔ Training schedule | | |\n| Training ↔ Mentor responsibilities | | |\n| Mentoring ↔ 30-60-90 goals | | |\n| Checklist ↔ Milestones | | |\n| Overall time allocation balance | | |\n\n## Findings\n\n### 🔴 Must Fix\n1. **[Location]**: [Issue]\n   - Current:\n   - Suggested:\n\n### 🟡 Recommended Fix\n1.\n\n### 🟢 For Reference\n1.\n\n## Activity Volume Analysis by Period\n| Period | Training (h) | Mentoring (h) | Hands-on (h) | Meetings (h) | Total (h) | Overloaded? |\n|--------|-------------|---------------|---------------|--------------|-----------|-------------|\n| Week 1 | | | | | | |\n| Week 2 | | | | | | |\n| Weeks 3-4 | | | | | | |\n| Weeks 5-8 | | | | | | |\n| Weeks 9-12 | | | | | | |\n\n## Essential Items Check\n- [ ] Employment contract guidance\n- [ ] Security/privacy training\n- [ ] Safety training (if applicable)\n- [ ] Benefits orientation\n- [ ] Emergency contacts\n- [ ] Organizational values/code of conduct\n\n## Onboarding Program ROI Measurement\n| Metric | Measurement Method | Target |\n|--------|-------------------|--------|\n| Time-to-Productivity | Point of independent work | Within 30 days |\n| New hire satisfaction | 90-day survey | 4.0/5.0 or higher |\n| Early attrition rate | Turnover within 6 months | Below 10% |\n| Manager satisfaction | 90-day evaluation | 4.0/5.0 or higher |\n\n## Best Practice Comparison\n| Item | Current Program | Best Practice | Improvement Opportunity |\n|------|----------------|---------------|------------------------|\n\n## Final Checklist\n- [ ] Checklist complete\n- [ ] Training program complete\n- [ ] Mentor guide complete\n- [ ] 30-60-90 plan complete\n- [ ] Stakeholder roles clear\n- [ ] No essential items missing\n- [ ] No overload periods",
-      "dependencies": []
+      "dependencies": [
+        "onboarding-architect",
+        "training-builder",
+        "mentor-matcher"
+      ]
     },
     {
       "id": "mentor-matcher",
@@ -42,7 +46,11 @@
         "Read"
       ],
       "outputTemplate": "# 30-60-90 Day Plan\n\n## 30 Days: Learning\n**Theme**: \"Understand and ask questions\"\n\n### Goals\n| # | Goal | Success Criteria | Support Needed | Status |\n|---|------|-----------------|----------------|--------|\n| 1 | Understand team processes | Can explain the process flow | Mentor guide | |\n| 2 | Master core tools | Can use tools independently | Training | |\n| 3 | Complete 1:1s with all team members | 5+ 1:1s completed | Buddy facilitation | |\n| 4 | Complete a small task | 1 task completed independently | Mentor review | |\n\n### Checkpoint: 30-Day Feedback Meeting\n**Timing**: Week 4 after start date\n**Attendees**: Manager + New hire (+ HR optional)\n**Agenda**:\n1. Goal achievement review\n2. Adaptation status check (work/culture/relationships)\n3. Challenges/support needs\n4. Agree on 60-day goals\n\n**Manager Question Guide**:\n- \"What do you understand best so far?\"\n- \"What's still confusing?\"\n- \"What additional support do you need?\"\n\n---\n\n## 60 Days: Contributing\n**Theme**: \"Participate and contribute\"\n\n### Goals\n| # | Goal | Success Criteria | Support Needed | Status |\n|---|------|-----------------|----------------|--------|\n| 1 | Independent work execution | 70% of daily tasks done independently | Manager monitoring | |\n| 2 | Team project contribution | Participate in 1 project, deliver results | Team collaboration | |\n| 3 | 1 improvement suggestion | Process/tool improvement idea | | |\n| 4 | 1 cross-team collaboration | Cross-functional work experience | Manager connection | |\n\n### Checkpoint: 60-Day Feedback Meeting\n**Agenda**:\n1. Growth review compared to 30-day mark\n2. Independent work performance level\n3. Team contribution feedback (including peer feedback)\n4. Agree on 90-day goals\n\n---\n\n## 90 Days: Performing\n**Theme**: \"Lead and deliver results\"\n\n### Goals\n| # | Goal | Success Criteria | Support Needed | Status |\n|---|------|-----------------|----------------|--------|\n| 1 | Fully independent work | 100% of daily tasks done independently | Minimal | |\n| 2 | Project lead | Lead a small project/feature | Manager coaching | |\n| 3 | 1 visible achievement | Deliverable contributing to team goals | | |\n| 4 | Onboarding graduation | Pass self-assessment + manager evaluation | | |\n\n### Checkpoint: 90-Day Graduation Meeting\n**Agenda**:\n1. 90-day comprehensive review\n2. Self-assessment vs. manager evaluation\n3. Onboarding graduation decision\n4. Set growth goals for next 6 months\n5. Onboarding feedback (for program improvement)\n\n## Progress Tracking Template\n| Week | Key Activities | Achievements | Challenges | Next Week Plan | Manager Comments |\n|------|---------------|--------------|------------|----------------|-----------------|\n\n## Feedback Collection Framework\n| Timing | Feedback Type | Collection Method | Participants |\n|--------|--------------|-------------------|--------------|\n| 30 days | Adaptation feedback | 1:1 meeting | Manager, new hire |\n| 60 days | Performance feedback | 1:1 + peer feedback | Manager, team |\n| 90 days | Comprehensive evaluation | 360-degree | Manager, team, mentor |\n\n## Handoff to Experience Reviewer",
-      "dependencies": []
+      "dependencies": [
+        "onboarding-architect",
+        "training-builder",
+        "mentor-matcher"
+      ]
     },
     {
       "id": "onboarding-architect",
@@ -110,12 +118,20 @@
       {
         "agentId": "milestone-tracker",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "onboarding-architect",
+          "training-builder",
+          "mentor-matcher"
+        ]
       },
       {
         "agentId": "experience-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "onboarding-architect",
+          "training-builder",
+          "mentor-matcher"
+        ]
       }
     ],
     "modes": [

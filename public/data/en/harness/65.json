@@ -15,7 +15,10 @@
         "Read"
       ],
       "outputTemplate": "# Cover Letter\n\n## English Cover Letter\n\nDear [Hiring Manager],\n\n[Opening — Hook + state the position]\n\n[Body 1 — Connect key experience to the position]\n\n[Body 2 — Specific reasons for applying to this company]\n\n[Closing — CTA + expression of gratitude]\n\nSincerely,\n[Name]\n\n## Korean Personal Statement\n\n### 1. Background\n[Concise, focused on key experiences]\n\n### 2. Motivation\n[Why this company, why this role]\n\n### 3. Core Competencies (Strengths)\n[Based on specific examples]\n\n### 4. Vision After Joining\n[Specific and achievable plans]\n\n## Customization Guide\n| Company Type | Tone | Focus Points |\n|-------------|------|-------------|\n| Enterprise | Formal, structured | Organizational fit, stability |\n| Startup | Passionate, action-oriented | Versatility, growth potential |\n| Multinational | Direct, results-driven | Global competency, data-driven |\n\n## Alternative Templates\n- **Networking Message**: [Short introduction for LinkedIn/email]\n- **Elevator Pitch**: [30-second self-introduction script]",
-      "dependencies": []
+      "dependencies": [
+        "positioning-strategist",
+        "resume-writer"
+      ]
     },
     {
       "id": "portfolio-designer",
@@ -54,7 +57,10 @@
         "Read"
       ],
       "outputTemplate": "# LinkedIn Profile Optimization\n\n## Headline\n[Optimized headline — 120 characters max]\n\n## About Section\n[Optimized summary — hook in first 3 lines, UVP, key achievements, CTA]\n\n## Experience\n### [Current/Most Recent Title] at [Company]\n[Keyword-rich, achievement-focused bullet points]\n\n## Skills (Top 50 ranked by priority)\n1. [Most important target skill]\n2. [Second skill]\n...\n\n## Recommendations Strategy\n| Recommender Type | Ask Script | Target Count |\n|-----------------|-----------|-------------|\n\n## Content Strategy\n| Content Type | Frequency | Topics | Purpose |\n|-------------|-----------|--------|---------|\n\n## Search Keyword Report\n| Target Keyword | Current Usage | Recommended Placement | Priority |\n|---------------|--------------|----------------------|----------|",
-      "dependencies": []
+      "dependencies": [
+        "positioning-strategist",
+        "resume-writer"
+      ]
     },
     {
       "id": "resume-writer",
@@ -108,12 +114,18 @@
       {
         "agentId": "profile-optimizer",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "positioning-strategist",
+          "resume-writer"
+        ]
       },
       {
         "agentId": "cover-letter-writer",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "positioning-strategist",
+          "resume-writer"
+        ]
       }
     ],
     "modes": [

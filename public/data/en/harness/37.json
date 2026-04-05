@@ -44,7 +44,10 @@
         "Read"
       ],
       "outputTemplate": "# 모니터링 및 운영 설정\n\n## 스케줄링\n- **크롤링 주기**: [cron 표현식]\n- **스케줄러**: cron / APScheduler / Celery Beat\n- **동시 실행 방지**: 파일 락 / 분산 락\n\n## 헬스체크\n| 체크 항목 | 주기 | 방법 | 정상 기준 |\n|----------|------|------|----------|\n\n## 사이트 변경 감지\n- **감지 방법**: DOM 구조 해시 비교\n- **체크 대상**: [핵심 선택자 목록]\n- **감지 시 액션**: 파서엔지니어에 알림 → 크롤링 일시 중지\n\n## 로깅 설계\n- **로그 형식**: 구조화 JSON\n- **로그 레벨**: DEBUG/INFO/WARNING/ERROR/CRITICAL\n- **보존 기간**: 30일\n- **로그 필드**: [timestamp, level, module, message, url, status_code, ...]\n\n## 알림 규칙\n| 조건 | 알림 채널 | 에스컬레이션 |\n|------|----------|------------|\n\n## 장애 대응 매뉴얼\n### IP 차단 시\n### 파싱 실패 급증 시\n### 데이터 품질 저하 시\n\n## 운영 대시보드 설계\n[메트릭 시각화 구성]",
-      "dependencies": []
+      "dependencies": [
+        "crawler-developer",
+        "parser-engineer"
+      ]
     },
     {
       "id": "parser-engineer",
@@ -118,7 +121,10 @@
       {
         "agentId": "monitor-operator",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "crawler-developer",
+          "parser-engineer"
+        ]
       }
     ],
     "modes": [

@@ -16,7 +16,11 @@
         "Read"
       ],
       "outputTemplate": "`_workspace/05_review_report.md` file::\n\n # Campaign Review \n\n ## Overall Assessment\n - **Campaign **: 🟢 / 🟡 Proceed After Revisions / 🔴 Rework Needed\n - ****: [1~2 summary]\n\n ## Findings\n\n ### 🔴 Must Fix\n 1. **[]**: [ description]\n - Current: [Current within]\n - Suggestion: [ Suggestion]\n\n ### 🟡 Recommended Fix\n 1. ...\n\n ### 🟢 Notes\n 1. ...\n\n ## Consistency Matrix\n | Verification | | |\n |----------|------|------|\n | Strategy ↔ Copy | ✅/⚠️/❌ | |\n | Copy ↔ Creative | ✅/⚠️/❌ | |\n | Creative ↔ | ✅/⚠️/❌ | |\n | ↔ Strategy | ✅/⚠️/❌ | |\n\n ## Final Deliverables Checklist\n - [ ] market·Target Analysis \n - [ ] Copy (Per-channel)\n - [ ] Creative Concept + Draft\n - [ ] (Budget·Schedule·KPI)",
-      "dependencies": []
+      "dependencies": [
+        "copywriter",
+        "creative-director",
+        "media-planner"
+      ]
     },
     {
       "id": "copywriter",
@@ -29,7 +33,7 @@
       ],
       "outputTemplate": "`_workspace/02_ad_copy.md` file::\n\n # ad Copy \n\n ## Campaign to\n 1. [to] — : [ Message]\n 2. [to] — : ...\n 3. [to] — : ...\n\n ## digital banner Copy\n ### banner A ( )\n - **line**: [25 within]\n - ****: [40 within]\n - **CTA **: [5 within]\n\n ### banner B (before )\n - **line**: [25 within]\n - ****: [40 within]\n - **CTA **: [5 within]\n\n ## SNS ad Copy\n ### Facebook/Instagram\n - ** Text**: [125 within — before ]\n - **line**: [40 within]\n - **description**: [30 within]\n - **CTA**: [Selection: / / etc.]\n\n ### YouTube ad\n - ** (6seconds)**: [script ]\n - **st (15seconds)**: [script — 5seconds within core Message]\n - **st (30seconds)**: [script ]\n\n ## search ad Copy (Google/Naver)\n | | within | Character limit |\n |------|------|--------|\n | 1 | | /30 |\n | 2 | | /30 |\n | 3 | | /30 |\n | description 1 | | /90 |\n | description 2 | | /90 |\n\n ## page Copy\n - **to line**:\n - ****:\n - **core 3**: (icon+ description)\n - ** **: [after//]\n - ** CTA**:\n\n ## Copy Tone & voice Guide\n - ****: [/before//]\n - ****:",
       "dependencies": [
-        "campaign-reviewer"
+        "market-analyst"
       ]
     },
     {
@@ -44,6 +48,7 @@
       ],
       "outputTemplate": "`_workspace/03_creative_concept.md` file::\n\n # Creative Concept\n\n ## Visual tone and manner\n - **Style**: [/illustration//whenst]\n - **color palette**: [ / / — HEX ]\n - **Typography**: [line / / Guide]\n - ** **: [3~5 ]\n\n ## core Visual (Key Visual)\n - **Concept description**: [ Visual composition element]\n - **Copy placement**: [Text and ]\n - **Emotion **: [Target Emotion]\n - ** Prompt**: [Gemini Image Prompt before]\n\n ## banner Guide\n ### per Layout\n | | | composition | Copy placement |\n |--------|------|------|----------|\n | 1200x628 | Facebook/Instagram | | |\n | 1080x1080 | Instagram | | |\n | 1080x1920 | Story/ | | |\n | 300x250 | GDN | | |\n | 728x90 | GDN | | |\n\n ## video Storyboard\n ### 6seconds ad\n | seconds | | Copy/within | before and |\n |----|------|-------------|----------|\n | 0~2 | | | |\n | 2~4 | | | |\n | 4~6 | | | |\n\n ### 15seconds st ad\n | seconds | | Copy/within | before and |\n |----|------|-------------|----------|\n\n ## A/B st \n - **A**: [description]\n - **B**: []\n - **st",
       "dependencies": [
+        "market-analyst",
         "copywriter"
       ]
     },
@@ -59,9 +64,7 @@
         "Read"
       ],
       "outputTemplate": "`_workspace/01_market_analysis.md` file::\n\n # market·Target Analysis \n\n ## Campaign \n - **/**: []\n - ****: [/]\n - **Campaign **: //before/\n - **Budget **: [ ]\n\n ## Target Audience\n\n ### 1 Target (Primary)\n - **demographics**: , per, , occupation\n - **Psychology**: , Style, interests\n - ** **: consumption, Pattern, Brand \n - **core Insight**: Target Messageof core\n\n ### 2 Target (Secondary)\n - ...\n\n ## Persona\n | | Persona A | Persona B |\n |------|-----------|-----------|\n | name/age/occupation | | |\n | daily life Pattern | | |\n | consumption | | |\n | decision | | |\n | core | | |\n | core / | | |\n\n ## Competitive ad Analysis\n | Competitive | Campaign | Message | | channel | | |\n |--------|---------|--------|-----|------|------|------|\n\n ## \n - **X**: [per 1]\n - **Y**: [per 2]\n - ** **: [description]\n - **per **: [USP — Unique Selling Proposition]\n\n ## Copy before \n - core Message , Emotion , taboo expression\n\n ## Creative before \n - Visual , Target Visual \n\n ## before \n - Targetof , when",
-      "dependencies": [
-        "creative-director"
-      ]
+      "dependencies": []
     },
     {
       "id": "media-planner",
@@ -74,7 +77,8 @@
       ],
       "outputTemplate": "`_workspace/04_media_plan.md` file::\n\n # \n\n ## Campaign Information\n - **Campaign**: []\n - **between**: [when ~ ]\n - ** Budget**: [amount]\n - **Campaign goal**: [//before]\n - **core KPI**: [goal ]\n\n ## channel Strategy\n | channel | Role ( ) | Budget ratio | Budget amount | expectations KPI |\n |------|-----------------|----------|----------|----------|\n | Google search ads | before | % | | CPC ₩, before % |\n | Meta (FB/IG) | + | % | | CPM ₩, CTR % |\n | YouTube | | % | | CPV ₩, VTR % |\n | search ads | before | % | | CPC ₩ |\n | | | % | | CTR % |\n | GDN/to | | % | | CPA ₩ |\n\n ## Budget when\n | when | Budget | channel | expectations | expectations before |\n |---------|------|---------|----------|----------|\n | | | | | |\n | | | | | |\n | | | | | |\n\n ## lean\n | | between | | channel | Budget | |\n |------|------|------|----------|---------|------|\n | W1 | | | | | |\n | W2 | | | | | |\n | ... | | | | | |\n\n ## Guide\n ### Google Ads\n - : [st]\n - Audience: [//]\n - : [st]\n\n ### Meta Ads\n - interests: ",
       "dependencies": [
-        "market-analyst"
+        "market-analyst",
+        "copywriter"
       ]
     }
   ],
@@ -96,34 +100,38 @@
       {
         "agentId": "campaign-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "copywriter",
+          "creative-director",
+          "media-planner"
+        ]
       },
       {
         "agentId": "copywriter",
         "parallel": false,
         "dependsOn": [
-          "campaign-reviewer"
+          "market-analyst"
         ]
       },
       {
         "agentId": "creative-director",
-        "parallel": false,
+        "parallel": true,
         "dependsOn": [
+          "market-analyst",
           "copywriter"
         ]
       },
       {
         "agentId": "market-analyst",
         "parallel": false,
-        "dependsOn": [
-          "creative-director"
-        ]
+        "dependsOn": []
       },
       {
         "agentId": "media-planner",
-        "parallel": false,
+        "parallel": true,
         "dependsOn": [
-          "market-analyst"
+          "market-analyst",
+          "copywriter"
         ]
       }
     ],

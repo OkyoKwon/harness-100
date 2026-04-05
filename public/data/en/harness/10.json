@@ -44,7 +44,10 @@
         "Read"
       ],
       "outputTemplate": "# SNS Content Review Report\n\n## Overall Assessment\n- **Publishing Readiness**: GREEN Ready / YELLOW Proceed After Revisions / RED Rework Needed\n- **Summary**: [1-2 sentence summary]\n\n## Findings\n\n### RED Must Fix\n1. **[Location — e.g., Post 3 Instagram Caption]**: [Problem description]\n   - Current: [Current content]\n   - Suggestion: [Revision suggestion]\n\n### YELLOW Recommended Fix\n1. ...\n\n### GREEN Notes\n1. ...\n\n## Consistency Matrix\n| Verification Item | Status | Notes |\n|-------------------|--------|-------|\n| Strategy <-> Posts | PASS/WARN/FAIL | |\n| Copy <-> Visuals | PASS/WARN/FAIL | |\n| Posts <-> Hashtags | PASS/WARN/FAIL | |\n| Brand Consistency | PASS/WARN/FAIL | |\n| Platform Suitability | PASS/WARN/FAIL | |\n\n## Final Deliverables Checklist\n- [ ] Strategy/Content calendar complete\n- [ ] Post copy complete\n- [ ] Visual plan complete\n- [ ] Hashtag strategy complete",
-      "dependencies": []
+      "dependencies": [
+        "copywriter",
+        "hashtag-analyst"
+      ]
     },
     {
       "id": "sns-strategist",
@@ -68,7 +71,10 @@
         "Read"
       ],
       "outputTemplate": "# Visual Plan\n\n## Visual Guidelines\n- **Brand Colors**: [Primary / Secondary / Accent]\n- **Fonts**: [Heading font / Body font]\n- **Image Style**: [Photo/Illustration/Graphic/Mixed]\n- **Filter/Tone**: [Bright/Dark/Vintage/Modern]\n\n## Post-by-Post Visuals\n\n### Post 1: [Content Title]\n- **Platform**: [Platform]\n- **Specs**: [Width x Height]\n- **Type**: [Single image/Carousel/Reels]\n\n#### Image Concept\n- **Composition**: [Center/Rule of thirds/Diagonal/...]\n- **Background**: [Color/Gradient/Photo]\n- **Core Visual Elements**: [Icons/Photos/Illustrations/Text]\n- **Text Overlay**: [Content, position, size]\n- **Emotional Tone**: [Bright/Serious/Humorous]\n\n#### Image Generation Prompt\n[Full prompt for Gemini image generation]\n\n#### Carousel Layout (if applicable)\n| Slide | Content | Text | Visual |\n|-------|---------|------|--------|\n| 1 (Cover) | [Hook] | [Title] | [Image description] |\n| 2 | [Point 1] | [Text] | [Image] |\n| ... | | | |\n| Last (CTA) | [Call to action] | [CTA text] | [Image] |\n\n#### Reels Storyboard (if applicable)\n| Sec | Screen | Text Overlay | Music/SFX | Transition |\n|-----|--------|-------------|-----------|------------|\n| 0-3 | [Hook scene] | [Text] | [Music] | [Cut/Fade/...] |\n\n### Post 2: ...",
-      "dependencies": []
+      "dependencies": [
+        "sns-strategist",
+        "copywriter"
+      ]
     }
   ],
   "skill": {
@@ -108,12 +114,18 @@
       {
         "agentId": "visual-planner",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "sns-strategist",
+          "copywriter"
+        ]
       },
       {
         "agentId": "performance-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "copywriter",
+          "hashtag-analyst"
+        ]
       }
     ],
     "modes": [

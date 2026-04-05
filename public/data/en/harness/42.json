@@ -17,7 +17,10 @@
         "Read"
       ],
       "outputTemplate": "# BI 검증 보고서\n\n## 종합 평가\n- **구축 준비 상태**: 🟢 준비 완료 / 🟡 수정 후 진행 / 🔴 재작업 필요\n- **총평**: [1~2문장 요약]\n\n## 발견 사항\n\n### 🔴 필수 수정\n### 🟡 권장 수정\n### 🟢 참고 사항\n\n## 정합성 매트릭스\n| 검증 항목 | 상태 | 비고 |\n|----------|------|------|\n| 데이터 모델 ↔ KPI | ✅/⚠️/❌ | |\n| KPI ↔ 대시보드 | ✅/⚠️/❌ | |\n| 대시보드 ↔ 보고서 | ✅/⚠️/❌ | |\n| E2E 데이터 흐름 | ✅/⚠️/❌ | |\n\n## 최종 산출물 체크리스트\n- [ ] 데이터 웨어하우스 설계서 완성\n- [ ] KPI 정의서 완성\n- [ ] 대시보드 명세 완성\n- [ ] 보고서 자동화 설정 완성",
-      "dependencies": []
+      "dependencies": [
+        "dashboard-builder",
+        "report-automator"
+      ]
     },
     {
       "id": "dashboard-builder",
@@ -29,7 +32,10 @@
         "Read"
       ],
       "outputTemplate": "# 대시보드 시각화 명세\n\n## 대시보드 구조\n| 탭/페이지 | 대상 사용자 | 핵심 질문 | 갱신 주기 |\n|----------|-----------|----------|----------|\n\n## 페이지별 레이아웃\n\n### Page 1: Executive Summary\n(ASCII 레이아웃 다이어그램)\n\n### 차트 상세 명세\n| 차트 ID | 차트 유형 | 표시 KPI | X축 | Y축 | 필터 | 드릴다운 |\n|---------|----------|---------|-----|-----|------|---------|\n\n## 인터랙션 설계\n- **글로벌 필터**: 기간, 지역, 제품 카테고리\n- **크로스 필터링**: [차트 A 선택 시 → 차트 B,C 연동]\n- **드릴다운**: [KPI 카드 클릭 → 상세 페이지 이동]\n\n## 색상·스타일 가이드\n- **주 색상 팔레트**: (HEX 코드)\n- **상태 색상**: 정상 #2ECC71, 경고 #F39C12, 위험 #E74C3C\n- **접근성**: WCAG 2.1 AA 기준 명암비 4.5:1 이상\n\n## 구현 도구 추천\n| 도구 | 적합 시나리오 | 장점 | 단점 |\n|------|-------------|------|------|",
-      "dependencies": []
+      "dependencies": [
+        "data-engineer",
+        "kpi-designer"
+      ]
     },
     {
       "id": "data-engineer",
@@ -105,7 +111,10 @@
       {
         "agentId": "dashboard-builder",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "data-engineer",
+          "kpi-designer"
+        ]
       },
       {
         "agentId": "report-automator",
@@ -117,7 +126,10 @@
       {
         "agentId": "bi-reviewer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "dashboard-builder",
+          "report-automator"
+        ]
       }
     ],
     "modes": [

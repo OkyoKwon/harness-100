@@ -15,7 +15,10 @@
         "Read"
       ],
       "outputTemplate": "_workspace/05_docs/\n├── README.md              — 메인 README\n├── getting-started.md     — 빠른 시작 가이드\n├── api-reference.md       — API 레퍼런스\n├── examples/              — 사용 예제\n│   ├── basic-usage.md\n│   ├── authentication.md\n│   ├── pagination.md\n│   ├── error-handling.md\n│   └── advanced-config.md\n├── changelog.md           — 변경 로그\n└── troubleshooting.md     — 트러블슈팅",
-      "dependencies": []
+      "dependencies": [
+        "spec-parser",
+        "sdk-developer"
+      ]
     },
     {
       "id": "sdk-developer",
@@ -27,7 +30,10 @@
         "Write"
       ],
       "outputTemplate": "_workspace/03_client/\n├── client.ts              — 메인 클라이언트 클래스\n├── resources/             — 리소스별 메서드\n│   ├── users.ts\n│   ├── orders.ts\n│   └── ...\n├── auth/                  — 인증 관련\n│   ├── authenticator.ts\n│   └── token-manager.ts\n├── http/                  — HTTP 레이어\n│   ├── request-builder.ts\n│   ├── response-handler.ts\n│   └── interceptors.ts\n├── pagination/            — 페이지네이션\n│   └── paginator.ts\n├── errors/                — 커스텀 에러\n│   └── api-error.ts\n├── config.ts              — 설정\n├── index.ts               — 진입점\n└── package.json           — 패키지 설정",
-      "dependencies": []
+      "dependencies": [
+        "spec-parser",
+        "type-generator"
+      ]
     },
     {
       "id": "spec-parser",
@@ -51,7 +57,10 @@
         "Read"
       ],
       "outputTemplate": "_workspace/04_tests/\n├── unit/                    — 단위 테스트\n│   ├── resources/\n│   │   ├── users.test.ts\n│   │   └── orders.test.ts\n│   ├── auth.test.ts\n│   └── pagination.test.ts\n├── integration/             — 통합 테스트\n│   ├── client.test.ts\n│   └── error-handling.test.ts\n├── fixtures/                — 테스트 데이터\n│   ├── responses/           — API 응답 목 데이터\n│   └── factories.ts         — 테스트 데이터 팩토리\n├── mocks/                   — 목 설정\n│   └── server.ts\n├── setup.ts                 — 테스트 환경 설정\n└── README.md                — 테스트 실행 가이드",
-      "dependencies": []
+      "dependencies": [
+        "type-generator",
+        "sdk-developer"
+      ]
     },
     {
       "id": "type-generator",
@@ -97,17 +106,26 @@
       {
         "agentId": "sdk-developer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "spec-parser",
+          "type-generator"
+        ]
       },
       {
         "agentId": "test-engineer",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "type-generator",
+          "sdk-developer"
+        ]
       },
       {
         "agentId": "doc-writer",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "spec-parser",
+          "sdk-developer"
+        ]
       }
     ],
     "modes": [

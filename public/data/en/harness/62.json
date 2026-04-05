@@ -15,7 +15,11 @@
         "Read"
       ],
       "outputTemplate": "# ADR-[Number]: [Decision Title]\n\n- **Status**: Proposed / Accepted / Superseded / Deprecated\n- **Date**: YYYY-MM-DD\n- **Decision Makers**: [Participants in the decision]\n- **Related ADRs**: [ADR-XXX, ADR-YYY]\n\n## Context\n\n[Why this decision is needed. Describe the current situation, problem, and constraints.]\n\n## Decision Drivers\n\n- [Driver 1: Description]\n- [Driver 2: Description]\n\n## Considered Alternatives\n\n### Alternative 1: [Name]\n- Pros: [+1], [+2]\n- Cons: [-1], [-2]\n\n### Alternative 2: [Name]\n- Pros: [+1], [+2]\n- Cons: [-1], [-2]\n\n## Decision\n\nWe choose [Alternative X] because:\n1. [Key rationale 1]\n2. [Key rationale 2]\n3. [Key rationale 3]\n\n## Consequences\n\n### Positive Consequences\n- [Consequence 1]\n\n### Negative Consequences\n- [Consequence 1]\n\n### Risks and Mitigation Strategies\n| Risk | Probability | Impact | Mitigation Strategy |\n|------|------------|--------|---------------------|\n\n## Validation Criteria\n- [ ] [Validation item 1 — Deadline: YYYY-MM-DD]\n- [ ] [Validation item 2]\n\n## Change History\n| Date | Status Change | Reason |\n|------|--------------|--------|",
-      "dependencies": []
+      "dependencies": [
+        "context-analyst",
+        "alternative-researcher",
+        "tradeoff-evaluator"
+      ]
     },
     {
       "id": "alternative-researcher",
@@ -55,7 +59,11 @@
         "Read"
       ],
       "outputTemplate": "# Impact Assessment and Tracking\n\n## Impact Scope Summary\n- **Decision Title**: [ADR title]\n- **Impact Rating**: High / Medium / Low\n- **Directly Affected Systems**: [Service/module list]\n- **Indirectly Affected Systems**: [Dependent service list]\n\n## System Impact Analysis\n| System/Service | Impact Type | Change Description | Difficulty | Priority |\n|----------------|------------|-------------------|------------|----------|\n\n## Team Impact Analysis\n| Team | Required Action | Estimated Time | Support Needed |\n|------|----------------|---------------|----------------|\n\n## Migration Roadmap\n\n### Phase 1: Preparation (Duration: X weeks)\n- [ ] [Task 1]\n- [ ] [Task 2]\n- **Rollback Strategy**: [How to revert at this phase]\n- **Validation Criteria**: [Conditions to proceed to next phase]\n\n### Phase 2: Pilot Deployment\n### Phase 3: Full Rollout\n### Phase 4: Cleanup and Stabilization\n\n## Monitoring Criteria\n| Metric | Measurement Method | Current Baseline | Success Threshold | Failure Threshold |\n|--------|--------------------|-----------------|-------------------|-------------------|\n\n## ADR Dependency Map\n| Related ADR | Relationship Type | Impact Description |\n|-------------|------------------|-------------------|\n\n## 6-Month Checkpoint\n- [ ] [Verification item 1 — Measurement method]\n- [ ] [Verification item 2]\n- [ ] Review this ADR's status (Maintain / Supersede / Deprecate)",
-      "dependencies": []
+      "dependencies": [
+        "context-analyst",
+        "alternative-researcher",
+        "tradeoff-evaluator"
+      ]
     },
     {
       "id": "tradeoff-evaluator",
@@ -67,7 +75,10 @@
         "Read"
       ],
       "outputTemplate": "# Tradeoff Evaluation\n\n## Evaluation Methodology\n- **Weight Source**: Quality attribute priorities from context analysis\n- **Scoring Criteria**: 1 (Very Poor) to 5 (Excellent)\n- **Evaluation Scenarios**: Best / Baseline / Worst\n\n## Weighted Evaluation Matrix\n| Quality Attribute | Weight (%) | Alt 1 | Alt 2 | Alt 3 | Status Quo |\n|-------------------|-----------|-------|-------|-------|------------|\n| Performance | | /5 | /5 | /5 | /5 |\n| Scalability | | /5 | /5 | /5 | /5 |\n| Maintainability | | /5 | /5 | /5 | /5 |\n| **Weighted Total** | 100% | | | | |\n\n## Detailed Analysis\n### [Quality Attribute]: [Name]\n- **Alternative 1** (X/5): [Rationale]\n- **Alternative 2** (X/5): [Rationale]\n\n## Cost Analysis\n| Cost Item | Alt 1 | Alt 2 | Alt 3 | Status Quo |\n|-----------|-------|-------|-------|------------|\n| Initial Build Cost | | | | |\n| Annual Operating Cost | | | | |\n| Migration Cost | | | | |\n| Training/Education Cost | | | | |\n\n## Risk-Reward Matrix\n| Alternative | Key Risk | Risk Probability | Expected Reward | Reward-to-Risk Ratio |\n|-------------|----------|-----------------|-----------------|---------------------|\n\n## Time Horizon Analysis\n| Alternative | Short-term (6 months) | Long-term (2+ years) | Trend |\n|-------------|----------------------|---------------------|-------|\n\n## Recommendation\n- **Primary Recommendation**: [Alternative name] — [Summary of reasons]\n- **Conditional Alternative**: If [condition], then [alternative name] is recommended\n- **Non-Recommendation Rationale**: [Eliminated alternative] — [Reason]",
-      "dependencies": []
+      "dependencies": [
+        "context-analyst",
+        "alternative-researcher"
+      ]
     }
   ],
   "skill": {
@@ -100,17 +111,28 @@
       {
         "agentId": "tradeoff-evaluator",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "context-analyst",
+          "alternative-researcher"
+        ]
       },
       {
         "agentId": "adr-author",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "context-analyst",
+          "alternative-researcher",
+          "tradeoff-evaluator"
+        ]
       },
       {
         "agentId": "impact-tracker",
         "parallel": true,
-        "dependsOn": []
+        "dependsOn": [
+          "context-analyst",
+          "alternative-researcher",
+          "tradeoff-evaluator"
+        ]
       }
     ],
     "modes": [

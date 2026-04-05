@@ -43,7 +43,10 @@
         "Read"
       ],
       "outputTemplate": "# Legal Opinion\n\n## Disclaimer\nThis opinion is an AI-generated legal analysis for reference purposes only and does not substitute for professional legal advice.\nFor actual legal decision-making, please consult a licensed attorney.\n\n## 1. Executive Summary\n- **Issue**: [One-sentence summary]\n- **Conclusion**: [Core conclusion]\n- **Certainty Level**: [Clear / High / Moderate / Low]\n- **Recommended Action**: [Key recommendation]\n\n## 2. Statement of Facts\n[Chronological summary of the facts of the client's case]\n\n## 3. Legal Issues\n\n### Issue 1: [Title]\n\n#### Issue\n[Stated in the form of a legal question]\n\n#### Rule\n- Relevant statutory provisions: [Citation]\n- Precedent doctrine: [Supreme Court Case No. XXXX-Da-XXXXX]\n\n#### Application\n[Argument applying the legal rule to the facts]\n\n#### Conclusion\n[Conclusion on this specific issue]\n\n### Issue 2: ...\n\n## 4. Anticipated Counterarguments and Rebuttals\n| Counterargument | Basis | Rebuttal | Basis |\n|-----------------|-------|----------|-------|\n\n## 5. Overall Conclusion\n- Overall legal assessment\n- Likelihood of success (if applicable)\n- Risk factors\n\n## 6. Recommendations\n- Immediate actions required\n- Matters requiring further verification\n- Matters requiring expert consultation",
-      "dependencies": []
+      "dependencies": [
+        "case-searcher",
+        "legal-analyst"
+      ]
     },
     {
       "id": "strategy-advisor",
@@ -55,7 +58,10 @@
         "Read"
       ],
       "outputTemplate": "# Legal Strategy Report\n\n## 1. Strategy Summary\n- **Recommended Strategy**: [Core strategy in one sentence]\n- **Expected Outcomes**: [Best / Expected / Worst scenarios]\n- **Estimated Timeline**:\n- **Estimated Cost Range**:\n\n## 2. Strategy Option Comparison\n| Option | Description | Win/Success Probability | Estimated Timeline | Estimated Cost | Risk |\n|--------|-------------|------------------------|--------------------|----------------|------|\n| Litigation | | | | | |\n| Arbitration | | | | | |\n| Mediation | | | | | |\n| Negotiation | | | | | |\n\n## 3. Recommended Strategy Detail\n\n### Primary Strategy: [Strategy Name]\n- **Basis**: [Legal rationale]\n- **Execution Steps**:\n    1. [Step] — Deadline\n    2. [Step] — Deadline\n- **Required Evidence/Materials**:\n- **Anticipated Issues and Responses**:\n\n### Alternative Strategy: [Strategy Name]\n- **Trigger Condition**: [If primary strategy fails]\n- **Execution Steps**:\n\n## 4. Risk Matrix\n| Risk Factor | Likelihood | Impact | Mitigation |\n|-------------|------------|--------|------------|\n\n## 5. Scenario-Based Outcome Projections\n| Scenario | Conditions | Expected Outcome | Probability |\n|----------|------------|------------------|-------------|\n| Best Case | | | |\n| Expected | | | |\n| Worst Case | | | |\n\n## 6. Execution Roadmap\n| Phase | Task | Deadline | Owner | Cost |\n|-------|------|----------|-------|------|\n\n## 7. Comprehensive Recommendations\n- Priority action items\n- Areas requiring expert consultation\n- Cautions and caveats",
-      "dependencies": []
+      "dependencies": [
+        "legal-analyst",
+        "opinion-writer"
+      ]
     }
   ],
   "skill": {
@@ -81,12 +87,18 @@
       {
         "agentId": "opinion-writer",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "case-searcher",
+          "legal-analyst"
+        ]
       },
       {
         "agentId": "strategy-advisor",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "legal-analyst",
+          "opinion-writer"
+        ]
       }
     ],
     "modes": [

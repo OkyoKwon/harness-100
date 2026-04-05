@@ -56,7 +56,10 @@
         "Read"
       ],
       "outputTemplate": "# [Analysis Project Name] — Final Analysis Report\n\n> Date: YYYY-MM-DD | Analysis Period: [period] | Data: [source]\n\n---\n\n## Executive Summary\n\n### Key Findings\n1. **[Finding Title]**: [1-2 sentence description + key figure]\n2. ...\n\n### Recommended Actions\n| Priority | Action | Rationale | Expected Impact | Suggested Owner |\n|---------|--------|-----------|----------------|----------------|\n\n---\n\n## 1. Analysis Background and Purpose\n- **Business Context**: [why this analysis is needed]\n- **Key Questions**: [questions being answered]\n- **Data Scope**: [source, period, scale]\n\n## 2. Data Overview\n[EDA results summary — key excerpts from report 01]\n\n## 3. Analysis Methodology\n[applied techniques, selection rationale, assumptions — excerpted from report 03]\n\n## 4. Key Findings\n### Finding 1: [title]\n[narrative + visualization reference + statistical evidence]\n\n### Finding 2: ...\n\n## 5. Recommendations\n[specific, actionable recommendations — including priority, expected impact, risks]\n\n## 6. Limitations and Future Analysis Suggestions\n- **Current Analysis Limitations**: [honestly stated]\n- **Additional Analysis Suggestions**: [including data/resource requirements]\n\n---\n\n## Appendix\n### A. Data Dictionary\n### B. Cleaning History Summary\n### C. Analysis Code Location\n### D. Visualization Index",
-      "dependencies": []
+      "dependencies": [
+        "analyst",
+        "visualizer"
+      ]
     },
     {
       "id": "visualizer",
@@ -110,9 +113,9 @@
       },
       {
         "agentId": "visualizer",
-        "parallel": true,
+        "parallel": false,
         "dependsOn": [
-          "explorer"
+          "analyst"
         ]
       },
       {
@@ -125,7 +128,10 @@
       {
         "agentId": "reporter",
         "parallel": false,
-        "dependsOn": []
+        "dependsOn": [
+          "analyst",
+          "visualizer"
+        ]
       }
     ],
     "modes": [

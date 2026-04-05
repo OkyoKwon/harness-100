@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { useLocale } from "@/hooks/use-locale";
 import { CodeBlock } from "@/components/guide/code-block";
+import { ConceptRelationshipDiagram } from "@/components/common/concept-diagram";
 
 const TOC_SECTIONS = [
   { id: "what-is-harness", key: "guide.whatIsHarness.title" },
+  { id: "core-concepts", key: "guide.coreConcepts.title" },
   { id: "install", key: "guide.install.title" },
   { id: "usage", key: "guide.usage.title" },
   { id: "modes", key: "guide.modes.title" },
@@ -60,6 +62,42 @@ export default function GuidePage() {
         <h2 className="text-xl font-semibold mb-4">{t("guide.whatIsHarness.title")}</h2>
         <p className="text-[var(--muted-foreground)] leading-relaxed">
           {t("guide.whatIsHarness.body")}
+        </p>
+      </section>
+
+      <section id="core-concepts" className="mb-10 scroll-mt-20">
+        <h2 className="text-xl font-semibold mb-4">{t("guide.coreConcepts.title")}</h2>
+        <p className="text-[var(--muted-foreground)] leading-relaxed mb-6">
+          {t("guide.coreConcepts.intro")}
+        </p>
+
+        <div className="space-y-4">
+          <div className="p-4 rounded-lg border border-[var(--border)]">
+            <h3 className="font-semibold mb-2">{t("guide.coreConcepts.agentTitle")}</h3>
+            <p className="text-sm text-[var(--muted-foreground)]">
+              {t("guide.coreConcepts.agentBody")}
+            </p>
+          </div>
+
+          <div className="p-4 rounded-lg border border-[var(--border)]">
+            <h3 className="font-semibold mb-2">{t("guide.coreConcepts.skillTitle")}</h3>
+            <p className="text-sm text-[var(--muted-foreground)]">
+              {t("guide.coreConcepts.skillBody")}
+            </p>
+          </div>
+
+          <div className="p-4 rounded-lg border border-[var(--border)]">
+            <h3 className="font-semibold mb-2">{t("guide.coreConcepts.extensionTitle")}</h3>
+            <p className="text-sm text-[var(--muted-foreground)]">
+              {t("guide.coreConcepts.extensionBody")}
+            </p>
+          </div>
+        </div>
+
+        <ConceptRelationshipDiagram />
+
+        <p className="mt-4 text-sm font-medium text-[var(--muted-foreground)] bg-[var(--muted)] rounded-lg px-4 py-3">
+          {t("guide.coreConcepts.summary")}
         </p>
       </section>
 

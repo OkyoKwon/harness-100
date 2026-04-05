@@ -13,6 +13,7 @@ import { AgentList } from "@/components/detail/agent-list";
 import { WorkflowDiagram } from "@/components/detail/workflow-diagram";
 import { OutputPreview } from "@/components/detail/output-preview";
 import { CompletionBanner } from "@/components/common/completion-banner";
+import { ConceptRelationshipDiagram } from "@/components/common/concept-diagram";
 import { ConflictModal } from "@/components/setup/conflict-modal";
 import { CATEGORIES } from "@/lib/constants";
 import { buildCliCommand } from "@/lib/cli";
@@ -52,6 +53,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
   const [harness, setHarness] = useState<Harness | null>(null);
   const [loadingState, setLoadingState] = useState<LoadingState>("loading");
   const [errorMessage, setErrorMessage] = useState("");
+  const [conceptsExpanded, setConceptsExpanded] = useState(false);
 
   const { toggle: toggleFavorite, isFavorite } = useFavorites();
   const { status: zipStatus, errorMessage: zipError, download: downloadZip } = useZipDownload();
@@ -273,6 +275,49 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
         <p className="mt-2 text-[10px] text-[var(--info-foreground)] opacity-70">
           {t("setup.tip")}
         </p>
+      </div>
+
+      {/* Core Concepts — collapsible */}
+      <div className="mb-6 rounded-lg border border-[var(--info-border)] bg-[var(--info-bg)]">
+        <button
+          type="button"
+          onClick={() => setConceptsExpanded((prev) => !prev)}
+          className="flex w-full items-center justify-between px-4 py-3 text-left"
+        >
+          <span className="text-sm font-semibold text-[var(--info-foreground)]">
+            {t("detail.concepts.title")}
+          </span>
+          <svg
+            className={`h-4 w-4 shrink-0 text-[var(--info-foreground)] transition-transform ${
+              conceptsExpanded ? "rotate-180" : ""
+            }`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        {conceptsExpanded && (
+          <div className="px-4 pb-4">
+            <div className="space-y-2 text-xs text-[var(--info-foreground)]">
+              <p>
+                <strong>{t("detail.concepts.agentLabel")}</strong>{" "}
+                {t("detail.concepts.agentDesc")}
+              </p>
+              <p>
+                <strong>{t("detail.concepts.skillLabel")}</strong>{" "}
+                {t("detail.concepts.skillDesc")}
+              </p>
+              <p>
+                <strong>{t("detail.concepts.extensionLabel")}</strong>{" "}
+                {t("detail.concepts.extensionDesc")}
+              </p>
+            </div>
+            <ConceptRelationshipDiagram compact />
+          </div>
+        )}
       </div>
 
       {/* Main content: two-panel on desktop, stacked on mobile */}

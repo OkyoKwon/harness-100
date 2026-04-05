@@ -104,6 +104,82 @@ const translations: Record<string, TranslationEntry> = {
     en: "Could not load harness.",
   },
 
+  // ── Core Concepts (Detail Page) ──
+  "detail.concepts.title": {
+    ko: "구조 이해하기",
+    en: "Understanding the Structure",
+  },
+  "detail.concepts.agentLabel": {
+    ko: "에이전트 (작업자)",
+    en: "Agent (Worker)",
+  },
+  "detail.concepts.agentDesc": {
+    ko: "각 에이전트는 특정 역할(기획, 작성, 분석 등)을 맡은 전문가입니다. 도구, 의존성, 산출물 템플릿을 가집니다.",
+    en: "Each agent is a specialist with a specific role (planning, writing, analysis, etc.). Has tools, dependencies, and an output template.",
+  },
+  "detail.concepts.skillLabel": {
+    ko: "스킬 (오케스트레이터)",
+    en: "Skill (Orchestrator)",
+  },
+  "detail.concepts.skillDesc": {
+    ko: "스킬은 에이전트들의 실행 순서(DAG)를 정의하고, 실행 모드와 트리거 조건을 관리합니다.",
+    en: "The skill defines the execution order (DAG) of agents, and manages execution modes and trigger conditions.",
+  },
+  "detail.concepts.extensionLabel": {
+    ko: "확장 스킬 (플러그인)",
+    en: "Extension Skill (Plugin)",
+  },
+  "detail.concepts.extensionDesc": {
+    ko: "확장 스킬은 특정 에이전트 1명을 대상으로 도메인 지식을 추가하여 능력을 강화합니다.",
+    en: "An extension skill targets exactly one agent, enhancing it with additional domain knowledge.",
+  },
+
+  // ── Core Concepts (Guide Page) ──
+  "guide.coreConcepts.title": {
+    ko: "핵심 개념",
+    en: "Core Concepts",
+  },
+  "guide.coreConcepts.intro": {
+    ko: "하네스는 세 가지 핵심 구성요소로 이루어져 있습니다. 각 요소의 역할과 관계를 이해하면 더 효과적으로 활용할 수 있습니다.",
+    en: "A harness is composed of three core building blocks. Understanding each component and their relationships helps you use harnesses more effectively.",
+  },
+  "guide.coreConcepts.agentTitle": {
+    ko: "에이전트 — 작업자",
+    en: "Agents — Workers",
+  },
+  "guide.coreConcepts.agentBody": {
+    ko: "에이전트는 하네스의 실제 작업 수행자입니다. 각 에이전트는 고유한 역할(role), 사용 도구(tools), 의존성(dependencies), 산출물 템플릿(outputTemplate)을 가집니다.",
+    en: "Agents are the actual workers of a harness. Each agent has a unique role, tools, dependencies, and an output template.",
+  },
+  "guide.coreConcepts.skillTitle": {
+    ko: "스킬 — 오케스트레이터",
+    en: "Skill — Orchestrator",
+  },
+  "guide.coreConcepts.skillBody": {
+    ko: "스킬은 에이전트 팀의 지휘자입니다. 실행 순서(executionOrder)를 DAG로 정의하고, 실행 모드(modes)로 부분 실행 경로를 제공하며, 트리거 조건(triggerConditions)으로 자동 감지됩니다.",
+    en: "The skill is the conductor of the agent team. It defines execution order as a DAG, provides subset execution paths via modes, and is auto-detected through trigger conditions.",
+  },
+  "guide.coreConcepts.extensionTitle": {
+    ko: "확장 스킬 — 플러그인",
+    en: "Extension Skills — Plugins",
+  },
+  "guide.coreConcepts.extensionBody": {
+    ko: "확장 스킬은 특정 에이전트 1명을 대상으로 도메인 전문 지식을 주입하는 플러그인입니다. 예를 들어, '라이선스 호환성 가이드' 확장 스킬이 '라이선스 전문가' 에이전트를 강화합니다.",
+    en: "Extension skills are plugins that inject domain expertise into exactly one specific agent. For example, a 'License Compatibility Guide' extension skill enhances the 'License Specialist' agent.",
+  },
+  "guide.coreConcepts.summary": {
+    ko: "요약: 하네스 = 컨테이너 / 스킬이 에이전트를 조율 / 확장 스킬이 특정 에이전트를 강화",
+    en: "Summary: Harness = container / Skill orchestrates Agents / Extension Skills enhance specific Agents",
+  },
+
+  // ── Concept Diagram ──
+  "concepts.diagram.harness": { ko: "하네스", en: "Harness" },
+  "concepts.diagram.skill": { ko: "스킬", en: "Skill" },
+  "concepts.diagram.agents": { ko: "에이전트", en: "Agents" },
+  "concepts.diagram.extensionSkills": { ko: "확장 스킬", en: "Ext. Skills" },
+  "concepts.diagram.orchestrates": { ko: "조율", en: "orchestrates" },
+  "concepts.diagram.enhances": { ko: "강화", en: "enhances" },
+
   // ── Actions ──
   "action.setup": { ko: "세팅 →", en: "Setup →" },
   "action.setupInProgress": { ko: "세팅 중...", en: "Setting up..." },

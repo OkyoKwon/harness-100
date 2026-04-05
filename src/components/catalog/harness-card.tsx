@@ -105,14 +105,28 @@ export function HarnessCard({ harness, isFavorite, onToggleFavorite, showRank = 
             </span>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             <SetupButton onClick={() => router.push(`/harness/${paddedId}?action=setup`)} size="sm" />
             <ZipButton onClick={() => router.push(`/harness/${paddedId}?action=zip`)} size="sm" />
+            {!hoverCapable && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setShowPreview((prev) => !prev);
+                }}
+                className="ml-auto flex h-7 w-7 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-xs text-[var(--muted-foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
+                aria-label={t("preview.toggle")}
+              >
+                i
+              </button>
+            )}
           </div>
         </div>
       </Link>
 
-      {showPreview && hoverCapable && (
+      {showPreview && (
         <QuickPreview
           harnessId={harness.id}
           anchorRef={cardRef}

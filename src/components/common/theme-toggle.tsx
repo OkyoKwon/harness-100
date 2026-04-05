@@ -8,9 +8,12 @@ export function ThemeToggle() {
   const { effective, toggle } = useTheme();
   const { t } = useLocale();
 
+  const label = effective === "dark" ? t("a11y.lightMode") : t("a11y.darkMode");
+
   return (
     <IconButton
-      ariaLabel={effective === "dark" ? t("a11y.lightMode") : t("a11y.darkMode")}
+      ariaLabel={label}
+      title={label}
       onClick={toggle}
     >
       {effective === "dark" ? (

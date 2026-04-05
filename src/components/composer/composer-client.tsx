@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import type { HarnessMeta } from "@/lib/types";
 import { loadCatalog } from "@/lib/harness-loader";
 import { useLocale } from "@/hooks/use-locale";
+import { useToast } from "@/hooks/use-toast";
 import { useComposer } from "@/hooks/use-composer";
 import { HarnessSelector } from "@/components/composer/harness-selector";
 import { CompositionPreview } from "@/components/composer/composition-preview";
@@ -25,6 +26,7 @@ export function ComposerClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { t, locale } = useLocale();
+  const { addToast } = useToast();
 
   const [catalog, setCatalog] = useState<ReadonlyArray<HarnessMeta>>([]);
   const [catalogError, setCatalogError] = useState<string | null>(null);
@@ -103,6 +105,28 @@ export function ComposerClient() {
     [removeHarness],
   );
 
+  const handleCopyUrl = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      addToast(t("composer.urlCopied"), "success");
+    } catch {
+      // Fallback
+      try {
+        const textarea = document.createElement("textarea");
+        textarea.value = window.location.href;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        addToast(t("composer.urlCopied"), "success");
+      } catch {
+        // silent
+      }
+    }
+  }, [addToast, t]);
+
   if (catalogError) {
     return (
       <main className="mx-auto max-w-7xl px-4 py-8">
@@ -126,13 +150,22 @@ export function ComposerClient() {
           </p>
         </div>
         {selectedIds.length > 0 && (
-          <button
-            type="button"
-            onClick={clear}
-            className="shrink-0 rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-sm text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)] active:bg-[var(--secondary)] transition-base focus-ring"
-          >
-            {t("composer.reset")}
-          </button>
+          <div className="flex shrink-0 items-center gap-2">
+            <button
+              type="button"
+              onClick={handleCopyUrl}
+              className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-sm text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)] active:bg-[var(--secondary)] transition-base focus-ring"
+            >
+              {t("composer.copyUrl")}
+            </button>
+            <button
+              type="button"
+              onClick={clear}
+              className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-sm text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)] active:bg-[var(--secondary)] transition-base focus-ring"
+            >
+              {t("composer.reset")}
+            </button>
+          </div>
         )}
       </div>
 

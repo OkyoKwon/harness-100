@@ -12,18 +12,29 @@ export function SearchBar({ onSearch }: SearchBarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isDebouncing, setIsDebouncing] = useState(false);
+  const [value, setValue] = useState("");
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = e.target.value;
+      setValue(newValue);
       setIsDebouncing(true);
       if (timerRef.current) clearTimeout(timerRef.current);
       timerRef.current = setTimeout(() => {
-        onSearch(e.target.value);
+        onSearch(newValue);
         setIsDebouncing(false);
       }, 300);
     },
     [onSearch],
   );
+
+  const handleClear = useCallback(() => {
+    setValue("");
+    onSearch("");
+    if (timerRef.current) clearTimeout(timerRef.current);
+    setIsDebouncing(false);
+    inputRef.current?.focus();
+  }, [onSearch]);
 
   // "/" keyboard shortcut to focus search
   useEffect(() => {
@@ -63,9 +74,10 @@ export function SearchBar({ onSearch }: SearchBarProps) {
       <input
         ref={inputRef}
         type="text"
+        value={value}
         placeholder={t("search.placeholder")}
         onChange={handleChange}
-        className="w-full pl-10 pr-16 py-2.5 rounded-lg border border-[var(--border)] bg-[var(--background)] text-sm hover:border-[var(--primary)] focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2 transition-base"
+        className="w-full pl-10 pr-20 py-2.5 rounded-lg border border-[var(--border)] bg-[var(--background)] text-sm hover:border-[var(--primary)] focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2 transition-base"
       />
 
       <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
@@ -74,10 +86,26 @@ export function SearchBar({ onSearch }: SearchBarProps) {
           <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-[var(--muted)] border-t-[var(--primary)]" />
         )}
 
+        {/* Clear button */}
+        {value.length > 0 && !isDebouncing && (
+          <button
+            type="button"
+            onClick={handleClear}
+            className="flex h-5 w-5 items-center justify-center rounded-full text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-base"
+            aria-label={t("a11y.close")}
+          >
+            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        )}
+
         {/* Keyboard shortcut hint */}
-        <kbd className="hidden sm:inline-flex items-center rounded border border-[var(--border)] bg-[var(--muted)] px-1.5 py-0.5 text-[10px] font-mono text-[var(--muted-foreground)]">
-          /
-        </kbd>
+        {value.length === 0 && (
+          <kbd className="hidden sm:inline-flex items-center rounded border border-[var(--border)] bg-[var(--muted)] px-1.5 py-0.5 text-[10px] font-mono text-[var(--muted-foreground)]">
+            /
+          </kbd>
+        )}
       </div>
     </div>
   );

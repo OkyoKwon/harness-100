@@ -8,10 +8,12 @@ type Status = "idle" | "building" | "complete" | "error";
 
 export function useZipDownload() {
   const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const download = useCallback(
     async (harness: Harness, modifications?: ReadonlyArray<Modification>) => {
       setStatus("building");
+      setErrorMessage(null);
       try {
         const blob = await buildZip(harness, modifications);
         const url = URL.createObjectURL(blob);
@@ -24,12 +26,14 @@ export function useZipDownload() {
         URL.revokeObjectURL(url);
         setStatus("complete");
       } catch (err) {
+        const message = err instanceof Error ? err.message : "ZIP build failed";
         console.error("ZIP build failed:", err);
+        setErrorMessage(message);
         setStatus("error");
       }
     },
     [],
   );
 
-  return { status, download } as const;
+  return { status, errorMessage, download } as const;
 }

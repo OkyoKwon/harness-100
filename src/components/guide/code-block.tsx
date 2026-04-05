@@ -3,11 +3,11 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useLocale } from "@/hooks/use-locale";
 
-interface CopyCliButtonProps {
-  readonly text: string;
+interface CodeBlockProps {
+  readonly children: string;
 }
 
-export function CopyCliButton({ text }: CopyCliButtonProps) {
+export function CodeBlock({ children }: CodeBlockProps) {
   const { t } = useLocale();
   const [copied, setCopied] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -21,13 +21,12 @@ export function CopyCliButton({ text }: CopyCliButtonProps) {
   const handleCopy = useCallback(async () => {
     let success = false;
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(children);
       success = true;
     } catch {
-      // Fallback: textarea + execCommand
       try {
         const textarea = document.createElement("textarea");
-        textarea.value = text;
+        textarea.value = children;
         textarea.style.position = "fixed";
         textarea.style.opacity = "0";
         document.body.appendChild(textarea);
@@ -43,19 +42,21 @@ export function CopyCliButton({ text }: CopyCliButtonProps) {
       if (timerRef.current) clearTimeout(timerRef.current);
       timerRef.current = setTimeout(() => setCopied(false), 2000);
     }
-  }, [text]);
+  }, [children]);
 
   return (
-    <button
-      type="button"
-      onClick={handleCopy}
-      className="focus-ring transition-base inline-flex items-center gap-1 rounded border border-[var(--border)] bg-[var(--card)] px-2 py-1 text-xs font-medium text-[var(--muted-foreground)] hover:bg-[var(--muted)] active:bg-[var(--secondary)]"
-    >
-      {copied ? (
-        <span className="text-[var(--success)]">{t("action.copied")}</span>
-      ) : (
-        <span>{t("action.copy")}</span>
-      )}
-    </button>
+    <div className="group relative">
+      <pre className="bg-[var(--muted)] p-3 rounded text-sm overflow-x-auto">
+        {children}
+      </pre>
+      <button
+        type="button"
+        onClick={handleCopy}
+        className="absolute right-2 top-2 rounded border border-[var(--border)] bg-[var(--card)] px-1.5 py-0.5 text-[10px] font-medium text-[var(--muted-foreground)] opacity-0 group-hover:opacity-100 focus:opacity-100 hover:bg-[var(--muted)] transition-base focus-ring"
+        aria-label={t("action.copy")}
+      >
+        {copied ? t("action.copied") : t("action.copy")}
+      </button>
+    </div>
   );
 }

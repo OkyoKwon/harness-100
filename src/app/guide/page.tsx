@@ -1,22 +1,69 @@
 "use client";
 
+import { useState } from "react";
 import { useLocale } from "@/hooks/use-locale";
+import { CodeBlock } from "@/components/guide/code-block";
+
+const TOC_SECTIONS = [
+  { id: "what-is-harness", key: "guide.whatIsHarness.title" },
+  { id: "install", key: "guide.install.title" },
+  { id: "usage", key: "guide.usage.title" },
+  { id: "modes", key: "guide.modes.title" },
+  { id: "file-structure", key: "guide.fileStructure.title" },
+  { id: "troubleshooting", key: "guide.troubleshooting.title" },
+  { id: "browser", key: "guide.browser.title" },
+  { id: "faq", key: "guide.faq.title" },
+] as const;
 
 export default function GuidePage() {
   const { t } = useLocale();
+  const [tocOpen, setTocOpen] = useState(false);
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">{t("guide.title")}</h1>
+      <h1 className="text-3xl font-bold mb-6">{t("guide.title")}</h1>
 
-      <section className="mb-10">
+      {/* Table of Contents */}
+      <nav className="mb-8 rounded-lg border border-[var(--border)] bg-[var(--card)] p-4">
+        <button
+          type="button"
+          onClick={() => setTocOpen((prev) => !prev)}
+          className="flex w-full items-center justify-between text-sm font-semibold text-[var(--foreground)] sm:cursor-default"
+          aria-expanded={tocOpen}
+        >
+          {t("guide.toc")}
+          <svg
+            className={`h-4 w-4 transition-transform sm:hidden ${tocOpen ? "rotate-180" : ""}`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <ol className={`mt-3 space-y-1.5 text-sm ${tocOpen ? "block" : "hidden"} sm:block`}>
+          {TOC_SECTIONS.map((section, i) => (
+            <li key={section.id}>
+              <a
+                href={`#${section.id}`}
+                className="text-[var(--primary)] hover:underline"
+              >
+                {i + 1}. {t(section.key)}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      <section id="what-is-harness" className="mb-10 scroll-mt-20">
         <h2 className="text-xl font-semibold mb-4">{t("guide.whatIsHarness.title")}</h2>
         <p className="text-[var(--muted-foreground)] leading-relaxed">
           {t("guide.whatIsHarness.body")}
         </p>
       </section>
 
-      <section className="mb-10">
+      <section id="install" className="mb-10 scroll-mt-20">
         <h2 className="text-xl font-semibold mb-4">{t("guide.install.title")}</h2>
 
         <div className="space-y-6">
@@ -46,16 +93,14 @@ export default function GuidePage() {
 
           <div className="p-4 rounded-lg border border-[var(--border)]">
             <h3 className="font-semibold mb-2">{t("guide.install.method3.title")}</h3>
-            <pre className="bg-[var(--muted)] p-3 rounded text-sm overflow-x-auto">
-{`cp -r {NN}-{harness-name}/.claude/ /path/to/my-project/.claude/
+            <CodeBlock>{`cp -r {NN}-{harness-name}/.claude/ /path/to/my-project/.claude/
 cd /path/to/my-project
-claude`}
-            </pre>
+claude`}</CodeBlock>
           </div>
         </div>
       </section>
 
-      <section className="mb-10">
+      <section id="usage" className="mb-10 scroll-mt-20">
         <h2 className="text-xl font-semibold mb-4">{t("guide.usage.title")}</h2>
         <p className="text-[var(--muted-foreground)] leading-relaxed mb-4">
           {t("guide.usage.body")}
@@ -65,16 +110,16 @@ claude`}
           <li>{t("guide.usage.step2")}</li>
           <li>{t("guide.usage.step3")}</li>
         </ol>
-        <pre className="bg-[var(--muted)] p-3 rounded text-sm overflow-x-auto mb-4">
-{`cd /path/to/my-project
-claude`}
-        </pre>
+        <div className="mb-4">
+          <CodeBlock>{`cd /path/to/my-project
+claude`}</CodeBlock>
+        </div>
         <p className="text-sm text-[var(--muted-foreground)]">
           {t("guide.usage.tip")}
         </p>
       </section>
 
-      <section className="mb-10">
+      <section id="modes" className="mb-10 scroll-mt-20">
         <h2 className="text-xl font-semibold mb-4">{t("guide.modes.title")}</h2>
         <p className="text-[var(--muted-foreground)] leading-relaxed mb-4">
           {t("guide.modes.body")}
@@ -89,18 +134,18 @@ claude`}
         </div>
       </section>
 
-      <section className="mb-10">
+      <section id="file-structure" className="mb-10 scroll-mt-20">
         <h2 className="text-xl font-semibold mb-4">{t("guide.fileStructure.title")}</h2>
         <p className="text-[var(--muted-foreground)] leading-relaxed mb-4">
           {t("guide.fileStructure.body")}
         </p>
-        <pre className="bg-[var(--muted)] p-3 rounded text-sm overflow-x-auto mb-4">
-{`my-project/
+        <div className="mb-4">
+          <CodeBlock>{`my-project/
 └── .claude/
     ├── agents/        # agent-name.md × 4-5
     ├── skills/        # skill-name/skill.md
-    └── CLAUDE.md`}
-        </pre>
+    └── CLAUDE.md`}</CodeBlock>
+        </div>
         <ul className="space-y-1.5 text-sm mb-4">
           <li className="flex items-start gap-2">
             <span className="mt-0.5 text-[var(--primary)]">&#8226;</span>
@@ -120,7 +165,7 @@ claude`}
         </p>
       </section>
 
-      <section className="mb-10">
+      <section id="troubleshooting" className="mb-10 scroll-mt-20">
         <h2 className="text-xl font-semibold mb-4">{t("guide.troubleshooting.title")}</h2>
         <div className="space-y-4">
           <div>
@@ -138,7 +183,7 @@ claude`}
         </div>
       </section>
 
-      <section className="mb-10">
+      <section id="browser" className="mb-10 scroll-mt-20">
         <h2 className="text-xl font-semibold mb-4">{t("guide.browser.title")}</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm border-collapse">
@@ -180,7 +225,7 @@ claude`}
         </div>
       </section>
 
-      <section className="mb-10">
+      <section id="faq" className="mb-10 scroll-mt-20">
         <h2 className="text-xl font-semibold mb-4">{t("guide.faq.title")}</h2>
         <div className="space-y-4">
           <div>

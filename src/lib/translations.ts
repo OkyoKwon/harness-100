@@ -117,6 +117,7 @@ const translations: Record<string, TranslationEntry> = {
   "favorite.remove": { ko: "즐겨찾기 해제", en: "Remove from favorites" },
 
   // ── Quick Preview ──
+  "preview.toggle": { ko: "미리보기", en: "Preview" },
   "preview.loading": { ko: "로딩 중...", en: "Loading..." },
   "preview.error": {
     ko: "정보를 불러올 수 없습니다",
@@ -163,6 +164,16 @@ const translations: Record<string, TranslationEntry> = {
     en: "Invoke the skill and agents will run in order. If the skill isn't visible, restart your Claude session (type /exit and relaunch).",
   },
 
+  // ── Errors ──
+  "error.zipFailed": {
+    ko: "ZIP 생성에 실패했습니다.",
+    en: "Failed to build ZIP file.",
+  },
+  "error.copyFailed": {
+    ko: "복사에 실패했습니다.",
+    en: "Failed to copy.",
+  },
+
   // ── Toast ──
   "toast.setupComplete": {
     ko: "세팅 완료 — {count}개 파일 생성됨",
@@ -180,6 +191,8 @@ const translations: Record<string, TranslationEntry> = {
     en: "Combine agents from different harnesses to create your own workflow.",
   },
   "composer.reset": { ko: "초기화", en: "Reset" },
+  "composer.copyUrl": { ko: "링크 복사", en: "Copy Link" },
+  "composer.urlCopied": { ko: "링크가 복사되었습니다", en: "Link copied to clipboard" },
   "composer.searchPlaceholder": {
     ko: "에이전트 팀 검색...",
     en: "Search agent teams...",
@@ -251,6 +264,7 @@ const translations: Record<string, TranslationEntry> = {
 
   // ── Guide Page ──
   "guide.title": { ko: "사용 가이드", en: "User Guide" },
+  "guide.toc": { ko: "목차", en: "Table of Contents" },
   "guide.whatIsHarness.title": { ko: "하네스란?", en: "What is a Harness?" },
   "guide.whatIsHarness.body": {
     ko: "하네스(Harness)는 4~5명의 전문 AI 에이전트와 오케스트레이터 스킬로 구성된 워크플로우 패키지입니다. Claude Code의 에이전트 팀 기능을 활용하여 일상 업무에 즉시 적용할 수 있습니다.",

@@ -10,19 +10,44 @@ export function useFavorites() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const fromUrl = params.get("favorites");
-    if (fromUrl) {
-      setFavorites(parseFavoriteIds(fromUrl));
-      return;
-    }
 
+    let stored: ReadonlyArray<number> = [];
     try {
-      const stored = localStorage.getItem(STORAGE_KEYS.favorites);
-      if (stored) {
-        setFavorites(parseStoredFavorites(stored));
+      const raw = localStorage.getItem(STORAGE_KEYS.favorites);
+      if (raw) {
+        stored = parseStoredFavorites(raw);
       }
     } catch {
       // localStorage may be unavailable (private browsing)
     }
+
+    if (fromUrl) {
+      const fromUrlIds = parseFavoriteIds(fromUrl);
+      // Merge URL favorites with existing localStorage favorites
+      const merged = [...new Set([...stored, ...fromUrlIds])];
+      setFavorites(merged);
+      try {
+        localStorage.setItem(STORAGE_KEYS.favorites, JSON.stringify(merged));
+      } catch {
+        // localStorage may be unavailable
+      }
+      return;
+    }
+
+    if (stored.length > 0) {
+      setFavorites(stored);
+    }
+  }, []);
+
+  // Sync favorites across browser tabs
+  useEffect(() => {
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === STORAGE_KEYS.favorites && e.newValue) {
+        setFavorites(parseStoredFavorites(e.newValue));
+      }
+    };
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
   }, []);
 
   const favoriteSet = useMemo(() => new Set(favorites), [favorites]);

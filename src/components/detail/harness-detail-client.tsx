@@ -54,7 +54,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
   const [errorMessage, setErrorMessage] = useState("");
 
   const { toggle: toggleFavorite, isFavorite } = useFavorites();
-  const { status: zipStatus, download: downloadZip } = useZipDownload();
+  const { status: zipStatus, errorMessage: zipError, download: downloadZip } = useZipDownload();
   const {
     status: setupStatus,
     result: setupResult,
@@ -78,7 +78,10 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
     if (zipStatus === "complete") {
       addToast(t("toast.zipComplete"), "success");
     }
-  }, [zipStatus, addToast]);
+    if (zipStatus === "error") {
+      addToast(zipError ?? t("error.zipFailed"), "error");
+    }
+  }, [zipStatus, zipError, addToast]);
 
   useEffect(() => {
     if (Number.isNaN(id) || id < 1) {
@@ -198,8 +201,11 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
               type="button"
               onClick={() => runSetup(harness)}
               disabled={setupDisabled}
-              className="rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring"
+              className="rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring inline-flex items-center gap-1.5"
             >
+              {(setupStatus === "selecting" || setupStatus === "writing" || setupStatus === "confirming") && (
+                <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-[var(--primary-foreground)]/30 border-t-[var(--primary-foreground)]" />
+              )}
               {setupLabel}
             </button>
 
@@ -207,8 +213,11 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
               type="button"
               onClick={() => downloadZip(harness)}
               disabled={zipStatus === "building"}
-              className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--muted)] active:bg-[var(--secondary)] disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring"
+              className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--muted)] active:bg-[var(--secondary)] disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring inline-flex items-center gap-1.5"
             >
+              {zipStatus === "building" && (
+                <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-[var(--muted)] border-t-[var(--foreground)]" />
+              )}
               {zipLabel}
             </button>
           </div>

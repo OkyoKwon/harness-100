@@ -46,7 +46,7 @@ export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsPr
   }, []);
 
   const baseClass =
-    "shrink-0 px-3 py-1.5 rounded-full text-sm font-medium cursor-pointer whitespace-nowrap transition-base focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2";
+    "shrink-0 snap-start px-3 py-1.5 rounded-full text-sm font-medium cursor-pointer whitespace-nowrap transition-base focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2";
   const activeClass = "bg-[var(--primary)] text-[var(--primary-foreground)]";
   const inactiveClass =
     "bg-[var(--muted)] text-[var(--secondary-foreground)] hover:bg-[var(--secondary)]";
@@ -89,10 +89,13 @@ export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsPr
 
       <div
         ref={scrollRef}
-        className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide px-1"
+        role="tablist"
+        className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide px-1 snap-x snap-mandatory"
       >
         <button
           type="button"
+          role="tab"
+          aria-selected={active === "favorites"}
           onClick={() => onSelect("favorites")}
           className={`${baseClass} ${active === "favorites" ? activeClass : inactiveClass}`}
         >
@@ -100,6 +103,8 @@ export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsPr
         </button>
         <button
           type="button"
+          role="tab"
+          aria-selected={active === "all"}
           onClick={() => onSelect("all")}
           className={`${baseClass} ${active === "all" ? activeClass : inactiveClass}`}
         >
@@ -108,6 +113,8 @@ export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsPr
         {CATEGORIES.map((cat) => (
           <button
             type="button"
+            role="tab"
+            aria-selected={active === cat.slug}
             key={cat.slug}
             onClick={() => onSelect(cat.slug)}
             className={`${baseClass} ${active === cat.slug ? activeClass : inactiveClass}`}

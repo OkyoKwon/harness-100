@@ -49,7 +49,7 @@ describe("useFavorites", () => {
     });
   });
 
-  it("URL params take precedence over localStorage", async () => {
+  it("URL params merge with localStorage favorites", async () => {
     localStorage.setItem(STORAGE_KEYS.favorites, "[99]");
     Object.defineProperty(window, "location", {
       writable: true,
@@ -63,7 +63,7 @@ describe("useFavorites", () => {
     const { result } = renderHook(() => useFavorites());
 
     await vi.waitFor(() => {
-      expect(result.current.favorites).toEqual([1, 2]);
+      expect(result.current.favorites).toEqual([99, 1, 2]);
     });
   });
 

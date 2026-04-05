@@ -1,11 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import type { Harness } from "@/lib/types";
 import { useLocale } from "@/hooks/use-locale";
 
 interface OutputPreviewProps {
   readonly harness: Harness;
 }
+
+const TRIGGER_VISIBLE_COUNT = 4;
 
 function extractOutputTitle(template: string): string {
   const firstLine = template.trim().split("\n")[0] ?? "";
@@ -14,10 +17,15 @@ function extractOutputTitle(template: string): string {
 
 export function OutputPreview({ harness }: OutputPreviewProps) {
   const { t } = useLocale();
+  const [triggersExpanded, setTriggersExpanded] = useState(false);
 
   const modes = harness.skill.modes;
   const hasMultipleModes = modes.length > 1;
   const triggerConditions = harness.skill.triggerConditions;
+  const hasMoreTriggers = triggerConditions.length > TRIGGER_VISIBLE_COUNT;
+  const visibleTriggers = triggersExpanded
+    ? triggerConditions
+    : triggerConditions.slice(0, TRIGGER_VISIBLE_COUNT);
 
   return (
     <div className="space-y-6">
@@ -58,32 +66,43 @@ export function OutputPreview({ harness }: OutputPreviewProps) {
         </section>
       )}
 
-      {/* Request Examples (trigger conditions) */}
+      {/* Request Examples (trigger conditions) — inline chips */}
       {triggerConditions.length > 0 && (
         <section>
           <h3 className="mb-3 text-sm font-semibold text-[var(--foreground)]">
             {t("detail.tryAsking")}
           </h3>
-          <div className="space-y-1.5">
-            {triggerConditions.map((condition) => (
-              <div key={condition} className="flex items-start gap-2 text-sm">
-                <span className="mt-0.5 text-[var(--primary)]">&#8250;</span>
-                <span className="text-[var(--muted-foreground)]">
-                  &ldquo;{condition}&rdquo;
-                </span>
-              </div>
+          <div className="flex flex-wrap gap-1.5">
+            {visibleTriggers.map((condition) => (
+              <span
+                key={condition}
+                className="rounded-full border border-[var(--border)] bg-[var(--secondary)] px-2.5 py-1 text-xs text-[var(--muted-foreground)]"
+              >
+                &ldquo;{condition}&rdquo;
+              </span>
             ))}
+            {hasMoreTriggers && (
+              <button
+                type="button"
+                onClick={() => setTriggersExpanded((prev) => !prev)}
+                className="rounded-full border border-dashed border-[var(--border)] px-2.5 py-1 text-xs text-[var(--primary)] hover:bg-[var(--muted)] transition-base focus-ring"
+              >
+                {triggersExpanded
+                  ? t("a11y.close")
+                  : `+${triggerConditions.length - TRIGGER_VISIBLE_COUNT}`}
+              </button>
+            )}
           </div>
         </section>
       )}
 
-      {/* Execution Modes */}
+      {/* Execution Modes — 2-column grid */}
       {hasMultipleModes && (
         <section>
           <h3 className="mb-3 text-sm font-semibold text-[var(--foreground)]">
             {t("detail.executionModes")}
           </h3>
-          <div className="space-y-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {modes.map((mode) => (
               <div
                 key={mode.name}

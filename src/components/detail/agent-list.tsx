@@ -4,6 +4,7 @@ import { useState, useCallback, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import matter from "gray-matter";
+import type { Locale } from "@/lib/locale";
 import type { Agent, Harness } from "@/lib/types";
 import { generateAgentMd, generateSkillMd } from "@/lib/zip-builder";
 import { MarkdownViewer } from "@/components/common/markdown-viewer";
@@ -37,9 +38,9 @@ function getAgentEmoji(role: string, name: string): string {
   return "🤖";
 }
 
-function getAgentMarkdownBody(agent: Agent, harness: Harness): string {
+function getAgentMarkdownBody(agent: Agent, harness: Harness, locale: Locale): string {
   const rawContent = harness.rawFiles?.agents?.[agent.id];
-  const source = rawContent ?? generateAgentMd(agent);
+  const source = rawContent ?? generateAgentMd(agent, locale);
   const parsed = matter(source);
   return parsed.content.trim();
 }
@@ -52,7 +53,7 @@ interface MdViewerState {
 export function AgentList({ agents, harness }: AgentListProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [mdViewer, setMdViewer] = useState<MdViewerState | null>(null);
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
 
   const handleToggle = useCallback((agentId: string) => {
     setExpandedId((prev) => (prev === agentId ? null : agentId));
@@ -65,9 +66,9 @@ export function AgentList({ agents, harness }: AgentListProps) {
     const rawContent = mainSkillKey ? harness.rawFiles?.skills?.[mainSkillKey] : undefined;
     setMdViewer({
       title: `${harness.skill.name} — ${t("detail.skillMarkdown")}`,
-      content: rawContent ?? generateSkillMd(harness),
+      content: rawContent ?? generateSkillMd(harness, locale),
     });
-  }, [harness]);
+  }, [harness, locale]);
 
   const handleCloseMd = useCallback(() => {
     setMdViewer(null);
@@ -77,10 +78,10 @@ export function AgentList({ agents, harness }: AgentListProps) {
   const markdownBodies = useMemo(() => {
     const map = new Map<string, string>();
     for (const agent of agents) {
-      map.set(agent.id, getAgentMarkdownBody(agent, harness));
+      map.set(agent.id, getAgentMarkdownBody(agent, harness, locale));
     }
     return map;
-  }, [agents, harness]);
+  }, [agents, harness, locale]);
 
   return (
     <>

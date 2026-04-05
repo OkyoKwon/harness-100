@@ -1,3 +1,4 @@
+import type { Locale } from "./locale";
 import type {
   ConflictReport,
   ConflictResolution,
@@ -6,6 +7,7 @@ import type {
   Modification,
   SetupResult,
 } from "./types";
+import { t } from "./translations";
 import { applyModifications, generateAgentMd, generateClaudeMd, generateSkillMd } from "./zip-builder";
 
 export function isFileSystemAccessSupported(): boolean {
@@ -160,6 +162,7 @@ export async function writeWithResolutions(
   harness: Harness,
   modifications?: ReadonlyArray<Modification>,
   resolutions?: ReadonlyMap<string, ConflictResolution>,
+  locale: Locale = "ko",
 ): Promise<SetupResult> {
   try {
     let filesWritten = 0;
@@ -174,7 +177,7 @@ export async function writeWithResolutions(
     if (claudeMdResolution === "skip") {
       filesSkipped++;
     } else {
-      const newContent = raw?.claudeMd ?? generateClaudeMd(harness);
+      const newContent = raw?.claudeMd ?? generateClaudeMd(harness, locale);
       if (claudeMdResolution === "merge") {
         const existing = await readFileContent(claudeDir, "CLAUDE.md");
         await writeFile(claudeDir, "CLAUDE.md", `${existing}\n\n---\n\n${newContent}`);
@@ -199,7 +202,7 @@ export async function writeWithResolutions(
       if (rawContent && !hasModifications(agent.id, modifications)) {
         await writeFile(agentsDir, `${agent.id}.md`, rawContent);
       } else {
-        await writeFile(agentsDir, `${agent.id}.md`, generateAgentMd(agent));
+        await writeFile(agentsDir, `${agent.id}.md`, generateAgentMd(agent, locale));
       }
       filesWritten++;
     }
@@ -230,7 +233,7 @@ export async function writeWithResolutions(
         filesSkipped++;
       } else {
         const skillDir = await getOrCreateDir(skillsDir, harness.slug);
-        await writeFile(skillDir, "skill.md", generateSkillMd(harness));
+        await writeFile(skillDir, "skill.md", generateSkillMd(harness, locale));
         filesWritten++;
       }
     }
@@ -241,7 +244,7 @@ export async function writeWithResolutions(
       return emptyResult("cancelled");
     }
     console.error("Local setup failed:", err);
-    return emptyResult("파일 쓰기에 실패했습니다.");
+    return emptyResult(t(locale, "error.fileWriteFailed"));
   }
 }
 
@@ -251,6 +254,7 @@ export async function writeWithResolutions(
 export async function setupToLocal(
   harness: Harness,
   modifications?: ReadonlyArray<Modification>,
+  locale: Locale = "ko",
 ): Promise<SetupResult> {
   if (!isFileSystemAccessSupported()) {
     return emptyResult("unsupported");
@@ -258,12 +262,12 @@ export async function setupToLocal(
 
   try {
     const dirHandle = await openProjectDir();
-    return writeWithResolutions(dirHandle, harness, modifications);
+    return writeWithResolutions(dirHandle, harness, modifications, undefined, locale);
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
       return emptyResult("cancelled");
     }
     console.error("Local setup failed:", err);
-    return emptyResult("파일 쓰기에 실패했습니다.");
+    return emptyResult(t(locale, "error.fileWriteFailed"));
   }
 }

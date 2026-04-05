@@ -1,10 +1,12 @@
+import type { Locale } from "./locale";
 import type { Agent, Harness, Skill, ExecutionStep, SkillMode } from "./types";
+import { t } from "./translations";
 
 /**
  * Merge multiple harnesses into a single combined harness.
  * Uses short numeric prefix (h0_, h1_) to avoid ID collisions.
  */
-export function mergeHarnesses(harnesses: ReadonlyArray<Harness>): Harness {
+export function mergeHarnesses(harnesses: ReadonlyArray<Harness>, locale: Locale = "ko"): Harness {
   if (harnesses.length === 0) {
     throw new Error("At least one harness is required for merging");
   }
@@ -50,13 +52,13 @@ export function mergeHarnesses(harnesses: ReadonlyArray<Harness>): Harness {
 
   const mergedSkill: Skill = {
     id: "merged",
-    name: "병합 워크플로우",
+    name: t(locale, "merge.workflowName"),
     triggerConditions: allTriggers,
     executionOrder: allSteps,
     modes: [
       {
-        name: "풀 파이프라인",
-        triggerPattern: "전체 작업 요청",
+        name: t(locale, "merge.fullPipeline"),
+        triggerPattern: t(locale, "merge.fullRequest"),
         agents: allAgents.map((a) => a.id),
       },
       ...allModes,
@@ -67,7 +69,7 @@ export function mergeHarnesses(harnesses: ReadonlyArray<Harness>): Harness {
   return {
     id: 0,
     slug: "merged-harness",
-    name: `${harnesses.length}개 하네스 조합`,
+    name: t(locale, "merge.combinedName", { count: harnesses.length }),
     description: harnesses.map((h) => h.name).join(", "),
     category: harnesses[0].category,
     agents: allAgents,

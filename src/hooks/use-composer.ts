@@ -83,7 +83,7 @@ export function useComposer() {
         if (cancelled) return;
 
         const merged =
-          harnesses.length > 0 ? mergeHarnesses(harnesses) : null;
+          harnesses.length > 0 ? mergeHarnesses(harnesses, locale) : null;
 
         setState((prev) => ({
           ...prev,

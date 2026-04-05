@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import type { Harness, Modification } from "@/lib/types";
+import type { Locale } from "@/lib/locale";
 import { buildZip } from "@/lib/zip-builder";
 
 type Status = "idle" | "building" | "complete" | "error";
@@ -11,11 +12,11 @@ export function useZipDownload() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const download = useCallback(
-    async (harness: Harness, modifications?: ReadonlyArray<Modification>) => {
+    async (harness: Harness, modifications?: ReadonlyArray<Modification>, locale: Locale = "ko") => {
       setStatus("building");
       setErrorMessage(null);
       try {
-        const blob = await buildZip(harness, modifications);
+        const blob = await buildZip(harness, modifications, locale);
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;

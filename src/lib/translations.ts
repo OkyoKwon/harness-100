@@ -453,6 +453,36 @@ const translations: Record<string, TranslationEntry> = {
   },
   "ranking.retry": { ko: "다시 시도", en: "Retry" },
 
+  // ── Merge (Composer) ──
+  "merge.workflowName": { ko: "병합 워크플로우", en: "Merged Workflow" },
+  "merge.fullPipeline": { ko: "풀 파이프라인", en: "Full Pipeline" },
+  "merge.fullRequest": { ko: "전체 작업 요청", en: "Full task request" },
+  "merge.combinedName": { ko: "{count}개 하네스 조합", en: "{count} Harnesses Combined" },
+
+  // ── Generated Markdown ──
+  "gen.outputFormat": { ko: "산출물 포맷", en: "Output Format" },
+  "gen.agentConfig": { ko: "에이전트 구성", en: "Agent Configuration" },
+  "gen.none": { ko: "없음", en: "None" },
+  "gen.workflow": { ko: "워크플로우", en: "Workflow" },
+  "gen.extensionSkills": { ko: "에이전트별 확장 스킬", en: "Extension Skills by Agent" },
+  "gen.agentHeader": { ko: "에이전트", en: "Agent" },
+  "gen.fileHeader": { ko: "파일", en: "File" },
+  "gen.roleHeader": { ko: "역할", en: "Role" },
+  "gen.typeHeader": { ko: "타입", en: "Type" },
+  "gen.orderHeader": { ko: "순서", en: "Order" },
+  "gen.assignee": { ko: "담당", en: "Assignee" },
+  "gen.depends": { ko: "의존", en: "Depends On" },
+  "gen.modeByScale": { ko: "작업 규모별 모드", en: "Modes by Scale" },
+  "gen.requestPattern": { ko: "사용자 요청 패턴", en: "Request Pattern" },
+  "gen.execMode": { ko: "실행 모드", en: "Execution Mode" },
+  "gen.deployedAgents": { ko: "투입 에이전트", en: "Deployed Agents" },
+  "gen.skillHeader": { ko: "스킬", en: "Skill" },
+  "gen.pathHeader": { ko: "경로", en: "Path" },
+  "gen.targetAgent": { ko: "대상 에이전트", en: "Target Agent" },
+
+  // ── Errors ──
+  "error.fileWriteFailed": { ko: "파일 쓰기에 실패했습니다.", en: "File write failed." },
+
   // ── Metadata ──
   "metadata.title": {
     ko: "Harness 100 — AI 에이전트 팀 하네스",

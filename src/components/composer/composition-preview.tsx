@@ -46,7 +46,7 @@ export function CompositionPreview({
   selectedCount,
   loadedHarnesses,
 }: CompositionPreviewProps) {
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
   const { status: zipStatus, download: downloadZip } = useZipDownload();
   const {
     status: setupStatus,
@@ -57,8 +57,8 @@ export function CompositionPreview({
     cancelConflicts,
   } = useLocalSetup();
 
-  const handleSetup = () => { if (merged) setupLocal(merged); };
-  const handleZip = () => { if (merged) downloadZip(merged); };
+  const handleSetup = () => { if (merged) setupLocal(merged, undefined, locale); };
+  const handleZip = () => { if (merged) downloadZip(merged, undefined, locale); };
 
   return (
     <div className="flex h-full flex-col rounded-lg border border-[var(--border)] bg-[var(--card)]">

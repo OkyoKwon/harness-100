@@ -81,7 +81,7 @@ describe("useLocalSetup", () => {
 
     expect(result.current.status).toBe("complete");
     expect(result.current.result).toEqual(setupResult);
-    expect(mockWrite).toHaveBeenCalledWith(mockDirHandle, harness, undefined);
+    expect(mockWrite).toHaveBeenCalledWith(mockDirHandle, harness, undefined, undefined, "ko");
   });
 
   it("passes modifications through the pipeline", async () => {
@@ -105,7 +105,7 @@ describe("useLocalSetup", () => {
     });
 
     expect(mockDetect).toHaveBeenCalledWith(mockDirHandle, harness, mods);
-    expect(mockWrite).toHaveBeenCalledWith(mockDirHandle, harness, mods);
+    expect(mockWrite).toHaveBeenCalledWith(mockDirHandle, harness, mods, undefined, "ko");
   });
 
   it("enters confirming status when conflicts detected", async () => {

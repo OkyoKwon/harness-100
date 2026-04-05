@@ -48,7 +48,7 @@ describe("useZipDownload", () => {
     });
 
     expect(result.current.status).toBe("complete");
-    expect(mockBuildZip).toHaveBeenCalledWith(harness, undefined);
+    expect(mockBuildZip).toHaveBeenCalledWith(harness, undefined, "ko");
     expect(mockClick).toHaveBeenCalled();
   });
 

@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import type { ConflictReport, FileConflict, Harness, Modification, SetupResult } from "@/lib/types";
+import type { Locale } from "@/lib/locale";
 import {
   openProjectDir,
   detectConflicts,
@@ -14,6 +15,7 @@ type Status = "idle" | "selecting" | "confirming" | "writing" | "complete" | "er
 interface PendingSetup {
   readonly harness: Harness;
   readonly modifications?: ReadonlyArray<Modification>;
+  readonly locale: Locale;
 }
 
 export function useLocalSetup() {
@@ -24,7 +26,7 @@ export function useLocalSetup() {
   const supported = isFileSystemAccessSupported();
 
   const setup = useCallback(
-    async (harness: Harness, modifications?: ReadonlyArray<Modification>) => {
+    async (harness: Harness, modifications?: ReadonlyArray<Modification>, locale: Locale = "ko") => {
       if (!supported) {
         setStatus("unsupported");
         return;
@@ -39,7 +41,7 @@ export function useLocalSetup() {
 
         if (report.conflicts.length > 0) {
           // Show conflict modal
-          setPendingSetup({ harness, modifications });
+          setPendingSetup({ harness, modifications, locale });
           setConflictReport(report);
           setStatus("confirming");
           return;
@@ -47,7 +49,7 @@ export function useLocalSetup() {
 
         // No conflicts — write directly
         setStatus("writing");
-        const setupResult = await writeWithResolutions(dirHandle, harness, modifications);
+        const setupResult = await writeWithResolutions(dirHandle, harness, modifications, undefined, locale);
         setResult(setupResult);
         setStatus(setupResult.success ? "complete" : "error");
       } catch (err) {
@@ -74,6 +76,7 @@ export function useLocalSetup() {
           pendingSetup.harness,
           pendingSetup.modifications,
           resMap,
+          pendingSetup.locale,
         );
         setResult(setupResult);
         setConflictReport(null);

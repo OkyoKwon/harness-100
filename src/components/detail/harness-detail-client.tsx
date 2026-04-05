@@ -199,7 +199,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
 
             <button
               type="button"
-              onClick={() => runSetup(harness)}
+              onClick={() => runSetup(harness, undefined, locale)}
               disabled={setupDisabled}
               className="rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring inline-flex items-center gap-1.5"
             >
@@ -211,7 +211,7 @@ export function HarnessDetailClient({ idParam }: { readonly idParam: string }) {
 
             <button
               type="button"
-              onClick={() => downloadZip(harness)}
+              onClick={() => downloadZip(harness, undefined, locale)}
               disabled={zipStatus === "building"}
               className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--muted)] active:bg-[var(--secondary)] disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring inline-flex items-center gap-1.5"
             >

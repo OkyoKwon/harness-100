@@ -16,7 +16,7 @@ interface CustomizePanelProps {
 }
 
 export function CustomizePanel({ harness, onClose }: CustomizePanelProps) {
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
   const [selectedAgentId, setSelectedAgentId] = useState<string | null>(
     harness.agents[0]?.id ?? null,
   );
@@ -126,7 +126,7 @@ export function CustomizePanel({ harness, onClose }: CustomizePanelProps) {
 
           <button
             type="button"
-            onClick={() => runSetup(harness, modifications)}
+            onClick={() => runSetup(harness, modifications, locale)}
             disabled={setupStatus === "selecting" || setupStatus === "writing" || setupStatus === "confirming"}
             className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-xs font-medium text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring"
           >
@@ -137,7 +137,7 @@ export function CustomizePanel({ harness, onClose }: CustomizePanelProps) {
 
           <button
             type="button"
-            onClick={() => downloadZip(harness, modifications)}
+            onClick={() => downloadZip(harness, modifications, locale)}
             disabled={zipStatus === "building"}
             className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-xs font-medium text-[var(--foreground)] hover:bg-[var(--muted)] disabled:cursor-not-allowed disabled:opacity-50 transition-base focus-ring"
           >

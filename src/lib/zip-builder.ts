@@ -1,5 +1,7 @@
 import JSZip from "jszip";
+import type { Locale } from "./locale";
 import type { Agent, Harness, Modification } from "./types";
+import { t } from "./translations";
 import { isAllowedModificationField, isValidPath } from "./validation";
 
 function applyModifications(
@@ -31,7 +33,7 @@ function applyModifications(
     });
 }
 
-function generateAgentMd(agent: Agent): string {
+function generateAgentMd(agent: Agent, locale: Locale = "ko"): string {
   return `---
 name: ${agent.name}
 description: "${agent.description}"
@@ -41,31 +43,31 @@ description: "${agent.description}"
 
 ${agent.description}
 
-## 산출물 포맷
+## ${t(locale, "gen.outputFormat")}
 
 ${agent.outputTemplate}
 `;
 }
 
-function generateClaudeMd(harness: Harness): string {
+function generateClaudeMd(harness: Harness, locale: Locale = "ko"): string {
   return `# ${harness.name}
 
 ${harness.description}
 
-## 에이전트 구성
+## ${t(locale, "gen.agentConfig")}
 
 ${harness.agents.map((a) => `- **${a.name}**: ${a.role}`).join("\n")}
 `;
 }
 
-function generateSkillMd(harness: Harness): string {
+function generateSkillMd(harness: Harness, locale: Locale = "ko"): string {
   const agentTable = harness.agents
     .map((a) => `| ${a.id} | \`.claude/agents/${a.id}.md\` | ${a.role} | general-purpose |`)
     .join("\n");
 
   const execTable = harness.skill.executionOrder
     .map((s, i) => {
-      const deps = s.dependsOn.length > 0 ? s.dependsOn.join(", ") : "없음";
+      const deps = s.dependsOn.length > 0 ? s.dependsOn.join(", ") : t(locale, "gen.none");
       return `| ${i + 1}${s.parallel ? "a" : ""} | ${s.agentId} | ${deps} |`;
     })
     .join("\n");
@@ -76,31 +78,31 @@ function generateSkillMd(harness: Harness): string {
 
   const extSkillsSection =
     harness.skill.extensionSkills.length > 0
-      ? `## 에이전트별 확장 스킬\n\n| 스킬 | 경로 | 대상 에이전트 | 역할 |\n|------|------|-------------|------|\n${harness.skill.extensionSkills.map((s) => `| ${s.name} | ${s.path} | ${s.targetAgent} | ${s.description} |`).join("\n")}\n`
+      ? `## ${t(locale, "gen.extensionSkills")}\n\n| ${t(locale, "gen.skillHeader")} | ${t(locale, "gen.pathHeader")} | ${t(locale, "gen.targetAgent")} | ${t(locale, "gen.roleHeader")} |\n|------|------|-------------|------|\n${harness.skill.extensionSkills.map((s) => `| ${s.name} | ${s.path} | ${s.targetAgent} | ${s.description} |`).join("\n")}\n`
       : "";
 
   return `---
 name: ${harness.skill.name}
-description: "${harness.skill.triggerConditions.map((t) => `'${t}'`).join(", ")}"
+description: "${harness.skill.triggerConditions.map((tc) => `'${tc}'`).join(", ")}"
 ---
 
 # ${harness.skill.name}
 
-## 에이전트 구성
+## ${t(locale, "gen.agentConfig")}
 
-| 에이전트 | 파일 | 역할 | 타입 |
+| ${t(locale, "gen.agentHeader")} | ${t(locale, "gen.fileHeader")} | ${t(locale, "gen.roleHeader")} | ${t(locale, "gen.typeHeader")} |
 |---------|------|------|------|
 ${agentTable}
 
-## 워크플로우
+## ${t(locale, "gen.workflow")}
 
-| 순서 | 담당 | 의존 |
+| ${t(locale, "gen.orderHeader")} | ${t(locale, "gen.assignee")} | ${t(locale, "gen.depends")} |
 |------|------|------|
 ${execTable}
 
-## 작업 규모별 모드
+## ${t(locale, "gen.modeByScale")}
 
-| 사용자 요청 패턴 | 실행 모드 | 투입 에이전트 |
+| ${t(locale, "gen.requestPattern")} | ${t(locale, "gen.execMode")} | ${t(locale, "gen.deployedAgents")} |
 |----------------|----------|-------------|
 ${modesTable}
 
@@ -121,6 +123,7 @@ function hasModifications(
 export async function buildZip(
   harness: Harness,
   modifications?: ReadonlyArray<Modification>,
+  locale: Locale = "ko",
 ): Promise<Blob> {
   const zip = new JSZip();
   const claude = zip.folder(".claude");
@@ -129,7 +132,7 @@ export async function buildZip(
   const raw = harness.rawFiles;
 
   // CLAUDE.md — use original if available
-  claude.file("CLAUDE.md", raw?.claudeMd ?? generateClaudeMd(harness));
+  claude.file("CLAUDE.md", raw?.claudeMd ?? generateClaudeMd(harness, locale));
 
   // Agents
   const agentsFolder = claude.folder("agents");
@@ -142,7 +145,7 @@ export async function buildZip(
     if (rawContent && !hasModifications(agent.id, modifications)) {
       agentsFolder.file(`${agent.id}.md`, rawContent);
     } else {
-      agentsFolder.file(`${agent.id}.md`, generateAgentMd(agent));
+      agentsFolder.file(`${agent.id}.md`, generateAgentMd(agent, locale));
     }
   }
 
@@ -166,7 +169,7 @@ export async function buildZip(
     // Fallback: generate from structured data
     const skillDir = skillsFolder.folder(harness.slug);
     if (skillDir) {
-      skillDir.file("skill.md", generateSkillMd(harness));
+      skillDir.file("skill.md", generateSkillMd(harness, locale));
     }
   }
 

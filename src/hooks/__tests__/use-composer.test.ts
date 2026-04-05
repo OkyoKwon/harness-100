@@ -149,7 +149,7 @@ describe("useComposer", () => {
     });
 
     expect(mockLoadHarnessDetail).toHaveBeenCalledTimes(2);
-    expect(mockMergeHarnesses).toHaveBeenCalledWith([h1, h2]);
+    expect(mockMergeHarnesses).toHaveBeenCalledWith([h1, h2], "ko");
     expect(result.current.loadedHarnesses).toEqual([h1, h2]);
     expect(result.current.merged).toBe(merged);
   });

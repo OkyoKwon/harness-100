@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question / 질문
+    url: https://github.com/OkyoKwon/harness-100/discussions/categories/q-a
+    about: Ask questions in GitHub Discussions / GitHub Discussions에서 질문해 주세요
+  - name: Documentation / 문서
+    url: https://github.com/OkyoKwon/harness-100/tree/main/docs
+    about: Check the documentation first / 먼저 문서를 확인해 주세요

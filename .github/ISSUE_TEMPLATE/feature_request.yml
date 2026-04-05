@@ -1,0 +1,60 @@
+name: Feature Request / 기능 요청
+description: Suggest a new feature or enhancement / 새로운 기능이나 개선을 제안해 주세요
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a feature! Please describe your idea below.
+        기능 제안에 감사드립니다! 아래에 아이디어를 설명해 주세요.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / 문제
+      description: What problem does this feature solve? Is it related to a frustration?
+      placeholder: "I'm always frustrated when..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution / 제안하는 해결책
+      description: Describe the solution you'd like.
+      placeholder: Describe your ideal solution...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered / 고려한 대안
+      description: Any alternative solutions or features you've considered.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category / 카테고리
+      options:
+        - UI/UX
+        - Performance
+        - New Harness Data
+        - Search & Filtering
+        - Internationalization (i18n)
+        - Accessibility (a11y)
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context / 추가 정보
+      description: Any other context, mockups, or screenshots.
+    validations:
+      required: false

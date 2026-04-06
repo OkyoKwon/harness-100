@@ -1,11 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { OutputPreview } from "../output-preview";
-import {
-  createHarness,
-  createAgent,
-  createSkillMode,
-} from "@/test/mocks/harness-fixtures";
+import { createHarness, createAgent, createSkillMode } from "@/test/mocks/harness-fixtures";
 
 // --- Mocks ---
 
@@ -89,8 +85,8 @@ describe("OutputPreview", () => {
     expect(screen.queryByText("프레임워크")).not.toBeInTheDocument();
   });
 
-  it("renders execution modes when multiple modes exist", () => {
-    // Arrange
+  it("does not render modes section (moved to UsageSection)", () => {
+    // Modes are now rendered in UsageSection, not OutputPreview
     const agents = [
       createAgent({ id: "a1", name: "Agent A" }),
       createAgent({ id: "a2", name: "Agent B" }),
@@ -110,23 +106,8 @@ describe("OutputPreview", () => {
       },
     });
 
-    // Act
     render(<OutputPreview harness={harness} />);
 
-    // Assert
-    expect(screen.getByText("요청 및 모드")).toBeInTheDocument();
-    expect(screen.getByText("Full Mode")).toBeInTheDocument();
-    expect(screen.getByText("Light Mode")).toBeInTheDocument();
-  });
-
-  it("does not show modes section when only one mode", () => {
-    // Arrange
-    const harness = createHarness(); // default has 1 mode
-
-    // Act
-    render(<OutputPreview harness={harness} />);
-
-    // Assert
     expect(screen.queryByText("요청 및 모드")).not.toBeInTheDocument();
   });
 });

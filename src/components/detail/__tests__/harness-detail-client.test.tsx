@@ -35,6 +35,10 @@ vi.mock("@/hooks/use-locale", () => ({
         "favorite.remove": "즐겨찾기 제거",
         "toast.setupComplete": `${params?.count ?? 0}개 파일 완료`,
         "toast.zipComplete": "ZIP 완료",
+        "detail.setupTip": "세팅 가이드",
+        "detail.step": "단계",
+        "detail.parallelStep": "병렬 단계",
+        "detail.skillMarkdown": "스킬 마크다운",
         "setup.guideTitle": "세팅 가이드",
         "setup.step1": "1단계",
         "setup.step2": "2단계",
@@ -106,6 +110,14 @@ vi.mock("@/components/setup/conflict-modal", () => ({
 
 vi.mock("@/components/common/markdown-viewer", () => ({
   MarkdownViewer: () => null,
+}));
+
+vi.mock("@/components/detail/output-preview", () => ({
+  OutputPreview: () => <div data-testid="output-preview">OutputPreview</div>,
+}));
+
+vi.mock("@/components/detail/usage-section", () => ({
+  UsageSection: () => <div data-testid="usage-section">UsageSection</div>,
 }));
 
 // Mock harness-loader

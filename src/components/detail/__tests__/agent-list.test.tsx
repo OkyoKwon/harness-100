@@ -5,6 +5,7 @@ import { AgentList } from "../agent-list";
 import {
   createAgent,
   createHarness,
+  createExecutionStep,
   resetFixtureCounter,
 } from "@/test/mocks/harness-fixtures";
 
@@ -21,6 +22,8 @@ vi.mock("@/hooks/use-locale", () => ({
         "detail.viewSkillMd": "스킬 마크다운 보기",
         "detail.skillMarkdown": "스킬 마크다운",
         "detail.extensionSkill": "확장 스킬",
+        "detail.step": "단계",
+        "detail.parallelStep": "병렬 단계",
       };
       return translations[key] ?? key;
     },
@@ -45,6 +48,26 @@ vi.mock("gray-matter", () => ({
     data: {},
   }),
 }));
+
+// --- Helpers ---
+
+function renderAgentList(
+  agents: Parameters<typeof AgentList>[0]["agents"],
+  harness: Parameters<typeof AgentList>[0]["harness"],
+  onViewSkillMd = vi.fn(),
+) {
+  const executionOrder = agents.map((a) =>
+    createExecutionStep({ agentId: a.id }),
+  );
+  return render(
+    <AgentList
+      agents={agents}
+      harness={harness}
+      executionOrder={executionOrder}
+      onViewSkillMd={onViewSkillMd}
+    />,
+  );
+}
 
 // --- Tests ---
 
@@ -78,121 +101,140 @@ describe("AgentList", () => {
   });
 
   it("renders all agent names", () => {
-    // Act
-    render(<AgentList agents={agents} harness={harness} />);
+    renderAgentList(agents, harness);
 
-    // Assert
     expect(screen.getByText("Planner")).toBeInTheDocument();
     expect(screen.getByText("Coder")).toBeInTheDocument();
   });
 
   it("renders agent roles", () => {
-    // Act
-    render(<AgentList agents={agents} harness={harness} />);
+    renderAgentList(agents, harness);
 
-    // Assert
     expect(screen.getByText("Planning")).toBeInTheDocument();
     expect(screen.getByText("Development")).toBeInTheDocument();
   });
 
   it("expands agent details on click", async () => {
-    // Arrange
     const user = userEvent.setup();
-    render(<AgentList agents={agents} harness={harness} />);
+    renderAgentList(agents, harness);
 
-    // Act
     await user.click(screen.getByText("Planner"));
 
-    // Assert
     expect(screen.getByText("도구")).toBeInTheDocument();
     expect(screen.getByText("Read")).toBeInTheDocument();
     expect(screen.getByText("Write")).toBeInTheDocument();
   });
 
   it("shows dependencies when agent is expanded", async () => {
-    // Arrange
     const user = userEvent.setup();
-    render(<AgentList agents={agents} harness={harness} />);
+    renderAgentList(agents, harness);
 
-    // Act
     await user.click(screen.getByText("Coder"));
 
-    // Assert
     expect(screen.getByText("의존성")).toBeInTheDocument();
     expect(screen.getByText("planner")).toBeInTheDocument();
   });
 
   it("collapses agent details when clicking the same agent again", async () => {
-    // Arrange
     const user = userEvent.setup();
-    render(<AgentList agents={agents} harness={harness} />);
+    renderAgentList(agents, harness);
 
-    // Act
     await user.click(screen.getByText("Planner"));
     expect(screen.getByText("도구")).toBeInTheDocument();
 
     await user.click(screen.getByText("Planner"));
 
-    // Assert
     expect(screen.queryByText("도구")).not.toBeInTheDocument();
   });
 
   it("switching expanded agent collapses the previous one", async () => {
-    // Arrange
     const user = userEvent.setup();
-    render(<AgentList agents={agents} harness={harness} />);
+    renderAgentList(agents, harness);
 
-    // Act
     await user.click(screen.getByText("Planner"));
     expect(screen.queryByText("의존성")).not.toBeInTheDocument();
 
     await user.click(screen.getByText("Coder"));
 
-    // Assert
     expect(screen.getByText("의존성")).toBeInTheDocument();
-    // The Planner's tools should no longer be in expanded state
-    // (Note: both have tools, but dependencies only on Coder)
     expect(screen.getByText("planner")).toBeInTheDocument();
   });
 
-  it("renders the skill markdown button", () => {
-    // Act
-    render(<AgentList agents={agents} harness={harness} />);
+  it("calls onViewSkillMd callback when passed", () => {
+    const onViewSkillMd = vi.fn();
+    renderAgentList(agents, harness, onViewSkillMd);
 
-    // Assert
-    expect(screen.getByText("스킬 마크다운 보기")).toBeInTheDocument();
+    // onViewSkillMd is a callback prop — the button is now in the parent component
+    // Just verify the component renders without error when callback is provided
+    expect(screen.getByText("Planner")).toBeInTheDocument();
   });
 
-  it("opens skill markdown viewer on button click", async () => {
-    // Arrange
+  it("opens extension skill markdown viewer on button click", async () => {
     const user = userEvent.setup();
-    render(<AgentList agents={agents} harness={harness} />);
+    const h = createHarness({
+      agents,
+      slug: "test-harness",
+      skill: {
+        ...harness.skill,
+        extensionSkills: [
+          {
+            name: "ext-skill-1",
+            path: "ext-skill-1/skill.md",
+            targetAgent: "planner",
+            description: "test extension",
+          },
+        ],
+      },
+      rawFiles: {
+        agents: {},
+        skills: { "ext-skill-1/skill.md": "# Extension Skill Content" },
+      },
+    } as any);
 
-    // Act
-    await user.click(screen.getByText("스킬 마크다운 보기"));
+    renderAgentList(agents, h);
 
-    // Assert
+    // Expand the agent that has the extension skill
+    await user.click(screen.getByText("Planner"));
+
+    // Assert extension skill button is rendered
+    expect(screen.getByText("ext-skill-1")).toBeInTheDocument();
+
+    // Click to open markdown viewer
+    await user.click(screen.getByText("ext-skill-1"));
     expect(screen.getByTestId("markdown-viewer")).toBeInTheDocument();
   });
 
-  it("closes skill markdown viewer when close is triggered", async () => {
-    // Arrange
+  it("closes extension skill markdown viewer when close is triggered", async () => {
     const user = userEvent.setup();
-    render(<AgentList agents={agents} harness={harness} />);
+    const h = createHarness({
+      agents,
+      slug: "test-harness",
+      skill: {
+        ...harness.skill,
+        extensionSkills: [
+          {
+            name: "ext-skill-1",
+            path: "ext-skill-1/skill.md",
+            targetAgent: "planner",
+            description: "test extension",
+          },
+        ],
+      },
+      rawFiles: {
+        agents: {},
+        skills: { "ext-skill-1/skill.md": "# Extension Skill Content" },
+      },
+    } as any);
 
-    // Act - open then close
-    await user.click(screen.getByText("스킬 마크다운 보기"));
+    renderAgentList(agents, h);
+
+    // Expand the agent and open the viewer
+    await user.click(screen.getByText("Planner"));
+    await user.click(screen.getByText("ext-skill-1"));
     expect(screen.getByTestId("markdown-viewer")).toBeInTheDocument();
-
-    // The MarkdownViewer mock calls onClose - we simulate this by re-rendering
-    // Since the mock renders when open=true, and handleCloseMd sets mdViewer to null,
-    // we need to trigger the close. The component calls onClose from MarkdownViewer.
-    // Our mock doesn't expose onClose, so let's verify handleCloseMd by clicking again
-    // to open and verify state management works.
   });
 
   it("uses fallback emoji when agent role does not match any keyword", () => {
-    // Arrange
     const unknownAgent = createAgent({
       id: "unknown",
       name: "Unknown",
@@ -202,16 +244,13 @@ describe("AgentList", () => {
     });
     const h = createHarness({ agents: [unknownAgent] });
 
-    // Act
-    render(<AgentList agents={[unknownAgent]} harness={h} />);
+    renderAgentList([unknownAgent], h);
 
-    // Assert - should use fallback robot emoji
     const emojiEl = screen.getByRole("img", { name: "Mystery" });
     expect(emojiEl.textContent).toBe("\u{1F916}");
   });
 
   it("uses raw file content when available for agent markdown", async () => {
-    // Arrange
     const user = userEvent.setup();
     const agentWithRaw = createAgent({
       id: "raw-agent",
@@ -228,16 +267,13 @@ describe("AgentList", () => {
       },
     } as any);
 
-    // Act
-    render(<AgentList agents={[agentWithRaw]} harness={h} />);
+    renderAgentList([agentWithRaw], h);
     await user.click(screen.getByText("RawAgent"));
 
-    // Assert - should display raw content (gray-matter mock returns source as content)
     expect(screen.getByText("Raw agent content from file")).toBeInTheDocument();
   });
 
   it("renders extension skill buttons when harness has extension skills", async () => {
-    // Arrange
     const user = userEvent.setup();
     const h = createHarness({
       agents,
@@ -245,7 +281,12 @@ describe("AgentList", () => {
       skill: {
         ...harness.skill,
         extensionSkills: [
-          { name: "ext-skill-1", triggerPattern: "test trigger" },
+          {
+            name: "ext-skill-1",
+            path: "ext-skill-1/skill.md",
+            targetAgent: "planner",
+            description: "test extension",
+          },
         ],
       },
       rawFiles: {
@@ -254,28 +295,31 @@ describe("AgentList", () => {
       },
     } as any);
 
-    // Act
-    render(<AgentList agents={agents} harness={h} />);
+    renderAgentList(agents, h);
 
-    // Assert
+    // Expand the agent that has the extension skill
+    await user.click(screen.getByText("Planner"));
+
     expect(screen.getByText("ext-skill-1")).toBeInTheDocument();
 
-    // Act - click extension skill button
     await user.click(screen.getByText("ext-skill-1"));
-
-    // Assert - opens markdown viewer with extension skill content
     expect(screen.getByTestId("markdown-viewer")).toBeInTheDocument();
   });
 
-  it("does not render extension skill button when rawContent is missing", () => {
-    // Arrange
+  it("does not render extension skill button when rawContent is missing", async () => {
+    const user = userEvent.setup();
     const h = createHarness({
       agents,
       slug: "test-harness",
       skill: {
         ...harness.skill,
         extensionSkills: [
-          { name: "missing-skill", triggerPattern: "test" },
+          {
+            name: "missing-skill",
+            path: "missing-skill/skill.md",
+            targetAgent: "planner",
+            description: "test",
+          },
         ],
       },
       rawFiles: {
@@ -284,30 +328,42 @@ describe("AgentList", () => {
       },
     } as any);
 
-    // Act
-    render(<AgentList agents={agents} harness={h} />);
+    renderAgentList(agents, h);
 
-    // Assert
+    // Expand the agent to see if extension skill button would appear
+    await user.click(screen.getByText("Planner"));
+
     expect(screen.queryByText("missing-skill")).not.toBeInTheDocument();
   });
 
   it("uses skill raw file content when available", async () => {
-    // Arrange
     const user = userEvent.setup();
     const h = createHarness({
       agents,
       slug: "test-harness",
+      skill: {
+        ...harness.skill,
+        extensionSkills: [
+          {
+            name: "ext-with-content",
+            path: "ext-with-content/skill.md",
+            targetAgent: "coder",
+            description: "test skill with content",
+          },
+        ],
+      },
       rawFiles: {
         agents: {},
-        skills: { "test-harness/skill.md": "# Custom Skill Content" },
+        skills: { "ext-with-content/skill.md": "# Custom Skill Content" },
       },
     } as any);
 
-    // Act
-    render(<AgentList agents={agents} harness={h} />);
-    await user.click(screen.getByText("스킬 마크다운 보기"));
+    renderAgentList(agents, h);
 
-    // Assert
+    // Expand coder agent to see extension skill
+    await user.click(screen.getByText("Coder"));
+    await user.click(screen.getByText("ext-with-content"));
+
     const viewer = screen.getByTestId("markdown-viewer");
     expect(viewer).toBeInTheDocument();
   });

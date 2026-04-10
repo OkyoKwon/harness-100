@@ -10,13 +10,14 @@ import { RankingTable } from "@/components/ranking/ranking-table";
 import { useLocale } from "@/hooks/use-locale";
 
 export default function RankingPage() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const [catalog, setCatalog] = useState<ReadonlyArray<HarnessMeta>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    loadCatalog()
+    setLoading(true);
+    loadCatalog(locale)
       .then(setCatalog)
       .catch((err: unknown) => {
         setError(
@@ -24,7 +25,7 @@ export default function RankingPage() {
         );
       })
       .finally(() => setLoading(false));
-  }, [t]);
+  }, [locale, t]);
 
   const sorted = useMemo(
     () => [...catalog].sort((a, b) => a.popularityRank - b.popularityRank),

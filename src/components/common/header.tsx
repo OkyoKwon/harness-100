@@ -39,6 +39,12 @@ export function Header() {
               {t("nav.composer")}
             </Link>
             <Link
+              href="/builder"
+              className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded px-2 py-1.5"
+            >
+              {t("nav.builder")}
+            </Link>
+            <Link
               href="/guide"
               className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded px-2 py-1.5"
             >

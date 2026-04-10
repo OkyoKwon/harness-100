@@ -43,4 +43,7 @@ export const STORAGE_KEYS = {
   recentPaths: "harness100_recent_paths",
   customizations: "harness100_customizations",
   locale: "harness100_lang",
+  customHarnesses: "harness100_custom_harnesses",
+  builderGuidesDismissed: "harness100_builder_guides_dismissed",
+  builderDraft: "harness100_builder_draft",
 } as const;

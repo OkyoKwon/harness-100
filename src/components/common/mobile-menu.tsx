@@ -10,6 +10,7 @@ import { useLocale } from "@/hooks/use-locale";
 const NAV_LINKS = [
   { href: "/ranking", key: "nav.ranking" },
   { href: "/composer", key: "nav.composer" },
+  { href: "/builder", key: "nav.builder" },
   { href: "/guide", key: "nav.guide" },
 ] as const;
 

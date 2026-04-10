@@ -2,7 +2,7 @@ import type { Locale } from "./locale";
 import type { CustomAgent, BuilderMeta } from "./custom-harness-types";
 
 const API_URL = "https://api.anthropic.com/v1/messages";
-const MODEL = "claude-haiku-4-5-20251001";
+const MODEL = "claude-sonnet-4-6";
 
 interface AiResponse {
   readonly success: boolean;

@@ -158,8 +158,8 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
         )}
       </div>
 
-      {/* Two-panel layout */}
-      <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-4 min-h-[400px]">
+      {/* Two/three-panel layout */}
+      <div className={`grid grid-cols-1 gap-4 min-h-[400px] ${referenceOpen ? "md:grid-cols-[240px_1fr_1fr]" : "md:grid-cols-[240px_1fr]"}`}>
         {/* Left: Agent list */}
         <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-3 overflow-y-auto max-h-[500px]">
           <BuilderAgentSidebar
@@ -196,14 +196,16 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
             </div>
           )}
         </div>
-      </div>
 
-      {/* Reference panel — separate area below the grid */}
-      <AgentInstructionsReference
-        open={referenceOpen}
-        agents={referenceAgents}
-        loading={referenceLoading}
-      />
+        {/* Right: Reference panel (third column) */}
+        {referenceOpen && (
+          <AgentInstructionsReference
+            open={referenceOpen}
+            agents={referenceAgents}
+            loading={referenceLoading}
+          />
+        )}
+      </div>
 
       {/* Errors */}
       {errors._global && (

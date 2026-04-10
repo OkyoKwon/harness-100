@@ -4,9 +4,9 @@ import type { Locale } from "../locale";
 
 describe("locale", () => {
   describe("DEFAULT_LOCALE", () => {
-    it("should_beEn_when_accessed", () => {
+    it("should_beKo_when_accessed", () => {
       // Assert
-      expect(DEFAULT_LOCALE).toBe("en");
+      expect(DEFAULT_LOCALE).toBe("ko");
     });
 
     it("should_satisfyLocaleType_when_checked", () => {

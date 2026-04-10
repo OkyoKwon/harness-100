@@ -39,15 +39,15 @@ describe("useLocale (without provider)", () => {
     // Arrange & Act
     const { result } = renderHook(() => useLocale());
 
-    // Assert — DEFAULT_LOCALE is "en"
-    expect(result.current.locale).toBe("en");
+    // Assert — DEFAULT_LOCALE is "ko"
+    expect(result.current.locale).toBe("ko");
     // t returns key as fallback in default context
     expect(result.current.t("nav.ranking")).toBe("nav.ranking");
   });
 });
 
 describe("LanguageProvider + useLocale", () => {
-  it("defaults to en locale (DEFAULT_LOCALE)", () => {
+  it("defaults to ko locale (DEFAULT_LOCALE)", () => {
     // Arrange — no stored locale, IP detection hasn't resolved yet
     mockFetch.mockReturnValue(new Promise(() => {})); // never resolves
 
@@ -57,7 +57,7 @@ describe("LanguageProvider + useLocale", () => {
     });
 
     // Assert
-    expect(result.current.locale).toBe("en");
+    expect(result.current.locale).toBe("ko");
   });
 
   it("detects ko locale via IP when no stored preference", async () => {
@@ -225,7 +225,7 @@ describe("LanguageProvider + useLocale", () => {
     });
     await act(async () => {});
 
-    // Assert
-    expect(result.current.locale).toBe("en");
+    // Assert — DEFAULT_LOCALE is now "ko"
+    expect(result.current.locale).toBe("ko");
   });
 });

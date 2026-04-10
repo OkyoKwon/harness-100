@@ -14,12 +14,12 @@ vi.mock("@/hooks/use-locale", () => ({
 }));
 
 describe("LanguageToggle", () => {
-  it("should_show_EN_text_when_locale_is_ko", () => {
+  it("should_show_한_text_when_locale_is_ko", () => {
     // Arrange & Act
     render(<LanguageToggle />);
 
-    // Assert
-    expect(screen.getByText("EN")).toBeInTheDocument();
+    // Assert — button shows current language, not target
+    expect(screen.getByText("한")).toBeInTheDocument();
   });
 
   it("should_have_correct_aria_label_when_locale_is_ko", () => {

@@ -14,7 +14,7 @@ export function LanguageToggle() {
       onClick={toggle}
       className="text-xs font-semibold"
     >
-      {locale === "ko" ? "EN" : "한"}
+      {locale === "ko" ? "한" : "EN"}
     </IconButton>
   );
 }

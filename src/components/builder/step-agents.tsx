@@ -194,10 +194,8 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
         )}
       </div>
 
-      {/* Main layout: grid + optional reference panel */}
-      <div className="flex gap-4 min-h-[400px]">
-        {/* Two-panel grid */}
-        <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-4 flex-1 min-w-0">
+      {/* Two-panel layout */}
+      <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-4 min-h-[400px]">
           {/* Left: Agent list */}
           <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-3 overflow-y-auto max-h-[500px]">
             {ai.loading && agents.length === 0 ? (
@@ -245,7 +243,6 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
                 agent={selectedAgent}
                 allAgents={agents}
                 harnessName={meta.name}
-                referenceOpen={referenceOpen}
                 referenceAgents={referenceAgents}
                 onToggleReference={handleToggleReference}
                 onUpdate={(field, value) => updateAgent(selectedAgent.id, field, value)}
@@ -260,19 +257,15 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
               </div>
             )}
           </div>
-        </div>
-
-        {/* Reference panel (separate column) */}
-        {referenceOpen && (
-          <div className="hidden md:block w-[400px] shrink-0 max-h-[600px]">
-            <AgentInstructionsReference
-              open={referenceOpen}
-              agents={referenceAgents}
-              loading={referenceLoading}
-            />
-          </div>
-        )}
       </div>
+
+      {/* Reference modal */}
+      <AgentInstructionsReference
+        open={referenceOpen}
+        onClose={() => setReferenceOpen(false)}
+        agents={referenceAgents}
+        loading={referenceLoading}
+      />
 
       {/* Errors */}
       {errors._global && (

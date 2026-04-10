@@ -19,7 +19,6 @@ interface BuilderAgentFormProps {
   readonly agent: CustomAgent;
   readonly allAgents: ReadonlyArray<CustomAgent>;
   readonly harnessName: string;
-  readonly referenceOpen: boolean;
   readonly referenceAgents: ReadonlyArray<ReferenceAgent>;
   readonly onToggleReference: () => void;
   readonly onUpdate: (field: keyof CustomAgent, value: string | boolean | ReadonlyArray<string>) => void;
@@ -29,7 +28,7 @@ interface BuilderAgentFormProps {
 
 export function BuilderAgentForm({
   agent, allAgents, harnessName,
-  referenceOpen, referenceAgents, onToggleReference,
+  referenceAgents, onToggleReference,
   onUpdate, errors, ai,
 }: BuilderAgentFormProps) {
   const { t, locale } = useLocale();
@@ -137,7 +136,7 @@ export function BuilderAgentForm({
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
           </svg>
-          {referenceOpen ? t("builder.agent.referenceHide") : t("builder.agent.referenceShow")}
+          {t("builder.agent.referenceShow")}
         </button>
       </div>
 

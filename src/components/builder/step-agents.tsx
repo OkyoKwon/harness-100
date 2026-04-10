@@ -1,14 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useLocale } from "@/hooks/use-locale";
 import { useToast } from "@/hooks/use-toast";
 import { GuideBanner } from "./guide-banner";
 import { BuilderAgentSidebar } from "./builder-agent-sidebar";
 import { BuilderAgentForm } from "./builder-agent-form";
 import { AgentTemplatePicker } from "./agent-template-picker";
+import { AgentInstructionsReference } from "./agent-instructions-reference";
 import { AiAssistButton } from "./ai-assist-button";
-import { generateAgentTeam, parseAgentTeam, buildAgentContext } from "@/lib/ai-assist";
+import { generateAgentTeam, parseAgentTeam, buildAgentContext, loadReferenceAgents } from "@/lib/ai-assist";
+import type { ReferenceAgent } from "@/lib/ai-assist";
 import { loadAgentIndex, loadHarnessDetail } from "@/lib/harness-loader";
 import { createAgentFromTemplate } from "@/lib/custom-harness-converter";
 import type { useBuilderAgents } from "@/hooks/use-builder-agents";
@@ -26,6 +28,12 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
   const { addToast } = useToast();
   const [templateOpen, setTemplateOpen] = useState(false);
 
+  // Reference panel state (lifted from BuilderAgentForm)
+  const [referenceOpen, setReferenceOpen] = useState(false);
+  const [referenceAgents, setReferenceAgents] = useState<ReadonlyArray<ReferenceAgent>>([]);
+  const [referenceLoading, setReferenceLoading] = useState(false);
+  const [referenceLoaded, setReferenceLoaded] = useState(false);
+
   const {
     agents,
     selectedAgent,
@@ -39,6 +47,22 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
     reorderAgent,
     selectAgent,
   } = hook;
+
+  const handleToggleReference = useCallback(async () => {
+    if (!referenceOpen && !referenceLoaded) {
+      setReferenceLoading(true);
+      setReferenceOpen(true);
+      try {
+        const loaded = await loadReferenceAgents(meta.category, locale);
+        setReferenceAgents(loaded);
+        setReferenceLoaded(true);
+      } finally {
+        setReferenceLoading(false);
+      }
+    } else {
+      setReferenceOpen((prev) => !prev);
+    }
+  }, [referenceOpen, referenceLoaded, meta.category, locale]);
 
   const handleGenerateTeam = async () => {
     if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
@@ -157,6 +181,9 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
               allAgents={agents}
               harnessName={meta.name}
               category={meta.category}
+              referenceOpen={referenceOpen}
+              referenceAgents={referenceAgents}
+              onToggleReference={handleToggleReference}
               onUpdate={(field, value) => updateAgent(selectedAgent.id, field, value)}
               errors={errors}
               ai={ai}
@@ -170,6 +197,13 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
           )}
         </div>
       </div>
+
+      {/* Reference panel — separate area below the grid */}
+      <AgentInstructionsReference
+        open={referenceOpen}
+        agents={referenceAgents}
+        loading={referenceLoading}
+      />
 
       {/* Errors */}
       {errors._global && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { useLocale } from "@/hooks/use-locale";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
@@ -8,7 +8,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { MultiSelect } from "@/components/ui/multi-select";
 import { ToolCheckboxGroup } from "./tool-checkbox-group";
 import { AiAssistButton } from "./ai-assist-button";
-import { AgentInstructionsReference } from "./agent-instructions-reference";
 import {
   generateAgentDetails,
   generateAgentInstructions,
@@ -25,19 +24,21 @@ interface BuilderAgentFormProps {
   readonly allAgents: ReadonlyArray<CustomAgent>;
   readonly harnessName: string;
   readonly category: Category | "";
+  readonly referenceOpen: boolean;
+  readonly referenceAgents: ReadonlyArray<ReferenceAgent>;
+  readonly onToggleReference: () => void;
   readonly onUpdate: (field: keyof CustomAgent, value: string | boolean | ReadonlyArray<string>) => void;
   readonly errors: Record<string, string>;
   readonly ai: ReturnType<typeof useAiAssist>;
 }
 
-export function BuilderAgentForm({ agent, allAgents, harnessName, category, onUpdate, errors, ai }: BuilderAgentFormProps) {
+export function BuilderAgentForm({
+  agent, allAgents, harnessName, category,
+  referenceOpen, referenceAgents, onToggleReference,
+  onUpdate, errors, ai,
+}: BuilderAgentFormProps) {
   const { t, locale } = useLocale();
   const { addToast } = useToast();
-
-  const [referenceOpen, setReferenceOpen] = useState(false);
-  const [referenceAgents, setReferenceAgents] = useState<ReadonlyArray<ReferenceAgent>>([]);
-  const [referenceLoading, setReferenceLoading] = useState(false);
-  const [referenceLoaded, setReferenceLoaded] = useState(false);
   const [instructionsLoading, setInstructionsLoading] = useState(false);
 
   const dependencyOptions = allAgents
@@ -48,11 +49,7 @@ export function BuilderAgentForm({ agent, allAgents, harnessName, category, onUp
     if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
     if (!agent.name.trim()) { addToast(t("ai.error.noName"), "error"); return; }
 
-    // Try to get an example MD for the AI prompt
-    let exampleMd: string | undefined;
-    if (referenceAgents.length > 0) {
-      exampleMd = referenceAgents[0].rawMd;
-    }
+    const exampleMd = referenceAgents.length > 0 ? referenceAgents[0].rawMd : undefined;
 
     const result = await ai.runAssist((key) =>
       generateAgentDetails(key, agent, harnessName, locale, exampleMd),
@@ -70,22 +67,6 @@ export function BuilderAgentForm({ agent, allAgents, harnessName, category, onUp
     }
   };
 
-  const handleToggleReference = useCallback(async () => {
-    if (!referenceOpen && !referenceLoaded) {
-      setReferenceLoading(true);
-      setReferenceOpen(true);
-      try {
-        const agents = await loadReferenceAgents(category, locale);
-        setReferenceAgents(agents);
-        setReferenceLoaded(true);
-      } finally {
-        setReferenceLoading(false);
-      }
-    } else {
-      setReferenceOpen((prev) => !prev);
-    }
-  }, [referenceOpen, referenceLoaded, category, locale]);
-
   const handleGenerateInstructions = async () => {
     if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
     if (!agent.name.trim() || !agent.role.trim()) {
@@ -95,18 +76,14 @@ export function BuilderAgentForm({ agent, allAgents, harnessName, category, onUp
 
     setInstructionsLoading(true);
 
-    // Load reference if not yet loaded
+    // Use cached reference agents or load on demand
     let exampleMd = "";
     if (referenceAgents.length > 0) {
       exampleMd = referenceAgents[0].rawMd;
     } else {
       try {
         const agents = await loadReferenceAgents(category, locale);
-        if (agents.length > 0) {
-          setReferenceAgents(agents);
-          setReferenceLoaded(true);
-          exampleMd = agents[0].rawMd;
-        }
+        if (agents.length > 0) exampleMd = agents[0].rawMd;
       } catch {
         // Proceed without example
       }
@@ -198,7 +175,7 @@ export function BuilderAgentForm({ agent, allAgents, harnessName, category, onUp
         <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={handleToggleReference}
+            onClick={onToggleReference}
             className="inline-flex items-center gap-1.5 rounded-md border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20 px-3 py-1.5 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors"
           >
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0" aria-hidden="true">
@@ -218,13 +195,6 @@ export function BuilderAgentForm({ agent, allAgents, harnessName, category, onUp
             />
           )}
         </div>
-
-        {/* Reference panel */}
-        <AgentInstructionsReference
-          open={referenceOpen}
-          agents={referenceAgents}
-          loading={referenceLoading}
-        />
       </div>
 
       <div className="space-y-2">

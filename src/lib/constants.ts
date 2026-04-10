@@ -46,4 +46,5 @@ export const STORAGE_KEYS = {
   customHarnesses: "harness100_custom_harnesses",
   builderGuidesDismissed: "harness100_builder_guides_dismissed",
   builderDraft: "harness100_builder_draft",
+  anthropicApiKey: "harness100_anthropic_api_key",
 } as const;

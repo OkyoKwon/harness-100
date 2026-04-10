@@ -19,31 +19,34 @@ export function ApiKeySettings({ apiKey, isConfigured, onSave, onClear }: ApiKey
 
   if (!editing && isConfigured) {
     return (
-      <div className="flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-2">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-green-500 shrink-0" aria-hidden="true">
-          <circle cx="12" cy="12" r="10" />
-          <polyline points="16 10 11 15 8 12" />
-        </svg>
-        <span className="text-xs text-[var(--foreground)]">
-          {t("ai.keyConfigured")}
-        </span>
-        <span className="text-xs text-[var(--muted-foreground)] font-mono">
-          {apiKey.slice(0, 10)}...
-        </span>
-        <button
-          type="button"
-          onClick={() => { setEditing(true); setInputValue(""); }}
-          className="ml-auto text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded px-1"
-        >
-          {t("ai.changeKey")}
-        </button>
-        <button
-          type="button"
-          onClick={onClear}
-          className="text-xs text-red-500 hover:text-red-600 transition-base focus-ring rounded px-1"
-        >
-          {t("ai.removeKey")}
-        </button>
+      <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-2 space-y-1.5">
+        <div className="flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-green-500 shrink-0" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="16 10 11 15 8 12" />
+          </svg>
+          <span className="text-xs text-[var(--foreground)]">
+            {t("ai.keyConfigured")}
+          </span>
+          <span className="text-xs text-[var(--muted-foreground)] font-mono">
+            {apiKey.slice(0, 10)}...
+          </span>
+          <button
+            type="button"
+            onClick={() => { setEditing(true); setInputValue(""); }}
+            className="ml-auto text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded px-1"
+          >
+            {t("ai.changeKey")}
+          </button>
+          <button
+            type="button"
+            onClick={onClear}
+            className="text-xs text-red-500 hover:text-red-600 transition-base focus-ring rounded px-1"
+          >
+            {t("ai.removeKey")}
+          </button>
+        </div>
+        <p className="text-[10px] text-[var(--muted-foreground)]">{t("ai.keyPrivacy")}</p>
       </div>
     );
   }

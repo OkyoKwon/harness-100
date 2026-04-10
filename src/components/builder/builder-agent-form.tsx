@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useLocale } from "@/hooks/use-locale";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
@@ -10,12 +9,9 @@ import { ToolCheckboxGroup } from "./tool-checkbox-group";
 import { AiAssistButton } from "./ai-assist-button";
 import {
   generateAgentDetails,
-  generateAgentInstructions,
   parseAgentDetails,
-  loadReferenceAgents,
 } from "@/lib/ai-assist";
 import type { ReferenceAgent } from "@/lib/ai-assist";
-import type { Category } from "@/lib/types";
 import type { CustomAgent } from "@/lib/custom-harness-types";
 import type { useAiAssist } from "@/hooks/use-ai-assist";
 
@@ -23,7 +19,6 @@ interface BuilderAgentFormProps {
   readonly agent: CustomAgent;
   readonly allAgents: ReadonlyArray<CustomAgent>;
   readonly harnessName: string;
-  readonly category: Category | "";
   readonly referenceOpen: boolean;
   readonly referenceAgents: ReadonlyArray<ReferenceAgent>;
   readonly onToggleReference: () => void;
@@ -33,13 +28,12 @@ interface BuilderAgentFormProps {
 }
 
 export function BuilderAgentForm({
-  agent, allAgents, harnessName, category,
+  agent, allAgents, harnessName,
   referenceOpen, referenceAgents, onToggleReference,
   onUpdate, errors, ai,
 }: BuilderAgentFormProps) {
   const { t, locale } = useLocale();
   const { addToast } = useToast();
-  const [instructionsLoading, setInstructionsLoading] = useState(false);
 
   const dependencyOptions = allAgents
     .filter((a) => a.id !== agent.id && a.enabled)
@@ -64,44 +58,6 @@ export function BuilderAgentForm({
       addToast(t("ai.applied"), "success");
     } else if (result?.error) {
       addToast(t(result.error), "error");
-    }
-  };
-
-  const handleGenerateInstructions = async () => {
-    if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
-    if (!agent.name.trim() || !agent.role.trim()) {
-      addToast(t("ai.error.noName"), "error");
-      return;
-    }
-
-    setInstructionsLoading(true);
-
-    // Use cached reference agents or load on demand
-    let exampleMd = "";
-    if (referenceAgents.length > 0) {
-      exampleMd = referenceAgents[0].rawMd;
-    } else {
-      try {
-        const agents = await loadReferenceAgents(category, locale);
-        if (agents.length > 0) exampleMd = agents[0].rawMd;
-      } catch {
-        // Proceed without example
-      }
-    }
-
-    try {
-      const result = await ai.runAssist((key) =>
-        generateAgentInstructions(key, agent, harnessName, exampleMd, locale),
-      );
-
-      if (result?.success && result.text) {
-        onUpdate("instructions", result.text);
-        addToast(t("ai.applied"), "success");
-      } else if (result?.error) {
-        addToast(t(result.error), "error");
-      }
-    } finally {
-      setInstructionsLoading(false);
     }
   };
 
@@ -171,30 +127,18 @@ export function BuilderAgentForm({
           helperText={t("builder.agent.instructionsHelper")}
         />
 
-        {/* Action buttons for instructions */}
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onToggleReference}
-            className="inline-flex items-center gap-1.5 rounded-md border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20 px-3 py-1.5 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors"
-          >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0" aria-hidden="true">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-            </svg>
-            {referenceOpen ? t("builder.agent.referenceHide") : t("builder.agent.referenceShow")}
-          </button>
-
-          {ai.isConfigured && (
-            <AiAssistButton
-              onClick={handleGenerateInstructions}
-              loading={instructionsLoading || ai.loading}
-              disabled={!agent.name.trim() || !agent.role.trim()}
-              size="sm"
-              label={t("builder.agent.generateInstructions")}
-            />
-          )}
-        </div>
+        {/* Reference toggle */}
+        <button
+          type="button"
+          onClick={onToggleReference}
+          className="inline-flex items-center gap-1.5 rounded-md border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20 px-3 py-1.5 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors"
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0" aria-hidden="true">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          </svg>
+          {referenceOpen ? t("builder.agent.referenceHide") : t("builder.agent.referenceShow")}
+        </button>
       </div>
 
       <div className="space-y-2">

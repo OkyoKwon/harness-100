@@ -43,6 +43,8 @@ export interface AgentTemplate {
   readonly name: string;
   readonly role: string;
   readonly description: string;
+  readonly instructions?: string;
   readonly tools: ReadonlyArray<string>;
   readonly outputTemplate: string;
+  readonly dependencies?: ReadonlyArray<string>;
 }

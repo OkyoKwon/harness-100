@@ -74,7 +74,7 @@ export function createBlankAgent(): CustomAgent {
 
 /** Create a CustomAgent from a template */
 export function createAgentFromTemplate(
-  template: { name: string; role: string; description: string; instructions?: string; tools: ReadonlyArray<string>; outputTemplate: string },
+  template: { name: string; role: string; description: string; instructions?: string; tools: ReadonlyArray<string>; outputTemplate: string; dependencies?: ReadonlyArray<string> },
 ): CustomAgent {
   return {
     id: nanoid(),
@@ -84,7 +84,7 @@ export function createAgentFromTemplate(
     instructions: template.instructions ?? "",
     tools: template.tools,
     outputTemplate: template.outputTemplate,
-    dependencies: [],
+    dependencies: template.dependencies ?? [],
     enabled: true,
   };
 }

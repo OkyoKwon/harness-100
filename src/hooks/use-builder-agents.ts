@@ -10,16 +10,18 @@ export function useBuilderAgents(initial?: ReadonlyArray<CustomAgent>) {
   const [agents, setAgents] = useState<ReadonlyArray<CustomAgent>>(initial ?? []);
   const [selectedAgentId, setSelectedAgentId] = useState<string | null>(null);
 
-  const addAgent = useCallback((template?: AgentTemplate) => {
+  const addAgent = useCallback((template?: AgentTemplate): CustomAgent => {
     const agent = template ? createAgentFromTemplate(template) : createBlankAgent();
     setAgents((prev) => [...prev, agent]);
     setSelectedAgentId(agent.id);
+    return agent;
   }, []);
 
-  const addReusedAgent = useCallback((source: Agent, sourceRef: AgentSourceRef) => {
+  const addReusedAgent = useCallback((source: Agent, sourceRef: AgentSourceRef): CustomAgent => {
     const agent = createAgentFromReuse(source, sourceRef);
     setAgents((prev) => [...prev, agent]);
     setSelectedAgentId(agent.id);
+    return agent;
   }, []);
 
   const updateAgent = useCallback(

@@ -217,8 +217,14 @@ export async function generateAgentTeam(
   meta: BuilderMeta,
   locale: Locale,
   agentContext?: string,
+  exampleMd?: string,
 ): Promise<AiResponse> {
   const contextBlock = agentContext ? `\n\n${agentContext}` : "";
+  const exampleBlock = exampleMd
+    ? locale === "ko"
+      ? `\n\n참고할 기존 에이전트 지침 예시:\n${exampleMd.slice(0, 1500)}`
+      : `\n\nExample agent instructions for reference:\n${exampleMd.slice(0, 1500)}`
+    : "";
 
   const prompt = locale === "ko"
     ? `하네스 이름: "${meta.name}"
@@ -232,10 +238,13 @@ export async function generateAgentTeam(
 ---
 이름: (영문 kebab-case)
 역할: (한 줄)
-설명: (한 줄)
+설명: (2-3문장)
 도구: (쉼표 구분, Read/Edit/Write/Bash/Glob/Grep/WebSearch/WebFetch/Agent 중 선택)
 출력: (파일 경로)
-재사용: (기존 에이전트를 재활용하는 경우만 "하네스ID/에이전트이름" 형식으로 표기, 예: 1/content-strategist)`
+의존: (선행 에이전트 이름을 쉼표 구분. 없으면 "없음")
+지침:
+(핵심 역할, 작업 원칙, 산출물 포맷, 팀 통신 프로토콜, 에러 핸들링을 포함한 상세 행동 지침을 마크다운으로 작성)
+재사용: (기존 에이전트를 재활용하는 경우만 "하네스ID/에이전트이름" 형식으로 표기, 예: 1/content-strategist)${exampleBlock}`
     : `Harness name: "${meta.name}"
 Description: "${meta.description}"
 Category: ${meta.category || "undecided"}${contextBlock}
@@ -247,12 +256,15 @@ Output each agent in this format:
 ---
 Name: (kebab-case)
 Role: (one line)
-Description: (one line)
+Description: (2-3 sentences)
 Tools: (comma-separated, from Read/Edit/Write/Bash/Glob/Grep/WebSearch/WebFetch/Agent)
 Output: (file path)
-Reuse: (only if reusing an existing agent, format: harnessId/agentName, e.g., 1/content-strategist)`;
+Dependencies: (preceding agent names, comma-separated. "none" if none)
+Instructions:
+(detailed behavioral instructions in markdown including: Core Role, Working Principles, Output Format, Team Communication, Error Handling)
+Reuse: (only if reusing an existing agent, format: harnessId/agentName, e.g., 1/content-strategist)${exampleBlock}`;
 
-  return callClaude(apiKey, sys(locale), prompt, 2048);
+  return callClaude(apiKey, sys(locale), prompt, 4096);
 }
 
 /** Generate only instructions for an agent that already has name/role/description */
@@ -400,8 +412,10 @@ export interface ParsedTeamAgent {
   readonly name: string;
   readonly role: string;
   readonly description: string;
+  readonly instructions: string;
   readonly tools: ReadonlyArray<string>;
   readonly outputTemplate: string;
+  readonly dependencyNames: ReadonlyArray<string>;
   readonly reuseRef?: { readonly harnessId: number; readonly agentId: string };
 }
 
@@ -411,15 +425,37 @@ export function parseAgentTeam(text: string): ReadonlyArray<ParsedTeamAgent> {
   const blocks = text.split("---").filter((b) => b.trim());
 
   return blocks.map((block) => {
-    const lines = block.split("\n").map((l) => l.trim()).filter(Boolean);
+    const lines = block.split("\n");
     let name = "";
     let role = "";
     let description = "";
     let tools: string[] = [];
     let outputTemplate = "";
+    let dependencyNames: string[] = [];
     let reuseRef: { harnessId: number; agentId: string } | undefined;
+    let collectingInstructions = false;
+    const instructionLines: string[] = [];
 
-    for (const line of lines) {
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+      if (!line && !collectingInstructions) continue;
+
+      if (collectingInstructions) {
+        // Stop at reuse line or end
+        if (line.match(/^(재사용|Reuse)\s*[:：]/i)) {
+          collectingInstructions = false;
+          // Parse reuse on this line
+          const refStr = line.replace(/^(재사용|Reuse)\s*[:：]\s*/i, "").trim();
+          const match = refStr.match(/^(\d+)\/(.+)$/);
+          if (match) {
+            reuseRef = { harnessId: Number(match[1]), agentId: match[2].trim() };
+          }
+          continue;
+        }
+        instructionLines.push(rawLine);
+        continue;
+      }
+
       if (line.match(/^(이름|Name)\s*[:：]/i)) {
         name = line.replace(/^(이름|Name)\s*[:：]\s*/i, "");
       } else if (line.match(/^(역할|Role)\s*[:：]/i)) {
@@ -431,6 +467,15 @@ export function parseAgentTeam(text: string): ReadonlyArray<ParsedTeamAgent> {
         tools = toolStr.split(/[,，]\s*/).map((t) => t.trim()).filter((t) => VALID_TOOLS.has(t));
       } else if (line.match(/^(출력|Output)\s*[:：]/i)) {
         outputTemplate = line.replace(/^(출력|Output)\s*[:：]\s*/i, "");
+      } else if (line.match(/^(의존|Dependencies)\s*[:：]/i)) {
+        const depStr = line.replace(/^(의존|Dependencies)\s*[:：]\s*/i, "").trim();
+        if (depStr && !depStr.match(/^(없음|none)$/i)) {
+          dependencyNames = depStr.split(/[,，]\s*/).map((d) => d.trim()).filter(Boolean);
+        }
+      } else if (line.match(/^(지침|Instructions)\s*[:：]/i)) {
+        const inline = line.replace(/^(지침|Instructions)\s*[:：]\s*/i, "");
+        if (inline) instructionLines.push(inline);
+        collectingInstructions = true;
       } else if (line.match(/^(재사용|Reuse)\s*[:：]/i)) {
         const refStr = line.replace(/^(재사용|Reuse)\s*[:：]\s*/i, "").trim();
         const match = refStr.match(/^(\d+)\/(.+)$/);
@@ -440,6 +485,8 @@ export function parseAgentTeam(text: string): ReadonlyArray<ParsedTeamAgent> {
       }
     }
 
-    return { name, role, description, tools, outputTemplate, reuseRef };
+    const instructions = instructionLines.join("\n").trim();
+
+    return { name, role, description, instructions, tools, outputTemplate, dependencyNames, reuseRef };
   }).filter((a) => a.name);
 }

@@ -78,25 +78,45 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
         // Non-critical: AI can still generate without context
       }
 
-      return generateAgentTeam(key, meta, locale, agentContext);
+      // Load example MD for instructions quality
+      let exampleMd: string | undefined;
+      if (referenceAgents.length > 0) {
+        exampleMd = referenceAgents[0].rawMd;
+      } else {
+        try {
+          const refs = await loadReferenceAgents(meta.category, locale);
+          if (refs.length > 0) {
+            setReferenceAgents(refs);
+            setReferenceLoaded(true);
+            exampleMd = refs[0].rawMd;
+          }
+        } catch {
+          // Proceed without example
+        }
+      }
+
+      return generateAgentTeam(key, meta, locale, agentContext, exampleMd);
     });
 
     if (result?.success && result.text) {
       const teamData = parseAgentTeam(result.text);
       let reusedCount = 0;
 
+      // First pass: create agents and collect name→id mapping
+      const nameToId = new Map<string, string>();
+
       for (const data of teamData) {
         if (data.reuseRef) {
-          // Try to load the full agent from the source harness
           try {
             const harness = await loadHarnessDetail(data.reuseRef.harnessId, locale);
             const sourceAgent = harness.agents.find((a) => a.id === data.reuseRef!.agentId || a.name === data.reuseRef!.agentId);
             if (sourceAgent) {
-              addReusedAgent(sourceAgent, {
+              const added = addReusedAgent(sourceAgent, {
                 harnessId: harness.id,
                 harnessName: harness.name,
                 agentId: sourceAgent.id,
               });
+              nameToId.set(data.name, added.id);
               reusedCount++;
               continue;
             }
@@ -105,14 +125,30 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
           }
         }
 
-        // Add as new custom agent (no reuse ref or reuse failed)
-        addAgent({
+        // Add as new custom agent
+        const added = addAgent({
           name: data.name,
           role: data.role,
           description: data.description,
+          instructions: data.instructions,
           tools: data.tools,
           outputTemplate: data.outputTemplate,
         });
+        nameToId.set(data.name, added.id);
+      }
+
+      // Second pass: resolve dependency names to IDs
+      for (const data of teamData) {
+        const agentId = nameToId.get(data.name);
+        if (!agentId || data.dependencyNames.length === 0) continue;
+
+        const depIds = data.dependencyNames
+          .map((depName) => nameToId.get(depName))
+          .filter((id): id is string => !!id);
+
+        if (depIds.length > 0) {
+          updateAgent(agentId, "dependencies", depIds);
+        }
       }
 
       if (teamData.length > 0) {
@@ -182,7 +218,6 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
                 agent={selectedAgent}
                 allAgents={agents}
                 harnessName={meta.name}
-                category={meta.category}
                 referenceOpen={referenceOpen}
                 referenceAgents={referenceAgents}
                 onToggleReference={handleToggleReference}

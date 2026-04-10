@@ -591,6 +591,7 @@ const translations: Record<string, TranslationEntry> = {
   "ai.error.network": { ko: "네트워크 오류가 발생했습니다", en: "Network error occurred" },
   "ai.error.noKey": { ko: "API 키를 먼저 설정하세요", en: "Please set your API key first" },
   "ai.error.noName": { ko: "이름을 먼저 입력하세요", en: "Please enter a name first" },
+  "ai.generatingTeam": { ko: "AI가 에이전트 팀을 생성하고 있습니다.\n지침, 의존성 등 상세 정보를 포함하여 생성하므로 시간이 걸릴 수 있습니다.", en: "AI is generating your agent team.\nThis includes instructions and dependencies, so it may take a moment." },
 
   // ── Builder ──
   "nav.builder": { ko: "만들기", en: "Builder" },

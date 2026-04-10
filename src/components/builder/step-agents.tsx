@@ -200,20 +200,47 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
         <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-4 flex-1 min-w-0">
           {/* Left: Agent list */}
           <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-3 overflow-y-auto max-h-[500px]">
-            <BuilderAgentSidebar
-              agents={agents}
-              selectedId={selectedAgentId}
-              onSelect={selectAgent}
-              onToggle={toggleAgent}
-              onRemove={removeAgent}
-              onMoveUp={(i) => i > 0 && reorderAgent(i, i - 1)}
-              onMoveDown={(i) => i < agents.length - 1 && reorderAgent(i, i + 1)}
-            />
+            {ai.loading && agents.length === 0 ? (
+              <div className="space-y-3 animate-pulse">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="flex items-center gap-2 rounded-lg p-2">
+                    <div className="h-3 w-3 rounded-full bg-[var(--muted)]" />
+                    <div className="h-3 flex-1 rounded bg-[var(--muted)]" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <BuilderAgentSidebar
+                agents={agents}
+                selectedId={selectedAgentId}
+                onSelect={selectAgent}
+                onToggle={toggleAgent}
+                onRemove={removeAgent}
+                onMoveUp={(i) => i > 0 && reorderAgent(i, i - 1)}
+                onMoveDown={(i) => i < agents.length - 1 && reorderAgent(i, i + 1)}
+              />
+            )}
           </div>
 
           {/* Right: Edit form */}
           <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 overflow-y-auto max-h-[600px]">
-            {selectedAgent ? (
+            {ai.loading && agents.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
+                <svg className="animate-spin h-8 w-8 text-violet-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeDasharray="31.4" strokeLinecap="round" />
+                </svg>
+                <p className="text-sm text-[var(--muted-foreground)] whitespace-pre-line max-w-xs">
+                  {t("ai.generatingTeam")}
+                </p>
+                <div className="w-full max-w-sm space-y-3 animate-pulse mt-4">
+                  <div className="h-4 w-2/3 rounded bg-[var(--muted)]" />
+                  <div className="h-3 w-full rounded bg-[var(--muted)]" />
+                  <div className="h-3 w-4/5 rounded bg-[var(--muted)]" />
+                  <div className="h-8 w-full rounded bg-[var(--muted)] mt-4" />
+                  <div className="h-3 w-1/2 rounded bg-[var(--muted)]" />
+                </div>
+              </div>
+            ) : selectedAgent ? (
               <BuilderAgentForm
                 agent={selectedAgent}
                 allAgents={agents}

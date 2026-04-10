@@ -1,4 +1,4 @@
-import type { Harness, HarnessMeta } from "./types";
+import type { AgentRef, Harness, HarnessMeta } from "./types";
 import type { Locale } from "./locale";
 import { DEFAULT_LOCALE } from "./locale";
 
@@ -7,6 +7,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const MAX_DETAIL_CACHE = 20;
 
 let catalogCache: Map<Locale, ReadonlyArray<HarnessMeta>> = new Map();
+let agentIndexCache: Map<Locale, ReadonlyArray<AgentRef>> = new Map();
 let detailCacheEntries: ReadonlyArray<readonly [string, Harness]> = [];
 
 function detailKey(id: number, locale: Locale): string {
@@ -29,6 +30,7 @@ function setDetailCache(id: number, locale: Locale, data: Harness): void {
 
 export function clearCache(): void {
   catalogCache = new Map();
+  agentIndexCache = new Map();
   detailCacheEntries = [];
 }
 
@@ -46,6 +48,23 @@ export async function loadCatalog(
   const next = new Map(catalogCache);
   next.set(locale, data);
   catalogCache = next;
+  return data;
+}
+
+export async function loadAgentIndex(
+  locale: Locale = DEFAULT_LOCALE,
+): Promise<ReadonlyArray<AgentRef>> {
+  const cached = agentIndexCache.get(locale);
+  if (cached) return cached;
+
+  const res = await fetch(`${basePath}/data/${locale}/agent-index.json`);
+  if (!res.ok) {
+    throw new Error(`Failed to load agent index: ${res.status}`);
+  }
+  const data: ReadonlyArray<AgentRef> = await res.json();
+  const next = new Map(agentIndexCache);
+  next.set(locale, data);
+  agentIndexCache = next;
   return data;
 }
 

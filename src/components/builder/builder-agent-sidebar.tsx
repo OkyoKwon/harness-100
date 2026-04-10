@@ -63,11 +63,21 @@ export function BuilderAgentSidebar({
             aria-label={agent.enabled ? "Disable agent" : "Enable agent"}
           />
 
-          {/* Name */}
-          <span className="flex-1 truncate">
+          {/* Name + Reused badge */}
+          <span className="flex-1 truncate flex items-center gap-1">
             {agent.name || (
               <span className="italic text-[var(--muted-foreground)]">
                 {t("builder.agent.name")}
+              </span>
+            )}
+            {agent.sourceRef && (
+              <span className={cn(
+                "inline-flex shrink-0 rounded px-1 py-0.5 text-[9px] font-medium leading-none",
+                agent.id === selectedId
+                  ? "bg-white/20 text-white"
+                  : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
+              )}>
+                {t("builder.agent.reused")}
               </span>
             )}
           </span>

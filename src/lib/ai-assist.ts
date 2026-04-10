@@ -1,4 +1,5 @@
 import type { Locale } from "./locale";
+import type { Category, AgentRef } from "./types";
 import type { CustomAgent, BuilderMeta } from "./custom-harness-types";
 
 const API_URL = "https://api.anthropic.com/v1/messages";
@@ -14,6 +15,7 @@ async function callClaude(
   apiKey: string,
   systemPrompt: string,
   userPrompt: string,
+  maxTokens = 1024,
 ): Promise<AiResponse> {
   try {
     const res = await fetch(API_URL, {
@@ -26,7 +28,7 @@ async function callClaude(
       },
       body: JSON.stringify({
         model: MODEL,
-        max_tokens: 1024,
+        max_tokens: maxTokens,
         system: systemPrompt,
         messages: [{ role: "user", content: userPrompt }],
       }),
@@ -62,6 +64,69 @@ You provide concise, practical suggestions for the harness the user is building.
 function sys(locale: Locale) {
   return locale === "ko" ? SYSTEM_PROMPT_KO : SYSTEM_PROMPT_EN;
 }
+
+// ---------------------------------------------------------------------------
+// Agent context builder — filters relevant existing agents for the AI prompt
+// ---------------------------------------------------------------------------
+
+const RELATED_CATEGORIES: Readonly<Record<Category, ReadonlyArray<Category>>> = {
+  content: ["communication"],
+  development: ["data-ai", "operations"],
+  "data-ai": ["development", "business"],
+  business: ["operations", "data-ai"],
+  education: ["content"],
+  legal: ["business"],
+  lifestyle: ["content", "communication"],
+  communication: ["content", "business"],
+  operations: ["development", "business"],
+  specialized: [],
+};
+
+const MAX_CONTEXT_AGENTS = 20;
+
+/** Build a compact string of relevant existing agents for the AI prompt */
+export function buildAgentContext(
+  agentIndex: ReadonlyArray<AgentRef>,
+  category: Category | "",
+  locale: Locale,
+): string {
+  if (!category || agentIndex.length === 0) return "";
+
+  // Primary: same category agents
+  const primary = agentIndex.filter((a) => a.category === category);
+  // Secondary: related category agents
+  const related = (RELATED_CATEGORIES[category] ?? []) as ReadonlyArray<Category>;
+  const secondary = agentIndex.filter(
+    (a) => a.category !== category && related.includes(a.category as Category),
+  );
+
+  // Deduplicate by name (keep first occurrence)
+  const seen = new Set<string>();
+  const selected: AgentRef[] = [];
+
+  for (const agent of [...primary, ...secondary]) {
+    if (seen.has(agent.name)) continue;
+    seen.add(agent.name);
+    selected.push(agent);
+    if (selected.length >= MAX_CONTEXT_AGENTS) break;
+  }
+
+  if (selected.length === 0) return "";
+
+  const header = locale === "ko"
+    ? "재활용 가능한 기존 에이전트 목록:"
+    : "Available existing agents you can reuse:";
+
+  const lines = selected.map(
+    (a) => `- ${a.name} (하네스: "${a.harnessName}", ID: ${a.harnessId}) — ${a.role}, 도구: ${a.tools.join(",")}`,
+  );
+
+  return `${header}\n${lines.join("\n")}`;
+}
+
+// ---------------------------------------------------------------------------
+// Generation functions
+// ---------------------------------------------------------------------------
 
 /** Generate a harness description from its name and category */
 export async function generateHarnessDescription(
@@ -134,18 +199,22 @@ One per line, no numbering.`;
   return callClaude(apiKey, sys(locale), prompt);
 }
 
-/** Generate full agent team from harness name/description */
+/** Generate full agent team from harness name/description, with existing agent context */
 export async function generateAgentTeam(
   apiKey: string,
   meta: BuilderMeta,
   locale: Locale,
+  agentContext?: string,
 ): Promise<AiResponse> {
+  const contextBlock = agentContext ? `\n\n${agentContext}` : "";
+
   const prompt = locale === "ko"
     ? `하네스 이름: "${meta.name}"
 설명: "${meta.description}"
-카테고리: ${meta.category || "미정"}
+카테고리: ${meta.category || "미정"}${contextBlock}
 
 이 하네스에 적합한 에이전트 팀(3-5명)을 제안해주세요.
+기존 에이전트 중 이 하네스에 적합한 것이 있으면 적극 재활용하세요.
 각 에이전트를 다음 형식으로 출력하세요:
 
 ---
@@ -153,12 +222,14 @@ export async function generateAgentTeam(
 역할: (한 줄)
 설명: (한 줄)
 도구: (쉼표 구분, Read/Edit/Write/Bash/Glob/Grep/WebSearch/WebFetch/Agent 중 선택)
-출력: (파일 경로)`
+출력: (파일 경로)
+재사용: (기존 에이전트를 재활용하는 경우만 "하네스ID/에이전트이름" 형식으로 표기, 예: 1/content-strategist)`
     : `Harness name: "${meta.name}"
 Description: "${meta.description}"
-Category: ${meta.category || "undecided"}
+Category: ${meta.category || "undecided"}${contextBlock}
 
 Suggest an agent team (3-5 agents) for this harness.
+If any existing agent listed above fits well, actively reuse it.
 Output each agent in this format:
 
 ---
@@ -166,10 +237,15 @@ Name: (kebab-case)
 Role: (one line)
 Description: (one line)
 Tools: (comma-separated, from Read/Edit/Write/Bash/Glob/Grep/WebSearch/WebFetch/Agent)
-Output: (file path)`;
+Output: (file path)
+Reuse: (only if reusing an existing agent, format: harnessId/agentName, e.g., 1/content-strategist)`;
 
-  return callClaude(apiKey, sys(locale), prompt);
+  return callClaude(apiKey, sys(locale), prompt, 2048);
 }
+
+// ---------------------------------------------------------------------------
+// Parsers
+// ---------------------------------------------------------------------------
 
 /** Parse agent details response into structured fields */
 export function parseAgentDetails(text: string): {
@@ -195,14 +271,18 @@ export function parseAgentDetails(text: string): {
   return { role, description, outputTemplate };
 }
 
+/** Parsed agent from the AI team generation response */
+export interface ParsedTeamAgent {
+  readonly name: string;
+  readonly role: string;
+  readonly description: string;
+  readonly tools: ReadonlyArray<string>;
+  readonly outputTemplate: string;
+  readonly reuseRef?: { readonly harnessId: number; readonly agentId: string };
+}
+
 /** Parse agent team response into array of agent data */
-export function parseAgentTeam(text: string): ReadonlyArray<{
-  name: string;
-  role: string;
-  description: string;
-  tools: ReadonlyArray<string>;
-  outputTemplate: string;
-}> {
+export function parseAgentTeam(text: string): ReadonlyArray<ParsedTeamAgent> {
   const VALID_TOOLS = new Set(["Read", "Edit", "Write", "Bash", "Glob", "Grep", "WebSearch", "WebFetch", "Agent", "NotebookEdit"]);
   const blocks = text.split("---").filter((b) => b.trim());
 
@@ -213,6 +293,7 @@ export function parseAgentTeam(text: string): ReadonlyArray<{
     let description = "";
     let tools: string[] = [];
     let outputTemplate = "";
+    let reuseRef: { harnessId: number; agentId: string } | undefined;
 
     for (const line of lines) {
       if (line.match(/^(이름|Name)\s*[:：]/i)) {
@@ -226,9 +307,15 @@ export function parseAgentTeam(text: string): ReadonlyArray<{
         tools = toolStr.split(/[,，]\s*/).map((t) => t.trim()).filter((t) => VALID_TOOLS.has(t));
       } else if (line.match(/^(출력|Output)\s*[:：]/i)) {
         outputTemplate = line.replace(/^(출력|Output)\s*[:：]\s*/i, "");
+      } else if (line.match(/^(재사용|Reuse)\s*[:：]/i)) {
+        const refStr = line.replace(/^(재사용|Reuse)\s*[:：]\s*/i, "").trim();
+        const match = refStr.match(/^(\d+)\/(.+)$/);
+        if (match) {
+          reuseRef = { harnessId: Number(match[1]), agentId: match[2].trim() };
+        }
       }
     }
 
-    return { name, role, description, tools, outputTemplate };
+    return { name, role, description, tools, outputTemplate, reuseRef };
   }).filter((a) => a.name);
 }

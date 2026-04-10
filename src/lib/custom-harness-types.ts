@@ -1,8 +1,16 @@
 import type { Agent, Category, Skill } from "./types";
 
+/** Tracks the origin of a reused agent */
+export interface AgentSourceRef {
+  readonly harnessId: number;
+  readonly harnessName: string;
+  readonly agentId: string;
+}
+
 /** Agent with an enabled toggle for the builder */
 export interface CustomAgent extends Agent {
   readonly enabled: boolean;
+  readonly sourceRef?: AgentSourceRef;
 }
 
 export interface CustomHarness {

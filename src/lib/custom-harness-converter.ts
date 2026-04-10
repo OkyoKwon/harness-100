@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
-import type { Harness } from "./types";
-import type { CustomAgent, CustomHarness } from "./custom-harness-types";
+import type { Agent, Harness } from "./types";
+import type { AgentSourceRef, CustomAgent, CustomHarness } from "./custom-harness-types";
 
 function toSlug(name: string): string {
   return name
@@ -83,6 +83,24 @@ export function createAgentFromTemplate(
     outputTemplate: template.outputTemplate,
     dependencies: [],
     enabled: true,
+  };
+}
+
+/** Create a CustomAgent from a reused existing agent */
+export function createAgentFromReuse(
+  source: Agent,
+  ref: AgentSourceRef,
+): CustomAgent {
+  return {
+    id: nanoid(),
+    name: source.name,
+    role: source.role,
+    description: source.description,
+    tools: source.tools,
+    outputTemplate: source.outputTemplate,
+    dependencies: [],
+    enabled: true,
+    sourceRef: ref,
   };
 }
 

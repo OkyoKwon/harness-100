@@ -47,6 +47,21 @@ export function BuilderAgentForm({ agent, allAgents, harnessName, onUpdate, erro
 
   return (
     <div className="space-y-5">
+      {/* Reused agent banner */}
+      {agent.sourceRef && (
+        <div className="flex items-center gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 px-3 py-2 text-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-blue-500 shrink-0" aria-hidden="true">
+            <path d="M17 1l4 4-4 4" /><path d="M3 11V9a4 4 0 0 1 4-4h14" /><path d="M7 23l-4-4 4-4" /><path d="M21 13v2a4 4 0 0 1-4 4H3" />
+          </svg>
+          <span className="font-medium text-blue-700 dark:text-blue-300">
+            {t("builder.agent.reusedFrom")}
+          </span>
+          <span className="text-blue-600 dark:text-blue-400">
+            {agent.sourceRef.harnessName}
+          </span>
+        </div>
+      )}
+
       <div className="flex items-center justify-between">
         <span className="text-sm font-semibold text-[var(--foreground)]">{agent.name || t("builder.agent.name")}</span>
         {ai.isConfigured && (

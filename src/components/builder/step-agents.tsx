@@ -8,7 +8,8 @@ import { BuilderAgentSidebar } from "./builder-agent-sidebar";
 import { BuilderAgentForm } from "./builder-agent-form";
 import { AgentTemplatePicker } from "./agent-template-picker";
 import { AiAssistButton } from "./ai-assist-button";
-import { generateAgentTeam, parseAgentTeam } from "@/lib/ai-assist";
+import { generateAgentTeam, parseAgentTeam, buildAgentContext } from "@/lib/ai-assist";
+import { loadAgentIndex, loadHarnessDetail } from "@/lib/harness-loader";
 import { createAgentFromTemplate } from "@/lib/custom-harness-converter";
 import type { useBuilderAgents } from "@/hooks/use-builder-agents";
 import type { AgentTemplate, BuilderMeta } from "@/lib/custom-harness-types";
@@ -31,6 +32,7 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
     selectedAgentId,
     errors,
     addAgent,
+    addReusedAgent,
     updateAgent,
     removeAgent,
     toggleAgent,
@@ -42,13 +44,44 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
     if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
     if (!meta.name.trim()) { addToast(t("ai.error.noName"), "error"); return; }
 
-    const result = await ai.runAssist((key) =>
-      generateAgentTeam(key, meta, locale),
-    );
+    const result = await ai.runAssist(async (key) => {
+      // Load agent index and build context for the AI prompt
+      let agentContext: string | undefined;
+      try {
+        const index = await loadAgentIndex(locale);
+        agentContext = buildAgentContext(index, meta.category, locale);
+      } catch {
+        // Non-critical: AI can still generate without context
+      }
+
+      return generateAgentTeam(key, meta, locale, agentContext);
+    });
 
     if (result?.success && result.text) {
       const teamData = parseAgentTeam(result.text);
+      let reusedCount = 0;
+
       for (const data of teamData) {
+        if (data.reuseRef) {
+          // Try to load the full agent from the source harness
+          try {
+            const harness = await loadHarnessDetail(data.reuseRef.harnessId, locale);
+            const sourceAgent = harness.agents.find((a) => a.id === data.reuseRef!.agentId || a.name === data.reuseRef!.agentId);
+            if (sourceAgent) {
+              addReusedAgent(sourceAgent, {
+                harnessId: harness.id,
+                harnessName: harness.name,
+                agentId: sourceAgent.id,
+              });
+              reusedCount++;
+              continue;
+            }
+          } catch {
+            // Fallback: add as custom agent if harness load fails
+          }
+        }
+
+        // Add as new custom agent (no reuse ref or reuse failed)
         addAgent({
           name: data.name,
           role: data.role,
@@ -57,8 +90,12 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
           outputTemplate: data.outputTemplate,
         });
       }
+
       if (teamData.length > 0) {
-        addToast(t("ai.teamApplied"), "success");
+        const message = reusedCount > 0
+          ? t("ai.teamWithReuse")
+          : t("ai.teamApplied");
+        addToast(message, "success");
       }
     } else if (result?.error) {
       addToast(t(result.error), "error");

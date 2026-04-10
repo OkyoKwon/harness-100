@@ -20,6 +20,16 @@ export interface Agent {
   readonly dependencies: ReadonlyArray<string>;
 }
 
+/** Compact agent reference for the agent index (build-time generated) */
+export interface AgentRef {
+  readonly name: string;
+  readonly role: string;
+  readonly tools: ReadonlyArray<string>;
+  readonly harnessId: number;
+  readonly harnessName: string;
+  readonly category: Category;
+}
+
 export interface ExecutionStep {
   readonly agentId: string;
   readonly parallel: boolean;

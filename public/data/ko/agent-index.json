@@ -1,0 +1,5646 @@
+[
+  {
+    "name": "content-strategist",
+    "role": "YouTube 콘텐츠 전략가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 1,
+    "harnessName": "YouTube Production",
+    "category": "content"
+  },
+  {
+    "name": "production-reviewer",
+    "role": "YouTube 프로덕션 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 1,
+    "harnessName": "YouTube Production",
+    "category": "content"
+  },
+  {
+    "name": "scriptwriter",
+    "role": "YouTube 대본 작가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 1,
+    "harnessName": "YouTube Production",
+    "category": "content"
+  },
+  {
+    "name": "seo-optimizer",
+    "role": "YouTube SEO 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 1,
+    "harnessName": "YouTube Production",
+    "category": "content"
+  },
+  {
+    "name": "thumbnail-designer",
+    "role": "YouTube 썸네일 디자이너",
+    "tools": [
+      "Skill",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 1,
+    "harnessName": "YouTube Production",
+    "category": "content"
+  },
+  {
+    "name": "distribution-manager",
+    "role": "팟캐스트 배포 매니저",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 2,
+    "harnessName": "Podcast Studio",
+    "category": "content"
+  },
+  {
+    "name": "production-reviewer",
+    "role": "팟캐스트 프로덕션 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 2,
+    "harnessName": "Podcast Studio",
+    "category": "content"
+  },
+  {
+    "name": "researcher",
+    "role": "팟캐스트 리서처",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 2,
+    "harnessName": "Podcast Studio",
+    "category": "content"
+  },
+  {
+    "name": "scriptwriter",
+    "role": "팟캐스트 대본 작가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 2,
+    "harnessName": "Podcast Studio",
+    "category": "content"
+  },
+  {
+    "name": "shownote-editor",
+    "role": "팟캐스트 쇼노트 편집자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 2,
+    "harnessName": "Podcast Studio",
+    "category": "content"
+  },
+  {
+    "name": "analyst",
+    "role": "뉴스레터 분석가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 3,
+    "harnessName": "Newsletter Engine",
+    "category": "content"
+  },
+  {
+    "name": "copywriter",
+    "role": "뉴스레터 카피라이터",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 3,
+    "harnessName": "Newsletter Engine",
+    "category": "content"
+  },
+  {
+    "name": "curator",
+    "role": "뉴스레터 큐레이터",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 3,
+    "harnessName": "Newsletter Engine",
+    "category": "content"
+  },
+  {
+    "name": "editor-in-chief",
+    "role": "뉴스레터 편집장",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 3,
+    "harnessName": "Newsletter Engine",
+    "category": "content"
+  },
+  {
+    "name": "quality-reviewer",
+    "role": "뉴스레터 품질 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 3,
+    "harnessName": "Newsletter Engine",
+    "category": "content"
+  },
+  {
+    "name": "blog-writer",
+    "role": "블로그 작가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 4,
+    "harnessName": "Content Repurposer",
+    "category": "content"
+  },
+  {
+    "name": "presentation-builder",
+    "role": "프레젠테이션 빌더",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 4,
+    "harnessName": "Content Repurposer",
+    "category": "content"
+  },
+  {
+    "name": "quality-reviewer",
+    "role": "콘텐츠 리퍼포징 품질 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 4,
+    "harnessName": "Content Repurposer",
+    "category": "content"
+  },
+  {
+    "name": "sns-copywriter",
+    "role": "SNS 카피라이터",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 4,
+    "harnessName": "Content Repurposer",
+    "category": "content"
+  },
+  {
+    "name": "source-analyst",
+    "role": "원본 콘텐츠 분석가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "SendMessage",
+      "Read"
+    ],
+    "harnessId": 4,
+    "harnessName": "Content Repurposer",
+    "category": "content"
+  },
+  {
+    "name": "branch-architect",
+    "role": "게임 분기 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 5,
+    "harnessName": "Game Narrative",
+    "category": "content"
+  },
+  {
+    "name": "dialogue-writer",
+    "role": "게임 대사 작가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 5,
+    "harnessName": "Game Narrative",
+    "category": "content"
+  },
+  {
+    "name": "narrative-reviewer",
+    "role": "게임 내러티브 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 5,
+    "harnessName": "Game Narrative",
+    "category": "content"
+  },
+  {
+    "name": "quest-designer",
+    "role": "게임 퀘스트 디자이너",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 5,
+    "harnessName": "Game Narrative",
+    "category": "content"
+  },
+  {
+    "name": "worldbuilder",
+    "role": "게임 세계관 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 5,
+    "harnessName": "Game Narrative",
+    "category": "content"
+  },
+  {
+    "name": "brand-strategist",
+    "role": "브랜드 전략가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 6,
+    "harnessName": "Brand Identity",
+    "category": "content"
+  },
+  {
+    "name": "copywriter",
+    "role": "브랜드 카피라이터",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 6,
+    "harnessName": "Brand Identity",
+    "category": "content"
+  },
+  {
+    "name": "identity-reviewer",
+    "role": "브랜드 아이덴티티 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 6,
+    "harnessName": "Brand Identity",
+    "category": "content"
+  },
+  {
+    "name": "naming-specialist",
+    "role": "브랜드 네이밍 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 6,
+    "harnessName": "Brand Identity",
+    "category": "content"
+  },
+  {
+    "name": "visual-director",
+    "role": "비주얼 디렉터",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 6,
+    "harnessName": "Brand Identity",
+    "category": "content"
+  },
+  {
+    "name": "comic-editor",
+    "role": "만화 편집자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 7,
+    "harnessName": "Comic Creator",
+    "category": "content"
+  },
+  {
+    "name": "dialogue-writer",
+    "role": "만화 대사 작가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 7,
+    "harnessName": "Comic Creator",
+    "category": "content"
+  },
+  {
+    "name": "image-generator",
+    "role": "만화 이미지 생성자",
+    "tools": [
+      "Skill",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 7,
+    "harnessName": "Comic Creator",
+    "category": "content"
+  },
+  {
+    "name": "quality-reviewer",
+    "role": "만화 품질 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 7,
+    "harnessName": "Comic Creator",
+    "category": "content"
+  },
+  {
+    "name": "storyboarder",
+    "role": "만화 스토리보더",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 7,
+    "harnessName": "Comic Creator",
+    "category": "content"
+  },
+  {
+    "name": "content-writer",
+    "role": "강의 콘텐츠 작성자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 8,
+    "harnessName": "Course Builder",
+    "category": "content"
+  },
+  {
+    "name": "course-reviewer",
+    "role": "과정검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 8,
+    "harnessName": "Course Builder",
+    "category": "content"
+  },
+  {
+    "name": "curriculum-designer",
+    "role": "교육설계자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 8,
+    "harnessName": "Course Builder",
+    "category": "content"
+  },
+  {
+    "name": "lab-designer",
+    "role": "실습설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 8,
+    "harnessName": "Course Builder",
+    "category": "content"
+  },
+  {
+    "name": "quiz-maker",
+    "role": "퀴즈 출제자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 8,
+    "harnessName": "Course Builder",
+    "category": "content"
+  },
+  {
+    "name": "fact-checker",
+    "role": "다큐멘터리 팩트체커",
+    "tools": [
+      "SendMessage",
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 9,
+    "harnessName": "Documentary Research",
+    "category": "content"
+  },
+  {
+    "name": "interviewer",
+    "role": "다큐멘터리 인터뷰어",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 9,
+    "harnessName": "Documentary Research",
+    "category": "content"
+  },
+  {
+    "name": "narrator",
+    "role": "다큐멘터리 내레이터",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 9,
+    "harnessName": "Documentary Research",
+    "category": "content"
+  },
+  {
+    "name": "researcher",
+    "role": "다큐멘터리 리서처",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 9,
+    "harnessName": "Documentary Research",
+    "category": "content"
+  },
+  {
+    "name": "story-architect",
+    "role": "다큐멘터리 구성작가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 9,
+    "harnessName": "Documentary Research",
+    "category": "content"
+  },
+  {
+    "name": "copywriter",
+    "role": "SNS 카피라이터",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 10,
+    "harnessName": "Social Media Manager",
+    "category": "content"
+  },
+  {
+    "name": "hashtag-analyst",
+    "role": "해시태그 분석가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 10,
+    "harnessName": "Social Media Manager",
+    "category": "content"
+  },
+  {
+    "name": "performance-reviewer",
+    "role": "SNS 성과검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 10,
+    "harnessName": "Social Media Manager",
+    "category": "content"
+  },
+  {
+    "name": "sns-strategist",
+    "role": "SNS 전략가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 10,
+    "harnessName": "Social Media Manager",
+    "category": "content"
+  },
+  {
+    "name": "visual-planner",
+    "role": "SNS 비주얼 기획자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 10,
+    "harnessName": "Social Media Manager",
+    "category": "content"
+  },
+  {
+    "name": "ip-analyst",
+    "role": "지식재산 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 100,
+    "harnessName": "IP Portfolio",
+    "category": "specialized"
+  },
+  {
+    "name": "license-strategist",
+    "role": "IP 라이선스 전략가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 100,
+    "harnessName": "IP Portfolio",
+    "category": "specialized"
+  },
+  {
+    "name": "patent-mapper",
+    "role": "특허·상표·저작권 매퍼",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 100,
+    "harnessName": "IP Portfolio",
+    "category": "specialized"
+  },
+  {
+    "name": "protection-advisor",
+    "role": "IP 보호 전략 수립자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 100,
+    "harnessName": "IP Portfolio",
+    "category": "specialized"
+  },
+  {
+    "name": "renewal-scheduler",
+    "role": "IP 갱신 일정 관리자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 100,
+    "harnessName": "IP Portfolio",
+    "category": "specialized"
+  },
+  {
+    "name": "cover-designer",
+    "role": "표지 디자이너",
+    "tools": [
+      "Skill",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 11,
+    "harnessName": "Book Publishing",
+    "category": "content"
+  },
+  {
+    "name": "manuscript-editor",
+    "role": "원고 편집자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 11,
+    "harnessName": "Book Publishing",
+    "category": "content"
+  },
+  {
+    "name": "metadata-manager",
+    "role": "메타데이터 관리자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 11,
+    "harnessName": "Book Publishing",
+    "category": "content"
+  },
+  {
+    "name": "proofreader",
+    "role": "교정교열자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 11,
+    "harnessName": "Book Publishing",
+    "category": "content"
+  },
+  {
+    "name": "publishing-reviewer",
+    "role": "출판 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 11,
+    "harnessName": "Book Publishing",
+    "category": "content"
+  },
+  {
+    "name": "campaign-reviewer",
+    "role": "캠페인 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 12,
+    "harnessName": "Advertising Campaign",
+    "category": "content"
+  },
+  {
+    "name": "copywriter",
+    "role": "광고 카피라이터",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 12,
+    "harnessName": "Advertising Campaign",
+    "category": "content"
+  },
+  {
+    "name": "creative-director",
+    "role": "크리에이티브 디렉터",
+    "tools": [
+      "Skill",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 12,
+    "harnessName": "Advertising Campaign",
+    "category": "content"
+  },
+  {
+    "name": "market-analyst",
+    "role": "시장·타깃 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 12,
+    "harnessName": "Advertising Campaign",
+    "category": "content"
+  },
+  {
+    "name": "media-planner",
+    "role": "미디어 플래너",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 12,
+    "harnessName": "Advertising Campaign",
+    "category": "content"
+  },
+  {
+    "name": "deck-reviewer",
+    "role": "프레젠테이션 덱 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 13,
+    "harnessName": "Presentation Designer",
+    "category": "content"
+  },
+  {
+    "name": "info-architect",
+    "role": "정보 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 13,
+    "harnessName": "Presentation Designer",
+    "category": "content"
+  },
+  {
+    "name": "presentation-coach",
+    "role": "발표 코치",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 13,
+    "harnessName": "Presentation Designer",
+    "category": "content"
+  },
+  {
+    "name": "storyteller",
+    "role": "프레젠테이션 스토리텔러",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 13,
+    "harnessName": "Presentation Designer",
+    "category": "content"
+  },
+  {
+    "name": "visual-designer",
+    "role": "프레젠테이션 비주얼 디자이너",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 13,
+    "harnessName": "Presentation Designer",
+    "category": "content"
+  },
+  {
+    "name": "localizer",
+    "role": "현지화 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 14,
+    "harnessName": "Translation & Localization",
+    "category": "content"
+  },
+  {
+    "name": "quality-reviewer",
+    "role": "번역 품질 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 14,
+    "harnessName": "Translation & Localization",
+    "category": "content"
+  },
+  {
+    "name": "style-harmonizer",
+    "role": "스타일 통일자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 14,
+    "harnessName": "Translation & Localization",
+    "category": "content"
+  },
+  {
+    "name": "terminology-manager",
+    "role": "용어 관리자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 14,
+    "harnessName": "Translation & Localization",
+    "category": "content"
+  },
+  {
+    "name": "translator",
+    "role": "전문 번역가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 14,
+    "harnessName": "Translation & Localization",
+    "category": "content"
+  },
+  {
+    "name": "editorial-reviewer",
+    "role": "편집 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 15,
+    "harnessName": "Visual Storytelling",
+    "category": "content"
+  },
+  {
+    "name": "essay-writer",
+    "role": "에세이 작가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 15,
+    "harnessName": "Visual Storytelling",
+    "category": "content"
+  },
+  {
+    "name": "image-prompter",
+    "role": "이미지 프롬프터",
+    "tools": [
+      "Skill",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 15,
+    "harnessName": "Visual Storytelling",
+    "category": "content"
+  },
+  {
+    "name": "layout-builder",
+    "role": "레이아웃 빌더",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 15,
+    "harnessName": "Visual Storytelling",
+    "category": "content"
+  },
+  {
+    "name": "story-architect",
+    "role": "스토리 설계자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 15,
+    "harnessName": "Visual Storytelling",
+    "category": "content"
+  },
+  {
+    "name": "architect",
+    "role": "시스템 아키텍트",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 16,
+    "harnessName": "Fullstack Web App",
+    "category": "development"
+  },
+  {
+    "name": "backend-dev",
+    "role": "백엔드 개발자",
+    "tools": [],
+    "harnessId": 16,
+    "harnessName": "Fullstack Web App",
+    "category": "development"
+  },
+  {
+    "name": "devops-engineer",
+    "role": "DevOps 엔지니어",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 16,
+    "harnessName": "Fullstack Web App",
+    "category": "development"
+  },
+  {
+    "name": "frontend-dev",
+    "role": "프론트엔드 개발자",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 16,
+    "harnessName": "Fullstack Web App",
+    "category": "development"
+  },
+  {
+    "name": "qa-engineer",
+    "role": "QA 엔지니어",
+    "tools": [
+      "SendMessage",
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 16,
+    "harnessName": "Fullstack Web App",
+    "category": "development"
+  },
+  {
+    "name": "api-integrator",
+    "role": "API 연동 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 17,
+    "harnessName": "Mobile App Builder",
+    "category": "development"
+  },
+  {
+    "name": "app-developer",
+    "role": "모바일 앱 개발자",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 17,
+    "harnessName": "Mobile App Builder",
+    "category": "development"
+  },
+  {
+    "name": "qa-engineer",
+    "role": "모바일 QA 엔지니어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 17,
+    "harnessName": "Mobile App Builder",
+    "category": "development"
+  },
+  {
+    "name": "store-manager",
+    "role": "앱 스토어 배포 매니저",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 17,
+    "harnessName": "Mobile App Builder",
+    "category": "development"
+  },
+  {
+    "name": "ux-designer",
+    "role": "모바일 UX/UI 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 17,
+    "harnessName": "Mobile App Builder",
+    "category": "development"
+  },
+  {
+    "name": "api-architect",
+    "role": "API 설계 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 18,
+    "harnessName": "API Designer",
+    "category": "development"
+  },
+  {
+    "name": "doc-writer",
+    "role": "API 문서 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 18,
+    "harnessName": "API Designer",
+    "category": "development"
+  },
+  {
+    "name": "mock-tester",
+    "role": "API 목업 및 테스트 전문가",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 18,
+    "harnessName": "API Designer",
+    "category": "development"
+  },
+  {
+    "name": "review-auditor",
+    "role": "API 리뷰 감사자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 18,
+    "harnessName": "API Designer",
+    "category": "development"
+  },
+  {
+    "name": "schema-validator",
+    "role": "API 스키마 검증자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 18,
+    "harnessName": "API Designer",
+    "category": "development"
+  },
+  {
+    "name": "data-modeler",
+    "role": "데이터 모델링 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 19,
+    "harnessName": "Database Architect",
+    "category": "development"
+  },
+  {
+    "name": "integration-reviewer",
+    "role": "DB 통합 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 19,
+    "harnessName": "Database Architect",
+    "category": "development"
+  },
+  {
+    "name": "migration-manager",
+    "role": "마이그레이션 관리자",
+    "tools": [
+      "Write",
+      "Edit",
+      "Read"
+    ],
+    "harnessId": 19,
+    "harnessName": "Database Architect",
+    "category": "development"
+  },
+  {
+    "name": "performance-analyst",
+    "role": "DB 성능 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 19,
+    "harnessName": "Database Architect",
+    "category": "development"
+  },
+  {
+    "name": "security-auditor",
+    "role": "DB 보안 감사자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 19,
+    "harnessName": "Database Architect",
+    "category": "development"
+  },
+  {
+    "name": "infra-engineer",
+    "role": "CI/CD 인프라 엔지니어",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 20,
+    "harnessName": "CI/CD Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "monitoring-specialist",
+    "role": "CI/CD 모니터링 전문가",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 20,
+    "harnessName": "CI/CD Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "pipeline-designer",
+    "role": "CI/CD 파이프라인 설계자",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 20,
+    "harnessName": "CI/CD Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "pipeline-reviewer",
+    "role": "CI/CD 파이프라인 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 20,
+    "harnessName": "CI/CD Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "security-scanner",
+    "role": "CI/CD 보안 스캐너",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 20,
+    "harnessName": "CI/CD Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "architecture-reviewer",
+    "role": "아키텍처 리뷰어",
+    "tools": [
+      "Write",
+      "Edit",
+      "Read"
+    ],
+    "harnessId": 21,
+    "harnessName": "Code Reviewer",
+    "category": "development"
+  },
+  {
+    "name": "performance-analyst",
+    "role": "코드 성능 분석가",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 21,
+    "harnessName": "Code Reviewer",
+    "category": "development"
+  },
+  {
+    "name": "review-synthesizer",
+    "role": "코드 리뷰 종합자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 21,
+    "harnessName": "Code Reviewer",
+    "category": "development"
+  },
+  {
+    "name": "security-analyst",
+    "role": "코드 보안 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 21,
+    "harnessName": "Code Reviewer",
+    "category": "development"
+  },
+  {
+    "name": "style-inspector",
+    "role": "코드 스타일 검사관",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 21,
+    "harnessName": "Code Reviewer",
+    "category": "development"
+  },
+  {
+    "name": "legacy-analyzer",
+    "role": "레거시 코드 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 22,
+    "harnessName": "Legacy Modernizer",
+    "category": "development"
+  },
+  {
+    "name": "migration-engineer",
+    "role": "마이그레이션 엔지니어",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 22,
+    "harnessName": "Legacy Modernizer",
+    "category": "development"
+  },
+  {
+    "name": "modernization-reviewer",
+    "role": "현대화 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 22,
+    "harnessName": "Legacy Modernizer",
+    "category": "development"
+  },
+  {
+    "name": "refactoring-strategist",
+    "role": "리팩토링 전략가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 22,
+    "harnessName": "Legacy Modernizer",
+    "category": "development"
+  },
+  {
+    "name": "regression-tester",
+    "role": "회귀 테스터",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 22,
+    "harnessName": "Legacy Modernizer",
+    "category": "development"
+  },
+  {
+    "name": "architecture-reviewer",
+    "role": "아키텍처 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 23,
+    "harnessName": "Microservice Designer",
+    "category": "development"
+  },
+  {
+    "name": "communication-designer",
+    "role": "통신 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 23,
+    "harnessName": "Microservice Designer",
+    "category": "development"
+  },
+  {
+    "name": "domain-analyst",
+    "role": "도메인 분석가",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 23,
+    "harnessName": "Microservice Designer",
+    "category": "development"
+  },
+  {
+    "name": "observability-engineer",
+    "role": "관측성 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 23,
+    "harnessName": "Microservice Designer",
+    "category": "development"
+  },
+  {
+    "name": "service-architect",
+    "role": "서비스 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 23,
+    "harnessName": "Microservice Designer",
+    "category": "development"
+  },
+  {
+    "name": "coverage-analyst",
+    "role": "커버리지 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 24,
+    "harnessName": "Test Automation",
+    "category": "development"
+  },
+  {
+    "name": "integration-tester",
+    "role": "통합 테스트 전문가",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 24,
+    "harnessName": "Test Automation",
+    "category": "development"
+  },
+  {
+    "name": "qa-reviewer",
+    "role": "테스트 자동화 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 24,
+    "harnessName": "Test Automation",
+    "category": "development"
+  },
+  {
+    "name": "test-strategist",
+    "role": "테스트 전략가",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 24,
+    "harnessName": "Test Automation",
+    "category": "development"
+  },
+  {
+    "name": "unit-tester",
+    "role": "단위 테스트 전문가",
+    "tools": [
+      "Write",
+      "Edit",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 24,
+    "harnessName": "Test Automation",
+    "category": "development"
+  },
+  {
+    "name": "impact-assessor",
+    "role": "영향범위 평가자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 25,
+    "harnessName": "Incident Postmortem",
+    "category": "development"
+  },
+  {
+    "name": "postmortem-reviewer",
+    "role": "포스트모텀 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 25,
+    "harnessName": "Incident Postmortem",
+    "category": "development"
+  },
+  {
+    "name": "remediation-planner",
+    "role": "재발방지 대책 수립자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 25,
+    "harnessName": "Incident Postmortem",
+    "category": "development"
+  },
+  {
+    "name": "root-cause-investigator",
+    "role": "근본원인 조사관",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 25,
+    "harnessName": "Incident Postmortem",
+    "category": "development"
+  },
+  {
+    "name": "timeline-reconstructor",
+    "role": "타임라인 재구성 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 25,
+    "harnessName": "Incident Postmortem",
+    "category": "development"
+  },
+  {
+    "name": "cost-optimizer",
+    "role": "비용 최적화 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 26,
+    "harnessName": "Infrastructure as Code",
+    "category": "development"
+  },
+  {
+    "name": "drift-detector",
+    "role": "드리프트 감지자",
+    "tools": [
+      "Write",
+      "Edit",
+      "Read"
+    ],
+    "harnessId": 26,
+    "harnessName": "Infrastructure as Code",
+    "category": "development"
+  },
+  {
+    "name": "iac-reviewer",
+    "role": "IaC 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 26,
+    "harnessName": "Infrastructure as Code",
+    "category": "development"
+  },
+  {
+    "name": "infra-architect",
+    "role": "인프라 설계자",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 26,
+    "harnessName": "Infrastructure as Code",
+    "category": "development"
+  },
+  {
+    "name": "security-engineer",
+    "role": "보안 엔지니어",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 26,
+    "harnessName": "Infrastructure as Code",
+    "category": "development"
+  },
+  {
+    "name": "data-quality-manager",
+    "role": "데이터 품질 관리자",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 27,
+    "harnessName": "Data Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "etl-architect",
+    "role": "ETL 아키텍처 설계자",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 27,
+    "harnessName": "Data Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "monitoring-specialist",
+    "role": "모니터링 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 27,
+    "harnessName": "Data Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "pipeline-reviewer",
+    "role": "파이프라인 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 27,
+    "harnessName": "Data Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "scheduler-engineer",
+    "role": "스케줄링 엔지니어",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 27,
+    "harnessName": "Data Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "audit-reviewer",
+    "role": "감사 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 28,
+    "harnessName": "Security Audit",
+    "category": "development"
+  },
+  {
+    "name": "code-analyst",
+    "role": "코드 보안 분석가",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 28,
+    "harnessName": "Security Audit",
+    "category": "development"
+  },
+  {
+    "name": "pentest-reporter",
+    "role": "침투 테스트 보고자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 28,
+    "harnessName": "Security Audit",
+    "category": "development"
+  },
+  {
+    "name": "security-consultant",
+    "role": "보안 컨설턴트",
+    "tools": [
+      "Write",
+      "Edit",
+      "Read"
+    ],
+    "harnessId": 28,
+    "harnessName": "Security Audit",
+    "category": "development"
+  },
+  {
+    "name": "vulnerability-scanner",
+    "role": "취약점 스캐너",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 28,
+    "harnessName": "Security Audit",
+    "category": "development"
+  },
+  {
+    "name": "benchmark-manager",
+    "role": "벤치마크 관리자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 29,
+    "harnessName": "Performance Optimizer",
+    "category": "development"
+  },
+  {
+    "name": "bottleneck-analyst",
+    "role": "병목 분석가",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 29,
+    "harnessName": "Performance Optimizer",
+    "category": "development"
+  },
+  {
+    "name": "optimization-engineer",
+    "role": "최적화 엔지니어",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 29,
+    "harnessName": "Performance Optimizer",
+    "category": "development"
+  },
+  {
+    "name": "perf-reviewer",
+    "role": "성능 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Read",
+      "Write"
+    ],
+    "harnessId": 29,
+    "harnessName": "Performance Optimizer",
+    "category": "development"
+  },
+  {
+    "name": "profiler",
+    "role": "성능 프로파일러",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 29,
+    "harnessName": "Performance Optimizer",
+    "category": "development"
+  },
+  {
+    "name": "code-organizer",
+    "role": "코드 정리자",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 30,
+    "harnessName": "Open Source Launcher",
+    "category": "development"
+  },
+  {
+    "name": "community-manager",
+    "role": "커뮤니티 매니저",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 30,
+    "harnessName": "Open Source Launcher",
+    "category": "development"
+  },
+  {
+    "name": "doc-writer",
+    "role": "문서 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 30,
+    "harnessName": "Open Source Launcher",
+    "category": "development"
+  },
+  {
+    "name": "launch-reviewer",
+    "role": "런칭 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 30,
+    "harnessName": "Open Source Launcher",
+    "category": "development"
+  },
+  {
+    "name": "license-specialist",
+    "role": "라이선스 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 30,
+    "harnessName": "Open Source Launcher",
+    "category": "development"
+  },
+  {
+    "name": "data-engineer",
+    "role": "ML 데이터 엔지니어",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 31,
+    "harnessName": "ML Experiment",
+    "category": "data-ai"
+  },
+  {
+    "name": "evaluation-analyst",
+    "role": "평가 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 31,
+    "harnessName": "ML Experiment",
+    "category": "data-ai"
+  },
+  {
+    "name": "experiment-reviewer",
+    "role": "실험 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 31,
+    "harnessName": "ML Experiment",
+    "category": "data-ai"
+  },
+  {
+    "name": "model-designer",
+    "role": "모델 설계자",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 31,
+    "harnessName": "ML Experiment",
+    "category": "data-ai"
+  },
+  {
+    "name": "training-manager",
+    "role": "학습 관리자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 31,
+    "harnessName": "ML Experiment",
+    "category": "data-ai"
+  },
+  {
+    "name": "analyst",
+    "role": "통계 분석 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 32,
+    "harnessName": "Data Analysis",
+    "category": "data-ai"
+  },
+  {
+    "name": "cleaner",
+    "role": "데이터 정제 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 32,
+    "harnessName": "Data Analysis",
+    "category": "data-ai"
+  },
+  {
+    "name": "explorer",
+    "role": "탐색적 데이터 분석가",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 32,
+    "harnessName": "Data Analysis",
+    "category": "data-ai"
+  },
+  {
+    "name": "reporter",
+    "role": "분석 보고서 작성 전문가",
+    "tools": [
+      "Write",
+      "SendMessage",
+      "Read"
+    ],
+    "harnessId": 32,
+    "harnessName": "Data Analysis",
+    "category": "data-ai"
+  },
+  {
+    "name": "visualizer",
+    "role": "데이터 시각화 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 32,
+    "harnessName": "Data Analysis",
+    "category": "data-ai"
+  },
+  {
+    "name": "classifier",
+    "role": "텍스트 분류 엔진",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 33,
+    "harnessName": "Text Processor",
+    "category": "data-ai"
+  },
+  {
+    "name": "extractor",
+    "role": "정보 추출 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 33,
+    "harnessName": "Text Processor",
+    "category": "data-ai"
+  },
+  {
+    "name": "preprocessor",
+    "role": "텍스트 전처리 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 33,
+    "harnessName": "Text Processor",
+    "category": "data-ai"
+  },
+  {
+    "name": "report-writer",
+    "role": "텍스트 처리 보고서 작성 전문가",
+    "tools": [
+      "Write",
+      "SendMessage",
+      "Read"
+    ],
+    "harnessId": 33,
+    "harnessName": "Text Processor",
+    "category": "data-ai"
+  },
+  {
+    "name": "sentiment-analyzer",
+    "role": "감성 분석 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 33,
+    "harnessName": "Text Processor",
+    "category": "data-ai"
+  },
+  {
+    "name": "rollback-planner",
+    "role": "롤백 및 비상 대응 전문가",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 34,
+    "harnessName": "Data Migration",
+    "category": "data-ai"
+  },
+  {
+    "name": "schema-mapper",
+    "role": "스키마 매핑 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 34,
+    "harnessName": "Data Migration",
+    "category": "data-ai"
+  },
+  {
+    "name": "script-developer",
+    "role": "마이그레이션 스크립트 개발자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 34,
+    "harnessName": "Data Migration",
+    "category": "data-ai"
+  },
+  {
+    "name": "source-analyst",
+    "role": "소스 시스템 분석 전문가",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 34,
+    "harnessName": "Data Migration",
+    "category": "data-ai"
+  },
+  {
+    "name": "validation-engineer",
+    "role": "마이그레이션 검증 엔지니어",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 34,
+    "harnessName": "Data Migration",
+    "category": "data-ai"
+  },
+  {
+    "name": "doc-writer",
+    "role": "SDK 문서 작성 전문가",
+    "tools": [
+      "Bash",
+      "Read",
+      "Write"
+    ],
+    "harnessId": 35,
+    "harnessName": "API Client Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "sdk-developer",
+    "role": "SDK 클라이언트 개발자",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 35,
+    "harnessName": "API Client Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "spec-parser",
+    "role": "API 스펙 분석 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 35,
+    "harnessName": "API Client Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "test-engineer",
+    "role": "SDK 테스트 엔지니어",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 35,
+    "harnessName": "API Client Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "type-generator",
+    "role": "타입 생성 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 35,
+    "harnessName": "API Client Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "a11y-auditor",
+    "role": "접근성 검증 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 36,
+    "harnessName": "Design System",
+    "category": "data-ai"
+  },
+  {
+    "name": "component-developer",
+    "role": "UI 컴포넌트 개발 전문가",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 36,
+    "harnessName": "Design System",
+    "category": "data-ai"
+  },
+  {
+    "name": "doc-writer",
+    "role": "디자인 시스템 문서 전문가",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 36,
+    "harnessName": "Design System",
+    "category": "data-ai"
+  },
+  {
+    "name": "storybook-builder",
+    "role": "스토리북 전문가",
+    "tools": [
+      "Bash",
+      "Read",
+      "Write"
+    ],
+    "harnessId": 36,
+    "harnessName": "Design System",
+    "category": "data-ai"
+  },
+  {
+    "name": "token-designer",
+    "role": "디자인 토큰 설계 전문가",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 36,
+    "harnessName": "Design System",
+    "category": "data-ai"
+  },
+  {
+    "name": "crawler-developer",
+    "role": "크롤러 개발자",
+    "tools": [
+      "Agent",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 37,
+    "harnessName": "Web Scraper",
+    "category": "data-ai"
+  },
+  {
+    "name": "data-manager",
+    "role": "데이터 관리자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 37,
+    "harnessName": "Web Scraper",
+    "category": "data-ai"
+  },
+  {
+    "name": "monitor-operator",
+    "role": "모니터링 운영자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 37,
+    "harnessName": "Web Scraper",
+    "category": "data-ai"
+  },
+  {
+    "name": "parser-engineer",
+    "role": "파싱 엔지니어",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 37,
+    "harnessName": "Web Scraper",
+    "category": "data-ai"
+  },
+  {
+    "name": "target-analyst",
+    "role": "대상 사이트 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 37,
+    "harnessName": "Web Scraper",
+    "category": "data-ai"
+  },
+  {
+    "name": "conversation-designer",
+    "role": "대화 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 38,
+    "harnessName": "Chatbot Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "dialog-tester",
+    "role": "대화 테스터",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 38,
+    "harnessName": "Chatbot Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "integration-engineer",
+    "role": "통합 엔지니어",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 38,
+    "harnessName": "Chatbot Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "nlu-developer",
+    "role": "NLU 개발자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 38,
+    "harnessName": "Chatbot Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "persona-architect",
+    "role": "페르소나 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 38,
+    "harnessName": "Chatbot Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "announcement-writer",
+    "role": "공지문 작성자",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 39,
+    "harnessName": "Changelog Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "change-classifier",
+    "role": "변경 분류자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 39,
+    "harnessName": "Changelog Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "commit-analyst",
+    "role": "커밋 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 39,
+    "harnessName": "Changelog Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "migration-guide-writer",
+    "role": "마이그레이션 가이드 작성자",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 39,
+    "harnessName": "Changelog Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "release-note-writer",
+    "role": "릴리스 노트 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 39,
+    "harnessName": "Changelog Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "command-designer",
+    "role": "CLI 명령 설계자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 40,
+    "harnessName": "CLI Tool Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "core-developer",
+    "role": "CLI 코어 개발자",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 40,
+    "harnessName": "CLI Tool Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "docs-writer",
+    "role": "CLI 문서 작성자",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 40,
+    "harnessName": "CLI Tool Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "release-engineer",
+    "role": "릴리스 엔지니어",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 40,
+    "harnessName": "CLI Tool Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "test-engineer",
+    "role": "CLI 테스트 엔지니어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 40,
+    "harnessName": "CLI Tool Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "deploy-engineer",
+    "role": "배포 엔지니어",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 41,
+    "harnessName": "LLM App Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "eval-specialist",
+    "role": "평가 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 41,
+    "harnessName": "LLM App Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "optimization-engineer",
+    "role": "최적화 엔지니어",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 41,
+    "harnessName": "LLM App Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "prompt-engineer",
+    "role": "프롬프트 엔지니어",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 41,
+    "harnessName": "LLM App Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "rag-architect",
+    "role": "RAG 파이프라인 설계자",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 41,
+    "harnessName": "LLM App Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "bi-reviewer",
+    "role": "BI 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 42,
+    "harnessName": "BI Dashboard",
+    "category": "data-ai"
+  },
+  {
+    "name": "dashboard-builder",
+    "role": "대시보드 빌더",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 42,
+    "harnessName": "BI Dashboard",
+    "category": "data-ai"
+  },
+  {
+    "name": "data-engineer",
+    "role": "BI 데이터 엔지니어",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 42,
+    "harnessName": "BI Dashboard",
+    "category": "data-ai"
+  },
+  {
+    "name": "kpi-designer",
+    "role": "KPI 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 42,
+    "harnessName": "BI Dashboard",
+    "category": "data-ai"
+  },
+  {
+    "name": "report-automator",
+    "role": "보고서 자동화 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 42,
+    "harnessName": "BI Dashboard",
+    "category": "data-ai"
+  },
+  {
+    "name": "business-modeler",
+    "role": "비즈니스 모델러",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 43,
+    "harnessName": "Startup Launcher",
+    "category": "business"
+  },
+  {
+    "name": "launch-reviewer",
+    "role": "런칭 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 43,
+    "harnessName": "Startup Launcher",
+    "category": "business"
+  },
+  {
+    "name": "market-analyst",
+    "role": "스타트업 시장 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 43,
+    "harnessName": "Startup Launcher",
+    "category": "business"
+  },
+  {
+    "name": "mvp-architect",
+    "role": "MVP 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 43,
+    "harnessName": "Startup Launcher",
+    "category": "business"
+  },
+  {
+    "name": "pitch-creator",
+    "role": "피치덱 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 43,
+    "harnessName": "Startup Launcher",
+    "category": "business"
+  },
+  {
+    "name": "competitor-analyst",
+    "role": "경쟁 분석가",
+    "tools": [
+      "WebSearch",
+      "Read",
+      "Write"
+    ],
+    "harnessId": 44,
+    "harnessName": "Market Research",
+    "category": "business"
+  },
+  {
+    "name": "consumer-analyst",
+    "role": "소비자 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 44,
+    "harnessName": "Market Research",
+    "category": "business"
+  },
+  {
+    "name": "industry-analyst",
+    "role": "산업 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 44,
+    "harnessName": "Market Research",
+    "category": "business"
+  },
+  {
+    "name": "research-reviewer",
+    "role": "리서치 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 44,
+    "harnessName": "Market Research",
+    "category": "business"
+  },
+  {
+    "name": "trend-analyst",
+    "role": "트렌드 분석가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 44,
+    "harnessName": "Market Research",
+    "category": "business"
+  },
+  {
+    "name": "announcement-analyst",
+    "role": "공고 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 45,
+    "harnessName": "Gov Funding Plan",
+    "category": "business"
+  },
+  {
+    "name": "biz-writer",
+    "role": "사업성 작성자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 45,
+    "harnessName": "Gov Funding Plan",
+    "category": "business"
+  },
+  {
+    "name": "budget-planner",
+    "role": "예산 편성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 45,
+    "harnessName": "Gov Funding Plan",
+    "category": "business"
+  },
+  {
+    "name": "submission-reviewer",
+    "role": "제출 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 45,
+    "harnessName": "Gov Funding Plan",
+    "category": "business"
+  },
+  {
+    "name": "tech-writer",
+    "role": "기술성 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 45,
+    "harnessName": "Gov Funding Plan",
+    "category": "business"
+  },
+  {
+    "name": "pm-reviewer",
+    "role": "PM 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 46,
+    "harnessName": "Product Manager",
+    "category": "business"
+  },
+  {
+    "name": "prd-writer",
+    "role": "PRD 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 46,
+    "harnessName": "Product Manager",
+    "category": "business"
+  },
+  {
+    "name": "sprint-planner",
+    "role": "스프린트 플래너",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 46,
+    "harnessName": "Product Manager",
+    "category": "business"
+  },
+  {
+    "name": "story-writer",
+    "role": "유저스토리 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 46,
+    "harnessName": "Product Manager",
+    "category": "business"
+  },
+  {
+    "name": "strategist",
+    "role": "제품 전략가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 46,
+    "harnessName": "Product Manager",
+    "category": "business"
+  },
+  {
+    "name": "bsc-analyst",
+    "role": "BSC 균형성과표 분석가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 47,
+    "harnessName": "Strategy Framework",
+    "category": "business"
+  },
+  {
+    "name": "okr-designer",
+    "role": "OKR 설계 전문가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 47,
+    "harnessName": "Strategy Framework",
+    "category": "business"
+  },
+  {
+    "name": "strategy-reviewer",
+    "role": "전략 프레임워크 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 47,
+    "harnessName": "Strategy Framework",
+    "category": "business"
+  },
+  {
+    "name": "strategy-writer",
+    "role": "전략 문서 작성자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 47,
+    "harnessName": "Strategy Framework",
+    "category": "business"
+  },
+  {
+    "name": "swot-specialist",
+    "role": "SWOT 분석 전문가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 47,
+    "harnessName": "Strategy Framework",
+    "category": "business"
+  },
+  {
+    "name": "customer-analyst",
+    "role": "고객 분석 전문가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Read",
+      "Write"
+    ],
+    "harnessId": 48,
+    "harnessName": "Sales Enablement",
+    "category": "business"
+  },
+  {
+    "name": "followup-manager",
+    "role": "영업 팔로업 관리 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 48,
+    "harnessName": "Sales Enablement",
+    "category": "business"
+  },
+  {
+    "name": "presenter",
+    "role": "영업 프레젠테이션 설계 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 48,
+    "harnessName": "Sales Enablement",
+    "category": "business"
+  },
+  {
+    "name": "proposal-writer",
+    "role": "영업 제안서 작성 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 48,
+    "harnessName": "Sales Enablement",
+    "category": "business"
+  },
+  {
+    "name": "sales-reviewer",
+    "role": "영업 지원 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 48,
+    "harnessName": "Sales Enablement",
+    "category": "business"
+  },
+  {
+    "name": "cs-analyst",
+    "role": "CS 분석 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 49,
+    "harnessName": "Customer Support",
+    "category": "business"
+  },
+  {
+    "name": "cs-reviewer",
+    "role": "고객지원 시스템 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 49,
+    "harnessName": "Customer Support",
+    "category": "business"
+  },
+  {
+    "name": "escalation-manager",
+    "role": "에스컬레이션 관리 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 49,
+    "harnessName": "Customer Support",
+    "category": "business"
+  },
+  {
+    "name": "faq-builder",
+    "role": "FAQ 구축 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 49,
+    "harnessName": "Customer Support",
+    "category": "business"
+  },
+  {
+    "name": "response-specialist",
+    "role": "응대 매뉴얼 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 49,
+    "harnessName": "Customer Support",
+    "category": "business"
+  },
+  {
+    "name": "competitive-analyst",
+    "role": "경쟁 가격 분석 전문가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 50,
+    "harnessName": "Pricing Strategy",
+    "category": "business"
+  },
+  {
+    "name": "cost-analyst",
+    "role": "원가 분석 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 50,
+    "harnessName": "Pricing Strategy",
+    "category": "business"
+  },
+  {
+    "name": "pricing-reviewer",
+    "role": "가격 전략 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 50,
+    "harnessName": "Pricing Strategy",
+    "category": "business"
+  },
+  {
+    "name": "pricing-simulator",
+    "role": "가격 시뮬레이션 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 50,
+    "harnessName": "Pricing Strategy",
+    "category": "business"
+  },
+  {
+    "name": "value-assessor",
+    "role": "가치 기반 가격 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 50,
+    "harnessName": "Pricing Strategy",
+    "category": "business"
+  },
+  {
+    "name": "financial-analyst",
+    "role": "재무 분석 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 51,
+    "harnessName": "Investor Report",
+    "category": "business"
+  },
+  {
+    "name": "ir-reviewer",
+    "role": "IR 보고서 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 51,
+    "harnessName": "Investor Report",
+    "category": "business"
+  },
+  {
+    "name": "kpi-designer",
+    "role": "KPI 대시보드 설계 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 51,
+    "harnessName": "Investor Report",
+    "category": "business"
+  },
+  {
+    "name": "market-analyst",
+    "role": "시장 동향 분석 전문가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 51,
+    "harnessName": "Investor Report",
+    "category": "business"
+  },
+  {
+    "name": "strategy-updater",
+    "role": "전략 업데이트 작성 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 51,
+    "harnessName": "Investor Report",
+    "category": "business"
+  },
+  {
+    "name": "impact-assessor",
+    "role": "영향 평가 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 52,
+    "harnessName": "Scenario Planner",
+    "category": "business"
+  },
+  {
+    "name": "integration-reviewer",
+    "role": "통합 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 52,
+    "harnessName": "Scenario Planner",
+    "category": "business"
+  },
+  {
+    "name": "scenario-designer",
+    "role": "시나리오 매트릭스 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 52,
+    "harnessName": "Scenario Planner",
+    "category": "business"
+  },
+  {
+    "name": "strategy-architect",
+    "role": "대응 전략 수립자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 52,
+    "harnessName": "Scenario Planner",
+    "category": "business"
+  },
+  {
+    "name": "variable-analyst",
+    "role": "핵심 변수 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 52,
+    "harnessName": "Scenario Planner",
+    "category": "business"
+  },
+  {
+    "name": "cost-analyst",
+    "role": "비용 구조 분석가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 53,
+    "harnessName": "Financial Modeler",
+    "category": "business"
+  },
+  {
+    "name": "model-reviewer",
+    "role": "재무 모델 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 53,
+    "harnessName": "Financial Modeler",
+    "category": "business"
+  },
+  {
+    "name": "revenue-modeler",
+    "role": "수익 모델 설계자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 53,
+    "harnessName": "Financial Modeler",
+    "category": "business"
+  },
+  {
+    "name": "scenario-planner",
+    "role": "재무 시나리오 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 53,
+    "harnessName": "Financial Modeler",
+    "category": "business"
+  },
+  {
+    "name": "valuation-expert",
+    "role": "밸류에이션 전문가",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 53,
+    "harnessName": "Financial Modeler",
+    "category": "business"
+  },
+  {
+    "name": "announcement-analyst",
+    "role": "공고 분석가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 54,
+    "harnessName": "Grant Writer",
+    "category": "business"
+  },
+  {
+    "name": "budget-designer",
+    "role": "예산 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 54,
+    "harnessName": "Grant Writer",
+    "category": "business"
+  },
+  {
+    "name": "compliance-checker",
+    "role": "규정 준수 검증자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 54,
+    "harnessName": "Grant Writer",
+    "category": "business"
+  },
+  {
+    "name": "plan-writer",
+    "role": "사업계획서 작성자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 54,
+    "harnessName": "Grant Writer",
+    "category": "business"
+  },
+  {
+    "name": "submission-verifier",
+    "role": "제출 검증자",
+    "tools": [
+      "WebSearch",
+      "Read",
+      "Write",
+      "SendMessage"
+    ],
+    "harnessId": 54,
+    "harnessName": "Grant Writer",
+    "category": "business"
+  },
+  {
+    "name": "capability-matcher",
+    "role": "역량 매칭 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 55,
+    "harnessName": "RFP Responder",
+    "category": "business"
+  },
+  {
+    "name": "pricing-strategist",
+    "role": "가격 전략가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 55,
+    "harnessName": "RFP Responder",
+    "category": "business"
+  },
+  {
+    "name": "proposal-reviewer",
+    "role": "제안서 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 55,
+    "harnessName": "RFP Responder",
+    "category": "business"
+  },
+  {
+    "name": "requirement-analyst",
+    "role": "요구사항 분석가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 55,
+    "harnessName": "RFP Responder",
+    "category": "business"
+  },
+  {
+    "name": "technical-proposer",
+    "role": "기술 제안서 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 55,
+    "harnessName": "RFP Responder",
+    "category": "business"
+  },
+  {
+    "name": "curriculum-designer",
+    "role": "커리큘럼 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 56,
+    "harnessName": "Language Tutor",
+    "category": "education"
+  },
+  {
+    "name": "lesson-tutor",
+    "role": "레슨 튜터",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 56,
+    "harnessName": "Language Tutor",
+    "category": "education"
+  },
+  {
+    "name": "level-assessor",
+    "role": "레벨 평가 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 56,
+    "harnessName": "Language Tutor",
+    "category": "education"
+  },
+  {
+    "name": "quiz-master",
+    "role": "퀴즈 출제 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 56,
+    "harnessName": "Language Tutor",
+    "category": "education"
+  },
+  {
+    "name": "review-coach",
+    "role": "복습 코치",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 56,
+    "harnessName": "Language Tutor",
+    "category": "education"
+  },
+  {
+    "name": "diagnostician",
+    "role": "약점 진단 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 57,
+    "harnessName": "Exam Prep",
+    "category": "education"
+  },
+  {
+    "name": "error-analyst",
+    "role": "오답 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 57,
+    "harnessName": "Exam Prep",
+    "category": "education"
+  },
+  {
+    "name": "examiner",
+    "role": "모의고사 출제자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 57,
+    "harnessName": "Exam Prep",
+    "category": "education"
+  },
+  {
+    "name": "learning-designer",
+    "role": "맞춤학습 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 57,
+    "harnessName": "Exam Prep",
+    "category": "education"
+  },
+  {
+    "name": "trend-analyst",
+    "role": "출제경향 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 57,
+    "harnessName": "Exam Prep",
+    "category": "education"
+  },
+  {
+    "name": "literature-analyst",
+    "role": "문헌 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 58,
+    "harnessName": "Thesis Advisor",
+    "category": "education"
+  },
+  {
+    "name": "methodology-expert",
+    "role": "방법론 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 58,
+    "harnessName": "Thesis Advisor",
+    "category": "education"
+  },
+  {
+    "name": "proofreader",
+    "role": "논문 교정자",
+    "tools": [
+      "Write",
+      "SendMessage",
+      "Read"
+    ],
+    "harnessId": 58,
+    "harnessName": "Thesis Advisor",
+    "category": "education"
+  },
+  {
+    "name": "topic-explorer",
+    "role": "논문 주제 탐색자",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 58,
+    "harnessName": "Thesis Advisor",
+    "category": "education"
+  },
+  {
+    "name": "writing-coach",
+    "role": "논문 집필 코치",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 58,
+    "harnessName": "Thesis Advisor",
+    "category": "education"
+  },
+  {
+    "name": "code-reviewer",
+    "role": "코드 리뷰어",
+    "tools": [
+      "Write",
+      "Edit",
+      "Read"
+    ],
+    "harnessId": 59,
+    "harnessName": "Coding Bootcamp",
+    "category": "education"
+  },
+  {
+    "name": "curriculum-designer",
+    "role": "커리큘럼 설계자",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 59,
+    "harnessName": "Coding Bootcamp",
+    "category": "education"
+  },
+  {
+    "name": "exercise-creator",
+    "role": "실습과제 출제자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 59,
+    "harnessName": "Coding Bootcamp",
+    "category": "education"
+  },
+  {
+    "name": "mentor",
+    "role": "개발자 멘토",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 59,
+    "harnessName": "Coding Bootcamp",
+    "category": "education"
+  },
+  {
+    "name": "con-debater",
+    "role": "반대 토론자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 60,
+    "harnessName": "Debate Simulator",
+    "category": "education"
+  },
+  {
+    "name": "judge",
+    "role": "토론 심판",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 60,
+    "harnessName": "Debate Simulator",
+    "category": "education"
+  },
+  {
+    "name": "pro-debater",
+    "role": "찬성 토론자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 60,
+    "harnessName": "Debate Simulator",
+    "category": "education"
+  },
+  {
+    "name": "rapporteur",
+    "role": "종합정리자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 60,
+    "harnessName": "Debate Simulator",
+    "category": "education"
+  },
+  {
+    "name": "topic-analyst",
+    "role": "토론 주제 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 60,
+    "harnessName": "Debate Simulator",
+    "category": "education"
+  },
+  {
+    "name": "competency-architect",
+    "role": "역량사전 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 61,
+    "harnessName": "Competency Modeler",
+    "category": "education"
+  },
+  {
+    "name": "development-planner",
+    "role": "역량 개발 계획 수립자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 61,
+    "harnessName": "Competency Modeler",
+    "category": "education"
+  },
+  {
+    "name": "job-analyst",
+    "role": "직무 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Skill",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 61,
+    "harnessName": "Competency Modeler",
+    "category": "education"
+  },
+  {
+    "name": "rubric-designer",
+    "role": "평가 루브릭 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 61,
+    "harnessName": "Competency Modeler",
+    "category": "education"
+  },
+  {
+    "name": "adr-author",
+    "role": "ADR 문서 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 62,
+    "harnessName": "ADR Writer",
+    "category": "education"
+  },
+  {
+    "name": "alternative-researcher",
+    "role": "대안 조사원",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 62,
+    "harnessName": "ADR Writer",
+    "category": "education"
+  },
+  {
+    "name": "context-analyst",
+    "role": "기술 컨텍스트 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 62,
+    "harnessName": "ADR Writer",
+    "category": "education"
+  },
+  {
+    "name": "impact-tracker",
+    "role": "영향 추적자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 62,
+    "harnessName": "ADR Writer",
+    "category": "education"
+  },
+  {
+    "name": "tradeoff-evaluator",
+    "role": "트레이드오프 평가자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 62,
+    "harnessName": "ADR Writer",
+    "category": "education"
+  },
+  {
+    "name": "critic-synthesizer",
+    "role": "비평·종합 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 63,
+    "harnessName": "Research Assistant",
+    "category": "education"
+  },
+  {
+    "name": "literature-searcher",
+    "role": "문헌 검색 전문가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Read",
+      "Write"
+    ],
+    "harnessId": 63,
+    "harnessName": "Research Assistant",
+    "category": "education"
+  },
+  {
+    "name": "note-taker",
+    "role": "메모 작성 전문가",
+    "tools": [
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 63,
+    "harnessName": "Research Assistant",
+    "category": "education"
+  },
+  {
+    "name": "reference-manager",
+    "role": "참고문헌 관리 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 63,
+    "harnessName": "Research Assistant",
+    "category": "education"
+  },
+  {
+    "name": "research-coordinator",
+    "role": "연구 조율자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 63,
+    "harnessName": "Research Assistant",
+    "category": "education"
+  },
+  {
+    "name": "knowledge-collector",
+    "role": "지식 수집가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 64,
+    "harnessName": "Knowledge Base Builder",
+    "category": "education"
+  },
+  {
+    "name": "maintenance-planner",
+    "role": "유지보수 플래너",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 64,
+    "harnessName": "Knowledge Base Builder",
+    "category": "education"
+  },
+  {
+    "name": "search-optimizer",
+    "role": "검색 최적화 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 64,
+    "harnessName": "Knowledge Base Builder",
+    "category": "education"
+  },
+  {
+    "name": "taxonomy-designer",
+    "role": "분류 체계 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 64,
+    "harnessName": "Knowledge Base Builder",
+    "category": "education"
+  },
+  {
+    "name": "wiki-builder",
+    "role": "위키 빌더",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 64,
+    "harnessName": "Knowledge Base Builder",
+    "category": "education"
+  },
+  {
+    "name": "cover-letter-writer",
+    "role": "자기소개서·커버레터 작성 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 65,
+    "harnessName": "Personal Branding",
+    "category": "education"
+  },
+  {
+    "name": "portfolio-designer",
+    "role": "포트폴리오 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 65,
+    "harnessName": "Personal Branding",
+    "category": "education"
+  },
+  {
+    "name": "positioning-strategist",
+    "role": "포지셔닝 전략가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "SendMessage",
+      "Read"
+    ],
+    "harnessId": 65,
+    "harnessName": "Personal Branding",
+    "category": "education"
+  },
+  {
+    "name": "profile-optimizer",
+    "role": "LinkedIn 프로필 최적화 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 65,
+    "harnessName": "Personal Branding",
+    "category": "education"
+  },
+  {
+    "name": "resume-writer",
+    "role": "이력서·CV 작성 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 65,
+    "harnessName": "Personal Branding",
+    "category": "education"
+  },
+  {
+    "name": "clause-analyst",
+    "role": "조항 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 66,
+    "harnessName": "Contract Analyzer",
+    "category": "legal"
+  },
+  {
+    "name": "clause-drafter",
+    "role": "조항 작성·수정 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 66,
+    "harnessName": "Contract Analyzer",
+    "category": "legal"
+  },
+  {
+    "name": "comparison-reviewer",
+    "role": "비교 검토자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 66,
+    "harnessName": "Contract Analyzer",
+    "category": "legal"
+  },
+  {
+    "name": "contract-coordinator",
+    "role": "계약 조율자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 66,
+    "harnessName": "Contract Analyzer",
+    "category": "legal"
+  },
+  {
+    "name": "risk-assessor",
+    "role": "리스크 평가자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 66,
+    "harnessName": "Contract Analyzer",
+    "category": "legal"
+  },
+  {
+    "name": "gap-analyst",
+    "role": "갭 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 67,
+    "harnessName": "Compliance Checker",
+    "category": "legal"
+  },
+  {
+    "name": "law-mapper",
+    "role": "법률 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 67,
+    "harnessName": "Compliance Checker",
+    "category": "legal"
+  },
+  {
+    "name": "remediation-planner",
+    "role": "개선 계획 수립자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 67,
+    "harnessName": "Compliance Checker",
+    "category": "legal"
+  },
+  {
+    "name": "status-auditor",
+    "role": "현황 진단자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 67,
+    "harnessName": "Compliance Checker",
+    "category": "legal"
+  },
+  {
+    "name": "claim-drafter",
+    "role": "청구항 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 68,
+    "harnessName": "Patent Drafter",
+    "category": "legal"
+  },
+  {
+    "name": "drawing-designer",
+    "role": "도면 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 68,
+    "harnessName": "Patent Drafter",
+    "category": "legal"
+  },
+  {
+    "name": "patent-reviewer",
+    "role": "특허 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 68,
+    "harnessName": "Patent Drafter",
+    "category": "legal"
+  },
+  {
+    "name": "prior-art-researcher",
+    "role": "선행기술 조사원",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 68,
+    "harnessName": "Patent Drafter",
+    "category": "legal"
+  },
+  {
+    "name": "specification-writer",
+    "role": "명세서 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 68,
+    "harnessName": "Patent Drafter",
+    "category": "legal"
+  },
+  {
+    "name": "consent-designer",
+    "role": "동의서 작성자",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 69,
+    "harnessName": "Privacy Engineer",
+    "category": "legal"
+  },
+  {
+    "name": "pia-assessor",
+    "role": "개인정보 영향평가 수행자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 69,
+    "harnessName": "Privacy Engineer",
+    "category": "legal"
+  },
+  {
+    "name": "privacy-law-analyst",
+    "role": "개인정보보호 법률 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 69,
+    "harnessName": "Privacy Engineer",
+    "category": "legal"
+  },
+  {
+    "name": "process-architect",
+    "role": "개인정보 처리 프로세스 설계자",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 69,
+    "harnessName": "Privacy Engineer",
+    "category": "legal"
+  },
+  {
+    "name": "case-searcher",
+    "role": "판례 검색자",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 70,
+    "harnessName": "Legal Research",
+    "category": "legal"
+  },
+  {
+    "name": "legal-analyst",
+    "role": "법리 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 70,
+    "harnessName": "Legal Research",
+    "category": "legal"
+  },
+  {
+    "name": "opinion-writer",
+    "role": "법률 의견서 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 70,
+    "harnessName": "Legal Research",
+    "category": "legal"
+  },
+  {
+    "name": "strategy-advisor",
+    "role": "법률 전략 수립자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 70,
+    "harnessName": "Legal Research",
+    "category": "legal"
+  },
+  {
+    "name": "consistency-reviewer",
+    "role": "정합성 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 71,
+    "harnessName": "Service Legal Docs",
+    "category": "legal"
+  },
+  {
+    "name": "consumer-analyst",
+    "role": "소비자보호 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 71,
+    "harnessName": "Service Legal Docs",
+    "category": "legal"
+  },
+  {
+    "name": "privacy-specialist",
+    "role": "개인정보 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 71,
+    "harnessName": "Service Legal Docs",
+    "category": "legal"
+  },
+  {
+    "name": "tos-specialist",
+    "role": "약관 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 71,
+    "harnessName": "Service Legal Docs",
+    "category": "legal"
+  },
+  {
+    "name": "attachment-preparer",
+    "role": "첨부자료 준비 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 72,
+    "harnessName": "Regulatory Filing",
+    "category": "legal"
+  },
+  {
+    "name": "document-drafter",
+    "role": "인허가 서류 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 72,
+    "harnessName": "Regulatory Filing",
+    "category": "legal"
+  },
+  {
+    "name": "requirements-investigator",
+    "role": "인허가 요건 조사관",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 72,
+    "harnessName": "Regulatory Filing",
+    "category": "legal"
+  },
+  {
+    "name": "submission-verifier",
+    "role": "제출 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 72,
+    "harnessName": "Regulatory Filing",
+    "category": "legal"
+  },
+  {
+    "name": "meal-designer",
+    "role": "식단 설계 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 73,
+    "harnessName": "Meal Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "nutritionist",
+    "role": "영양 분석 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 73,
+    "harnessName": "Meal Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "recipe-writer",
+    "role": "레시피 작성 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 73,
+    "harnessName": "Meal Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "shopping-coordinator",
+    "role": "장보기·조리 코디네이터",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 73,
+    "harnessName": "Meal Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "exercise-guide",
+    "role": "운동 가이드 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 74,
+    "harnessName": "Fitness Program",
+    "category": "lifestyle"
+  },
+  {
+    "name": "nutrition-linker",
+    "role": "영양 연계 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 74,
+    "harnessName": "Fitness Program",
+    "category": "lifestyle"
+  },
+  {
+    "name": "program-architect",
+    "role": "운동 프로그램 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 74,
+    "harnessName": "Fitness Program",
+    "category": "lifestyle"
+  },
+  {
+    "name": "template-builder",
+    "role": "템플릿 빌더",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 74,
+    "harnessName": "Fitness Program",
+    "category": "lifestyle"
+  },
+  {
+    "name": "deduction-optimizer",
+    "role": "공제 최적화 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 75,
+    "harnessName": "Tax Calculator",
+    "category": "lifestyle"
+  },
+  {
+    "name": "income-analyst",
+    "role": "소득 분석 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 75,
+    "harnessName": "Tax Calculator",
+    "category": "lifestyle"
+  },
+  {
+    "name": "strategy-advisor",
+    "role": "절세 전략 어드바이저",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 75,
+    "harnessName": "Tax Calculator",
+    "category": "lifestyle"
+  },
+  {
+    "name": "tax-engine",
+    "role": "세액 계산 엔진",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 75,
+    "harnessName": "Tax Calculator",
+    "category": "lifestyle"
+  },
+  {
+    "name": "budget-manager",
+    "role": "여행 예산 관리 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 76,
+    "harnessName": "Travel Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "destination-analyst",
+    "role": "목적지 분석 전문가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 76,
+    "harnessName": "Travel Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "itinerary-designer",
+    "role": "일정 설계 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 76,
+    "harnessName": "Travel Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "local-guide",
+    "role": "현지 정보 가이드",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 76,
+    "harnessName": "Travel Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "budget-manager",
+    "role": "예산 관리자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 77,
+    "harnessName": "Space Concept Board",
+    "category": "lifestyle"
+  },
+  {
+    "name": "concept-reviewer",
+    "role": "컨셉 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 77,
+    "harnessName": "Space Concept Board",
+    "category": "lifestyle"
+  },
+  {
+    "name": "item-curator",
+    "role": "아이템 큐레이터",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 77,
+    "harnessName": "Space Concept Board",
+    "category": "lifestyle"
+  },
+  {
+    "name": "moodboard-designer",
+    "role": "무드보드 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 77,
+    "harnessName": "Space Concept Board",
+    "category": "lifestyle"
+  },
+  {
+    "name": "style-analyst",
+    "role": "공간 스타일 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 77,
+    "harnessName": "Space Concept Board",
+    "category": "lifestyle"
+  },
+  {
+    "name": "budget-planner",
+    "role": "예산 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 78,
+    "harnessName": "Personal Finance",
+    "category": "lifestyle"
+  },
+  {
+    "name": "finance-reviewer",
+    "role": "재무 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 78,
+    "harnessName": "Personal Finance",
+    "category": "lifestyle"
+  },
+  {
+    "name": "financial-analyst",
+    "role": "재무 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 78,
+    "harnessName": "Personal Finance",
+    "category": "lifestyle"
+  },
+  {
+    "name": "investment-advisor",
+    "role": "투자 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 78,
+    "harnessName": "Personal Finance",
+    "category": "lifestyle"
+  },
+  {
+    "name": "tax-strategist",
+    "role": "세무 전략가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 78,
+    "harnessName": "Personal Finance",
+    "category": "lifestyle"
+  },
+  {
+    "name": "idea-validator",
+    "role": "아이디어 검증자",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 79,
+    "harnessName": "Side Project Launcher",
+    "category": "lifestyle"
+  },
+  {
+    "name": "launch-reviewer",
+    "role": "런칭 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 79,
+    "harnessName": "Side Project Launcher",
+    "category": "lifestyle"
+  },
+  {
+    "name": "mvp-designer",
+    "role": "MVP 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 79,
+    "harnessName": "Side Project Launcher",
+    "category": "lifestyle"
+  },
+  {
+    "name": "roadmap-builder",
+    "role": "로드맵 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 79,
+    "harnessName": "Side Project Launcher",
+    "category": "lifestyle"
+  },
+  {
+    "name": "techstack-analyst",
+    "role": "기술스택 분석가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 79,
+    "harnessName": "Side Project Launcher",
+    "category": "lifestyle"
+  },
+  {
+    "name": "budget-controller",
+    "role": "예산 관리자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 80,
+    "harnessName": "Wedding Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "checklist-builder",
+    "role": "체크리스트 빌더",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 80,
+    "harnessName": "Wedding Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "timeline-designer",
+    "role": "타임라인 설계자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 80,
+    "harnessName": "Wedding Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "vendor-analyst",
+    "role": "업체 비교 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 80,
+    "harnessName": "Wedding Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "wedding-reviewer",
+    "role": "웨딩 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 80,
+    "harnessName": "Wedding Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "diagram-maker",
+    "role": "다이어그램 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 81,
+    "harnessName": "Technical Writer",
+    "category": "communication"
+  },
+  {
+    "name": "doc-writer",
+    "role": "기술 문서 집필자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 81,
+    "harnessName": "Technical Writer",
+    "category": "communication"
+  },
+  {
+    "name": "info-architect",
+    "role": "정보 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 81,
+    "harnessName": "Technical Writer",
+    "category": "communication"
+  },
+  {
+    "name": "tech-reviewer",
+    "role": "기술 리뷰어",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 81,
+    "harnessName": "Technical Writer",
+    "category": "communication"
+  },
+  {
+    "name": "version-controller",
+    "role": "버전 관리자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 81,
+    "harnessName": "Technical Writer",
+    "category": "communication"
+  },
+  {
+    "name": "analyst",
+    "role": "데이터 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 82,
+    "harnessName": "Report Generator",
+    "category": "communication"
+  },
+  {
+    "name": "data-collector",
+    "role": "데이터 수집가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Read",
+      "Write"
+    ],
+    "harnessId": 82,
+    "harnessName": "Report Generator",
+    "category": "communication"
+  },
+  {
+    "name": "executive-summarizer",
+    "role": "요약 및 교차 검증 전문가",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 82,
+    "harnessName": "Report Generator",
+    "category": "communication"
+  },
+  {
+    "name": "report-writer",
+    "role": "보고서 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 82,
+    "harnessName": "Report Generator",
+    "category": "communication"
+  },
+  {
+    "name": "visualizer",
+    "role": "시각화 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 82,
+    "harnessName": "Report Generator",
+    "category": "communication"
+  },
+  {
+    "name": "checklist-designer",
+    "role": "체크리스트 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 83,
+    "harnessName": "SOP Writer",
+    "category": "communication"
+  },
+  {
+    "name": "procedure-writer",
+    "role": "절차서 작성자",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 83,
+    "harnessName": "SOP Writer",
+    "category": "communication"
+  },
+  {
+    "name": "process-analyst",
+    "role": "프로세스 분석가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 83,
+    "harnessName": "SOP Writer",
+    "category": "communication"
+  },
+  {
+    "name": "training-developer",
+    "role": "교육자료 제작자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 83,
+    "harnessName": "SOP Writer",
+    "category": "communication"
+  },
+  {
+    "name": "version-controller",
+    "role": "버전 관리 및 교차 검증 전문가",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 83,
+    "harnessName": "SOP Writer",
+    "category": "communication"
+  },
+  {
+    "name": "agenda-architect",
+    "role": "안건 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 84,
+    "harnessName": "Meeting Strategist",
+    "category": "communication"
+  },
+  {
+    "name": "background-researcher",
+    "role": "배경 조사원",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 84,
+    "harnessName": "Meeting Strategist",
+    "category": "communication"
+  },
+  {
+    "name": "followup-planner",
+    "role": "팔로업 플래너 및 교차 검증 전문가",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 84,
+    "harnessName": "Meeting Strategist",
+    "category": "communication"
+  },
+  {
+    "name": "framework-designer",
+    "role": "의사결정 프레임워크 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 84,
+    "harnessName": "Meeting Strategist",
+    "category": "communication"
+  },
+  {
+    "name": "template-builder",
+    "role": "문서 템플릿 빌더",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 84,
+    "harnessName": "Meeting Strategist",
+    "category": "communication"
+  },
+  {
+    "name": "audience-analyst",
+    "role": "청중 분석가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 85,
+    "harnessName": "Public Speaking",
+    "category": "communication"
+  },
+  {
+    "name": "debate-preparer",
+    "role": "토론 준비 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 85,
+    "harnessName": "Public Speaking",
+    "category": "communication"
+  },
+  {
+    "name": "qa-strategist",
+    "role": "Q&A 전략가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 85,
+    "harnessName": "Public Speaking",
+    "category": "communication"
+  },
+  {
+    "name": "rehearsal-coach",
+    "role": "리허설 코치 및 교차 검증 전문가",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 85,
+    "harnessName": "Public Speaking",
+    "category": "communication"
+  },
+  {
+    "name": "speech-writer",
+    "role": "연설/발표 작가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 85,
+    "harnessName": "Public Speaking",
+    "category": "communication"
+  },
+  {
+    "name": "client-analyst",
+    "role": "고객 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 86,
+    "harnessName": "Proposal Writer",
+    "category": "communication"
+  },
+  {
+    "name": "differentiator",
+    "role": "차별화 전략가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 86,
+    "harnessName": "Proposal Writer",
+    "category": "communication"
+  },
+  {
+    "name": "pricing-strategist",
+    "role": "가격 전략가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 86,
+    "harnessName": "Proposal Writer",
+    "category": "communication"
+  },
+  {
+    "name": "proposal-designer",
+    "role": "제안서 통합 및 교차 검증 전문가",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 86,
+    "harnessName": "Proposal Writer",
+    "category": "communication"
+  },
+  {
+    "name": "solution-architect",
+    "role": "솔루션 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 86,
+    "harnessName": "Proposal Writer",
+    "category": "communication"
+  },
+  {
+    "name": "media-monitor",
+    "role": "미디어 모니터링 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 87,
+    "harnessName": "Crisis Communication",
+    "category": "communication"
+  },
+  {
+    "name": "message-strategist",
+    "role": "위기 메시지 전략가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 87,
+    "harnessName": "Crisis Communication",
+    "category": "communication"
+  },
+  {
+    "name": "press-release-writer",
+    "role": "보도자료 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 87,
+    "harnessName": "Crisis Communication",
+    "category": "communication"
+  },
+  {
+    "name": "qa-preparer",
+    "role": "위기 Q&A 준비자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 87,
+    "harnessName": "Crisis Communication",
+    "category": "communication"
+  },
+  {
+    "name": "situation-analyst",
+    "role": "위기 상황 분석가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 87,
+    "harnessName": "Crisis Communication",
+    "category": "communication"
+  },
+  {
+    "name": "assessment-analyst",
+    "role": "리스크 평가 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 88,
+    "harnessName": "Risk Register",
+    "category": "communication"
+  },
+  {
+    "name": "monitoring-planner",
+    "role": "리스크 모니터링 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 88,
+    "harnessName": "Risk Register",
+    "category": "communication"
+  },
+  {
+    "name": "report-writer",
+    "role": "리스크 보고서 작성자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 88,
+    "harnessName": "Risk Register",
+    "category": "communication"
+  },
+  {
+    "name": "response-strategist",
+    "role": "리스크 대응 전략가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 88,
+    "harnessName": "Risk Register",
+    "category": "communication"
+  },
+  {
+    "name": "risk-identifier",
+    "role": "리스크 식별 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 88,
+    "harnessName": "Risk Register",
+    "category": "communication"
+  },
+  {
+    "name": "concept-planner",
+    "role": "이벤트 컨셉 기획자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 89,
+    "harnessName": "Event Organizer",
+    "category": "operations"
+  },
+  {
+    "name": "evaluation-analyst",
+    "role": "사후 평가 분석가",
+    "tools": [
+      "Write",
+      "SendMessage",
+      "Read"
+    ],
+    "harnessId": 89,
+    "harnessName": "Event Organizer",
+    "category": "operations"
+  },
+  {
+    "name": "logistics-manager",
+    "role": "로지스틱스 매니저",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 89,
+    "harnessName": "Event Organizer",
+    "category": "operations"
+  },
+  {
+    "name": "program-designer",
+    "role": "프로그램 디자이너",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 89,
+    "harnessName": "Event Organizer",
+    "category": "operations"
+  },
+  {
+    "name": "promotion-lead",
+    "role": "홍보 담당",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 89,
+    "harnessName": "Event Organizer",
+    "category": "operations"
+  },
+  {
+    "name": "interview-designer",
+    "role": "면접 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 90,
+    "harnessName": "Hiring Pipeline",
+    "category": "operations"
+  },
+  {
+    "name": "jd-writer",
+    "role": "직무기술서 작성 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 90,
+    "harnessName": "Hiring Pipeline",
+    "category": "operations"
+  },
+  {
+    "name": "offer-coordinator",
+    "role": "평가·오퍼 총괄",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "SendMessage",
+      "Read"
+    ],
+    "harnessId": 90,
+    "harnessName": "Hiring Pipeline",
+    "category": "operations"
+  },
+  {
+    "name": "screening-expert",
+    "role": "스크리닝 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 90,
+    "harnessName": "Hiring Pipeline",
+    "category": "operations"
+  },
+  {
+    "name": "sourcing-specialist",
+    "role": "소싱 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 90,
+    "harnessName": "Hiring Pipeline",
+    "category": "operations"
+  },
+  {
+    "name": "experience-reviewer",
+    "role": "온보딩 경험 검증자",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 91,
+    "harnessName": "Onboarding System",
+    "category": "operations"
+  },
+  {
+    "name": "mentor-matcher",
+    "role": "멘토·버디 매칭 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 91,
+    "harnessName": "Onboarding System",
+    "category": "operations"
+  },
+  {
+    "name": "milestone-tracker",
+    "role": "30-60-90일 마일스톤 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 91,
+    "harnessName": "Onboarding System",
+    "category": "operations"
+  },
+  {
+    "name": "onboarding-architect",
+    "role": "온보딩 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 91,
+    "harnessName": "Onboarding System",
+    "category": "operations"
+  },
+  {
+    "name": "training-builder",
+    "role": "교육 콘텐츠 빌더",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 91,
+    "harnessName": "Onboarding System",
+    "category": "operations"
+  },
+  {
+    "name": "document-analyst",
+    "role": "문서·코드 분석 전문가",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 92,
+    "harnessName": "Operations Manual",
+    "category": "operations"
+  },
+  {
+    "name": "faq-builder",
+    "role": "FAQ·트러블슈팅 가이드 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 92,
+    "harnessName": "Operations Manual",
+    "category": "operations"
+  },
+  {
+    "name": "flowchart-designer",
+    "role": "프로세스 플로차트 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 92,
+    "harnessName": "Operations Manual",
+    "category": "operations"
+  },
+  {
+    "name": "manual-writer",
+    "role": "매뉴얼 작성 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 92,
+    "harnessName": "Operations Manual",
+    "category": "operations"
+  },
+  {
+    "name": "training-producer",
+    "role": "교육자료 제작 전문가",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 92,
+    "harnessName": "Operations Manual",
+    "category": "operations"
+  },
+  {
+    "name": "data-collector",
+    "role": "피드백 데이터 수집·정제 전문가",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 93,
+    "harnessName": "Feedback Analyzer",
+    "category": "operations"
+  },
+  {
+    "name": "insight-writer",
+    "role": "인사이트 보고서 작성 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 93,
+    "harnessName": "Feedback Analyzer",
+    "category": "operations"
+  },
+  {
+    "name": "sentiment-analyst",
+    "role": "감성분석 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 93,
+    "harnessName": "Feedback Analyzer",
+    "category": "operations"
+  },
+  {
+    "name": "topic-classifier",
+    "role": "주제분류 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 93,
+    "harnessName": "Feedback Analyzer",
+    "category": "operations"
+  },
+  {
+    "name": "trend-detector",
+    "role": "트렌드 분석 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 93,
+    "harnessName": "Feedback Analyzer",
+    "category": "operations"
+  },
+  {
+    "name": "checklist-builder",
+    "role": "감사 체크리스트 작성 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 94,
+    "harnessName": "Audit Report",
+    "category": "operations"
+  },
+  {
+    "name": "findings-analyst",
+    "role": "발견사항 분석 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 94,
+    "harnessName": "Audit Report",
+    "category": "operations"
+  },
+  {
+    "name": "recommendation-writer",
+    "role": "개선 권고 작성 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 94,
+    "harnessName": "Audit Report",
+    "category": "operations"
+  },
+  {
+    "name": "scope-designer",
+    "role": "감사 범위 설계 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 94,
+    "harnessName": "Audit Report",
+    "category": "operations"
+  },
+  {
+    "name": "tracking-manager",
+    "role": "이행 추적 대장 관리 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 94,
+    "harnessName": "Audit Report",
+    "category": "operations"
+  },
+  {
+    "name": "acceptance-builder",
+    "role": "검수 기준서 작성 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 95,
+    "harnessName": "Procurement Docs",
+    "category": "operations"
+  },
+  {
+    "name": "contract-reviewer",
+    "role": "계약 조건 검토 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 95,
+    "harnessName": "Procurement Docs",
+    "category": "operations"
+  },
+  {
+    "name": "evaluation-designer",
+    "role": "평가 기준표 설계 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 95,
+    "harnessName": "Procurement Docs",
+    "category": "operations"
+  },
+  {
+    "name": "requirements-definer",
+    "role": "구매 요구사항 정의 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 95,
+    "harnessName": "Procurement Docs",
+    "category": "operations"
+  },
+  {
+    "name": "vendor-comparator",
+    "role": "벤더 비교 분석 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 95,
+    "harnessName": "Procurement Docs",
+    "category": "operations"
+  },
+  {
+    "name": "location-analyst",
+    "role": "입지분석 전문가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 96,
+    "harnessName": "Real Estate Analyst",
+    "category": "specialized"
+  },
+  {
+    "name": "market-researcher",
+    "role": "부동산 시장조사 전문가",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 96,
+    "harnessName": "Real Estate Analyst",
+    "category": "specialized"
+  },
+  {
+    "name": "profitability-analyst",
+    "role": "수익성 분석 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 96,
+    "harnessName": "Real Estate Analyst",
+    "category": "specialized"
+  },
+  {
+    "name": "report-writer",
+    "role": "투자 보고서 작성 전문가",
+    "tools": [
+      "Write",
+      "SendMessage",
+      "Read"
+    ],
+    "harnessId": 96,
+    "harnessName": "Real Estate Analyst",
+    "category": "specialized"
+  },
+  {
+    "name": "risk-assessor",
+    "role": "리스크 평가 전문가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 96,
+    "harnessName": "Real Estate Analyst",
+    "category": "specialized"
+  },
+  {
+    "name": "cs-architect",
+    "role": "이커머스 CS 설계자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 97,
+    "harnessName": "E-commerce Launcher",
+    "category": "specialized"
+  },
+  {
+    "name": "detail-page-writer",
+    "role": "이커머스 상세페이지 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 97,
+    "harnessName": "E-commerce Launcher",
+    "category": "specialized"
+  },
+  {
+    "name": "marketing-manager",
+    "role": "이커머스 마케팅 매니저",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 97,
+    "harnessName": "E-commerce Launcher",
+    "category": "specialized"
+  },
+  {
+    "name": "pricing-strategist",
+    "role": "이커머스 가격 전략가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 97,
+    "harnessName": "E-commerce Launcher",
+    "category": "specialized"
+  },
+  {
+    "name": "product-planner",
+    "role": "이커머스 상품 기획자",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 97,
+    "harnessName": "E-commerce Launcher",
+    "category": "specialized"
+  },
+  {
+    "name": "experiment-manager",
+    "role": "학술 실험 관리자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 98,
+    "harnessName": "Academic Paper",
+    "category": "specialized"
+  },
+  {
+    "name": "paper-writer",
+    "role": "학술 논문 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 98,
+    "harnessName": "Academic Paper",
+    "category": "specialized"
+  },
+  {
+    "name": "research-designer",
+    "role": "학술 연구 설계자",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 98,
+    "harnessName": "Academic Paper",
+    "category": "specialized"
+  },
+  {
+    "name": "statistical-analyst",
+    "role": "학술 통계 분석가",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 98,
+    "harnessName": "Academic Paper",
+    "category": "specialized"
+  },
+  {
+    "name": "submission-preparer",
+    "role": "학술 논문 투고 준비자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 98,
+    "harnessName": "Academic Paper",
+    "category": "specialized"
+  },
+  {
+    "name": "environmental-analyst",
+    "role": "ESG 환경 분석가",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 99,
+    "harnessName": "Sustainability Audit",
+    "category": "specialized"
+  },
+  {
+    "name": "esg-reporter",
+    "role": "ESG 보고서 작성자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 99,
+    "harnessName": "Sustainability Audit",
+    "category": "specialized"
+  },
+  {
+    "name": "governance-reviewer",
+    "role": "ESG 거버넌스 검토자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 99,
+    "harnessName": "Sustainability Audit",
+    "category": "specialized"
+  },
+  {
+    "name": "improvement-planner",
+    "role": "ESG 개선 계획 수립자",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 99,
+    "harnessName": "Sustainability Audit",
+    "category": "specialized"
+  },
+  {
+    "name": "social-assessor",
+    "role": "ESG 사회 영향 평가자",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 99,
+    "harnessName": "Sustainability Audit",
+    "category": "specialized"
+  }
+]

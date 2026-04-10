@@ -1,0 +1,5581 @@
+[
+  {
+    "name": "content-strategist",
+    "role": "YouTube Content Strategist",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 1,
+    "harnessName": "YouTube Production",
+    "category": "content"
+  },
+  {
+    "name": "production-reviewer",
+    "role": "YouTube Production Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 1,
+    "harnessName": "YouTube Production",
+    "category": "content"
+  },
+  {
+    "name": "scriptwriter",
+    "role": "YouTube Scriptwriter",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 1,
+    "harnessName": "YouTube Production",
+    "category": "content"
+  },
+  {
+    "name": "seo-optimizer",
+    "role": "YouTube SEO Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 1,
+    "harnessName": "YouTube Production",
+    "category": "content"
+  },
+  {
+    "name": "thumbnail-designer",
+    "role": "YouTube Thumbnail Designer",
+    "tools": [
+      "Write",
+      "Skill",
+      "Read"
+    ],
+    "harnessId": 1,
+    "harnessName": "YouTube Production",
+    "category": "content"
+  },
+  {
+    "name": "distribution-manager",
+    "role": "Podcast Distribution Manager",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 2,
+    "harnessName": "Podcast Studio",
+    "category": "content"
+  },
+  {
+    "name": "production-reviewer",
+    "role": "Podcast Production Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 2,
+    "harnessName": "Podcast Studio",
+    "category": "content"
+  },
+  {
+    "name": "researcher",
+    "role": "Podcast Researcher",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 2,
+    "harnessName": "Podcast Studio",
+    "category": "content"
+  },
+  {
+    "name": "scriptwriter",
+    "role": "Podcast Scriptwriter",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 2,
+    "harnessName": "Podcast Studio",
+    "category": "content"
+  },
+  {
+    "name": "shownote-editor",
+    "role": "Podcast Show Note Editor",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 2,
+    "harnessName": "Podcast Studio",
+    "category": "content"
+  },
+  {
+    "name": "analyst",
+    "role": "Newsletter Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 3,
+    "harnessName": "Newsletter Engine",
+    "category": "content"
+  },
+  {
+    "name": "copywriter",
+    "role": "Newsletter Copywriter",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 3,
+    "harnessName": "Newsletter Engine",
+    "category": "content"
+  },
+  {
+    "name": "curator",
+    "role": "Newsletter Curator",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 3,
+    "harnessName": "Newsletter Engine",
+    "category": "content"
+  },
+  {
+    "name": "editor-in-chief",
+    "role": "Newsletter Editor-in-Chief",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 3,
+    "harnessName": "Newsletter Engine",
+    "category": "content"
+  },
+  {
+    "name": "quality-reviewer",
+    "role": "Newsletter Quality Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 3,
+    "harnessName": "Newsletter Engine",
+    "category": "content"
+  },
+  {
+    "name": "blog-writer",
+    "role": "Blog Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 4,
+    "harnessName": "Content Repurposer",
+    "category": "content"
+  },
+  {
+    "name": "presentation-builder",
+    "role": "Presentation Builder",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 4,
+    "harnessName": "Content Repurposer",
+    "category": "content"
+  },
+  {
+    "name": "quality-reviewer",
+    "role": "Content Repurposing Quality Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 4,
+    "harnessName": "Content Repurposer",
+    "category": "content"
+  },
+  {
+    "name": "sns-copywriter",
+    "role": "Social Media Copywriter",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 4,
+    "harnessName": "Content Repurposer",
+    "category": "content"
+  },
+  {
+    "name": "source-analyst",
+    "role": "Source Content Analyst",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 4,
+    "harnessName": "Content Repurposer",
+    "category": "content"
+  },
+  {
+    "name": "branch-architect",
+    "role": "Game Branch Architect",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 5,
+    "harnessName": "Game Narrative",
+    "category": "content"
+  },
+  {
+    "name": "dialogue-writer",
+    "role": "Game Dialogue Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 5,
+    "harnessName": "Game Narrative",
+    "category": "content"
+  },
+  {
+    "name": "narrative-reviewer",
+    "role": "Game Narrative Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 5,
+    "harnessName": "Game Narrative",
+    "category": "content"
+  },
+  {
+    "name": "quest-designer",
+    "role": "Game Quest Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 5,
+    "harnessName": "Game Narrative",
+    "category": "content"
+  },
+  {
+    "name": "worldbuilder",
+    "role": "Game World Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 5,
+    "harnessName": "Game Narrative",
+    "category": "content"
+  },
+  {
+    "name": "brand-strategist",
+    "role": "Brand strategist",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 6,
+    "harnessName": "Brand Identity",
+    "category": "content"
+  },
+  {
+    "name": "copywriter",
+    "role": "Brand Copywriter",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 6,
+    "harnessName": "Brand Identity",
+    "category": "content"
+  },
+  {
+    "name": "identity-reviewer",
+    "role": "Brand Identity QA Specialist",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 6,
+    "harnessName": "Brand Identity",
+    "category": "content"
+  },
+  {
+    "name": "naming-specialist",
+    "role": "Brand Naming Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 6,
+    "harnessName": "Brand Identity",
+    "category": "content"
+  },
+  {
+    "name": "visual-director",
+    "role": "Visual director",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 6,
+    "harnessName": "Brand Identity",
+    "category": "content"
+  },
+  {
+    "name": "comic-editor",
+    "role": "Comic editor",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 7,
+    "harnessName": "Comic Creator",
+    "category": "content"
+  },
+  {
+    "name": "dialogue-writer",
+    "role": "Comic Dialogue Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 7,
+    "harnessName": "Comic Creator",
+    "category": "content"
+  },
+  {
+    "name": "image-generator",
+    "role": "Comic Image Generator",
+    "tools": [
+      "Write",
+      "Skill",
+      "Read"
+    ],
+    "harnessId": 7,
+    "harnessName": "Comic Creator",
+    "category": "content"
+  },
+  {
+    "name": "quality-reviewer",
+    "role": "Comic Quality Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 7,
+    "harnessName": "Comic Creator",
+    "category": "content"
+  },
+  {
+    "name": "storyboarder",
+    "role": "Comic Storyboarder",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 7,
+    "harnessName": "Comic Creator",
+    "category": "content"
+  },
+  {
+    "name": "content-writer",
+    "role": "Course Content Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 8,
+    "harnessName": "Course Builder",
+    "category": "content"
+  },
+  {
+    "name": "course-reviewer",
+    "role": "Course Quality Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 8,
+    "harnessName": "Course Builder",
+    "category": "content"
+  },
+  {
+    "name": "curriculum-designer",
+    "role": "Curriculum designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 8,
+    "harnessName": "Course Builder",
+    "category": "content"
+  },
+  {
+    "name": "lab-designer",
+    "role": "Lab designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 8,
+    "harnessName": "Course Builder",
+    "category": "content"
+  },
+  {
+    "name": "quiz-maker",
+    "role": "Quiz maker",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 8,
+    "harnessName": "Course Builder",
+    "category": "content"
+  },
+  {
+    "name": "fact-checker",
+    "role": "Documentary Fact Checker",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 9,
+    "harnessName": "Documentary Research",
+    "category": "content"
+  },
+  {
+    "name": "interviewer",
+    "role": "Documentary Interviewer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 9,
+    "harnessName": "Documentary Research",
+    "category": "content"
+  },
+  {
+    "name": "narrator",
+    "role": "Documentary Narrator",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 9,
+    "harnessName": "Documentary Research",
+    "category": "content"
+  },
+  {
+    "name": "researcher",
+    "role": "Documentary Researcher",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 9,
+    "harnessName": "Documentary Research",
+    "category": "content"
+  },
+  {
+    "name": "story-architect",
+    "role": "Documentary Story Architect",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 9,
+    "harnessName": "Documentary Research",
+    "category": "content"
+  },
+  {
+    "name": "copywriter",
+    "role": "SNS Copywriter",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 10,
+    "harnessName": "Social Media Manager",
+    "category": "content"
+  },
+  {
+    "name": "hashtag-analyst",
+    "role": "Hashtag Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 10,
+    "harnessName": "Social Media Manager",
+    "category": "content"
+  },
+  {
+    "name": "performance-reviewer",
+    "role": "SNS Performance Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 10,
+    "harnessName": "Social Media Manager",
+    "category": "content"
+  },
+  {
+    "name": "sns-strategist",
+    "role": "Social Media Strategist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 10,
+    "harnessName": "Social Media Manager",
+    "category": "content"
+  },
+  {
+    "name": "visual-planner",
+    "role": "SNS Visual Planner",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 10,
+    "harnessName": "Social Media Manager",
+    "category": "content"
+  },
+  {
+    "name": "ip-analyst",
+    "role": "Intellectual Property Analyst",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 100,
+    "harnessName": "IP Portfolio",
+    "category": "specialized"
+  },
+  {
+    "name": "license-strategist",
+    "role": "IP License Strategist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 100,
+    "harnessName": "IP Portfolio",
+    "category": "specialized"
+  },
+  {
+    "name": "patent-mapper",
+    "role": "Patent, Trademark & Copyright Mapper",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 100,
+    "harnessName": "IP Portfolio",
+    "category": "specialized"
+  },
+  {
+    "name": "protection-advisor",
+    "role": "IP Protection Strategy Advisor",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 100,
+    "harnessName": "IP Portfolio",
+    "category": "specialized"
+  },
+  {
+    "name": "renewal-scheduler",
+    "role": "IP Renewal Schedule Manager",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 100,
+    "harnessName": "IP Portfolio",
+    "category": "specialized"
+  },
+  {
+    "name": "cover-designer",
+    "role": "Cover Designer",
+    "tools": [
+      "Write",
+      "Skill",
+      "Read"
+    ],
+    "harnessId": 11,
+    "harnessName": "Book Publishing",
+    "category": "content"
+  },
+  {
+    "name": "manuscript-editor",
+    "role": "Manuscript Editor",
+    "tools": [
+      "Edit",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 11,
+    "harnessName": "Book Publishing",
+    "category": "content"
+  },
+  {
+    "name": "metadata-manager",
+    "role": "Metadata Manager",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 11,
+    "harnessName": "Book Publishing",
+    "category": "content"
+  },
+  {
+    "name": "proofreader",
+    "role": "Proofreader",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 11,
+    "harnessName": "Book Publishing",
+    "category": "content"
+  },
+  {
+    "name": "publishing-reviewer",
+    "role": "Publishing Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 11,
+    "harnessName": "Book Publishing",
+    "category": "content"
+  },
+  {
+    "name": "campaign-reviewer",
+    "role": "Campaign Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 12,
+    "harnessName": "Advertising Campaign",
+    "category": "content"
+  },
+  {
+    "name": "copywriter",
+    "role": "Advertising Copywriter",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 12,
+    "harnessName": "Advertising Campaign",
+    "category": "content"
+  },
+  {
+    "name": "creative-director",
+    "role": "Creative Director",
+    "tools": [
+      "Skill",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 12,
+    "harnessName": "Advertising Campaign",
+    "category": "content"
+  },
+  {
+    "name": "market-analyst",
+    "role": "Market/Target Analyst",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 12,
+    "harnessName": "Advertising Campaign",
+    "category": "content"
+  },
+  {
+    "name": "media-planner",
+    "role": "Media Planner",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 12,
+    "harnessName": "Advertising Campaign",
+    "category": "content"
+  },
+  {
+    "name": "deck-reviewer",
+    "role": "Presentation Deck Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 13,
+    "harnessName": "Presentation Designer",
+    "category": "content"
+  },
+  {
+    "name": "info-architect",
+    "role": "Information Architect",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 13,
+    "harnessName": "Presentation Designer",
+    "category": "content"
+  },
+  {
+    "name": "presentation-coach",
+    "role": "Presentation Coach",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 13,
+    "harnessName": "Presentation Designer",
+    "category": "content"
+  },
+  {
+    "name": "storyteller",
+    "role": "Presentation Storyteller",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 13,
+    "harnessName": "Presentation Designer",
+    "category": "content"
+  },
+  {
+    "name": "visual-designer",
+    "role": "Presentation Visual Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 13,
+    "harnessName": "Presentation Designer",
+    "category": "content"
+  },
+  {
+    "name": "localizer",
+    "role": "Localization Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 14,
+    "harnessName": "Translation & Localization",
+    "category": "content"
+  },
+  {
+    "name": "quality-reviewer",
+    "role": "Translation Quality Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 14,
+    "harnessName": "Translation & Localization",
+    "category": "content"
+  },
+  {
+    "name": "style-harmonizer",
+    "role": "Style Harmonizer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 14,
+    "harnessName": "Translation & Localization",
+    "category": "content"
+  },
+  {
+    "name": "terminology-manager",
+    "role": "Terminology Manager",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 14,
+    "harnessName": "Translation & Localization",
+    "category": "content"
+  },
+  {
+    "name": "translator",
+    "role": "Professional Translator",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 14,
+    "harnessName": "Translation & Localization",
+    "category": "content"
+  },
+  {
+    "name": "editorial-reviewer",
+    "role": "Editorial Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 15,
+    "harnessName": "Visual Storytelling",
+    "category": "content"
+  },
+  {
+    "name": "essay-writer",
+    "role": "Essay Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 15,
+    "harnessName": "Visual Storytelling",
+    "category": "content"
+  },
+  {
+    "name": "image-prompter",
+    "role": "Image Prompter",
+    "tools": [
+      "Skill",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 15,
+    "harnessName": "Visual Storytelling",
+    "category": "content"
+  },
+  {
+    "name": "layout-builder",
+    "role": "Layout Builder",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 15,
+    "harnessName": "Visual Storytelling",
+    "category": "content"
+  },
+  {
+    "name": "story-architect",
+    "role": "Story Architect",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 15,
+    "harnessName": "Visual Storytelling",
+    "category": "content"
+  },
+  {
+    "name": "architect",
+    "role": "System Architect",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 16,
+    "harnessName": "Fullstack Web App",
+    "category": "development"
+  },
+  {
+    "name": "backend-dev",
+    "role": "Backend Developer",
+    "tools": [],
+    "harnessId": 16,
+    "harnessName": "Fullstack Web App",
+    "category": "development"
+  },
+  {
+    "name": "devops-engineer",
+    "role": "DevOps Engineer",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 16,
+    "harnessName": "Fullstack Web App",
+    "category": "development"
+  },
+  {
+    "name": "frontend-dev",
+    "role": "Frontend Developer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 16,
+    "harnessName": "Fullstack Web App",
+    "category": "development"
+  },
+  {
+    "name": "qa-engineer",
+    "role": "QA Engineer",
+    "tools": [
+      "Write",
+      "SendMessage",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 16,
+    "harnessName": "Fullstack Web App",
+    "category": "development"
+  },
+  {
+    "name": "api-integrator",
+    "role": "API Integration Specialist",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 17,
+    "harnessName": "Mobile App Builder",
+    "category": "development"
+  },
+  {
+    "name": "app-developer",
+    "role": "Mobile App Developer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 17,
+    "harnessName": "Mobile App Builder",
+    "category": "development"
+  },
+  {
+    "name": "qa-engineer",
+    "role": "Mobile QA Engineer",
+    "tools": [
+      "Write",
+      "SendMessage",
+      "Read"
+    ],
+    "harnessId": 17,
+    "harnessName": "Mobile App Builder",
+    "category": "development"
+  },
+  {
+    "name": "store-manager",
+    "role": "App Store Deployment Manager",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 17,
+    "harnessName": "Mobile App Builder",
+    "category": "development"
+  },
+  {
+    "name": "ux-designer",
+    "role": "Mobile UX/UI Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 17,
+    "harnessName": "Mobile App Builder",
+    "category": "development"
+  },
+  {
+    "name": "api-architect",
+    "role": "API Design Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 18,
+    "harnessName": "API Designer",
+    "category": "development"
+  },
+  {
+    "name": "doc-writer",
+    "role": "API Documentation Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 18,
+    "harnessName": "API Designer",
+    "category": "development"
+  },
+  {
+    "name": "mock-tester",
+    "role": "API Mock and Test Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 18,
+    "harnessName": "API Designer",
+    "category": "development"
+  },
+  {
+    "name": "review-auditor",
+    "role": "API Review Auditor",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 18,
+    "harnessName": "API Designer",
+    "category": "development"
+  },
+  {
+    "name": "schema-validator",
+    "role": "API Schema Validation Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 18,
+    "harnessName": "API Designer",
+    "category": "development"
+  },
+  {
+    "name": "data-modeler",
+    "role": "Data Modeling Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 19,
+    "harnessName": "Database Architect",
+    "category": "development"
+  },
+  {
+    "name": "integration-reviewer",
+    "role": "DB Integration Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 19,
+    "harnessName": "Database Architect",
+    "category": "development"
+  },
+  {
+    "name": "migration-manager",
+    "role": "Migration Manager",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 19,
+    "harnessName": "Database Architect",
+    "category": "development"
+  },
+  {
+    "name": "performance-analyst",
+    "role": "DB Performance Analyst",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 19,
+    "harnessName": "Database Architect",
+    "category": "development"
+  },
+  {
+    "name": "security-auditor",
+    "role": "DB Security Auditor",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 19,
+    "harnessName": "Database Architect",
+    "category": "development"
+  },
+  {
+    "name": "infra-engineer",
+    "role": "CI/CD Infrastructure Engineer",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 20,
+    "harnessName": "CI/CD Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "monitoring-specialist",
+    "role": "CI/CD Monitoring Specialist",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 20,
+    "harnessName": "CI/CD Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "pipeline-designer",
+    "role": "CI/CD Pipeline Designer",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 20,
+    "harnessName": "CI/CD Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "pipeline-reviewer",
+    "role": "CI/CD Pipeline Reviewer",
+    "tools": [
+      "SendMessage",
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 20,
+    "harnessName": "CI/CD Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "security-scanner",
+    "role": "CI/CD Security Scanner",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 20,
+    "harnessName": "CI/CD Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "architecture-reviewer",
+    "role": "Architecture Review Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 21,
+    "harnessName": "Code Reviewer",
+    "category": "development"
+  },
+  {
+    "name": "performance-analyst",
+    "role": "Code Performance Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 21,
+    "harnessName": "Code Reviewer",
+    "category": "development"
+  },
+  {
+    "name": "review-synthesizer",
+    "role": "Code Review Synthesizer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 21,
+    "harnessName": "Code Reviewer",
+    "category": "development"
+  },
+  {
+    "name": "security-analyst",
+    "role": "Code Security Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 21,
+    "harnessName": "Code Reviewer",
+    "category": "development"
+  },
+  {
+    "name": "style-inspector",
+    "role": "Code Style Inspector",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 21,
+    "harnessName": "Code Reviewer",
+    "category": "development"
+  },
+  {
+    "name": "legacy-analyzer",
+    "role": "Legacy code analysis expert",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 22,
+    "harnessName": "Legacy Modernizer",
+    "category": "development"
+  },
+  {
+    "name": "migration-engineer",
+    "role": "Migration execution engineer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 22,
+    "harnessName": "Legacy Modernizer",
+    "category": "development"
+  },
+  {
+    "name": "modernization-reviewer",
+    "role": "Modernization project reviewer (QA)",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 22,
+    "harnessName": "Legacy Modernizer",
+    "category": "development"
+  },
+  {
+    "name": "refactoring-strategist",
+    "role": "Refactoring strategy expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 22,
+    "harnessName": "Legacy Modernizer",
+    "category": "development"
+  },
+  {
+    "name": "regression-tester",
+    "role": "Regression testing expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 22,
+    "harnessName": "Legacy Modernizer",
+    "category": "development"
+  },
+  {
+    "name": "architecture-reviewer",
+    "role": "Microservice architecture reviewer (QA)",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 23,
+    "harnessName": "Microservice Designer",
+    "category": "development"
+  },
+  {
+    "name": "communication-designer",
+    "role": "Inter-service communication design expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 23,
+    "harnessName": "Microservice Designer",
+    "category": "development"
+  },
+  {
+    "name": "domain-analyst",
+    "role": "Domain analysis expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 23,
+    "harnessName": "Microservice Designer",
+    "category": "development"
+  },
+  {
+    "name": "observability-engineer",
+    "role": "Observability design expert",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 23,
+    "harnessName": "Microservice Designer",
+    "category": "development"
+  },
+  {
+    "name": "service-architect",
+    "role": "Microservice design expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 23,
+    "harnessName": "Microservice Designer",
+    "category": "development"
+  },
+  {
+    "name": "coverage-analyst",
+    "role": "Coverage analysis expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 24,
+    "harnessName": "Test Automation",
+    "category": "development"
+  },
+  {
+    "name": "integration-tester",
+    "role": "Integration testing expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 24,
+    "harnessName": "Test Automation",
+    "category": "development"
+  },
+  {
+    "name": "qa-reviewer",
+    "role": "Test automation reviewer (QA)",
+    "tools": [
+      "SendMessage",
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 24,
+    "harnessName": "Test Automation",
+    "category": "development"
+  },
+  {
+    "name": "test-strategist",
+    "role": "Test strategy expert",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 24,
+    "harnessName": "Test Automation",
+    "category": "development"
+  },
+  {
+    "name": "unit-tester",
+    "role": "Unit testing expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 24,
+    "harnessName": "Test Automation",
+    "category": "development"
+  },
+  {
+    "name": "impact-assessor",
+    "role": "Impact assessment expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 25,
+    "harnessName": "Incident Postmortem",
+    "category": "development"
+  },
+  {
+    "name": "postmortem-reviewer",
+    "role": "Postmortem reviewer (QA)",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 25,
+    "harnessName": "Incident Postmortem",
+    "category": "development"
+  },
+  {
+    "name": "remediation-planner",
+    "role": "Remediation planning expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 25,
+    "harnessName": "Incident Postmortem",
+    "category": "development"
+  },
+  {
+    "name": "root-cause-investigator",
+    "role": "Root cause investigation expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 25,
+    "harnessName": "Incident Postmortem",
+    "category": "development"
+  },
+  {
+    "name": "timeline-reconstructor",
+    "role": "Incident timeline reconstruction expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 25,
+    "harnessName": "Incident Postmortem",
+    "category": "development"
+  },
+  {
+    "name": "cost-optimizer",
+    "role": "Cloud cost optimization expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 26,
+    "harnessName": "Infrastructure as Code",
+    "category": "development"
+  },
+  {
+    "name": "drift-detector",
+    "role": "Drift detection expert",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 26,
+    "harnessName": "Infrastructure as Code",
+    "category": "development"
+  },
+  {
+    "name": "iac-reviewer",
+    "role": "IaC reviewer (QA)",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 26,
+    "harnessName": "Infrastructure as Code",
+    "category": "development"
+  },
+  {
+    "name": "infra-architect",
+    "role": "Infrastructure design expert",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 26,
+    "harnessName": "Infrastructure as Code",
+    "category": "development"
+  },
+  {
+    "name": "security-engineer",
+    "role": "Infrastructure security expert",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 26,
+    "harnessName": "Infrastructure as Code",
+    "category": "development"
+  },
+  {
+    "name": "data-quality-manager",
+    "role": "data  administrator",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 27,
+    "harnessName": "Data Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "etl-architect",
+    "role": "ETL architecture architect",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 27,
+    "harnessName": "Data Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "monitoring-specialist",
+    "role": "monitoring specialist",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 27,
+    "harnessName": "Data Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "pipeline-reviewer",
+    "role": "pipeline reviewer",
+    "tools": [
+      "Bash",
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 27,
+    "harnessName": "Data Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "scheduler-engineer",
+    "role": "scheduling engineer",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 27,
+    "harnessName": "Data Pipeline",
+    "category": "development"
+  },
+  {
+    "name": "audit-reviewer",
+    "role": "audit reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 28,
+    "harnessName": "Security Audit",
+    "category": "development"
+  },
+  {
+    "name": "code-analyst",
+    "role": "code security analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 28,
+    "harnessName": "Security Audit",
+    "category": "development"
+  },
+  {
+    "name": "pentest-reporter",
+    "role": "penetration test report",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 28,
+    "harnessName": "Security Audit",
+    "category": "development"
+  },
+  {
+    "name": "security-consultant",
+    "role": "security",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 28,
+    "harnessName": "Security Audit",
+    "category": "development"
+  },
+  {
+    "name": "vulnerability-scanner",
+    "role": "vulnerability",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 28,
+    "harnessName": "Security Audit",
+    "category": "development"
+  },
+  {
+    "name": "benchmark-manager",
+    "role": "benchmark administrator",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 29,
+    "harnessName": "Performance Optimizer",
+    "category": "development"
+  },
+  {
+    "name": "bottleneck-analyst",
+    "role": "bottleneck analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 29,
+    "harnessName": "Performance Optimizer",
+    "category": "development"
+  },
+  {
+    "name": "optimization-engineer",
+    "role": "optimization engineer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 29,
+    "harnessName": "Performance Optimizer",
+    "category": "development"
+  },
+  {
+    "name": "perf-reviewer",
+    "role": "performance reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 29,
+    "harnessName": "Performance Optimizer",
+    "category": "development"
+  },
+  {
+    "name": "profiler",
+    "role": "performance profiler",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 29,
+    "harnessName": "Performance Optimizer",
+    "category": "development"
+  },
+  {
+    "name": "code-organizer",
+    "role": "code",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 30,
+    "harnessName": "Open Source Launcher",
+    "category": "development"
+  },
+  {
+    "name": "community-manager",
+    "role": "community manager",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 30,
+    "harnessName": "Open Source Launcher",
+    "category": "development"
+  },
+  {
+    "name": "doc-writer",
+    "role": "documentation",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 30,
+    "harnessName": "Open Source Launcher",
+    "category": "development"
+  },
+  {
+    "name": "launch-reviewer",
+    "role": "launching reviewer",
+    "tools": [
+      "Bash",
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 30,
+    "harnessName": "Open Source Launcher",
+    "category": "development"
+  },
+  {
+    "name": "license-specialist",
+    "role": "license specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 30,
+    "harnessName": "Open Source Launcher",
+    "category": "development"
+  },
+  {
+    "name": "data-engineer",
+    "role": "ML Data Engineer",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 31,
+    "harnessName": "ML Experiment",
+    "category": "data-ai"
+  },
+  {
+    "name": "evaluation-analyst",
+    "role": "Evaluation Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 31,
+    "harnessName": "ML Experiment",
+    "category": "data-ai"
+  },
+  {
+    "name": "experiment-reviewer",
+    "role": "Experiment Reviewer",
+    "tools": [
+      "SendMessage",
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 31,
+    "harnessName": "ML Experiment",
+    "category": "data-ai"
+  },
+  {
+    "name": "model-designer",
+    "role": "Model Designer",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 31,
+    "harnessName": "ML Experiment",
+    "category": "data-ai"
+  },
+  {
+    "name": "training-manager",
+    "role": "Training Manager",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 31,
+    "harnessName": "ML Experiment",
+    "category": "data-ai"
+  },
+  {
+    "name": "analyst",
+    "role": "Statistical Analysis Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 32,
+    "harnessName": "Data Analysis",
+    "category": "data-ai"
+  },
+  {
+    "name": "cleaner",
+    "role": "Data Cleaning Specialist",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 32,
+    "harnessName": "Data Analysis",
+    "category": "data-ai"
+  },
+  {
+    "name": "explorer",
+    "role": "Exploratory Data Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 32,
+    "harnessName": "Data Analysis",
+    "category": "data-ai"
+  },
+  {
+    "name": "reporter",
+    "role": "Analysis Report Writing Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 32,
+    "harnessName": "Data Analysis",
+    "category": "data-ai"
+  },
+  {
+    "name": "visualizer",
+    "role": "Data Visualization Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 32,
+    "harnessName": "Data Analysis",
+    "category": "data-ai"
+  },
+  {
+    "name": "classifier",
+    "role": "Text Classification Engine",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 33,
+    "harnessName": "Text Processor",
+    "category": "data-ai"
+  },
+  {
+    "name": "extractor",
+    "role": "Information Extraction Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 33,
+    "harnessName": "Text Processor",
+    "category": "data-ai"
+  },
+  {
+    "name": "preprocessor",
+    "role": "Text Preprocessing Specialist",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 33,
+    "harnessName": "Text Processor",
+    "category": "data-ai"
+  },
+  {
+    "name": "report-writer",
+    "role": "Text Processing Report Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 33,
+    "harnessName": "Text Processor",
+    "category": "data-ai"
+  },
+  {
+    "name": "sentiment-analyzer",
+    "role": "Sentiment Analysis Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 33,
+    "harnessName": "Text Processor",
+    "category": "data-ai"
+  },
+  {
+    "name": "rollback-planner",
+    "role": "Rollback and Emergency Response Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 34,
+    "harnessName": "Data Migration",
+    "category": "data-ai"
+  },
+  {
+    "name": "schema-mapper",
+    "role": "Schema Mapping Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 34,
+    "harnessName": "Data Migration",
+    "category": "data-ai"
+  },
+  {
+    "name": "script-developer",
+    "role": "Migration Script Developer",
+    "tools": [
+      "Write",
+      "Edit",
+      "Read"
+    ],
+    "harnessId": 34,
+    "harnessName": "Data Migration",
+    "category": "data-ai"
+  },
+  {
+    "name": "source-analyst",
+    "role": "Source System Analysis Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 34,
+    "harnessName": "Data Migration",
+    "category": "data-ai"
+  },
+  {
+    "name": "validation-engineer",
+    "role": "Migration Validation Engineer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 34,
+    "harnessName": "Data Migration",
+    "category": "data-ai"
+  },
+  {
+    "name": "doc-writer",
+    "role": "SDK Documentation Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 35,
+    "harnessName": "API Client Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "sdk-developer",
+    "role": "SDK Client Developer",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 35,
+    "harnessName": "API Client Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "spec-parser",
+    "role": "API Spec Analysis Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 35,
+    "harnessName": "API Client Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "test-engineer",
+    "role": "SDK Test Engineer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 35,
+    "harnessName": "API Client Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "type-generator",
+    "role": "Type Generation Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 35,
+    "harnessName": "API Client Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "a11y-auditor",
+    "role": "Accessibility Verification Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 36,
+    "harnessName": "Design System",
+    "category": "data-ai"
+  },
+  {
+    "name": "component-developer",
+    "role": "UI Component Development Specialist",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 36,
+    "harnessName": "Design System",
+    "category": "data-ai"
+  },
+  {
+    "name": "doc-writer",
+    "role": "Design System Documentation Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 36,
+    "harnessName": "Design System",
+    "category": "data-ai"
+  },
+  {
+    "name": "storybook-builder",
+    "role": "Storybook Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 36,
+    "harnessName": "Design System",
+    "category": "data-ai"
+  },
+  {
+    "name": "token-designer",
+    "role": "Design Token Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 36,
+    "harnessName": "Design System",
+    "category": "data-ai"
+  },
+  {
+    "name": "crawler-developer",
+    "role": "Crawler Developer",
+    "tools": [
+      "Write",
+      "Agent",
+      "Read"
+    ],
+    "harnessId": 37,
+    "harnessName": "Web Scraper",
+    "category": "data-ai"
+  },
+  {
+    "name": "data-manager",
+    "role": "Data Manager",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 37,
+    "harnessName": "Web Scraper",
+    "category": "data-ai"
+  },
+  {
+    "name": "monitor-operator",
+    "role": "Monitoring Operator",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 37,
+    "harnessName": "Web Scraper",
+    "category": "data-ai"
+  },
+  {
+    "name": "parser-engineer",
+    "role": "Parsing Engineer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 37,
+    "harnessName": "Web Scraper",
+    "category": "data-ai"
+  },
+  {
+    "name": "target-analyst",
+    "role": "Target Site Analyst",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 37,
+    "harnessName": "Web Scraper",
+    "category": "data-ai"
+  },
+  {
+    "name": "conversation-designer",
+    "role": "Dialog Flow Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 38,
+    "harnessName": "Chatbot Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "dialog-tester",
+    "role": "Chatbot Quality Assurance Specialist",
+    "tools": [
+      "Write",
+      "SendMessage",
+      "Read"
+    ],
+    "harnessId": 38,
+    "harnessName": "Chatbot Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "integration-engineer",
+    "role": "System Integration Specialist",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 38,
+    "harnessName": "Chatbot Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "nlu-developer",
+    "role": "Natural Language Understanding Developer",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 38,
+    "harnessName": "Chatbot Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "persona-architect",
+    "role": "Chatbot Persona Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 38,
+    "harnessName": "Chatbot Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "announcement-writer",
+    "role": "Release Announcement Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 39,
+    "harnessName": "Changelog Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "change-classifier",
+    "role": "Software Change Classification Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 39,
+    "harnessName": "Changelog Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "commit-analyst",
+    "role": "Git History Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 39,
+    "harnessName": "Changelog Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "migration-guide-writer",
+    "role": "Migration Guide Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 39,
+    "harnessName": "Changelog Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "release-note-writer",
+    "role": "Release Note Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 39,
+    "harnessName": "Changelog Generator",
+    "category": "data-ai"
+  },
+  {
+    "name": "command-designer",
+    "role": "CLI Command Structure Specialist",
+    "tools": [
+      "WebSearch",
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 40,
+    "harnessName": "CLI Tool Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "core-developer",
+    "role": "CLI Core Logic Developer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 40,
+    "harnessName": "CLI Tool Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "docs-writer",
+    "role": "CLI Documentation Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 40,
+    "harnessName": "CLI Tool Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "release-engineer",
+    "role": "Build and Deployment Specialist",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 40,
+    "harnessName": "CLI Tool Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "test-engineer",
+    "role": "CLI Test Specialist",
+    "tools": [
+      "Write",
+      "SendMessage",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 40,
+    "harnessName": "CLI Tool Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "deploy-engineer",
+    "role": "Deployment Specialist",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 41,
+    "harnessName": "LLM App Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "eval-specialist",
+    "role": "LLM Evaluation Specialist",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 41,
+    "harnessName": "LLM App Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "optimization-engineer",
+    "role": "LLM App Optimization Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 41,
+    "harnessName": "LLM App Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "prompt-engineer",
+    "role": "LLM Prompt Design Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 41,
+    "harnessName": "LLM App Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "rag-architect",
+    "role": "RAG Pipeline Designer",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 41,
+    "harnessName": "LLM App Builder",
+    "category": "data-ai"
+  },
+  {
+    "name": "bi-reviewer",
+    "role": "BI Quality Assurance Specialist",
+    "tools": [
+      "SendMessage",
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 42,
+    "harnessName": "BI Dashboard",
+    "category": "data-ai"
+  },
+  {
+    "name": "dashboard-builder",
+    "role": "Data Visualization Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 42,
+    "harnessName": "BI Dashboard",
+    "category": "data-ai"
+  },
+  {
+    "name": "data-engineer",
+    "role": "BI Data Engineer",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 42,
+    "harnessName": "BI Dashboard",
+    "category": "data-ai"
+  },
+  {
+    "name": "kpi-designer",
+    "role": "KPI Design Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 42,
+    "harnessName": "BI Dashboard",
+    "category": "data-ai"
+  },
+  {
+    "name": "report-automator",
+    "role": "Report Automation Specialist",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 42,
+    "harnessName": "BI Dashboard",
+    "category": "data-ai"
+  },
+  {
+    "name": "business-modeler",
+    "role": "Business Model Design Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 43,
+    "harnessName": "Startup Launcher",
+    "category": "business"
+  },
+  {
+    "name": "launch-reviewer",
+    "role": "Launch Readiness Verification Specialist",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 43,
+    "harnessName": "Startup Launcher",
+    "category": "business"
+  },
+  {
+    "name": "market-analyst",
+    "role": "Startup Market Validation Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 43,
+    "harnessName": "Startup Launcher",
+    "category": "business"
+  },
+  {
+    "name": "mvp-architect",
+    "role": "MVP Design Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 43,
+    "harnessName": "Startup Launcher",
+    "category": "business"
+  },
+  {
+    "name": "pitch-creator",
+    "role": "Pitch Deck Specialist",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 43,
+    "harnessName": "Startup Launcher",
+    "category": "business"
+  },
+  {
+    "name": "competitor-analyst",
+    "role": "Competitive Analysis Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 44,
+    "harnessName": "Market Research",
+    "category": "business"
+  },
+  {
+    "name": "consumer-analyst",
+    "role": "Consumer Research Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 44,
+    "harnessName": "Market Research",
+    "category": "business"
+  },
+  {
+    "name": "industry-analyst",
+    "role": "Industry Analysis Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 44,
+    "harnessName": "Market Research",
+    "category": "business"
+  },
+  {
+    "name": "research-reviewer",
+    "role": "Market Research Quality Assurance Specialist",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 44,
+    "harnessName": "Market Research",
+    "category": "business"
+  },
+  {
+    "name": "trend-analyst",
+    "role": "Trend Analysis Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 44,
+    "harnessName": "Market Research",
+    "category": "business"
+  },
+  {
+    "name": "announcement-analyst",
+    "role": "Government Funding Announcement Analysis Specialist",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 45,
+    "harnessName": "Gov Funding Plan",
+    "category": "business"
+  },
+  {
+    "name": "biz-writer",
+    "role": "Business Feasibility Section Writing Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 45,
+    "harnessName": "Gov Funding Plan",
+    "category": "business"
+  },
+  {
+    "name": "budget-planner",
+    "role": "Government R&D Budget Planning Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 45,
+    "harnessName": "Gov Funding Plan",
+    "category": "business"
+  },
+  {
+    "name": "submission-reviewer",
+    "role": "Submission Quality Assurance Specialist",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 45,
+    "harnessName": "Gov Funding Plan",
+    "category": "business"
+  },
+  {
+    "name": "tech-writer",
+    "role": "Technical Section Writing Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 45,
+    "harnessName": "Gov Funding Plan",
+    "category": "business"
+  },
+  {
+    "name": "pm-reviewer",
+    "role": "PM Reviewer (QA)",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 46,
+    "harnessName": "Product Manager",
+    "category": "business"
+  },
+  {
+    "name": "prd-writer",
+    "role": "PRD Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 46,
+    "harnessName": "Product Manager",
+    "category": "business"
+  },
+  {
+    "name": "sprint-planner",
+    "role": "Sprint Planner",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 46,
+    "harnessName": "Product Manager",
+    "category": "business"
+  },
+  {
+    "name": "story-writer",
+    "role": "Story Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 46,
+    "harnessName": "Product Manager",
+    "category": "business"
+  },
+  {
+    "name": "strategist",
+    "role": "Product Strategist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 46,
+    "harnessName": "Product Manager",
+    "category": "business"
+  },
+  {
+    "name": "bsc-analyst",
+    "role": "BSC (Balanced Scorecard) Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 47,
+    "harnessName": "Strategy Framework",
+    "category": "business"
+  },
+  {
+    "name": "okr-designer",
+    "role": "OKR design expert",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 47,
+    "harnessName": "Strategy Framework",
+    "category": "business"
+  },
+  {
+    "name": "strategy-reviewer",
+    "role": "Strategy Framework Reviewer (QA)",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 47,
+    "harnessName": "Strategy Framework",
+    "category": "business"
+  },
+  {
+    "name": "strategy-writer",
+    "role": "Strategy Document Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 47,
+    "harnessName": "Strategy Framework",
+    "category": "business"
+  },
+  {
+    "name": "swot-specialist",
+    "role": "SWOT analysis expert",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 47,
+    "harnessName": "Strategy Framework",
+    "category": "business"
+  },
+  {
+    "name": "customer-analyst",
+    "role": "Customer Analysis Expert",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 48,
+    "harnessName": "Sales Enablement",
+    "category": "business"
+  },
+  {
+    "name": "followup-manager",
+    "role": "Sales Follow-up Management Expert",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 48,
+    "harnessName": "Sales Enablement",
+    "category": "business"
+  },
+  {
+    "name": "presenter",
+    "role": "Sales Presentation Design Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 48,
+    "harnessName": "Sales Enablement",
+    "category": "business"
+  },
+  {
+    "name": "proposal-writer",
+    "role": "Sales Proposal Writing Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 48,
+    "harnessName": "Sales Enablement",
+    "category": "business"
+  },
+  {
+    "name": "sales-reviewer",
+    "role": "Sales Enablement Reviewer (QA)",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 48,
+    "harnessName": "Sales Enablement",
+    "category": "business"
+  },
+  {
+    "name": "cs-analyst",
+    "role": "CS Analytics Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 49,
+    "harnessName": "Customer Support",
+    "category": "business"
+  },
+  {
+    "name": "cs-reviewer",
+    "role": "Customer Support System Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 49,
+    "harnessName": "Customer Support",
+    "category": "business"
+  },
+  {
+    "name": "escalation-manager",
+    "role": "Escalation Management Expert",
+    "tools": [
+      "Agent",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 49,
+    "harnessName": "Customer Support",
+    "category": "business"
+  },
+  {
+    "name": "faq-builder",
+    "role": "FAQ Construction Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 49,
+    "harnessName": "Customer Support",
+    "category": "business"
+  },
+  {
+    "name": "response-specialist",
+    "role": "Response Manual Expert",
+    "tools": [
+      "Write",
+      "Agent",
+      "Read"
+    ],
+    "harnessId": 49,
+    "harnessName": "Customer Support",
+    "category": "business"
+  },
+  {
+    "name": "competitive-analyst",
+    "role": "Competitive Pricing Analysis Expert",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 50,
+    "harnessName": "Pricing Strategy",
+    "category": "business"
+  },
+  {
+    "name": "cost-analyst",
+    "role": "Cost Analysis Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 50,
+    "harnessName": "Pricing Strategy",
+    "category": "business"
+  },
+  {
+    "name": "pricing-reviewer",
+    "role": "Pricing Strategy Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 50,
+    "harnessName": "Pricing Strategy",
+    "category": "business"
+  },
+  {
+    "name": "pricing-simulator",
+    "role": "Pricing Simulation Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 50,
+    "harnessName": "Pricing Strategy",
+    "category": "business"
+  },
+  {
+    "name": "value-assessor",
+    "role": "Value-Based Pricing Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 50,
+    "harnessName": "Pricing Strategy",
+    "category": "business"
+  },
+  {
+    "name": "financial-analyst",
+    "role": "Financial Analysis Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 51,
+    "harnessName": "Investor Report",
+    "category": "business"
+  },
+  {
+    "name": "ir-reviewer",
+    "role": "IR Report Reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 51,
+    "harnessName": "Investor Report",
+    "category": "business"
+  },
+  {
+    "name": "kpi-designer",
+    "role": "KPI Dashboard Design Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 51,
+    "harnessName": "Investor Report",
+    "category": "business"
+  },
+  {
+    "name": "market-analyst",
+    "role": "Market Trends Analysis Expert",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 51,
+    "harnessName": "Investor Report",
+    "category": "business"
+  },
+  {
+    "name": "strategy-updater",
+    "role": "Strategy Update Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 51,
+    "harnessName": "Investor Report",
+    "category": "business"
+  },
+  {
+    "name": "impact-assessor",
+    "role": "Impact Assessment Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 52,
+    "harnessName": "Scenario Planner",
+    "category": "business"
+  },
+  {
+    "name": "integration-reviewer",
+    "role": "Integration Reviewer",
+    "tools": [
+      "Edit",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 52,
+    "harnessName": "Scenario Planner",
+    "category": "business"
+  },
+  {
+    "name": "scenario-designer",
+    "role": "Scenario Matrix Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 52,
+    "harnessName": "Scenario Planner",
+    "category": "business"
+  },
+  {
+    "name": "strategy-architect",
+    "role": "Response Strategy Developer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 52,
+    "harnessName": "Scenario Planner",
+    "category": "business"
+  },
+  {
+    "name": "variable-analyst",
+    "role": "Key Variable Analyst",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 52,
+    "harnessName": "Scenario Planner",
+    "category": "business"
+  },
+  {
+    "name": "cost-analyst",
+    "role": "Cost Structure Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 53,
+    "harnessName": "Financial Modeler",
+    "category": "business"
+  },
+  {
+    "name": "model-reviewer",
+    "role": "Financial Model Reviewer",
+    "tools": [
+      "Edit",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 53,
+    "harnessName": "Financial Modeler",
+    "category": "business"
+  },
+  {
+    "name": "revenue-modeler",
+    "role": "Revenue Model Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 53,
+    "harnessName": "Financial Modeler",
+    "category": "business"
+  },
+  {
+    "name": "scenario-planner",
+    "role": "Financial Scenario Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 53,
+    "harnessName": "Financial Modeler",
+    "category": "business"
+  },
+  {
+    "name": "valuation-expert",
+    "role": "Valuation Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 53,
+    "harnessName": "Financial Modeler",
+    "category": "business"
+  },
+  {
+    "name": "announcement-analyst",
+    "role": "Announcement Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 54,
+    "harnessName": "Grant Writer",
+    "category": "business"
+  },
+  {
+    "name": "budget-designer",
+    "role": "Budget Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 54,
+    "harnessName": "Grant Writer",
+    "category": "business"
+  },
+  {
+    "name": "compliance-checker",
+    "role": "Compliance Verifier",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 54,
+    "harnessName": "Grant Writer",
+    "category": "business"
+  },
+  {
+    "name": "plan-writer",
+    "role": "Business Plan Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 54,
+    "harnessName": "Grant Writer",
+    "category": "business"
+  },
+  {
+    "name": "submission-verifier",
+    "role": "Submission Verifier",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 54,
+    "harnessName": "Grant Writer",
+    "category": "business"
+  },
+  {
+    "name": "capability-matcher",
+    "role": "Capability Matching Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 55,
+    "harnessName": "RFP Responder",
+    "category": "business"
+  },
+  {
+    "name": "pricing-strategist",
+    "role": "Pricing Strategist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 55,
+    "harnessName": "RFP Responder",
+    "category": "business"
+  },
+  {
+    "name": "proposal-reviewer",
+    "role": "Proposal Reviewer",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 55,
+    "harnessName": "RFP Responder",
+    "category": "business"
+  },
+  {
+    "name": "requirement-analyst",
+    "role": "Requirements Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 55,
+    "harnessName": "RFP Responder",
+    "category": "business"
+  },
+  {
+    "name": "technical-proposer",
+    "role": "Technical Proposal Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 55,
+    "harnessName": "RFP Responder",
+    "category": "business"
+  },
+  {
+    "name": "curriculum-designer",
+    "role": "Curriculum Design Expert",
+    "tools": [
+      "Skill",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 56,
+    "harnessName": "Language Tutor",
+    "category": "education"
+  },
+  {
+    "name": "lesson-tutor",
+    "role": "Lesson Tutor",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 56,
+    "harnessName": "Language Tutor",
+    "category": "education"
+  },
+  {
+    "name": "level-assessor",
+    "role": "Level Assessment Expert",
+    "tools": [
+      "Skill",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 56,
+    "harnessName": "Language Tutor",
+    "category": "education"
+  },
+  {
+    "name": "quiz-master",
+    "role": "Quiz Master",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 56,
+    "harnessName": "Language Tutor",
+    "category": "education"
+  },
+  {
+    "name": "review-coach",
+    "role": "Review Coach",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 56,
+    "harnessName": "Language Tutor",
+    "category": "education"
+  },
+  {
+    "name": "diagnostician",
+    "role": "Weakness Diagnosis Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 57,
+    "harnessName": "Exam Prep",
+    "category": "education"
+  },
+  {
+    "name": "error-analyst",
+    "role": "Error Analysis Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 57,
+    "harnessName": "Exam Prep",
+    "category": "education"
+  },
+  {
+    "name": "examiner",
+    "role": "Mock Exam Creator",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 57,
+    "harnessName": "Exam Prep",
+    "category": "education"
+  },
+  {
+    "name": "learning-designer",
+    "role": "Customized Study Plan Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 57,
+    "harnessName": "Exam Prep",
+    "category": "education"
+  },
+  {
+    "name": "trend-analyst",
+    "role": "Exam Trend Analyst",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 57,
+    "harnessName": "Exam Prep",
+    "category": "education"
+  },
+  {
+    "name": "literature-analyst",
+    "role": "Literature Analyst",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 58,
+    "harnessName": "Thesis Advisor",
+    "category": "education"
+  },
+  {
+    "name": "methodology-expert",
+    "role": "Methodology Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 58,
+    "harnessName": "Thesis Advisor",
+    "category": "education"
+  },
+  {
+    "name": "proofreader",
+    "role": "Thesis Proofreader",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 58,
+    "harnessName": "Thesis Advisor",
+    "category": "education"
+  },
+  {
+    "name": "topic-explorer",
+    "role": "Research Topic Explorer",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 58,
+    "harnessName": "Thesis Advisor",
+    "category": "education"
+  },
+  {
+    "name": "writing-coach",
+    "role": "Thesis Writing Coach",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 58,
+    "harnessName": "Thesis Advisor",
+    "category": "education"
+  },
+  {
+    "name": "code-reviewer",
+    "role": "Code Reviewer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 59,
+    "harnessName": "Coding Bootcamp",
+    "category": "education"
+  },
+  {
+    "name": "curriculum-designer",
+    "role": "Curriculum Designer",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 59,
+    "harnessName": "Coding Bootcamp",
+    "category": "education"
+  },
+  {
+    "name": "exercise-creator",
+    "role": "Exercise Creator",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 59,
+    "harnessName": "Coding Bootcamp",
+    "category": "education"
+  },
+  {
+    "name": "mentor",
+    "role": "Developer Mentor",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 59,
+    "harnessName": "Coding Bootcamp",
+    "category": "education"
+  },
+  {
+    "name": "con-debater",
+    "role": "Con-Side Debater",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 60,
+    "harnessName": "Debate Simulator",
+    "category": "education"
+  },
+  {
+    "name": "judge",
+    "role": "Debate Judge",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 60,
+    "harnessName": "Debate Simulator",
+    "category": "education"
+  },
+  {
+    "name": "pro-debater",
+    "role": "Pro-Side Debater",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 60,
+    "harnessName": "Debate Simulator",
+    "category": "education"
+  },
+  {
+    "name": "rapporteur",
+    "role": "Debate Rapporteur",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 60,
+    "harnessName": "Debate Simulator",
+    "category": "education"
+  },
+  {
+    "name": "topic-analyst",
+    "role": "Debate Topic Analyst",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 60,
+    "harnessName": "Debate Simulator",
+    "category": "education"
+  },
+  {
+    "name": "competency-architect",
+    "role": "Competency Architect",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 61,
+    "harnessName": "Competency Modeler",
+    "category": "education"
+  },
+  {
+    "name": "development-planner",
+    "role": "Competency Development Planner",
+    "tools": [
+      "Write",
+      "Bash",
+      "Read"
+    ],
+    "harnessId": 61,
+    "harnessName": "Competency Modeler",
+    "category": "education"
+  },
+  {
+    "name": "job-analyst",
+    "role": "Job Analyst",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Skill",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 61,
+    "harnessName": "Competency Modeler",
+    "category": "education"
+  },
+  {
+    "name": "rubric-designer",
+    "role": "Assessment Rubric Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 61,
+    "harnessName": "Competency Modeler",
+    "category": "education"
+  },
+  {
+    "name": "adr-author",
+    "role": "ADR Document Author",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 62,
+    "harnessName": "ADR Writer",
+    "category": "education"
+  },
+  {
+    "name": "alternative-researcher",
+    "role": "Alternative Researcher",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 62,
+    "harnessName": "ADR Writer",
+    "category": "education"
+  },
+  {
+    "name": "context-analyst",
+    "role": "Technical Context Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 62,
+    "harnessName": "ADR Writer",
+    "category": "education"
+  },
+  {
+    "name": "impact-tracker",
+    "role": "Impact Tracker",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 62,
+    "harnessName": "ADR Writer",
+    "category": "education"
+  },
+  {
+    "name": "tradeoff-evaluator",
+    "role": "Tradeoff Evaluator",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 62,
+    "harnessName": "ADR Writer",
+    "category": "education"
+  },
+  {
+    "name": "critic-synthesizer",
+    "role": "Critical Analysis and Synthesis Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 63,
+    "harnessName": "Research Assistant",
+    "category": "education"
+  },
+  {
+    "name": "literature-searcher",
+    "role": "Literature Search Specialist",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Read",
+      "Write"
+    ],
+    "harnessId": 63,
+    "harnessName": "Research Assistant",
+    "category": "education"
+  },
+  {
+    "name": "note-taker",
+    "role": "Note-Taking Specialist",
+    "tools": [
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 63,
+    "harnessName": "Research Assistant",
+    "category": "education"
+  },
+  {
+    "name": "reference-manager",
+    "role": "Reference Management Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 63,
+    "harnessName": "Research Assistant",
+    "category": "education"
+  },
+  {
+    "name": "research-coordinator",
+    "role": "Research Coordinator (QA)",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 63,
+    "harnessName": "Research Assistant",
+    "category": "education"
+  },
+  {
+    "name": "knowledge-collector",
+    "role": "Knowledge Collector",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 64,
+    "harnessName": "Knowledge Base Builder",
+    "category": "education"
+  },
+  {
+    "name": "maintenance-planner",
+    "role": "Maintenance Planner",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 64,
+    "harnessName": "Knowledge Base Builder",
+    "category": "education"
+  },
+  {
+    "name": "search-optimizer",
+    "role": "Search Optimizer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 64,
+    "harnessName": "Knowledge Base Builder",
+    "category": "education"
+  },
+  {
+    "name": "taxonomy-designer",
+    "role": "Taxonomy Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 64,
+    "harnessName": "Knowledge Base Builder",
+    "category": "education"
+  },
+  {
+    "name": "wiki-builder",
+    "role": "Wiki Builder",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 64,
+    "harnessName": "Knowledge Base Builder",
+    "category": "education"
+  },
+  {
+    "name": "cover-letter-writer",
+    "role": "Cover Letter Writing Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 65,
+    "harnessName": "Personal Branding",
+    "category": "education"
+  },
+  {
+    "name": "portfolio-designer",
+    "role": "Portfolio Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 65,
+    "harnessName": "Personal Branding",
+    "category": "education"
+  },
+  {
+    "name": "positioning-strategist",
+    "role": "Positioning Strategist",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 65,
+    "harnessName": "Personal Branding",
+    "category": "education"
+  },
+  {
+    "name": "profile-optimizer",
+    "role": "LinkedIn Profile Optimization Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 65,
+    "harnessName": "Personal Branding",
+    "category": "education"
+  },
+  {
+    "name": "resume-writer",
+    "role": "Resume/CV Writing Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 65,
+    "harnessName": "Personal Branding",
+    "category": "education"
+  },
+  {
+    "name": "clause-analyst",
+    "role": "Clause analyst",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 66,
+    "harnessName": "Contract Analyzer",
+    "category": "legal"
+  },
+  {
+    "name": "clause-drafter",
+    "role": "Clause drafting and revision expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 66,
+    "harnessName": "Contract Analyzer",
+    "category": "legal"
+  },
+  {
+    "name": "comparison-reviewer",
+    "role": "Comparison reviewer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 66,
+    "harnessName": "Contract Analyzer",
+    "category": "legal"
+  },
+  {
+    "name": "contract-coordinator",
+    "role": "Contract coordinator (QA)",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 66,
+    "harnessName": "Contract Analyzer",
+    "category": "legal"
+  },
+  {
+    "name": "risk-assessor",
+    "role": "Risk assessor",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 66,
+    "harnessName": "Contract Analyzer",
+    "category": "legal"
+  },
+  {
+    "name": "gap-analyst",
+    "role": "Gap analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 67,
+    "harnessName": "Compliance Checker",
+    "category": "legal"
+  },
+  {
+    "name": "law-mapper",
+    "role": "Compliance law analyst",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 67,
+    "harnessName": "Compliance Checker",
+    "category": "legal"
+  },
+  {
+    "name": "remediation-planner",
+    "role": "Remediation planner",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 67,
+    "harnessName": "Compliance Checker",
+    "category": "legal"
+  },
+  {
+    "name": "status-auditor",
+    "role": "Status auditor",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 67,
+    "harnessName": "Compliance Checker",
+    "category": "legal"
+  },
+  {
+    "name": "claim-drafter",
+    "role": "Claim drafter",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 68,
+    "harnessName": "Patent Drafter",
+    "category": "legal"
+  },
+  {
+    "name": "drawing-designer",
+    "role": "Drawing designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 68,
+    "harnessName": "Patent Drafter",
+    "category": "legal"
+  },
+  {
+    "name": "patent-reviewer",
+    "role": "Patent reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 68,
+    "harnessName": "Patent Drafter",
+    "category": "legal"
+  },
+  {
+    "name": "prior-art-researcher",
+    "role": "Prior art researcher",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 68,
+    "harnessName": "Patent Drafter",
+    "category": "legal"
+  },
+  {
+    "name": "specification-writer",
+    "role": "Specification writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 68,
+    "harnessName": "Patent Drafter",
+    "category": "legal"
+  },
+  {
+    "name": "consent-designer",
+    "role": "consent-designer",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 69,
+    "harnessName": "Privacy Engineer",
+    "category": "legal"
+  },
+  {
+    "name": "pia-assessor",
+    "role": "Privacy Impact Assessment Practitioner",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 69,
+    "harnessName": "Privacy Engineer",
+    "category": "legal"
+  },
+  {
+    "name": "privacy-law-analyst",
+    "role": "privacy-law-analyst",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 69,
+    "harnessName": "Privacy Engineer",
+    "category": "legal"
+  },
+  {
+    "name": "process-architect",
+    "role": "Personal Data Processing Process Designer",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 69,
+    "harnessName": "Privacy Engineer",
+    "category": "legal"
+  },
+  {
+    "name": "case-searcher",
+    "role": "case-searcher",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 70,
+    "harnessName": "Legal Research",
+    "category": "legal"
+  },
+  {
+    "name": "legal-analyst",
+    "role": "legal-analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 70,
+    "harnessName": "Legal Research",
+    "category": "legal"
+  },
+  {
+    "name": "opinion-writer",
+    "role": "Legal Opinion Author",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 70,
+    "harnessName": "Legal Research",
+    "category": "legal"
+  },
+  {
+    "name": "strategy-advisor",
+    "role": "Legal Strategy Architect",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 70,
+    "harnessName": "Legal Research",
+    "category": "legal"
+  },
+  {
+    "name": "consistency-reviewer",
+    "role": "consistency-reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 71,
+    "harnessName": "Service Legal Docs",
+    "category": "legal"
+  },
+  {
+    "name": "consumer-analyst",
+    "role": "Consumer Protection Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 71,
+    "harnessName": "Service Legal Docs",
+    "category": "legal"
+  },
+  {
+    "name": "privacy-specialist",
+    "role": "privacy-specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 71,
+    "harnessName": "Service Legal Docs",
+    "category": "legal"
+  },
+  {
+    "name": "tos-specialist",
+    "role": "tos-specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 71,
+    "harnessName": "Service Legal Docs",
+    "category": "legal"
+  },
+  {
+    "name": "attachment-preparer",
+    "role": "Attachment Preparation Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 72,
+    "harnessName": "Regulatory Filing",
+    "category": "legal"
+  },
+  {
+    "name": "document-drafter",
+    "role": "Permit & License Document Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 72,
+    "harnessName": "Regulatory Filing",
+    "category": "legal"
+  },
+  {
+    "name": "requirements-investigator",
+    "role": "requirements-investigator",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 72,
+    "harnessName": "Regulatory Filing",
+    "category": "legal"
+  },
+  {
+    "name": "submission-verifier",
+    "role": "submission-verifier",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 72,
+    "harnessName": "Regulatory Filing",
+    "category": "legal"
+  },
+  {
+    "name": "meal-designer",
+    "role": "Meal Planning Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 73,
+    "harnessName": "Meal Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "nutritionist",
+    "role": "Nutrition Analysis Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 73,
+    "harnessName": "Meal Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "recipe-writer",
+    "role": "Recipe Writing Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 73,
+    "harnessName": "Meal Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "shopping-coordinator",
+    "role": "Shopping & Cooking Coordinator",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 73,
+    "harnessName": "Meal Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "exercise-guide",
+    "role": "Exercise Guide Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 74,
+    "harnessName": "Fitness Program",
+    "category": "lifestyle"
+  },
+  {
+    "name": "nutrition-linker",
+    "role": "Nutrition Integration Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 74,
+    "harnessName": "Fitness Program",
+    "category": "lifestyle"
+  },
+  {
+    "name": "program-architect",
+    "role": "Exercise Program Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 74,
+    "harnessName": "Fitness Program",
+    "category": "lifestyle"
+  },
+  {
+    "name": "template-builder",
+    "role": "Template builder",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 74,
+    "harnessName": "Fitness Program",
+    "category": "lifestyle"
+  },
+  {
+    "name": "deduction-optimizer",
+    "role": "Deduction Optimization Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 75,
+    "harnessName": "Tax Calculator",
+    "category": "lifestyle"
+  },
+  {
+    "name": "income-analyst",
+    "role": "Income Analysis Specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 75,
+    "harnessName": "Tax Calculator",
+    "category": "lifestyle"
+  },
+  {
+    "name": "strategy-advisor",
+    "role": "Tax Savings Strategy Advisor",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 75,
+    "harnessName": "Tax Calculator",
+    "category": "lifestyle"
+  },
+  {
+    "name": "tax-engine",
+    "role": "tax-engine",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 75,
+    "harnessName": "Tax Calculator",
+    "category": "lifestyle"
+  },
+  {
+    "name": "budget-manager",
+    "role": "Travel Budget Management Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 76,
+    "harnessName": "Travel Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "destination-analyst",
+    "role": "Destination Analysis Expert",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 76,
+    "harnessName": "Travel Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "itinerary-designer",
+    "role": "Itinerary Design Expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 76,
+    "harnessName": "Travel Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "local-guide",
+    "role": "Local Information Guide",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 76,
+    "harnessName": "Travel Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "budget-manager",
+    "role": "Budget manager",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 77,
+    "harnessName": "Space Concept Board",
+    "category": "lifestyle"
+  },
+  {
+    "name": "concept-reviewer",
+    "role": "Concept reviewer (QA)",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 77,
+    "harnessName": "Space Concept Board",
+    "category": "lifestyle"
+  },
+  {
+    "name": "item-curator",
+    "role": "Item curator",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 77,
+    "harnessName": "Space Concept Board",
+    "category": "lifestyle"
+  },
+  {
+    "name": "moodboard-designer",
+    "role": "Moodboard designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 77,
+    "harnessName": "Space Concept Board",
+    "category": "lifestyle"
+  },
+  {
+    "name": "style-analyst",
+    "role": "Space style analyst",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 77,
+    "harnessName": "Space Concept Board",
+    "category": "lifestyle"
+  },
+  {
+    "name": "budget-planner",
+    "role": "budget designspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 78,
+    "harnessName": "Personal Finance",
+    "category": "lifestyle"
+  },
+  {
+    "name": "finance-reviewer",
+    "role": "financial reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 78,
+    "harnessName": "Personal Finance",
+    "category": "lifestyle"
+  },
+  {
+    "name": "financial-analyst",
+    "role": "financial analysis",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 78,
+    "harnessName": "Personal Finance",
+    "category": "lifestyle"
+  },
+  {
+    "name": "investment-advisor",
+    "role": "investment expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 78,
+    "harnessName": "Personal Finance",
+    "category": "lifestyle"
+  },
+  {
+    "name": "tax-strategist",
+    "role": "tax strategy",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 78,
+    "harnessName": "Personal Finance",
+    "category": "lifestyle"
+  },
+  {
+    "name": "idea-validator",
+    "role": "idea verifyspecialist",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 79,
+    "harnessName": "Side Project Launcher",
+    "category": "lifestyle"
+  },
+  {
+    "name": "launch-reviewer",
+    "role": "launch reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 79,
+    "harnessName": "Side Project Launcher",
+    "category": "lifestyle"
+  },
+  {
+    "name": "mvp-designer",
+    "role": "MVP designspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 79,
+    "harnessName": "Side Project Launcher",
+    "category": "lifestyle"
+  },
+  {
+    "name": "roadmap-builder",
+    "role": "roadmap writingspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 79,
+    "harnessName": "Side Project Launcher",
+    "category": "lifestyle"
+  },
+  {
+    "name": "techstack-analyst",
+    "role": "tech stack analysis",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 79,
+    "harnessName": "Side Project Launcher",
+    "category": "lifestyle"
+  },
+  {
+    "name": "budget-controller",
+    "role": "budget managementspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 80,
+    "harnessName": "Wedding Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "checklist-builder",
+    "role": "checklist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 80,
+    "harnessName": "Wedding Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "timeline-designer",
+    "role": "timeline designspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 80,
+    "harnessName": "Wedding Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "vendor-analyst",
+    "role": "vendor comparison analysis",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 80,
+    "harnessName": "Wedding Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "wedding-reviewer",
+    "role": "reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 80,
+    "harnessName": "Wedding Planner",
+    "category": "lifestyle"
+  },
+  {
+    "name": "diagram-maker",
+    "role": "diagram writingspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 81,
+    "harnessName": "Technical Writer",
+    "category": "communication"
+  },
+  {
+    "name": "doc-writer",
+    "role": "technical document specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 81,
+    "harnessName": "Technical Writer",
+    "category": "communication"
+  },
+  {
+    "name": "info-architect",
+    "role": "information designspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 81,
+    "harnessName": "Technical Writer",
+    "category": "communication"
+  },
+  {
+    "name": "tech-reviewer",
+    "role": "technical reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 81,
+    "harnessName": "Technical Writer",
+    "category": "communication"
+  },
+  {
+    "name": "version-controller",
+    "role": "version managementspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 81,
+    "harnessName": "Technical Writer",
+    "category": "communication"
+  },
+  {
+    "name": "analyst",
+    "role": "data analysis",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 82,
+    "harnessName": "Report Generator",
+    "category": "communication"
+  },
+  {
+    "name": "data-collector",
+    "role": "data collection",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 82,
+    "harnessName": "Report Generator",
+    "category": "communication"
+  },
+  {
+    "name": "executive-summarizer",
+    "role": "summary and cross-verification expert",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 82,
+    "harnessName": "Report Generator",
+    "category": "communication"
+  },
+  {
+    "name": "report-writer",
+    "role": "report writingspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 82,
+    "harnessName": "Report Generator",
+    "category": "communication"
+  },
+  {
+    "name": "visualizer",
+    "role": "visualization expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 82,
+    "harnessName": "Report Generator",
+    "category": "communication"
+  },
+  {
+    "name": "checklist-designer",
+    "role": "checklist designspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 83,
+    "harnessName": "SOP Writer",
+    "category": "communication"
+  },
+  {
+    "name": "procedure-writer",
+    "role": "procedure document writingspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 83,
+    "harnessName": "SOP Writer",
+    "category": "communication"
+  },
+  {
+    "name": "process-analyst",
+    "role": "process analysis",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 83,
+    "harnessName": "SOP Writer",
+    "category": "communication"
+  },
+  {
+    "name": "training-developer",
+    "role": "training materials workspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 83,
+    "harnessName": "SOP Writer",
+    "category": "communication"
+  },
+  {
+    "name": "version-controller",
+    "role": "version management and cross-verification expert",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 83,
+    "harnessName": "SOP Writer",
+    "category": "communication"
+  },
+  {
+    "name": "agenda-architect",
+    "role": "agenda item designspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 84,
+    "harnessName": "Meeting Strategist",
+    "category": "communication"
+  },
+  {
+    "name": "background-researcher",
+    "role": "background researchKRW",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 84,
+    "harnessName": "Meeting Strategist",
+    "category": "communication"
+  },
+  {
+    "name": "followup-planner",
+    "role": "and cross-verification expert",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 84,
+    "harnessName": "Meeting Strategist",
+    "category": "communication"
+  },
+  {
+    "name": "framework-designer",
+    "role": "decision-making framework designspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 84,
+    "harnessName": "Meeting Strategist",
+    "category": "communication"
+  },
+  {
+    "name": "template-builder",
+    "role": "document template",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 84,
+    "harnessName": "Meeting Strategist",
+    "category": "communication"
+  },
+  {
+    "name": "audience-analyst",
+    "role": "audience analysis",
+    "tools": [
+      "WebSearch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 85,
+    "harnessName": "Public Speaking",
+    "category": "communication"
+  },
+  {
+    "name": "debate-preparer",
+    "role": "debate preparation expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 85,
+    "harnessName": "Public Speaking",
+    "category": "communication"
+  },
+  {
+    "name": "qa-strategist",
+    "role": "Q&A strategy",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 85,
+    "harnessName": "Public Speaking",
+    "category": "communication"
+  },
+  {
+    "name": "rehearsal-coach",
+    "role": "rehearsal value and cross-verification expert",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 85,
+    "harnessName": "Public Speaking",
+    "category": "communication"
+  },
+  {
+    "name": "speech-writer",
+    "role": "speech/presentation work",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 85,
+    "harnessName": "Public Speaking",
+    "category": "communication"
+  },
+  {
+    "name": "client-analyst",
+    "role": "client analysis",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 86,
+    "harnessName": "Proposal Writer",
+    "category": "communication"
+  },
+  {
+    "name": "differentiator",
+    "role": "differentiation strategy",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 86,
+    "harnessName": "Proposal Writer",
+    "category": "communication"
+  },
+  {
+    "name": "pricing-strategist",
+    "role": "price strategy",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 86,
+    "harnessName": "Proposal Writer",
+    "category": "communication"
+  },
+  {
+    "name": "proposal-designer",
+    "role": "proposal integration and cross-verification expert",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 86,
+    "harnessName": "Proposal Writer",
+    "category": "communication"
+  },
+  {
+    "name": "solution-architect",
+    "role": "solution designspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 86,
+    "harnessName": "Proposal Writer",
+    "category": "communication"
+  },
+  {
+    "name": "media-monitor",
+    "role": "media monitoring expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 87,
+    "harnessName": "Crisis Communication",
+    "category": "communication"
+  },
+  {
+    "name": "message-strategist",
+    "role": "crisis message strategy",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 87,
+    "harnessName": "Crisis Communication",
+    "category": "communication"
+  },
+  {
+    "name": "press-release-writer",
+    "role": "press release writingspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 87,
+    "harnessName": "Crisis Communication",
+    "category": "communication"
+  },
+  {
+    "name": "qa-preparer",
+    "role": "crisis Q&A preparationspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 87,
+    "harnessName": "Crisis Communication",
+    "category": "communication"
+  },
+  {
+    "name": "situation-analyst",
+    "role": "crisis situation analysis",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 87,
+    "harnessName": "Crisis Communication",
+    "category": "communication"
+  },
+  {
+    "name": "assessment-analyst",
+    "role": "risk assessment analysis",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 88,
+    "harnessName": "Risk Register",
+    "category": "communication"
+  },
+  {
+    "name": "monitoring-planner",
+    "role": "risk monitoring designspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 88,
+    "harnessName": "Risk Register",
+    "category": "communication"
+  },
+  {
+    "name": "report-writer",
+    "role": "risk report writingspecialist",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 88,
+    "harnessName": "Risk Register",
+    "category": "communication"
+  },
+  {
+    "name": "response-strategist",
+    "role": "risk response strategy",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 88,
+    "harnessName": "Risk Register",
+    "category": "communication"
+  },
+  {
+    "name": "risk-identifier",
+    "role": "risk identification expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 88,
+    "harnessName": "Risk Register",
+    "category": "communication"
+  },
+  {
+    "name": "concept-planner",
+    "role": "event concept basisspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 89,
+    "harnessName": "Event Organizer",
+    "category": "operations"
+  },
+  {
+    "name": "evaluation-analyst",
+    "role": "companyafter assessment analysis",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 89,
+    "harnessName": "Event Organizer",
+    "category": "operations"
+  },
+  {
+    "name": "logistics-manager",
+    "role": "logistics",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 89,
+    "harnessName": "Event Organizer",
+    "category": "operations"
+  },
+  {
+    "name": "program-designer",
+    "role": "program specialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 89,
+    "harnessName": "Event Organizer",
+    "category": "operations"
+  },
+  {
+    "name": "promotion-lead",
+    "role": "promotion responsible",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 89,
+    "harnessName": "Event Organizer",
+    "category": "operations"
+  },
+  {
+    "name": "interview-designer",
+    "role": "interview designspecialist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 90,
+    "harnessName": "Hiring Pipeline",
+    "category": "operations"
+  },
+  {
+    "name": "jd-writer",
+    "role": "job description writing expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 90,
+    "harnessName": "Hiring Pipeline",
+    "category": "operations"
+  },
+  {
+    "name": "offer-coordinator",
+    "role": "assessment·offer total",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 90,
+    "harnessName": "Hiring Pipeline",
+    "category": "operations"
+  },
+  {
+    "name": "screening-expert",
+    "role": "screening expert",
+    "tools": [
+      "Bash",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 90,
+    "harnessName": "Hiring Pipeline",
+    "category": "operations"
+  },
+  {
+    "name": "sourcing-specialist",
+    "role": "sourcing expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 90,
+    "harnessName": "Hiring Pipeline",
+    "category": "operations"
+  },
+  {
+    "name": "experience-reviewer",
+    "role": "Onboarding experience reviewer",
+    "tools": [
+      "SendMessage",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 91,
+    "harnessName": "Onboarding System",
+    "category": "operations"
+  },
+  {
+    "name": "mentor-matcher",
+    "role": "Mentor/buddy matching expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 91,
+    "harnessName": "Onboarding System",
+    "category": "operations"
+  },
+  {
+    "name": "milestone-tracker",
+    "role": "30-60-90 Day Milestone Designer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 91,
+    "harnessName": "Onboarding System",
+    "category": "operations"
+  },
+  {
+    "name": "onboarding-architect",
+    "role": "Onboarding architect",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 91,
+    "harnessName": "Onboarding System",
+    "category": "operations"
+  },
+  {
+    "name": "training-builder",
+    "role": "Training content builder",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 91,
+    "harnessName": "Onboarding System",
+    "category": "operations"
+  },
+  {
+    "name": "document-analyst",
+    "role": "Existing document, code, and wiki analysis expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 92,
+    "harnessName": "Operations Manual",
+    "category": "operations"
+  },
+  {
+    "name": "faq-builder",
+    "role": "FAQ and troubleshooting guide expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 92,
+    "harnessName": "Operations Manual",
+    "category": "operations"
+  },
+  {
+    "name": "flowchart-designer",
+    "role": "Process flowchart design expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 92,
+    "harnessName": "Operations Manual",
+    "category": "operations"
+  },
+  {
+    "name": "manual-writer",
+    "role": "Step-by-step operations manual writing expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 92,
+    "harnessName": "Operations Manual",
+    "category": "operations"
+  },
+  {
+    "name": "training-producer",
+    "role": "Training material production expert",
+    "tools": [
+      "Read",
+      "Write"
+    ],
+    "harnessId": 92,
+    "harnessName": "Operations Manual",
+    "category": "operations"
+  },
+  {
+    "name": "data-collector",
+    "role": "Feedback data collection and cleansing expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 93,
+    "harnessName": "Feedback Analyzer",
+    "category": "operations"
+  },
+  {
+    "name": "insight-writer",
+    "role": "Insight report writing expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 93,
+    "harnessName": "Feedback Analyzer",
+    "category": "operations"
+  },
+  {
+    "name": "sentiment-analyst",
+    "role": "Sentiment analysis expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 93,
+    "harnessName": "Feedback Analyzer",
+    "category": "operations"
+  },
+  {
+    "name": "topic-classifier",
+    "role": "Topic classification expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 93,
+    "harnessName": "Feedback Analyzer",
+    "category": "operations"
+  },
+  {
+    "name": "trend-detector",
+    "role": "Trend analysis expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 93,
+    "harnessName": "Feedback Analyzer",
+    "category": "operations"
+  },
+  {
+    "name": "checklist-builder",
+    "role": "Audit checklist creation expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 94,
+    "harnessName": "Audit Report",
+    "category": "operations"
+  },
+  {
+    "name": "findings-analyst",
+    "role": "Audit findings analysis expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 94,
+    "harnessName": "Audit Report",
+    "category": "operations"
+  },
+  {
+    "name": "recommendation-writer",
+    "role": "Improvement recommendation writing expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 94,
+    "harnessName": "Audit Report",
+    "category": "operations"
+  },
+  {
+    "name": "scope-designer",
+    "role": "Audit scope design expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 94,
+    "harnessName": "Audit Report",
+    "category": "operations"
+  },
+  {
+    "name": "tracking-manager",
+    "role": "Implementation tracking ledger management expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 94,
+    "harnessName": "Audit Report",
+    "category": "operations"
+  },
+  {
+    "name": "acceptance-builder",
+    "role": "Acceptance criteria creation expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 95,
+    "harnessName": "Procurement Docs",
+    "category": "operations"
+  },
+  {
+    "name": "contract-reviewer",
+    "role": "Contract terms review expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 95,
+    "harnessName": "Procurement Docs",
+    "category": "operations"
+  },
+  {
+    "name": "evaluation-designer",
+    "role": "Evaluation criteria design expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 95,
+    "harnessName": "Procurement Docs",
+    "category": "operations"
+  },
+  {
+    "name": "requirements-definer",
+    "role": "Procurement requirements definition expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 95,
+    "harnessName": "Procurement Docs",
+    "category": "operations"
+  },
+  {
+    "name": "vendor-comparator",
+    "role": "Vendor comparison analysis expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 95,
+    "harnessName": "Procurement Docs",
+    "category": "operations"
+  },
+  {
+    "name": "location-analyst",
+    "role": "Location analysis expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 96,
+    "harnessName": "Real Estate Analyst",
+    "category": "specialized"
+  },
+  {
+    "name": "market-researcher",
+    "role": "Real estate market research expert",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 96,
+    "harnessName": "Real Estate Analyst",
+    "category": "specialized"
+  },
+  {
+    "name": "profitability-analyst",
+    "role": "Profitability analysis expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 96,
+    "harnessName": "Real Estate Analyst",
+    "category": "specialized"
+  },
+  {
+    "name": "report-writer",
+    "role": "Investment report writing expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 96,
+    "harnessName": "Real Estate Analyst",
+    "category": "specialized"
+  },
+  {
+    "name": "risk-assessor",
+    "role": "Real estate risk assessment expert",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 96,
+    "harnessName": "Real Estate Analyst",
+    "category": "specialized"
+  },
+  {
+    "name": "cs-architect",
+    "role": "E-commerce CS Architect",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 97,
+    "harnessName": "E-commerce Launcher",
+    "category": "specialized"
+  },
+  {
+    "name": "detail-page-writer",
+    "role": "E-commerce Detail Page Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 97,
+    "harnessName": "E-commerce Launcher",
+    "category": "specialized"
+  },
+  {
+    "name": "marketing-manager",
+    "role": "E-commerce Marketing Manager",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 97,
+    "harnessName": "E-commerce Launcher",
+    "category": "specialized"
+  },
+  {
+    "name": "pricing-strategist",
+    "role": "E-commerce Pricing Strategist",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 97,
+    "harnessName": "E-commerce Launcher",
+    "category": "specialized"
+  },
+  {
+    "name": "product-planner",
+    "role": "E-commerce Product Planner",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 97,
+    "harnessName": "E-commerce Launcher",
+    "category": "specialized"
+  },
+  {
+    "name": "experiment-manager",
+    "role": "Academic Experiment Manager",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 98,
+    "harnessName": "Academic Paper",
+    "category": "specialized"
+  },
+  {
+    "name": "paper-writer",
+    "role": "Academic Paper Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 98,
+    "harnessName": "Academic Paper",
+    "category": "specialized"
+  },
+  {
+    "name": "research-designer",
+    "role": "Academic Research Designer",
+    "tools": [
+      "WebSearch",
+      "WebFetch",
+      "Write",
+      "Read"
+    ],
+    "harnessId": 98,
+    "harnessName": "Academic Paper",
+    "category": "specialized"
+  },
+  {
+    "name": "statistical-analyst",
+    "role": "Academic Statistical Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 98,
+    "harnessName": "Academic Paper",
+    "category": "specialized"
+  },
+  {
+    "name": "submission-preparer",
+    "role": "Academic Paper Submission Preparer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 98,
+    "harnessName": "Academic Paper",
+    "category": "specialized"
+  },
+  {
+    "name": "environmental-analyst",
+    "role": "ESG Environmental Analyst",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 99,
+    "harnessName": "Sustainability Audit",
+    "category": "specialized"
+  },
+  {
+    "name": "esg-reporter",
+    "role": "ESG Report Writer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 99,
+    "harnessName": "Sustainability Audit",
+    "category": "specialized"
+  },
+  {
+    "name": "governance-reviewer",
+    "role": "ESG Governance Reviewer",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 99,
+    "harnessName": "Sustainability Audit",
+    "category": "specialized"
+  },
+  {
+    "name": "improvement-planner",
+    "role": "ESG Improvement Planner",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 99,
+    "harnessName": "Sustainability Audit",
+    "category": "specialized"
+  },
+  {
+    "name": "social-assessor",
+    "role": "ESG Social Impact Assessor",
+    "tools": [
+      "Write",
+      "Read"
+    ],
+    "harnessId": 99,
+    "harnessName": "Sustainability Audit",
+    "category": "specialized"
+  }
+]

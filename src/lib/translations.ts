@@ -584,6 +584,7 @@ const translations: Record<string, TranslationEntry> = {
   "ai.generateTeam": { ko: "AI로 에이전트 팀 생성", en: "Generate agent team with AI" },
   "ai.applied": { ko: "AI 제안이 적용되었습니다", en: "AI suggestion applied" },
   "ai.teamApplied": { ko: "AI가 생성한 에이전트 팀이 추가되었습니다", en: "AI-generated agent team has been added" },
+  "ai.teamWithReuse": { ko: "기존 에이전트를 재활용한 팀이 추가되었습니다", en: "Agent team with reused agents has been added" },
   "ai.error.invalidKey": { ko: "API 키가 유효하지 않습니다", en: "Invalid API key" },
   "ai.error.rateLimit": { ko: "요청 한도를 초과했습니다. 잠시 후 다시 시도하세요", en: "Rate limit exceeded. Please try again later" },
   "ai.error.apiFailed": { ko: "API 호출에 실패했습니다", en: "API call failed" },
@@ -634,6 +635,8 @@ const translations: Record<string, TranslationEntry> = {
   "builder.agent.noAgents": { ko: "에이전트를 추가하세요", en: "Add an agent to get started" },
   "builder.agent.selectToEdit": { ko: "편집할 에이전트를 선택하세요", en: "Select an agent to edit" },
   "builder.agent.delete": { ko: "에이전트 삭제", en: "Delete Agent" },
+  "builder.agent.reused": { ko: "재사용", en: "Reused" },
+  "builder.agent.reusedFrom": { ko: "재사용 출처:", en: "Reused from:" },
   "builder.agent.templateTitle": { ko: "에이전트 템플릿", en: "Agent Templates" },
 
   "builder.skill.name": { ko: "스킬 이름", en: "Skill Name" },

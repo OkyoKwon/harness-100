@@ -7,6 +7,8 @@
     "dev": "next dev",
     "seed": "tsx scripts/fetch-from-github.ts",
     "seed:legacy": "tsx scripts/generate-seed-data.ts",
+    "build:agent-index": "tsx scripts/build-agent-index.ts",
+    "prebuild": "pnpm build:agent-index",
     "build": "next build",
     "start": "next start",
     "test": "vitest run",

@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
-import type { CustomAgent, AgentTemplate } from "@/lib/custom-harness-types";
-import { createBlankAgent, createAgentFromTemplate } from "@/lib/custom-harness-converter";
+import type { Agent } from "@/lib/types";
+import type { AgentSourceRef, CustomAgent, AgentTemplate } from "@/lib/custom-harness-types";
+import { createBlankAgent, createAgentFromTemplate, createAgentFromReuse } from "@/lib/custom-harness-converter";
 import { validateAgents } from "@/lib/builder-validation";
 
 export function useBuilderAgents(initial?: ReadonlyArray<CustomAgent>) {
@@ -11,6 +12,12 @@ export function useBuilderAgents(initial?: ReadonlyArray<CustomAgent>) {
 
   const addAgent = useCallback((template?: AgentTemplate) => {
     const agent = template ? createAgentFromTemplate(template) : createBlankAgent();
+    setAgents((prev) => [...prev, agent]);
+    setSelectedAgentId(agent.id);
+  }, []);
+
+  const addReusedAgent = useCallback((source: Agent, sourceRef: AgentSourceRef) => {
+    const agent = createAgentFromReuse(source, sourceRef);
     setAgents((prev) => [...prev, agent]);
     setSelectedAgentId(agent.id);
   }, []);
@@ -78,6 +85,7 @@ export function useBuilderAgents(initial?: ReadonlyArray<CustomAgent>) {
     errors,
     isValid,
     addAgent,
+    addReusedAgent,
     updateAgent,
     removeAgent,
     toggleAgent,

@@ -211,6 +211,62 @@ One per line, no numbering.`;
   return callClaude(apiKey, sys(locale), prompt);
 }
 
+/** Generate skill name and trigger conditions together */
+export async function generateSkillDetails(
+  apiKey: string,
+  harnessName: string,
+  agentNames: ReadonlyArray<string>,
+  locale: Locale,
+): Promise<AiResponse> {
+  const prompt = locale === "ko"
+    ? `하네스: "${harnessName}"
+에이전트 목록: ${agentNames.join(", ")}
+
+이 하네스의 스킬 정보를 다음 형식으로 출력하세요:
+이름: (영문 kebab-case 스킬 이름, 예: code-review)
+트리거:
+(이 하네스를 실행시킬 수 있는 자연어 트리거 조건 5개, 한 줄에 하나씩)`
+    : `Harness: "${harnessName}"
+Agents: ${agentNames.join(", ")}
+
+Output skill details in this format:
+Name: (kebab-case skill name, e.g., code-review)
+Triggers:
+(5 natural language trigger conditions, one per line)`;
+
+  return callClaude(apiKey, sys(locale), prompt);
+}
+
+/** Parse skill details response */
+export function parseSkillDetails(text: string): {
+  name: string;
+  triggers: ReadonlyArray<string>;
+} {
+  const lines = text.split("\n");
+  let name = "";
+  let collectingTriggers = false;
+  const triggers: string[] = [];
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+
+    if (collectingTriggers) {
+      if (line && !line.startsWith("#")) {
+        triggers.push(line);
+      }
+      continue;
+    }
+
+    if (line.match(/^(이름|Name)\s*[:：]/i)) {
+      name = line.replace(/^(이름|Name)\s*[:：]\s*/i, "");
+    } else if (line.match(/^(트리거|Triggers?)\s*[:：]/i)) {
+      collectingTriggers = true;
+    }
+  }
+
+  return { name, triggers };
+}
+
 /** Generate full agent team from harness name/description, with existing agent context */
 export async function generateAgentTeam(
   apiKey: string,

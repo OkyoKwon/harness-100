@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { GuideBanner } from "./guide-banner";
 import { ExecutionOrderEditor } from "./execution-order-editor";
 import { AiAssistButton } from "./ai-assist-button";
-import { generateTriggerConditions } from "@/lib/ai-assist";
+import { generateSkillDetails, parseSkillDetails } from "@/lib/ai-assist";
 import type { useBuilderSkill } from "@/hooks/use-builder-skill";
 import type { CustomAgent } from "@/lib/custom-harness-types";
 import type { useAiAssist } from "@/hooks/use-ai-assist";
@@ -33,22 +33,20 @@ export function StepSkill({ hook, agents, harnessName, ai }: StepSkillProps) {
     }
   };
 
-  const handleGenerateTriggers = async () => {
+  const handleGenerateSkillDetails = async () => {
     if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
     if (!harnessName.trim()) { addToast(t("ai.error.noName"), "error"); return; }
 
     const agentNames = agents.filter((a) => a.enabled).map((a) => a.name).filter(Boolean);
 
     const result = await ai.runAssist((key) =>
-      generateTriggerConditions(key, harnessName, agentNames, locale),
+      generateSkillDetails(key, harnessName, agentNames, locale),
     );
 
     if (result?.success && result.text) {
-      const triggers = result.text
-        .split("\n")
-        .map((line) => line.trim())
-        .filter((line) => line && !line.startsWith("#"));
-      for (const trigger of triggers) {
+      const parsed = parseSkillDetails(result.text);
+      if (parsed.name) updateName(parsed.name);
+      for (const trigger of parsed.triggers) {
         addTrigger(trigger);
       }
       addToast(t("ai.applied"), "success");
@@ -63,6 +61,18 @@ export function StepSkill({ hook, agents, harnessName, ai }: StepSkillProps) {
         <p>{t("builder.guide.skill")}</p>
       </GuideBanner>
 
+      {/* AI assist button — generates skill name + triggers */}
+      {ai.isConfigured && (
+        <div className="flex justify-end">
+          <AiAssistButton
+            onClick={handleGenerateSkillDetails}
+            loading={ai.loading}
+            disabled={!harnessName.trim()}
+            size="md"
+          />
+        </div>
+      )}
+
       <Input
         label={t("builder.skill.name")}
         value={skill.name}
@@ -74,18 +84,9 @@ export function StepSkill({ hook, agents, harnessName, ai }: StepSkillProps) {
 
       {/* Trigger conditions */}
       <div className="space-y-2">
-        <div className="flex items-center justify-between">
-          <label className="text-sm font-medium text-[var(--foreground)]">
-            {t("builder.skill.triggers")}
-          </label>
-          {ai.isConfigured && (
-            <AiAssistButton
-              onClick={handleGenerateTriggers}
-              loading={ai.loading}
-              disabled={!harnessName.trim()}
-            />
-          )}
-        </div>
+        <label className="text-sm font-medium text-[var(--foreground)]">
+          {t("builder.skill.triggers")}
+        </label>
 
         <div className="flex gap-2">
           <Input

@@ -158,52 +158,57 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
         )}
       </div>
 
-      {/* Two/three-panel layout */}
-      <div className={`grid grid-cols-1 gap-4 min-h-[400px] ${referenceOpen ? "md:grid-cols-[240px_1fr_1fr]" : "md:grid-cols-[240px_1fr]"}`}>
-        {/* Left: Agent list */}
-        <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-3 overflow-y-auto max-h-[500px]">
-          <BuilderAgentSidebar
-            agents={agents}
-            selectedId={selectedAgentId}
-            onSelect={selectAgent}
-            onToggle={toggleAgent}
-            onRemove={removeAgent}
-            onMoveUp={(i) => i > 0 && reorderAgent(i, i - 1)}
-            onMoveDown={(i) => i < agents.length - 1 && reorderAgent(i, i + 1)}
-          />
-        </div>
-
-        {/* Right: Edit form */}
-        <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 overflow-y-auto max-h-[600px]">
-          {selectedAgent ? (
-            <BuilderAgentForm
-              agent={selectedAgent}
-              allAgents={agents}
-              harnessName={meta.name}
-              category={meta.category}
-              referenceOpen={referenceOpen}
-              referenceAgents={referenceAgents}
-              onToggleReference={handleToggleReference}
-              onUpdate={(field, value) => updateAgent(selectedAgent.id, field, value)}
-              errors={errors}
-              ai={ai}
+      {/* Main layout: grid + optional reference panel */}
+      <div className="flex gap-4 min-h-[400px]">
+        {/* Two-panel grid */}
+        <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-4 flex-1 min-w-0">
+          {/* Left: Agent list */}
+          <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-3 overflow-y-auto max-h-[500px]">
+            <BuilderAgentSidebar
+              agents={agents}
+              selectedId={selectedAgentId}
+              onSelect={selectAgent}
+              onToggle={toggleAgent}
+              onRemove={removeAgent}
+              onMoveUp={(i) => i > 0 && reorderAgent(i, i - 1)}
+              onMoveDown={(i) => i < agents.length - 1 && reorderAgent(i, i + 1)}
             />
-          ) : (
-            <div className="flex items-center justify-center h-full text-sm text-[var(--muted-foreground)]">
-              {agents.length === 0
-                ? t("builder.agent.noAgents")
-                : t("builder.agent.selectToEdit")}
-            </div>
-          )}
+          </div>
+
+          {/* Right: Edit form */}
+          <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 overflow-y-auto max-h-[600px]">
+            {selectedAgent ? (
+              <BuilderAgentForm
+                agent={selectedAgent}
+                allAgents={agents}
+                harnessName={meta.name}
+                category={meta.category}
+                referenceOpen={referenceOpen}
+                referenceAgents={referenceAgents}
+                onToggleReference={handleToggleReference}
+                onUpdate={(field, value) => updateAgent(selectedAgent.id, field, value)}
+                errors={errors}
+                ai={ai}
+              />
+            ) : (
+              <div className="flex items-center justify-center h-full text-sm text-[var(--muted-foreground)]">
+                {agents.length === 0
+                  ? t("builder.agent.noAgents")
+                  : t("builder.agent.selectToEdit")}
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Right: Reference panel (third column) */}
+        {/* Reference panel (separate column) */}
         {referenceOpen && (
-          <AgentInstructionsReference
-            open={referenceOpen}
-            agents={referenceAgents}
-            loading={referenceLoading}
-          />
+          <div className="hidden md:block w-[400px] shrink-0 max-h-[600px]">
+            <AgentInstructionsReference
+              open={referenceOpen}
+              agents={referenceAgents}
+              loading={referenceLoading}
+            />
+          </div>
         )}
       </div>
 

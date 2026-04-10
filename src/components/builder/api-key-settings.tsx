@@ -46,7 +46,13 @@ export function ApiKeySettings({ apiKey, isConfigured, onSave, onClear }: ApiKey
             {t("ai.removeKey")}
           </button>
         </div>
-        <p className="text-[10px] text-[var(--muted-foreground)]">{t("ai.keyPrivacy")}</p>
+        <div className="flex items-start gap-1.5 rounded-md bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 px-2.5 py-1.5">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-amber-600 dark:text-amber-400 shrink-0 mt-px" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0110 0v4" />
+          </svg>
+          <p className="text-[11px] text-amber-700 dark:text-amber-300 leading-snug">{t("ai.keyPrivacy")}</p>
+        </div>
       </div>
     );
   }

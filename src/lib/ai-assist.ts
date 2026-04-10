@@ -1,6 +1,7 @@
 import type { Locale } from "./locale";
 import type { Category, AgentRef } from "./types";
 import type { CustomAgent, BuilderMeta } from "./custom-harness-types";
+import { loadAgentIndex, loadHarnessDetail } from "./harness-loader";
 
 const API_URL = "https://api.anthropic.com/v1/messages";
 const MODEL = "claude-sonnet-4-6";
@@ -147,13 +148,20 @@ Describe what this harness does in 2-3 sentences.`;
   return callClaude(apiKey, sys(locale), prompt);
 }
 
-/** Generate agent role and description from its name */
+/** Generate agent role, description, and instructions from its name */
 export async function generateAgentDetails(
   apiKey: string,
   agent: CustomAgent,
   harnessContext: string,
   locale: Locale,
+  exampleMd?: string,
 ): Promise<AiResponse> {
+  const exampleBlock = exampleMd
+    ? locale === "ko"
+      ? `\n\n참고할 기존 에이전트 지침 예시:\n${exampleMd.slice(0, 1500)}`
+      : `\n\nExample agent instructions for reference:\n${exampleMd.slice(0, 1500)}`
+    : "";
+
   const prompt = locale === "ko"
     ? `하네스 맥락: "${harnessContext}"
 에이전트 이름: "${agent.name}"
@@ -162,7 +170,10 @@ export async function generateAgentDetails(
 이 에이전트에 대해 다음 형식으로 답변해주세요:
 역할: (한 줄 역할 설명)
 설명: (2-3문장 상세 설명)
-출력: (예상 출력 파일 경로, 예: _workspace/report.md)`
+출력: (예상 출력 파일 경로, 예: _workspace/report.md)
+지침:
+(에이전트의 상세 행동 지침을 마크다운으로 작성. 핵심 역할, 작업 원칙, 산출물 포맷, 팀 통신 프로토콜, 에러 핸들링 섹션을 포함)
+---${exampleBlock}`
     : `Harness context: "${harnessContext}"
 Agent name: "${agent.name}"
 Selected tools: ${agent.tools.join(", ") || "none"}
@@ -170,9 +181,12 @@ Selected tools: ${agent.tools.join(", ") || "none"}
 Respond in this exact format:
 Role: (one-line role description)
 Description: (2-3 sentence detailed description)
-Output: (expected output file path, e.g., _workspace/report.md)`;
+Output: (expected output file path, e.g., _workspace/report.md)
+Instructions:
+(detailed behavioral instructions in markdown. Include sections: Core Role, Working Principles, Output Format, Team Communication, Error Handling)
+---${exampleBlock}`;
 
-  return callClaude(apiKey, sys(locale), prompt);
+  return callClaude(apiKey, sys(locale), prompt, 2048);
 }
 
 /** Generate trigger conditions for the skill */
@@ -241,6 +255,99 @@ Reuse: (only if reusing an existing agent, format: harnessId/agentName, e.g., 1/
   return callClaude(apiKey, sys(locale), prompt, 2048);
 }
 
+/** Generate only instructions for an agent that already has name/role/description */
+export async function generateAgentInstructions(
+  apiKey: string,
+  agent: CustomAgent,
+  harnessContext: string,
+  exampleMd: string,
+  locale: Locale,
+): Promise<AiResponse> {
+  const exampleBlock = exampleMd
+    ? locale === "ko"
+      ? `\n\n참고할 기존 에이전트 지침 예시:\n${exampleMd.slice(0, 1500)}`
+      : `\n\nExample agent instructions for reference:\n${exampleMd.slice(0, 1500)}`
+    : "";
+
+  const prompt = locale === "ko"
+    ? `하네스 맥락: "${harnessContext}"
+에이전트 이름: "${agent.name}"
+역할: "${agent.role}"
+설명: "${agent.description}"
+선택된 도구: ${agent.tools.join(", ") || "없음"}
+
+이 에이전트의 상세 행동 지침을 마크다운으로 작성해주세요.
+다음 섹션을 포함하세요: 핵심 역할, 작업 원칙, 산출물 포맷, 팀 통신 프로토콜, 에러 핸들링.
+추가 설명 없이 지침 마크다운만 출력하세요.${exampleBlock}`
+    : `Harness context: "${harnessContext}"
+Agent name: "${agent.name}"
+Role: "${agent.role}"
+Description: "${agent.description}"
+Selected tools: ${agent.tools.join(", ") || "none"}
+
+Write detailed behavioral instructions for this agent in markdown.
+Include sections: Core Role, Working Principles, Output Format, Team Communication, Error Handling.
+Output only the instructions markdown, no extra explanation.${exampleBlock}`;
+
+  return callClaude(apiKey, sys(locale), prompt, 2048);
+}
+
+// ---------------------------------------------------------------------------
+// Reference agent loader — loads existing agent MDs for the reference panel
+// ---------------------------------------------------------------------------
+
+export interface ReferenceAgent {
+  readonly name: string;
+  readonly role: string;
+  readonly harnessId: number;
+  readonly harnessName: string;
+  readonly rawMd: string;
+}
+
+/** Load existing agents with rawFile content for the reference panel */
+export async function loadReferenceAgents(
+  category: Category | "",
+  locale: Locale,
+): Promise<ReadonlyArray<ReferenceAgent>> {
+  if (!category) return [];
+
+  try {
+    const agentIndex = await loadAgentIndex(locale);
+    const sameCategory = agentIndex.filter((a) => a.category === category);
+    if (sameCategory.length === 0) return [];
+
+    // Group by harnessId and pick up to 5 unique harnesses
+    const harnessIds = [...new Set(sameCategory.map((a) => a.harnessId))].slice(0, 5);
+
+    const results: ReferenceAgent[] = [];
+
+    for (const hid of harnessIds) {
+      try {
+        const harness = await loadHarnessDetail(hid, locale);
+        const rawAgents = harness.rawFiles?.agents ?? {};
+
+        for (const agent of harness.agents) {
+          const rawMd = rawAgents[agent.id];
+          if (!rawMd) continue;
+          results.push({
+            name: agent.name,
+            role: agent.role,
+            harnessId: harness.id,
+            harnessName: harness.name,
+            rawMd,
+          });
+        }
+      } catch {
+        // Skip harnesses that fail to load
+      }
+    }
+
+    return results;
+  } catch {
+    return [];
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Parsers
 // ---------------------------------------------------------------------------
@@ -250,23 +357,42 @@ export function parseAgentDetails(text: string): {
   role: string;
   description: string;
   outputTemplate: string;
+  instructions: string;
 } {
-  const lines = text.split("\n").map((l) => l.trim()).filter(Boolean);
+  const lines = text.split("\n");
   let role = "";
   let description = "";
   let outputTemplate = "";
+  let instructions = "";
+  let collectingInstructions = false;
+  const instructionLines: string[] = [];
 
-  for (const line of lines) {
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+
+    if (collectingInstructions) {
+      // Stop at delimiter or reference section
+      if (line === "---" || line.match(/^참고할 기존|^Example agent/i)) break;
+      instructionLines.push(rawLine);
+      continue;
+    }
+
     if (line.match(/^(역할|Role)\s*[:：]/i)) {
       role = line.replace(/^(역할|Role)\s*[:：]\s*/i, "");
     } else if (line.match(/^(설명|Description)\s*[:：]/i)) {
       description = line.replace(/^(설명|Description)\s*[:：]\s*/i, "");
     } else if (line.match(/^(출력|Output)\s*[:：]/i)) {
       outputTemplate = line.replace(/^(출력|Output)\s*[:：]\s*/i, "");
+    } else if (line.match(/^(지침|Instructions)\s*[:：]/i)) {
+      const inline = line.replace(/^(지침|Instructions)\s*[:：]\s*/i, "");
+      if (inline) instructionLines.push(inline);
+      collectingInstructions = true;
     }
   }
 
-  return { role, description, outputTemplate };
+  instructions = instructionLines.join("\n").trim();
+
+  return { role, description, outputTemplate, instructions };
 }
 
 /** Parsed agent from the AI team generation response */

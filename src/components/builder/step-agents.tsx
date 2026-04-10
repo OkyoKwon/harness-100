@@ -150,12 +150,13 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
         </div>
 
         {/* Right: Edit form */}
-        <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 overflow-y-auto max-h-[500px]">
+        <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 overflow-y-auto max-h-[600px]">
           {selectedAgent ? (
             <BuilderAgentForm
               agent={selectedAgent}
               allAgents={agents}
               harnessName={meta.name}
+              category={meta.category}
               onUpdate={(field, value) => updateAgent(selectedAgent.id, field, value)}
               errors={errors}
               ai={ai}

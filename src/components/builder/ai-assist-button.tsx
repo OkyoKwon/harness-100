@@ -8,6 +8,7 @@ interface AiAssistButtonProps {
   readonly loading?: boolean;
   readonly disabled?: boolean;
   readonly size?: "sm" | "md";
+  readonly label?: string;
   readonly className?: string;
 }
 
@@ -16,6 +17,7 @@ export function AiAssistButton({
   loading = false,
   disabled = false,
   size = "sm",
+  label,
   className,
 }: AiAssistButtonProps) {
   const { t } = useLocale();
@@ -46,7 +48,7 @@ export function AiAssistButton({
           <path d="M2 12l10 5 10-5" />
         </svg>
       )}
-      {size === "md" && (loading ? t("ai.generating") : t("ai.assist"))}
+      {(size === "md" || label) && (loading ? t("ai.generating") : (label ?? t("ai.assist")))}
     </button>
   );
 }

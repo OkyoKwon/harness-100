@@ -21,6 +21,7 @@ export function createAgent(overrides?: Partial<Agent>): Agent {
     name: `Agent ${id}`,
     role: "Test role",
     description: "Test description",
+    instructions: "",
     tools: ["Read", "Write"],
     outputTemplate: "# Output",
     dependencies: [],

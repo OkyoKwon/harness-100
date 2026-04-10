@@ -18,6 +18,7 @@ const ALLOWED_MODIFICATION_FIELDS = new Set([
   "name",
   "role",
   "description",
+  "instructions",
   "outputTemplate",
   "enabled",
 ]);

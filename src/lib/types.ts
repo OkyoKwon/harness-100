@@ -15,6 +15,7 @@ export interface Agent {
   readonly name: string;
   readonly role: string;
   readonly description: string;
+  readonly instructions: string;
   readonly tools: ReadonlyArray<string>;
   readonly outputTemplate: string;
   readonly dependencies: ReadonlyArray<string>;
@@ -93,7 +94,7 @@ export interface HarnessMeta {
 
 export interface Modification {
   readonly agentId: string;
-  readonly field: "name" | "role" | "description" | "outputTemplate" | "enabled";
+  readonly field: "name" | "role" | "description" | "instructions" | "outputTemplate" | "enabled";
   readonly value: string | boolean;
 }
 

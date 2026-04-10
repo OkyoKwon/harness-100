@@ -34,6 +34,10 @@ function applyModifications(
 }
 
 function generateAgentMd(agent: Agent, locale: Locale = "ko"): string {
+  const instructionsBlock = agent.instructions?.trim()
+    ? `\n${agent.instructions.trim()}\n`
+    : "";
+
   return `---
 name: ${agent.name}
 description: "${agent.description}"
@@ -42,7 +46,7 @@ description: "${agent.description}"
 # ${agent.name} — ${agent.role}
 
 ${agent.description}
-
+${instructionsBlock}
 ## ${t(locale, "gen.outputFormat")}
 
 ${agent.outputTemplate}

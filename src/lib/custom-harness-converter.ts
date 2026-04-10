@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import matter from "gray-matter";
 import type { Agent, Harness } from "./types";
 import type { AgentSourceRef, CustomAgent, CustomHarness } from "./custom-harness-types";
 
@@ -46,7 +47,7 @@ export function fromHarness(source: Harness): CustomHarness {
     name: source.name,
     description: source.description,
     category: source.category,
-    agents: source.agents.map((agent) => ({ ...agent, enabled: true })),
+    agents: source.agents.map((agent) => ({ ...agent, instructions: agent.instructions ?? "", enabled: true })),
     skill: source.skill,
     frameworks: [...source.frameworks],
     createdAt: new Date().toISOString(),
@@ -63,6 +64,7 @@ export function createBlankAgent(): CustomAgent {
     name: "",
     role: "",
     description: "",
+    instructions: "",
     tools: ["Read", "Write", "Edit"],
     outputTemplate: "",
     dependencies: [],
@@ -72,13 +74,14 @@ export function createBlankAgent(): CustomAgent {
 
 /** Create a CustomAgent from a template */
 export function createAgentFromTemplate(
-  template: { name: string; role: string; description: string; tools: ReadonlyArray<string>; outputTemplate: string },
+  template: { name: string; role: string; description: string; instructions?: string; tools: ReadonlyArray<string>; outputTemplate: string },
 ): CustomAgent {
   return {
     id: nanoid(),
     name: template.name,
     role: template.role,
     description: template.description,
+    instructions: template.instructions ?? "",
     tools: template.tools,
     outputTemplate: template.outputTemplate,
     dependencies: [],
@@ -96,12 +99,31 @@ export function createAgentFromReuse(
     name: source.name,
     role: source.role,
     description: source.description,
+    instructions: source.instructions ?? "",
     tools: source.tools,
     outputTemplate: source.outputTemplate,
     dependencies: [],
     enabled: true,
     sourceRef: ref,
   };
+}
+
+/** Extract instructions body from raw agent markdown (strip frontmatter, title, output section) */
+export function extractInstructionsFromRaw(rawMd: string): string {
+  const { content } = matter(rawMd);
+  const lines = content.trim().split("\n");
+
+  // Skip the first H1 line (e.g., "# Agent — Role")
+  const startIdx = lines.findIndex((l) => l.startsWith("# "));
+  const bodyLines = startIdx >= 0 ? lines.slice(startIdx + 1) : lines;
+
+  // Find the output format section and exclude it
+  const outputIdx = bodyLines.findIndex((l) =>
+    /^##\s*(산출물|출력|Output)/i.test(l),
+  );
+  const instructionLines = outputIdx >= 0 ? bodyLines.slice(0, outputIdx) : bodyLines;
+
+  return instructionLines.join("\n").trim();
 }
 
 export { toSlug };

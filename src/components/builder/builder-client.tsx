@@ -3,12 +3,14 @@
 import { useState, useCallback } from "react";
 import { useLocale } from "@/hooks/use-locale";
 import { useHarnessBuilder } from "@/hooks/use-harness-builder";
+import { useAiAssist } from "@/hooks/use-ai-assist";
 import { BuilderStepper } from "./builder-stepper";
 import { StepMeta } from "./step-meta";
 import { StepAgents } from "./step-agents";
 import { StepSkill } from "./step-skill";
 import { StepReview } from "./step-review";
 import { MyHarnessList } from "./my-harness-list";
+import { ApiKeySettings } from "./api-key-settings";
 import type { CustomHarness } from "@/lib/custom-harness-types";
 
 type Mode = "list" | "builder";
@@ -19,6 +21,7 @@ export function BuilderClient() {
   const [editingHarness, setEditingHarness] = useState<CustomHarness | undefined>();
 
   const builder = useHarnessBuilder(editingHarness);
+  const ai = useAiAssist();
 
   const handleCreateNew = useCallback(() => {
     setEditingHarness(undefined);
@@ -62,10 +65,21 @@ export function BuilderClient() {
     <main className="mx-auto max-w-4xl px-4 py-8">
       {mode === "list" ? (
         <>
-          <div className="mb-8">
+          <div className="mb-6">
             <h1 className="text-2xl font-bold text-[var(--foreground)]">{t("builder.title")}</h1>
             <p className="mt-1 text-sm text-[var(--muted-foreground)]">{t("builder.subtitle")}</p>
           </div>
+
+          {/* AI API Key settings */}
+          <div className="mb-6">
+            <ApiKeySettings
+              apiKey={ai.apiKey}
+              isConfigured={ai.isConfigured}
+              onSave={ai.saveApiKey}
+              onClear={ai.clearApiKey}
+            />
+          </div>
+
           <MyHarnessList onEdit={handleEdit} onCreateNew={handleCreateNew} />
         </>
       ) : (
@@ -101,9 +115,20 @@ export function BuilderClient() {
 
           {/* Step content */}
           <div className="mb-8">
-            {currentStep === 1 && <StepMeta hook={builder.meta} />}
-            {currentStep === 2 && <StepAgents hook={builder.agents} />}
-            {currentStep === 3 && <StepSkill hook={builder.skill} agents={builder.agents.agents} />}
+            {currentStep === 1 && (
+              <StepMeta hook={builder.meta} ai={ai} />
+            )}
+            {currentStep === 2 && (
+              <StepAgents hook={builder.agents} meta={builder.meta.meta} ai={ai} />
+            )}
+            {currentStep === 3 && (
+              <StepSkill
+                hook={builder.skill}
+                agents={builder.agents.agents}
+                harnessName={builder.meta.meta.name}
+                ai={ai}
+              />
+            )}
             {currentStep === 4 && (
               <StepReview
                 harness={builder.build()}

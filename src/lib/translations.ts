@@ -568,6 +568,29 @@ const translations: Record<string, TranslationEntry> = {
   // ── Errors ──
   "error.fileWriteFailed": { ko: "파일 쓰기에 실패했습니다.", en: "File write failed." },
 
+  // ── AI Assist ──
+  "ai.title": { ko: "AI 어시스트", en: "AI Assist" },
+  "ai.description": { ko: "Anthropic API 키를 입력하면 AI가 에이전트 역할, 설명, 트리거 조건 등을 자동으로 작성해줍니다.", en: "Enter your Anthropic API key to let AI auto-generate agent roles, descriptions, trigger conditions, and more." },
+  "ai.assist": { ko: "AI 작성", en: "AI Assist" },
+  "ai.generating": { ko: "생성 중...", en: "Generating..." },
+  "ai.saveKey": { ko: "저장", en: "Save" },
+  "ai.changeKey": { ko: "변경", en: "Change" },
+  "ai.removeKey": { ko: "삭제", en: "Remove" },
+  "ai.keyConfigured": { ko: "API 키 설정됨", en: "API key configured" },
+  "ai.keyPrivacy": { ko: "API 키는 브라우저 localStorage에만 저장되며 외부로 전송되지 않습니다 (Anthropic API 호출 제외).", en: "Your API key is stored only in browser localStorage and never sent anywhere except to the Anthropic API." },
+  "ai.generateDesc": { ko: "AI로 설명 작성", en: "Generate description with AI" },
+  "ai.generateAgent": { ko: "AI로 에이전트 정보 작성", en: "Generate agent details with AI" },
+  "ai.generateTriggers": { ko: "AI로 트리거 생성", en: "Generate triggers with AI" },
+  "ai.generateTeam": { ko: "AI로 에이전트 팀 생성", en: "Generate agent team with AI" },
+  "ai.applied": { ko: "AI 제안이 적용되었습니다", en: "AI suggestion applied" },
+  "ai.teamApplied": { ko: "AI가 생성한 에이전트 팀이 추가되었습니다", en: "AI-generated agent team has been added" },
+  "ai.error.invalidKey": { ko: "API 키가 유효하지 않습니다", en: "Invalid API key" },
+  "ai.error.rateLimit": { ko: "요청 한도를 초과했습니다. 잠시 후 다시 시도하세요", en: "Rate limit exceeded. Please try again later" },
+  "ai.error.apiFailed": { ko: "API 호출에 실패했습니다", en: "API call failed" },
+  "ai.error.network": { ko: "네트워크 오류가 발생했습니다", en: "Network error occurred" },
+  "ai.error.noKey": { ko: "API 키를 먼저 설정하세요", en: "Please set your API key first" },
+  "ai.error.noName": { ko: "이름을 먼저 입력하세요", en: "Please enter a name first" },
+
   // ── Builder ──
   "nav.builder": { ko: "만들기", en: "Builder" },
   "builder.title": { ko: "나만의 하네스 만들기", en: "Build Your Harness" },

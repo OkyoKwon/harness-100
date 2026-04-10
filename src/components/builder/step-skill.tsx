@@ -2,19 +2,26 @@
 
 import { useState, type KeyboardEvent } from "react";
 import { useLocale } from "@/hooks/use-locale";
+import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { GuideBanner } from "./guide-banner";
 import { ExecutionOrderEditor } from "./execution-order-editor";
+import { AiAssistButton } from "./ai-assist-button";
+import { generateTriggerConditions } from "@/lib/ai-assist";
 import type { useBuilderSkill } from "@/hooks/use-builder-skill";
 import type { CustomAgent } from "@/lib/custom-harness-types";
+import type { useAiAssist } from "@/hooks/use-ai-assist";
 
 interface StepSkillProps {
   readonly hook: ReturnType<typeof useBuilderSkill>;
   readonly agents: ReadonlyArray<CustomAgent>;
+  readonly harnessName: string;
+  readonly ai: ReturnType<typeof useAiAssist>;
 }
 
-export function StepSkill({ hook, agents }: StepSkillProps) {
-  const { t } = useLocale();
+export function StepSkill({ hook, agents, harnessName, ai }: StepSkillProps) {
+  const { t, locale } = useLocale();
+  const { addToast } = useToast();
   const [triggerInput, setTriggerInput] = useState("");
   const { skill, errors, updateName, addTrigger, removeTrigger, toggleParallel, reorderExecution } = hook;
 
@@ -23,6 +30,30 @@ export function StepSkill({ hook, agents }: StepSkillProps) {
       e.preventDefault();
       addTrigger(triggerInput);
       setTriggerInput("");
+    }
+  };
+
+  const handleGenerateTriggers = async () => {
+    if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
+    if (!harnessName.trim()) { addToast(t("ai.error.noName"), "error"); return; }
+
+    const agentNames = agents.filter((a) => a.enabled).map((a) => a.name).filter(Boolean);
+
+    const result = await ai.runAssist((key) =>
+      generateTriggerConditions(key, harnessName, agentNames, locale),
+    );
+
+    if (result?.success && result.text) {
+      const triggers = result.text
+        .split("\n")
+        .map((line) => line.trim())
+        .filter((line) => line && !line.startsWith("#"));
+      for (const trigger of triggers) {
+        addTrigger(trigger);
+      }
+      addToast(t("ai.applied"), "success");
+    } else if (result?.error) {
+      addToast(t(result.error), "error");
     }
   };
 
@@ -43,9 +74,18 @@ export function StepSkill({ hook, agents }: StepSkillProps) {
 
       {/* Trigger conditions */}
       <div className="space-y-2">
-        <label className="text-sm font-medium text-[var(--foreground)]">
-          {t("builder.skill.triggers")}
-        </label>
+        <div className="flex items-center justify-between">
+          <label className="text-sm font-medium text-[var(--foreground)]">
+            {t("builder.skill.triggers")}
+          </label>
+          {ai.isConfigured && (
+            <AiAssistButton
+              onClick={handleGenerateTriggers}
+              loading={ai.loading}
+              disabled={!harnessName.trim()}
+            />
+          )}
+        </div>
 
         <div className="flex gap-2">
           <Input

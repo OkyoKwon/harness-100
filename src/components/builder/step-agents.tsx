@@ -2,19 +2,27 @@
 
 import { useState } from "react";
 import { useLocale } from "@/hooks/use-locale";
+import { useToast } from "@/hooks/use-toast";
 import { GuideBanner } from "./guide-banner";
 import { BuilderAgentSidebar } from "./builder-agent-sidebar";
 import { BuilderAgentForm } from "./builder-agent-form";
 import { AgentTemplatePicker } from "./agent-template-picker";
+import { AiAssistButton } from "./ai-assist-button";
+import { generateAgentTeam, parseAgentTeam } from "@/lib/ai-assist";
+import { createAgentFromTemplate } from "@/lib/custom-harness-converter";
 import type { useBuilderAgents } from "@/hooks/use-builder-agents";
-import type { AgentTemplate } from "@/lib/custom-harness-types";
+import type { AgentTemplate, BuilderMeta } from "@/lib/custom-harness-types";
+import type { useAiAssist } from "@/hooks/use-ai-assist";
 
 interface StepAgentsProps {
   readonly hook: ReturnType<typeof useBuilderAgents>;
+  readonly meta: BuilderMeta;
+  readonly ai: ReturnType<typeof useAiAssist>;
 }
 
-export function StepAgents({ hook }: StepAgentsProps) {
-  const { t } = useLocale();
+export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
+  const { t, locale } = useLocale();
+  const { addToast } = useToast();
   const [templateOpen, setTemplateOpen] = useState(false);
 
   const {
@@ -30,6 +38,33 @@ export function StepAgents({ hook }: StepAgentsProps) {
     selectAgent,
   } = hook;
 
+  const handleGenerateTeam = async () => {
+    if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
+    if (!meta.name.trim()) { addToast(t("ai.error.noName"), "error"); return; }
+
+    const result = await ai.runAssist((key) =>
+      generateAgentTeam(key, meta, locale),
+    );
+
+    if (result?.success && result.text) {
+      const teamData = parseAgentTeam(result.text);
+      for (const data of teamData) {
+        addAgent({
+          name: data.name,
+          role: data.role,
+          description: data.description,
+          tools: data.tools,
+          outputTemplate: data.outputTemplate,
+        });
+      }
+      if (teamData.length > 0) {
+        addToast(t("ai.teamApplied"), "success");
+      }
+    } else if (result?.error) {
+      addToast(t(result.error), "error");
+    }
+  };
+
   return (
     <div className="space-y-4">
       <GuideBanner id="step-agents">
@@ -37,7 +72,7 @@ export function StepAgents({ hook }: StepAgentsProps) {
       </GuideBanner>
 
       {/* Action buttons */}
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         <button
           type="button"
           onClick={() => addAgent()}
@@ -52,6 +87,14 @@ export function StepAgents({ hook }: StepAgentsProps) {
         >
           {t("builder.agent.addFromTemplate")}
         </button>
+        {ai.isConfigured && (
+          <AiAssistButton
+            onClick={handleGenerateTeam}
+            loading={ai.loading}
+            disabled={!meta.name.trim()}
+            size="md"
+          />
+        )}
       </div>
 
       {/* Two-panel layout */}
@@ -75,8 +118,10 @@ export function StepAgents({ hook }: StepAgentsProps) {
             <BuilderAgentForm
               agent={selectedAgent}
               allAgents={agents}
+              harnessName={meta.name}
               onUpdate={(field, value) => updateAgent(selectedAgent.id, field, value)}
               errors={errors}
+              ai={ai}
             />
           ) : (
             <div className="flex items-center justify-center h-full text-sm text-[var(--muted-foreground)]">

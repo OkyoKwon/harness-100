@@ -1,26 +1,64 @@
 import { useLocale } from "@/hooks/use-locale";
+import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MultiSelect } from "@/components/ui/multi-select";
 import { ToolCheckboxGroup } from "./tool-checkbox-group";
+import { AiAssistButton } from "./ai-assist-button";
+import { generateAgentDetails, parseAgentDetails } from "@/lib/ai-assist";
 import type { CustomAgent } from "@/lib/custom-harness-types";
+import type { useAiAssist } from "@/hooks/use-ai-assist";
 
 interface BuilderAgentFormProps {
   readonly agent: CustomAgent;
   readonly allAgents: ReadonlyArray<CustomAgent>;
+  readonly harnessName: string;
   readonly onUpdate: (field: keyof CustomAgent, value: string | boolean | ReadonlyArray<string>) => void;
   readonly errors: Record<string, string>;
+  readonly ai: ReturnType<typeof useAiAssist>;
 }
 
-export function BuilderAgentForm({ agent, allAgents, onUpdate, errors }: BuilderAgentFormProps) {
-  const { t } = useLocale();
+export function BuilderAgentForm({ agent, allAgents, harnessName, onUpdate, errors, ai }: BuilderAgentFormProps) {
+  const { t, locale } = useLocale();
+  const { addToast } = useToast();
 
   const dependencyOptions = allAgents
     .filter((a) => a.id !== agent.id && a.enabled)
     .map((a) => ({ value: a.id, label: a.name || a.id }));
 
+  const handleGenerateDetails = async () => {
+    if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
+    if (!agent.name.trim()) { addToast(t("ai.error.noName"), "error"); return; }
+
+    const result = await ai.runAssist((key) =>
+      generateAgentDetails(key, agent, harnessName, locale),
+    );
+
+    if (result?.success && result.text) {
+      const parsed = parseAgentDetails(result.text);
+      if (parsed.role) onUpdate("role", parsed.role);
+      if (parsed.description) onUpdate("description", parsed.description);
+      if (parsed.outputTemplate) onUpdate("outputTemplate", parsed.outputTemplate);
+      addToast(t("ai.applied"), "success");
+    } else if (result?.error) {
+      addToast(t(result.error), "error");
+    }
+  };
+
   return (
     <div className="space-y-5">
+      <div className="flex items-center justify-between">
+        <span className="text-sm font-semibold text-[var(--foreground)]">{agent.name || t("builder.agent.name")}</span>
+        {ai.isConfigured && (
+          <AiAssistButton
+            onClick={handleGenerateDetails}
+            loading={ai.loading}
+            disabled={!agent.name.trim()}
+            size="md"
+          />
+        )}
+      </div>
+
       <Input
         label={t("builder.agent.name")}
         value={agent.name}

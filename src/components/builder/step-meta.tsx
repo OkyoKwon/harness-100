@@ -1,19 +1,41 @@
 import { useLocale } from "@/hooks/use-locale";
+import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
 import { TagInput } from "@/components/ui/tag-input";
 import { GuideBanner } from "./guide-banner";
+import { AiAssistButton } from "./ai-assist-button";
 import { CATEGORIES } from "@/lib/constants";
+import { generateHarnessDescription } from "@/lib/ai-assist";
 import type { useBuilderMeta } from "@/hooks/use-builder-meta";
+import type { useAiAssist } from "@/hooks/use-ai-assist";
 
 interface StepMetaProps {
   readonly hook: ReturnType<typeof useBuilderMeta>;
+  readonly ai: ReturnType<typeof useAiAssist>;
 }
 
-export function StepMeta({ hook }: StepMetaProps) {
+export function StepMeta({ hook, ai }: StepMetaProps) {
   const { t, locale } = useLocale();
+  const { addToast } = useToast();
   const { meta, errors, updateField, setCategory, setFrameworks } = hook;
+
+  const handleGenerateDescription = async () => {
+    if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
+    if (!meta.name.trim()) { addToast(t("ai.error.noName"), "error"); return; }
+
+    const result = await ai.runAssist((key) =>
+      generateHarnessDescription(key, meta, locale),
+    );
+
+    if (result?.success && result.text) {
+      updateField("description", result.text);
+      addToast(t("ai.applied"), "success");
+    } else if (result?.error) {
+      addToast(t(result.error), "error");
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -31,16 +53,29 @@ export function StepMeta({ hook }: StepMetaProps) {
         maxLength={60}
       />
 
-      <Textarea
-        label={t("builder.meta.description")}
-        value={meta.description}
-        onChange={(e) => updateField("description", e.target.value)}
-        placeholder={locale === "ko" ? "이 하네스가 수행하는 작업을 설명하세요..." : "Describe what this harness does..."}
-        helperText={t("builder.meta.descHelper")}
-        errorMessage={errors.description ? t(errors.description) : undefined}
-        maxLength={500}
-        rows={3}
-      />
+      <div className="space-y-1">
+        <div className="flex items-center justify-between">
+          <label className="text-sm font-medium text-[var(--foreground)]">
+            {t("builder.meta.description")}
+          </label>
+          {ai.isConfigured && (
+            <AiAssistButton
+              onClick={handleGenerateDescription}
+              loading={ai.loading}
+              disabled={!meta.name.trim()}
+            />
+          )}
+        </div>
+        <Textarea
+          value={meta.description}
+          onChange={(e) => updateField("description", e.target.value)}
+          placeholder={locale === "ko" ? "이 하네스가 수행하는 작업을 설명하세요..." : "Describe what this harness does..."}
+          helperText={t("builder.meta.descHelper")}
+          errorMessage={errors.description ? t(errors.description) : undefined}
+          maxLength={500}
+          rows={3}
+        />
+      </div>
 
       <div className="flex flex-col gap-1">
         <label className="text-sm font-medium text-[var(--foreground)]">

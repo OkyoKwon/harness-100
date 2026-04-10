@@ -137,12 +137,10 @@ export async function generateHarnessDescription(
   const prompt = locale === "ko"
     ? `하네스 이름: "${meta.name}"
 카테고리: ${meta.category || "미정"}
-프레임워크: ${meta.frameworks.join(", ") || "없음"}
 
 이 하네스가 수행하는 작업을 2-3문장으로 설명해주세요.`
     : `Harness name: "${meta.name}"
 Category: ${meta.category || "undecided"}
-Frameworks: ${meta.frameworks.join(", ") || "none"}
 
 Describe what this harness does in 2-3 sentences.`;
 

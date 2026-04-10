@@ -9,7 +9,6 @@ const INITIAL_META: BuilderMeta = {
   name: "",
   description: "",
   category: "",
-  frameworks: [],
 };
 
 export function useBuilderMeta(initial?: BuilderMeta) {
@@ -24,10 +23,6 @@ export function useBuilderMeta(initial?: BuilderMeta) {
   const setCategory = useCallback((category: Category | "") => {
     setMeta((prev) => ({ ...prev, category }));
     setTouched((prev) => new Set([...prev, "category"]));
-  }, []);
-
-  const setFrameworks = useCallback((frameworks: ReadonlyArray<string>) => {
-    setMeta((prev) => ({ ...prev, frameworks }));
   }, []);
 
   const errors = useMemo(() => {
@@ -62,7 +57,6 @@ export function useBuilderMeta(initial?: BuilderMeta) {
     isValid,
     updateField,
     setCategory,
-    setFrameworks,
     reset,
     touchAll,
   } as const;

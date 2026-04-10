@@ -37,7 +37,6 @@ export interface BuilderMeta {
   readonly name: string;
   readonly description: string;
   readonly category: Category | "";
-  readonly frameworks: ReadonlyArray<string>;
 }
 
 export interface AgentTemplate {

@@ -615,8 +615,6 @@ const translations: Record<string, TranslationEntry> = {
   "builder.meta.descHelper": { ko: "하네스가 수행하는 작업을 설명하세요 (10자 이상)", en: "Describe what this harness does (min 10 characters)" },
   "builder.meta.category": { ko: "카테고리", en: "Category" },
   "builder.meta.categoryHelper": { ko: "하네스의 주요 활용 분야를 선택하세요", en: "Select the primary domain for this harness" },
-  "builder.meta.frameworks": { ko: "프레임워크", en: "Frameworks" },
-  "builder.meta.frameworksHelper": { ko: "Enter 또는 콤마로 추가. 예: React, Python", en: "Press Enter or comma to add. e.g., React, Python" },
   "builder.meta.cloneFrom": { ko: "기존 하네스에서 복제", en: "Clone from existing" },
 
   "builder.agent.add": { ko: "에이전트 추가", en: "Add Agent" },

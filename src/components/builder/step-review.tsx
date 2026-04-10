@@ -73,13 +73,6 @@ export function StepReview({ harness, errors, onSaved }: StepReviewProps) {
           <dd className="text-[var(--foreground)]">{harness.skill.name || "-"}</dd>
         </dl>
         <p className="text-sm text-[var(--muted-foreground)]">{harness.description}</p>
-        {harness.frameworks.length > 0 && (
-          <div className="flex flex-wrap gap-1">
-            {harness.frameworks.map((fw) => (
-              <span key={fw} className="rounded bg-[var(--muted)] px-2 py-0.5 text-xs">{fw}</span>
-            ))}
-          </div>
-        )}
       </div>
 
       {/* Agents */}

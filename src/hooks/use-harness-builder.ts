@@ -20,7 +20,6 @@ export function useHarnessBuilder(editingHarness?: CustomHarness) {
           name: editingHarness.name,
           description: editingHarness.description,
           category: editingHarness.category,
-          frameworks: editingHarness.frameworks,
         }
       : undefined,
   );
@@ -84,7 +83,7 @@ export function useHarnessBuilder(editingHarness?: CustomHarness) {
         id: skillHook.skill.id || "main-skill",
         name: skillHook.skill.name || metaHook.meta.name,
       },
-      frameworks: metaHook.meta.frameworks,
+      frameworks: editingHarness?.frameworks ?? [],
       createdAt: editingHarness?.createdAt ?? now,
       updatedAt: now,
       version: 1,
@@ -100,7 +99,6 @@ export function useHarnessBuilder(editingHarness?: CustomHarness) {
         name: harness.name,
         description: harness.description,
         category: harness.category,
-        frameworks: [...harness.frameworks],
       });
 
       if (isCustom) {

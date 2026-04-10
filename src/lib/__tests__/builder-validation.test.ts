@@ -116,22 +116,22 @@ describe("detectCycle", () => {
 
 describe("validateMeta", () => {
   it("requires name", () => {
-    const errors = validateMeta({ name: "", description: "long enough description", category: "development", frameworks: [] });
+    const errors = validateMeta({ name: "", description: "long enough description", category: "development",  });
     expect(errors.name).toBeDefined();
   });
 
   it("requires name >= 2 chars", () => {
-    const errors = validateMeta({ name: "a", description: "long enough description", category: "development", frameworks: [] });
+    const errors = validateMeta({ name: "a", description: "long enough description", category: "development",  });
     expect(errors.name).toBeDefined();
   });
 
   it("requires description >= 10 chars", () => {
-    const errors = validateMeta({ name: "valid name", description: "short", category: "development", frameworks: [] });
+    const errors = validateMeta({ name: "valid name", description: "short", category: "development",  });
     expect(errors.description).toBeDefined();
   });
 
   it("requires category", () => {
-    const errors = validateMeta({ name: "valid name", description: "long enough description", category: "", frameworks: [] });
+    const errors = validateMeta({ name: "valid name", description: "long enough description", category: "",  });
     expect(errors.category).toBeDefined();
   });
 
@@ -140,7 +140,6 @@ describe("validateMeta", () => {
       name: "My Harness",
       description: "This is a valid harness description",
       category: "development",
-      frameworks: ["React"],
     });
     expect(Object.keys(errors)).toHaveLength(0);
   });
@@ -197,7 +196,7 @@ describe("validateSkill", () => {
 describe("validateAll / hasErrors", () => {
   it("aggregates all errors", () => {
     const errors = validateAll(
-      { name: "", description: "", category: "", frameworks: [] },
+      { name: "", description: "", category: "",  },
       [],
       { id: "", name: "", triggerConditions: [], executionOrder: [], modes: [], extensionSkills: [] },
     );
@@ -209,7 +208,7 @@ describe("validateAll / hasErrors", () => {
 
   it("returns no errors when all valid", () => {
     const errors = validateAll(
-      { name: "My Harness", description: "A valid description here", category: "development", frameworks: [] },
+      { name: "My Harness", description: "A valid description here", category: "development",  },
       [makeAgent()],
       { id: "s1", name: "test", triggerConditions: ["go"], executionOrder: [], modes: [], extensionSkills: [] },
     );

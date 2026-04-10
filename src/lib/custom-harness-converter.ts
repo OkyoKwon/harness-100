@@ -24,7 +24,7 @@ export function toHarness(custom: CustomHarness): Harness {
     name: custom.name,
     description: custom.description,
     category: custom.category,
-    agents: activeAgents.map(({ enabled: _, ...agent }) => agent),
+    agents: activeAgents.map(({ enabled: _, sourceRef: _s, ...agent }) => agent),
     skill: {
       ...custom.skill,
       executionOrder: custom.skill.executionOrder.filter((step) =>

@@ -3,7 +3,6 @@ import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
-import { TagInput } from "@/components/ui/tag-input";
 import { GuideBanner } from "./guide-banner";
 import { AiAssistButton } from "./ai-assist-button";
 import { CATEGORIES } from "@/lib/constants";
@@ -19,7 +18,7 @@ interface StepMetaProps {
 export function StepMeta({ hook, ai }: StepMetaProps) {
   const { t, locale } = useLocale();
   const { addToast } = useToast();
-  const { meta, errors, updateField, setCategory, setFrameworks } = hook;
+  const { meta, errors, updateField, setCategory } = hook;
 
   const handleGenerateDescription = async () => {
     if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
@@ -98,13 +97,6 @@ export function StepMeta({ hook, ai }: StepMetaProps) {
         <p className="text-xs text-[var(--muted-foreground)]">{t("builder.meta.categoryHelper")}</p>
       </div>
 
-      <TagInput
-        label={t("builder.meta.frameworks")}
-        tags={meta.frameworks as string[]}
-        onChange={(tags) => setFrameworks(tags)}
-        placeholder="React, Python, Node.js"
-        helperText={t("builder.meta.frameworksHelper")}
-      />
     </div>
   );
 }

@@ -12,6 +12,7 @@ import { StepReview } from "./step-review";
 import { MyHarnessList } from "./my-harness-list";
 import { ApiKeySettings } from "./api-key-settings";
 import type { CustomHarness } from "@/lib/custom-harness-types";
+import { resolveTemplateAgents, type HarnessTemplate } from "@/lib/harness-templates";
 
 type Mode = "list" | "builder";
 
@@ -36,6 +37,21 @@ export function BuilderClient() {
       setMode("builder");
     },
     [builder],
+  );
+
+  const handleCreateFromTemplate = useCallback(
+    (template: HarnessTemplate) => {
+      builder.resetAll();
+      builder.meta.updateField("name", t(template.nameKey));
+      builder.meta.setCategory(template.category);
+      const agentTemplates = resolveTemplateAgents(template.agentNames);
+      for (const at of agentTemplates) {
+        builder.agents.addAgent(at);
+      }
+      setEditingHarness(undefined);
+      setMode("builder");
+    },
+    [builder, t],
   );
 
   const handleBackToList = useCallback(() => {
@@ -65,13 +81,13 @@ export function BuilderClient() {
     <main className="mx-auto max-w-4xl px-4 py-8">
       {mode === "list" ? (
         <>
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold text-[var(--foreground)]">{t("builder.title")}</h1>
-            <p className="mt-1 text-sm text-[var(--muted-foreground)]">{t("builder.subtitle")}</p>
+          <div className="hero-gradient rounded-xl px-5 py-5 mb-6">
+            <h1 className="text-xl sm:text-2xl font-bold text-[var(--foreground)] mb-1">{t("builder.title")}</h1>
+            <p className="text-sm text-[var(--muted-foreground)]">{t("builder.subtitle")}</p>
           </div>
 
           {/* AI API Key settings */}
-          <div className="mb-6">
+          <div className="mb-4">
             <ApiKeySettings
               apiKey={ai.apiKey}
               isConfigured={ai.isConfigured}
@@ -80,7 +96,11 @@ export function BuilderClient() {
             />
           </div>
 
-          <MyHarnessList onEdit={handleEdit} onCreateNew={handleCreateNew} />
+          <MyHarnessList
+            onEdit={handleEdit}
+            onCreateNew={handleCreateNew}
+            onSelectTemplate={handleCreateFromTemplate}
+          />
         </>
       ) : (
         <>

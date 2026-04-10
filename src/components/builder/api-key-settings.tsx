@@ -17,11 +17,13 @@ export function ApiKeySettings({ apiKey, isConfigured, onSave, onClear }: ApiKey
   const [editing, setEditing] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
+  const [expanded, setExpanded] = useState(false);
+
   if (!editing && isConfigured) {
     return (
       <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-2 space-y-1.5">
         <div className="flex items-center gap-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-green-500 shrink-0" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-green-500 shrink-0" aria-hidden="true">
             <circle cx="12" cy="12" r="10" />
             <polyline points="16 10 11 15 8 12" />
           </svg>
@@ -33,26 +35,40 @@ export function ApiKeySettings({ apiKey, isConfigured, onSave, onClear }: ApiKey
           </span>
           <button
             type="button"
-            onClick={() => { setEditing(true); setInputValue(""); }}
+            onClick={() => setExpanded((v) => !v)}
             className="ml-auto text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded px-1"
           >
-            {t("ai.changeKey")}
-          </button>
-          <button
-            type="button"
-            onClick={onClear}
-            className="text-xs text-red-500 hover:text-red-600 transition-base focus-ring rounded px-1"
-          >
-            {t("ai.removeKey")}
+            {t("ai.manage")}
           </button>
         </div>
-        <div className="flex items-start gap-1.5 rounded-md bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 px-2.5 py-1.5">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-amber-600 dark:text-amber-400 shrink-0 mt-px" aria-hidden="true">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-            <path d="M7 11V7a5 5 0 0110 0v4" />
-          </svg>
-          <p className="text-[11px] text-amber-700 dark:text-amber-300 leading-snug">{t("ai.keyPrivacy")}</p>
-        </div>
+
+        {expanded && (
+          <>
+            <div className="flex items-center gap-2 pt-1">
+              <button
+                type="button"
+                onClick={() => { setEditing(true); setInputValue(""); }}
+                className="text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded px-1"
+              >
+                {t("ai.changeKey")}
+              </button>
+              <button
+                type="button"
+                onClick={onClear}
+                className="text-xs text-red-500 hover:text-red-600 transition-base focus-ring rounded px-1"
+              >
+                {t("ai.removeKey")}
+              </button>
+            </div>
+            <div className="flex items-start gap-1.5 rounded-md bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 px-2.5 py-1.5">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-amber-600 dark:text-amber-400 shrink-0 mt-px" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0110 0v4" />
+              </svg>
+              <p className="text-[11px] text-amber-700 dark:text-amber-300 leading-snug">{t("ai.keyPrivacy")}</p>
+            </div>
+          </>
+        )}
       </div>
     );
   }

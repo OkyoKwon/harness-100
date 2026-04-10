@@ -8,13 +8,16 @@ import { toHarness } from "@/lib/custom-harness-converter";
 import { buildZip } from "@/lib/zip-builder";
 import { saveAs } from "file-saver";
 import type { CustomHarness } from "@/lib/custom-harness-types";
+import { BuilderEmptyState } from "./builder-empty-state";
+import type { HarnessTemplate } from "@/lib/harness-templates";
 
 interface MyHarnessListProps {
   readonly onEdit: (harness: CustomHarness) => void;
   readonly onCreateNew: () => void;
+  readonly onSelectTemplate: (template: HarnessTemplate) => void;
 }
 
-export function MyHarnessList({ onEdit, onCreateNew }: MyHarnessListProps) {
+export function MyHarnessList({ onEdit, onCreateNew, onSelectTemplate }: MyHarnessListProps) {
   const { t, locale } = useLocale();
   const { harnesses, isLoading, remove, duplicate } = useCustomHarnesses();
   const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
@@ -48,30 +51,23 @@ export function MyHarnessList({ onEdit, onCreateNew }: MyHarnessListProps) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-[var(--foreground)]">
-          {t("builder.myHarnesses")} ({harnesses.length})
-        </h2>
-        <button
-          type="button"
-          onClick={onCreateNew}
-          className="rounded-lg bg-[var(--primary)] px-3 py-2 text-sm font-medium text-[var(--primary-foreground)] hover:opacity-90 transition-base focus-ring"
-        >
-          + {t("builder.newHarness")}
-        </button>
-      </div>
-
-      {harnesses.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-[var(--border)] py-12 text-center">
-          <p className="text-sm text-[var(--muted-foreground)]">{t("builder.empty")}</p>
+      {harnesses.length > 0 && (
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-[var(--foreground)]">
+            {t("builder.myHarnesses")} ({harnesses.length})
+          </h2>
           <button
             type="button"
             onClick={onCreateNew}
-            className="mt-3 rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] hover:opacity-90 transition-base focus-ring"
+            className="rounded-lg bg-[var(--primary)] px-3 py-2 text-sm font-medium text-[var(--primary-foreground)] hover:opacity-90 transition-base focus-ring"
           >
-            {t("builder.newHarness")}
+            + {t("builder.newHarness")}
           </button>
         </div>
+      )}
+
+      {harnesses.length === 0 ? (
+        <BuilderEmptyState onCreateNew={onCreateNew} onSelectTemplate={onSelectTemplate} />
       ) : (
         <ul className="space-y-2">
           {harnesses.map((harness) => (

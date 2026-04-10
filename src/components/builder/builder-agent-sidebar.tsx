@@ -70,7 +70,7 @@ export function BuilderAgentSidebar({
                 {t("builder.agent.name")}
               </span>
             )}
-            {agent.sourceRef && (
+            {agent.sourceRef ? (
               <span className={cn(
                 "inline-flex shrink-0 rounded px-1 py-0.5 text-[9px] font-medium leading-none",
                 agent.id === selectedId
@@ -79,7 +79,16 @@ export function BuilderAgentSidebar({
               )}>
                 {t("builder.agent.reused")}
               </span>
-            )}
+            ) : agent.name ? (
+              <span className={cn(
+                "inline-flex shrink-0 rounded px-1 py-0.5 text-[9px] font-medium leading-none",
+                agent.id === selectedId
+                  ? "bg-white/20 text-white"
+                  : "bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300",
+              )}>
+                {t("builder.agent.new")}
+              </span>
+            ) : null}
           </span>
 
           {/* Reorder + Delete (visible on hover/focus) */}

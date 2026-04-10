@@ -168,6 +168,18 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
         <p>{t("builder.guide.agents")}</p>
       </GuideBanner>
 
+      {/* Harness context summary */}
+      {meta.name && (
+        <div className="rounded-lg border border-[var(--border)] bg-[var(--muted)] px-4 py-2.5 text-sm">
+          <span className="font-semibold text-[var(--foreground)]">{meta.name}</span>
+          {meta.description && (
+            <span className="ml-2 text-[var(--muted-foreground)] truncate">
+              — {meta.description.length > 80 ? `${meta.description.slice(0, 80)}...` : meta.description}
+            </span>
+          )}
+        </div>
+      )}
+
       {/* Action buttons */}
       <div className="flex flex-wrap gap-2">
         <button

@@ -634,6 +634,7 @@ const translations: Record<string, TranslationEntry> = {
   "builder.agent.noAgents": { ko: "에이전트를 추가하세요", en: "Add an agent to get started" },
   "builder.agent.selectToEdit": { ko: "편집할 에이전트를 선택하세요", en: "Select an agent to edit" },
   "builder.agent.delete": { ko: "에이전트 삭제", en: "Delete Agent" },
+  "builder.agent.new": { ko: "새로 생성", en: "New" },
   "builder.agent.reused": { ko: "재사용", en: "Reused" },
   "builder.agent.reusedFrom": { ko: "재사용 출처:", en: "Reused from:" },
   "builder.agent.templateTitle": { ko: "에이전트 템플릿", en: "Agent Templates" },

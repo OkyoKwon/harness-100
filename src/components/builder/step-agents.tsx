@@ -9,7 +9,7 @@ import { BuilderAgentForm } from "./builder-agent-form";
 import { AgentTemplatePicker } from "./agent-template-picker";
 import { AgentInstructionsReference } from "./agent-instructions-reference";
 import { AiAssistButton } from "./ai-assist-button";
-import { generateAgentTeam, parseAgentTeam, buildAgentContext, loadReferenceAgents } from "@/lib/ai-assist";
+import { generateAgentTeam, generateAgentInstructions, parseAgentTeam, buildAgentContext, loadReferenceAgents } from "@/lib/ai-assist";
 import type { ReferenceAgent } from "@/lib/ai-assist";
 import { loadAgentIndex, loadHarnessDetail } from "@/lib/harness-loader";
 import { createAgentFromTemplate } from "@/lib/custom-harness-converter";
@@ -68,6 +68,9 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
     if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
     if (!meta.name.trim()) { addToast(t("ai.error.noName"), "error"); return; }
 
+    // Hoist exampleMd so it can be reused for truncation recovery
+    let exampleMd: string | undefined;
+
     const result = await ai.runAssist(async (key) => {
       // Load agent index and build context for the AI prompt
       let agentContext: string | undefined;
@@ -79,7 +82,6 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
       }
 
       // Load example MD for instructions quality
-      let exampleMd: string | undefined;
       if (referenceAgents.length > 0) {
         exampleMd = referenceAgents[0].rawMd;
       } else {
@@ -99,7 +101,30 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
     });
 
     if (result?.success && result.text) {
-      const teamData = parseAgentTeam(result.text);
+      let teamData = parseAgentTeam(result.text);
+
+      // Truncation recovery: regenerate instructions for the last agent if truncated
+      if (result.truncated && teamData.length > 0) {
+        const lastAgent = teamData[teamData.length - 1];
+        if (lastAgent.instructions.length < 200 && !lastAgent.reuseRef) {
+          const instrResult = await ai.runAssist(async (key) => {
+            const tempAgent = {
+              id: "", name: lastAgent.name, role: lastAgent.role,
+              description: lastAgent.description, instructions: lastAgent.instructions,
+              tools: lastAgent.tools, outputTemplate: lastAgent.outputTemplate,
+              dependencies: [], enabled: true,
+            };
+            const harnessContext = `${meta.name}: ${meta.description}`;
+            return generateAgentInstructions(key, tempAgent, harnessContext, exampleMd ?? "", locale);
+          });
+          if (instrResult?.success && instrResult.text) {
+            teamData = teamData.map((a, i) =>
+              i === teamData.length - 1 ? { ...a, instructions: instrResult.text } : a
+            );
+          }
+        }
+      }
+
       let reusedCount = 0;
 
       // First pass: create agents and collect name→id mapping

@@ -10,6 +10,7 @@ interface AiResponse {
   readonly success: boolean;
   readonly text: string;
   readonly error?: string;
+  readonly truncated?: boolean;
 }
 
 async function callClaude(
@@ -44,7 +45,8 @@ async function callClaude(
 
     const data = await res.json();
     const text = data.content?.[0]?.text?.trim() ?? "";
-    return { success: true, text };
+    const truncated = data.stop_reason === "max_tokens";
+    return { success: true, text, truncated };
   } catch {
     return { success: false, text: "", error: "ai.error.network" };
   }
@@ -320,7 +322,7 @@ Instructions:
 (detailed behavioral instructions in markdown including: Core Role, Working Principles, Output Format, Team Communication, Error Handling)
 Reuse: (only if reusing an existing agent, format: harnessId/agentName, e.g., 1/content-strategist)${exampleBlock}`;
 
-  return callClaude(apiKey, sys(locale), prompt, 4096);
+  return callClaude(apiKey, sys(locale), prompt, 8192);
 }
 
 /** Generate only instructions for an agent that already has name/role/description */

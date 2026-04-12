@@ -12,7 +12,6 @@ import { StepReview } from "./step-review";
 import { MyHarnessList } from "./my-harness-list";
 import { ApiKeySettings } from "./api-key-settings";
 import type { CustomHarness } from "@/lib/custom-harness-types";
-import { resolveTemplateAgents, type HarnessTemplate } from "@/lib/harness-templates";
 
 type Mode = "list" | "builder";
 
@@ -37,21 +36,6 @@ export function BuilderClient() {
       setMode("builder");
     },
     [builder],
-  );
-
-  const handleCreateFromTemplate = useCallback(
-    (template: HarnessTemplate) => {
-      builder.resetAll();
-      builder.meta.updateField("name", t(template.nameKey));
-      builder.meta.setCategory(template.category);
-      const agentTemplates = resolveTemplateAgents(template.agentNames);
-      for (const at of agentTemplates) {
-        builder.agents.addAgent(at);
-      }
-      setEditingHarness(undefined);
-      setMode("builder");
-    },
-    [builder, t],
   );
 
   const handleBackToList = useCallback(() => {
@@ -99,7 +83,6 @@ export function BuilderClient() {
           <MyHarnessList
             onEdit={handleEdit}
             onCreateNew={handleCreateNew}
-            onSelectTemplate={handleCreateFromTemplate}
           />
         </>
       ) : (

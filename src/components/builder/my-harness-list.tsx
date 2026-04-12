@@ -8,16 +8,13 @@ import { toHarness } from "@/lib/custom-harness-converter";
 import { buildZip } from "@/lib/zip-builder";
 import { saveAs } from "file-saver";
 import type { CustomHarness } from "@/lib/custom-harness-types";
-import { BuilderEmptyState } from "./builder-empty-state";
-import type { HarnessTemplate } from "@/lib/harness-templates";
 
 interface MyHarnessListProps {
   readonly onEdit: (harness: CustomHarness) => void;
   readonly onCreateNew: () => void;
-  readonly onSelectTemplate: (template: HarnessTemplate) => void;
 }
 
-export function MyHarnessList({ onEdit, onCreateNew, onSelectTemplate }: MyHarnessListProps) {
+export function MyHarnessList({ onEdit, onCreateNew }: MyHarnessListProps) {
   const { t, locale } = useLocale();
   const { harnesses, isLoading, remove, duplicate } = useCustomHarnesses();
   const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
@@ -67,7 +64,16 @@ export function MyHarnessList({ onEdit, onCreateNew, onSelectTemplate }: MyHarne
       )}
 
       {harnesses.length === 0 ? (
-        <BuilderEmptyState onCreateNew={onCreateNew} onSelectTemplate={onSelectTemplate} />
+        <div className="text-center py-12">
+          <p className="text-sm text-[var(--muted-foreground)] mb-4">{t("builder.empty")}</p>
+          <button
+            type="button"
+            onClick={onCreateNew}
+            className="rounded-lg bg-[var(--primary)] px-4 py-2.5 text-sm font-medium text-[var(--primary-foreground)] hover:opacity-90 transition-base focus-ring"
+          >
+            + {t("builder.newHarness")}
+          </button>
+        </div>
       ) : (
         <ul className="space-y-2">
           {harnesses.map((harness) => (

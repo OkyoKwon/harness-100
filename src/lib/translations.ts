@@ -351,6 +351,35 @@ const translations: Record<string, TranslationEntry> = {
   // ── Guide Page ──
   "guide.title": { ko: "사용 가이드", en: "User Guide" },
   "guide.toc": { ko: "목차", en: "Table of Contents" },
+  "guide.hero.subtitle": {
+    ko: "하네스를 설치하고 Claude Code에서 에이전트 팀을 실행하는 방법을 안내합니다.",
+    en: "Learn how to install harnesses and run agent teams in Claude Code.",
+  },
+  "guide.hero.browseCatalog": { ko: "카탈로그 탐색", en: "Browse Catalog" },
+  "guide.hero.buildCustom": { ko: "직접 만들기", en: "Build Custom" },
+  "guide.hero.harnessCount": { ko: "100+ 하네스", en: "100+ Harnesses" },
+  "guide.coreConcepts.agentBadge": { ko: "에이전트", en: "Agent" },
+  "guide.coreConcepts.skillBadge": { ko: "스킬", en: "Skill" },
+  "guide.coreConcepts.extensionBadge": { ko: "확장 스킬", en: "Extension" },
+  "guide.install.recommended": { ko: "권장", en: "Recommended" },
+  "guide.modes.example1.title": { ko: "풀 프로덕션", en: "Full Production" },
+  "guide.modes.example1.desc": {
+    ko: "풀 파이프라인 모드 — 전체 에이전트 실행",
+    en: "Full pipeline mode — runs all agents",
+  },
+  "guide.modes.example2.title": { ko: "대본 모드", en: "Script Mode" },
+  "guide.modes.example2.desc": {
+    ko: "일부 에이전트만 실행하는 부분 모드",
+    en: "Runs a subset of agents for focused work",
+  },
+  "guide.modes.example3.title": { ko: "리뷰 모드", en: "Review Mode" },
+  "guide.modes.example3.desc": {
+    ko: "리뷰어 에이전트만 실행하는 단일 모드",
+    en: "Runs only the reviewer agent",
+  },
+  "guide.fileStructure.agentsBadge": { ko: "agents/", en: "agents/" },
+  "guide.fileStructure.skillsBadge": { ko: "skills/", en: "skills/" },
+  "guide.fileStructure.claudeMdBadge": { ko: "CLAUDE.md", en: "CLAUDE.md" },
   "guide.whatIsHarness.title": { ko: "하네스란?", en: "What is a Harness?" },
   "guide.whatIsHarness.body": {
     ko: "하네스(Harness)는 4~5명의 전문 AI 에이전트와 오케스트레이터 스킬로 구성된 워크플로우 패키지입니다. Claude Code의 에이전트 팀 기능을 활용하여 일상 업무에 즉시 적용할 수 있습니다.",

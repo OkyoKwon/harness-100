@@ -10,15 +10,14 @@ describe("buildCliCommand", () => {
     expect(buildCliCommand("test-123")).toBe('claude "/test-123"');
   });
 
-  it("throws when given an invalid slug with uppercase", () => {
-    expect(() => buildCliCommand("Invalid")).toThrow("Invalid slug");
+  it("handles Korean slug", () => {
+    expect(buildCliCommand("심플한-pptx-제작")).toBe('claude "/심플한-pptx-제작"');
   });
 
-  it("throws when given an empty string", () => {
-    expect(() => buildCliCommand("")).toThrow("Invalid slug");
-  });
-
-  it("throws when given a slug with special characters", () => {
-    expect(() => buildCliCommand("hello@world")).toThrow("Invalid slug");
+  it("strips shell-dangerous characters", () => {
+    expect(buildCliCommand('test"slug')).toBe('claude "/testslug"');
+    expect(buildCliCommand("test`cmd`")).toBe('claude "/testcmd"');
+    expect(buildCliCommand("test$var")).toBe('claude "/testvar"');
+    expect(buildCliCommand("test\\path")).toBe('claude "/testpath"');
   });
 });

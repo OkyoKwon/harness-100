@@ -1,6 +1,5 @@
-import { assertValidSlug } from "./validation";
-
 export function buildCliCommand(slug: string): string {
-  assertValidSlug(slug);
-  return `claude "/${slug}"`;
+  // Sanitize: strip characters that could break shell quoting
+  const safe = slug.replace(/["\\`$]/g, "");
+  return `claude "/${safe}"`;
 }

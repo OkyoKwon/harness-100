@@ -88,48 +88,50 @@ export function CategoryTabs({ active, onSelect, favoriteCount, customHarnessCou
         </>
       )}
 
-      <div
-        ref={scrollRef}
-        role="tablist"
-        className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide px-1 snap-x snap-mandatory"
-      >
-        <button
-          type="button"
-          role="tab"
-          aria-selected={active === "favorites"}
-          onClick={() => onSelect("favorites")}
-          className={`${baseClass} ${active === "favorites" ? activeClass : inactiveClass}`}
+      <div className="flex items-start gap-2">
+        <div
+          ref={scrollRef}
+          role="tablist"
+          className="flex min-w-0 flex-1 gap-2 overflow-x-auto pb-2 scrollbar-hide px-1 snap-x snap-mandatory"
         >
-          {`★ ${t("category.favorites")}${favoriteCount > 0 ? ` ${favoriteCount}` : ""}`}
-        </button>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={active === "all"}
-          onClick={() => onSelect("all")}
-          className={`${baseClass} ${active === "all" ? activeClass : inactiveClass}`}
-        >
-          {t("category.all")} {TOTAL_HARNESS_COUNT}
-        </button>
-        {CATEGORIES.map((cat) => (
           <button
             type="button"
             role="tab"
-            aria-selected={active === cat.slug}
-            key={cat.slug}
-            onClick={() => onSelect(cat.slug)}
-            className={`${baseClass} ${active === cat.slug ? activeClass : inactiveClass}`}
+            aria-selected={active === "favorites"}
+            onClick={() => onSelect("favorites")}
+            className={`${baseClass} ${active === "favorites" ? activeClass : inactiveClass}`}
           >
-            {locale === "en" ? cat.labelEn : cat.label} {cat.count}
+            {`★ ${t("category.favorites")}${favoriteCount > 0 ? ` ${favoriteCount}` : ""}`}
           </button>
-        ))}
+          <button
+            type="button"
+            role="tab"
+            aria-selected={active === "all"}
+            onClick={() => onSelect("all")}
+            className={`${baseClass} ${active === "all" ? activeClass : inactiveClass}`}
+          >
+            {t("category.all")} {TOTAL_HARNESS_COUNT}
+          </button>
+          {CATEGORIES.map((cat) => (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={active === cat.slug}
+              key={cat.slug}
+              onClick={() => onSelect(cat.slug)}
+              className={`${baseClass} ${active === cat.slug ? activeClass : inactiveClass}`}
+            >
+              {locale === "en" ? cat.labelEn : cat.label} {cat.count}
+            </button>
+          ))}
+        </div>
         {customHarnessCount > 0 && (
           <button
             type="button"
             role="tab"
             aria-selected={active === "my-harnesses"}
             onClick={() => onSelect("my-harnesses")}
-            className={`${baseClass} ${
+            className={`shrink-0 ${baseClass} ${
               active === "my-harnesses"
                 ? "bg-violet-600 text-white"
                 : "border border-violet-500/50 text-violet-400 hover:bg-violet-500/10"

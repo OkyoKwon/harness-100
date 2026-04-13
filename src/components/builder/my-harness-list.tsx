@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocale } from "@/hooks/use-locale";
 import { useCustomHarnesses } from "@/hooks/use-custom-harnesses";
+import { useLocalSetup } from "@/hooks/use-local-setup";
+import { useToast } from "@/hooks/use-toast";
 import { Modal, ModalBody } from "@/components/ui/modal";
+import { ConflictModal } from "@/components/setup/conflict-modal";
 import { toHarness } from "@/lib/custom-harness-converter";
 import { buildZip } from "@/lib/zip-builder";
 import { saveAs } from "file-saver";
@@ -11,13 +14,25 @@ import type { CustomHarness } from "@/lib/custom-harness-types";
 
 interface MyHarnessListProps {
   readonly onEdit: (harness: CustomHarness) => void;
+  readonly onView: (harness: CustomHarness) => void;
   readonly onCreateNew: () => void;
 }
 
-export function MyHarnessList({ onEdit, onCreateNew }: MyHarnessListProps) {
+export function MyHarnessList({ onEdit, onView, onCreateNew }: MyHarnessListProps) {
   const { t, locale } = useLocale();
   const { harnesses, isLoading, remove, duplicate } = useCustomHarnesses();
+  const { addToast } = useToast();
   const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
+
+  const {
+    status: setupStatus,
+    result: setupResult,
+    supported: setupSupported,
+    setup: runSetup,
+    conflictReport,
+    resolveConflicts,
+    cancelConflicts,
+  } = useLocalSetup();
 
   const handleExport = async (harness: CustomHarness) => {
     try {
@@ -29,12 +44,25 @@ export function MyHarnessList({ onEdit, onCreateNew }: MyHarnessListProps) {
     }
   };
 
+  const handleSetup = (harness: CustomHarness) => {
+    const converted = toHarness(harness);
+    runSetup(converted, undefined, locale);
+  };
+
   const handleDelete = async () => {
     if (deleteTarget) {
       await remove(deleteTarget);
       setDeleteTarget(null);
     }
   };
+
+  useEffect(() => {
+    if (setupStatus === "complete" && setupResult) {
+      addToast(t("toast.setupComplete", { count: setupResult.filesWritten }), "success");
+    }
+  }, [setupStatus, setupResult, addToast]);
+
+  const setupBusy = setupStatus === "selecting" || setupStatus === "writing" || setupStatus === "confirming";
 
   if (isLoading) {
     return (
@@ -79,7 +107,8 @@ export function MyHarnessList({ onEdit, onCreateNew }: MyHarnessListProps) {
           {harnesses.map((harness) => (
             <li
               key={harness.id}
-              className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4"
+              className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 hover:border-[var(--primary)]/40 transition-base cursor-pointer"
+              onClick={() => onView(harness)}
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">
@@ -93,7 +122,15 @@ export function MyHarnessList({ onEdit, onCreateNew }: MyHarnessListProps) {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1 shrink-0">
+                <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
+                  <button
+                    type="button"
+                    onClick={() => handleSetup(harness)}
+                    disabled={!setupSupported || setupBusy}
+                    className="rounded px-2 py-1 text-xs font-medium text-[var(--primary)] hover:bg-[var(--primary)]/10 transition-base focus-ring disabled:opacity-50"
+                  >
+                    {t("action.setup")}
+                  </button>
                   <button
                     type="button"
                     onClick={() => onEdit(harness)}
@@ -127,6 +164,16 @@ export function MyHarnessList({ onEdit, onCreateNew }: MyHarnessListProps) {
             </li>
           ))}
         </ul>
+      )}
+
+      {/* Conflict resolution modal */}
+      {conflictReport && (
+        <ConflictModal
+          open={setupStatus === "confirming"}
+          conflicts={conflictReport.conflicts}
+          onResolve={resolveConflicts}
+          onCancel={cancelConflicts}
+        />
       )}
 
       {/* Delete confirmation modal */}

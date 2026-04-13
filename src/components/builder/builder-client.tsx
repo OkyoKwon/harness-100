@@ -11,14 +11,16 @@ import { StepSkill } from "./step-skill";
 import { StepReview } from "./step-review";
 import { MyHarnessList } from "./my-harness-list";
 import { ApiKeySettings } from "./api-key-settings";
+import { CustomHarnessDetail } from "./custom-harness-detail";
 import type { CustomHarness } from "@/lib/custom-harness-types";
 
-type Mode = "list" | "builder";
+type Mode = "list" | "builder" | "detail";
 
 export function BuilderClient() {
   const { t } = useLocale();
   const [mode, setMode] = useState<Mode>("list");
   const [editingHarness, setEditingHarness] = useState<CustomHarness | undefined>();
+  const [viewingHarness, setViewingHarness] = useState<CustomHarness | undefined>();
 
   const builder = useHarnessBuilder(editingHarness);
   const ai = useAiAssist();
@@ -38,9 +40,15 @@ export function BuilderClient() {
     [builder],
   );
 
+  const handleView = useCallback((harness: CustomHarness) => {
+    setViewingHarness(harness);
+    setMode("detail");
+  }, []);
+
   const handleBackToList = useCallback(() => {
     setMode("list");
     setEditingHarness(undefined);
+    setViewingHarness(undefined);
     builder.resetAll();
   }, [builder]);
 
@@ -63,7 +71,7 @@ export function BuilderClient() {
 
   return (
     <main className="mx-auto max-w-4xl px-4 py-8">
-      {mode === "list" ? (
+      {mode === "list" && (
         <>
           <div className="hero-gradient rounded-xl px-5 py-5 mb-6">
             <h1 className="text-xl sm:text-2xl font-bold text-[var(--foreground)] mb-1">{t("builder.title")}</h1>
@@ -82,10 +90,21 @@ export function BuilderClient() {
 
           <MyHarnessList
             onEdit={handleEdit}
+            onView={handleView}
             onCreateNew={handleCreateNew}
           />
         </>
-      ) : (
+      )}
+
+      {mode === "detail" && viewingHarness && (
+        <CustomHarnessDetail
+          harness={viewingHarness}
+          onBack={handleBackToList}
+          onEdit={handleEdit}
+        />
+      )}
+
+      {mode === "builder" && (
         <>
           {/* Header */}
           <div className="mb-6 flex items-center justify-between">

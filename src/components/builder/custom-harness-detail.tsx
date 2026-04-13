@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useLocale } from "@/hooks/use-locale";
 import { useLocalSetup } from "@/hooks/use-local-setup";
 import { useZipDownload } from "@/hooks/use-zip-download";
@@ -10,11 +10,13 @@ import { buildCliCommand } from "@/lib/cli";
 import { generateSkillMd } from "@/lib/zip-builder";
 import { CATEGORIES } from "@/lib/constants";
 import { AgentList } from "@/components/detail/agent-list";
+import { WorkflowDiagram } from "@/components/detail/workflow-diagram";
+import { OutputPreview } from "@/components/detail/output-preview";
+import { UsageSection } from "@/components/detail/usage-section";
 import { CompletionBanner } from "@/components/common/completion-banner";
 import { ConflictModal } from "@/components/setup/conflict-modal";
 import { MarkdownViewer } from "@/components/common/markdown-viewer";
 import { saveAs } from "file-saver";
-import { buildZip } from "@/lib/zip-builder";
 import type { CustomHarness } from "@/lib/custom-harness-types";
 
 interface CustomHarnessDetailProps {
@@ -33,6 +35,7 @@ export function CustomHarnessDetail({ harness, onBack, onEdit }: CustomHarnessDe
   const { t, locale } = useLocale();
   const { addToast } = useToast();
   const [skillMdOpen, setSkillMdOpen] = useState(false);
+  const [guideExpanded, setGuideExpanded] = useState(true);
 
   const converted = useMemo(() => toHarness(harness), [harness]);
   const enabledAgents = useMemo(() => harness.agents.filter((a) => a.enabled), [harness]);
@@ -75,6 +78,14 @@ export function CustomHarnessDetail({ harness, onBack, onEdit }: CustomHarnessDe
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
     saveAs(blob, `${harness.slug}.harness.json`);
   };
+
+  const handleViewSkillMd = useCallback(() => {
+    setSkillMdOpen(true);
+  }, []);
+
+  const handleCloseSkillMd = useCallback(() => {
+    setSkillMdOpen(false);
+  }, []);
 
   const skillMdContent = generateSkillMd(converted, locale);
 
@@ -178,19 +189,46 @@ export function CustomHarnessDetail({ harness, onBack, onEdit }: CustomHarnessDe
         <CompletionBanner type="zip" slug={harness.slug} />
       )}
 
-      {/* Setup tip */}
-      <div className="rounded-lg border border-[var(--info-border)] bg-[var(--info-bg)] px-4 py-3">
-        <ol className="space-y-1 text-xs text-[var(--info-foreground)] list-decimal list-inside">
-          <li>{t("setup.step1")}</li>
-          <li>{t("setup.step2")}</li>
-          <li>
-            {t("setup.step3prefix")}{" "}
-            <code className="rounded bg-[var(--badge-tool-bg)] px-1 font-mono">
-              {buildCliCommand(harness.slug)}
-            </code>{" "}
-            {t("setup.step3suffix")}
-          </li>
-        </ol>
+      {/* Setup tip — collapsible */}
+      <div className="rounded-lg border border-[var(--info-border)] bg-[var(--info-bg)]">
+        <button
+          type="button"
+          onClick={() => setGuideExpanded((prev) => !prev)}
+          className="flex w-full items-center justify-between px-4 py-2.5 text-left"
+        >
+          <span className="text-xs text-[var(--info-foreground)]">
+            {t("detail.setupTip")}
+          </span>
+          <svg
+            className={`h-3.5 w-3.5 shrink-0 text-[var(--info-foreground)] transition-transform ${
+              guideExpanded ? "rotate-180" : ""
+            }`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        {guideExpanded && (
+          <div className="border-t border-[var(--info-border)] px-4 py-3">
+            <ol className="space-y-1 text-xs text-[var(--info-foreground)] list-decimal list-inside">
+              <li>{t("setup.step1")}</li>
+              <li>{t("setup.step2")}</li>
+              <li>
+                {t("setup.step3prefix")}{" "}
+                <code className="rounded bg-[var(--badge-tool-bg)] px-1 font-mono">
+                  {buildCliCommand(harness.slug)}
+                </code>{" "}
+                {t("setup.step3suffix")}
+              </li>
+            </ol>
+            <p className="mt-2 text-[10px] text-[var(--info-foreground)] opacity-70">
+              {t("setup.tip")}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* File tree */}
@@ -207,37 +245,57 @@ ${enabledAgents.map((a, i) => `│   ${i === enabledAgents.length - 1 ? "└─�
         </pre>
       </div>
 
-      {/* Agent list */}
-      <div>
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-[var(--foreground)]">
-            {t("detail.agents", { count: enabledAgents.length })}
-          </h2>
-          <button
-            type="button"
-            onClick={() => setSkillMdOpen(true)}
-            className="flex items-center gap-1.5 rounded-lg border border-dashed border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-xs font-medium text-[var(--muted-foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-base focus-ring"
-          >
-            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            {t("detail.viewSkillMd")}
-          </button>
-        </div>
-        <AgentList
-          agents={converted.agents}
-          harness={converted}
-          executionOrder={converted.skill.executionOrder}
-          onViewSkillMd={() => setSkillMdOpen(true)}
-        />
+      {/* Main content: two-panel on desktop, stacked on mobile */}
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        {/* Left panel: Workflow (sticky) + Outputs */}
+        <section className="space-y-8 lg:sticky lg:top-20 lg:self-start">
+          <div>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
+              {t("detail.workflow")}
+            </h2>
+            <WorkflowDiagram agents={converted.agents} />
+          </div>
+
+          <div>
+            <OutputPreview harness={converted} />
+          </div>
+        </section>
+
+        {/* Right panel: Agent list */}
+        <section>
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-[var(--foreground)]">
+              {t("detail.agents", { count: enabledAgents.length })}
+            </h2>
+            <button
+              type="button"
+              onClick={handleViewSkillMd}
+              className="flex items-center gap-1.5 rounded-lg border border-dashed border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-xs font-medium text-[var(--muted-foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-base focus-ring"
+            >
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              {t("detail.viewSkillMd")}
+            </button>
+          </div>
+          <AgentList
+            agents={converted.agents}
+            harness={converted}
+            executionOrder={converted.skill.executionOrder}
+            onViewSkillMd={handleViewSkillMd}
+          />
+        </section>
       </div>
+
+      {/* Usage: trigger conditions + execution modes — full width */}
+      <UsageSection harness={converted} />
 
       {/* Skill markdown viewer */}
       <MarkdownViewer
         title={`${harness.skill.name || harness.slug} — ${t("detail.skillMarkdown")}`}
         content={skillMdContent}
         open={skillMdOpen}
-        onClose={() => setSkillMdOpen(false)}
+        onClose={handleCloseSkillMd}
       />
     </div>
   );

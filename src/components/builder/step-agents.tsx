@@ -305,7 +305,7 @@ export function StepAgents({ hook, meta, ai }: StepAgentsProps) {
       />
 
       {/* Errors */}
-      {errors._global && (
+      {errors._global && !ai.loading && (
         <p className="text-xs text-red-500" role="alert">{t(errors._global)}</p>
       )}
       {errors._cycle && (

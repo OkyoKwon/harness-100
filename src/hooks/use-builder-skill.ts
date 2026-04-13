@@ -14,8 +14,9 @@ const INITIAL_SKILL: Skill = {
   extensionSkills: [],
 };
 
-export function useBuilderSkill(initial?: Skill) {
+export function useBuilderSkill(initial?: Skill, initialMarkdown?: string) {
   const [skill, setSkill] = useState<Skill>(initial ?? INITIAL_SKILL);
+  const [skillMarkdown, setSkillMarkdown] = useState(initialMarkdown ?? "");
 
   const updateName = useCallback((name: string) => {
     setSkill((prev) => ({ ...prev, name }));
@@ -93,12 +94,18 @@ export function useBuilderSkill(initial?: Skill) {
   const errors = useMemo(() => validateSkill(skill), [skill]);
   const isValid = useMemo(() => Object.keys(errors).length === 0, [errors]);
 
+  const updateSkillMarkdown = useCallback((md: string) => {
+    setSkillMarkdown(md);
+  }, []);
+
   const reset = useCallback((initial?: Skill) => {
     setSkill(initial ?? INITIAL_SKILL);
+    setSkillMarkdown("");
   }, []);
 
   return {
     skill,
+    skillMarkdown,
     errors,
     isValid,
     updateName,
@@ -109,6 +116,7 @@ export function useBuilderSkill(initial?: Skill) {
     reorderExecution,
     addMode,
     removeMode,
+    updateSkillMarkdown,
     reset,
   } as const;
 }

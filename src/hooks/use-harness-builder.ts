@@ -24,7 +24,7 @@ export function useHarnessBuilder(editingHarness?: CustomHarness) {
       : undefined,
   );
   const agentsHook = useBuilderAgents(editingHarness?.agents);
-  const skillHook = useBuilderSkill(editingHarness?.skill);
+  const skillHook = useBuilderSkill(editingHarness?.skill, editingHarness?.skillMarkdown);
 
   const editingId = useRef(editingHarness?.id ?? null);
 
@@ -88,8 +88,9 @@ export function useHarnessBuilder(editingHarness?: CustomHarness) {
       updatedAt: now,
       version: 1,
       baseHarnessId: editingHarness?.baseHarnessId,
+      skillMarkdown: skillHook.skillMarkdown || undefined,
     };
-  }, [metaHook.meta, agentsHook.agents, skillHook.skill, editingHarness]);
+  }, [metaHook.meta, agentsHook.agents, skillHook.skill, skillHook.skillMarkdown, editingHarness]);
 
   const loadFromExisting = useCallback(
     (harness: Harness | CustomHarness) => {

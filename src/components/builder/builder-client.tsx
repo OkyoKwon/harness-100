@@ -165,6 +165,7 @@ export function BuilderClient() {
                 hook={builder.skill}
                 agents={builder.agents.agents}
                 harnessName={builder.meta.meta.name}
+                harnessDescription={builder.meta.meta.description}
                 ai={ai}
               />
             )}

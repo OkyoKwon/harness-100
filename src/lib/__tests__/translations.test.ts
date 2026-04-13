@@ -60,7 +60,7 @@ describe("t (translation function)", () => {
 
   // ── Various keys exist ──
   it("has translations for all navigation keys", () => {
-    expect(t("ko", "nav.composer")).toBe("조합기");
+    expect(t("ko", "nav.composer")).toBe("조합");
     expect(t("en", "nav.guide")).toBe("Guide");
   });
 

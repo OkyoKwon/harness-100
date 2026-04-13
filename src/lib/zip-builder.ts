@@ -251,6 +251,7 @@ export async function buildZip(
   harness: Harness,
   modifications?: ReadonlyArray<Modification>,
   locale: Locale = "ko",
+  skillMarkdown?: string,
 ): Promise<Blob> {
   const zip = new JSZip();
   const claude = zip.folder(".claude");
@@ -293,10 +294,10 @@ export async function buildZip(
       }
     }
   } else {
-    // Fallback: generate from structured data
+    // Fallback: use custom markdown or generate from structured data
     const skillDir = skillsFolder.folder(harness.slug);
     if (skillDir) {
-      skillDir.file("skill.md", generateSkillMd(harness, locale));
+      skillDir.file("skill.md", skillMarkdown || generateSkillMd(harness, locale));
     }
   }
 

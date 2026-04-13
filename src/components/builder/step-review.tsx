@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useLocale } from "@/hooks/use-locale";
 import { GuideBanner } from "./guide-banner";
 import { ValidationSummary } from "./validation-summary";
 import { useCustomHarnesses } from "@/hooks/use-custom-harnesses";
 import { toHarness } from "@/lib/custom-harness-converter";
-import { buildZip } from "@/lib/zip-builder";
+import { buildZip, generateSkillMd } from "@/lib/zip-builder";
 import { saveAs } from "file-saver";
 import type { CustomHarness } from "@/lib/custom-harness-types";
 import type { ValidationErrors } from "@/lib/builder-validation";
@@ -26,6 +26,13 @@ export function StepReview({ harness, errors, onSaved }: StepReviewProps) {
 
   const enabledAgents = harness.agents.filter((a) => a.enabled);
   const isValid = !hasErrors(errors);
+  const [skillMdOpen, setSkillMdOpen] = useState(false);
+
+  const skillMdPreview = useMemo(() => {
+    if (harness.skillMarkdown) return harness.skillMarkdown;
+    const converted = toHarness(harness);
+    return generateSkillMd(converted, locale as "ko" | "en");
+  }, [harness, locale]);
 
   const handleSave = async () => {
     setSaving(true);
@@ -39,7 +46,7 @@ export function StepReview({ harness, errors, onSaved }: StepReviewProps) {
   const handleDownloadZip = async () => {
     try {
       const converted = toHarness(harness);
-      const blob = await buildZip(converted, undefined, locale);
+      const blob = await buildZip(converted, undefined, locale, harness.skillMarkdown);
       saveAs(blob, `${harness.slug}.zip`);
     } catch (err) {
       console.error("ZIP download failed:", err);
@@ -108,6 +115,30 @@ ${enabledAgents.map((a, i) => `│   ${i === enabledAgents.length - 1 ? "└─�
     └── ${harness.skill.name || harness.slug}/
         └── skill.md`}
         </pre>
+      </div>
+
+      {/* Skill markdown preview */}
+      <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] space-y-0">
+        <button
+          type="button"
+          onClick={() => setSkillMdOpen((p) => !p)}
+          className="flex w-full items-center justify-between px-4 py-3 text-left"
+        >
+          <h3 className="text-sm font-semibold text-[var(--foreground)]">
+            {t("builder.skill.markdown")}
+          </h3>
+          <svg
+            className={`h-3.5 w-3.5 text-[var(--muted-foreground)] transition-transform ${skillMdOpen ? "rotate-180" : ""}`}
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        {skillMdOpen && (
+          <pre className="border-t border-[var(--border)] px-4 py-3 text-xs text-[var(--muted-foreground)] font-mono leading-relaxed overflow-x-auto max-h-96 overflow-y-auto">
+            {skillMdPreview}
+          </pre>
+        )}
       </div>
 
       {/* Validation */}

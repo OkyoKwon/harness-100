@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { useLocale } from "@/hooks/use-locale";
 import { useHarnessBuilder } from "@/hooks/use-harness-builder";
 import { useAiAssist } from "@/hooks/use-ai-assist";
+import { useCustomHarnesses } from "@/hooks/use-custom-harnesses";
 import { BuilderStepper } from "./builder-stepper";
 import { StepMeta } from "./step-meta";
 import { StepAgents } from "./step-agents";
@@ -24,6 +26,21 @@ export function BuilderClient() {
 
   const builder = useHarnessBuilder(editingHarness);
   const ai = useAiAssist();
+  const { getById, isLoading: customLoading } = useCustomHarnesses();
+  const searchParams = useSearchParams();
+
+  // Open detail view when ?view={id} is present
+  useEffect(() => {
+    if (customLoading) return;
+    const viewId = searchParams.get("view");
+    if (viewId && mode === "list") {
+      const found = getById(viewId);
+      if (found) {
+        setViewingHarness(found);
+        setMode("detail");
+      }
+    }
+  }, [searchParams, customLoading, getById]);
 
   const handleCreateNew = useCallback(() => {
     setEditingHarness(undefined);

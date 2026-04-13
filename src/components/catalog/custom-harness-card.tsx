@@ -37,7 +37,7 @@ export function CustomHarnessCard({ harness }: CustomHarnessCardProps) {
   return (
     <div className="relative">
       <Link
-        href="/builder/"
+        href={`/builder/?view=${harness.id}`}
         className="block bg-[var(--card)] border border-[var(--border)] rounded-lg overflow-hidden shadow-[var(--shadow-sm)] hover:border-[var(--primary)] hover:shadow-[var(--shadow-md)] hover:-translate-y-1 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-[var(--ring)] focus-visible:outline-offset-2 transition-base group"
       >
         {/* Category color accent bar */}

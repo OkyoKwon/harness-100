@@ -8,9 +8,10 @@ interface CategoryTabsProps {
   readonly active: string;
   readonly onSelect: (slug: string) => void;
   readonly favoriteCount: number;
+  readonly customHarnessCount?: number;
 }
 
-export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsProps) {
+export function CategoryTabs({ active, onSelect, favoriteCount, customHarnessCount = 0 }: CategoryTabsProps) {
   const { t, locale } = useLocale();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -101,6 +102,17 @@ export function CategoryTabs({ active, onSelect, favoriteCount }: CategoryTabsPr
         >
           {`★ ${t("category.favorites")}${favoriteCount > 0 ? ` ${favoriteCount}` : ""}`}
         </button>
+        {customHarnessCount > 0 && (
+          <button
+            type="button"
+            role="tab"
+            aria-selected={active === "my-harnesses"}
+            onClick={() => onSelect("my-harnesses")}
+            className={`${baseClass} ${active === "my-harnesses" ? activeClass : inactiveClass}`}
+          >
+            {t("category.myHarnesses")} {customHarnessCount}
+          </button>
+        )}
         <button
           type="button"
           role="tab"

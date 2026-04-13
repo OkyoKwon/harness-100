@@ -4,12 +4,14 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import type { HarnessMeta } from "@/lib/types";
 import { loadCatalog } from "@/lib/harness-loader";
 import { useFavorites } from "@/hooks/use-favorites";
+import { useCustomHarnesses } from "@/hooks/use-custom-harnesses";
 import { useSearch } from "@/hooks/use-search";
 import { useLocale } from "@/hooks/use-locale";
 import { SearchBar } from "@/components/catalog/search-bar";
 import { CategoryTabs } from "@/components/catalog/category-tabs";
 import { HarnessGrid } from "@/components/catalog/harness-grid";
 import { HarnessCard } from "@/components/catalog/harness-card";
+import { CustomHarnessCard } from "@/components/catalog/custom-harness-card";
 import { HeroSection } from "@/components/catalog/hero-section";
 import { SortFilterBar, type SortKey } from "@/components/catalog/sort-filter-bar";
 import { CATEGORIES } from "@/lib/constants";
@@ -43,6 +45,7 @@ export default function CatalogPage() {
   const [sortKey, setSortKey] = useState<SortKey>("id");
 
   const { favorites, toggle, isFavorite } = useFavorites();
+  const { harnesses: customHarnesses } = useCustomHarnesses();
   const { query, results, updateQuery } = useSearch(catalog);
 
   useEffect(() => {
@@ -134,6 +137,7 @@ export default function CatalogPage() {
           active={activeCategory}
           onSelect={handleCategorySelect}
           favoriteCount={favorites.length}
+          customHarnessCount={customHarnesses.length}
         />
       </div>
 
@@ -146,7 +150,19 @@ export default function CatalogPage() {
         />
       </div>
 
-      {filtered.length === 0 ? (
+      {activeCategory === "my-harnesses" ? (
+        customHarnesses.length === 0 ? (
+          <div className="text-center py-16 text-[var(--muted-foreground)]">
+            <p className="text-lg font-medium mb-2">{t("catalog.noResults")}</p>
+          </div>
+        ) : (
+          <HarnessGrid>
+            {customHarnesses.map((harness) => (
+              <CustomHarnessCard key={harness.id} harness={harness} />
+            ))}
+          </HarnessGrid>
+        )
+      ) : filtered.length === 0 ? (
         <div className="text-center py-16 text-[var(--muted-foreground)]">
           <div className="text-4xl mb-4">🔍</div>
           <p className="text-lg font-medium mb-2">{t("catalog.noResults")}</p>

@@ -41,6 +41,7 @@ const translations: Record<string, TranslationEntry> = {
 
   // ── Category ──
   "category.favorites": { ko: "즐겨찾기", en: "Favorites" },
+  "category.myHarnesses": { ko: "내 하네스", en: "My Harnesses" },
   "category.all": { ko: "전체", en: "All" },
 
   // ── Sort & Filter ──

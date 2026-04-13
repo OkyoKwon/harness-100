@@ -11,6 +11,7 @@ import { GuideConceptCards } from "@/components/guide/guide-concept-cards";
 import { GuideInstallStepper } from "@/components/guide/guide-install-stepper";
 import { GuideAccordion } from "@/components/guide/guide-accordion";
 import { GuideFileTree } from "@/components/guide/guide-file-tree";
+import { GuideBuilderSection } from "@/components/guide/guide-builder-section";
 
 const TOC_SECTIONS = [
   { id: "what-is-harness", key: "guide.whatIsHarness.title" },
@@ -18,6 +19,7 @@ const TOC_SECTIONS = [
   { id: "install", key: "guide.install.title" },
   { id: "usage", key: "guide.usage.title" },
   { id: "modes", key: "guide.modes.title" },
+  { id: "builder", key: "guide.builder.title" },
   { id: "file-structure", key: "guide.fileStructure.title" },
   { id: "troubleshooting", key: "guide.troubleshooting.title" },
   { id: "browser", key: "guide.browser.title" },
@@ -129,7 +131,10 @@ claude`}</CodeBlock>
             </div>
           </section>
 
-          {/* 6. File Structure */}
+          {/* 6. Build Your Own */}
+          <GuideBuilderSection />
+
+          {/* 7. File Structure */}
           <GuideFileTree />
 
           {/* 7. Troubleshooting */}

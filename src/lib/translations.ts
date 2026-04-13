@@ -490,6 +490,42 @@ const translations: Record<string, TranslationEntry> = {
     ko: ".claude/agents/ 폴더의 마크다운 파일을 직접 편집하세요. 변경사항은 다음 실행부터 반영됩니다.",
     en: "Edit the markdown files in .claude/agents/ directly. Changes take effect on the next run.",
   },
+  // ── Guide: Builder Section ──
+  "guide.builder.title": { ko: "내 하네스 만들기", en: "Build Your Own Harness" },
+  "guide.builder.intro": {
+    ko: "카탈로그에 원하는 하네스가 없다면 직접 만들 수 있습니다. 4단계 빌더로 에이전트 팀을 구성하고 즉시 사용하세요.",
+    en: "If the catalog doesn't have what you need, build your own. Use the 4-step builder to assemble an agent team and start using it right away.",
+  },
+  "guide.builder.step1.title": { ko: "기본 정보", en: "Basic Info" },
+  "guide.builder.step1.desc": {
+    ko: "하네스 이름, 설명, 카테고리를 입력합니다. AI가 설명을 자동 생성해줄 수도 있습니다.",
+    en: "Enter the harness name, description, and category. AI can auto-generate the description for you.",
+  },
+  "guide.builder.step2.title": { ko: "에이전트 구성", en: "Agent Setup" },
+  "guide.builder.step2.desc": {
+    ko: "에이전트를 추가하고 역할, 도구, 의존성을 설정합니다. AI 팀 생성으로 한 번에 3~5명의 에이전트를 만들 수 있습니다.",
+    en: "Add agents and configure their roles, tools, and dependencies. AI Team Generation can create 3-5 agents at once.",
+  },
+  "guide.builder.step3.title": { ko: "스킬 설정", en: "Skill Config" },
+  "guide.builder.step3.desc": {
+    ko: "트리거 조건과 에이전트 실행 순서를 정의합니다. 스킬 마크다운을 직접 편집할 수도 있습니다.",
+    en: "Define trigger conditions and agent execution order. You can also edit the skill markdown directly.",
+  },
+  "guide.builder.step4.title": { ko: "검토 & 저장", en: "Review & Save" },
+  "guide.builder.step4.desc": {
+    ko: "전체 구성을 확인하고 저장합니다. ZIP 다운로드나 프로젝트에 직접 세팅할 수 있습니다.",
+    en: "Review the full configuration and save. Download as ZIP or set up directly in your project.",
+  },
+  "guide.builder.aiAssist": {
+    ko: "💡 각 단계에서 AI 어시스트를 활용하면 설명 생성, 팀 구성, 스킬 설정을 자동화할 수 있습니다.",
+    en: "💡 Use AI Assist at each step to auto-generate descriptions, teams, and skill configurations.",
+  },
+  "guide.builder.cloneTip": {
+    ko: "💡 카탈로그의 하네스 상세 페이지에서 \"이 하네스로 내 하네스 만들기\"를 클릭하면 기존 하네스를 복제하여 커스터마이징할 수 있습니다.",
+    en: "💡 Click \"Build from this harness\" on any catalog detail page to clone and customize an existing harness.",
+  },
+  "guide.builder.cta": { ko: "내 하네스 만들러 가기 →", en: "Start Building →" },
+
   "guide.browser.title": { ko: "브라우저 호환성", en: "Browser Compatibility" },
   "guide.browser.feature": { ko: "기능", en: "Feature" },
   "guide.browser.catalogBrowse": { ko: "카탈로그 탐색", en: "Catalog Browse" },

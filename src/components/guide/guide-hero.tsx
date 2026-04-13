@@ -26,7 +26,7 @@ export function GuideHero() {
           {t("guide.hero.browseCatalog")}
         </Link>
         <Link
-          href="/composer"
+          href="/builder"
           className="inline-flex items-center rounded-lg border border-[var(--button-outline-border)] text-[var(--button-outline-fg)] px-4 py-2 text-sm font-medium hover:bg-[var(--muted)] transition-base"
         >
           {t("guide.hero.buildCustom")}

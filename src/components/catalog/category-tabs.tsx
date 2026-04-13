@@ -102,17 +102,6 @@ export function CategoryTabs({ active, onSelect, favoriteCount, customHarnessCou
         >
           {`★ ${t("category.favorites")}${favoriteCount > 0 ? ` ${favoriteCount}` : ""}`}
         </button>
-        {customHarnessCount > 0 && (
-          <button
-            type="button"
-            role="tab"
-            aria-selected={active === "my-harnesses"}
-            onClick={() => onSelect("my-harnesses")}
-            className={`${baseClass} ${active === "my-harnesses" ? activeClass : inactiveClass}`}
-          >
-            {t("category.myHarnesses")} {customHarnessCount}
-          </button>
-        )}
         <button
           type="button"
           role="tab"
@@ -134,6 +123,21 @@ export function CategoryTabs({ active, onSelect, favoriteCount, customHarnessCou
             {locale === "en" ? cat.labelEn : cat.label} {cat.count}
           </button>
         ))}
+        {customHarnessCount > 0 && (
+          <button
+            type="button"
+            role="tab"
+            aria-selected={active === "my-harnesses"}
+            onClick={() => onSelect("my-harnesses")}
+            className={`${baseClass} ${
+              active === "my-harnesses"
+                ? "bg-violet-600 text-white"
+                : "border border-violet-500/50 text-violet-400 hover:bg-violet-500/10"
+            }`}
+          >
+            {t("category.myHarnesses")} {customHarnessCount}
+          </button>
+        )}
       </div>
     </div>
   );

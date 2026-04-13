@@ -64,11 +64,79 @@ ${harness.agents.map((a) => `- **${a.name}**: ${a.role}`).join("\n")}
 `;
 }
 
+/** Group execution steps into phases by dependency depth (BFS). */
+function buildPhases(
+  harness: Harness,
+): ReadonlyArray<ReadonlyArray<{ agentId: string; parallel: boolean; dependsOn: ReadonlyArray<string> }>> {
+  const steps = harness.skill.executionOrder;
+  if (steps.length === 0) return [];
+
+  const resolved = new Set<string>();
+  const remaining = [...steps];
+  const phases: Array<Array<typeof steps[number]>> = [];
+
+  while (remaining.length > 0) {
+    const batch = remaining.filter((s) =>
+      s.dependsOn.every((d) => resolved.has(d)),
+    );
+    if (batch.length === 0) {
+      // Circular or unresolvable — dump the rest into one phase
+      phases.push(remaining.splice(0));
+      break;
+    }
+    for (const s of batch) {
+      resolved.add(s.agentId);
+      remaining.splice(remaining.indexOf(s), 1);
+    }
+    phases.push(batch);
+  }
+  return phases;
+}
+
 function generateSkillMd(harness: Harness, locale: Locale = "ko"): string {
-  const agentTable = harness.agents
+  const ko = locale === "ko";
+  const agents = harness.agents;
+  const agentMap = new Map(agents.map((a) => [a.id, a]));
+
+  // ── Frontmatter ──
+  const triggerDesc = harness.skill.triggerConditions
+    .map((tc) => `'${tc}'`)
+    .join(", ");
+
+  // ── Agent config table ──
+  const agentTable = agents
     .map((a) => `| ${a.id} | \`.claude/agents/${a.id}.md\` | ${a.role} | general-purpose |`)
     .join("\n");
 
+  // ── Phase-based workflow ──
+  const phases = buildPhases(harness);
+  let outputIndex = 1;
+  const phaseBlocks = phases.map((batch, pi) => {
+    const phaseTitle = ko
+      ? `### Phase ${pi + 1}`
+      : `### Phase ${pi + 1}`;
+
+    const rows = batch.map((step) => {
+      const agent = agentMap.get(step.agentId);
+      const role = agent?.role ?? step.agentId;
+      const deps = step.dependsOn.length > 0
+        ? step.dependsOn.join(", ")
+        : t(locale, "gen.none");
+      const idx = String(outputIndex).padStart(2, "0");
+      const output = `\`_workspace/${idx}_${step.agentId}_output.md\``;
+      outputIndex++;
+      const parallel = step.parallel ? (ko ? " (병렬)" : " (parallel)") : "";
+      return `| ${step.agentId} | ${role}${parallel} | ${deps} | ${output} |`;
+    });
+
+    const header = ko
+      ? `| 담당 | 역할 | 의존 | 산출물 |`
+      : `| Agent | Role | Depends On | Output |`;
+
+    return `${phaseTitle}\n\n${header}\n|------|------|------|--------|\n${rows.join("\n")}`;
+  });
+
+  // ── Execution order table (legacy compact view) ──
   const execTable = harness.skill.executionOrder
     .map((s, i) => {
       const deps = s.dependsOn.length > 0 ? s.dependsOn.join(", ") : t(locale, "gen.none");
@@ -76,21 +144,66 @@ function generateSkillMd(harness: Harness, locale: Locale = "ko"): string {
     })
     .join("\n");
 
+  // ── Modes table ──
   const modesTable = harness.skill.modes
     .map((m) => `| "${m.triggerPattern}" | **${m.name}** | ${m.agents.join(", ")} |`)
     .join("\n");
 
+  // ── Extension skills ──
   const extSkillsSection =
     harness.skill.extensionSkills.length > 0
       ? `## ${t(locale, "gen.extensionSkills")}\n\n| ${t(locale, "gen.skillHeader")} | ${t(locale, "gen.pathHeader")} | ${t(locale, "gen.targetAgent")} | ${t(locale, "gen.roleHeader")} |\n|------|------|-------------|------|\n${harness.skill.extensionSkills.map((s) => `| ${s.name} | ${s.path} | ${s.targetAgent} | ${s.description} |`).join("\n")}\n`
       : "";
 
+  // ── Communication protocol ──
+  const commSection = ko
+    ? `## 에이전트 간 통신 프로토콜
+
+- 에이전트 간 SendMessage를 통해 직접 통신하며 작업 결과를 교차 검증한다
+- 각 에이전트는 작업 완료 후 산출물을 \`_workspace/\` 디렉토리에 저장한다
+- 후속 에이전트는 선행 에이전트의 산출물을 읽어 작업을 이어간다`
+    : `## Inter-Agent Communication Protocol
+
+- Agents communicate directly via SendMessage and cross-verify outputs
+- Each agent saves deliverables to the \`_workspace/\` directory upon completion
+- Downstream agents read upstream outputs to continue the workflow`;
+
+  // ── Preparation phase ──
+  const prepSection = ko
+    ? `## 실행 준비 (오케스트레이터 수행)
+
+1. 사용자 입력에서 핵심 요구사항을 추출한다
+2. \`_workspace/\` 디렉토리를 프로젝트 루트에 생성한다
+3. 입력을 정리하여 \`_workspace/00_input.md\`에 저장한다
+4. 요청 범위에 따라 실행 모드를 결정한다 (아래 "작업 규모별 모드" 참조)`
+    : `## Preparation (Orchestrator)
+
+1. Extract core requirements from user input
+2. Create \`_workspace/\` directory at the project root
+3. Organize input into \`_workspace/00_input.md\`
+4. Determine execution mode based on request scope (see "Modes by Scale" below)`;
+
+  // ── Constraints ──
+  const constraintSection = ko
+    ? `## 제약사항
+
+- 이 스킬은 위 에이전트 팀의 협업 범위 내에서 동작한다
+- 에이전트 정의에 명시되지 않은 외부 도구 실행이나 배포는 이 스킬의 범위가 아니다
+- 산출물은 모두 \`_workspace/\` 디렉토리에 마크다운 형식으로 저장된다`
+    : `## Constraints
+
+- This skill operates within the collaboration scope of the agent team above
+- External tool execution or deployment not specified in agent definitions is out of scope
+- All deliverables are saved as markdown files in the \`_workspace/\` directory`;
+
   return `---
 name: ${harness.skill.name}
-description: "${harness.skill.triggerConditions.map((tc) => `'${tc}'`).join(", ")}"
+description: "${triggerDesc}"
 ---
 
-# ${harness.skill.name}
+# ${harness.skill.name} — ${harness.name}
+
+${harness.description}
 
 ## ${t(locale, "gen.agentConfig")}
 
@@ -98,7 +211,15 @@ description: "${harness.skill.triggerConditions.map((tc) => `'${tc}'`).join(", "
 |---------|------|------|------|
 ${agentTable}
 
+${prepSection}
+
 ## ${t(locale, "gen.workflow")}
+
+${phaseBlocks.join("\n\n")}
+
+${commSection}
+
+## ${t(locale, "gen.orderHeader")} (${ko ? "요약" : "Summary"})
 
 | ${t(locale, "gen.orderHeader")} | ${t(locale, "gen.assignee")} | ${t(locale, "gen.depends")} |
 |------|------|------|
@@ -110,7 +231,9 @@ ${execTable}
 |----------------|----------|-------------|
 ${modesTable}
 
-${extSkillsSection}`;
+${extSkillsSection}
+${constraintSection}
+`;
 }
 
 /**

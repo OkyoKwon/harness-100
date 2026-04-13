@@ -29,9 +29,9 @@ export function MyHarnessList({ onEdit, onCreateNew }: MyHarnessListProps) {
     }
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (deleteTarget) {
-      remove(deleteTarget);
+      await remove(deleteTarget);
       setDeleteTarget(null);
     }
   };

@@ -1,74 +1,85 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { STORAGE_KEYS } from "@/lib/constants";
-import { parseCustomHarnessStore } from "@/lib/builder-validation";
-import { toHarness } from "@/lib/custom-harness-converter";
 import { nanoid } from "nanoid";
+import { getHarnessStore, type HarnessStore } from "@/lib/harness-store";
+import { toHarness } from "@/lib/custom-harness-converter";
 import type { Harness } from "@/lib/types";
-import type { CustomHarness, CustomHarnessStore } from "@/lib/custom-harness-types";
-
-function persist(harnesses: ReadonlyArray<CustomHarness>): boolean {
-  try {
-    const store: CustomHarnessStore = { version: 1, harnesses };
-    localStorage.setItem(STORAGE_KEYS.customHarnesses, JSON.stringify(store));
-    return true;
-  } catch {
-    return false;
-  }
-}
+import type { CustomHarness } from "@/lib/custom-harness-types";
 
 export function useCustomHarnesses() {
   const [harnesses, setHarnesses] = useState<ReadonlyArray<CustomHarness>>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [store, setStore] = useState<HarnessStore | null>(null);
 
-  // Read from localStorage on mount (avoids SSR/hydration mismatch)
+  // Initialize store and load data (SSR-safe)
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEYS.customHarnesses);
-      const store = parseCustomHarnessStore(raw);
-      setHarnesses(store.harnesses);
-    } catch {
-      // localStorage unavailable
-    }
-    setIsLoading(false);
+    let cancelled = false;
+
+    getHarnessStore().then(async (s) => {
+      if (cancelled) return;
+      setStore(s);
+      const all = await s.getAll();
+      if (!cancelled) {
+        setHarnesses(all);
+        setIsLoading(false);
+      }
+    });
+
+    return () => { cancelled = true; };
   }, []);
 
   // Cross-tab sync
   useEffect(() => {
-    const handleStorage = (e: StorageEvent) => {
-      if (e.key === STORAGE_KEYS.customHarnesses) {
-        const store = parseCustomHarnessStore(e.newValue);
-        setHarnesses(store.harnesses);
-      }
-    };
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
-  }, []);
+    if (!store) return;
 
-  const save = useCallback((harness: CustomHarness): boolean => {
-    let success = false;
+    const unsubscribe = store.subscribe(async () => {
+      const all = await store.getAll();
+      setHarnesses(all);
+    });
+
+    return unsubscribe;
+  }, [store]);
+
+  const save = useCallback(async (harness: CustomHarness): Promise<boolean> => {
+    const updated = { ...harness, updatedAt: new Date().toISOString() };
+
+    // Optimistic update
     setHarnesses((prev) => {
       const idx = prev.findIndex((h) => h.id === harness.id);
-      const updated = { ...harness, updatedAt: new Date().toISOString() };
-      const next = idx >= 0
+      return idx >= 0
         ? prev.map((h, i) => (i === idx ? updated : h))
         : [...prev, updated];
-      success = persist(next);
-      return success ? next : prev;
     });
-    return success;
+
+    try {
+      const s = await getHarnessStore();
+      await s.put(updated);
+      return true;
+    } catch {
+      // Rollback
+      const s = await getHarnessStore();
+      const all = await s.getAll();
+      setHarnesses(all);
+      return false;
+    }
   }, []);
 
-  const remove = useCallback((id: string) => {
-    setHarnesses((prev) => {
-      const next = prev.filter((h) => h.id !== id);
-      persist(next);
-      return next;
-    });
+  const remove = useCallback(async (id: string) => {
+    setHarnesses((prev) => prev.filter((h) => h.id !== id));
+
+    try {
+      const s = await getHarnessStore();
+      await s.remove(id);
+    } catch {
+      // Rollback
+      const s = await getHarnessStore();
+      const all = await s.getAll();
+      setHarnesses(all);
+    }
   }, []);
 
-  const duplicate = useCallback((id: string): CustomHarness | null => {
+  const duplicate = useCallback(async (id: string): Promise<CustomHarness | null> => {
     const source = harnesses.find((h) => h.id === id);
     if (!source) return null;
 
@@ -82,11 +93,18 @@ export function useCustomHarnesses() {
       updatedAt: now,
     };
 
-    setHarnesses((prev) => {
-      const next = [...prev, copy];
-      persist(next);
-      return next;
-    });
+    setHarnesses((prev) => [...prev, copy]);
+
+    try {
+      const s = await getHarnessStore();
+      await s.put(copy);
+    } catch {
+      // Rollback
+      const s = await getHarnessStore();
+      const all = await s.getAll();
+      setHarnesses(all);
+      return null;
+    }
 
     return copy;
   }, [harnesses]);

@@ -670,7 +670,7 @@ const translations: Record<string, TranslationEntry> = {
 
   "builder.action.save": { ko: "저장", en: "Save" },
   "builder.action.saved": { ko: "저장 완료!", en: "Saved!" },
-  "builder.action.saveFailed": { ko: "저장 실패 (저장 공간 부족)", en: "Save failed (storage full)" },
+  "builder.action.saveFailed": { ko: "저장에 실패했습니다", en: "Save failed" },
   "builder.action.download": { ko: "ZIP 다운로드", en: "Download ZIP" },
   "builder.action.setup": { ko: "로컬 셋업", en: "Local Setup" },
   "builder.action.exportJson": { ko: "JSON 내보내기", en: "Export JSON" },

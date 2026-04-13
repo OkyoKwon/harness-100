@@ -27,9 +27,10 @@ export function StepReview({ harness, errors, onSaved }: StepReviewProps) {
   const enabledAgents = harness.agents.filter((a) => a.enabled);
   const isValid = !hasErrors(errors);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setSaving(true);
-    const success = save(harness);
+    setSaveResult(null);
+    const success = await save(harness);
     setSaveResult(success ? "success" : "error");
     setSaving(false);
     if (success) onSaved();
@@ -120,7 +121,7 @@ ${enabledAgents.map((a, i) => `│   ${i === enabledAgents.length - 1 ? "└─�
           disabled={!isValid || saving}
           className="rounded-lg bg-[var(--primary)] px-4 py-2.5 text-sm font-medium text-[var(--primary-foreground)] hover:opacity-90 transition-base focus-ring disabled:opacity-50"
         >
-          {t("builder.action.save")}
+          {saving ? t("builder.action.save") + "..." : t("builder.action.save")}
         </button>
         <button
           type="button"

@@ -40,6 +40,7 @@ export function Header() {
             </Link>
             <Link
               href="/builder"
+              onClick={() => window.dispatchEvent(new CustomEvent("builder-nav-reset"))}
               className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded px-2 py-1.5"
             >
               {t("nav.builder")}

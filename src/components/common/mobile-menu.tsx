@@ -100,6 +100,7 @@ export function MobileMenu() {
                 <li key={href}>
                   <Link
                     href={href}
+                    onClick={href === "/builder" ? () => window.dispatchEvent(new CustomEvent("builder-nav-reset")) : undefined}
                     className="flex items-center min-h-[44px] px-4 py-3 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
                   >
                     {t(key)}

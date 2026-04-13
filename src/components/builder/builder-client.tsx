@@ -29,7 +29,7 @@ export function BuilderClient() {
   const { getById, isLoading: customLoading } = useCustomHarnesses();
   const searchParams = useSearchParams();
 
-  // Open detail view when ?view={id} is present
+  // Sync mode with URL: open detail when ?view={id}, reset to list when it's removed
   useEffect(() => {
     if (customLoading) return;
     const viewId = searchParams.get("view");
@@ -39,8 +39,23 @@ export function BuilderClient() {
         setViewingHarness(found);
         setMode("detail");
       }
+    } else if (!viewId && mode === "detail") {
+      setMode("list");
+      setViewingHarness(undefined);
     }
   }, [searchParams, customLoading, getById]);
+
+  // Listen for header "내 하네스" nav clicks to reset to list
+  useEffect(() => {
+    const handler = () => {
+      setMode("list");
+      setViewingHarness(undefined);
+      setEditingHarness(undefined);
+      builder.resetAll();
+    };
+    window.addEventListener("builder-nav-reset", handler);
+    return () => window.removeEventListener("builder-nav-reset", handler);
+  }, [builder]);
 
   const handleCreateNew = useCallback(() => {
     setEditingHarness(undefined);

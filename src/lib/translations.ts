@@ -6,7 +6,7 @@ type TranslationParams = Record<string, string | number>;
 const translations: Record<string, TranslationEntry> = {
   // ── Navigation ──
   "nav.ranking": { ko: "랭킹", en: "Ranking" },
-  "nav.composer": { ko: "조합기", en: "Composer" },
+  "nav.composer": { ko: "조합", en: "Compose" },
   "nav.guide": { ko: "가이드", en: "Guide" },
   "nav.menu": { ko: "메뉴", en: "Menu" },
   "nav.closeMenu": { ko: "메뉴 닫기", en: "Close menu" },
@@ -595,7 +595,7 @@ const translations: Record<string, TranslationEntry> = {
   "ai.generatingTeam": { ko: "AI가 에이전트 팀을 생성하고 있습니다.\n지침, 의존성 등 상세 정보를 포함하여 생성하므로 시간이 걸릴 수 있습니다.", en: "AI is generating your agent team.\nThis includes instructions and dependencies, so it may take a moment." },
 
   // ── Builder ──
-  "nav.builder": { ko: "만들기", en: "Builder" },
+  "nav.builder": { ko: "내 하네스", en: "My Harnesses" },
   "builder.title": { ko: "나만의 하네스 만들기", en: "Build Your Harness" },
   "builder.subtitle": { ko: "에이전트와 스킬을 직접 구성하여 나만의 하네스를 만드세요", en: "Configure agents and skills to create your own harness" },
   "builder.myHarnesses": { ko: "내 하네스", en: "My Harnesses" },

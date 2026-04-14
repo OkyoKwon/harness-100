@@ -77,7 +77,7 @@ export function CustomHarnessCard({ harness }: CustomHarnessCardProps) {
               disabled={!setupSupported || setupBusy}
               className="inline-flex items-center gap-1 rounded-lg bg-[var(--primary)] px-3 py-1.5 text-xs font-medium text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 disabled:opacity-50 transition-base focus-ring"
             >
-              {t("action.setup")} →
+              {t("action.setup")}
             </button>
             <button
               type="button"

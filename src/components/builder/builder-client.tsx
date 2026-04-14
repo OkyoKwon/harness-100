@@ -102,7 +102,7 @@ export function BuilderClient() {
   };
 
   return (
-    <main className="mx-auto max-w-4xl px-4 py-8">
+    <main className={`mx-auto px-4 py-8 ${mode === "detail" ? "max-w-6xl" : "max-w-4xl"}`}>
       {mode === "list" && (
         <>
           <div className="hero-gradient rounded-xl px-5 py-5 mb-6">

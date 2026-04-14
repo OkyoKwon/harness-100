@@ -90,20 +90,20 @@ export function CustomHarnessDetail({ harness, onBack, onEdit }: CustomHarnessDe
   const skillMdContent = generateSkillMd(converted, locale);
 
   return (
-    <div className="space-y-6">
-      {/* Back button */}
-      <button
-        type="button"
-        onClick={onBack}
-        className="flex items-center gap-1 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-base focus-ring rounded"
-      >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
-        {t("builder.myHarnesses")}
-      </button>
-
+    <div>
       {/* Header */}
+      <div className="mb-6">
+        <button
+          type="button"
+          onClick={onBack}
+          className="mb-4 flex items-center gap-1 text-sm text-[var(--primary)] hover:opacity-80 transition-base focus-ring rounded"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+          {t("builder.myHarnesses")}
+        </button>
+
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0 flex-1">
           <h1 className="text-2xl font-bold text-[var(--foreground)]">{harness.name}</h1>
@@ -163,6 +163,7 @@ export function CustomHarnessDetail({ harness, onBack, onEdit }: CustomHarnessDe
           </button>
         </div>
       </div>
+      </div>
 
       {/* Conflict modal */}
       {conflictReport && (
@@ -176,21 +177,25 @@ export function CustomHarnessDetail({ harness, onBack, onEdit }: CustomHarnessDe
 
       {/* Completion banners */}
       {setupStatus === "complete" && setupResult && (
-        <CompletionBanner
-          type="setup"
-          slug={harness.slug}
-          path={setupResult.path}
-          filesWritten={setupResult.filesWritten}
-          filesSkipped={setupResult.filesSkipped}
-          filesMerged={setupResult.filesMerged}
-        />
+        <div className="mb-6">
+          <CompletionBanner
+            type="setup"
+            slug={harness.slug}
+            path={setupResult.path}
+            filesWritten={setupResult.filesWritten}
+            filesSkipped={setupResult.filesSkipped}
+            filesMerged={setupResult.filesMerged}
+          />
+        </div>
       )}
       {zipStatus === "complete" && (
-        <CompletionBanner type="zip" slug={harness.slug} />
+        <div className="mb-6">
+          <CompletionBanner type="zip" slug={harness.slug} />
+        </div>
       )}
 
       {/* Setup tip — collapsible */}
-      <div className="rounded-lg border border-[var(--info-border)] bg-[var(--info-bg)]">
+      <div className="mb-6 rounded-lg border border-[var(--info-border)] bg-[var(--info-bg)]">
         <button
           type="button"
           onClick={() => setGuideExpanded((prev) => !prev)}
@@ -229,20 +234,6 @@ export function CustomHarnessDetail({ harness, onBack, onEdit }: CustomHarnessDe
             </p>
           </div>
         )}
-      </div>
-
-      {/* File tree */}
-      <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 space-y-2">
-        <h3 className="text-sm font-semibold text-[var(--foreground)]">{t("builder.review.fileTree")}</h3>
-        <pre className="text-xs text-[var(--muted-foreground)] font-mono leading-relaxed">
-{`.claude/
-├── CLAUDE.md
-├── agents/
-${enabledAgents.map((a, i) => `│   ${i === enabledAgents.length - 1 ? "└──" : "├──"} ${a.name || a.id}.md`).join("\n")}
-└── skills/
-    └── ${harness.skill.name || harness.slug}/
-        └── skill.md`}
-        </pre>
       </div>
 
       {/* Main content: two-panel on desktop, stacked on mobile */}

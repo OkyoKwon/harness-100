@@ -10,7 +10,14 @@ import { ConflictModal } from "@/components/setup/conflict-modal";
 import { toHarness } from "@/lib/custom-harness-converter";
 import { buildZip } from "@/lib/zip-builder";
 import { saveAs } from "file-saver";
+import { CATEGORIES } from "@/lib/constants";
 import type { CustomHarness } from "@/lib/custom-harness-types";
+
+function getCategoryLabel(category: string, locale: string): string {
+  const found = CATEGORIES.find((c) => c.slug === category);
+  if (!found) return category;
+  return locale === "en" ? found.labelEn : found.label;
+}
 
 interface MyHarnessListProps {
   readonly onEdit: (harness: CustomHarness) => void;
@@ -116,7 +123,7 @@ export function MyHarnessList({ onEdit, onView, onCreateNew }: MyHarnessListProp
                     {harness.name}
                   </h3>
                   <div className="flex items-center gap-2 mt-1 text-xs text-[var(--muted-foreground)]">
-                    <span className="rounded bg-[var(--muted)] px-1.5 py-0.5">{harness.category}</span>
+                    <span className="rounded bg-[var(--muted)] px-1.5 py-0.5">{getCategoryLabel(harness.category, locale)}</span>
                     <span>{locale === "ko" ? `에이전트 ${harness.agents.filter(a => a.enabled).length}개` : `${harness.agents.filter(a => a.enabled).length} agents`}</span>
                     <span>{new Date(harness.updatedAt).toLocaleDateString(locale)}</span>
                   </div>

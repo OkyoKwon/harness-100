@@ -724,6 +724,7 @@ const translations: Record<string, TranslationEntry> = {
   "builder.skill.edit": { ko: "편집", en: "Edit" },
   "builder.skill.preview": { ko: "미리보기", en: "Preview" },
   "builder.skill.emptyPlaceholder": { ko: "skill.md 내용을 직접 입력하거나, AI 작성으로 자동 생성하세요", en: "Enter skill.md content manually, or use AI to auto-generate" },
+  "builder.skill.aiGenerating": { ko: "AI 작성 중입니다. 완료될 때까지 잠시 기다려주세요.", en: "AI is generating. Please wait..." },
   "builder.skill.customized": { ko: "수정됨", en: "Edited" },
   "builder.skill.resetToAuto": { ko: "자동 생성으로 되돌리기", en: "Reset to auto-generated" },
   "builder.skill.parallel": { ko: "병렬 실행", en: "Parallel" },

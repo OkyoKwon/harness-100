@@ -211,7 +211,8 @@ export function BuilderClient() {
                   if (currentStep === 1) builder.meta.touchAll();
                   if (canProceedFromStep(currentStep)) next();
                 }}
-                className="rounded-lg bg-[var(--primary)] px-4 py-2.5 text-sm font-medium text-[var(--primary-foreground)] hover:opacity-90 transition-base focus-ring"
+                disabled={ai.loading}
+                className="rounded-lg bg-[var(--primary)] px-4 py-2.5 text-sm font-medium text-[var(--primary-foreground)] hover:opacity-90 transition-base focus-ring disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {t("builder.action.next")}
               </button>

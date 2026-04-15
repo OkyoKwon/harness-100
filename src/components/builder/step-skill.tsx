@@ -108,6 +108,22 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
         <p>{t("builder.guide.skill")}</p>
       </GuideBanner>
 
+      {/* AI loading banner */}
+      {ai.loading && (
+        <div className="flex items-center gap-3 rounded-lg border border-violet-500/30 bg-violet-500/10 px-4 py-3">
+          <svg className="animate-spin h-4 w-4 text-violet-400 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeDasharray="31.4" strokeLinecap="round" />
+          </svg>
+          <div className="text-sm text-violet-300">
+            <span className="font-medium">
+              {skillGenProgress
+                ? t("builder.skill.generatingExtAll", { current: skillGenProgress.current, total: skillGenProgress.total })
+                : t("builder.skill.aiGenerating")}
+            </span>
+          </div>
+        </div>
+      )}
+
       {/* AI assist button — generates skill name + triggers + extension skills */}
       {ai.isConfigured && (
         <div className="flex justify-end">

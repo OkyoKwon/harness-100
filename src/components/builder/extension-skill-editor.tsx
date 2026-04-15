@@ -2,22 +2,16 @@
 
 import { useState } from "react";
 import { useLocale } from "@/hooks/use-locale";
-import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
-import { AiAssistButton } from "./ai-assist-button";
-import { generateExtensionSkillMarkdown } from "@/lib/ai-assist";
 import type { ExtensionSkill } from "@/lib/types";
 import type { CustomAgent } from "@/lib/custom-harness-types";
-import type { useAiAssist } from "@/hooks/use-ai-assist";
 
 interface ExtensionSkillEditorProps {
   readonly ext: ExtensionSkill;
   readonly index: number;
   readonly agents: ReadonlyArray<CustomAgent>;
-  readonly harnessName: string;
   readonly markdown: string | undefined;
   readonly errors: Readonly<Record<string, string>>;
-  readonly ai: ReturnType<typeof useAiAssist>;
   readonly onUpdate: (index: number, ext: ExtensionSkill) => void;
   readonly onRemove: (index: number) => void;
   readonly onUpdateMarkdown: (name: string, md: string) => void;
@@ -25,44 +19,16 @@ interface ExtensionSkillEditorProps {
 }
 
 export function ExtensionSkillEditor({
-  ext, index, agents, harnessName, markdown, errors, ai,
+  ext, index, agents, markdown, errors,
   onUpdate, onRemove, onUpdateMarkdown, onClearMarkdown,
 }: ExtensionSkillEditorProps) {
-  const { t, locale } = useLocale();
-  const { addToast } = useToast();
+  const { t } = useLocale();
   const [mdExpanded, setMdExpanded] = useState(false);
 
   const enabledAgents = agents.filter((a) => a.enabled);
 
   const handleFieldChange = (field: keyof ExtensionSkill, value: string) => {
     onUpdate(index, { ...ext, [field]: value });
-  };
-
-  const handleGenerateMarkdown = async () => {
-    if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
-    if (!ext.name.trim() || !ext.targetAgent.trim()) return;
-
-    const agent = enabledAgents.find((a) => a.id === ext.targetAgent || a.name === ext.targetAgent);
-    if (!agent) return;
-
-    const result = await ai.runAssist((key) =>
-      generateExtensionSkillMarkdown(
-        key,
-        ext.name,
-        ext.description,
-        { name: agent.name, role: agent.role, description: agent.description },
-        harnessName,
-        locale,
-      ),
-    );
-
-    if (result?.success && result.text) {
-      onUpdateMarkdown(ext.name, result.text);
-      setMdExpanded(true);
-      addToast(t("ai.applied"), "success");
-    } else if (result?.error) {
-      addToast(t(result.error), "error");
-    }
   };
 
   return (
@@ -124,19 +90,6 @@ export function ExtensionSkillEditor({
         onChange={(e) => handleFieldChange("description", e.target.value)}
         placeholder={t("builder.skill.extensionDescPlaceholder")}
       />
-
-      {/* Actions row */}
-      <div className="flex items-center gap-2">
-        {ai.isConfigured && (
-          <AiAssistButton
-            onClick={handleGenerateMarkdown}
-            loading={ai.loading}
-            disabled={!ext.name.trim() || !ext.targetAgent.trim()}
-            size="sm"
-            label={t("builder.skill.generateExtensionMd")}
-          />
-        )}
-      </div>
 
       {/* Markdown preview/edit */}
       {(markdown || ext.name) && (

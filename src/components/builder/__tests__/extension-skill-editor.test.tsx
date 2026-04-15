@@ -57,13 +57,6 @@ function makeAgent(overrides: Partial<CustomAgent> = {}): CustomAgent {
   };
 }
 
-const defaultAi = {
-  isConfigured: false,
-  loading: false,
-  runAssist: vi.fn(),
-  apiKey: "",
-};
-
 describe("ExtensionSkillEditor", () => {
   const onUpdate = vi.fn();
   const onRemove = vi.fn();
@@ -76,10 +69,10 @@ describe("ExtensionSkillEditor", () => {
         ext={makeExt()}
         index={0}
         agents={[makeAgent()]}
-        harnessName="Test"
+
         markdown={undefined}
         errors={{}}
-        ai={defaultAi as never}
+
         onUpdate={onUpdate}
         onRemove={onRemove}
         onUpdateMarkdown={onUpdateMarkdown}
@@ -99,10 +92,10 @@ describe("ExtensionSkillEditor", () => {
         ext={makeExt()}
         index={2}
         agents={[makeAgent()]}
-        harnessName="Test"
+
         markdown={undefined}
         errors={{}}
-        ai={defaultAi as never}
+
         onUpdate={onUpdate}
         onRemove={onRemove}
         onUpdateMarkdown={onUpdateMarkdown}
@@ -121,10 +114,10 @@ describe("ExtensionSkillEditor", () => {
         ext={makeExt({ name: "" })}
         index={0}
         agents={[makeAgent()]}
-        harnessName="Test"
+
         markdown={undefined}
         errors={{}}
-        ai={defaultAi as never}
+
         onUpdate={onUpdate}
         onRemove={onRemove}
         onUpdateMarkdown={onUpdateMarkdown}
@@ -143,10 +136,10 @@ describe("ExtensionSkillEditor", () => {
         ext={makeExt({ name: "" })}
         index={0}
         agents={[makeAgent()]}
-        harnessName="Test"
+
         markdown={undefined}
         errors={{ "0_name": "builder.validation.extNameRequired" }}
-        ai={defaultAi as never}
+
         onUpdate={onUpdate}
         onRemove={onRemove}
         onUpdateMarkdown={onUpdateMarkdown}

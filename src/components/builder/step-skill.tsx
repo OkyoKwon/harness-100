@@ -234,11 +234,8 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
       <ExtensionSkillsSection
         skill={skill}
         agents={agents}
-        harnessName={harnessName}
-        harnessDescription={harnessDescription ?? ""}
         extensionSkillMarkdowns={extensionSkillMarkdowns}
         extensionSkillErrors={extensionSkillErrors ?? {}}
-        ai={ai}
         onAdd={addExtensionSkill}
         onRemove={removeExtensionSkill}
         onUpdate={updateExtensionSkill}
@@ -372,11 +369,8 @@ import type { ExtensionSkill, Skill } from "@/lib/types";
 interface ExtensionSkillsSectionProps {
   readonly skill: Skill;
   readonly agents: ReadonlyArray<CustomAgent>;
-  readonly harnessName: string;
-  readonly harnessDescription: string;
   readonly extensionSkillMarkdowns: Readonly<Record<string, string>>;
   readonly extensionSkillErrors: Readonly<Record<string, string>>;
-  readonly ai: ReturnType<typeof useAiAssist>;
   readonly onAdd: (ext: ExtensionSkill) => void;
   readonly onRemove: (index: number) => void;
   readonly onUpdate: (index: number, ext: ExtensionSkill) => void;
@@ -385,61 +379,11 @@ interface ExtensionSkillsSectionProps {
 }
 
 function ExtensionSkillsSection({
-  skill, agents, harnessName, harnessDescription,
-  extensionSkillMarkdowns, extensionSkillErrors, ai,
+  skill, agents,
+  extensionSkillMarkdowns, extensionSkillErrors,
   onAdd, onRemove, onUpdate, onUpdateMarkdown, onClearMarkdown,
 }: ExtensionSkillsSectionProps) {
-  const { t, locale } = useLocale();
-  const { addToast } = useToast();
-  const [progress, setProgress] = useState<{ current: number; total: number } | null>(null);
-
-  const handleGenerateAll = async () => {
-    if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
-    if (!harnessName.trim()) { addToast(t("ai.error.noName"), "error"); return; }
-
-    const enabledAgents = agents.filter((a) => a.enabled);
-
-    const response = await ai.runAssist((key) =>
-      generateAllExtensionSkills(
-        key,
-        harnessName,
-        harnessDescription,
-        enabledAgents.map((a) => ({ id: a.id, name: a.name, role: a.role, description: a.description })),
-        locale,
-        (current, total) => setProgress({ current, total }),
-      ),
-    );
-    setProgress(null);
-
-    if (!response) return;
-
-    if (response.success && response.result) {
-      const { suggestions, markdowns } = response.result;
-      if (suggestions.length === 0) {
-        addToast(t("builder.skill.noExtensions"), "info");
-        return;
-      }
-      for (const suggestion of suggestions) {
-        const agent = enabledAgents.find((a) => a.name === suggestion.targetAgent || a.id === suggestion.targetAgent);
-        onAdd({
-          name: suggestion.name,
-          path: `${suggestion.name}/skill.md`,
-          targetAgent: agent?.id ?? suggestion.targetAgent,
-          description: suggestion.description,
-        });
-      }
-      for (const [name, md] of Object.entries(markdowns)) {
-        onUpdateMarkdown(name, md);
-      }
-      addToast(t("ai.applied"), "success");
-    } else if (response.error) {
-      addToast(t(response.error), "error");
-    }
-  };
-
-  const progressLabel = progress
-    ? t("builder.skill.generatingExtAll", { current: progress.current, total: progress.total })
-    : t("builder.skill.generateExtensions");
+  const { t } = useLocale();
 
   const handleAddManual = () => {
     onAdd({
@@ -466,24 +410,13 @@ function ExtensionSkillsSection({
             {t("builder.skill.extensionsHelper")}
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          {ai.isConfigured && (
-            <AiAssistButton
-              onClick={handleGenerateAll}
-              loading={ai.loading}
-              disabled={!harnessName.trim() || agents.filter((a) => a.enabled).length === 0}
-              size="sm"
-              label={progressLabel}
-            />
-          )}
-          <button
-            type="button"
-            onClick={handleAddManual}
-            className="rounded-md border border-[var(--border)] px-2.5 py-1 text-xs font-medium text-[var(--foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
-          >
-            + {t("builder.skill.addExtension")}
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={handleAddManual}
+          className="rounded-md border border-[var(--border)] px-2.5 py-1 text-xs font-medium text-[var(--foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
+        >
+          + {t("builder.skill.addExtension")}
+        </button>
       </div>
 
       {skill.extensionSkills.length === 0 ? (
@@ -498,10 +431,8 @@ function ExtensionSkillsSection({
               ext={ext}
               index={i}
               agents={agents}
-              harnessName={harnessName}
               markdown={extensionSkillMarkdowns[ext.name]}
               errors={extensionSkillErrors}
-              ai={ai}
               onUpdate={onUpdate}
               onRemove={onRemove}
               onUpdateMarkdown={onUpdateMarkdown}

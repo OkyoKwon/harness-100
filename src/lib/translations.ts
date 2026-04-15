@@ -731,6 +731,20 @@ const translations: Record<string, TranslationEntry> = {
   "builder.skill.modeAgents": { ko: "포함할 에이전트", en: "Included Agents" },
   "builder.skill.noTriggers": { ko: "트리거 조건을 추가하세요", en: "Add trigger conditions" },
 
+  "builder.skill.extensions": { ko: "확장 스킬", en: "Extension Skills" },
+  "builder.skill.extensionsHelper": { ko: "특정 에이전트의 전문 지식을 강화하는 독립 스킬입니다", en: "Independent skills that enhance domain expertise of specific agents" },
+  "builder.skill.addExtension": { ko: "확장 스킬 추가", en: "Add Extension Skill" },
+  "builder.skill.extensionName": { ko: "스킬 이름", en: "Skill Name" },
+  "builder.skill.extensionNameHelper": { ko: "영문 kebab-case (예: hook-writing)", en: "kebab-case (e.g., hook-writing)" },
+  "builder.skill.extensionTarget": { ko: "대상 에이전트", en: "Target Agent" },
+  "builder.skill.extensionTargetPlaceholder": { ko: "에이전트 선택", en: "Select agent" },
+  "builder.skill.extensionDesc": { ko: "설명", en: "Description" },
+  "builder.skill.extensionDescPlaceholder": { ko: "이 스킬이 제공하는 전문 지식", en: "Domain expertise this skill provides" },
+  "builder.skill.generateExtensions": { ko: "확장 스킬 제안", en: "Suggest Extensions" },
+  "builder.skill.generateExtensionMd": { ko: "내용 생성", en: "Generate Content" },
+  "builder.skill.noExtensions": { ko: "확장 스킬이 없습니다. AI 제안 또는 수동 추가로 시작하세요.", en: "No extension skills. Start with AI suggestions or add manually." },
+  "builder.review.extensionSkills": { ko: "확장 스킬 ({count}개)", en: "Extension Skills ({count})" },
+
   "builder.review.summary": { ko: "하네스 요약", en: "Harness Summary" },
   "builder.review.agents": { ko: "에이전트 ({count}개)", en: "Agents ({count})" },
   "builder.review.fileTree": { ko: "생성될 파일", en: "Files to Generate" },
@@ -769,6 +783,12 @@ const translations: Record<string, TranslationEntry> = {
   "builder.validation.cyclicDeps": { ko: "순환 의존성이 감지되었습니다", en: "Circular dependency detected" },
   "builder.validation.minTriggers": { ko: "트리거 조건을 1개 이상 등록하세요", en: "Add at least one trigger condition" },
   "builder.validation.skillNameRequired": { ko: "스킬 이름을 입력하세요", en: "Skill name is required" },
+  "builder.validation.extNameRequired": { ko: "확장 스킬 이름을 입력하세요", en: "Extension skill name is required" },
+  "builder.validation.extNameFormat": { ko: "확장 스킬 이름은 영문 kebab-case여야 합니다", en: "Extension skill name must be kebab-case" },
+  "builder.validation.extNameCollision": { ko: "메인 스킬과 이름이 같을 수 없습니다", en: "Cannot use the same name as the main skill" },
+  "builder.validation.extNameDuplicate": { ko: "확장 스킬 이름이 중복됩니다", en: "Extension skill name is duplicated" },
+  "builder.validation.extTargetRequired": { ko: "대상 에이전트를 선택하세요", en: "Select a target agent" },
+  "builder.validation.extTargetInvalid": { ko: "대상 에이전트가 존재하지 않습니다", en: "Target agent does not exist" },
 
   // ── Builder: Empty state & templates ──
   "ai.manage": { ko: "관리", en: "Manage" },

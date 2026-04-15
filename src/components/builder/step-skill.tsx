@@ -7,12 +7,14 @@ import { Input } from "@/components/ui/input";
 import { GuideBanner } from "./guide-banner";
 import { ExecutionOrderEditor } from "./execution-order-editor";
 import { AiAssistButton } from "./ai-assist-button";
-import { generateSkillDetails, parseSkillDetails } from "@/lib/ai-assist";
+import { generateSkillDetails, parseSkillDetails, generateExtensionSkillSuggestions, parseExtensionSkillSuggestions } from "@/lib/ai-assist";
 import { generateSkillMd } from "@/lib/zip-builder";
 import { toHarness } from "@/lib/custom-harness-converter";
+import { ExtensionSkillEditor } from "./extension-skill-editor";
 import type { useBuilderSkill } from "@/hooks/use-builder-skill";
 import type { CustomAgent } from "@/lib/custom-harness-types";
 import type { useAiAssist } from "@/hooks/use-ai-assist";
+import type { ValidationErrors } from "@/lib/builder-validation";
 
 interface StepSkillProps {
   readonly hook: ReturnType<typeof useBuilderSkill>;
@@ -20,13 +22,19 @@ interface StepSkillProps {
   readonly harnessName: string;
   readonly harnessDescription?: string;
   readonly ai: ReturnType<typeof useAiAssist>;
+  readonly extensionSkillErrors?: ValidationErrors["extensionSkills"];
 }
 
-export function StepSkill({ hook, agents, harnessName, harnessDescription, ai }: StepSkillProps) {
+export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, extensionSkillErrors }: StepSkillProps) {
   const { t, locale } = useLocale();
   const { addToast } = useToast();
   const [triggerInput, setTriggerInput] = useState("");
-  const { skill, skillMarkdown, errors, updateName, addTrigger, removeTrigger, toggleParallel, reorderExecution, updateSkillMarkdown } = hook;
+  const {
+    skill, skillMarkdown, extensionSkillMarkdowns, errors, updateName,
+    addTrigger, removeTrigger, toggleParallel, reorderExecution, updateSkillMarkdown,
+    addExtensionSkill, removeExtensionSkill, updateExtensionSkill,
+    updateExtensionSkillMarkdown, clearExtensionSkillMarkdown,
+  } = hook;
   const [mdExpanded, setMdExpanded] = useState(false);
 
   const handleTriggerKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -157,6 +165,22 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai }:
         />
       </div>
 
+      {/* Extension skills */}
+      <ExtensionSkillsSection
+        skill={skill}
+        agents={agents}
+        harnessName={harnessName}
+        harnessDescription={harnessDescription ?? ""}
+        extensionSkillMarkdowns={extensionSkillMarkdowns}
+        extensionSkillErrors={extensionSkillErrors ?? {}}
+        ai={ai}
+        onAdd={addExtensionSkill}
+        onRemove={removeExtensionSkill}
+        onUpdate={updateExtensionSkill}
+        onUpdateMarkdown={updateExtensionSkillMarkdown}
+        onClearMarkdown={clearExtensionSkillMarkdown}
+      />
+
       {/* Skill markdown preview / edit */}
       <SkillMarkdownSection
         skill={skill}
@@ -251,6 +275,143 @@ function SkillMarkdownSection({
               {t("builder.skill.resetToAuto")}
             </button>
           )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Extension Skills Section ──
+
+import type { ExtensionSkill, Skill } from "@/lib/types";
+
+interface ExtensionSkillsSectionProps {
+  readonly skill: Skill;
+  readonly agents: ReadonlyArray<CustomAgent>;
+  readonly harnessName: string;
+  readonly harnessDescription: string;
+  readonly extensionSkillMarkdowns: Readonly<Record<string, string>>;
+  readonly extensionSkillErrors: Readonly<Record<string, string>>;
+  readonly ai: ReturnType<typeof useAiAssist>;
+  readonly onAdd: (ext: ExtensionSkill) => void;
+  readonly onRemove: (index: number) => void;
+  readonly onUpdate: (index: number, ext: ExtensionSkill) => void;
+  readonly onUpdateMarkdown: (name: string, md: string) => void;
+  readonly onClearMarkdown: (name: string) => void;
+}
+
+function ExtensionSkillsSection({
+  skill, agents, harnessName, harnessDescription,
+  extensionSkillMarkdowns, extensionSkillErrors, ai,
+  onAdd, onRemove, onUpdate, onUpdateMarkdown, onClearMarkdown,
+}: ExtensionSkillsSectionProps) {
+  const { t, locale } = useLocale();
+  const { addToast } = useToast();
+
+  const handleSuggest = async () => {
+    if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
+    if (!harnessName.trim()) { addToast(t("ai.error.noName"), "error"); return; }
+
+    const enabledAgents = agents.filter((a) => a.enabled);
+    const result = await ai.runAssist((key) =>
+      generateExtensionSkillSuggestions(
+        key,
+        harnessName,
+        harnessDescription,
+        enabledAgents.map((a) => ({ name: a.name, role: a.role })),
+        locale,
+      ),
+    );
+
+    if (result?.success && result.text) {
+      const parsed = parseExtensionSkillSuggestions(result.text);
+      if (parsed.length === 0) {
+        addToast(t("builder.skill.noExtensions"), "info");
+        return;
+      }
+      for (const suggestion of parsed) {
+        // Resolve target agent name to ID
+        const agent = enabledAgents.find((a) => a.name === suggestion.targetAgent || a.id === suggestion.targetAgent);
+        onAdd({
+          name: suggestion.name,
+          path: `${suggestion.name}/skill.md`,
+          targetAgent: agent?.id ?? suggestion.targetAgent,
+          description: suggestion.description,
+        });
+      }
+      addToast(t("ai.applied"), "success");
+    } else if (result?.error) {
+      addToast(t(result.error), "error");
+    }
+  };
+
+  const handleAddManual = () => {
+    onAdd({
+      name: "",
+      path: "",
+      targetAgent: "",
+      description: "",
+    });
+  };
+
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <div>
+          <h3 className="text-sm font-medium text-[var(--foreground)]">
+            {t("builder.skill.extensions")}
+            {skill.extensionSkills.length > 0 && (
+              <span className="ml-1.5 text-xs text-[var(--muted-foreground)]">
+                ({skill.extensionSkills.length})
+              </span>
+            )}
+          </h3>
+          <p className="text-xs text-[var(--muted-foreground)] mt-0.5">
+            {t("builder.skill.extensionsHelper")}
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          {ai.isConfigured && (
+            <AiAssistButton
+              onClick={handleSuggest}
+              loading={ai.loading}
+              disabled={!harnessName.trim() || agents.filter((a) => a.enabled).length === 0}
+              size="sm"
+              label={t("builder.skill.generateExtensions")}
+            />
+          )}
+          <button
+            type="button"
+            onClick={handleAddManual}
+            className="rounded-md border border-[var(--border)] px-2.5 py-1 text-xs font-medium text-[var(--foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
+          >
+            + {t("builder.skill.addExtension")}
+          </button>
+        </div>
+      </div>
+
+      {skill.extensionSkills.length === 0 ? (
+        <p className="text-xs text-[var(--muted-foreground)] italic">
+          {t("builder.skill.noExtensions")}
+        </p>
+      ) : (
+        <div className="space-y-3">
+          {skill.extensionSkills.map((ext, i) => (
+            <ExtensionSkillEditor
+              key={`${ext.name}-${i}`}
+              ext={ext}
+              index={i}
+              agents={agents}
+              harnessName={harnessName}
+              markdown={extensionSkillMarkdowns[ext.name]}
+              errors={extensionSkillErrors}
+              ai={ai}
+              onUpdate={onUpdate}
+              onRemove={onRemove}
+              onUpdateMarkdown={onUpdateMarkdown}
+              onClearMarkdown={onClearMarkdown}
+            />
+          ))}
         </div>
       )}
     </div>

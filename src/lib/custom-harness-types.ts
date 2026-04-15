@@ -27,6 +27,7 @@ export interface CustomHarness {
   readonly version: number;
   readonly baseHarnessId?: number;
   readonly skillMarkdown?: string;
+  readonly extensionSkillMarkdowns?: Readonly<Record<string, string>>;
 }
 
 export interface CustomHarnessStore {

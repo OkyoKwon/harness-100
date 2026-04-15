@@ -44,7 +44,7 @@ export function MyHarnessList({ onEdit, onView, onCreateNew }: MyHarnessListProp
   const handleExport = async (harness: CustomHarness) => {
     try {
       const converted = toHarness(harness);
-      const blob = await buildZip(converted, undefined, locale);
+      const blob = await buildZip(converted, undefined, locale, harness.skillMarkdown, harness.extensionSkillMarkdowns);
       saveAs(blob, `${harness.slug}.zip`);
     } catch (err) {
       console.error("Export failed:", err);

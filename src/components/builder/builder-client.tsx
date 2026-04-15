@@ -182,6 +182,7 @@ export function BuilderClient() {
                 harnessName={builder.meta.meta.name}
                 harnessDescription={builder.meta.meta.description}
                 ai={ai}
+                extensionSkillErrors={builder.validationErrors.extensionSkills}
               />
             )}
             {currentStep === 4 && (

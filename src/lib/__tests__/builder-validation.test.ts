@@ -5,11 +5,12 @@ import {
   validateMeta,
   validateAgents,
   validateSkill,
+  validateExtensionSkills,
   validateAll,
   hasErrors,
 } from "../builder-validation";
 import type { CustomAgent } from "../custom-harness-types";
-import type { Skill } from "../types";
+import type { ExtensionSkill, Skill } from "../types";
 
 function makeAgent(overrides: Partial<CustomAgent> = {}): CustomAgent {
   return {
@@ -190,6 +191,76 @@ describe("validateSkill", () => {
   it("passes for valid skill", () => {
     const errors = validateSkill(validSkill);
     expect(Object.keys(errors)).toHaveLength(0);
+  });
+});
+
+describe("validateExtensionSkills", () => {
+  const agents = [
+    makeAgent({ id: "a1", name: "writer" }),
+    makeAgent({ id: "a2", name: "reviewer" }),
+  ];
+
+  function makeExt(overrides: Partial<ExtensionSkill> = {}): ExtensionSkill {
+    return {
+      name: "hook-writing",
+      path: "hook-writing/skill.md",
+      targetAgent: "a1",
+      description: "Writes hooks",
+      ...overrides,
+    };
+  }
+
+  it("returns no errors for empty array", () => {
+    const errors = validateExtensionSkills([], agents, "main-skill");
+    expect(Object.keys(errors)).toHaveLength(0);
+  });
+
+  it("returns no errors for valid extension skills", () => {
+    const exts = [makeExt(), makeExt({ name: "thumbnail-psychology", targetAgent: "a2" })];
+    const errors = validateExtensionSkills(exts, agents, "main-skill");
+    expect(Object.keys(errors)).toHaveLength(0);
+  });
+
+  it("requires extension skill name", () => {
+    const errors = validateExtensionSkills([makeExt({ name: "" })], agents, "main-skill");
+    expect(errors["0_name"]).toBe("builder.validation.extNameRequired");
+  });
+
+  it("requires kebab-case name", () => {
+    const errors = validateExtensionSkills([makeExt({ name: "BadName" })], agents, "main-skill");
+    expect(errors["0_name"]).toBe("builder.validation.extNameFormat");
+  });
+
+  it("detects collision with main skill name", () => {
+    const errors = validateExtensionSkills([makeExt({ name: "main-skill" })], agents, "main-skill");
+    expect(errors["0_name"]).toBe("builder.validation.extNameCollision");
+  });
+
+  it("detects duplicate names", () => {
+    const exts = [makeExt(), makeExt()];
+    const errors = validateExtensionSkills(exts, agents, "main-skill");
+    expect(errors["1_name"]).toBe("builder.validation.extNameDuplicate");
+  });
+
+  it("requires target agent", () => {
+    const errors = validateExtensionSkills([makeExt({ targetAgent: "" })], agents, "main-skill");
+    expect(errors["0_target"]).toBe("builder.validation.extTargetRequired");
+  });
+
+  it("validates target agent exists (by id)", () => {
+    const errors = validateExtensionSkills([makeExt({ targetAgent: "nonexistent" })], agents, "main-skill");
+    expect(errors["0_target"]).toBe("builder.validation.extTargetInvalid");
+  });
+
+  it("accepts target agent by name", () => {
+    const errors = validateExtensionSkills([makeExt({ targetAgent: "writer" })], agents, "main-skill");
+    expect(errors["0_target"]).toBeUndefined();
+  });
+
+  it("rejects target agent referencing disabled agent", () => {
+    const disabledAgents = [makeAgent({ id: "a1", name: "writer", enabled: false })];
+    const errors = validateExtensionSkills([makeExt({ targetAgent: "a1" })], disabledAgents, "main-skill");
+    expect(errors["0_target"]).toBe("builder.validation.extTargetInvalid");
   });
 });
 

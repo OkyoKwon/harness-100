@@ -4,9 +4,10 @@ import {
   generateAgentMd,
   generateClaudeMd,
   generateSkillMd,
+  generateExtensionSkillMd,
   buildZip,
 } from "../zip-builder";
-import type { Agent, Harness, Modification } from "../types";
+import type { Agent, ExtensionSkill, Harness, Modification } from "../types";
 import {
   createAgent,
   createHarness,
@@ -240,5 +241,98 @@ describe("buildZip", () => {
     });
     const blob = await buildZip(harness);
     expect(blob).toBeInstanceOf(Blob);
+  });
+
+  it("writes extension skill files when no rawFiles", async () => {
+    const harness = createHarness({
+      rawFiles: {
+        claudeMd: "# CLAUDE",
+        agents: {},
+        skills: {},
+      },
+      skill: {
+        id: "sk",
+        name: "main-skill",
+        triggerConditions: ["trigger"],
+        executionOrder: [],
+        modes: [],
+        extensionSkills: [
+          { name: "hook-writing", path: "hook-writing/skill.md", targetAgent: "agent-1", description: "Writes hooks" },
+        ],
+      },
+    });
+    const blob = await buildZip(harness, undefined, "ko", undefined, undefined);
+    expect(blob).toBeInstanceOf(Blob);
+    expect(blob.size).toBeGreaterThan(0);
+  });
+
+  it("uses custom extension skill markdown when provided", async () => {
+    const harness = createHarness({
+      rawFiles: {
+        claudeMd: "# CLAUDE",
+        agents: {},
+        skills: {},
+      },
+      skill: {
+        id: "sk",
+        name: "main-skill",
+        triggerConditions: ["trigger"],
+        executionOrder: [],
+        modes: [],
+        extensionSkills: [
+          { name: "hook-writing", path: "hook-writing/skill.md", targetAgent: "agent-1", description: "Writes hooks" },
+        ],
+      },
+    });
+    const extMarkdowns = { "hook-writing": "# Custom Extension Skill Content" };
+    const blob = await buildZip(harness, undefined, "ko", undefined, extMarkdowns);
+    expect(blob).toBeInstanceOf(Blob);
+    expect(blob.size).toBeGreaterThan(0);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// generateExtensionSkillMd
+// ---------------------------------------------------------------------------
+describe("generateExtensionSkillMd", () => {
+  it("produces markdown with extension skill metadata", () => {
+    const ext: ExtensionSkill = {
+      name: "hook-writing",
+      path: "hook-writing/skill.md",
+      targetAgent: "agent-1",
+      description: "Writes hooks",
+    };
+    const harness = createHarness();
+    const md = generateExtensionSkillMd(ext, harness);
+    expect(md).toContain("name: hook-writing");
+    expect(md).toContain("# hook-writing");
+    expect(md).toContain("Writes hooks");
+  });
+
+  it("includes target agent role when agent is found", () => {
+    const ext: ExtensionSkill = {
+      name: "hook-writing",
+      path: "hook-writing/skill.md",
+      targetAgent: "agent-1",
+      description: "Writes hooks",
+    };
+    const agent = createAgent({ id: "agent-1", name: "Writer", role: "Content writer" });
+    const harness = createHarness({ agents: [agent] });
+    const md = generateExtensionSkillMd(ext, harness);
+    expect(md).toContain("Writer");
+    expect(md).toContain("Content writer");
+  });
+
+  it("generates English version", () => {
+    const ext: ExtensionSkill = {
+      name: "hook-writing",
+      path: "hook-writing/skill.md",
+      targetAgent: "agent-1",
+      description: "Writes hooks",
+    };
+    const harness = createHarness();
+    const md = generateExtensionSkillMd(ext, harness, "en");
+    expect(md).toContain("Target Agent");
+    expect(md).toContain("How It Works");
   });
 });

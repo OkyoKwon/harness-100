@@ -46,7 +46,7 @@ export function StepReview({ harness, errors, onSaved }: StepReviewProps) {
   const handleDownloadZip = async () => {
     try {
       const converted = toHarness(harness);
-      const blob = await buildZip(converted, undefined, locale, harness.skillMarkdown);
+      const blob = await buildZip(converted, undefined, locale, harness.skillMarkdown, harness.extensionSkillMarkdowns);
       saveAs(blob, `${harness.slug}.zip`);
     } catch (err) {
       console.error("ZIP download failed:", err);
@@ -103,6 +103,29 @@ export function StepReview({ harness, errors, onSaved }: StepReviewProps) {
         </ul>
       </div>
 
+      {/* Extension skills (if any) */}
+      {harness.skill.extensionSkills.length > 0 && (
+        <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 space-y-2">
+          <h3 className="text-sm font-semibold text-[var(--foreground)]">
+            {t("builder.review.extensionSkills", { count: harness.skill.extensionSkills.length })}
+          </h3>
+          <ul className="space-y-1">
+            {harness.skill.extensionSkills.map((ext) => {
+              const agent = enabledAgents.find((a) => a.id === ext.targetAgent || a.name === ext.targetAgent);
+              return (
+                <li key={ext.name} className="flex items-center gap-2 text-sm">
+                  <span className="font-medium text-[var(--foreground)]">{ext.name}</span>
+                  <span className="text-[var(--muted-foreground)]">
+                    → {agent?.name ?? ext.targetAgent}
+                  </span>
+                  <span className="ml-auto text-xs text-[var(--muted-foreground)]">{ext.description}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+
       {/* File tree */}
       <div className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 space-y-2">
         <h3 className="text-sm font-semibold text-[var(--foreground)]">{t("builder.review.fileTree")}</h3>
@@ -112,8 +135,8 @@ export function StepReview({ harness, errors, onSaved }: StepReviewProps) {
 ├── agents/
 ${enabledAgents.map((a, i) => `│   ${i === enabledAgents.length - 1 ? "└──" : "├──"} ${a.name || a.id}.md`).join("\n")}
 └── skills/
-    └── ${harness.skill.name || harness.slug}/
-        └── skill.md`}
+    ├── ${harness.skill.name || harness.slug}/
+    │   └── skill.md${harness.skill.extensionSkills.map((ext, i) => `\n    ${i === harness.skill.extensionSkills.length - 1 ? "└──" : "├──"} ${ext.name}/\n    ${i === harness.skill.extensionSkills.length - 1 ? "    " : "│   "}└── skill.md`).join("")}`}
         </pre>
       </div>
 

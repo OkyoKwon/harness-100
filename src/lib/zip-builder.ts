@@ -1,6 +1,6 @@
 import JSZip from "jszip";
 import type { Locale } from "./locale";
-import type { Agent, Harness, Modification } from "./types";
+import type { Agent, ExtensionSkill, Harness, Modification } from "./types";
 import { t } from "./translations";
 import { isAllowedModificationField, isValidPath } from "./validation";
 
@@ -236,6 +236,64 @@ ${constraintSection}
 `;
 }
 
+function generateExtensionSkillMd(
+  ext: ExtensionSkill,
+  harness: Harness,
+  locale: Locale = "ko",
+): string {
+  const ko = locale === "ko";
+  const agent = harness.agents.find((a) => a.id === ext.targetAgent || a.name === ext.targetAgent);
+  const agentRole = agent?.role ?? ext.targetAgent;
+
+  const triggerLine = ko
+    ? `'${ext.name} 실행', '${ext.description}'`
+    : `'run ${ext.name}', '${ext.description}'`;
+
+  const body = ko
+    ? `이 스킬은 **${agent?.name ?? ext.targetAgent}** 에이전트의 전문 지식을 강화합니다.
+
+## 대상 에이전트
+
+- **${agent?.name ?? ext.targetAgent}** — ${agentRole}
+
+## 실행 방법
+
+1. 사용자가 "${ext.description}" 관련 요청을 하면 이 스킬이 트리거됩니다
+2. 대상 에이전트가 확장된 전문 지식을 활용하여 작업을 수행합니다
+3. 산출물은 \`_workspace/\` 디렉토리에 저장됩니다
+
+## 제약사항
+
+- 이 스킬은 대상 에이전트의 도구와 권한 범위 내에서 동작합니다
+- 메인 오케스트레이터 스킬과 함께 사용할 수 있습니다`
+    : `This skill enhances the domain expertise of the **${agent?.name ?? ext.targetAgent}** agent.
+
+## Target Agent
+
+- **${agent?.name ?? ext.targetAgent}** — ${agentRole}
+
+## How It Works
+
+1. This skill is triggered when the user requests something related to "${ext.description}"
+2. The target agent performs the task using its enhanced domain expertise
+3. Deliverables are saved to the \`_workspace/\` directory
+
+## Constraints
+
+- This skill operates within the tools and permissions of the target agent
+- Can be used alongside the main orchestrator skill`;
+
+  return `---
+name: ${ext.name}
+description: "${triggerLine}"
+---
+
+# ${ext.name} — ${ext.description}
+
+${body}
+`;
+}
+
 /**
  * Check if modifications affect any agent (requiring re-generation).
  */
@@ -252,6 +310,7 @@ export async function buildZip(
   modifications?: ReadonlyArray<Modification>,
   locale: Locale = "ko",
   skillMarkdown?: string,
+  extensionSkillMarkdowns?: Readonly<Record<string, string>>,
 ): Promise<Blob> {
   const zip = new JSZip();
   const claude = zip.folder(".claude");
@@ -299,9 +358,19 @@ export async function buildZip(
     if (skillDir) {
       skillDir.file("skill.md", skillMarkdown || generateSkillMd(harness, locale));
     }
+
+    // Extension skills
+    for (const ext of harness.skill.extensionSkills) {
+      if (!ext.name || !isValidPath(ext.name)) continue;
+      const extDir = skillsFolder.folder(ext.name);
+      if (extDir) {
+        const customMd = extensionSkillMarkdowns?.[ext.name];
+        extDir.file("skill.md", customMd || generateExtensionSkillMd(ext, harness, locale));
+      }
+    }
   }
 
   return zip.generateAsync({ type: "blob" });
 }
 
-export { applyModifications, generateAgentMd, generateClaudeMd, generateSkillMd };
+export { applyModifications, generateAgentMd, generateClaudeMd, generateSkillMd, generateExtensionSkillMd };

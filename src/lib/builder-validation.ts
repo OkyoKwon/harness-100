@@ -1,5 +1,5 @@
 import type { CustomAgent, CustomHarness, CustomHarnessStore, BuilderMeta } from "./custom-harness-types";
-import type { Skill } from "./types";
+import type { ExtensionSkill, Skill } from "./types";
 
 /** Safely parse localStorage data into CustomHarnessStore */
 export function parseCustomHarnessStore(raw: unknown): CustomHarnessStore {
@@ -73,9 +73,10 @@ export interface ValidationErrors {
   readonly meta: Readonly<Record<string, string>>;
   readonly agents: Readonly<Record<string, string>>;
   readonly skill: Readonly<Record<string, string>>;
+  readonly extensionSkills: Readonly<Record<string, string>>;
 }
 
-const EMPTY_ERRORS: ValidationErrors = { meta: {}, agents: {}, skill: {} };
+const EMPTY_ERRORS: ValidationErrors = { meta: {}, agents: {}, skill: {}, extensionSkills: {} };
 
 export function validateMeta(meta: BuilderMeta): Record<string, string> {
   const errors: Record<string, string> = {};
@@ -138,6 +139,44 @@ export function validateSkill(skill: Skill): Record<string, string> {
   return errors;
 }
 
+const KEBAB_CASE_RE = /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/;
+
+export function validateExtensionSkills(
+  extensionSkills: ReadonlyArray<ExtensionSkill>,
+  agents: ReadonlyArray<CustomAgent>,
+  mainSkillName: string,
+): Record<string, string> {
+  const errors: Record<string, string> = {};
+  if (extensionSkills.length === 0) return errors;
+
+  const enabledAgentIds = new Set(agents.filter((a) => a.enabled).map((a) => a.id));
+  const enabledAgentNames = new Set(agents.filter((a) => a.enabled).map((a) => a.name));
+  const seenNames = new Set<string>();
+
+  for (let i = 0; i < extensionSkills.length; i++) {
+    const ext = extensionSkills[i];
+
+    if (!ext.name.trim()) {
+      errors[`${i}_name`] = "builder.validation.extNameRequired";
+    } else if (!KEBAB_CASE_RE.test(ext.name)) {
+      errors[`${i}_name`] = "builder.validation.extNameFormat";
+    } else if (ext.name === mainSkillName) {
+      errors[`${i}_name`] = "builder.validation.extNameCollision";
+    } else if (seenNames.has(ext.name)) {
+      errors[`${i}_name`] = "builder.validation.extNameDuplicate";
+    }
+    seenNames.add(ext.name);
+
+    if (!ext.targetAgent.trim()) {
+      errors[`${i}_target`] = "builder.validation.extTargetRequired";
+    } else if (!enabledAgentIds.has(ext.targetAgent) && !enabledAgentNames.has(ext.targetAgent)) {
+      errors[`${i}_target`] = "builder.validation.extTargetInvalid";
+    }
+  }
+
+  return errors;
+}
+
 export function validateAll(
   meta: BuilderMeta,
   agents: ReadonlyArray<CustomAgent>,
@@ -146,18 +185,25 @@ export function validateAll(
   const metaErrors = validateMeta(meta);
   const agentErrors = validateAgents(agents);
   const skillErrors = validateSkill(skill);
+  const extErrors = validateExtensionSkills(skill.extensionSkills, agents, skill.name);
 
-  if (Object.keys(metaErrors).length === 0 && Object.keys(agentErrors).length === 0 && Object.keys(skillErrors).length === 0) {
+  if (
+    Object.keys(metaErrors).length === 0 &&
+    Object.keys(agentErrors).length === 0 &&
+    Object.keys(skillErrors).length === 0 &&
+    Object.keys(extErrors).length === 0
+  ) {
     return EMPTY_ERRORS;
   }
 
-  return { meta: metaErrors, agents: agentErrors, skill: skillErrors };
+  return { meta: metaErrors, agents: agentErrors, skill: skillErrors, extensionSkills: extErrors };
 }
 
 export function hasErrors(errors: ValidationErrors): boolean {
   return (
     Object.keys(errors.meta).length > 0 ||
     Object.keys(errors.agents).length > 0 ||
-    Object.keys(errors.skill).length > 0
+    Object.keys(errors.skill).length > 0 ||
+    Object.keys(errors.extensionSkills).length > 0
   );
 }

@@ -24,7 +24,7 @@ export function useHarnessBuilder(editingHarness?: CustomHarness) {
       : undefined,
   );
   const agentsHook = useBuilderAgents(editingHarness?.agents);
-  const skillHook = useBuilderSkill(editingHarness?.skill, editingHarness?.skillMarkdown);
+  const skillHook = useBuilderSkill(editingHarness?.skill, editingHarness?.skillMarkdown, editingHarness?.extensionSkillMarkdowns);
 
   const editingId = useRef(editingHarness?.id ?? null);
 
@@ -42,6 +42,8 @@ export function useHarnessBuilder(editingHarness?: CustomHarness) {
           meta: metaHook.meta,
           agents: agentsHook.agents,
           skill: skillHook.skill,
+          skillMarkdown: skillHook.skillMarkdown,
+          extensionSkillMarkdowns: skillHook.extensionSkillMarkdowns,
           step: navigation.currentStep,
           editingId: editingId.current,
         };
@@ -51,7 +53,7 @@ export function useHarnessBuilder(editingHarness?: CustomHarness) {
       }
     }, 500);
     return () => clearTimeout(timer);
-  }, [metaHook.meta, agentsHook.agents, skillHook.skill, navigation.currentStep]);
+  }, [metaHook.meta, agentsHook.agents, skillHook.skill, skillHook.skillMarkdown, skillHook.extensionSkillMarkdowns, navigation.currentStep]);
 
   const isDirty = useMemo(() => {
     return (
@@ -89,8 +91,11 @@ export function useHarnessBuilder(editingHarness?: CustomHarness) {
       version: 1,
       baseHarnessId: editingHarness?.baseHarnessId,
       skillMarkdown: skillHook.skillMarkdown || undefined,
+      extensionSkillMarkdowns: Object.keys(skillHook.extensionSkillMarkdowns).length > 0
+        ? skillHook.extensionSkillMarkdowns
+        : undefined,
     };
-  }, [metaHook.meta, agentsHook.agents, skillHook.skill, skillHook.skillMarkdown, editingHarness]);
+  }, [metaHook.meta, agentsHook.agents, skillHook.skill, skillHook.skillMarkdown, skillHook.extensionSkillMarkdowns, editingHarness]);
 
   const loadFromExisting = useCallback(
     (harness: Harness | CustomHarness) => {

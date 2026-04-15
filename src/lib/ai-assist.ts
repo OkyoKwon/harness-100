@@ -363,6 +363,101 @@ Output only the instructions markdown, no extra explanation.${exampleBlock}`;
 }
 
 // ---------------------------------------------------------------------------
+// Extension skill generation
+// ---------------------------------------------------------------------------
+
+/** Suggest extension skills for the harness based on agent team */
+export async function generateExtensionSkillSuggestions(
+  apiKey: string,
+  harnessName: string,
+  harnessDescription: string,
+  agents: ReadonlyArray<{ readonly name: string; readonly role: string }>,
+  locale: Locale,
+): Promise<AiResponse> {
+  const agentList = agents.map((a) => `- ${a.name}: ${a.role}`).join("\n");
+
+  const prompt = locale === "ko"
+    ? `하네스: "${harnessName}"
+설명: "${harnessDescription}"
+에이전트 목록:
+${agentList}
+
+이 하네스에 적합한 확장 스킬을 0-3개 제안해주세요.
+확장 스킬은 특정 에이전트의 전문 지식을 강화하는 독립 스킬입니다.
+모든 에이전트에 필요한 것은 아닙니다. 전문 도메인 지식이 필요한 에이전트만 대상으로 합니다.
+적합한 확장 스킬이 없으면 "없음"이라고만 출력하세요.
+
+각 확장 스킬을 다음 형식으로 출력하세요:
+---
+이름: (영문 kebab-case)
+대상: (에이전트 이름)
+설명: (한 줄 설명)`
+    : `Harness: "${harnessName}"
+Description: "${harnessDescription}"
+Agents:
+${agentList}
+
+Suggest 0-3 extension skills for this harness.
+Extension skills enhance the domain expertise of a specific agent.
+Not every agent needs one — only target agents that benefit from specialized domain knowledge.
+If no extension skills are appropriate, output only "none".
+
+Output each extension skill in this format:
+---
+Name: (kebab-case)
+Target: (agent name)
+Description: (one line)`;
+
+  return callClaude(apiKey, sys(locale), prompt, 1024);
+}
+
+/** Generate full skill.md content for a single extension skill */
+export async function generateExtensionSkillMarkdown(
+  apiKey: string,
+  extName: string,
+  extDescription: string,
+  targetAgent: { readonly name: string; readonly role: string; readonly description: string },
+  harnessName: string,
+  locale: Locale,
+): Promise<AiResponse> {
+  const prompt = locale === "ko"
+    ? `하네스: "${harnessName}"
+확장 스킬 이름: "${extName}"
+확장 스킬 설명: "${extDescription}"
+대상 에이전트: "${targetAgent.name}" — ${targetAgent.role}
+에이전트 설명: "${targetAgent.description}"
+
+이 확장 스킬의 skill.md 내용을 작성해주세요.
+다음 구조를 포함하세요:
+1. YAML frontmatter (name, description)
+2. 제목과 개요
+3. 대상 에이전트 정보
+4. 핵심 전문 지식 (이 스킬이 제공하는 도메인 전문성)
+5. 실행 방법
+6. 제약사항
+
+마크다운만 출력하세요.`
+    : `Harness: "${harnessName}"
+Extension skill name: "${extName}"
+Extension skill description: "${extDescription}"
+Target agent: "${targetAgent.name}" — ${targetAgent.role}
+Agent description: "${targetAgent.description}"
+
+Write the skill.md content for this extension skill.
+Include:
+1. YAML frontmatter (name, description)
+2. Title and overview
+3. Target agent info
+4. Core domain expertise (what specialized knowledge this skill provides)
+5. How it works
+6. Constraints
+
+Output only the markdown.`;
+
+  return callClaude(apiKey, sys(locale), prompt, 2048);
+}
+
+// ---------------------------------------------------------------------------
 // Reference agent loader — loads existing agent MDs for the reference panel
 // ---------------------------------------------------------------------------
 
@@ -547,4 +642,41 @@ export function parseAgentTeam(text: string): ReadonlyArray<ParsedTeamAgent> {
 
     return { name, role, description, instructions, tools, outputTemplate, dependencyNames, reuseRef };
   }).filter((a) => a.name);
+}
+
+/** Parsed extension skill from the AI suggestions response */
+export interface ParsedExtensionSkill {
+  readonly name: string;
+  readonly targetAgent: string;
+  readonly description: string;
+}
+
+/** Parse extension skill suggestions response */
+export function parseExtensionSkillSuggestions(text: string): ReadonlyArray<ParsedExtensionSkill> {
+  const trimmed = text.trim();
+  if (!trimmed || trimmed.match(/^(없음|none)$/i)) return [];
+
+  const blocks = trimmed.split("---").filter((b) => b.trim());
+
+  return blocks.map((block) => {
+    const lines = block.split("\n");
+    let name = "";
+    let targetAgent = "";
+    let description = "";
+
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+      if (!line) continue;
+
+      if (line.match(/^(이름|Name)\s*[:：]/i)) {
+        name = line.replace(/^(이름|Name)\s*[:：]\s*/i, "");
+      } else if (line.match(/^(대상|Target)\s*[:：]/i)) {
+        targetAgent = line.replace(/^(대상|Target)\s*[:：]\s*/i, "");
+      } else if (line.match(/^(설명|Description)\s*[:：]/i)) {
+        description = line.replace(/^(설명|Description)\s*[:：]\s*/i, "");
+      }
+    }
+
+    return { name, targetAgent, description };
+  }).filter((ext) => ext.name);
 }

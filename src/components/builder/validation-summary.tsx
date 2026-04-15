@@ -15,6 +15,7 @@ export function ValidationSummary({ errors }: ValidationSummaryProps) {
     ...Object.values(errors.meta),
     ...Object.values(errors.agents),
     ...Object.values(errors.skill),
+    ...Object.values(errors.extensionSkills),
   ];
 
   return (

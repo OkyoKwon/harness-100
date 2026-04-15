@@ -454,7 +454,7 @@ Include:
 
 Output only the markdown.`;
 
-  return callClaude(apiKey, sys(locale), prompt, 2048);
+  return callClaude(apiKey, sys(locale), prompt, 4096);
 }
 
 /** Result of batch extension skill generation */

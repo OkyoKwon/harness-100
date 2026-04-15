@@ -470,7 +470,7 @@ export async function generateAllExtensionSkills(
   harnessDescription: string,
   agents: ReadonlyArray<{ readonly name: string; readonly role: string; readonly description: string; readonly id?: string }>,
   locale: Locale,
-  onProgress?: (current: number, total: number) => void,
+  onProgress?: (current: number, total: number, name: string) => void,
 ): Promise<{ readonly success: boolean; readonly result?: BatchExtensionSkillResult; readonly error?: string }> {
   // Step 1: Suggest extension skills
   const suggestResponse = await generateExtensionSkillSuggestions(
@@ -496,7 +496,7 @@ export async function generateAllExtensionSkills(
 
   for (let i = 0; i < suggestions.length; i++) {
     const suggestion = suggestions[i];
-    onProgress?.(i + 1, total);
+    onProgress?.(i + 1, total, suggestion.name);
 
     const agent = agents.find(
       (a) => a.name === suggestion.targetAgent || a.id === suggestion.targetAgent,

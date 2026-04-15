@@ -159,7 +159,7 @@ describe("generateAllExtensionSkills", () => {
     expect(result.success).toBe(true);
     expect(result.result?.suggestions).toHaveLength(1);
     expect(result.result?.markdowns["hook-writing"]).toContain("hook-writing");
-    expect(onProgress).toHaveBeenCalledWith(1, 1);
+    expect(onProgress).toHaveBeenCalledWith(1, 1, "hook-writing");
 
     vi.unstubAllGlobals();
   });

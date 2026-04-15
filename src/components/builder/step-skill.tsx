@@ -45,7 +45,9 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
     }
   };
 
-  const [skillGenProgress, setSkillGenProgress] = useState<{ current: number; total: number } | null>(null);
+  type SkillGenPhase = "skill-details" | "ext-suggestions" | "ext-markdown";
+  const [genPhase, setGenPhase] = useState<SkillGenPhase | null>(null);
+  const [skillGenProgress, setSkillGenProgress] = useState<{ current: number; total: number; name: string } | null>(null);
 
   const handleGenerateSkillDetails = async () => {
     if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
@@ -54,7 +56,8 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
     const enabledAgents = agents.filter((a) => a.enabled);
     const agentNames = enabledAgents.map((a) => a.name).filter(Boolean);
 
-    // Step 1: Generate skill name + triggers
+    // Phase 1: Generate skill name + triggers
+    setGenPhase("skill-details");
     const result = await ai.runAssist((key) =>
       generateSkillDetails(key, harnessName, agentNames, locale),
     );
@@ -66,11 +69,13 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
         addTrigger(trigger);
       }
     } else if (result?.error) {
+      setGenPhase(null);
       addToast(t(result.error), "error");
       return;
     }
 
-    // Step 2: Generate extension skills (suggestions + markdown)
+    // Phase 2: Generate extension skills (suggestions + markdown)
+    setGenPhase("ext-suggestions");
     const extResult = await ai.runAssist((key) =>
       generateAllExtensionSkills(
         key,
@@ -78,10 +83,14 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
         harnessDescription ?? "",
         enabledAgents.map((a) => ({ id: a.id, name: a.name, role: a.role, description: a.description })),
         locale,
-        (current, total) => setSkillGenProgress({ current, total }),
+        (current, total, name) => {
+          setGenPhase("ext-markdown");
+          setSkillGenProgress({ current, total, name });
+        },
       ),
     );
     setSkillGenProgress(null);
+    setGenPhase(null);
 
     if (extResult?.success && extResult.result) {
       const { suggestions, markdowns } = extResult.result;
@@ -103,6 +112,24 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
     addToast(t("ai.applied"), "success");
   };
 
+  const genBannerMessage = (() => {
+    if (!ai.loading || !genPhase) return null;
+    switch (genPhase) {
+      case "skill-details":
+        return t("builder.skill.generatingSkillDetails");
+      case "ext-suggestions":
+        return t("builder.skill.generatingExtSuggestions");
+      case "ext-markdown":
+        return skillGenProgress
+          ? t("builder.skill.generatingExtMarkdown", { current: skillGenProgress.current, total: skillGenProgress.total, name: skillGenProgress.name })
+          : t("builder.skill.generatingExtSuggestions");
+      default:
+        return t("builder.skill.aiGenerating");
+    }
+  })();
+
+  const isExtGenerating = ai.loading && (genPhase === "ext-suggestions" || genPhase === "ext-markdown");
+
   return (
     <div className="space-y-6">
       <GuideBanner id="step-skill">
@@ -110,17 +137,13 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
       </GuideBanner>
 
       {/* AI loading banner */}
-      {ai.loading && (
+      {ai.loading && genBannerMessage && (
         <div className="flex items-center gap-3 rounded-lg border border-violet-500/30 bg-violet-500/10 px-4 py-3">
           <svg className="animate-spin h-4 w-4 text-violet-400 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeDasharray="31.4" strokeLinecap="round" />
           </svg>
           <div className="text-sm text-violet-300">
-            <span className="font-medium">
-              {skillGenProgress
-                ? t("builder.skill.generatingExtAll", { current: skillGenProgress.current, total: skillGenProgress.total })
-                : t("builder.skill.aiGenerating")}
-            </span>
+            <span className="font-medium">{genBannerMessage}</span>
           </div>
         </div>
       )}
@@ -133,7 +156,7 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
             loading={ai.loading}
             disabled={!harnessName.trim()}
             size="md"
-            label={skillGenProgress ? t("builder.skill.generatingExtAll", { current: skillGenProgress.current, total: skillGenProgress.total }) : undefined}
+            label={genBannerMessage ?? undefined}
           />
         </div>
       )}
@@ -237,6 +260,7 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
         agents={agents}
         extensionSkillMarkdowns={extensionSkillMarkdowns}
         extensionSkillErrors={extensionSkillErrors ?? {}}
+        loading={isExtGenerating}
         onAdd={addExtensionSkill}
         onRemove={removeExtensionSkill}
         onUpdate={updateExtensionSkill}
@@ -372,6 +396,7 @@ interface ExtensionSkillsSectionProps {
   readonly agents: ReadonlyArray<CustomAgent>;
   readonly extensionSkillMarkdowns: Readonly<Record<string, string>>;
   readonly extensionSkillErrors: Readonly<Record<string, string>>;
+  readonly loading?: boolean;
   readonly onAdd: (ext: ExtensionSkill) => void;
   readonly onRemove: (index: number) => void;
   readonly onUpdate: (index: number, ext: ExtensionSkill) => void;
@@ -382,6 +407,7 @@ interface ExtensionSkillsSectionProps {
 function ExtensionSkillsSection({
   skill, agents,
   extensionSkillMarkdowns, extensionSkillErrors,
+  loading,
   onAdd, onRemove, onUpdate, onUpdateMarkdown, onClearMarkdown,
 }: ExtensionSkillsSectionProps) {
   const { t } = useLocale();
@@ -420,7 +446,18 @@ function ExtensionSkillsSection({
         </button>
       </div>
 
-      {skill.extensionSkills.length === 0 ? (
+      {loading && skill.extensionSkills.length === 0 ? (
+        <div className="space-y-2">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="flex items-center gap-3 rounded-lg border border-violet-500/20 bg-violet-500/5 px-4 py-3 animate-pulse">
+              <svg className="animate-spin h-3.5 w-3.5 text-violet-400 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeDasharray="31.4" strokeLinecap="round" />
+              </svg>
+              <div className="h-3 w-32 rounded bg-violet-500/20" />
+            </div>
+          ))}
+        </div>
+      ) : skill.extensionSkills.length === 0 ? (
         <p className="text-xs text-[var(--muted-foreground)] italic">
           {t("builder.skill.noExtensions")}
         </p>

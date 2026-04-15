@@ -123,7 +123,8 @@ function generateSkillMd(harness: Harness, locale: Locale = "ko"): string {
         ? step.dependsOn.join(", ")
         : t(locale, "gen.none");
       const idx = String(outputIndex).padStart(2, "0");
-      const output = `\`_workspace/${idx}_${step.agentId}_output.md\``;
+      const agentName = agent?.name ?? step.agentId;
+      const output = `\`_workspace/${idx}_${agentName}_output.md\``;
       outputIndex++;
       const parallel = step.parallel ? (ko ? " (병렬)" : " (parallel)") : "";
       return `| ${step.agentId} | ${role}${parallel} | ${deps} | ${output} |`;

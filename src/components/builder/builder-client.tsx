@@ -209,6 +209,7 @@ export function BuilderClient() {
                 type="button"
                 onClick={() => {
                   if (currentStep === 1) builder.meta.touchAll();
+                  if (currentStep === 3) builder.skill.touchAll();
                   if (canProceedFromStep(currentStep)) next();
                 }}
                 disabled={ai.loading}

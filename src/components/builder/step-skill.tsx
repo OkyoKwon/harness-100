@@ -99,6 +99,7 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
       }
     }
 
+    hook.touchAll();
     addToast(t("ai.applied"), "success");
   };
 

@@ -5,6 +5,8 @@ import type { ExtensionSkill, Skill, ExecutionStep, SkillMode } from "@/lib/type
 import type { CustomAgent } from "@/lib/custom-harness-types";
 import { validateSkill } from "@/lib/builder-validation";
 
+const SKILL_FIELDS = ["name", "triggers"] as const;
+
 const INITIAL_SKILL: Skill = {
   id: "main-skill",
   name: "",
@@ -24,9 +26,11 @@ export function useBuilderSkill(
   const [extensionSkillMarkdowns, setExtensionSkillMarkdowns] = useState<Readonly<Record<string, string>>>(
     initialExtMarkdowns ?? {},
   );
+  const [touched, setTouched] = useState<Set<string>>(new Set());
 
   const updateName = useCallback((name: string) => {
     setSkill((prev) => ({ ...prev, name }));
+    setTouched((prev) => new Set([...prev, "name"]));
   }, []);
 
   const addTrigger = useCallback((condition: string) => {
@@ -35,6 +39,7 @@ export function useBuilderSkill(
       ...prev,
       triggerConditions: [...prev.triggerConditions, condition.trim()],
     }));
+    setTouched((prev) => new Set([...prev, "triggers"]));
   }, []);
 
   const removeTrigger = useCallback((index: number) => {
@@ -154,8 +159,19 @@ export function useBuilderSkill(
     });
   }, []);
 
-  const errors = useMemo(() => validateSkill(skill), [skill]);
-  const isValid = useMemo(() => Object.keys(errors).length === 0, [errors]);
+  const errors = useMemo(() => {
+    const all = validateSkill(skill);
+    const filtered: Record<string, string> = {};
+    for (const [key, value] of Object.entries(all)) {
+      if (touched.has(key)) {
+        filtered[key] = value;
+      }
+    }
+    return filtered;
+  }, [skill, touched]);
+
+  const allErrors = useMemo(() => validateSkill(skill), [skill]);
+  const isValid = useMemo(() => Object.keys(allErrors).length === 0, [allErrors]);
 
   const updateSkillMarkdown = useCallback((md: string) => {
     setSkillMarkdown(md);
@@ -165,6 +181,11 @@ export function useBuilderSkill(
     setSkill(initial ?? INITIAL_SKILL);
     setSkillMarkdown("");
     setExtensionSkillMarkdowns({});
+    setTouched(new Set());
+  }, []);
+
+  const touchAll = useCallback(() => {
+    setTouched(new Set(SKILL_FIELDS));
   }, []);
 
   return {
@@ -172,6 +193,7 @@ export function useBuilderSkill(
     skillMarkdown,
     extensionSkillMarkdowns,
     errors,
+    allErrors,
     isValid,
     updateName,
     addTrigger,
@@ -188,5 +210,6 @@ export function useBuilderSkill(
     clearExtensionSkillMarkdown,
     updateSkillMarkdown,
     reset,
+    touchAll,
   } as const;
 }

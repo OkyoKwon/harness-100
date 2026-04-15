@@ -457,6 +457,69 @@ Output only the markdown.`;
   return callClaude(apiKey, sys(locale), prompt, 2048);
 }
 
+/** Result of batch extension skill generation */
+export interface BatchExtensionSkillResult {
+  readonly suggestions: ReadonlyArray<ParsedExtensionSkill>;
+  readonly markdowns: Readonly<Record<string, string>>;
+}
+
+/** Generate extension skill suggestions AND their markdown content in one batch */
+export async function generateAllExtensionSkills(
+  apiKey: string,
+  harnessName: string,
+  harnessDescription: string,
+  agents: ReadonlyArray<{ readonly name: string; readonly role: string; readonly description: string; readonly id?: string }>,
+  locale: Locale,
+  onProgress?: (current: number, total: number) => void,
+): Promise<{ readonly success: boolean; readonly result?: BatchExtensionSkillResult; readonly error?: string }> {
+  // Step 1: Suggest extension skills
+  const suggestResponse = await generateExtensionSkillSuggestions(
+    apiKey,
+    harnessName,
+    harnessDescription,
+    agents,
+    locale,
+  );
+
+  if (!suggestResponse.success) {
+    return { success: false, error: suggestResponse.error };
+  }
+
+  const suggestions = parseExtensionSkillSuggestions(suggestResponse.text);
+  if (suggestions.length === 0) {
+    return { success: true, result: { suggestions: [], markdowns: {} } };
+  }
+
+  // Step 2: Generate markdown for each suggestion sequentially
+  const markdowns: Record<string, string> = {};
+  const total = suggestions.length;
+
+  for (let i = 0; i < suggestions.length; i++) {
+    const suggestion = suggestions[i];
+    onProgress?.(i + 1, total);
+
+    const agent = agents.find(
+      (a) => a.name === suggestion.targetAgent || a.id === suggestion.targetAgent,
+    );
+    if (!agent) continue;
+
+    const mdResponse = await generateExtensionSkillMarkdown(
+      apiKey,
+      suggestion.name,
+      suggestion.description,
+      { name: agent.name, role: agent.role, description: agent.description },
+      harnessName,
+      locale,
+    );
+
+    if (mdResponse.success && mdResponse.text) {
+      markdowns[suggestion.name] = mdResponse.text;
+    }
+  }
+
+  return { success: true, result: { suggestions, markdowns } };
+}
+
 // ---------------------------------------------------------------------------
 // Reference agent loader — loads existing agent MDs for the reference panel
 // ---------------------------------------------------------------------------

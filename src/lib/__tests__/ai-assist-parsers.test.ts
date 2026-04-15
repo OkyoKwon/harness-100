@@ -1,7 +1,8 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import {
   parseExtensionSkillSuggestions,
   parseSkillDetails,
+  generateAllExtensionSkills,
 } from "../ai-assist";
 
 describe("parseExtensionSkillSuggestions", () => {
@@ -91,6 +92,98 @@ Description: Psychology of effective thumbnail design`;
     const result = parseExtensionSkillSuggestions(text);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe("hook-writing");
+  });
+});
+
+describe("generateAllExtensionSkills", () => {
+  it("returns empty result when suggestions return none", async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({
+        content: [{ text: "없음" }],
+        stop_reason: "end_turn",
+      }),
+    });
+    vi.stubGlobal("fetch", mockFetch);
+
+    const result = await generateAllExtensionSkills(
+      "test-key",
+      "Test Harness",
+      "Test description",
+      [{ id: "a1", name: "Writer", role: "writes", description: "writes things" }],
+      "ko",
+    );
+
+    expect(result.success).toBe(true);
+    expect(result.result?.suggestions).toHaveLength(0);
+    expect(result.result?.markdowns).toEqual({});
+
+    vi.unstubAllGlobals();
+  });
+
+  it("calls onProgress for each markdown generation", async () => {
+    let callCount = 0;
+    const mockFetch = vi.fn().mockImplementation(() => {
+      callCount++;
+      if (callCount === 1) {
+        // Suggestion response
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({
+            content: [{ text: "---\n이름: hook-writing\n대상: Writer\n설명: 훅 작성" }],
+            stop_reason: "end_turn",
+          }),
+        });
+      }
+      // Markdown generation response
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({
+          content: [{ text: "# hook-writing skill.md content" }],
+          stop_reason: "end_turn",
+        }),
+      });
+    });
+    vi.stubGlobal("fetch", mockFetch);
+
+    const onProgress = vi.fn();
+    const result = await generateAllExtensionSkills(
+      "test-key",
+      "Test Harness",
+      "Test description",
+      [{ id: "a1", name: "Writer", role: "writes", description: "writes things" }],
+      "ko",
+      onProgress,
+    );
+
+    expect(result.success).toBe(true);
+    expect(result.result?.suggestions).toHaveLength(1);
+    expect(result.result?.markdowns["hook-writing"]).toContain("hook-writing");
+    expect(onProgress).toHaveBeenCalledWith(1, 1);
+
+    vi.unstubAllGlobals();
+  });
+
+  it("returns error when suggestion API fails", async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 401,
+      text: () => Promise.resolve("Unauthorized"),
+    });
+    vi.stubGlobal("fetch", mockFetch);
+
+    const result = await generateAllExtensionSkills(
+      "bad-key",
+      "Test",
+      "desc",
+      [{ id: "a1", name: "W", role: "r", description: "d" }],
+      "ko",
+    );
+
+    expect(result.success).toBe(false);
+    expect(result.error).toBe("ai.error.invalidKey");
+
+    vi.unstubAllGlobals();
   });
 });
 

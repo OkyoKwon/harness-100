@@ -48,7 +48,7 @@ export function AiAssistButton({
           <path d="M2 12l10 5 10-5" />
         </svg>
       )}
-      {(size === "md" || label) && (loading ? t("ai.generating") : (label ?? t("ai.assist")))}
+      {(size === "md" || label) && (loading ? (label ?? t("ai.generating")) : (label ?? t("ai.assist")))}
     </button>
   );
 }

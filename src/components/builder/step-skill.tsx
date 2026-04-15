@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { GuideBanner } from "./guide-banner";
 import { ExecutionOrderEditor } from "./execution-order-editor";
 import { AiAssistButton } from "./ai-assist-button";
-import { generateSkillDetails, parseSkillDetails, generateExtensionSkillSuggestions, parseExtensionSkillSuggestions } from "@/lib/ai-assist";
+import { generateSkillDetails, parseSkillDetails, generateAllExtensionSkills, generateExtensionSkillMarkdown } from "@/lib/ai-assist";
 import { generateSkillMd } from "@/lib/zip-builder";
 import { toHarness } from "@/lib/custom-harness-converter";
 import { ExtensionSkillEditor } from "./extension-skill-editor";
@@ -45,12 +45,16 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
     }
   };
 
+  const [skillGenProgress, setSkillGenProgress] = useState<{ current: number; total: number } | null>(null);
+
   const handleGenerateSkillDetails = async () => {
     if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
     if (!harnessName.trim()) { addToast(t("ai.error.noName"), "error"); return; }
 
-    const agentNames = agents.filter((a) => a.enabled).map((a) => a.name).filter(Boolean);
+    const enabledAgents = agents.filter((a) => a.enabled);
+    const agentNames = enabledAgents.map((a) => a.name).filter(Boolean);
 
+    // Step 1: Generate skill name + triggers
     const result = await ai.runAssist((key) =>
       generateSkillDetails(key, harnessName, agentNames, locale),
     );
@@ -61,10 +65,41 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
       for (const trigger of parsed.triggers) {
         addTrigger(trigger);
       }
-      addToast(t("ai.applied"), "success");
     } else if (result?.error) {
       addToast(t(result.error), "error");
+      return;
     }
+
+    // Step 2: Generate extension skills (suggestions + markdown)
+    const extResult = await ai.runAssist((key) =>
+      generateAllExtensionSkills(
+        key,
+        harnessName,
+        harnessDescription ?? "",
+        enabledAgents.map((a) => ({ id: a.id, name: a.name, role: a.role, description: a.description })),
+        locale,
+        (current, total) => setSkillGenProgress({ current, total }),
+      ),
+    );
+    setSkillGenProgress(null);
+
+    if (extResult?.success && extResult.result) {
+      const { suggestions, markdowns } = extResult.result;
+      for (const suggestion of suggestions) {
+        const agent = enabledAgents.find((a) => a.name === suggestion.targetAgent || a.id === suggestion.targetAgent);
+        addExtensionSkill({
+          name: suggestion.name,
+          path: `${suggestion.name}/skill.md`,
+          targetAgent: agent?.id ?? suggestion.targetAgent,
+          description: suggestion.description,
+        });
+      }
+      for (const [name, md] of Object.entries(markdowns)) {
+        updateExtensionSkillMarkdown(name, md);
+      }
+    }
+
+    addToast(t("ai.applied"), "success");
   };
 
   return (
@@ -73,7 +108,7 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
         <p>{t("builder.guide.skill")}</p>
       </GuideBanner>
 
-      {/* AI assist button — generates skill name + triggers */}
+      {/* AI assist button — generates skill name + triggers + extension skills */}
       {ai.isConfigured && (
         <div className="flex justify-end">
           <AiAssistButton
@@ -81,6 +116,7 @@ export function StepSkill({ hook, agents, harnessName, harnessDescription, ai, e
             loading={ai.loading}
             disabled={!harnessName.trim()}
             size="md"
+            label={skillGenProgress ? t("builder.skill.generatingExtAll", { current: skillGenProgress.current, total: skillGenProgress.total }) : undefined}
           />
         </div>
       )}
@@ -307,30 +343,35 @@ function ExtensionSkillsSection({
 }: ExtensionSkillsSectionProps) {
   const { t, locale } = useLocale();
   const { addToast } = useToast();
+  const [progress, setProgress] = useState<{ current: number; total: number } | null>(null);
 
-  const handleSuggest = async () => {
+  const handleGenerateAll = async () => {
     if (!ai.isConfigured) { addToast(t("ai.error.noKey"), "error"); return; }
     if (!harnessName.trim()) { addToast(t("ai.error.noName"), "error"); return; }
 
     const enabledAgents = agents.filter((a) => a.enabled);
-    const result = await ai.runAssist((key) =>
-      generateExtensionSkillSuggestions(
+
+    const response = await ai.runAssist((key) =>
+      generateAllExtensionSkills(
         key,
         harnessName,
         harnessDescription,
-        enabledAgents.map((a) => ({ name: a.name, role: a.role })),
+        enabledAgents.map((a) => ({ id: a.id, name: a.name, role: a.role, description: a.description })),
         locale,
+        (current, total) => setProgress({ current, total }),
       ),
     );
+    setProgress(null);
 
-    if (result?.success && result.text) {
-      const parsed = parseExtensionSkillSuggestions(result.text);
-      if (parsed.length === 0) {
+    if (!response) return;
+
+    if (response.success && response.result) {
+      const { suggestions, markdowns } = response.result;
+      if (suggestions.length === 0) {
         addToast(t("builder.skill.noExtensions"), "info");
         return;
       }
-      for (const suggestion of parsed) {
-        // Resolve target agent name to ID
+      for (const suggestion of suggestions) {
         const agent = enabledAgents.find((a) => a.name === suggestion.targetAgent || a.id === suggestion.targetAgent);
         onAdd({
           name: suggestion.name,
@@ -339,11 +380,18 @@ function ExtensionSkillsSection({
           description: suggestion.description,
         });
       }
+      for (const [name, md] of Object.entries(markdowns)) {
+        onUpdateMarkdown(name, md);
+      }
       addToast(t("ai.applied"), "success");
-    } else if (result?.error) {
-      addToast(t(result.error), "error");
+    } else if (response.error) {
+      addToast(t(response.error), "error");
     }
   };
+
+  const progressLabel = progress
+    ? t("builder.skill.generatingExtAll", { current: progress.current, total: progress.total })
+    : t("builder.skill.generateExtensions");
 
   const handleAddManual = () => {
     onAdd({
@@ -373,11 +421,11 @@ function ExtensionSkillsSection({
         <div className="flex items-center gap-2">
           {ai.isConfigured && (
             <AiAssistButton
-              onClick={handleSuggest}
+              onClick={handleGenerateAll}
               loading={ai.loading}
               disabled={!harnessName.trim() || agents.filter((a) => a.enabled).length === 0}
               size="sm"
-              label={t("builder.skill.generateExtensions")}
+              label={progressLabel}
             />
           )}
           <button

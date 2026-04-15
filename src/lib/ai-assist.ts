@@ -188,7 +188,7 @@ Instructions:
 (detailed behavioral instructions in markdown. Include sections: Core Role, Working Principles, Output Format, Team Communication, Error Handling)
 ---${exampleBlock}`;
 
-  return callClaude(apiKey, sys(locale), prompt, 2048);
+  return callClaude(apiKey, sys(locale), prompt, 4096);
 }
 
 /** Generate trigger conditions for the skill */
@@ -322,7 +322,7 @@ Instructions:
 (detailed behavioral instructions in markdown including: Core Role, Working Principles, Output Format, Team Communication, Error Handling)
 Reuse: (only if reusing an existing agent, format: harnessId/agentName, e.g., 1/content-strategist)${exampleBlock}`;
 
-  return callClaude(apiKey, sys(locale), prompt, 8192);
+  return callClaude(apiKey, sys(locale), prompt, 16384);
 }
 
 /** Generate only instructions for an agent that already has name/role/description */
@@ -359,7 +359,7 @@ Write detailed behavioral instructions for this agent in markdown.
 Include sections: Core Role, Working Principles, Output Format, Team Communication, Error Handling.
 Output only the instructions markdown, no extra explanation.${exampleBlock}`;
 
-  return callClaude(apiKey, sys(locale), prompt, 2048);
+  return callClaude(apiKey, sys(locale), prompt, 4096);
 }
 
 // ---------------------------------------------------------------------------

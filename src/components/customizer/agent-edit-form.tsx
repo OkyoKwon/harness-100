@@ -2,6 +2,9 @@
 
 import type { Modification } from "@/lib/types";
 import { useLocale } from "@/hooks/use-locale";
+import { validateAgentField } from "@/lib/validate-agent-field";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 interface AgentEditFormProps {
   readonly agentId: string;
@@ -10,10 +13,15 @@ interface AgentEditFormProps {
 }
 
 export function AgentEditForm({ agentId, getModifiedValue, updateAgent }: AgentEditFormProps) {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+
   const name = getModifiedValue(agentId, "name") as string;
+  const description = getModifiedValue(agentId, "description") as string;
   const role = getModifiedValue(agentId, "role") as string;
+  const instructions = getModifiedValue(agentId, "instructions") as string;
   const outputTemplate = getModifiedValue(agentId, "outputTemplate") as string;
+
+  const validLocale = locale === "en" ? "en" : "ko";
 
   return (
     <div className="space-y-4">
@@ -21,53 +29,45 @@ export function AgentEditForm({ agentId, getModifiedValue, updateAgent }: AgentE
         {t("customizer.editArea")}
       </h3>
 
-      <div>
-        <label
-          htmlFor="agent-name"
-          className="mb-1 block text-sm font-medium text-[var(--foreground)]"
-        >
-          {t("customizer.name")}
-        </label>
-        <input
-          id="agent-name"
-          type="text"
-          value={name}
-          onChange={(e) => updateAgent(agentId, "name", e.target.value)}
-          className="w-full rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-2 text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] transition-base focus-ring"
-        />
-      </div>
+      <Input
+        label={t("customizer.name")}
+        value={name}
+        onChange={(e) => updateAgent(agentId, "name", e.target.value)}
+        errorMessage={validateAgentField("name", name, validLocale) ?? undefined}
+      />
 
-      <div>
-        <label
-          htmlFor="agent-role"
-          className="mb-1 block text-sm font-medium text-[var(--foreground)]"
-        >
-          {t("customizer.role")}
-        </label>
-        <textarea
-          id="agent-role"
-          rows={3}
-          value={role}
-          onChange={(e) => updateAgent(agentId, "role", e.target.value)}
-          className="w-full resize-y rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-2 text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] transition-base focus-ring"
-        />
-      </div>
+      <Textarea
+        label={t("customizer.description")}
+        rows={3}
+        value={description}
+        onChange={(e) => updateAgent(agentId, "description", e.target.value)}
+        errorMessage={validateAgentField("description", description, validLocale) ?? undefined}
+      />
 
-      <div>
-        <label
-          htmlFor="agent-output"
-          className="mb-1 block text-sm font-medium text-[var(--foreground)]"
-        >
-          {t("customizer.outputTemplate")}
-        </label>
-        <textarea
-          id="agent-output"
-          rows={5}
-          value={outputTemplate}
-          onChange={(e) => updateAgent(agentId, "outputTemplate", e.target.value)}
-          className="w-full resize-y rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-2 text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] transition-base focus-ring"
-        />
-      </div>
+      <Textarea
+        label={t("customizer.role")}
+        rows={3}
+        value={role}
+        onChange={(e) => updateAgent(agentId, "role", e.target.value)}
+        errorMessage={validateAgentField("role", role, validLocale) ?? undefined}
+      />
+
+      <Textarea
+        label={t("customizer.instructions")}
+        rows={8}
+        value={instructions}
+        onChange={(e) => updateAgent(agentId, "instructions", e.target.value)}
+        className="font-mono text-xs"
+        errorMessage={validateAgentField("instructions", instructions, validLocale) ?? undefined}
+      />
+
+      <Textarea
+        label={t("customizer.outputTemplate")}
+        rows={5}
+        value={outputTemplate}
+        onChange={(e) => updateAgent(agentId, "outputTemplate", e.target.value)}
+        errorMessage={validateAgentField("outputTemplate", outputTemplate, validLocale) ?? undefined}
+      />
     </div>
   );
 }

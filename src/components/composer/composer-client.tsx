@@ -1,14 +1,19 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import type { HarnessMeta } from "@/lib/types";
 import { loadCatalog } from "@/lib/harness-loader";
 import { useLocale } from "@/hooks/use-locale";
 import { useToast } from "@/hooks/use-toast";
 import { useComposer } from "@/hooks/use-composer";
+import { useModifications } from "@/hooks/use-modifications";
+import { useComposerStep } from "@/hooks/use-composer-step";
 import { HarnessSelector } from "@/components/composer/harness-selector";
 import { CompositionPreview } from "@/components/composer/composition-preview";
+import { ComposerStepper } from "@/components/composer/composer-stepper";
+import { ComposerExportPanel } from "@/components/composer/composer-export-panel";
+import { CustomizePanel } from "@/components/customizer/customize-panel";
 
 function parseComposeParam(param: string | null): ReadonlyArray<number> {
   if (!param) return [];
@@ -41,6 +46,35 @@ export function ComposerClient() {
     clear,
     setSelectedIds,
   } = useComposer();
+
+  const {
+    modifications,
+    updateAgent,
+    toggleAgent,
+    isAgentEnabled,
+    getModifiedValue,
+    reset: resetModifications,
+    hasChanges,
+  } = useModifications(merged?.agents ?? []);
+
+  const {
+    step,
+    stepIndex,
+    steps,
+    goToStep,
+    nextStep,
+    prevStep,
+    canGoNext,
+  } = useComposerStep(selectedIds.length > 0);
+
+  // Reset modifications when merged harness changes
+  const prevMergedRef = useRef(merged);
+  useEffect(() => {
+    if (merged !== prevMergedRef.current) {
+      resetModifications();
+      prevMergedRef.current = merged;
+    }
+  }, [merged, resetModifications]);
 
   // Load catalog on mount
   useEffect(() => {
@@ -110,7 +144,6 @@ export function ComposerClient() {
       await navigator.clipboard.writeText(window.location.href);
       addToast(t("composer.urlCopied"), "success");
     } catch {
-      // Fallback
       try {
         const textarea = document.createElement("textarea");
         textarea.value = window.location.href;
@@ -127,6 +160,26 @@ export function ComposerClient() {
     }
   }, [addToast, t]);
 
+  const handleClearAll = useCallback(() => {
+    clear();
+    resetModifications();
+    goToStep("select");
+  }, [clear, resetModifications, goToStep]);
+
+  const canNavigateTo = useCallback(
+    (target: typeof step) => {
+      if (target === "select") return true;
+      if (target === "customize") return selectedIds.length > 0;
+      if (target === "export") return selectedIds.length > 0;
+      return false;
+    },
+    [selectedIds.length],
+  );
+
+  const enabledAgentCount = merged
+    ? merged.agents.filter((a) => isAgentEnabled(a.id)).length
+    : 0;
+
   if (catalogError) {
     return (
       <main className="mx-auto max-w-7xl px-4 py-8">
@@ -140,7 +193,7 @@ export function ComposerClient() {
   return (
     <main className="mx-auto max-w-7xl px-4 py-8">
       {/* Header */}
-      <div className="mb-6 flex items-start justify-between">
+      <div className="mb-4 flex items-start justify-between">
         <div>
           <h1 className="text-3xl font-bold text-[var(--foreground)]">
             {t("composer.title")}
@@ -160,7 +213,7 @@ export function ComposerClient() {
             </button>
             <button
               type="button"
-              onClick={clear}
+              onClick={handleClearAll}
               className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-sm text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)] active:bg-[var(--secondary)] transition-base focus-ring"
             >
               {t("composer.reset")}
@@ -169,27 +222,73 @@ export function ComposerClient() {
         )}
       </div>
 
-      {/* Two-panel layout */}
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-stretch" style={{ minHeight: "70vh" }}>
-        {/* Left panel: Selector */}
-        <div className="w-full shrink-0 lg:w-[350px]">
-          <HarnessSelector
-            catalog={catalog}
-            selectedIds={selectedIds}
-            onAdd={handleAdd}
-            onRemove={handleRemove}
-          />
-        </div>
+      {/* Stepper */}
+      <ComposerStepper
+        currentStep={step}
+        stepIndex={stepIndex}
+        steps={steps}
+        onStepClick={goToStep}
+        canNavigateTo={canNavigateTo}
+      />
 
-        {/* Right panel: Preview */}
-        <div className="min-w-0 flex-1">
-          <CompositionPreview
+      {/* Step content */}
+      <div key={step} className="animate-slide-in">
+        {step === "select" && (
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-stretch" style={{ minHeight: "70vh" }}>
+            <div className="w-full shrink-0 lg:w-[350px]">
+              <HarnessSelector
+                catalog={catalog}
+                selectedIds={selectedIds}
+                onAdd={handleAdd}
+                onRemove={handleRemove}
+              />
+            </div>
+            <div className="min-w-0 flex-1">
+              <CompositionPreview
+                merged={merged}
+                loading={loading}
+                selectedCount={selectedIds.length}
+                loadedHarnesses={loadedHarnesses}
+                isAgentEnabled={isAgentEnabled}
+                onToggleAgent={toggleAgent}
+                onNext={canGoNext ? nextStep : undefined}
+                onSkipToExport={selectedIds.length > 0 ? () => goToStep("export") : undefined}
+              />
+            </div>
+          </div>
+        )}
+
+        {step === "customize" && merged && (
+          <div>
+            <div className="mb-3 flex items-center justify-between">
+              <button
+                type="button"
+                onClick={prevStep}
+                className="rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-sm text-[var(--muted-foreground)] hover:bg-[var(--muted)] transition-base focus-ring"
+              >
+                &larr; {t("composer.back")}
+              </button>
+              <button
+                type="button"
+                onClick={nextStep}
+                className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-sm font-medium text-[var(--primary-foreground)] hover:brightness-110 active:brightness-95 transition-base focus-ring"
+              >
+                {t("composer.next")} &rarr;
+              </button>
+            </div>
+            <CustomizePanel harness={merged} onClose={prevStep} />
+          </div>
+        )}
+
+        {step === "export" && merged && (
+          <ComposerExportPanel
             merged={merged}
-            loading={loading}
-            selectedCount={selectedIds.length}
-            loadedHarnesses={loadedHarnesses}
+            modifications={modifications}
+            enabledAgentCount={enabledAgentCount}
+            changeCount={modifications.length}
+            onBack={prevStep}
           />
-        </div>
+        )}
       </div>
     </main>
   );

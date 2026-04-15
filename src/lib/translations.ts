@@ -347,6 +347,31 @@ const translations: Record<string, TranslationEntry> = {
     ko: "{name} 비활성화",
     en: "Disable {name}",
   },
+  "customizer.description": { ko: "설명", en: "Description" },
+  "customizer.instructions": { ko: "지시사항", en: "Instructions" },
+
+  // ── Validation ──
+  "validation.required": { ko: "필수 입력입니다", en: "This field is required" },
+  "validation.tooLong": {
+    ko: "최대 {max}자까지 입력 가능합니다",
+    en: "Maximum {max} characters",
+  },
+
+  // ── Composer Steps ──
+  "composer.step.select": { ko: "선택", en: "Select" },
+  "composer.step.customize": { ko: "커스터마이즈", en: "Customize" },
+  "composer.step.export": { ko: "내보내기", en: "Export" },
+  "composer.next": { ko: "다음", en: "Next" },
+  "composer.back": { ko: "이전", en: "Back" },
+  "composer.skipToExport": { ko: "바로 내보내기", en: "Skip to Export" },
+  "composer.exportSummary": {
+    ko: "에이전트 {agentCount}개, 변경사항 {changeCount}개",
+    en: "{agentCount} agents, {changeCount} changes",
+  },
+  "composer.enabledAgents": {
+    ko: "활성 에이전트: {count}개",
+    en: "{count} agents enabled",
+  },
 
   // ── Guide Page ──
   "guide.title": { ko: "사용 가이드", en: "User Guide" },

@@ -166,6 +166,21 @@ body {
   animation: toast-in 200ms ease-out;
 }
 
+/* Step slide-in animation */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animate-slide-in {
+  animation: slide-in-right 200ms ease-out;
+}
+
 /* Screen reader only utility */
 .sr-only {
   position: absolute;

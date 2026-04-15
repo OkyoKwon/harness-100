@@ -22,6 +22,8 @@ vi.mock("@/hooks/use-locale", () => ({
         "composer.frameworkCount": `${params?.count ?? 0}개 프레임워크`,
         "composer.agentCount": `${params?.count ?? 0}명`,
         "composer.setupComposed": "조합 세팅",
+        "composer.next": "다음",
+        "composer.skipToExport": "바로 내보내기",
         "action.zip": "ZIP 다운로드",
         "action.setupInProgress": "세팅 중...",
         "action.zipBuilding": "빌드 중...",
@@ -122,10 +124,12 @@ describe("CompositionPreview", () => {
     expect(screen.getByText("2개 프레임워크")).toBeInTheDocument();
   });
 
-  it("shows action buttons when merged harness exists", () => {
+  it("shows navigation buttons when onNext is provided", () => {
     // Arrange
     const merged = createHarness({ agentCount: 3, frameworks: [] });
     const loadedHarnesses = [merged];
+    const onNext = vi.fn();
+    const onSkipToExport = vi.fn();
 
     // Act
     render(
@@ -134,15 +138,17 @@ describe("CompositionPreview", () => {
         loading={false}
         selectedCount={1}
         loadedHarnesses={loadedHarnesses}
+        onNext={onNext}
+        onSkipToExport={onSkipToExport}
       />,
     );
 
     // Assert
-    expect(screen.getByText("조합 세팅")).toBeInTheDocument();
-    expect(screen.getByText("ZIP 다운로드")).toBeInTheDocument();
+    expect(screen.getByText(/다음/)).toBeInTheDocument();
+    expect(screen.getByText("바로 내보내기")).toBeInTheDocument();
   });
 
-  it("does not show action buttons when no selection", () => {
+  it("does not show navigation buttons when no selection", () => {
     // Act
     render(
       <CompositionPreview
@@ -154,7 +160,7 @@ describe("CompositionPreview", () => {
     );
 
     // Assert
-    expect(screen.queryByText("조합 세팅")).not.toBeInTheDocument();
+    expect(screen.queryByText(/다음/)).not.toBeInTheDocument();
   });
 
   it("renders harness cards in grid", () => {

@@ -11,6 +11,8 @@ import { createAgent, createHarness } from "@/test/mocks/harness-fixtures";
 // Mock zip-builder exports
 vi.mock("../zip-builder", () => ({
   applyModifications: (agents: ReadonlyArray<unknown>) => agents,
+  buildAgentSlugMap: (agents: ReadonlyArray<{ id: string }>) =>
+    new Map(agents.map((a) => [a.id, a.id])),
   generateAgentMd: (agent: { id: string; name: string }) => `# ${agent.name}`,
   generateClaudeMd: (harness: { name: string }) => `# ${harness.name}`,
   generateSkillMd: (harness: { name: string }) => `# Skill: ${harness.name}`,

@@ -3,6 +3,23 @@ import type { Locale } from "./locale";
 import type { Agent, ExtensionSkill, Harness, Modification } from "./types";
 import { t } from "./translations";
 import { isAllowedModificationField, isValidPath } from "./validation";
+import { toSlug } from "./custom-harness-converter";
+
+/** Build a map from agent.id → slug filename (deduped) */
+function buildAgentSlugMap(agents: ReadonlyArray<Agent>): Map<string, string> {
+  const slugMap = new Map<string, string>();
+  const usedSlugs = new Map<string, number>();
+
+  for (const agent of agents) {
+    const base = toSlug(agent.name);
+    const count = usedSlugs.get(base) ?? 0;
+    const slug = count === 0 ? base : `${base}-${count + 1}`;
+    usedSlugs.set(base, count + 1);
+    slugMap.set(agent.id, slug);
+  }
+
+  return slugMap;
+}
 
 function applyModifications(
   agents: ReadonlyArray<Agent>,
@@ -104,8 +121,12 @@ function generateSkillMd(harness: Harness, locale: Locale = "ko"): string {
     .join(", ");
 
   // ── Agent config table ──
+  const slugMap = buildAgentSlugMap(agents);
   const agentTable = agents
-    .map((a) => `| ${a.id} | \`.claude/agents/${a.id}.md\` | ${a.role} | general-purpose |`)
+    .map((a) => {
+      const slug = slugMap.get(a.id) ?? a.id;
+      return `| ${slug} | \`.claude/agents/${slug}.md\` | ${a.role} | general-purpose |`;
+    })
     .join("\n");
 
   // ── Phase-based workflow ──
@@ -118,16 +139,17 @@ function generateSkillMd(harness: Harness, locale: Locale = "ko"): string {
 
     const rows = batch.map((step) => {
       const agent = agentMap.get(step.agentId);
+      const slug = slugMap.get(step.agentId) ?? step.agentId;
       const role = agent?.role ?? step.agentId;
       const deps = step.dependsOn.length > 0
-        ? step.dependsOn.join(", ")
+        ? step.dependsOn.map((d) => slugMap.get(d) ?? d).join(", ")
         : t(locale, "gen.none");
       const idx = String(outputIndex).padStart(2, "0");
       const agentName = agent?.name ?? step.agentId;
       const output = `\`_workspace/${idx}_${agentName}_output.md\``;
       outputIndex++;
       const parallel = step.parallel ? (ko ? " (병렬)" : " (parallel)") : "";
-      return `| ${step.agentId} | ${role}${parallel} | ${deps} | ${output} |`;
+      return `| ${slug} | ${role}${parallel} | ${deps} | ${output} |`;
     });
 
     const header = ko
@@ -140,8 +162,11 @@ function generateSkillMd(harness: Harness, locale: Locale = "ko"): string {
   // ── Execution order table (legacy compact view) ──
   const execTable = harness.skill.executionOrder
     .map((s, i) => {
-      const deps = s.dependsOn.length > 0 ? s.dependsOn.join(", ") : t(locale, "gen.none");
-      return `| ${i + 1}${s.parallel ? "a" : ""} | ${s.agentId} | ${deps} |`;
+      const slug = slugMap.get(s.agentId) ?? s.agentId;
+      const deps = s.dependsOn.length > 0
+        ? s.dependsOn.map((d) => slugMap.get(d) ?? d).join(", ")
+        : t(locale, "gen.none");
+      return `| ${i + 1}${s.parallel ? "a" : ""} | ${slug} | ${deps} |`;
     })
     .join("\n");
 
@@ -346,13 +371,15 @@ export async function buildZip(
   if (!agentsFolder) throw new Error("Failed to create agents folder in ZIP");
 
   const agents = applyModifications(harness.agents, modifications);
+  const slugMap = buildAgentSlugMap(agents);
   for (const agent of agents) {
+    const slug = slugMap.get(agent.id) ?? agent.id;
     const rawContent = raw?.agents?.[agent.id];
     // Use original markdown if no modifications were made to this agent
     if (rawContent && !hasModifications(agent.id, modifications)) {
-      agentsFolder.file(`${agent.id}.md`, rawContent);
+      agentsFolder.file(`${slug}.md`, rawContent);
     } else {
-      agentsFolder.file(`${agent.id}.md`, generateAgentMd(agent, locale));
+      agentsFolder.file(`${slug}.md`, generateAgentMd(agent, locale));
     }
   }
 
@@ -393,4 +420,4 @@ export async function buildZip(
   return zip.generateAsync({ type: "blob" });
 }
 
-export { applyModifications, generateAgentMd, generateClaudeMd, generateSkillMd, generateExtensionSkillMd };
+export { applyModifications, buildAgentSlugMap, generateAgentMd, generateClaudeMd, generateSkillMd, generateExtensionSkillMd };

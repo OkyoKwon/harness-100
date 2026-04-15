@@ -8,7 +8,7 @@ import type {
   SetupResult,
 } from "./types";
 import { t } from "./translations";
-import { applyModifications, generateAgentMd, generateClaudeMd, generateSkillMd } from "./zip-builder";
+import { applyModifications, buildAgentSlugMap, generateAgentMd, generateClaudeMd, generateSkillMd } from "./zip-builder";
 
 export function isFileSystemAccessSupported(): boolean {
   return typeof window !== "undefined" && "showDirectoryPicker" in window;
@@ -108,10 +108,12 @@ export async function detectConflicts(
   const agentsDir = await dirExists(claudeDir, "agents");
   if (agentsDir) {
     const agents = applyModifications(harness.agents, modifications);
+    const slugMap = buildAgentSlugMap(agents);
     for (const agent of agents) {
-      if (await fileExists(agentsDir, `${agent.id}.md`)) {
+      const slug = slugMap.get(agent.id) ?? agent.id;
+      if (await fileExists(agentsDir, `${slug}.md`)) {
         conflicts.push({
-          path: `.claude/agents/${agent.id}.md`,
+          path: `.claude/agents/${slug}.md`,
           type: "agent",
           resolution: "overwrite",
         });
@@ -191,8 +193,10 @@ export async function writeWithResolutions(
     // Agents
     const agentsDir = await getOrCreateDir(claudeDir, "agents");
     const agents = applyModifications(harness.agents, modifications);
+    const slugMap = buildAgentSlugMap(agents);
     for (const agent of agents) {
-      const agentPath = `.claude/agents/${agent.id}.md`;
+      const slug = slugMap.get(agent.id) ?? agent.id;
+      const agentPath = `.claude/agents/${slug}.md`;
       const resolution = resolutions?.get(agentPath);
       if (resolution === "skip") {
         filesSkipped++;
@@ -200,9 +204,9 @@ export async function writeWithResolutions(
       }
       const rawContent = raw?.agents?.[agent.id];
       if (rawContent && !hasModifications(agent.id, modifications)) {
-        await writeFile(agentsDir, `${agent.id}.md`, rawContent);
+        await writeFile(agentsDir, `${slug}.md`, rawContent);
       } else {
-        await writeFile(agentsDir, `${agent.id}.md`, generateAgentMd(agent, locale));
+        await writeFile(agentsDir, `${slug}.md`, generateAgentMd(agent, locale));
       }
       filesWritten++;
     }

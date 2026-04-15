@@ -159,6 +159,14 @@ describe("toSlug", () => {
     expect(toSlug("PR Review (Auto)")).toBe("pr-review-auto");
   });
 
+  it("strips Korean characters and keeps ASCII only", () => {
+    expect(toSlug("내부 공유용 PPTX 작성")).toBe("pptx");
+  });
+
+  it("falls back when name is entirely Korean", () => {
+    expect(toSlug("한글만 있는 이름")).toBe("custom-harness");
+  });
+
   it("returns fallback for empty string", () => {
     expect(toSlug("")).toBe("custom-harness");
   });

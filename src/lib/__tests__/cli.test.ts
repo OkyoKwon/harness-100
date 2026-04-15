@@ -10,8 +10,8 @@ describe("buildCliCommand", () => {
     expect(buildCliCommand("test-123")).toBe('claude "/test-123"');
   });
 
-  it("handles Korean slug", () => {
-    expect(buildCliCommand("심플한-pptx-제작")).toBe('claude "/심플한-pptx-제작"');
+  it("handles slug with only ASCII characters", () => {
+    expect(buildCliCommand("simple-pptx-maker")).toBe('claude "/simple-pptx-maker"');
   });
 
   it("strips shell-dangerous characters", () => {

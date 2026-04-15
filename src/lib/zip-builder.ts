@@ -146,7 +146,26 @@ function generateSkillMd(harness: Harness, locale: Locale = "ko"): string {
     .join("\n");
 
   // ── Modes table ──
-  const modesTable = harness.skill.modes
+  const effectiveModes = harness.skill.modes.length > 0
+    ? harness.skill.modes
+    : [
+        {
+          name: ko ? "전체 파이프라인" : "Full Pipeline",
+          triggerPattern: ko ? "전체 실행" : "run all",
+          agents: agents.map((a) => a.name || a.id),
+        },
+        {
+          name: ko ? "간단 실행" : "Quick",
+          triggerPattern: ko ? "간단히" : "quick",
+          agents: agents.slice(0, 1).map((a) => a.name || a.id),
+        },
+        {
+          name: ko ? "리뷰만" : "Review Only",
+          triggerPattern: ko ? "리뷰만" : "review only",
+          agents: agents.slice(-1).map((a) => a.name || a.id),
+        },
+      ];
+  const modesTable = effectiveModes
     .map((m) => `| "${m.triggerPattern}" | **${m.name}** | ${m.agents.join(", ")} |`)
     .join("\n");
 
